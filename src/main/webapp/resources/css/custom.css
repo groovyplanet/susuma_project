@@ -1,0 +1,20 @@
+
+footer {
+    /*position: fixed;*/
+    width: 100%;
+    bottom: 0px;
+    font-size: 13px;
+    color: aquamarine
+}
+
+
+.t-1{
+    font-size: 20px;
+    background-color: #1a252f;
+    color: #fff!important;
+}
+
+.t-2 {
+    background-color: white;
+}
+
