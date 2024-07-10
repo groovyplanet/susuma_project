@@ -7,7 +7,7 @@
     <div class="container">
  		<%@ include file="include/snb.jsp" %>
  		<div>
- 			main section
+ 			main section 
  		</div>
     </div>
     
