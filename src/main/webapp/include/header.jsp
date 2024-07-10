@@ -9,12 +9,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-idth, initial-scale=1">
-   
 
-    <title>Welcome to MyWorld</title>
+    <title>SUSUMA</title>
 
     <!-- Bootstrap Core CSS -->
-	<%-- <%=request.getContextPath() %> --%>
     <link href="${pageContext.request.contextPath }/resources/css/bootstrap.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath }/resources/css/business-casual.css" rel="stylesheet">
@@ -28,16 +26,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
-
-	<style>
-	.abc {
-		position: sticky;
-		top: 0px;
-		width: 100%; 
-		z-index: 10;
-	}
-	</style>
-    
     
 </head>
 
