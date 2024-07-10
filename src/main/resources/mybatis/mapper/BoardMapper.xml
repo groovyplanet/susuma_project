@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="getList" resultType="com.myweb.board.model.BoardDTO">
-		SELECT * FROM BOARD ORDER BY BNO DESC
+		SELECT * FROM BOARD ORDER BY BNO asc
 	</select>
 	
 	<insert id="regist" parameterType="com.myweb.board.model.BoardDTO">
