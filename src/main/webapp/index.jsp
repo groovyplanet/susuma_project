@@ -5,7 +5,10 @@
  	<%@ include file="include/header.jsp" %>
  
     <div class="container">
-    	<a href="../Susuma/board/list.board">list.board</a>
+ 		<%@ include file="include/snb.jsp" %>
+ 		<div>
+ 			main section
+ 		</div>
     </div>
     
     <%@ include file="include/footer.jsp" %>
