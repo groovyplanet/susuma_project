@@ -19,9 +19,6 @@ header .gnb ul.login-area li button.join-btn { background-color: #F49D00; border
 header .gnb ul.login-area li button.join-btn:hover { background-color: #e99700; border: 1px solid #e99700; } 
 header .gnb ul.login-area li button.join-btn i { margin-left: 2px; } 
 
-section.main-section .container { width: 1000px; margin: 0 auto; padding: 380px 0; } 
-section.main-section .container .full-content-area { } 
-
 footer { background-color: #EEE; } 
 footer .container { width: 1200px; margin: 0 auto; padding: 40px 0; } 
 footer .container .info-area { font-weight: 600; } 

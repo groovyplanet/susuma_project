@@ -1,0 +1,19 @@
+.main-section .container { display: flex; height: calc(100% - 50px); width: 1200px; margin: 0 auto; background-color: white; max-width: 1900px;
+ box-sizing: border-box; }
+
+.main-section .container .sidebar {flex-basis: 200px; min-width: 200px; background-color: white; border-left: 1px solid #e7e8ea; border-right: 1px solid #e7e8ea;    display: flex; flex-direction: column; align-items: center; padding: 60px 0; box-sizing: border-box;  }
+.main-section .container .sidebar .title{font-size: 20px; font-weight: 600; line-height: 26px;}
+.main-section .container .sidebar ul { list-style-type: none; padding: 0; margin: 0; width: 80%; font-size: 17px; font-weight: 500; text-align: center; margin-top: 20px; } 
+.main-section .container .sidebar ul li { margin: 10px 0; position: relative; } 
+.main-section .container .sidebar ul li a { text-decoration: none; color: #ababab; display: block; padding: 10px; width: 100%; border-radius: 5px; }
+.main-section .container .sidebar ul li a:hover { background-color: #f8f8f8; color: #555;} 
+
+.main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; padding: 60px 0;} 
+.main-section .container .content .status-body { text-align: center; } 
+.main-section .container .content .status-section { display: inline-block; margin: 10px; text-align: center; } 
+.main-section .container .content .status-section button { background-color: #f49d00; color: white; padding: 10px 20px; border: none; border-radius: 5px; width: 150px; font-size: 15px; cursor: pointer; margin-bottom: 10px; } 
+.main-section .container .content .content.status-section button:hover { background-color: #f8b94d; } 
+.main-section .container .content .status-section .content-text { border: 1px solid gray; padding: 10px; border-radius: 5px; width: 150px; height: auto; box-sizing: border-box;} 
+.main-section .container .content .status-section .content-text p { margin: 10px 0; } 
+.main-section .container .content .progress-text { margin-top: 20px; border: 1px solid gray; padding: 10px; border-radius: 5px; width: 300px; display: inline-block; text-align: center; } 
+/* ^\n + 정규식 replaceALL */
