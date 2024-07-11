@@ -1,16 +1,12 @@
 header { border-bottom: 1px solid #EAEAEC; background-color: #FCFCFE; } 
-
 header .gnb { width: 1200px; margin: 0 auto; display: flex; align-items: center; height: 60px; } 
-
 header .gnb .logo-area { float: left; width: 110px; } 
 header .gnb .logo-area img { height: 100%; } 
-
 header .gnb ul.menu-area { margin-left: 35px; display: flex; } 
 header .gnb ul.menu-area li { display: inline; margin-right: 10px; padding: 0 20px; cursor: pointer; } 
 header .gnb ul.menu-area li:hover { border-bottom: 1px solid #F49D00; } 
 header .gnb ul.menu-area li a { display: inline-block; font-size: 15px; padding: 20px 0; color:#444; font-weight: 500; text-decoration: none; } 
 header .gnb ul.menu-area li:hover a { color:#111; } 
-
 header .gnb ul.login-area { margin-left: auto; } 
 header .gnb ul.login-area li { display: inline; margin-left: 5px; cursor: pointer; } 
 header .gnb ul.login-area li button { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; } 
@@ -19,8 +15,11 @@ header .gnb ul.login-area li button.join-btn { background-color: #F49D00; border
 header .gnb ul.login-area li button.join-btn:hover { background-color: #e99700; border: 1px solid #e99700; } 
 header .gnb ul.login-area li button.join-btn i { margin-left: 2px; } 
 
-section.main-section .container { width: 1000px; margin: 0 auto; padding: 380px 0; } 
-section.main-section .container .full-content-area { } 
+.main-section .container { width: 1000px; margin: 0 auto; } 
+.main-section .container .main-area { border: 1px solid #111; font-size: 100px; } 
+.main-section .container.side-on { width: 1000px; margin: 0 auto; display: flex; } 
+.main-section .container.side-on .left-area { border: 1px solid #ffbaba; font-size: 50px; } 
+.main-section .container.side-on .main-area { border: 1px solid #395e7c; font-size: 50px; } 
 
 footer { background-color: #EEE; } 
 footer .container { width: 1200px; margin: 0 auto; padding: 40px 0; } 
