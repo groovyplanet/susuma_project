@@ -15,7 +15,7 @@ header .gnb ul.login-area { margin-left: auto; }
 header .gnb ul.login-area li { display: inline; margin-left: 5px; cursor: pointer; } 
 header .gnb ul.login-area li button { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; } 
 header .gnb ul.login-area li button:hover { background-color: #f3f3f3; transition: all 0.5s; } 
-header .gnb ul.login-area li button.join-btn { background-color: #F49D00; border: 1px solid #F49D00; padding: 0 15px; color: white; } 
+header .gnb ul.login-area li button.join-btn { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 0 15px; padding-right: 10px; } 
 header .gnb ul.login-area li button.join-btn:hover { background-color: #e99700; border: 1px solid #e99700; } 
 header .gnb ul.login-area li button.join-btn i { margin-left: 2px; } 
 
