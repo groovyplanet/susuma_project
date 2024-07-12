@@ -1,14 +1,12 @@
 .main-section .container { display: flex; height: calc(100% - 50px); width: 1200px; margin: 0 auto; background-color: white; max-width: 1900px; box-sizing: border-box; } 
-
 .main-section .container .sidebar { flex-basis: 200px; min-width: 200px; background-color: white; border-left: 1px solid #e7e8ea; border-right: 1px solid #e7e8ea; display: flex; flex-direction: column; align-items: center; padding: 60px 0; box-sizing: border-box; } 
 .main-section .container .sidebar .title { font-size: 20px; font-weight: 600; line-height: 26px; } 
 .main-section .container .sidebar ul { list-style-type: none; padding: 0; margin: 0; width: 80%; font-size: 17px; font-weight: 500; text-align: center; margin-top: 20px; } 
 .main-section .container .sidebar ul li { margin: 10px 0; position: relative; } 
-
-.main-section .container .sidebar ul li a { text-decoration: none; color: #ababab; display: block; padding: 10px; width: 100%; border-radius: 5px; }
-.main-section .container .sidebar ul li a:hover, .main-section .container .sidebar ul li a.active  { background-color: #f8f8f8; color: #555;} 
-
-.main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; padding: 30px 0; } 
+.main-section .container .sidebar ul li a { text-decoration: none; color: #ababab; display: block; padding: 10px; width: 100%; border-radius: 5px; } 
+.main-section .container .sidebar ul li a:hover, .main-section .container .sidebar ul li a.active { background-color: #f8f8f8; color: #555; } 
+.main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; margin-left : 30px; padding: 30px 0; } 
+.main-section .container .content.status { display: flex; } 
 .main-section .container .content .status-body { text-align: center; } 
 .main-section .container .content .status-section { display: inline-block; margin: 10px; text-align: center; } 
 .main-section .container .content .status-section button { background-color: #f49d00; color: white; padding: 10px 20px; border: none; border-radius: 5px; width: 150px; font-size: 15px; cursor: pointer; margin-bottom: 10px; } 
@@ -16,73 +14,223 @@
 .main-section .container .content .status-section .content-text { border: 1px solid gray; padding: 10px; border-radius: 5px; width: 150px; height: auto; box-sizing: border-box; } 
 .main-section .container .content .status-section .content-text p { margin: 10px 0; } 
 .main-section .container .content .progress-text { margin-top: 20px; border: 1px solid gray; padding: 10px; border-radius: 5px; width: 300px; display: inline-block; text-align: center; } 
-
 /* ===========profile_edit css start======== */
-
-.main-section .container .content .edit-form { margin-top: 30px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 80%; } 
+.main-section .container .content .edit-form { margin-top: 30px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 90%; } 
 .main-section .container .content .edit-form .profile-img { position: relative; flex: none; width: 80px; height: 80px; margin-left: 40px; border-radius: 50%; background-size: cover; } 
 .main-section .container .content .edit-form .master-section { font-size: 14px; font-weight: 600; margin-left: 20px; } 
 .main-section .container .content .edit-form .profile-img .profile-pic-upload { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #44474b; } 
 .main-section .container .content .edit-form .profile-img .profile-pic-upload:hover { cursor: pointer; } 
-
 .main-section .container .content .career_infoarea,
 .main-section .container .content .location_management,
 .main-section .container .content .detailed_description,
-.main-section .container .content .service_scheduling { margin-top: 30px; margin-left: 30px; padding-left: 10px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 80%; } 
-
+.main-section .container .content .service_scheduling { margin-top: 30px; margin-left: 30px; padding-left: 10px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 90%; } 
 .main-section .container .content .career_sectiontitle,
 .main-section .container .content .location_managementtitle,
 .main-section .container .content .detailed_descriptiontitle,
 .main-section .container .content .service_schedulingtitle { margin-left: 30px; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; } 
-
 .main-section .container .content .career_details ul { margin-left: 40px; list-style: none; padding: 0; } 
 .main-section .container .content .location_details , .description_details, .schedule_details { margin-left: 40px; } 
-
 .main-section .container .content .career_details ul li,
 .main-section .container .content .schedule_details ul li { margin-bottom: 0.5rem; } 
-
 /* ===========profile_edit css end======== */
-
-
 /* ===reserve manage list page css start === */
-
-
-.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; margin-top: 20px; width: 1000px; padding: 60px 0; } 
-
+.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
 .main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
-
 .main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
-
-.main-section .container .reservation-setting .reserve-schecdule .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
-
-.main-section .container .reservation-setting .reserve-schecdule .approve { background-color: #ff6b6b; color: white; } 
-
-.main-section .container .reservation-setting .reserve-schecdule .complete, 
-.main-section .container .reservation-setting .reserve-schecdule .pending, 
-.main-section .container .reservation-setting .reserve-schecdule .done, 
-.main-section .container .reservation-setting .reserve-schecdule .more { background-color: white; border: 1px solid #000; } 
-
-.main-section .container .reservation-setting .reserve-schecdule .complete:hover, 
-.main-section .container .reservation-setting .reserve-schecdule .pending:hover, 
-.main-section .container .reservation-setting .reserve-schecdule .done:hover, 
-.main-section .container .reservation-setting .reserve-schecdule .more:hover { background-color: #f0f0f0; } 
-
-.main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; } 
-
-.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 40px; height: 40px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
-
+.main-section .container .reservation-setting .reserve-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .reservation-setting .reserve-schecdule .approve,
+.main-section .container .reservation-setting .reserve-schecdule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .reservation-setting .reserve-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 50px; height: 50px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
 /* ===reserve manage list page css end === */
-
 /* ==========reserve_manage_view start============== */
-
-.main-section .container .info{width: 100%; height: 100%;}
-
-.main-section .container .profile-logo-sm {position: relative; flex: none; margin-top:10px; width: 50px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; }
-
-.main-section .container .reservation-detail{ margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px;}
-.main-section .container .reserve-more{ background-color: white; border: 1px solid #000; margin-top: 10px; width: 50px; height: 30px;}
-.main-section .container .member-section{font-size: 15px; text-align: left; margin-left: 20px;}
-.main-section .container .reserve-status .btn { background-color: #ff6b6b; color: white; margin-left: 20px; margin-top: 10px;}
-.main-section .container .detail-content{  margin-right: 10px; text-align: center; height: 40%; margin-top: 20px; border-top:3px solid white; padding: 20px; justify-content: space-between; } 
-
+.main-section .container .reservation-detail .profile-logo-sm { margin-top:5px; width: 50px; margin-right:20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
+.main-section .container .reservation-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
+.main-section .container .reservation-detail .member-section { font-size: 15px; text-align: left; margin-top:10px; margin-left: 20px; display: flex; } 
+.main-section .container .reservation-detail .reserve-status .btn { background-color: #ff6b6b; color: white; margin-left: 20px; margin-top: 10px; } 
+.main-section .container .reservation-detail .reserve-status { margin-left: auto; margin-right: 50px; } 
+.main-section .container .reservation-detail .detail-content { margin-right: 10px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; } 
 /* ==========reserve_manage_view end============== */
+/* ===repair manage list page css start === */
+.main-section .container .repair-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
+.main-section .container .repair-setting .repair-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+.main-section .container .repair-setting .repair-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+.main-section .container .repair-setting .repair-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .repair-setting .repair-schecdule .approve,
+.main-section .container .repair-setting .repair-schecdule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .repair-setting .repair-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .repair-setting .repair-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .repair-setting .repair-schecdule .profile-logo-sm { position: relative; flex: none; width: 60px; height: 60px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+/* ===reserve manage list page css end === */
+/* ========repair view page css start ===== */
+.main-section .container .profile-logo-sm { margin-top:5px; width: 50px; margin-right:20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
+.main-section .container .repair-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
+.main-section .container .repair-detail .info-reserve .member-section { font-size: 15px; text-align: left; margin-top:10px; margin-left: 20px; display: flex; } 
+.main-section .container .repair-detail .info-reserve .member-section .info-reserve { height: 100%; } 
+.main-section .container .repair-detail .info-reserve .member-section .repair-status .btn { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .repair-detail .info-reserve .member-section .repair-status,
+.main-section .container .repair-detail .detail-content { margin-left: auto; margin-right: 50px; } 
+.main-section .container .repair-detail .repair-more-content .btn { background-color: white; border: 0.5px solid #999; margin-right: 20px; } 
+.main-section .container .repair-detail .repair-more-content .detail-content,
+.main-section .container .repair-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; } 
+/* ========repair view page css end ===== */
+
+/* ====point page css start ==== */
+.main-section .container .content .account-info .account-info { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .account-header { display: flex; align-items: center; margin-bottom: 20px; } 
+.main-section .container .content .account-info .bank-icon { width: 50px; height: 50px; margin-right: 15px; } 
+.main-section .container .content .account-info .account-details { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .bank-info { display: flex; align-items: center; margin-bottom: 5px; } 
+.main-section .container .content .account-info .btn-edit { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; } 
+.main-section .container .content .account-info .account-number { font-size: 16px; color: #555; } 
+.main-section .container .content .account-info .points-section { margin: 30px 20px 10px; } 
+.main-section .container .content .account-info .points-header { display: flex; align-items: center; }
+.main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
+.main-section .container .content .account-info .btn-withdraw { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+.main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
+.main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
+.main-section .container .content .account-info .tab-menu { display: flex;  margin-bottom: 10px; } 
+.main-section .container .content .account-info .tab { flex: 1; padding: 10px; border-bottom: 2px solid #ddd; text-align: center; cursor: pointer; font-size: 17px; } 
+.main-section .container .content .account-info .tab.active { font-weight: bold; border-bottom: 2px solid #F49D00; } 
+.main-section .container .content .account-info .transaction-list { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .transaction-item,
+.main-section .container .content .account-info .transaction-pop{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
+.main-section .container .content .account-info .date { color: #999; } 
+.main-section .container .content .account-info .description { flex: 1; text-align: center; } 
+.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold; } 
+/* ====point page css end ==== */
+
+/* Withdraw Modal styles */
+#withdrawModal { 
+    display: none; 
+    background-color: rgba(0, 0, 0, .6); 
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 1000; 
+} 
+
+#withdrawModal.show { 
+    display: flex !important; 
+} 
+
+#withdrawModal .modal-content { 
+    width: 416px; 
+    padding: 48px 48px 40px; 
+    border-radius: 16px; 
+    background-color: #fff; 
+    box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); 
+    position: relative; 
+    text-align: center; 
+} 
+
+#withdrawModal .modal-content p { 
+    font-size: 16px; 
+    color: #333; 
+    margin-bottom: 20px; 
+} 
+
+#withdrawModal .modal-buttons { 
+    margin-top: 20px; 
+} 
+
+#withdrawModal .btn-confirm, 
+#withdrawModal .btn-cancel { 
+    background-color: #f49d00; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-left: 5px;
+   
+} 
+
+#withdrawModal .btn-cancel { 
+    background-color: #999; 
+} 
+
+#withdrawModal .btn-confirm:hover, 
+#withdrawModal .btn-cancel:hover { 
+    opacity: 0.8; 
+} 
+
+
+/* == profile edit 수정중== */
+.profile-img{
+    margin: 25px 30px;
+    width: 100px;
+    height: 100px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 화면 중앙 정렬 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 20px;
+}
+
+/* 닫기 버튼 스타일 */
+
+.edit-form{
+    display: flex;
+}
+
+
+
+.form-group{
+    margin: 30px 50px;
+    display: flex;
+    font-size: 14px;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-edit-modal{
+   background-color: #f49d00;
+    color: #fff; 
+    border: none; 
+    padding: 5px 5px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 14px; 
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.preview-profile-pic{
+    border-radius: 100%;
+}
+.form-edit-box-submit{
+    background-color: #f49d00; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 10px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 13px; 
+    margin-left: 80px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.input-file[type="file"]{
+    display: none;
+}
