@@ -121,10 +121,104 @@
     <!-- //header -->
 
     <section class="main-section">
-        <div class="container">
-            <div class="main-area">
-                <form action="joinForm.member" method="post">
-                </form>
+        <div class="container main-only">
+            <div class="main-area join">
+                <div class="title">회원가입</div>
+                <ul class="menu-tab"> <!-- 의뢰인으로 가입 or 수리기사로 가입 -->
+                    <li>
+                        <button id="btn-join-user">의뢰인으로 가입</button>
+                    </li>
+                    <li>
+                        <button id="btn-join-master" class="active">수리기사로 가입</button>
+                    </li>
+                </ul>
+                <div class="join-form user-form" style="display: none;"> <!-- 의뢰인으로 가입 -->
+                    <form action="joinForm.member" method="post">
+                        <input type="submit" class="btn-submit" value="가입">
+                    </form>
+                </div>
+                <div class="join-form master-form"> <!-- 수리기사로 가입 -->
+                    <form action="joinForm.member" method="post">
+                        <div class="input-area">
+                            <label for="email">이메일</label>
+                            <input type="text" class="input-field" placeholder="이메일을 입력해주세요." autocomplete="no"
+                                name="email" id="email">
+                            <p class="caption-error">올바른 형식이 아닙니다.</p>
+                        </div>
+                        <div class="input-area">
+                            <label for="email">비밀번호</label>
+                            <input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no"
+                                name="pw" id="pw">
+                            <input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요."
+                                autocomplete="no" name="pw_re" id="pw_re" class="pw_re">
+                            <p class="caption-error">영문+숫자 조합 8자리 이상 입력해주세요.</p>
+                            <p class="caption-error-re">비밀번호가 일치하지 않습니다.</p>
+                        </div>
+                        <div class="input-area">
+                            <label for="name">이름</label>
+                            <input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no"
+                                name="name" id="name">
+                        </div>
+                        <div class="input-area">
+                            <label for="nick">닉네임</label>
+                            <input type="text" class="input-field" placeholder="닉네임을 입력해주세요." autocomplete="no"
+                                name="nick" id="nick">
+                        </div>
+                        <div class="input-area">
+                            <label for="phone_num">연락처</label>
+                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no"
+                                name="name" id="phone_num" maxlength="13">
+                            <p class="caption-error">올바른 형식이 아닙니다.</p>
+                        </div>
+                        <div class="input-area">
+                            <label for="address">주소</label>
+                            <input type="hidden" name="address" id="address">
+                            <button type="button" id="btn-zipcode" class="btn-zipcode"
+                                onclick="sample6_execDaumPostcode()">주소 입력</button>
+                            <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no"
+                                name="address_detail">
+                        </div>
+                        <div class="input-area">
+                            <label for="business_num">사업자등록번호</label>
+                            <input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no"
+                                name="business_num" id="business_num" maxlength="12">
+                            <p class="caption-error">올바른 형식이 아닙니다.</p>
+                        </div>
+                        <div class="input-area">
+                            <label for="short_description">한 줄 소개</label>
+                            <input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요."
+                                autocomplete="no" name="short_description" id="short_description">
+                        </div>
+                        <div class="input-area">
+                            <label for="max_distance">이동 가능 거리</label>
+                            <div>
+                                <input type="radio" name="max_distance" value="10" id="distanc-10" checked><label
+                                    for="distanc-10">10km</label>
+                                <input type="radio" name="max_distance" value="20" id="distanc-20"><label
+                                    for="distanc-20">20km</label>
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="">수리 분야</label>
+                            <div>
+                                <select name="" id="">
+                                    <option value="">가전제품</option>
+                                </select>
+                                <select name="" id="">
+                                    <option value="">에어컨</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="">근무 가능 요일 및 시간</label>
+                            <div>
+                                <button type="button" id="btn-zipcode" class="btn-zipcode"
+                                    onclick="">입력하기</button>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn-submit" value="가입">
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -144,7 +238,27 @@
         </div>
     </footer>
     <!-- //footer -->
+    <!-- 다음 주소검색 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    var zipcode = data.zonecode;
 
+                    var addr = '';
+                    if (data.userSelectedType === 'R') addr = data.roadAddress;
+                    else addr = data.jibunAddress;
+
+                    $("input[name=address]").val(addr);
+                    $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>');
+
+                    $("input[name=address_detail]").focus();
+                }
+            }).open();
+        }
+    </script>
+    <!-- //다음 주소검색 api -->
 </body>
 
 </html>
