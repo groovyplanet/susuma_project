@@ -1,19 +1,88 @@
-.main-section .container { display: flex; height: calc(100% - 50px); width: 1200px; margin: 0 auto; background-color: white; max-width: 1900px;
- box-sizing: border-box; }
+.main-section .container { display: flex; height: calc(100% - 50px); width: 1200px; margin: 0 auto; background-color: white; max-width: 1900px; box-sizing: border-box; } 
 
-.main-section .container .sidebar {flex-basis: 200px; min-width: 200px; background-color: white; border-left: 1px solid #e7e8ea; border-right: 1px solid #e7e8ea;    display: flex; flex-direction: column; align-items: center; padding: 60px 0; box-sizing: border-box;  }
-.main-section .container .sidebar .title{font-size: 20px; font-weight: 600; line-height: 26px;}
+.main-section .container .sidebar { flex-basis: 200px; min-width: 200px; background-color: white; border-left: 1px solid #e7e8ea; border-right: 1px solid #e7e8ea; display: flex; flex-direction: column; align-items: center; padding: 60px 0; box-sizing: border-box; } 
+.main-section .container .sidebar .title { font-size: 20px; font-weight: 600; line-height: 26px; } 
 .main-section .container .sidebar ul { list-style-type: none; padding: 0; margin: 0; width: 80%; font-size: 17px; font-weight: 500; text-align: center; margin-top: 20px; } 
 .main-section .container .sidebar ul li { margin: 10px 0; position: relative; } 
+
 .main-section .container .sidebar ul li a { text-decoration: none; color: #ababab; display: block; padding: 10px; width: 100%; border-radius: 5px; }
 .main-section .container .sidebar ul li a:hover, .main-section .container .sidebar ul li a.active  { background-color: #f8f8f8; color: #555;} 
 
-.main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; padding: 60px 0;} 
+.main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; padding: 30px 0; } 
 .main-section .container .content .status-body { text-align: center; } 
 .main-section .container .content .status-section { display: inline-block; margin: 10px; text-align: center; } 
 .main-section .container .content .status-section button { background-color: #f49d00; color: white; padding: 10px 20px; border: none; border-radius: 5px; width: 150px; font-size: 15px; cursor: pointer; margin-bottom: 10px; } 
 .main-section .container .content .content.status-section button:hover { background-color: #f8b94d; } 
-.main-section .container .content .status-section .content-text { border: 1px solid gray; padding: 10px; border-radius: 5px; width: 150px; height: auto; box-sizing: border-box;} 
+.main-section .container .content .status-section .content-text { border: 1px solid gray; padding: 10px; border-radius: 5px; width: 150px; height: auto; box-sizing: border-box; } 
 .main-section .container .content .status-section .content-text p { margin: 10px 0; } 
 .main-section .container .content .progress-text { margin-top: 20px; border: 1px solid gray; padding: 10px; border-radius: 5px; width: 300px; display: inline-block; text-align: center; } 
-/* ^\n + 정규식 replaceALL */
+
+/* ===========profile_edit css start======== */
+
+.main-section .container .content .edit-form { margin-top: 30px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 80%; } 
+.main-section .container .content .edit-form .profile-img { position: relative; flex: none; width: 80px; height: 80px; margin-left: 40px; border-radius: 50%; background-size: cover; } 
+.main-section .container .content .edit-form .master-section { font-size: 14px; font-weight: 600; margin-left: 20px; } 
+.main-section .container .content .edit-form .profile-img .profile-pic-upload { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #44474b; } 
+.main-section .container .content .edit-form .profile-img .profile-pic-upload:hover { cursor: pointer; } 
+
+.main-section .container .content .career_infoarea,
+.main-section .container .content .location_management,
+.main-section .container .content .detailed_description,
+.main-section .container .content .service_scheduling { margin-top: 30px; margin-left: 30px; padding-left: 10px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 80%; } 
+
+.main-section .container .content .career_sectiontitle,
+.main-section .container .content .location_managementtitle,
+.main-section .container .content .detailed_descriptiontitle,
+.main-section .container .content .service_schedulingtitle { margin-left: 30px; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; } 
+
+.main-section .container .content .career_details ul { margin-left: 40px; list-style: none; padding: 0; } 
+.main-section .container .content .location_details , .description_details, .schedule_details { margin-left: 40px; } 
+
+.main-section .container .content .career_details ul li,
+.main-section .container .content .schedule_details ul li { margin-bottom: 0.5rem; } 
+
+/* ===========profile_edit css end======== */
+
+
+/* ===reserve manage list page css start === */
+
+
+.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; margin-top: 20px; width: 1000px; padding: 60px 0; } 
+
+.main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+
+.main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+
+.main-section .container .reservation-setting .reserve-schecdule .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+
+.main-section .container .reservation-setting .reserve-schecdule .approve { background-color: #ff6b6b; color: white; } 
+
+.main-section .container .reservation-setting .reserve-schecdule .complete, 
+.main-section .container .reservation-setting .reserve-schecdule .pending, 
+.main-section .container .reservation-setting .reserve-schecdule .done, 
+.main-section .container .reservation-setting .reserve-schecdule .more { background-color: white; border: 1px solid #000; } 
+
+.main-section .container .reservation-setting .reserve-schecdule .complete:hover, 
+.main-section .container .reservation-setting .reserve-schecdule .pending:hover, 
+.main-section .container .reservation-setting .reserve-schecdule .done:hover, 
+.main-section .container .reservation-setting .reserve-schecdule .more:hover { background-color: #f0f0f0; } 
+
+.main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; } 
+
+.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 40px; height: 40px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+
+/* ===reserve manage list page css end === */
+
+/* ==========reserve_manage_view start============== */
+
+.main-section .container .info{width: 100%; height: 100%;}
+
+.main-section .container .profile-logo-sm {position: relative; flex: none; margin-top:10px; width: 50px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; }
+
+.main-section .container .reservation-detail{ margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px;}
+.main-section .container .reserve-more{ background-color: white; border: 1px solid #000; margin-top: 10px; width: 50px; height: 30px;}
+.main-section .container .member-section{font-size: 15px; text-align: left; margin-left: 20px;}
+.main-section .container .reserve-status .btn { background-color: #ff6b6b; color: white; margin-left: 20px; margin-top: 10px;}
+.main-section .container .detail-content{  margin-right: 10px; text-align: center; height: 40%; margin-top: 20px; border-top:3px solid white; padding: 20px; justify-content: space-between; } 
+
+/* ==========reserve_manage_view end============== */
