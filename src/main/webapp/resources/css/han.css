@@ -37,6 +37,7 @@
     margin: 25px 30px;
     width: 100px;
     height: 100px;
+    object-fit: cover;
 }
 
 .modal-content {
@@ -52,27 +53,6 @@
 
 /* 닫기 버튼 스타일 */
 
-.edit-form{
-    display: flex;
-}
-
-
-
-.form-group{
-    margin: 30px 50px;
-    display: flex;
-    font-size: 14px;
-}
-
-.close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 #btn-edit-modal{
    background-color: #f49d00;
     color: #fff; 
@@ -85,9 +65,7 @@
     margin-top: 5px;
 }
 
-.preview-profile-pic{
-    border-radius: 100%;
-}
+
 .form-edit-box-submit{
     background-color: #f49d00; 
     color: #fff; 
@@ -100,10 +78,96 @@
     margin-top: 10px;
     margin-bottom: 15px;
 }
+.profile-pic-upload svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
 
-.input-file[type="file"]{
+
+#profile-edit-modal .profile-img {
+    margin: 25px 30px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+#profile-edit-modal .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 20px;
+}
+
+#profile-edit-modal .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#profile-edit-modal .edit-form {
+    display: flex;
+}
+
+#profile-edit-modal .form-group {
+    margin: 30px 50px;
+    display: flex;
+    font-size: 14px;
+}
+
+#profile-edit-modal #btn-edit-modal {
+    background-color: #f49d00;
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#profile-edit-modal .preview-profile-pic {
+    border-radius: 50%;
+}
+
+
+
+#profile-edit-modal .profile-pic-upload svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
+
+#profile-edit-modal .input-file[type="file"] {
     display: none;
 }
+
+#preview-profile-pic{
+    border-radius: 100%;
+}
+.profile-pic-upload{
+    margin-left: 90px;
+    border-radius: 100%;
+    background-color: #fff;
+    
+
+}
+
+    .password-error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none; /* 초기에는 숨김 */
+    }
+
 
 
 
