@@ -131,9 +131,72 @@
                     <li><a href="message_list.html">문의 내역</a></li>
                 </ul>
             </nav>
-            <div class="content">
+            <div class="user-review-detail">
+                <div class="info-review">
+                    <div class="member-section">
+                        <div class="profile-logoimg">
+                            <img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+                        </div>
+                        <div class="infodetail">
+                            <div class="member-name">
+                                <strong>의뢰인 성함 :</strong> <span>벨기에재즈퀸서희</span>
+                            </div>
+                            <div class="member-map">
+                                <strong>위치 :</strong> 강남구
+                            </div>
+                            <div class="review-type">
+                                <strong>수리 희망 분야 :</strong> [CSS / 백엔드]
+                            </div>
+                        </div>
+                        <div class="review-status">
+                            <button class="btn request">수리완료</button>
+                        </div>
+                    </div>
+                    <div class="review-more-content">
+                        <div class="detail-content">
+                            수리 내역
+                        </div>
+                    </div>
+                    <div class="review-box-content">
+                        <div class="detail-content">
+                            수리 리뷰 상세
+                        </div>
+                        <div class="review-input">
+                            <div class="review-rating">
+                                서비스는 어떠셨나요?
+                                <div class="stars">
+                                    ★★★★☆
+                                </div>
+                            </div>
+                            <div class="review-title">
+                                <label for="title">제목 :</label>
+                                <input type="text" id="title" placeholder="후기 제목을 입력해 주세요.">
+                            </div>
+                            <div class="review-content">
+                                <label for="content">내용 :</label>
+                                <textarea id="content" placeholder="후기 내용을 입력해 주세요."></textarea>
+                            </div>
+                            <div class="file-attachment">
+                                파일 첨부
+                                <input type="file" id="file-upload" multiple>
+                                <div class="file-list" id="file-list">
+                                    <span class="file-item">수리사진01.png</span>
+                                    <span class="file-item">수리사진02.png</span>
+                                    <span class="file-item">수리사진03.png</span>
+                                    <span class="file-item">수리사진04.png</span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn cancel" onclick="cancelReview()">취소</button>
+                                <button class="btn save" onclick="saveReview()">저장</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    
     </section>
 
     <!-- footer -->
@@ -153,5 +216,30 @@
     <!-- //footer -->
 
 </body>
+
+<script>
+    document.getElementById('file-upload').addEventListener('change', function () {
+    const fileList = document.getElementById('file-list');
+    fileList.innerHTML = ''; // 기존 파일 목록을 초기화합니다.
+    
+    for (let i = 0; i < this.files.length; i++) {
+        const fileItem = document.createElement('span');
+        fileItem.classList.add('file-item');
+        fileItem.textContent = this.files[i].name;
+        fileList.appendChild(fileItem);
+    }
+});
+
+function cancelReview() {
+    window.location.href = 'review_list.html';
+}
+
+function saveReview() {
+    alert('저장되었습니다.');
+    window.location.href = 'review_list.html';
+}
+
+</script>
+
 
 </html>
