@@ -32,137 +32,7 @@
 .main-section .container .content .location_details , .description_details, .schedule_details { margin-left: 40px; } 
 .main-section .container .content .career_details ul li,
 .main-section .container .content .schedule_details ul li { margin-bottom: 0.5rem; } 
-/* ===========profile_edit css end======== */
-/* ===reserve manage list page css start === */
-.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
-.main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
-.main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
-.main-section .container .reservation-setting .reserve-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
-.main-section .container .reservation-setting .reserve-schecdule .approve,
-.main-section .container .reservation-setting .reserve-schecdule .pending { background-color: #ff6b6b; color: white; } 
-.main-section .container .reservation-setting .reserve-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
-.main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
-.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 50px; height: 50px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
-/* ===reserve manage list page css end === */
-/* ==========reserve_manage_view start============== */
-.main-section .container .reservation-detail .profile-logo-sm { margin-top:5px; width: 50px; margin-right:20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
-.main-section .container .reservation-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
-.main-section .container .reservation-detail .member-section { font-size: 15px; text-align: left; margin-top:10px; margin-left: 20px; display: flex; } 
-.main-section .container .reservation-detail .reserve-status .btn { background-color: #ff6b6b; color: white; margin-left: 20px; margin-top: 10px; } 
-.main-section .container .reservation-detail .reserve-status { margin-left: auto; margin-right: 50px; } 
-.main-section .container .reservation-detail .detail-content { margin-right: 10px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; } 
-/* ==========reserve_manage_view end============== */
-/* ===repair manage list page css start === */
-.main-section .container .repair-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
-.main-section .container .repair-setting .repair-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
-.main-section .container .repair-setting .repair-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
-.main-section .container .repair-setting .repair-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
-.main-section .container .repair-setting .repair-schecdule .approve,
-.main-section .container .repair-setting .repair-schecdule .pending { background-color: #ff6b6b; color: white; } 
-.main-section .container .repair-setting .repair-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
-.main-section .container .repair-setting .repair-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
-.main-section .container .repair-setting .repair-schecdule .profile-logo-sm { position: relative; flex: none; width: 60px; height: 60px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
-/* ===reserve manage list page css end === */
-/* ========repair view page css start ===== */
-.main-section .container .profile-logo-sm { margin-top:5px; width: 50px; margin-right:20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
-.main-section .container .repair-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
-.main-section .container .repair-detail .info-reserve .member-section { font-size: 15px; text-align: left; margin-top:10px; margin-left: 20px; display: flex; } 
-.main-section .container .repair-detail .info-reserve .member-section .info-reserve { height: 100%; } 
-.main-section .container .repair-detail .info-reserve .member-section .repair-status .btn { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
-.main-section .container .repair-detail .info-reserve .member-section .repair-status,
-.main-section .container .repair-detail .detail-content { margin-left: auto; margin-right: 50px; } 
-.main-section .container .repair-detail .repair-more-content .btn { background-color: white; border: 0.5px solid #999; margin-right: 20px; } 
-.main-section .container .repair-detail .repair-more-content .detail-content,
-.main-section .container .repair-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; } 
-/* ========repair view page css end ===== */
-
-/* ====point page css start ==== */
-.main-section .container .content .account-info .account-info { display: flex; flex-direction: column; } 
-.main-section .container .content .account-info .account-header { display: flex; align-items: center; margin-bottom: 20px; } 
-.main-section .container .content .account-info .bank-icon { width: 50px; height: 50px; margin-right: 15px; } 
-.main-section .container .content .account-info .account-details { display: flex; flex-direction: column; } 
-.main-section .container .content .account-info .bank-info { display: flex; align-items: center; margin-bottom: 5px; } 
-.main-section .container .content .account-info .btn-edit { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; } 
-.main-section .container .content .account-info .account-number { font-size: 16px; color: #555; } 
-.main-section .container .content .account-info .points-section { margin: 30px 20px 10px; } 
-.main-section .container .content .account-info .points-header { display: flex; align-items: center; }
-.main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
-.main-section .container .content .account-info .btn-withdraw { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
-.main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
-.main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
-.main-section .container .content .account-info .tab-menu { display: flex;  margin-bottom: 10px; } 
-.main-section .container .content .account-info .tab { flex: 1; padding: 10px; border-bottom: 2px solid #ddd; text-align: center; cursor: pointer; font-size: 17px; } 
-.main-section .container .content .account-info .tab.active { font-weight: bold; border-bottom: 2px solid #F49D00; } 
-.main-section .container .content .account-info .transaction-list { display: flex; flex-direction: column; } 
-.main-section .container .content .account-info .transaction-item,
-.main-section .container .content .account-info .transaction-pop{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
-.main-section .container .content .account-info .date { color: #999; } 
-.main-section .container .content .account-info .description { flex: 1; text-align: center; } 
-.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold; } 
-/* ====point page css end ==== */
-
-/* Withdraw Modal styles */
-#withdrawModal { 
-    display: none; 
-    background-color: rgba(0, 0, 0, .6); 
-    position: fixed; 
-    top: 0; 
-    right: 0; 
-    bottom: 0; 
-    left: 0; 
-    align-items: center; 
-    justify-content: center; 
-    z-index: 1000; 
-} 
-
-#withdrawModal.show { 
-    display: flex !important; 
-} 
-
-#withdrawModal .modal-content { 
-    width: 416px; 
-    padding: 48px 48px 40px; 
-    border-radius: 16px; 
-    background-color: #fff; 
-    box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); 
-    position: relative; 
-    text-align: center; 
-} 
-
-#withdrawModal .modal-content p { 
-    font-size: 16px; 
-    color: #333; 
-    margin-bottom: 20px; 
-} 
-
-#withdrawModal .modal-buttons { 
-    margin-top: 20px; 
-} 
-
-#withdrawModal .btn-confirm, 
-#withdrawModal .btn-cancel { 
-    background-color: #f49d00; 
-    color: #fff; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin-left: 5px;
-   
-} 
-
-#withdrawModal .btn-cancel { 
-    background-color: #999; 
-} 
-
-#withdrawModal .btn-confirm:hover, 
-#withdrawModal .btn-cancel:hover { 
-    opacity: 0.8; 
-} 
-
-
-/* == profile edit 수정중== */
+/* == profile edit html 모달 페이지 수정중== */
 .profile-img{
     margin: 25px 30px;
     width: 100px;
@@ -234,3 +104,645 @@
 .input-file[type="file"]{
     display: none;
 }
+
+
+
+/* ===========profile_edit css end======== */
+/* ===reserve manage list page css start === */
+.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
+.main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+.main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+.main-section .container .reservation-setting .reserve-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .reservation-setting .reserve-schecdule .approve,
+.main-section .container .reservation-setting .reserve-schecdule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .reservation-setting .reserve-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 50px; height: 50px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+.main-section .container .reservation-setting .reserve-list-title{ border-bottom: 1px solid black; padding: 5px;}
+/* == reserve manage list 예약관리 승인 모달 == */
+#reserve-approve-btn { 
+    display: none; 
+    background-color: rgba(0, 0, 0, .6); 
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 1000; 
+} 
+
+#reserve-approve-btn.show { 
+    display: flex !important; 
+} 
+
+.reserve-approve-btn .modal-content { 
+    width: 416px; 
+    padding: 48px 48px 40px; 
+    border-radius: 16px; 
+    background-color: #fff; 
+    box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); 
+    position: relative; 
+    text-align: center;
+     
+} 
+
+#reserve-approve-btn .modal-content p { 
+    font-size: 16px; 
+    color: #333; 
+    margin-bottom: 20px; 
+} 
+
+#reserve-approve-btn .modal-buttons { 
+    margin-top: 20px; 
+} 
+
+#reserve-approve-btn .approve-confirm, 
+#reserve-approve-btn .approve-cancel { 
+    background-color: #f49d00; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-left: 5px;
+   
+ 
+   
+} 
+
+#reserve-approve-btn .approve-cancel { 
+    background-color: #999; 
+} 
+
+#reserve-approve-btn .approve-confirm:hover, 
+#reserve-approve-btn .approve-cancel:hover { 
+    opacity: 0.8; 
+} 
+/* ===reserve manage list page css end === */
+/* ==========reserve_manage_view start============== */
+.main-section .container .reservation-detail .profile-logo-sm { margin-top:5px; width: 50px; margin-right:20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
+.main-section .container .reservation-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
+.main-section .container .reservation-detail .member-section { font-size: 15px; text-align: left; margin-top:10px; margin-left: 20px; display: flex; } 
+.main-section .container .reservation-detail .reserve-status .btn { background-color: #ff6b6b; color: white; margin-left: 20px; margin-top: 10px; } 
+.main-section .container .reservation-detail .reserve-status { margin-left: auto; margin-right: 50px; } 
+.main-section .container .reservation-detail .detail-content { margin-right: 10px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; } 
+/* ==========reserve_manage_view end============== */
+/* ===repair manage list page css start === */
+.main-section .container .repair-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
+.main-section .container .repair-setting .repair-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+.main-section .container .repair-setting .repair-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+.main-section .container .repair-setting .repair-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .repair-setting .repair-schecdule .approve,
+.main-section .container .repair-setting .repair-schecdule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .repair-setting .repair-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .repair-setting .repair-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .repair-setting .repair-schecdule .profile-logo-sm { position: relative; flex: none; width: 60px; height: 60px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+.main-section .container .repair-setting .repair-set-title{ border-bottom: 1px solid black; padding: 5px;}
+/* ===reserve manage list page css end === */
+/* ========repair view page css start ===== */
+.main-section .container .profile-logo-sm {
+    margin-top: 5px;
+    width: 50px;
+    margin-right: 20px;
+    height: 50px;
+    margin-left: 50px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.main-section .container .repair-detail {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 24px;
+    background-color: #f8f8f8;
+    border-radius: 18px;
+    width: 80%;
+    min-height: 700px;
+}
+
+.main-section .container .repair-detail .info-reserve .member-section {
+    font-size: 15px;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.main-section .container .repair-detail .info-reserve .member-section .infodetail {
+    height: 100%;
+}
+
+.main-section .container .repair-detail .info-reserve .member-section .repair-status .btn {
+    background-color: white;
+    border: 0.5px solid #999;
+    pointer-events: none;
+}
+
+.main-section .container .repair-detail .info-reserve .member-section .repair-status,
+.main-section .container .repair-detail .detail-content {
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.main-section .container .repair-detail .repair-more-content .detail-content .edit {
+    background-color: white;
+    border: 0.5px solid #999;
+    margin-right: 20px;
+}
+.main-section .container .repair-detail .repair-more-content .detail-content .save,
+.main-section .container .repair-detail .repair-more-content .detail-content .cancel {
+    background-color: white;
+    border: 0.5px solid #999;
+    margin-right: 10px;
+   
+}
+
+
+.main-section .container .repair-detail .repair-more-content .detail-content,
+.main-section .container .repair-detail .review-box-content .detail-content {
+    margin-right: 50px;
+    text-align: center;
+    height: 40%;
+    margin-top: 30px;
+    border-top: 3px solid white;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#edit-form {
+    display: none;
+    width: 90%;
+}
+#edit-form .btn{
+    width: 50px;
+    height: 40px;
+    text-align: center;
+}
+
+#repair-details-input {
+    width: 90%;
+    margin-right: 20px;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+/* ========repair view page css end ===== */
+
+/* ====point page css start ==== */
+.main-section .container .content .account-info .account-info { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .account-header { display: flex; align-items: center; margin-bottom: 20px; } 
+.main-section .container .content .account-info .bank-icon { width: 50px; height: 50px; margin-right: 15px; } 
+.main-section .container .content .account-info .account-details { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .bank-info { display: flex; align-items: center; margin-bottom: 5px; } 
+.main-section .container .content .account-info .btn-edit { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; } 
+.main-section .container .content .account-info .account-number { font-size: 16px; color: #555; } 
+.main-section .container .content .account-info .points-section { margin: 30px 20px 10px; } 
+.main-section .container .content .account-info .points-header { display: flex; align-items: center; }
+.main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
+.main-section .container .content .account-info .btn-withdraw { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+.main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
+.main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
+.main-section .container .content .account-info .tab-menu { display: flex;  margin-bottom: 10px; } 
+.main-section .container .content .account-info .tab { flex: 1; padding: 10px; border-bottom: 2px solid #ddd; text-align: center; cursor: pointer; font-size: 17px; } 
+.main-section .container .content .account-info .tab.active { font-weight: bold; border-bottom: 2px solid #F49D00; } 
+.main-section .container .content .account-info .transaction-list { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .transaction-item,
+.main-section .container .content .account-info .transaction-pop{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
+.main-section .container .content .account-info .date { color: #999; } 
+.main-section .container .content .account-info .description { flex: 1; text-align: center; } 
+.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold; } 
+/* point.html modal css */
+#withdrawModal { 
+    display: none; 
+    background-color: rgba(0, 0, 0, .6); 
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 1000; 
+} 
+
+#withdrawModal.show { 
+    display: flex !important; 
+} 
+
+#withdrawModal .modal-content { 
+    width: 416px; 
+    padding: 48px 48px 40px; 
+    border-radius: 16px; 
+    background-color: #fff; 
+    box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); 
+    position: relative; 
+    text-align: center; 
+} 
+
+#withdrawModal .modal-content p { 
+    font-size: 16px; 
+    color: #333; 
+    margin-bottom: 20px; 
+} 
+
+#withdrawModal .modal-buttons { 
+    margin-top: 20px; 
+} 
+
+#withdrawModal .btn-confirm, 
+#withdrawModal .btn-cancel { 
+    background-color: #f49d00; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-left: 5px;
+   
+} 
+
+#withdrawModal .btn-cancel { 
+    background-color: #999; 
+} 
+
+#withdrawModal .btn-confirm:hover, 
+#withdrawModal .btn-cancel:hover { 
+    opacity: 0.8; 
+} 
+/* 포인트 출금 모달 끝  */
+/* ====point page css end ==== */
+
+
+
+
+
+
+
+/*master-review_list css start */
+
+.main-section .container .review-setting { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 1000px; 
+    padding: 60px 0; 
+} 
+
+.main-section .container .review-setting .review-schedule { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    width: 80%; 
+} 
+
+.main-section .container .review-setting .review-schedule .info { 
+    flex-grow: 1; 
+    margin-left: 20px; 
+    background-color: #e0e0e0; 
+    padding: 20px; 
+    border-radius: 10px; 
+    width: 50%; 
+} 
+
+.main-section .container .review-setting .review-schedule .btn { 
+    padding: 3px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-right: 10px; 
+} 
+
+.main-section .container .review-setting .review-schedule .approve,
+.main-section .container .review-setting .review-schedule .pending { 
+    background-color: #ff6b6b; 
+    color: white; 
+} 
+
+.main-section .container .review-setting .review-schedule .complete { 
+    background-color: white; 
+    border: 0.5px solid #999; 
+    pointer-events: none; 
+} 
+
+.main-section .container .review-setting .review-more { 
+    margin-top: 10px; 
+    width: 50px; 
+    height: 30px; 
+    margin-left: 50px; 
+    border-radius: 5px; 
+    border: 0.5px solid #999 
+} 
+
+.main-section .container .review-setting .review-schedule .profile-logo-sm { 
+    position: relative; 
+    flex: none; 
+    width: 60px; 
+    height: 60px; 
+    margin-left: 10px; 
+    border-radius: 50%; 
+    background-size: cover; 
+} 
+
+.main-section .container .review-setting .review-set-title { 
+    border-bottom: 1px solid black; 
+    padding: 5px;
+}
+/*master-review_list css end */
+
+/* == review_view master ver start == */
+.main-section .container .profile-logo-sm {
+    margin-top: 5px;
+    width: 50px;
+    margin-right: 20px;
+    height: 50px;
+    margin-left: 50px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.main-section .container .review-detail {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 24px;
+    background-color: #f8f8f8;
+    border-radius: 18px;
+    width: 80%;
+    min-height: 700px;
+}
+
+.main-section .container .review-detail .info-review .member-section {
+    font-size: 15px;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+}
+
+.main-section .container .review-detail .info-review .member-section .info-review {
+    height: 100%;
+}
+
+.main-section .container .review-detail .info-review .member-section .review-status .btn {
+    background-color: white;
+    border: 0.5px solid #999;
+    pointer-events: none;
+}
+
+.main-section .container .review-detail .info-review .member-section .review-status,
+.main-section .container .review-detail .detail-content {
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.main-section .container .review-detail .review-more-content .btn {
+    background-color: white;
+    border: 0.5px solid #999;
+    margin-right: 20px;
+}
+
+.main-section .container .review-detail .review-more-content .detail-content,
+.main-section .container .review-detail .review-box-content .detail-content {
+    margin-right: 50px;
+    text-align: center;
+    height: 40%;
+    margin-top: 30px;
+    border-top: 3px solid white;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-section .container .review-detail .review-box-content .review-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .review-rating,
+.main-section .container .review-detail .review-box-content .review-input .review-title,
+.main-section .container .review-detail .review-box-content .review-input .review-content,
+.main-section .container .review-detail .review-box-content .review-input .file-attachment,
+.main-section .container .review-detail .review-box-content .review-input .action-buttons {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .stars {
+    font-size: 24px;
+    color: gold;
+}
+
+.main-section .container .review-detail .review-box-content .review-input input,
+.main-section .container .review-detail .review-box-content .review-input textarea {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .file-attachment .btn {
+    margin: 10px 0;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .file-attachment .file-list {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .file-attachment .file-item {
+    background-color: #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .action-buttons .btn {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main-section .container .review-detail .review-box-content .review-input .action-buttons .btn.cancel {
+    background-color: #ff6b6b;
+    color: white;
+    
+}
+
+.main-section .container .review-detail .review-box-content .review-input .action-buttons .btn.save {
+    background-color: #f49d00;
+    color: white;
+}
+/* == review_view master ver end == */
+
+
+/* == review_view user ver start  == */
+
+.main-section .container .profile-logo-sm {
+    margin-top: 5px;
+    width: 50px;
+    margin-right: 20px;
+    height: 50px;
+    margin-left: 50px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.main-section .container .user-review-detail {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 24px;
+    background-color: #f8f8f8;
+    border-radius: 18px;
+    width: 80%;
+    min-height: 700px;
+}
+
+.main-section .container .user-review-detail .info-review .member-section {
+    font-size: 15px;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+}
+
+.main-section .container .user-review-detail .info-review .member-section .info-review {
+    height: 100%;
+}
+
+.main-section .container .user-review-detail .info-review .member-section .review-status .btn {
+    background-color: white;
+    border: 0.5px solid #999;
+    pointer-events: none;
+}
+
+.main-section .container .user-review-detail .info-review .member-section .review-status,
+.main-section .container .user-review-detail .detail-content {
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.main-section .container .user-review-detail .review-more-content .btn {
+    background-color: white;
+    border: 0.5px solid #999;
+    margin-right: 20px;
+}
+
+.main-section .container .user-review-detail .review-more-content .detail-content,
+.main-section .container .user-review-detail .review-box-content .detail-content {
+    margin-right: 50px;
+    text-align: center;
+    height: 40%;
+    margin-top: 30px;
+    border-top: 3px solid white;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .review-rating,
+.main-section .container .user-review-detail .review-box-content .review-input .review-title,
+.main-section .container .user-review-detail .review-box-content .review-input .review-content,
+.main-section .container .user-review-detail .review-box-content .review-input .file-attachment {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .stars {
+    font-size: 24px;
+    color: gold;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input input,
+.main-section .container .user-review-detail .review-box-content .review-input textarea {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .file-attachment input[type="file"] {
+    margin: 10px 0;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .file-attachment .file-list {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .file-attachment .file-item {
+    background-color: #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.cancel {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.save {
+    background-color: #f49d00;
+    color: white;
+}
+
+/* == review_view user ver end== */
+
