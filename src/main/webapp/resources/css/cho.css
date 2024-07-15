@@ -4,26 +4,59 @@
 /* 회원가입 */
 .main-section .container.main-only .main-area.join { width: 500px; margin:40px 0; } 
 .main-section .container.main-only .main-area.join .title { font-size: 28px; font-weight: 700; text-align: center; } 
-.main-section .container.main-only .main-area.join ul.menu-tab { display: flex; justify-content: space-between; } 
-.main-section .container.main-only .main-area.join ul.menu-tab li { width: 49%; } 
-.main-section .container.main-only .main-area.join ul.menu-tab li button { width: 100%; margin-top: 16px; height: 48px; padding: 0 20px; border-radius: 6px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; color: #ccc; line-height: 32px; } 
-.main-section .container.main-only .main-area.join ul.menu-tab li button:hover,
-.main-section .container.main-only .main-area.join ul.menu-tab li button.active { background-color: #eee; color: #444; border-color: #aaa; } 
-.main-section .container.main-only .main-area.join ul.menu-tab li button.active { cursor: default; } 
-
-.main-section .container.main-only .main-area.join .join-form { width: 100%; margin-top: 30px; } 
-.main-section .container.main-only .main-area.join .join-form .input-area .input-field { width: 100%; padding: 12px 12px; border: 1px solid #ddd; border-radius: 8px; color: #33312f; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
+/* 탭 메뉴 */
+.main-section .container.main-only .main-area.join .menu-tab { display: flex; justify-content: space-between; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 16px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(1) { border-left: 1px solid #DDD; border-right: 1px solid #F49D00; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(2) { border-right: 1px solid #DDD; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn.active { color: #F49D00; border-color: #F49D00; border-bottom: none; cursor: default; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:not(.active):hover { color: #F49D00; } 
+/* form */
+.main-section .container.main-only .main-area.join .join-form { width: 100%; margin-top: 20px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area { margin-top: 14px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .input-field { width: 100%; padding: 12px 12px; border: 1px solid #ddd; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
 .main-section .container.main-only .main-area.join .join-form .input-area .input-field::placeholder { color: #ccc; } 
-.main-section .container.main-only .main-area.join .join-form .input-area + .input-area { margin-top: 14px; } 
 .main-section .container.main-only .main-area.join .join-form .input-area label { display: block; font-size: 14px; font-weight: 500; color: #555; } 
+.main-section .container.main-only .main-area.join .join-form .input-area label.required::after { content: "*"; color: rgb(255, 114, 98); } 
 .main-section .container.main-only .main-area.join .join-form .input-area p.caption-error { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
 .main-section .container.main-only .main-area.join .join-form .input-area p.caption-error-re { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
 .main-section .container.main-only .main-area.join .join-form .input-area.error p.caption-error { display: block; } 
 .main-section .container.main-only .main-area.join .join-form .input-area.error-re p.caption-error-re { display: block; } 
-.main-section .container.main-only .main-area.join .join-form .input-area.error .input-field { border-color: #fa5963; } 
+.main-section .container.main-only .main-area.join .join-form .input-area.error .input-field,
 .main-section .container.main-only .main-area.join .join-form .input-area.error-re .input-field { border-color: #fa5963; } 
-.main-section .container.main-only .main-area.join .join-form .input-area button { width: 100%; padding: 12px 12px; border: 1px solid #ddd; border-radius: 8px; color: #33312f; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
-.main-section .container.main-only .main-area.join .join-form .input-area button:hover { background-color: #eee; color: #444; border-color: #aaa; } 
-.main-section .container.main-only .main-area.join .join-form .input-area button.btn-zipcode { background-color: #eee; } 
+.main-section .container.main-only .main-area.join .join-form .input-area button.btn-form { width: 100%; padding: 12px 12px; border: 1px solid #ccc; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; background-color: #eee; } 
+.main-section .container.main-only .main-area.join .join-form .input-area button.btn-form:hover { background-color: #eaeaea; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .distance-radio-area { display: flex; justify-content: center; margin-top: 5px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .distance-radio-area input[type='radio'] { display: none; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .distance-radio-area label.distance-radio { height: 36px; padding: 0 10px; border-radius: 6px; font-size: 13px; font-weight: 400; background-color: #fff; border: 1px solid #DDD; color: #bbb; line-height: 36px; cursor: pointer; text-align: center; margin: 5px 5px 0; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .distance-radio-area label.distance-radio:hover { background-color: #eee; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .distance-radio-area label.distance-radio.active { background-color: #eee; color: #333; border-color: #ccc; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .distance-radio-area label.distance-radio.active { cursor: default; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-add-area { display: flex; justify-content: space-between; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-add-area span { color: #777; font-size: 13px; cursor: pointer; margin-top: 1px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-add-area span:hover { color: #444; text-decoration: underline; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-select-area { display: flex; justify-content: space-between; margin-top: 5px; position: relative; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-select-area .select-category { width: calc(50% - 3px); padding: 10px 0; border-radius: 6px; font-size: 14px; font-weight: 400; border: 1px solid #ccc; color: #333; line-height: 38px; cursor: pointer; text-align: center; background-color: #eee; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-select-area .select-category:hover { background-color: #eaeaea; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-select-area .select-category option { background-color: #fff; font-size: 14px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .category-select-area .del-category-btn { position: absolute; right: -20px; top: 12px; cursor: pointer; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .work-hours-list { border: 1px solid #aaa; padding: 10px; border-radius: 8px; margin-top: 5px; } 
+
 .main-section .container.main-only .main-area.join .join-form .btn-submit { margin-top: 16px; width: 100%; height: 48px; padding: 0 20px; border-radius: 10px; font-size: 16px; font-weight: 500; letter-spacing: -0.5px; background-color: #F49D00; border: 1px solid #F49D00; color: white; line-height: 32px; } 
 .main-section .container.main-only .main-area.join .join-form .btn-submit:hover { background-color: #F5AF26; border: 1px solid #F5AF26; transition: all 0.5s; } 
+/* 근무 가능 요일 및 시간 모달 */
+#work-hours-modal .container { display: block; width: auto; height: auto; } 
+#work-hours-modal .container .modal-title { font-size:20px; font-weight: 600; text-align: center; } 
+#work-hours-modal .container .work-hours-form { font-size: 16px; margin-top: 18px; } 
+#work-hours-modal .container .work-hours-form .week-area { display: flex; align-items: center; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area { display: flex; align-items: center; margin-right: 20px; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area input[type='checkbox'] { zoom: 1.4; margin: 2px 0 0; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area label { margin-left: 3px; cursor: pointer; color: #555; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area input[type="checkbox"]:checked + label { font-weight: 600; } 
+#work-hours-modal .container .work-hours-form .week-area + .week-area { margin-top: 10px; } 
+#work-hours-modal .container .work-hours-form .time-area { width: 250px; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area { font-size: 22px; display: flex; justify-content: space-between; align-items: center; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area select { padding: 5px 10px; border-radius: 6px; font-size: 15px; font-weight: 400; border: 1px solid #666; color: #333; line-height: 38px; cursor: pointer; text-align: center; letter-spacing: 5px; font-weight: 500; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area select:disabled { opacity: 0.5; cursor: default; font-weight: 400; border-color: #ccc; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area option { background-color: #fff; font-size: 14px; letter-spacing: 5px; } 
+#work-hours-modal .container .work-hours-form .btn-enter { display: inline-flex; width: 100%; align-items: center; justify-content: center; border-radius: 6px; font-size: 16px; font-weight: 500; padding: 10px; background-color: #F49D00; border: 1px solid #F49D00; color: white; margin-top: 18px; } 

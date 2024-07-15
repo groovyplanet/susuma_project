@@ -28,12 +28,8 @@
     <script src="../resources/js/park.js"></script>
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-        rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic"
-        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -95,19 +91,17 @@
                 <div class="login-form"><!-- 로그인 폼 -->
                     <form>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no"
-                                name="email" value="">
+                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
                         </div>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no"
-                                name="pw" value="">
+                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
                         </div>
                         <div class="sub-area">
                             <div class="save-area">
                                 <input type="checkbox" id="save-email-check">
                                 <label for="save-email-check" class="save-email-label">이메일 저장</label>
                             </div>
-                            <a href="../member/find_info.html">아이디·비밀번호 찾기</a>
+                            <a href="../member/find_info.html">비밀번호 찾기</a>
                         </div>
                         <button class="btn btn-login-submit" type="submit">로그인</button>
                     </form>
@@ -124,100 +118,246 @@
         <div class="container main-only">
             <div class="main-area join">
                 <div class="title">회원가입</div>
-                <ul class="menu-tab"> <!-- 의뢰인으로 가입 or 수리기사로 가입 -->
-                    <li>
-                        <button id="btn-join-user">의뢰인으로 가입</button>
-                    </li>
-                    <li>
-                        <button id="btn-join-master" class="active">수리기사로 가입</button>
-                    </li>
-                </ul>
-                <div class="join-form user-form" style="display: none;"> <!-- 의뢰인으로 가입 -->
-                    <form action="joinForm.member" method="post">
-                        <input type="submit" class="btn-submit" value="가입">
-                    </form>
+                <div class="menu-tab"> <!-- 의뢰인으로 가입 or 수리기사로 가입 -->
+                    <label for="radio-user" id="btn-join-user" class="tab-btn active">의뢰인으로 가입<i class="bi bi-check-lg"></i></label>
+                    <label for="radio-master" id="btn-join-master" class="tab-btn">수리기사로 가입<i class="bi bi-check-lg"></i></label>
                 </div>
-                <div class="join-form master-form"> <!-- 수리기사로 가입 -->
-                    <form action="joinForm.member" method="post">
+                <div class="join-form">
+                    <form action="joinForm.member" method="post" id="form-join">
+                        <input type="radio" name="type" value="user" id="radio-user" checked style="display: none;">
+                        <input type="radio" name="type" value="master" id="radio-master" style="display: none;">
                         <div class="input-area">
-                            <label for="email">이메일</label>
-                            <input type="text" class="input-field" placeholder="이메일을 입력해주세요." autocomplete="no"
-                                name="email" id="email">
+                            <label for="email" class="required">이메일</label>
+                            <input type="text" class="input-field" placeholder="이메일을 입력해주세요." autocomplete="no" name="email" id="email" required>
                             <p class="caption-error">올바른 형식이 아닙니다.</p>
                         </div>
                         <div class="input-area">
-                            <label for="email">비밀번호</label>
-                            <input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no"
-                                name="pw" id="pw">
-                            <input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요."
-                                autocomplete="no" name="pw_re" id="pw_re" class="pw_re">
+                            <label for="email" class="required">비밀번호</label>
+                            <input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no" name="pw" id="pw" required>
+                            <input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요." autocomplete="no" name="pw_re" id="pw_re" class="pw_re" required>
                             <p class="caption-error">영문+숫자 조합 8자리 이상 입력해주세요.</p>
                             <p class="caption-error-re">비밀번호가 일치하지 않습니다.</p>
                         </div>
                         <div class="input-area">
-                            <label for="name">이름</label>
-                            <input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no"
-                                name="name" id="name">
+                            <label for="name" class="required">이름</label>
+                            <input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required>
                         </div>
                         <div class="input-area">
-                            <label for="nick">닉네임</label>
-                            <input type="text" class="input-field" placeholder="닉네임을 입력해주세요." autocomplete="no"
-                                name="nick" id="nick">
+                            <label for="nick" class="required">닉네임</label>
+                            <input type="text" class="input-field" placeholder="닉네임을 입력해주세요." autocomplete="no" name="nick" id="nick" required>
                         </div>
                         <div class="input-area">
                             <label for="phone_num">연락처</label>
-                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no"
-                                name="name" id="phone_num" maxlength="13">
+                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="name" id="phone_num" maxlength="13">
                             <p class="caption-error">올바른 형식이 아닙니다.</p>
                         </div>
                         <div class="input-area">
                             <label for="address">주소</label>
-                            <input type="hidden" name="address" id="address">
-                            <button type="button" id="btn-zipcode" class="btn-zipcode"
-                                onclick="sample6_execDaumPostcode()">주소 입력</button>
-                            <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no"
-                                name="address_detail">
+                            <input type="hidden" name="address">
+                            <input type="hidden" name="wedo">
+                            <input type="hidden" name="kyungdo">
+                            <button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">주소 입력<i class="bi bi-chevron-right"></i></button>
+                            <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail" required>
                         </div>
-                        <div class="input-area">
-                            <label for="business_num">사업자등록번호</label>
-                            <input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no"
-                                name="business_num" id="business_num" maxlength="12">
-                            <p class="caption-error">올바른 형식이 아닙니다.</p>
-                        </div>
-                        <div class="input-area">
-                            <label for="short_description">한 줄 소개</label>
-                            <input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요."
-                                autocomplete="no" name="short_description" id="short_description">
-                        </div>
-                        <div class="input-area">
-                            <label for="max_distance">이동 가능 거리</label>
-                            <div>
-                                <input type="radio" name="max_distance" value="10" id="distanc-10" checked><label
-                                    for="distanc-10">10km</label>
-                                <input type="radio" name="max_distance" value="20" id="distanc-20"><label
-                                    for="distanc-20">20km</label>
+                        <div id="master-info-area" style="display: none;">
+                            <div class="input-area">
+                                <label for="business_num" class="required">사업자등록번호</label>
+                                <input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="business_num" id="business_num" maxlength="12">
+                                <p class="caption-error">올바른 형식이 아닙니다.</p>
                             </div>
-                        </div>
-                        <div class="input-area">
-                            <label for="">수리 분야</label>
-                            <div>
-                                <select name="" id="">
-                                    <option value="">가전제품</option>
-                                </select>
-                                <select name="" id="">
-                                    <option value="">에어컨</option>
-                                </select>
+                            <!-- 수리 분야(동적 추가 및 삭제) -->
+                            <div class="input-area">
+                                <div class="category-add-area">
+                                    <label for="category" class="required">수리 분야</label>
+                                    <span id="add-category-btn">분야 추가</span>
+                                </div>
+                                <div id="category-select-area-template" style="display: none;">
+                                    <div class="category-select-area">
+                                        <select name="category" class="select-category">
+                                            <option value="">가전제품</option>
+                                            <option value="">가전제품</option>
+                                        </select>
+                                        <select name="ca_no" class="select-category">
+                                            <option value="">에어컨</option>
+                                            <option value="">에어컨</option>
+                                        </select>
+                                        <span class="del-category-btn" onclick="$(this).parent().remove();"><i class="bi bi-trash3"></i></span>
+                                    </div>
+                                </div>
+                                <div id="category-select-area-wrap">
+                                    <div class="category-select-area">
+                                        <select name="category" class="select-category">
+                                            <option value="">가전제품</option>
+                                            <option value="">가전제품</option>
+                                            <option value="">가전제품</option>
+                                        </select>
+                                        <!-- TODO: 1차 카테고리 선택에 따라 2차 카테고리를 db에서 가져와서 세팅 -->
+                                        <select name="ca_no" class="select-category">
+                                            <option value="">에어컨</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-area">
-                            <label for="">근무 가능 요일 및 시간</label>
-                            <div>
-                                <button type="button" id="btn-zipcode" class="btn-zipcode"
-                                    onclick="">입력하기</button>
+                            <!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
+                            <div class="input-area">
+                                <label for="">근무 가능 요일 및 시간</label>
+                                <button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">시간 입력<i class="bi bi-chevron-right"></i></button>
+                                <div id="work-hours-list" class="work-hours-list" style="display: none;">
+                                    <!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
+                                </div>
+                            </div>
+                            <div class="input-area">
+                                <label for="max_distance">이동 가능 거리</label>
+                                <div class="distance-radio-area">
+                                    <input type="radio" name="max_distance" value="5" id="distanc-5" checked>
+                                    <input type="radio" name="max_distance" value="10" id="distanc-10">
+                                    <input type="radio" name="max_distance" value="20" id="distanc-20">
+                                    <input type="radio" name="max_distance" value="50" id="distanc-50">
+                                    <label for="distanc-5" class="distance-radio active">5km 이내</label>
+                                    <label for="distanc-10" class="distance-radio">10km 이내</label>
+                                    <label for="distanc-20" class="distance-radio">20km 이내</label>
+                                    <label for="distanc-50" class="distance-radio">50km 이내</label>
+                                </div>
+                            </div>
+                            <div class="input-area">
+                                <label for="short_description">한 줄 소개</label>
+                                <input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="short_description" id="short_description">
                             </div>
                         </div>
                         <input type="submit" class="btn-submit" value="가입">
                     </form>
+                    <!-- modal -->
+                    <div id="work-hours-modal" class="modal">
+                        <div class="container">
+                            <div class="modal-title">근무 가능 요일 및 시간</div>
+                            <div class="work-hours-form">
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_1" value="1">
+                                        <label for="work_hours_1">월요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hours_1_s" disabled>
+                                                <option value="09">09:00</option>
+                                                <option value="1010">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hours_1_e" disabled>
+                                                <option value="20">20:00</option>
+                                                <option value="21">21:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_2" value="2">
+                                        <label for="work_hours_2">화요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hours_2_s" disabled>
+                                                <option value="10">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hours_2_e" disabled>
+                                                <option value="20">20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_3" value="3">
+                                        <label for="work_hours_3">수요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hours_3_s" disabled>
+                                                <option value="10">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hours_3_e" disabled>
+                                                <option value="20">20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_4" value="4">
+                                        <label for="work_hours_4">목요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hours_4_s" disabled>
+                                                <option value="10">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hours_4_e" disabled>
+                                                <option value="20">20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_5" value="5">
+                                        <label for="work_hours_5">금요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hours_5_s" disabled>
+                                                <option value="10">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hours_5_e" disabled>
+                                                <option value="20">20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_6" value="6">
+                                        <label for="work_hour_6">토요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hour6_s" disabled>
+                                                <option value="10">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hour6_e" disabled>
+                                                <option value="20">20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="week-area">
+                                    <div class="check-area">
+                                        <input type="checkbox" name="work-hours-week" id="work_hours_7" value="7">
+                                        <label for="work_hours_7">일요일</label>
+                                    </div>
+                                    <div class="time-area">
+                                        <div class="time-select-area">
+                                            <select name="work_hours_7_s" disabled>
+                                                <option value="10">10:00</option>
+                                            </select>
+                                            <span>~</span>
+                                            <select name="work_hours_7_e" disabled>
+                                                <option value="20">20:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
+                            </div>
+                            <button type="button" class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
+                        </div>
+                    </div>
+                    <!-- //modal -->
                 </div>
             </div>
         </div>
@@ -228,27 +368,49 @@
         <div class="container">
             <div class="info-area">
                 <ul>
+                    <li><a href="../member/introduce.html">수수마 소개</a></li>
+                    <li><a href="../user/master_list.html">수리 예약</a></li>
+                    <li><a href="../board/notice_list.html">고객센터</a></li>
                     <li><a href="../member/terms.html">이용약관</a></li>
                     <li><a href="../member/privacy.html">개인정보처리방침</a></li>
                 </ul>
             </div>
             <div class="copyright-area">
-                <span>Copyright © susuma.com All rights reserved.</span>
+                <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
+                <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
             </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
         </div>
     </footer>
     <!-- //footer -->
+
     <!-- 다음 주소검색 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- 카카오맵 api -->
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6e324617d728d10d01ca7e36c2a14bf1&libraries=services,clusterer&autoload=false"></script>
     <script>
-        function sample6_execDaumPostcode() {
+        kakao.maps.load(function () {
+            var geocoder;
+        });
+        function execDaumPostcode() {
             new daum.Postcode({
                 oncomplete: function (data) {
-                    var zipcode = data.zonecode;
-
                     var addr = '';
-                    if (data.userSelectedType === 'R') addr = data.roadAddress;
-                    else addr = data.jibunAddress;
+                    if (data.userSelectedType === 'R') addr = data.roadAddress; // 도로명주소
+                    else addr = data.jibunAddress; // 지번주소
+                    var zipcode = data.zonecode; // 우편번호
+
+                    // 위도 및 경도 좌푯값 구하기
+                    const geocoder = new kakao.maps.services.Geocoder();
+                    geocoder.addressSearch(data.roadAddress, (result, status) => {
+                        if (status === kakao.maps.services.Status.OK) {
+                            console.log('위도 : ' + result[0].y);
+                            console.log('경도 : ' + result[0].x);
+                            $("input[name=wedo]").val(result[0].y);
+                            $("input[name=kyungdo]").val(result[0].x);
+                        }
+                    });
 
                     $("input[name=address]").val(addr);
                     $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>');
@@ -258,7 +420,8 @@
             }).open();
         }
     </script>
-    <!-- //다음 주소검색 api -->
+
+    <!-- //api -->
 </body>
 
 </html>
