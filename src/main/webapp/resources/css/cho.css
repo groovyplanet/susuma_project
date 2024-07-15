@@ -1,0 +1,29 @@
+/* snb 메뉴 없는 경우 */
+.main-section .container.main-only { justify-content: center; } 
+
+/* 회원가입 */
+.main-section .container.main-only .main-area.join { width: 500px; margin:40px 0; } 
+.main-section .container.main-only .main-area.join .title { font-size: 28px; font-weight: 700; text-align: center; } 
+.main-section .container.main-only .main-area.join ul.menu-tab { display: flex; justify-content: space-between; } 
+.main-section .container.main-only .main-area.join ul.menu-tab li { width: 49%; } 
+.main-section .container.main-only .main-area.join ul.menu-tab li button { width: 100%; margin-top: 16px; height: 48px; padding: 0 20px; border-radius: 6px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; color: #ccc; line-height: 32px; } 
+.main-section .container.main-only .main-area.join ul.menu-tab li button:hover,
+.main-section .container.main-only .main-area.join ul.menu-tab li button.active { background-color: #eee; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.join ul.menu-tab li button.active { cursor: default; } 
+
+.main-section .container.main-only .main-area.join .join-form { width: 100%; margin-top: 30px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .input-field { width: 100%; padding: 12px 12px; border: 1px solid #ddd; border-radius: 8px; color: #33312f; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area .input-field::placeholder { color: #ccc; } 
+.main-section .container.main-only .main-area.join .join-form .input-area + .input-area { margin-top: 14px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area label { display: block; font-size: 14px; font-weight: 500; color: #555; } 
+.main-section .container.main-only .main-area.join .join-form .input-area p.caption-error { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area p.caption-error-re { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area.error p.caption-error { display: block; } 
+.main-section .container.main-only .main-area.join .join-form .input-area.error-re p.caption-error-re { display: block; } 
+.main-section .container.main-only .main-area.join .join-form .input-area.error .input-field { border-color: #fa5963; } 
+.main-section .container.main-only .main-area.join .join-form .input-area.error-re .input-field { border-color: #fa5963; } 
+.main-section .container.main-only .main-area.join .join-form .input-area button { width: 100%; padding: 12px 12px; border: 1px solid #ddd; border-radius: 8px; color: #33312f; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
+.main-section .container.main-only .main-area.join .join-form .input-area button:hover { background-color: #eee; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.join .join-form .input-area button.btn-zipcode { background-color: #eee; } 
+.main-section .container.main-only .main-area.join .join-form .btn-submit { margin-top: 16px; width: 100%; height: 48px; padding: 0 20px; border-radius: 10px; font-size: 16px; font-weight: 500; letter-spacing: -0.5px; background-color: #F49D00; border: 1px solid #F49D00; color: white; line-height: 32px; } 
+.main-section .container.main-only .main-area.join .join-form .btn-submit:hover { background-color: #F5AF26; border: 1px solid #F5AF26; transition: all 0.5s; } 
