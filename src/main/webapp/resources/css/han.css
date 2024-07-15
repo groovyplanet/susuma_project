@@ -322,3 +322,118 @@
 
 /* == review_view user ver end== */
 
+/* ask */
+.main-section .container .content .edit-form {
+    margin-top: 30px;
+    margin-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    border-radius: 14px;
+    width: 90%;
+
+}
+
+.main-section .container .content .edit-form .widget-location h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.main-section .container .content .edit-form .form-group {
+    margin-bottom: 15px;
+}
+
+.main-section .container .content .edit-form .form-group label {
+
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.main-section .container .content .edit-form .form-group input[type="text"],
+.main-section .container .content .edit-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.main-section .container .content .edit-form .form-group .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F49D00;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.main-section .container .content .edit-form .form-group .btn:hover {
+    background-color: #F49D00;
+}
+
+.main-section .container .content .edit-form .panel {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.main-section .container .content .edit-form .panel-heading {
+    background-color: #f7f7f7;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.main-section .container .content .edit-form .panel-body {
+    padding: 15px;
+}
+
+.main-section .container .content .edit-form .text-center {
+    text-align: center;
+}
+
+.main-section .container .content .edit-form .text-center .btn {
+    margin: 0 10px;
+}
+
+.event-common-click-back,
+.event-click-add-file,
+.event-click-select{
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F49D00;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.event-common-click-submit{
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #555;
+ 
+}
+.ask-write-title{
+    text-align: center;
+}
+
+
+/* ================================ */
