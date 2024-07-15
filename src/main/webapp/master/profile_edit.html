@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="../resources/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- jQuery -->
-    <script src="../resources/js/jquery.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../resources/js/bootstrap.min.js"></script>
 
@@ -116,6 +117,70 @@
                 <button class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
             </div>
         </div>
+
+        <div id="profile-edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="content">
+                    <div class="edit-form">
+                        <div class="profile-img">
+                            <img id="preview-profile-pic" src="../resources/img/iconProfileDefault.png" alt="Profile Image">
+                            <label for="file1" class="profile-pic-upload">
+                                <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                    <g clip-path="url(#icon_camera_light_svg__a)">
+                                        <path fill="#121619" d="M18.099 13.17c.867-1.24 2.28-2.17 4.001-2.17H26c1.674 0 3.125.79 4.028 2.21l.013.02L31.72 16h2.78c2.587 0 4.716 2.08 4.6 4.726V32.5c0 2.608-2.093 4.7-4.7 4.7H13.6a4.685 4.685 0 0 1-4.7-4.7V20.7c0-2.607 2.092-4.7 4.7-4.7h2.78l1.68-2.77c.012-.02.025-.041.039-.06Zm1.822 1.233-1.98 3.267a1.1 1.1 0 0 1-.941.53h-3.4a2.485 2.485 0 0 0-2.5 2.5v11.8c0 1.392 1.107 2.5 2.5 2.5h20.8c1.393 0 2.5-1.108 2.5-2.5V20.7a2.485 2.485 0 0 0-2.5-2.5h-3.4a1.1 1.1 0 0 1-.941-.53l-1.98-3.267c-.618-.95-1.695-1.533-2.83-1.533h-3.9c-1.174 0-2.253.608-2.87 1.603Z"/>
+                                        <path fill="#121619" d="M24 19.1a6.9 6.9 0 1 0 0 13.8 6.9 6.9 0 0 0 0-13.8ZM16.1 26a7.9 7.9 0 1 1 15.8 0 7.9 7.9 0 0 1-15.8 0Z"/>
+                                        <path fill="#121619" d="M33.9 20.4a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2Z"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="icon_camera_light_svg__a">
+                                            <path fill="#fff" d="M0 0h48v48H0z"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <input type="file" class="input-file" id="file1" name="file1" onchange="readURL(this);">
+                            </label>
+                        </div>
+        
+                        <form class="form-edit-box">
+                            <div class="form-group">
+                                <label for="user-name">이름　</label>
+                                <input type="text" id="user-name" name="user-name" value="한정우" required>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="user-email">이메일　</label>
+                                <input type="email" id="user-email" name="user-email" value="hjwjo@naver.com" required>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="user-pw">비밀번호 변경　</label>
+                                <input type="password" id="user-pw" name="user-pw">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="user-pw-confirm">비밀번호 확인　</label>
+                                <input type="password" id="user-pw-confirm" name="user-pw-confirm">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="user-phone">전화번호　</label>
+                                <input type="tel" id="user-phone" name="user-phone" value="010-1234-5678" required>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="user-address">주소　</label>
+                                <input type="text" id="user-address" name="user-address" value="서울특별시 성동구 성수동" required>
+                            </div>
+        
+                            <button type="submit" class="form-edit-box-submit btn-submit" id="form-submit">수정완료</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+
         <!-- //modal -->
     </header>
     <!-- //header -->
@@ -130,7 +195,7 @@
                     <li><a href="repair_list.html">수리 내역</a></li>
                     <li><a href="review_list.html">후기 내역</a></li>
                     <li><a href="message_list.html">문의 내역</a></li>
-                    <li><a href="point_html">포인트</a></li>
+                    <li><a href="point.html">포인트</a></li>
                 </ul>
             </nav>
 
@@ -138,24 +203,6 @@
                 <div class="edit-form">
                     <div class="profile-img">
                         <img class="#" src="../resources/img/iconProfileDefault.png">
-                        <span class="profile-pic-upload"><svg width="32" height="32" fill="#fff"
-                                xmlns="http://www.w3.org/2000/svg" class="assets_asset__PJO1J" viewBox="0 0 48 48"
-                                name="cameraLight">
-                                <g clip-path="url(#icon_camera_light_svg__a)" fill="#121619">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M18.099 13.17c.867-1.24 2.28-2.17 4.001-2.17H26c1.674 0 3.125.79 4.028 2.21l.013.02L31.72 16h2.78c2.587 0 4.716 2.08 4.6 4.726V32.5c0 2.608-2.093 4.7-4.7 4.7H13.6a4.685 4.685 0 0 1-4.7-4.7V20.7c0-2.607 2.092-4.7 4.7-4.7h2.78l1.68-2.77c.012-.02.025-.041.039-.06Zm1.822 1.233-1.98 3.267a1.1 1.1 0 0 1-.941.53h-3.4a2.485 2.485 0 0 0-2.5 2.5v11.8c0 1.392 1.107 2.5 2.5 2.5h20.8c1.392 0 2.5-1.108 2.5-2.5V20.7l.001-.055c.067-1.34-.997-2.445-2.401-2.445h-3.4a1.1 1.1 0 0 1-.94-.53l-1.994-3.289C27.669 13.606 26.922 13.2 26 13.2h-3.9c-.868 0-1.647.459-2.18 1.203Z">
-                                    </path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M24.1 21.7a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8ZM18 25.6a6.1 6.1 0 1 1 12.2 0 6.1 6.1 0 0 1-12.2 0Z">
-                                    </path>
-                                    <path d="M33.6 23.3a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4Z"></path>
-                                </g>
-                                <defs>
-                                    <clipPath id="icon_camera_light_svg__a">
-                                        <path fill="#fff" transform="translate(9 11)" d="M0 0h30.2v26.2H0z"></path>
-                                    </clipPath>
-                                </defs>
-                            </svg></span>
                     </div>
                     <div class="master-section">
                         <div class="master-name">
@@ -170,6 +217,8 @@
                         <div class="map">
                             위치 : 강남구
                         </div>
+
+                        <button id="btn-edit-modal">수정</button>
                     </div>
                     <!-- <input type="text" class="inputField_name" placeholder="이름을 입력해 주세요." name="name"> -->
                 </div>
@@ -303,17 +352,67 @@
         <div class="container">
             <div class="info-area">
                 <ul>
+                    <li><a href="../member/introduce.html">수수마 소개</a></li>
+                    <li><a href="../user/master_list.html">수리 예약</a></li>
+                    <li><a href="../board/notice_list.html">고객센터</a></li>
                     <li><a href="../member/terms.html">이용약관</a></li>
                     <li><a href="../member/privacy.html">개인정보처리방침</a></li>
                 </ul>
             </div>
             <div class="copyright-area">
-                <span>Copyright © susuma.com All rights reserved.</span>
+                <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
+                <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
+            </div>
+                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
             </div>
         </div>
     </footer>
     <!-- //footer -->
 
 </body>
+
+<script>
+    // 수정 버튼 클릭 시 모달 열기
+var btnEditModal = document.getElementById('btn-edit-modal');
+var modal = document.getElementById('profile-edit-modal');
+var spanClose = modal.querySelector('.close');
+
+btnEditModal.addEventListener('click', function() {
+    modal.style.display = 'block';
+});
+
+// 닫기 버튼 클릭 시 모달 닫기
+spanClose.addEventListener('click', function() {
+    modal.style.display = 'none';
+});
+
+// 모달이 열려 있는 상태에서 모달 외부 클릭 시 모달 닫기
+window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                document.getElementById('preview-profile-pic').setAttribute('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    document.querySelector('.btn-submit').addEventListener('click', function() {
+    // Add your withdraw logic here
+    alert('승인이 완료되었습니다.');
+
+});
+
+
+</script>
 
 </html>
