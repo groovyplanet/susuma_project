@@ -28,12 +28,8 @@
     <script src="../resources/js/park.js"></script>
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-        rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic"
-        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -95,12 +91,10 @@
                 <div class="login-form"><!-- 로그인 폼 -->
                     <form>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no"
-                                name="email" value="">
+                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
                         </div>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no"
-                                name="pw" value="">
+                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
                         </div>
                         <div class="sub-area">
                             <div class="save-area">
@@ -154,6 +148,9 @@
                             <button class="btn request">수리완료</button>
                         </div>
                     </div>
+                    <div class="location-area" style="display: flex;justify-content: space-around; margin-top: 40px;">
+                        <div id="map" style="width:500px;height:400px;"></div>
+                    </div>
                     <div class="repair-more-content">
                         <div class="detail-content">
                             수리내역
@@ -191,13 +188,13 @@
                 <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
                 <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
             </div>
-                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
-            </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
         </div>
     </footer>
     <!-- //footer -->
     <script>
-      function showEditForm() {
+        function showEditForm() {
             document.getElementById('edit-button').style.display = 'none';
             document.getElementById('edit-form').style.display = 'flex';
         }
@@ -216,7 +213,19 @@
                 hideEditForm();
             }
         }
-        </script>
+    </script>
+    <!-- 카카오 맵 api -->
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6e324617d728d10d01ca7e36c2a14bf1&libraries=services,clusterer&autoload=false"></script>
+    <script>
+        const resultMap = document.getElementById('map');
+        kakao.maps.load(function () {
+            const map = new kakao.maps.Map(resultMap, {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 위도, 경도
+                level: 5
+            })
+        });
+    </script>
+    <!-- //api -->
 </body>
 
 </html>
