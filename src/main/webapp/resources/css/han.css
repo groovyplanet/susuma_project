@@ -287,3 +287,9 @@
 .main-section .container .review-list-master .review-list .pic-review-view .starreview { color: gold; } 
 /* =========master_view end======= */
 #mArticle { overflow: hidden; position: relative; max-width: 1160px; margin: 0 auto; padding-bottom: 180px; } 
+/* ==========master list  =====*/
+.main-section .container.filter{
+    justify-content: center;
+    margin-top: 20px;
+}
+
