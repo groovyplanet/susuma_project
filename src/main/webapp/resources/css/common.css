@@ -42,7 +42,7 @@ header .gnb ul.login-area li.li-icon.chat .icon-area img { width: 20px; }
 header .gnb ul.login-area li.li-icon.chat .icon-area span.new-mark { right: 0px; } 
 header .gnb ul.login-area li.li-icon.alarm { position: relative; } 
 header .gnb ul.login-area li.li-icon.alarm .icon-area img { width: 22px; } 
-header .gnb ul.login-area li.li-icon.alarm .alram-list { display: none; position: absolute; top: 48px; right: -130px; padding: 20px; width: 300px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list { display: none; position: absolute; top: 48px; right: -130px; padding: 20px; width: 300px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; z-index: 100; } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list :before { content: ''; position: absolute; border-style: solid; border-width: 0 7px 10px 7px; border-color: #DDD transparent; display: block; width: 0; z-index: 0; top: -11px; left: calc(50% - 8px); } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list :after { content: ''; position: absolute; border-style: solid; border-width: 0 7px 10px 7px; border-color: #FFFFFF transparent; display: block; width: 0; z-index: 1; top: -9px; left: calc(50% - 8px); } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item { text-decoration: none; display: block; } 
@@ -63,6 +63,7 @@ header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .message { f
 .modal .container .login-form .sub-area { display: flex; justify-content: space-between; margin-top: 7px; } 
 .modal .container .login-form .sub-area .save-area { cursor: pointer; } 
 .modal .container .login-form .sub-area .save-area label { cursor: pointer; } 
+.modal .container .login-form .sub-area .save-area label:hover { font-weight: 500; } 
 .modal .container .login-form .btn { display: inline-flex; width: 100%; align-items: center; justify-content: center; border-radius: 6px; font-size: 16px; font-weight: 500; background-color: #ffffff; border: 1px solid #333; color: #333; padding: 10px; margin-top: 10px; } 
 .modal .container .login-form .btn:hover { background-color: #f3f3f3; transition: all 0.5s; } 
 .modal .container .login-form .btn.btn-login-submit { background-color: #F49D00; border: 1px solid #F49D00; color: white; margin-top: 18px; } 

@@ -162,3 +162,31 @@ $(document).ready(function () {
         $(this)[0].submit();
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    /*
+    member/find_info.html
+    */
+    var formFindInfo = document.getElementById('form-find-info');
+    if (formFindInfo) {
+        // 임시 비밀번호 발급 버튼 클릭 시시
+        document.getElementById('form-find-info').addEventListener('submit', function (event) {
+            event.preventDefault(); // 기본 폼 제출 막기
+
+            var emailInput = this.querySelector('#email');
+            if (emailInput.value != "") {
+                // AJAX로 이메일 중복확인 및 임시 비밀번호 발급
+                // 완료 안내 모달 띄우기
+                document.getElementById('find-info-complete-modal').classList.add('show');
+            } else {
+                // 해당되는 이메일이 없습니다. 안내 모달 띄우기
+                document.getElementById('find-info-error-modal').classList.add('show');
+            }
+
+            // ajax로 구현
+            // this.submit();
+        });
+    }
+});
+
+

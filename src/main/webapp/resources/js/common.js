@@ -16,12 +16,19 @@
 // });
 
 window.onload = function () {
-    // 로그인 버튼 클릭 시
+    // 로그인 버튼 클릭 시 모달 띄우기
     document.getElementById('btn-login-modal').addEventListener('click', function () {
         document.getElementById('login-modal').classList.add('show');
     });
 
-    // 모달 닫기 버튼 클릭 시
+    // 로그인 모달 배경 클릭 시 모달 닫기
+    document.getElementById('login-modal').addEventListener('click', function (event) {
+        if (!event.target.closest('.container')) {
+            document.getElementById('login-modal').classList.remove('show');
+        }
+    });
+
+    // 모달 닫기 버튼 클릭 시 모달 닫기(공통)
     var closeButtons = document.querySelectorAll(".btn-close-modal");
     closeButtons.forEach(function (button) {
         button.addEventListener("click", function () {
@@ -37,4 +44,5 @@ window.onload = function () {
         var alarmList = document.getElementById('alram-list');
         alarmList.style.display = (window.getComputedStyle(alarmList).getPropertyValue('display') == 'none') ? 'block' : 'none';
     });
+
 }
