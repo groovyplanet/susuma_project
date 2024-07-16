@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../resources/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- jQuery -->
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../resources/js/bootstrap.min.js"></script>
@@ -29,12 +29,8 @@
     <script src="../resources/js/park.js"></script>
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-        rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic"
-        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -96,12 +92,10 @@
                 <div class="login-form"><!-- 로그인 폼 -->
                     <form>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no"
-                                name="email" value="">
+                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
                         </div>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no"
-                                name="pw" value="">
+                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
                         </div>
                         <div class="sub-area">
                             <div class="save-area">
@@ -117,69 +111,6 @@
                 <button class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
             </div>
         </div>
-
-        <div id="profile-edit-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="content">
-                    <div class="edit-form">
-                        <div class="profile-img">
-                            <img id="preview-profile-pic" src="../resources/img/iconProfileDefault.png" alt="Profile Image">
-                            <label for="file1" class="profile-pic-upload">
-                                <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                                    <g clip-path="url(#icon_camera_light_svg__a)">
-                                        <path fill="#121619" d="M18.099 13.17c.867-1.24 2.28-2.17 4.001-2.17H26c1.674 0 3.125.79 4.028 2.21l.013.02L31.72 16h2.78c2.587 0 4.716 2.08 4.6 4.726V32.5c0 2.608-2.093 4.7-4.7 4.7H13.6a4.685 4.685 0 0 1-4.7-4.7V20.7c0-2.607 2.092-4.7 4.7-4.7h2.78l1.68-2.77c.012-.02.025-.041.039-.06Zm1.822 1.233-1.98 3.267a1.1 1.1 0 0 1-.941.53h-3.4a2.485 2.485 0 0 0-2.5 2.5v11.8c0 1.392 1.107 2.5 2.5 2.5h20.8c1.393 0 2.5-1.108 2.5-2.5V20.7a2.485 2.485 0 0 0-2.5-2.5h-3.4a1.1 1.1 0 0 1-.941-.53l-1.98-3.267c-.618-.95-1.695-1.533-2.83-1.533h-3.9c-1.174 0-2.253.608-2.87 1.603Z"/>
-                                        <path fill="#121619" d="M24 19.1a6.9 6.9 0 1 0 0 13.8 6.9 6.9 0 0 0 0-13.8ZM16.1 26a7.9 7.9 0 1 1 15.8 0 7.9 7.9 0 0 1-15.8 0Z"/>
-                                        <path fill="#121619" d="M33.9 20.4a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2Z"/>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="icon_camera_light_svg__a">
-                                            <path fill="#fff" d="M0 0h48v48H0z"/>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <input type="file" class="input-file" id="file1" name="file1" onchange="readURL(this);">
-                            </label>
-                        </div>
-        
-                        <form class="form-edit-box">
-                            <div class="form-group">
-                                <label for="user-name">이름　</label>
-                                <input type="text" id="user-name" name="user-name" value="한정우" required>
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="user-email">이메일　</label>
-                                <input type="email" id="user-email" name="user-email" value="hjwjo@naver.com" required>
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="user-pw">비밀번호 변경　</label>
-                                <input type="password" id="user-pw" name="user-pw">
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="user-pw-confirm">비밀번호 확인　</label>
-                                <input type="password" id="user-pw-confirm" name="user-pw-confirm">
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="user-phone">전화번호　</label>
-                                <input type="tel" id="user-phone" name="user-phone" value="010-1234-5678" required>
-                            </div>
-        
-                            <div class="form-group">
-                                <label for="user-address">주소　</label>
-                                <input type="text" id="user-address" name="user-address" value="서울특별시 성동구 성수동" required>
-                            </div>
-        
-                            <button type="submit" class="form-edit-box-submit btn-submit" id="form-submit">수정완료</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-   
 
         <!-- //modal -->
     </header>
@@ -198,150 +129,121 @@
                     <li><a href="point.html">포인트</a></li>
                 </ul>
             </nav>
-
-            <div class="content">
-                <div class="edit-form">
-                    <div class="profile-img">
-                        <img class="#" src="../resources/img/iconProfileDefault.png">
-                    </div>
-                    <div class="master-section">
-                        <div class="master-name">
-                            마스터 이름 : 벨기에재즈퀸서희
+            <div class="content profile-edit">
+                <div class="join-form profile-edit-form">
+                    <form action="joinForm.member" method="post" id="form-join">
+                        <input type="hidden" name="me_no" value="">
+                        <div class="img-profile-area">
+                            <label for="profile_photo" class="label-profile_photo">
+                                <img id="img-profile" class="img-profile" src="../resources/img/iconProfileDefault.png" alt="Profile Image">
+                                <span class="img-profile-overlay">프로필 변경</span>
+                                <i class="bi bi-pencil"></i>
+                            </label>
+                            <input type="file" class="input-file" id="profile_photo" name="profile_photo" onchange="readURL(this);" style="display: none;">
                         </div>
-                        <div class="review-star">
-                            별점 : ★☆☆☆☆
+                        <div class="input-area">
+                            <label for="email">이메일</label>
+                            <input type="text" class="input-field" value="ssm@naver.com" autocomplete="no" name="email" id="email" disabled>
                         </div>
-                        <div class="career">
-                            경력 : 무력
+                        <div class="input-area">
+                            <label for="email" class="required">비밀번호</label>
+                            <input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no" name="pw" id="pw" required>
+                            <input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요." autocomplete="no" name="pw_re" id="pw_re" class="pw_re" required>
+                            <p class="caption-error">영문+숫자 조합 8자리 이상 입력해주세요.</p>
+                            <p class="caption-error-re">비밀번호가 일치하지 않습니다.</p>
                         </div>
-                        <div class="map">
-                            위치 : 강남구
+                        <div class="input-area">
+                            <label for="name" class="required">이름</label>
+                            <input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required>
                         </div>
-
-                        <button id="btn-edit-modal">수정</button>
-                    </div>
-                    <!-- <input type="text" class="inputField_name" placeholder="이름을 입력해 주세요." name="name"> -->
-                </div>
-                <div class="career_infoarea">
-                    <div class="career_section">
-                        <div class="career_sectiontitle">
-                            <svg width="40" height="40" fill="#121619" xmlns="http://www.w3.org/2000/svg"
-                                class="assets_asset__PJO1J" viewBox="0 0 48 48" name="workLight">
-                                <g clip-path="url(#icon_work_light_svg__a)" fill-rule="evenodd" clip-rule="evenodd"
-                                    fill="#121619">
-                                    <path
-                                        d="M20.711 12.224a.21.21 0 0 0-.011.076V16h6.8v-3.7a.21.21 0 0 0-.015-.085.21.21 0 0 0-.085-.015h-6.6a.21.21 0 0 0-.085.015.057.057 0 0 0-.004.009ZM28.6 17.1h1.1v-4.8c0-1.308-.992-2.3-2.3-2.3h-6.6c-1.308 0-2.3.992-2.3 2.3v4.8a1.1 1.1 0 0 0 1.1 1.1h9v-1.1Z">
-                                    </path>
-                                    <path
-                                        d="M14.7 18.2a2.485 2.485 0 0 0-2.5 2.5v12.8c0 1.392 1.107 2.5 2.5 2.5h18.8c1.392 0 2.5-1.108 2.5-2.5V20.7c0-1.392-1.108-2.5-2.5-2.5H14.7ZM10 20.7c0-2.607 2.092-4.7 4.7-4.7h18.8c2.608 0 4.7 2.093 4.7 4.7v12.8c0 2.608-2.093 4.7-4.7 4.7H14.7a4.685 4.685 0 0 1-4.7-4.7V20.7Z">
-                                    </path>
-                                    <path d="M37.1 25.2h-26V23h26v2.2Z"></path>
-                                    <path d="M23 29.1v-5h2.2v5H23Z"></path>
-                                </g>
-                                <defs>
-                                    <clipPath id="icon_work_light_svg__a">
-                                        <path fill="#fff" transform="translate(10 10)" d="M0 0h28.2v28.2H0z"></path>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            경력 및 인증
+                        <div class="input-area">
+                            <label for="nick" class="required">닉네임</label>
+                            <input type="text" class="input-field" placeholder="닉네임을 입력해주세요." autocomplete="no" name="nick" id="nick" required>
                         </div>
-                    </div>
-                    <div class="career_details">
-                        <!-- Certifications and Experience Details Here -->
-                        <ul>
-                            <li>경력 1: 5년 경력</li>
-                            <li>인증 1: 자격증 A</li>
-                            <li>인증 2: 자격증 B</li>
-                            <li>경력 2: 회사 X에서 3년 근무</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="location_management">
-                    <div class="location_managementtitle">
-                        <img width="25" height="25" src="../resources/img/iconmap.png" alt="">위치 관리
-                    </div>
-                    <div class="location_details">
-                        <p>현재 위치: 강남구</p>
-                        <p>이전 위치: 서초구</p>
-                    </div>
-                </div>
-                <div class="detailed_description">
-                    <div class="detailed_descriptiontitle">
-                        <svg width="40" height="40" fill="#121619" xmlns="http://www.w3.org/2000/svg"
-                            class="assets_asset__PJO1J" viewBox="0 0 48 48" name="folderLight">
-                            <g clip-path="url(#icon_folder_light_svg__a)">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M9 15.7c0-2.607 2.092-4.7 4.7-4.7h4.1c1.031 0 2.188.374 3.004 1.055l.004.003L25.5 16H34.5c2.608 0 4.7 2.093 4.7 4.7v11.8c0 2.608-2.093 4.7-4.7 4.7H13.7A4.685 4.685 0 0 1 9 32.5V15.7Zm4.7-2.5a2.485 2.485 0 0 0-2.5 2.5v16.8c0 1.392 1.107 2.5 2.5 2.5h20.8c1.392 0 2.5-1.108 2.5-2.5V20.7c0-1.392-1.108-2.5-2.5-2.5h-9.4a1.1 1.1 0 0 1-.708-.258l-4.996-4.197-.002-.001c-.383-.319-1.026-.544-1.594-.544h-4.1Z"
-                                    fill="#121619"></path>
-                            </g>
-                            <defs>
-                                <clipPath id="icon_folder_light_svg__a">
-                                    <path fill="#fff" transform="translate(9 11)" d="M0 0h30.2v26.2H0z"></path>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        상세 설명
-                    </div>
-                    <div class="description_details">
-                        <p>안녕하세요, 저는 벨기에재즈퀸서희입니다. 5년 경력의 수리 마스터로서...</p>
-                    </div>
-                </div>
-                <div class="service_scheduling">
-                    <div class="service_schedulingtitle">
-                        <svg width=25 height=22 fill="#121619" version="1.1" id="Capa_1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px"
-                            height="64px" viewBox="0 0 610.398 610.398" xml:space="preserve">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <g>
-                                    <g>
-                                        <path
-                                            d="M159.567,0h-15.329c-1.956,0-3.811,0.411-5.608,0.995c-8.979,2.912-15.616,12.498-15.616,23.997v10.552v27.009v14.052 c0,2.611,0.435,5.078,1.066,7.44c2.702,10.146,10.653,17.552,20.158,17.552h15.329c11.724,0,21.224-11.188,21.224-24.992V62.553 V35.544V24.992C180.791,11.188,171.291,0,159.567,0z">
-                                        </path>
-                                        <path
-                                            d="M461.288,0h-15.329c-11.724,0-21.224,11.188-21.224,24.992v10.552v27.009v14.052c0,13.804,9.5,24.992,21.224,24.992 h15.329c11.724,0,21.224-11.188,21.224-24.992V62.553V35.544V24.992C482.507,11.188,473.007,0,461.288,0z">
-                                        </path>
-                                        <path
-                                            d="M539.586,62.553h-37.954v14.052c0,24.327-18.102,44.117-40.349,44.117h-15.329c-22.247,0-40.349-19.79-40.349-44.117 V62.553H199.916v14.052c0,24.327-18.102,44.117-40.349,44.117h-15.329c-22.248,0-40.349-19.79-40.349-44.117V62.553H70.818 c-21.066,0-38.15,16.017-38.15,35.764v476.318c0,19.784,17.083,35.764,38.15,35.764h468.763c21.085,0,38.149-15.984,38.149-35.764 V98.322C577.735,78.575,560.671,62.553,539.586,62.553z M527.757,557.9l-446.502-0.172V173.717h446.502V557.9z">
-                                        </path>
-                                        <path
-                                            d="M353.017,266.258h117.428c10.193,0,18.437-10.179,18.437-22.759s-8.248-22.759-18.437-22.759H353.017 c-10.193,0-18.437,10.179-18.437,22.759C334.58,256.074,342.823,266.258,353.017,266.258z">
-                                        </path>
-                                        <path
-                                            d="M353.017,348.467h117.428c10.193,0,18.437-10.179,18.437-22.759c0-12.579-8.248-22.758-18.437-22.758H353.017 c-10.193,0-18.437,10.179-18.437,22.758C334.58,338.288,342.823,348.467,353.017,348.467z">
-                                        </path>
-                                        <path
-                                            d="M353.017,430.676h117.428c10.193,0,18.437-10.18,18.437-22.759s-8.248-22.759-18.437-22.759H353.017 c-10.193,0-18.437,10.18-18.437,22.759S342.823,430.676,353.017,430.676z">
-                                        </path>
-                                        <path
-                                            d="M353.017,512.89h117.428c10.193,0,18.437-10.18,18.437-22.759c0-12.58-8.248-22.759-18.437-22.759H353.017 c-10.193,0-18.437,10.179-18.437,22.759C334.58,502.71,342.823,512.89,353.017,512.89z">
-                                        </path>
-                                        <path
-                                            d="M145.032,266.258H262.46c10.193,0,18.436-10.179,18.436-22.759s-8.248-22.759-18.436-22.759H145.032 c-10.194,0-18.437,10.179-18.437,22.759C126.596,256.074,134.838,266.258,145.032,266.258z">
-                                        </path>
-                                        <path
-                                            d="M145.032,348.467H262.46c10.193,0,18.436-10.179,18.436-22.759c0-12.579-8.248-22.758-18.436-22.758H145.032 c-10.194,0-18.437,10.179-18.437,22.758C126.596,338.288,134.838,348.467,145.032,348.467z">
-                                        </path>
-                                        <path
-                                            d="M145.032,430.676H262.46c10.193,0,18.436-10.18,18.436-22.759s-8.248-22.759-18.436-22.759H145.032 c-10.194,0-18.437,10.18-18.437,22.759S134.838,430.676,145.032,430.676z">
-                                        </path>
-                                        <path
-                                            d="M145.032,512.89H262.46c10.193,0,18.436-10.18,18.436-22.759c0-12.58-8.248-22.759-18.436-22.759H145.032 c-10.194,0-18.437,10.179-18.437,22.759C126.596,502.71,134.838,512.89,145.032,512.89z">
-                                        </path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg> 서비스 일정 관리
-                    </div>
-                    <div class="schedule_details">
-                        <ul>예약 가능한 시간 :
-                            <li>월요일: 10:00 - 12:00</li>
-                            <li>화요일: 14:00 - 16:00</li>
-                            <li>수요일: 09:00 - 11:00</li>
-                        </ul>
-                    </div>
+                        <div class="input-area">
+                            <label for="phone_num">연락처</label>
+                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="name" id="phone_num" maxlength="13">
+                            <p class="caption-error">올바른 형식이 아닙니다.</p>
+                        </div>
+                        <div class="input-area">
+                            <label for="address">주소</label>
+                            <input type="hidden" name="address">
+                            <input type="hidden" name="latitude">
+                            <input type="hidden" name="longitude">
+                            <button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">주소 입력<i class="bi bi-chevron-right"></i></button>
+                            <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail">
+                        </div>
+                        <div class="input-area">
+                            <label for="business_num" class="required">사업자등록번호</label>
+                            <input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="business_num" id="business_num" maxlength="12">
+                            <p class="caption-error">올바른 형식이 아닙니다.</p>
+                        </div>
+                        <!-- 수리 분야(동적 추가 및 삭제) -->
+                        <div class="input-area">
+                            <div class="category-add-area">
+                                <label for="category" class="required">수리 분야</label>
+                                <span id="add-category-btn">분야 추가</span>
+                            </div>
+                            <div id="category-select-area-template" style="display: none;">
+                                <div class="category-select-area">
+                                    <select name="category" class="select-category">
+                                        <option value="">가전제품</option>
+                                        <option value="">가전제품</option>
+                                    </select>
+                                    <select name="ca_no" class="select-category">
+                                        <option value="">에어컨</option>
+                                        <option value="">에어컨</option>
+                                    </select>
+                                    <span class="del-category-btn" onclick="$(this).parent().remove();"><i class="bi bi-trash3"></i></span>
+                                </div>
+                            </div>
+                            <div id="category-select-area-wrap">
+                                <div class="category-select-area">
+                                    <select name="category" class="select-category">
+                                        <option value="">가전제품</option>
+                                        <option value="">가전제품</option>
+                                        <option value="">가전제품</option>
+                                    </select>
+                                    <!-- TODO: 1차 카테고리 선택에 따라 2차 카테고리를 db에서 가져와서 세팅 -->
+                                    <select name="ca_no" class="select-category">
+                                        <option value="">에어컨</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
+                        <div class="input-area">
+                            <label for="">근무 가능 요일 및 시간</label>
+                            <button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">시간 입력<i class="bi bi-chevron-right"></i></button>
+                            <div id="work-hours-list" class="work-hours-list" style="display: none;">
+                                <!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="max_distance">이동 가능 거리</label>
+                            <div class="distance-radio-area">
+                                <input type="radio" name="max_distance" value="5" id="distanc-5" checked>
+                                <input type="radio" name="max_distance" value="10" id="distanc-10">
+                                <input type="radio" name="max_distance" value="20" id="distanc-20">
+                                <input type="radio" name="max_distance" value="50" id="distanc-50">
+                                <input type="radio" name="max_distance" value="100" id="distanc-100">
+                                <label for="distanc-5" class="distance-radio active">5km 이내</label>
+                                <label for="distanc-10" class="distance-radio">10km 이내</label>
+                                <label for="distanc-20" class="distance-radio">20km 이내</label>
+                                <label for="distanc-50" class="distance-radio">50km 이내</label>
+                                <label for="distanc-100" class="distance-radio">100km 이내</label>
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="short_description">한 줄 소개</label>
+                            <input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="short_description" id="short_description">
+                        </div>
+                        <div class="input-area">
+                            <label for="short_description">수리 상세 내용</label>
+                            <textarea placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요."></textarea>
+                        </div>
+                        <input type="submit" class="btn-submit" value="가입">
+                    </form>
                 </div>
             </div>
         </div>
@@ -363,8 +265,8 @@
                 <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
                 <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
             </div>
-                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
-            </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
         </div>
     </footer>
     <!-- //footer -->
@@ -372,45 +274,16 @@
 </body>
 
 <script>
-    // 수정 버튼 클릭 시 모달 열기
-var btnEditModal = document.getElementById('btn-edit-modal');
-var modal = document.getElementById('profile-edit-modal');
-var spanClose = modal.querySelector('.close');
 
-btnEditModal.addEventListener('click', function() {
-    modal.style.display = 'block';
-});
-
-// 닫기 버튼 클릭 시 모달 닫기
-spanClose.addEventListener('click', function() {
-    modal.style.display = 'none';
-});
-
-// 모달이 열려 있는 상태에서 모달 외부 클릭 시 모달 닫기
-window.addEventListener('click', function(event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-});
-
-
-function readURL(input) {
+    function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
-            reader.onload = function(e) {
-                document.getElementById('preview-profile-pic').setAttribute('src', e.target.result);
+            reader.onload = function (e) {
+                document.getElementById('img-profile').setAttribute('src', e.target.result);
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     };
-
-    document.querySelector('.btn-submit').addEventListener('click', function() {
-    // Add your withdraw logic here
-    alert('승인이 완료되었습니다.');
-
-});
 
 
 </script>
