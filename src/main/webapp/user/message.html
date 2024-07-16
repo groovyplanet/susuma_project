@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    width: 420px;
+    height: 550px;
+}
+
+.chat-container {
+    width: 400px;
+    max-width: 600px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-group {
+    display: flex;
+    padding: 10px;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F49D00;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d68b00;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+.message.member {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+
+.message.counselor {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+}
+
+</style>
+
+
+
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-group">
+            <input type="text" id="chat-input" placeholder="메시지를 입력하세요">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+    <script src="member.js"></script>
+</body>
+
+<script>
+const chatBox = document.getElementById('chat-box');
+const chatInput = document.getElementById('chat-input');
+const sender = 'member'; // 'member' 또는 'counselor'로 설정
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchMessages();
+});
+
+function fetchMessages() {
+    fetch('/chat')
+        .then(response => response.json())
+        .then(messages => {
+            messages.forEach(message => {
+                addMessage(message.sender, message.message);
+            });
+        });
+}
+
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message) {
+        addMessage(sender, message);
+        chatInput.value = '';
+
+        fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `sender=${sender}&message=${message}`
+        });
+    }
+}
+
+function addMessage(sender, message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    
+    if (sender === 'counselor') {
+        const img = document.createElement('img');
+        img.src = 'path/to/counselor-image.jpg'; // 상담사 이미지 경로를 설정하세요.
+        messageDiv.appendChild(img);
+    }
+    
+    const textDiv = document.createElement('div');
+    textDiv.textContent = message;
+    messageDiv.appendChild(textDiv);
+    
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+
+
+
+</script>
+</html>

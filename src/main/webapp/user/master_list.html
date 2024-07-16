@@ -35,7 +35,81 @@
         href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic"
         rel="stylesheet" type="text/css">
 
+<style>
+ 
+
+ nav {
+    width: 400px;
+    padding: 20px;
+    background: #f4f4f4;
+    border-right: 1px solid #ddd;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul ul {
+    margin-left: 20px;
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+}
+
+
+.filters, .search-filters {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.filter, .search-filter {
+    margin: 0 10px;
+}
+
+#technicians {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.technician {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.technician img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.main-section .container .sidebar ul li{
+   text-align: center;
+}
+
+.search-filters button{
+    background-color: #F49D00;
+    border: 1px solid #F49D00;
+    color: white;
+    padding: 0 15px;
+    
+    line-height: 15px;
+    border-radius: 20px;
+}
+
+
+</style>
+
+        
 </head>
+
+
 
 <body>
     <!-- header -->
@@ -121,11 +195,123 @@
     <!-- //header -->
 
     <section class="main-section">
-        <div class="container">
+        <div class="container filter">
             <div class="main-area">
-                main-section > container > main-area
+                <div class="filters">
+                    <div class="filter">
+                        <label for="category">상위 카테고리</label>
+                        <select id="category">
+                            <option value="">선택</option>
+                            <option value="가전제품">가전제품</option>
+                            <option value="문/창문">문/창문</option>
+                            <option value="수도/보일러/전기">수도/보일러/전기</option>
+                            <option value="가구">가구</option>
+                            <option value="기타 설치/수리">기타 설치/수리</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="sub-category">하위 카테고리</label>
+                        <select id="sub-category">
+                            <option value="">선택</option>
+                            <optgroup label="가전제품">
+                                <option value="냉장고 설치 및 수리">냉장고 설치 및 수리</option>
+                                <option value="세탁기 설치 및 수리">세탁기 설치 및 수리</option>
+                                <option value="CCTV 설치">CCTV 설치</option>
+                            </optgroup>
+                            <optgroup label="문/창문">
+                                <option value="문 설치 및 수리">문 설치 및 수리</option>
+                                <option value="창문 설치 및 수리">창문 설치 및 수리</option>
+                            </optgroup>
+                            <optgroup label="수도/보일러/전기">
+                                <option value="수도관 설치 및 수리">수도관 설치 및 수리</option>
+                                <option value="보일러 설치 및 수리">보일러 설치 및 수리</option>
+                                <option value="전기 배선 설치 및 수리">전기 배선 설치 및 수리</option>
+                            </optgroup>
+                            <optgroup label="가구">
+                                <option value="가구 수리">가구 수리</option>
+                                <option value="가구 설치">가구 설치</option>
+                                <option value="맞춤형 가구 제작/리폼">맞춤형 가구 제작/리폼</option>
+                            </optgroup>
+                            <optgroup label="기타 설치/수리">
+                                <option value="엘리베이터 설치/수리">엘리베이터 설치/수리</option>
+                                <option value="가정용 엘리베이터 설치/수리">가정용 엘리베이터 설치/수리</option>
+                                <option value="지붕 설치/수리">지붕 설치/수리</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="region">지역</label>
+                        <select id="region">
+                            <option value="">선택</option>
+                            <option value="강남구">강남구</option>
+                            <option value="강동구">강동구</option>
+                            <option value="강북구">강북구</option>
+                            <option value="강서구">강서구</option>
+                            <option value="관악구">관악구</option>
+                            <option value="광진구">광진구</option>
+                            <option value="구로구">구로구</option>
+                            <option value="금천구">금천구</option>
+                            <option value="노원구">노원구</option>
+                            <option value="도봉구">도봉구</option>
+                            <option value="동대문구">동대문구</option>
+                            <option value="동작구">동작구</option>
+                            <option value="마포구">마포구</option>
+                            <option value="서대문구">서대문구</option>
+                            <option value="서초구">서초구</option>
+                            <option value="성동구">성동구</option>
+                            <option value="성북구">성북구</option>
+                            <option value="송파구">송파구</option>
+                            <option value="양천구">양천구</option>
+                            <option value="영등포구">영등포구</option>
+                            <option value="용산구">용산구</option>
+                            <option value="은평구">은평구</option>
+                            <option value="종로구">종로구</option>
+                            <option value="중구">중구</option>
+                            <option value="중랑구">중랑구</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="rating">별점순</label>
+                        <select id="rating">
+                            <option value="">선택</option>
+                            <option value="desc">높은 순</option>
+                            <option value="asc">낮은 순</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="technician">
+                    <img src="/resources/img/iconProfileDefault.png" alt="홍길동">
+                    <h3>한정우</h3>
+                    <p>별점: 4.8 (114)</p>
+                    <p>지역: 서울시 강남구 (10km 이내 가능)</p>
+                    <p>안녕하세요 저는 백엔드 유지보수 경력 15년의 경력을 보유했습니다.</p>
+                </div>
+                <!-- Add more technician divs as needed -->
             </div>
+
         </div>
+
+        
+            
+      
+
+        <div class="search-filters">
+            <div class="search-filter">
+                <label for="distance">가까운 거리 필터</label>
+                <input type="number" id="distance" placeholder="거리 (km)">
+            </div>
+            <div class="search-filter">
+                <label for="rating-filter">별점순</label>
+                <select id="rating-filter">
+                    <option value="desc">높은 순</option>
+                    <option value="asc">낮은 순</option>
+                </select>
+            </div>
+            <button onclick="applyFilters()">검색</button>
+        </div>
+    </div>
+
+
     </section>
 
     <!-- footer -->
