@@ -46,6 +46,7 @@ header .gnb ul.login-area li.li-icon.alarm .alram-list { display: none; position
 header .gnb ul.login-area li.li-icon.alarm .alram-list :before { content: ''; position: absolute; border-style: solid; border-width: 0 7px 10px 7px; border-color: #DDD transparent; display: block; width: 0; z-index: 0; top: -11px; left: calc(50% - 8px); } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list :after { content: ''; position: absolute; border-style: solid; border-width: 0 7px 10px 7px; border-color: #FFFFFF transparent; display: block; width: 0; z-index: 1; top: -9px; left: calc(50% - 8px); } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item { text-decoration: none; display: block; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item:hover .message { text-decoration: underline; text-decoration-color: #aaa } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item + a.alram-item { margin-top: 14px; } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .datetime { font-size: 12px; color: #777; } 
 header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .message { font-size: 14px; color: #333; margin-top: 1px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all; } 
