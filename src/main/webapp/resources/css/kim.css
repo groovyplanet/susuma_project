@@ -192,6 +192,7 @@ img {
 .content .content-title-box {
     padding: 40px;    
     border-bottom: 1px solid rgb(0, 0, 0,0.2);
+    padding-top: 20px;
 }
 .content .content-detail-box{
     text-align: center;
@@ -384,4 +385,18 @@ img {
     text-align: left;
     margin-left: 60px;
 }
+/* ==============================board-ask-view */
 
+.content-case{
+    position: relative;
+}
+.content-case .content-title-box .content-controll {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.content-case .content-title-box .content-controll a {
+    margin: 5px;
+    text-decoration: none;
+    color: rgb(0, 0, 0,0.6);
+}
