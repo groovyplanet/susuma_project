@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../course/js"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "webapp"
+	}
+}
