@@ -54,7 +54,7 @@
 .password-error { color: red; font-size: 12px; margin-top: 5px; display: none; /* 초기에는 숨김 */ } 
 /* ===========profile_edit css end======== */
 /* ===reserve manage list page css start === */
-.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
+.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 30px 50px; } 
 .main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
 .main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
 .main-section .container .reservation-setting .reserve-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
@@ -85,7 +85,7 @@
 .main-section .container .reservation-detail .detail-content { margin-right: 10px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; } 
 /* ==========reserve_manage_view end============== */
 /* ===repair manage list page css start === */
-.main-section .container .repair-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
+.main-section .container .repair-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 30px 50px; } 
 .main-section .container .repair-setting .repair-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
 .main-section .container .repair-setting .repair-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
 .main-section .container .repair-setting .repair-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
@@ -127,8 +127,8 @@
 .main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn { margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; } 
 .main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; } 
 .main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
-#paybtn{background-color: #ff6b6b; color: white; border: none; cursor: pointer;}
-#paybtn:hover{cursor: pointer;}
+#payButton{background-color: #ff6b6b; color: white; border: none; cursor: pointer;}
+#payButton:hover{cursor: pointer;}
 /* ========repair view page css end ===== */
 /* ====point page css start ==== */
 .main-section .container .content .account-info .account-info { display: flex; flex-direction: column; } 
