@@ -1,5 +1,6 @@
 .underline { text-decoration: underline; } 
 .red { color:#dd0000; } 
+.inline { display: inline; } 
 
 /* snb 메뉴 없는 경우 */
 .main-section .container.main-only { justify-content: center; } 
@@ -16,7 +17,7 @@
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:not(.active):hover { color: #F49D00; } 
 /* form */
 .main-section .container .input-field { width: 100%; padding: 12px 12px; border: 1px solid #ccc; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
-.main-section .container textarea.input-field { min-height: 85px; max-height: 300px; resize: none; resize: vertical; } 
+.main-section .container textarea.input-field { min-height: 140px; max-height: 300px; resize: none; resize: vertical; } /* 회원정보수정-수리 상세내용, 수리예약-수리요청 상세내용*/
 .main-section .container .join-form { width: 100%; margin-top: 20px; } 
 .main-section .container .join-form .input-area { margin-top: 14px; } 
 .main-section .container .join-form .input-area .input-field::placeholder { color: #ccc; } 
@@ -127,21 +128,48 @@
 .main-section .container .content.exit .exit-form .btn-submit.cancel:hover { background-color: #e1e1e1; border: 1px solid #ccc; transition: all 0.5s; } 
 
 /* 예약 신청 */
-.main-section .container.main-only .main-area.request { width: 500px; margin:40px 0; } 
-.main-section .container.main-only .main-area.request .request-form { width: 500px; margin:40px 0; } 
-.main-section .container.main-only .main-area.request .request-form .info-area +.info-area { margin-top: 15px; } 
+.main-section .container.main-only .main-area.request { width: 600px; margin:40px 0; } 
+.main-section .container.main-only .main-area.request .request-form { width: 600px; margin:40px 0; } 
+.main-section .container.main-only .main-area.request .request-form .info-area + .info-area { margin-top: 30px; } 
+.main-section .container.main-only .main-area.request .request-form .input-area { margin: 20px 35px; } 
+.main-section .container.main-only .main-area.request .request-form .title-main { font-size: 18px; font-weight: 600; margin-left: 2px; margin-bottom: 5px; } 
 .main-section .container.main-only .main-area.request .request-form .title-sub { font-size: 16px; font-weight: 500; margin-left: 2px; margin-bottom: 5px; } 
-.main-section .container.main-only .main-area.request .request-form .title-sub2 { font-size: 14px; color: #777; margin-top: 5px; margin-left: 2px; } 
-.main-section .container.main-only .main-area.request .request-form .master-info-area { display: flex; align-items: center; padding: 10px; } 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area { width: 120px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub2 { font-size: 12px; color: #aaa; margin-top: 1px; margin-left: 5px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub2 i { margin-right: 3px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area { display: flex; align-items: center; margin: 15px 35px; padding: 20px 25px; border: 1px solid #ddd; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area { width: 130px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area img { width: 80px; height: 80px; border-radius: 100%; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area { font-size: 15px; width: 100%; } 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name { font-size: 16px; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p { margin-top: 2px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p+ p { margin-top: 4px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name { font-size: 17px; font-weight: 500; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 400; } /* 별점 */ 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 13px; } /* 위치 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars .review-count { font-size: 12px; } /* 후기 개수 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 12px; } /* 위치 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area i { font-size: 12px; } /* 별점/위치 아이콘 */ 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-category span { font-size: 11px; background-color: #dfdfdf; border-radius: 5px; padding: 2px 5px; margin-right: 1px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-category span { font-size: 11px; background-color: #eee; border-radius: 5px; padding: 2px 5px; margin-right: 1px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-desc { width: 390px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
+
+/* 캘린더(날짜 선택) */
+.my-calendar { margin: 15px 35px; padding: 20px 20px 10px; text-align: center; font-weight: 400; border: 1px solid #ddd; cursor: default; } 
+.my-calendar .calendar-box { width: 350px; margin: 0 auto; } 
+
+.ctr-box { padding: 0 16px; margin-bottom: 20px; font-size: 20px; } 
+.ctr-box .btn-cal { position: relative; float: left; width: 25px; height: 25px; margin-top: 5px; font-size: 16px; cursor: pointer; border: none; background: none; } 
+.ctr-box .btn-cal.next { float: right; } 
+.ctr-box .btn-cal:hover { background-color: #f8f8f8; border-radius: 9px; } 
+
+.cal-table { width: 100%; } 
+.cal-table th { width: 14.2857%; padding-bottom: 10px; font-size: 16px; font-weight: 400; text-align: center; } 
+.cal-table td { padding: 3px 0; height: 50px; font-size: 15px; vertical-align: top; } 
+.cal-table td.day { position: relative; cursor: pointer; } 
+.cal-table td.today span { background: #999; border-radius: 6px; color: #fff; display: inline-block; width: 95%; height: 98%; } 
+.cal-table td.today span:after { content: '오늘'; display: block; font-size: 11px; } 
+.cal-table td.day-active span { background: #F49D00; border-radius: 6px; color: #fff; display: inline-block; width: 95%; height: 98%; } 
+.cal-table td.has-event:after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #FFC107; } 
+
+
+
 
 /* 예약 신청 완료 */
 .modal.request .container { display: block; width: auto; height: auto; } 

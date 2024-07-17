@@ -17,7 +17,7 @@ p { margin: 0; }
 .btn:focus,.btn:active:focus,.btn.active:focus,.btn.focus,.btn:active.focus,.btn.active.focus { outline: none; } 
 
 /* header */
-header { border-bottom: 1px solid #EAEAEC; background-color: #FCFCFE; } 
+header { border-bottom: 1px solid #EAEAEC; background-color: #FCFCFE; min-width: 1200px; } 
 header .gnb { width: 1200px; margin: 0 auto; display: flex; align-items: center; height: 60px; } 
 header .gnb .logo-area { float: left; width: 110px; } 
 header .gnb .logo-area img { height: 100%; } 
@@ -73,10 +73,10 @@ header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .message { f
 .modal .container .btn-close-modal img { width: 24px; } 
 
 /* main-section */
-.main-section { min-height: 706px; } 
+.main-section { min-width: 1200px; min-height: 706px; } 
 
 /* footer */
-footer { background-color: #EEE; } 
+footer { background-color: #EEE; min-width: 1200px; } 
 footer .container { width: 1200px; margin: 0 auto; padding: 40px 0; } 
 footer .container .info-area { font-weight: 600; } 
 footer .container .info-area ul li { display: inline; margin-right: 20px; } 
