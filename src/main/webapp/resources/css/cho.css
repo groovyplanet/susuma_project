@@ -1,3 +1,6 @@
+.underline { text-decoration: underline; } 
+.red { color:#dd0000; } 
+
 /* snb 메뉴 없는 경우 */
 .main-section .container.main-only { justify-content: center; } 
 .main-section .container.main-only .main-area .title { font-size: 28px; font-weight: 700; text-align: center; } 
@@ -6,7 +9,7 @@
 .main-section .container.main-only .main-area.join { width: 500px; margin:40px 0; } 
 /* 탭 메뉴 */
 .main-section .container.main-only .main-area.join .menu-tab { display: flex; justify-content: space-between; } 
-.main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 16px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 30px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(1) { border-left: 1px solid #DDD; border-right: 1px solid #F49D00; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(2) { border-right: 1px solid #DDD; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn.active { color: #F49D00; border-color: #F49D00; border-bottom: none; cursor: default; font-weight: 700; } 
@@ -17,7 +20,7 @@
 .main-section .container .join-form { width: 100%; margin-top: 20px; } 
 .main-section .container .join-form .input-area { margin-top: 14px; } 
 .main-section .container .join-form .input-area .input-field::placeholder { color: #ccc; } 
-.main-section .container .join-form .input-area label { display: block; font-size: 14px; font-weight: 500; color: #555; } 
+.main-section .container .join-form .input-area label { display: block; font-size: 14px; font-weight: 500; color: #555; text-align: left; } 
 .main-section .container .join-form .input-area label.required::after { content: "*"; color: rgb(255, 114, 98); } 
 .main-section .container .join-form .input-area p.caption-error { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
 .main-section .container .join-form .input-area p.caption-error-re { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
@@ -82,7 +85,7 @@
 /* 이용약관, 개인정보처리방침 모달 */
 .modal.terms .container { display: block; width: auto; height: auto; } 
 .modal.terms .container .modal-title { font-size:20px; font-weight: 600; text-align: center; } 
-.modal.terms .container .terms-content { font-size: 16px; margin-top: 18px; font-size: 13px; width: 600px; height: 500px; overflow-y: auto; } 
+.modal.terms .container .terms-content { font-size: 16px; margin-top: 18px; font-size: 13px; width: 600px; height: 500px; overflow-y: auto; text-align: left; } 
 
 /* 비밀번호 찾기 */
 .main-section .container.main-only .main-area.find-info { width: 500px; margin:40px 0; } 
@@ -122,3 +125,31 @@
 .main-section .container .content.exit .exit-form .input-area { margin-top: 0; } 
 .main-section .container .content.exit .exit-form .btn-submit.cancel { background-color: #eee; color: #444; border-color: #eee; text-decoration: none; margin-top: 8px; } 
 .main-section .container .content.exit .exit-form .btn-submit.cancel:hover { background-color: #e1e1e1; border: 1px solid #ccc; transition: all 0.5s; } 
+
+/* 예약 신청 */
+.main-section .container.main-only .main-area.request { width: 500px; margin:40px 0; } 
+.main-section .container.main-only .main-area.request .request-form { width: 500px; margin:40px 0; } 
+.main-section .container.main-only .main-area.request .request-form .info-area +.info-area { margin-top: 15px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub { font-size: 16px; font-weight: 500; margin-left: 2px; margin-bottom: 5px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub2 { font-size: 14px; color: #777; margin-top: 5px; margin-left: 2px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area { display: flex; align-items: center; padding: 10px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area { width: 120px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area img { width: 80px; height: 80px; border-radius: 100%; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area { font-size: 15px; width: 100%; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name { font-size: 16px; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 400; } /* 별점 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 13px; } /* 위치 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area i { font-size: 12px; } /* 별점/위치 아이콘 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-category span { font-size: 11px; background-color: #dfdfdf; border-radius: 5px; padding: 2px 5px; margin-right: 1px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-desc { width: 390px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
+
+/* 예약 신청 완료 */
+.modal.request .container { display: block; width: auto; height: auto; } 
+.modal.request .container .modal-title { font-size: 20px; font-weight: 600; text-align: center; } 
+.modal.request .container .request-content { margin-top: 18px; font-size: 13px; width: 380px; text-align: left; } 
+.modal.request .container .request-content p { font-size: 14px; margin-top: 5px; } 
+.modal.request .container .request-content .request-info-area { background-color: #eee; padding: 15px 20px; border-radius: 5px; } 
+.modal.request .container .request-content .request-info-area p { margin-top: 5px; } 
+.modal.request .container .request-content .request-info-area p + .info-title { margin-top: 12px; } 
+.modal.request .container .request-content .request-info-area p.info-title { font-size: 16px; font-weight: 500; } 
+.modal.request .container .request-content .request-desc-area { margin-top: 10px; } 
