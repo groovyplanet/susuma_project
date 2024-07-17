@@ -135,7 +135,7 @@
                             <p class="caption-duplicate-check no">이미 가입되어있는 이메일입니다.</p>
                         </div>
                         <div class="input-area">
-                            <label for="email" class="required">비밀번호</label>
+                            <label for="pw" class="required">비밀번호</label>
                             <input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no" name="pw" id="pw" required>
                             <input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요." autocomplete="no" name="pw_re" id="pw_re" class="pw_re" required>
                             <p class="caption-error">영문+숫자 조합 8자리 이상 입력해주세요.</p>
@@ -146,12 +146,8 @@
                             <input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required>
                         </div>
                         <div class="input-area">
-                            <label for="nick" class="required">닉네임</label>
-                            <input type="text" class="input-field" placeholder="닉네임을 입력해주세요." autocomplete="no" name="nick" id="nick" required>
-                        </div>
-                        <div class="input-area">
                             <label for="phone_num">연락처</label>
-                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="name" id="phone_num" maxlength="13">
+                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13">
                             <p class="caption-error">올바른 형식이 아닙니다.</p>
                         </div>
                         <div class="input-area">
@@ -160,7 +156,7 @@
                             <input type="hidden" name="latitude">
                             <input type="hidden" name="longitude">
                             <button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">주소 입력<i class="bi bi-chevron-right"></i></button>
-                            <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail" >
+                            <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail">
                         </div>
                         <div id="master-info-area" style="display: none;">
                             <div class="input-area">
@@ -228,8 +224,7 @@
                                 <label for="short_description">한 줄 소개</label>
                                 <input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="short_description" id="short_description">
                             </div>
-                        </div>
-                        <!-- //master-info-area -->
+                        </div> <!-- //master-info-area -->
                         <div class="input-area">
                             <label>이메일 수신 동의</label>
                             <div class="checkbox-area">

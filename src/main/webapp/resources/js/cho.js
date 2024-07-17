@@ -66,7 +66,7 @@ $(document).ready(function () {
     });
     $(".main-area.join .join-form #phone_num").blur(function () { // 연락처
         var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
-        if (regex.test($(this).val())) $(this).parent().removeClass("error");
+        if (regex.test($(this).val()) || $(this).val() == "") $(this).parent().removeClass("error");
         else $(this).parent().addClass("error");
     });
     $(".main-area.join .join-form #business_num").keyup(function () { // 사업자 번호 자동 대쉬
@@ -169,8 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     var formFindInfo = document.getElementById('form-find-info');
     if (formFindInfo) {
-        // 임시 비밀번호 발급 버튼 클릭 시시
-        document.getElementById('form-find-info').addEventListener('submit', function (event) {
+        // 임시 비밀번호 발급 버튼 클릭 시
+        formFindInfo.addEventListener('submit', function (event) {
             event.preventDefault(); // 기본 폼 제출 막기
 
             var emailInput = this.querySelector('#email');
@@ -187,6 +187,195 @@ document.addEventListener("DOMContentLoaded", function () {
             // this.submit();
         });
     }
-});
+
+    /*
+    user/profile_edit.html
+    master/profile_edit.html
+    */
+
+    var profileEdit = document.querySelector(".profile-edit");
+    if (profileEdit) {
+
+        // 비밀번호 유효성 검사
+        profileEdit.querySelector("#pw").addEventListener('blur', function () {
+            var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/;
+            var inputArea = this.parentElement;
+            if (regex.test(this.value)) {
+                inputArea.classList.remove("error");
+            } else {
+                inputArea.classList.add("error");
+            }
+
+            var pwRe = document.getElementById('pw_re').value;
+            var pw = document.getElementById('pw').value;
+            if (pwRe !== "" && pw === pwRe) {
+                inputArea.classList.remove("error-re");
+            } else if (pwRe !== "") {
+                inputArea.classList.add("error-re");
+            }
+        });
+        // 비밀번호 확인 유효성 검사
+        profileEdit.querySelector("#pw_re").addEventListener('blur', function () {
+            var inputArea = this.parentElement;
+            var pw = document.getElementById('pw').value;
+            var pwRe = this.value;
+
+            if (pw === pwRe) {
+                inputArea.classList.remove("error-re");
+            } else {
+                inputArea.classList.add("error-re");
+            }
+        });
+
+        // 이동 가능 거리 radio
+        profileEdit.querySelectorAll(".distance-radio").forEach(function (radio) {
+            radio.addEventListener('click', function () {
+                if (!this.classList.contains("active")) {
+                    document.querySelectorAll(".distance-radio").forEach(function (element) {
+                        element.classList.remove("active");
+                    });
+                    this.classList.add("active");
+                }
+            });
+        });
+
+        // 연락처 자동 대쉬
+        profileEdit.querySelector("#phone_num").addEventListener('keyup', function () {
+            if (this.value.length === 11) {
+                this.value = this.value.replace(/[^0-9]/g, "").replace(/^(010)(\d{4})(\d{4})$/, '$1-$2-$3');
+            }
+        });
+
+        // 연락처 유효성 검사
+        profileEdit.querySelector("#phone_num").addEventListener('blur', function () {
+            var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
+            if (regex.test(this.value) || this.value == "") {
+                this.parentElement.classList.remove("error");
+            } else {
+                this.parentElement.classList.add("error");
+            }
+        });
+
+        // 사업자 번호 자동 대쉬
+        profileEdit.querySelector("#business_num").addEventListener('keyup', function () {
+            if (this.value.length === 10) {
+                this.value = this.value.replace(/[^0-9]/g, "").replace(/([0-9]{3})([0-9]{2})([0-9]{5})/, '$1-$2-$3');
+            }
+        });
+
+        // 사업자 번호 유효성 검사
+        profileEdit.querySelector("#business_num").addEventListener('blur', function () {
+            var regex = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/;
+            if (regex.test(this.value)) {
+                this.parentElement.classList.remove("error");
+            } else {
+                this.parentElement.classList.add("error");
+            }
+        });
+
+        // 수리 분야 추가
+        profileEdit.querySelector("#add-category-btn").addEventListener('click', function () {
+            var html = document.querySelector("#category-select-area-template").innerHTML;
+            document.querySelector("#category-select-area-wrap").insertAdjacentHTML('beforeend', html);
+        });
+
+        // 근무 요일 체크
+        profileEdit.querySelectorAll(".work-hours-form .check-area input[type='checkbox']").forEach(function (checkbox) {
+            checkbox.addEventListener('click', function () {
+                var selects = this.parentElement.parentElement.querySelectorAll("select");
+                selects.forEach(function (select) {
+                    select.disabled = !checkbox.checked; // 체크 시 select 활성화, 비활성화
+                });
+            });
+        });
+
+        // 근무 요일 및 시간 입력 버튼 클릭
+        profileEdit.querySelector("#btn-work-hours-enter").addEventListener('click', function () {
+            // form에 반영
+            // 초기화
+            var workHoursList = document.querySelector("#work-hours-list");
+            workHoursList.innerHTML = '';
+            // p 태그 추가
+            document.querySelectorAll('input[name="work-hours-week"]:checked').forEach(function (checkbox) {
+                var num = checkbox.value;
+                var parentElement = checkbox.parentElement.parentElement;
+                var startTime = parentElement.querySelector('select[name="work_hours_' + num + '_s"]').value;
+                var endTime = parentElement.querySelector('select[name="work_hours_' + num + '_e"]').value;
+                var day;
+                switch (num) {
+                    case "1": day = "월"; break;
+                    case "2": day = "화"; break;
+                    case "3": day = "수"; break;
+                    case "4": day = "목"; break;
+                    case "5": day = "금"; break;
+                    case "6": day = "토"; break;
+                    case "7": day = "일"; break;
+                    default: day = "잘못된 입력";
+                }
+                var pElement = document.createElement('p');
+                pElement.textContent = day + " " + startTime + ":00 ~ " + endTime + ":00";
+                workHoursList.appendChild(pElement);
+            });
+            //해당 영역 
+            if (document.querySelectorAll('input[name="work-hours-week"]:checked').length > 0) {
+                workHoursList.style.display = 'block';
+            } else {
+                workHoursList.style.display = 'none';
+            }
+            // 모달 닫기
+            document.querySelector("#work-hours-modal").classList.remove("show");
+        });
+
+        var formProfileEdit = document.getElementById('form-profile-edit');
+
+        // 회원정보 수정 버튼 클릭 시
+        formProfileEdit.addEventListener('submit', function (event) {
+            event.preventDefault(); // 기본 폼 제출 막기
+            // 이메일
+            if (document.querySelector("input[name=email]").parentElement.classList.contains("error")) {
+                document.querySelector("input[name=email]").focus();
+                return false;
+            }
+            // 연락처
+            if (document.querySelector("input[name=phone_num]").parentElement.classList.contains("error")) {
+                document.querySelector("input[name=phone_num]").focus();
+                return false;
+            }
+            // 사업자등록번호
+            if (document.querySelector("input[name=type]").value == "master" && document.querySelector("input[name=business_num]").parentElement.classList.contains("error")) {
+                document.querySelector("input[name=business_num]").focus();
+                return false;
+            }
+            // submit
+            this.submit();
+        })
+
+        var formPwChange = document.getElementById('form-pw-change');
+
+        // 비밀번호 변경 버튼 클릭 시
+        formPwChange.addEventListener('submit', function (event) {
+            event.preventDefault(); // 기본 폼 제출 막기
+
+            // 비밀번호
+            var pwInput = document.querySelector("input[name='pw']");
+            if (pwInput.parentElement.classList.contains("error")) {
+                pwInput.focus();
+                return false;
+            }
+
+            // 비밀번호 확인
+            var pwReInput = document.querySelector("input[name='pw_re']");
+            if (pwReInput.parentElement.classList.contains("error-re")) {
+                pwReInput.focus();
+                return false;
+            }
+
+            // submit
+            this.submit();
+        })
+    } /* if (profileEdit) */
+
+}); /* DOMContentLoaded */
+
 
 
