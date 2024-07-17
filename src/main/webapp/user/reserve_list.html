@@ -28,12 +28,8 @@
     <script src="../resources/js/park.js"></script>
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-        rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic"
-        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -95,12 +91,10 @@
                 <div class="login-form"><!-- 로그인 폼 -->
                     <form>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no"
-                                name="email" value="">
+                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
                         </div>
                         <div class="input-area">
-                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no"
-                                name="pw" value="">
+                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
                         </div>
                         <div class="sub-area">
                             <div class="save-area">
@@ -131,9 +125,53 @@
                     <li><a href="message_list.html">문의 내역</a></li>
                 </ul>
             </nav>
-            <div class="content">
-            </div>
-        </div>
+
+            <div class="content reservation-setting">
+
+                <h4 class="reserve-list-title">예약 내역</h4><br>
+                <div class="reserve-schecdule">
+                    <button class="btn approve" id="wait" >결제 요청</button>
+                    <img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+                    <div class="info">
+                        <div class="repair_date">
+                            2024.07.12
+                        </div>
+                        <div class="master_name">
+                            김현용
+                            <span class="address">
+                                잠실
+                            </span>
+                        </div>
+                        <div class="repair_type">
+                            [CSS 수리]
+                        </div>
+                        <div class="explain">
+                            이러쿵 저러쿵 이런거 저런거 도와주세요
+                        </div>
+                    </div>
+                </div>
+                <div class="reserve-schecdule">
+                    <button class="btn complete" id="complete" >결제 완료</button>
+                    <img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+                    <div class="info">
+                        <div class="repair_date">
+                            2024.07.12
+                        </div>
+                        <div class="master_name">
+                            한정우
+                            <span class="address">
+                                광진구
+                            </span> 
+                        </div>
+                        <div class="repair_type">
+                            [CSS 수리]
+                        </div>
+                        <div class="explain">
+                            이러쿵 저러쿵 이런거 저런거 도와주세요
+                        </div>
+                    </div>
+                </div>
+                
     </section>
 
     <!-- footer -->
@@ -152,8 +190,8 @@
                 <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
                 <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
             </div>
-                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
-            </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
         </div>
     </footer>
     <!-- //footer -->

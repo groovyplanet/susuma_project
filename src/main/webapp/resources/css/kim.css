@@ -467,3 +467,32 @@ img {
     margin-right: 20px;
     margin-top: 20px;
 }
+
+
+/* ============================index */
+.container-kim{
+    justify-content: center;
+}
+
+.main-area .main-service .main-text-kim{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+.main-area .main-service .main-img-kim{
+    text-align: center;
+    
+}
+.main-area .main-service .main-img-kim a{
+    display: inline-block;
+    margin-right: 20px;
+    width: 120px;
+    border-radius: 5px;
+}
+
+.main-area .main-service .main-master-kim {
+    border-top: 1px solid #777;
+}
+
+
