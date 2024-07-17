@@ -39,6 +39,7 @@
             right: 0;
             bottom: 0;
             left: 0;
+            z-index: 9999;
             align-items: center;
             justify-content: center;
         }
@@ -86,6 +87,12 @@
         #payModal .btn-confirm:hover,
         #payModal .btn-cancel:hover {
             opacity: 0.8;
+        }
+
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
     </style>
 
@@ -171,6 +178,7 @@
         <div id="payModal" class="payModal">
             <div class="modal-content">
                 <p>결제 요청 금액을 입력하세요</p>
+                <p style="color: red;">결제요청 시 결제 금액 변경은 불가능합니다.</p>
                 <input type="number" id="paymoney" placeholder="숫자만 입력하세요">
                 <div class="modal-buttons">
                     <button class="btn-confirm">입력</button>
@@ -331,18 +339,24 @@
             document.getElementById('payModal').classList.add('show');
         });
 
-        document.querySelector('#payModal .btn-cancel').addEventListener('click', function () {
-            document.getElementById('payModal').classList.remove('show');
-        });
-
         document.querySelector('#payModal .btn-confirm').addEventListener('click', function () {
-            // Add your pay logic here
-            if (paymoney.value != 0){
+            // Retrieve the value from the input field
+            var paymoney = document.getElementById('paymoney').value;
+
+            // Check if paymoney is not empty and is a valid number
+            if (paymoney !== "" && !isNaN(paymoney) && parseFloat(paymoney) > 0) {
                 alert('결제 요청이 성공적으로 완료되었습니다.');
-            document.getElementById('payModal').classList.remove('show');
+                document.getElementById('payModal').classList.remove('show');
+            } else {
+                alert('유효한 금액을 입력하세요.');
+                document.getElementById('paymoney').setAttribute('style', 'border: 1px solid red;');
             }
-                
         });
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
     </script>
     <!-- //api -->
