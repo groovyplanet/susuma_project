@@ -93,91 +93,39 @@
 
             <div class="admin-user-box">
                 <div class="search">
-
                     <nav>
                         <ul>
                             <li class="search-member-box">
-                                <a href="" class="search-member">회원검색</a>
+                                <a href="javascript:void(0)" class="search-member" onclick="showMembers()">회원검색</a>
                             </li>
-                            
                             <li class="repairman-member-box">
-                                <a href="" class="repairman-member">수리기사검색</a>
+                                <a href="javascript:void(0)" class="repairman-member" onclick="showRepairmen()">수리기사검색</a>
                             </li>
-                            
                         </ul>
                     </nav>
-                    
                 </div>
-
                 <div class="content">
-
-                    <table class="table">
-                        <tr >
-                            <td>
-                               <a href="user_detail.html">이름: 박서희</a>
-                            </td>
+                    <table class="table" id="memberTable">
+                        
+                        <tr>
+                            <td><a href="user_detail.html">이름: 박서희</a></td>
                             <td>일반회원</td>
                             <td>tjgml2435@naver.com</td>
                         </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
-                        <tr >
-                            <td>이름: 박서희</td>
-                            <td>일반회원</td>
-                            <td>tjgml2435@naver.com</td>
-                        </tr>
-
+                        <!-- Repeat similar rows as needed -->
                     </table>
-
                 </div>
+                <div class="content">
+                    <table class="table master-table" id="repairmanTable">
+                        <tr>
+                            <td><a href="user_detail.html">이름: 박서희</a></td>
+                            <td>수리기사회원</td>
+                            <td>tjgml2435@naver.com</td>
+                        </tr>
+                        <!-- Repeat similar rows as needed -->
+                    </table>
+                </div>
+            </div>
 
                 <div class="content-p-box">
                     <div class="content-page left">
@@ -213,6 +161,22 @@
         </div>
     </footer>
     <!-- //footer -->
+    <script>
+        function showMembers() {
+            document.getElementById('memberTable').style.display = 'table';
+            document.getElementById('repairmanTable').style.display = 'none';
+        }
+    
+        function showRepairmen() {
+            document.getElementById('memberTable').style.display = 'none';
+            document.getElementById('repairmanTable').style.display = 'table';
+        }
+    
+        // Initially display only the member table
+        document.addEventListener('DOMContentLoaded', function() {
+            showMembers();
+        });
+    </script>
 
 </body>
 

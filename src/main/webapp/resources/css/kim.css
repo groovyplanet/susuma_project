@@ -491,8 +491,15 @@ img {
     border-radius: 5px;
 }
 
-.main-area .main-service .main-master-kim {
-    border-top: 1px solid #777;
+.main-area  .main-master-kim{
+    margin-top: 50px;
+    padding-top: 100px;
+    border-top: 1px solid rgb(0, 0, 0,0.2);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding-bottom: 100px;
+    border-bottom: 1px solid rgb(0, 0, 0,0.2);
 }
 
 
