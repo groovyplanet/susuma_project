@@ -375,6 +375,27 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     } /* if (profileEdit) */
 
+    /*
+    user/profile_edit.html
+    master/profile_edit.html
+    */
+
+    var requestArea = document.querySelector(".main-area.request");
+    if (requestArea) {
+
+        var formRequest = document.getElementById('form-request');
+
+        // 예약 신청 버튼 클릭 시
+        formRequest.addEventListener('submit', function (event) {
+            event.preventDefault(); // 기본 폼 제출 막기
+
+            document.getElementById('request-complete-modal').classList.add('show');
+
+            // submit 
+            //this.submit(); // db 저장 후 다시 돌아와서 모달창 보이기
+        })
+    }
+
 }); /* DOMContentLoaded */
 
 

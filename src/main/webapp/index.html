@@ -31,6 +31,31 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
+    <style>
+        .technician {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .technician:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .technician img {
+            width: 100px;
+             height: 100px; 
+             border-radius: 50%; 
+             margin-bottom: 10px; 
+        }
+    </style>
 </head>
 
 <body>
@@ -101,7 +126,7 @@
                                 <input type="checkbox" id="save-email-check">
                                 <label for="save-email-check" class="save-email-label">이메일 저장</label>
                             </div>
-                            <a href="member/find_info.html">아이디·비밀번호 찾기</a>
+                            <a href="member/find_info.html">비밀번호 찾기</a>
                         </div>
                         <button class="btn btn-login-submit" type="submit">로그인</button>
                     </form>
@@ -118,9 +143,48 @@
         <div class="main-title-picture-1900">
             <img src="/resources/img/title.jpg" alt="" style="justify-content: center; display: flex; ">
         </div>
-        <div class="container">
+        <div class="container-kim">
             <div class="main-area">
-                
+                <div class="main-service">
+                    <div class="main-text-kim">
+                        <h3>마법같은 수리 서비스를 단 한 곳에서</h3>
+                    </div>
+                    <div class="main-imgbox-kim">
+                        <div class="main-img-kim">
+                            <a href="#"><img src="/resources/img/repair.jpg" alt="가전제품">가전제품</a>
+                            <a href="#"><img src="/resources/img/door.png" alt="문">문/창문</a>
+                            <a href="#"><img src="/resources/img/pipeman.avif" alt="수도">수도/보일러/전기</a>
+                            <a href="#"><img src="/resources/img/furniture.jpg" alt="가구">가구</a>
+                            <a href="#"><img src="/resources/img/etcrepair.png" alt="수리">기타 설치/수리</a>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-master-kim">
+                    <a class="technician" style="text-decoration: none; color: black;" href="/user/master_view.html">
+                        <img src="/resources/img/iconProfileDefault.png" alt="홍길동">
+                        <h3>한정우</h3>
+                        <p>별점: 4.5 (114)</p>
+                        <p>지역: 서울시 강남구 (10km 이내 가능)</p>
+                        <p>안녕하세요 저는 백엔드 유지보수 경력 15년의 경력을 보유했습니다.</p>
+                    </a>
+                    <a class="technician" style="text-decoration: none; color: black;" href="/user/master_view.html">
+                        <img src="/resources/img/iconProfileDefault.png" alt="홍길동">
+                        <h3>조예원</h3>
+                        <p>별점: 5.0 (229)</p>
+                        <p>지역: 서울시 강남구 (10km 이내 가능)</p>
+                        <p>안녕하세요 저는 백엔드 마스터입니다. </p>
+                    </a>
+                    <a class="technician" style="text-decoration: none; color: black;" href="/user/master_view.html">
+                        <img src="/resources/img/iconProfileDefault.png" alt="홍길동">
+                        <h3>김현용</h3>
+                        <p>별점: 4.9 (114)</p>
+                        <p>지역: 서울시 강남구 (10km 이내 가능)</p>
+                        <p>안녕하세요 저는 백엔드 경력 30년의 경력을 보유했습니다.</p>
+                    </a>
+
+                </div>
             </div>
         </div>
     </section>

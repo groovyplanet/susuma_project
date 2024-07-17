@@ -203,6 +203,7 @@ dd {
     width: 50%;
     display: inline-block;
 }
+
 .main-section .content-p-box {
     text-align: center;
     padding-left: 210px;
@@ -210,6 +211,7 @@ dd {
     margin-bottom: 30px;
 }
 .main-section .content-p-box .content-page {
+
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -218,6 +220,7 @@ dd {
     /* border: 1px solid #777; */
     line-height: 30px;
 }
+
 .main-section .content-p-box .content-page a {
     text-decoration: none;
 }
@@ -251,4 +254,3 @@ dd {
     width: 100px;
     height: auto;
 }
-
