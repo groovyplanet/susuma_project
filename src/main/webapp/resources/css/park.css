@@ -13,24 +13,111 @@ dd {
     list-style: none;
 }
 
-.content-status-park {
-    margin: 0 auto;
+/*user.html*/
+
+.admin-user-box {
+
+   margin: 0 auto;
+   margin-top: 100px;
+   width: 80%;
+}
+.admin-user-box .search {
+   overflow: hidden;
+   width: 100%;
+   /* border: 5px solid #777; */
+}
+.admin-user-box .search .search-member-box {
+  float: left;
+  margin-left: 200px;
+   background-color: #F49D00;
+   width: 200px;
+   height: 50px;
+   text-align: center;
+   border-radius: 15px;
+
 }
 
-.content-status-park .status-body .status-section .role {
+.admin-user-box .search .search-member-box .search-member {
+    
+    margin:0 auto;
     text-align: center;
-    border: 3px solid #F49D00;
-    margin-top: 80px;
-    margin-bottom: 10px;
-}
-
-.content-status-park .status-body .status-section .role-text img {
+    font-size: large;
+    height: 50px;
+    line-height: 50px;
     
-    margin-top: 50px;
-    width: 350px;
     
 }
 
-.content-status-park .status-body .status-section .role-text .role-box {
-    margin-top: 30px;
+
+.admin-user-box .search .repairman-member-box {
+    float: right;
+    margin-right: 200px;
+    background-color: #F49D00;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+
+.admin-user-box .search .repairman-member-box .repairman-member {
+    margin:0 auto;
+    text-align: center;
+    font-size: large;
+    height: 50px;
+    line-height: 50px;
+   
+}
+
+.admin-user-box .content {
+    margin: 0 auto;
+    width: 90%;
+    height: 80%;
+    
+
+}
+
+.admin-user-box .content .table {
+    text-align: left;
+    margin-left: 150px;
+    font-size: medium;
+    margin-bottom: 30px;
+}
+
+.admin-user-box .content .table tr {
+    display: inline-block;
+    width: 80%;
+}
+.admin-user-box .content .table td {
+    margin-right: 50px;
+    width: 30%;
+}
+
+.admin-user-box .page {
+    width: 50%;
+    display: inline-block;
+}
+
+.admin-user-box .content-p-box{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+
+}
+.admin-user-box .content-p-box .content-page {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 0 auto;
+    /* border: 1px solid #777; */
+   
+    line-height: 30px;
+}
+.admin-user-box .content-p-box .content-page a {
+    text-decoration: none;
+    
+
 }
