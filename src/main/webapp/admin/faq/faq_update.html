@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUSUMA</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- jQuery -->
+    <script src="../../resources/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../resources/js/bootstrap.min.js"></script>
+
+    <!-- CSS -->
+    <link href="../../resources/css/common.css" rel="stylesheet">
+    <link href="../../resources/css/cho.css" rel="stylesheet">
+    <link href="../../resources/css/han.css" rel="stylesheet">
+    <link href="../../resources/css/kim.css" rel="stylesheet">
+    <link href="../../resources/css/park.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="../../resources/js/common.js"></script>
+    <script src="../../resources/js/cho.js"></script>
+    <script src="../../resources/js/han.js"></script>
+    <script src="../../resources/js/kim.js"></script>
+    <script src="../../resources/js/park.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="gnb">
+            <div class="logo-area"><!-- 로고 -->
+                <a href="../../index.html"><img src="../../resources/img/logo.png" alt="로고"></a>
+            </div>
+            <ul class="login-area">
+                <li><a href="#" class="btn">관리자 로그아웃</a></li>
+            </ul>
+        </div>
+
+    <!-- modal -->
+    <div id="login-modal" class="modal">
+        <div class="container">
+            <div class="logo-area"><img src="../resources/img/logo.png" alt="로고"></div>
+            <div class="login-form"><!-- 로그인 폼 -->
+                <form>
+                    <div class="input-area">
+                        <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no"
+                            name="email" value="">
+                    </div>
+                    <div class="input-area">
+                        <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no"
+                            name="pw" value="">
+                    </div>
+                    <div class="sub-area">
+                        <div class="save-area">
+                            <input type="checkbox" id="save-email-check">
+                            <label for="save-email-check" class="save-email-label">이메일 저장</label>
+                        </div>
+                        <a href="../member/find_info.html">아이디·비밀번호 찾기</a>
+                    </div>
+                    <button class="btn btn-login-submit" type="submit">로그인</button>
+                </form>
+                <a href="../member/join.html" class="btn btn-join">회원가입</a>
+            </div>
+            <button class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
+        </div>
+    </div>
+    <!-- //modal -->
+    </header>
+    <!-- //header -->
+
+    <section class="main-section">
+        <div class="container">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="../main/main.html">메인</a></li>
+                    <li><a href="../myinformation/myinformation.html">내 정보 관리</a></li>
+                    <li><a href="../user/user.html">회원관리</a></li>
+                    <li><a href="../review/review.html">후기관리</a></li>
+                    <li><a href="../board/board.html">공지사항</a></li>
+                    <div class="title">FAQ</div>
+                    <li><a href="../inquiry/inquiry.html">1:1문의</a></li>
+                </ul>
+            </nav>
+            <div class="content">
+                <div class="edit-form">
+                    <div class="widget-location">
+                        <div class="wrap">
+                            <h4 class="ask-write-title">FAQ 수정</h4>
+                        </div>
+                    </div>
+                    <div id="qna-write" class="section">
+                        <form name="form-qna-write" method="post" action="/board/ask_list.html" class="form-horizontal" target="actionFrame">
+                            <div class="panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="control-label">제목</label>
+
+                                        <div>
+                                            <input name="subject" type="text" id="subject" class="form-control" value="원래무슨무슨죄가 무서운거 알죠? 원래제목이있던자리임">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label class="control-label">관련 신청서</label>
+                                        <div>
+                                            <a href="/mypage/select/popup/1" class="event-click-select">선택하기</a>
+                                            <span class="text-success event-set-data-cart"></span>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="content" class="control-label">내용</label>
+                                        <div>
+                                            <textarea name="content" id="content" class="form-control" cols="50" rows="20">무슨무슨죄목이 좌라라라락 내용부분</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="file" class="control-label">파일 첨부</label>
+                                        <div>
+                                                <input name="file[]" type="file">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                                <button type="button" class="event-common-click-back">뒤로</button>
+                                <button type="submit" class="event-common-click-submit">등록하기</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+   
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="copyright-area">
+                <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
+                <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
+            </div>
+                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+
+</body>
+
+</html>
