@@ -82,14 +82,69 @@
             <nav class="sidebar">
                 <ul>
                     <li><a href="../main/main.html">메인</a></li>
-                    <div class="title">내 정보 관리</div>
+                    <li><a href="../myinformation/myinformation.html">내 정보 관리</a></li>
                     <li><a href="../user/user.html">회원관리</a></li>
                     <li><a href="../review/review.html">후기관리</a></li>
                     <li><a href="../board/board.html">공지사항</a></li>
                     <li><a href="../faq/faq.html">FAQ</a></li>
-                    <li><a href="../inquiry/inquiry.html">1:1문의</a></li>
+
+                    <div class="title">1:1문의</div>
+                 
                 </ul>
             </nav>
+            <div class="content">
+                <div class="edit-form">
+                    <div class="widget-location">
+                        <div class="wrap">
+                            <h4 class="ask-write-title">1:1문의 답변</h4>
+                        </div>
+                    </div>
+                    <div id="qna-write" class="section">
+                        <form name="form-qna-write" method="post" action="/board/ask_list.html" class="form-horizontal" target="actionFrame">
+                            <div class="panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="control-label">문의내용</label>
+                                        <div>
+                                            <p>아니이이 글쎄 이것 보세요ㅛㅛㅛㅛㅛ
+
+                                                제가 글쎄 화가 나요 안나요?</p>
+                                            <p>이미지 첨부가 있다면</p>
+                                        </div>
+
+                                        
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label class="control-label">관련 신청서</label>
+                                        <div>
+                                            <a href="/mypage/select/popup/1" class="event-click-select">선택하기</a>
+                                            <span class="text-success event-set-data-cart"></span>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label for="content" class="control-label">내용</label>
+                                        <div>
+                                            <textarea name="content" id="content" class="form-control" cols="50" rows="20"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="file" class="control-label">파일 첨부</label>
+                                        <div>
+                                                <input name="file[]" type="file">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                                <button type="button" class="event-common-click-back">뒤로</button>
+                                <button type="submit" class="event-common-click-submit">등록하기</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
