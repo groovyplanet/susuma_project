@@ -165,10 +165,10 @@ $(document).ready(function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     /*
-    member/find_info.html
+    member/find_info.html 비밀번호 찾기
     */
     var formFindInfo = document.getElementById('form-find-info');
-    if (formFindInfo) {
+    if (formFindInfo) { // Vanilla JavaScript를 사용할 때는 요소의 존재 여부를 반드시 확인하고 이벤트 바인딩(null 값에 이벤트 리스너를 등록하려고 시도하기 때문에 오류 발생)
         // 임시 비밀번호 발급 버튼 클릭 시
         formFindInfo.addEventListener('submit', function (event) {
             event.preventDefault(); // 기본 폼 제출 막기
@@ -186,11 +186,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // ajax로 구현
             // this.submit();
         });
-    }
+    } //if (formFindInfo)
 
     /*
-    user/profile_edit.html
-    master/profile_edit.html
+    user/profile_edit.html 
+    master/profile_edit.html 회원정보 수정
     */
 
     var profileEdit = document.querySelector(".profile-edit");
@@ -373,15 +373,235 @@ document.addEventListener("DOMContentLoaded", function () {
             // submit
             this.submit();
         })
-    } /* if (profileEdit) */
+    } //if (profileEdit)
 
     /*
-    user/profile_edit.html
-    master/profile_edit.html
+    user/request.html 수리 예약
     */
 
     var requestArea = document.querySelector(".main-area.request");
     if (requestArea) {
+
+        // 연락처 자동 대쉬
+        requestArea.querySelector("#phone_num").addEventListener('keyup', function () {
+            if (this.value.length === 11) {
+                this.value = this.value.replace(/[^0-9]/g, "").replace(/^(010)(\d{4})(\d{4})$/, '$1-$2-$3');
+            }
+        });
+        // 연락처 유효성 검사
+        requestArea.querySelector("#phone_num").addEventListener('blur', function () {
+            var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
+            if (regex.test(this.value) || this.value == "") {
+                this.parentElement.classList.remove("error");
+            } else {
+                this.parentElement.classList.add("error");
+            }
+        });
+
+        // 수리기사 근무일시 파싱 후 출력
+        var masterScheduleStr = "월 09:00 ~ 22:00화 10:00 ~ 20:00토 14:00 ~ 21:00"; // "월 09:00 ~ 22:00화 10:00 ~ 20:00"
+        var masterScheduleData = parseSchedule(masterScheduleStr); // [{ day: '월', startHour: 9, endHour: 22 }, { day: '화', startHour: 10, endHour: 20 }]
+        var scheduleList = document.getElementById('master-work-hours-list');
+        masterScheduleData.forEach(schedule => {
+            const p = document.createElement('p');
+            p.innerHTML = `${schedule.day} ${schedule.startHour} ~ ${schedule.endHour}`;
+            scheduleList.appendChild(p);
+        });
+
+        // 수리기사 근무일시 파싱 함수
+        function parseSchedule(scheduleString) {
+            const regex = /([월화수목금토일])\s+(\d{1,2}:\d{2})\s*~\s*(\d{1,2}:\d{2})/g; // "월 09:00 ~ 22:00화 10:00 ~ 20:00"
+            const parsedSchedule = [];
+            let match;
+            while ((match = regex.exec(scheduleString)) !== null) {
+                parsedSchedule.push({
+                    day: match[1],
+                    startHour: match[2],
+                    endHour: match[3],
+                });
+            }
+            return parsedSchedule; // [{ day: '월', startHour: 9, endHour: 22 }, { day: '화', startHour: 10, endHour: 20 }]
+        }
+
+        // 달력
+        const init = {
+            // 월 9:00 ~ 22:00화 9:00 ~ 22:00
+            monList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            maxDayList: ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'],
+            dayList: ['일', '월', '화', '수', '목', '금', '토'],
+            today: new Date(),
+            monForChange: new Date().getMonth(),
+            activeDate: new Date(),
+            getFirstDay: (yy, mm) => new Date(yy, mm, 1),
+            getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
+            nextMonth: function () {
+                let d = new Date();
+                d.setDate(1);
+                d.setMonth(++this.monForChange);
+                this.activeDate = d;
+                return d;
+            },
+            prevMonth: function () {
+                let d = new Date();
+                d.setDate(1);
+                d.setMonth(--this.monForChange);
+                this.activeDate = d;
+                return d;
+            },
+            addZero: (num) => (num < 10) ? '0' + num : num,
+            activeTDTag: null,
+            activeBtnTag: null,
+            getIndex: function (node) {
+                let index = 0;
+                while (node = node.previousElementSibling) {
+                    index++;
+                }
+                return index;
+            }
+        };
+
+        const $calBody = document.querySelector('.cal-body');
+        const $btnNext = document.querySelector('.btn-cal.next');
+        const $btnPrev = document.querySelector('.btn-cal.prev');
+
+        /* loadDate() : 선택한 날짜 값 넣어주기 */
+        function loadDate(date, dayIn) {
+            let dateStr = document.querySelector('.cal-year').textContent + ". " + document.querySelector('.cal-month').textContent + ". " + date + "(" + init.dayList[dayIn] + ")";
+            //2024. 07. 31(월)
+            document.querySelector("input[name='date']").value = dateStr;
+        }
+
+        /* loadYYMM() : 달력 한장 불러오기 */
+        function loadYYMM(fullDate) {
+            let yy = fullDate.getFullYear(); // 2024
+            let mm = fullDate.getMonth(); // 6 (7월)
+            let firstDay = init.getFirstDay(yy, mm); //Mon Jul 01 2024 00:00:00 GMT+0900 (한국 표준시)
+            let lastDay = init.getLastDay(yy, mm); //Wed Jul 31 2024 00:00:00 GMT+0900 (한국 표준시)
+            let markToday; // 18
+
+            if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
+                markToday = init.today.getDate();
+            }
+
+            document.querySelector('.cal-month').textContent = init.monList[mm];
+            document.querySelector('.cal-year').textContent = yy;
+
+            let trtd = '';
+            let startCount;
+            let countDay = 0;
+            for (let i = 0; i < 6; i++) { // 최대 6주
+                if (countDay >= init.maxDayList[mm]) break;
+                trtd += '<tr>';
+                for (let j = 0; j < 7; j++) { // 일주일 7일
+                    if (i === 0 && !startCount && j === firstDay.getDay()) {
+                        startCount = 1;
+                    }
+                    if (!startCount) {
+                        trtd += '<td class="disabled"><span>'
+                    } else {
+                        let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+                        trtd += '<td class="day';
+                        let addClassName = "";
+                        // 오늘 날짜인 경우 today 클래스 추가
+                        if (markToday && markToday === countDay + 1) addClassName += " today";
+                        // 지나간 날짜인 경우 disabled 클래스 추가(오늘 날짜는 포함하기 위해 1일 더해줌)
+                        if (new Date(fullDate).getTime() + 24 * 60 * 60 * 1000 < init.today.getTime()) addClassName += " disabled";
+                        // 수리기사 근무 불가 요일일 경우 disabled 클래스 추가 (요일이 수리기사 근무 가능 요일 데이터에 없을 경우)
+                        if (!masterScheduleData.some(item => item.day == init.dayList[j])) addClassName += " disabled";
+                        trtd += addClassName + '"'; // class="" 닫기
+                        trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}"><span>`;
+                    }
+                    trtd += (startCount) ? ++countDay : ''; // countDay가 날짜
+                    if (countDay === lastDay.getDate()) {
+                        startCount = 0;
+                    }
+                    trtd += '</span></td>';
+                }
+                trtd += '</tr>';
+            }
+            $calBody.innerHTML = trtd;
+        }
+
+        /* createNewList() */
+        function createNewList(val) {
+            let id = new Date().getTime() + '';
+            let yy = init.activeDate.getFullYear();
+            let mm = init.activeDate.getMonth() + 1;
+            let dd = init.activeDate.getDate();
+            const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
+
+            let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
+
+            let eventData = {};
+            eventData['date'] = date;
+            eventData['memo'] = val;
+            eventData['complete'] = false;
+            eventData['id'] = id;
+            init.event.push(eventData);
+            $todoList.appendChild(createLi(id, val, date));
+        }
+
+        /* createLiElements() */
+        function createLiElements(startHour, endHour) {
+            let ul = document.querySelector('.time-list');
+            ul.innerHTML = '';
+
+            for (let hour = parseInt(startHour); hour < parseInt(endHour); hour++) {
+                let li = document.createElement('li');
+                let button = document.createElement('button');
+                button.textContent = `${init.addZero(hour)}:00`;
+                button.classList.add('btn-select-time');
+                button.type = "button";
+                li.appendChild(button);
+                ul.appendChild(li);
+            }
+        }
+
+        loadYYMM(init.today);
+        loadDate(init.today.getDate(), init.today.getDay());
+
+        $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
+        $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
+
+        /* 날짜 클릭 시 */
+        $calBody.addEventListener('click', (e) => {
+            var clickTd = e.target.tagName == 'TD' ? e.target : e.target.parentElement; //SPAN인 경우 TD 저장
+            var classList = clickTd.classList;
+            if (!classList.contains('disabled') && classList.contains('day')) {
+                if (init.activeTDTag) init.activeTDTag.classList.remove('day-active');
+                let date = Number(clickTd.textContent); //일
+                loadDate(date, clickTd.cellIndex);
+                let day = init.dayList[clickTd.cellIndex]; //요일
+
+                // 요일에 따라 시간 선택 리스트 표시
+                let index = masterScheduleData.findIndex((schedule) => schedule.day === day);
+                let startHour = masterScheduleData[index].startHour;
+                let endHour = masterScheduleData[index].endHour;
+                createLiElements(startHour, endHour);
+                if (!document.querySelector('.time-list-wrap').classList.contains("show")) {
+                    document.querySelector('.time-list-wrap').classList.add("show");
+                    document.querySelector("#calendar-wrap").classList.remove("error");
+                }
+                clickTd.classList.add('day-active'); //day-active 클래스 추가
+                init.activeTDTag = clickTd;
+                init.activeDate.setDate(date);
+            }
+        });
+
+        /* 시간 클릭 시 */
+        document.querySelector('#time-list').addEventListener('click', (e) => {
+            if (e.target.tagName != "BUTTON") return false;
+            let btn = e.target;
+
+            if (!btn.classList.contains('selected')) {
+                if (init.activeBtnTag) init.activeBtnTag.classList.remove('selected');
+                btn.classList.add('selected');
+                init.activeBtnTag = btn;
+                document.querySelector("input[name='time']").value = btn.innerHTML;
+                document.querySelector(".time-list-wrap").classList.remove("error");
+            }
+        });
+
 
         var formRequest = document.getElementById('form-request');
 
@@ -389,141 +609,38 @@ document.addEventListener("DOMContentLoaded", function () {
         formRequest.addEventListener('submit', function (event) {
             event.preventDefault(); // 기본 폼 제출 막기
 
+            //시간 
+            var time = document.querySelector("input[name='time']");
+            var date = document.querySelector("input[name='date']");
+            if (time.value == "") {
+                // 날짜 선택 전 - 날짜부터 선택
+                if (!document.querySelector(".time-list-wrap").classList.contains("show")) {
+                    document.querySelector("#calendar-wrap").classList.add("error");
+                    window.scrollTo(0, document.getElementById('date-wrap-top').offsetTop);
+                } else { // 날짜 선택 후 - 시간 선택
+                    document.querySelector(".time-list-wrap").classList.add("error");
+                    window.scrollTo(0, document.getElementById('date-wrap-top').offsetTop);
+                }
+                return false;
+            }
+            //주소
+            var address = document.querySelector("input[name='address']");
+            if (address.value == "") {
+                document.querySelector("#btn-zipcode").classList.add("error");
+                return false;
+            }
+            // 연락처
+            if (document.querySelector("input[name=phone_num]").parentElement.classList.contains("error")) {
+                document.querySelector("input[name=phone_num]").focus();
+                return false;
+            }
+
             document.getElementById('request-complete-modal').classList.add('show');
 
             // submit 
             //this.submit(); // db 저장 후 다시 돌아와서 모달창 보이기
         })
-    }
-
-
-
-    // 달력
-    const init = {
-        monList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-        maxDayList: ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'],
-        dayList: ['일', '월', '화', '수', '목', '금', '토'],
-        today: new Date(),
-        monForChange: new Date().getMonth(),
-        activeDate: new Date(),
-        getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-        getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-        nextMonth: function () {
-            let d = new Date();
-            d.setDate(1);
-            d.setMonth(++this.monForChange);
-            this.activeDate = d;
-            return d;
-        },
-        prevMonth: function () {
-            let d = new Date();
-            d.setDate(1);
-            d.setMonth(--this.monForChange);
-            this.activeDate = d;
-            return d;
-        },
-        addZero: (num) => (num < 10) ? '0' + num : num,
-        activeDTag: null,
-        getIndex: function (node) {
-            let index = 0;
-            while (node = node.previousElementSibling) {
-                index++;
-            }
-            return index;
-        }
-    };
-
-    const $calBody = document.querySelector('.cal-body');
-    const $btnNext = document.querySelector('.btn-cal.next');
-    const $btnPrev = document.querySelector('.btn-cal.prev');
-
-    function loadDate(date, dayIn) {
-        document.querySelector('.cal-month-selected').textContent = document.querySelector('.cal-month').textContent;
-        document.querySelector('.cal-date-selected').textContent = date;
-        document.querySelector('.cal-day-selected').textContent = init.dayList[dayIn];
-    }
-
-    function loadYYMM(fullDate) {
-        let yy = fullDate.getFullYear();
-        let mm = fullDate.getMonth();
-        let firstDay = init.getFirstDay(yy, mm);
-        let lastDay = init.getLastDay(yy, mm);
-        let markToday;  // for marking today date
-
-        if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
-            markToday = init.today.getDate();
-        }
-
-        document.querySelector('.cal-month').textContent = init.monList[mm];
-        document.querySelector('.cal-year').textContent = yy;
-
-        let trtd = '';
-        let startCount;
-        let countDay = 0;
-        for (let i = 0; i < 6; i++) {
-            if (countDay >= init.maxDayList[mm]) break;
-            trtd += '<tr>';
-            for (let j = 0; j < 7; j++) {
-                if (i === 0 && !startCount && j === firstDay.getDay()) {
-                    startCount = 1;
-                }
-                if (!startCount) {
-                    trtd += '<td><span>'
-                } else {
-                    let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-                    trtd += '<td class="day';
-                    trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-                    trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}"><span>`;
-                }
-                trtd += (startCount) ? ++countDay : '';
-                if (countDay === lastDay.getDate()) {
-                    startCount = 0;
-                }
-                trtd += '</span></td>';
-            }
-            trtd += '</tr>';
-        }
-        $calBody.innerHTML = trtd;
-    }
-
-    function createNewList(val) {
-        let id = new Date().getTime() + '';
-        let yy = init.activeDate.getFullYear();
-        let mm = init.activeDate.getMonth() + 1;
-        let dd = init.activeDate.getDate();
-        const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
-
-        let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
-
-        let eventData = {};
-        eventData['date'] = date;
-        eventData['memo'] = val;
-        eventData['complete'] = false;
-        eventData['id'] = id;
-        init.event.push(eventData);
-        $todoList.appendChild(createLi(id, val, date));
-    }
-
-    loadYYMM(init.today);
-    loadDate(init.today.getDate(), init.today.getDay());
-
-    $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
-    $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
-
-    $calBody.addEventListener('click', (e) => {
-        var clickTd = e.target.tagName == 'TD' ? e.target : e.target.parentElement; //SPAN인 경우 TD 저장
-        if (clickTd.classList.contains('day')) {
-            if (init.activeDTag) {
-                init.activeDTag.classList.remove('day-active');
-            }
-            let day = Number(clickTd.textContent);
-            loadDate(day, clickTd.cellIndex);
-            clickTd.classList.add('day-active');
-            init.activeDTag = clickTd;
-            init.activeDate.setDate(day);
-        }
-    });
-
+    } //if (requestArea)
 
 }); /* DOMContentLoaded */
 

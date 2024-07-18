@@ -26,7 +26,7 @@
     <script src="../../resources/js/han.js"></script>
     <script src="../../resources/js/kim.js"></script>
     <script src="../../resources/js/park.js"></script>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -45,35 +45,34 @@
             </ul>
         </div>
 
-    <!-- modal -->
-    <div id="login-modal" class="modal">
-        <div class="container">
-            <div class="logo-area"><img src="../resources/img/logo.png" alt="로고"></div>
-            <div class="login-form"><!-- 로그인 폼 -->
-                <form>
-                    <div class="input-area">
-                        <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no"
-                            name="email" value="">
-                    </div>
-                    <div class="input-area">
-                        <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no"
-                            name="pw" value="">
-                    </div>
-                    <div class="sub-area">
-                        <div class="save-area">
-                            <input type="checkbox" id="save-email-check">
-                            <label for="save-email-check" class="save-email-label">이메일 저장</label>
+        <!-- modal -->
+        <div id="login-modal" class="modal">
+            <div class="container">
+                <div class="logo-area"><img src="../resources/img/logo.png" alt="로고"></div>
+                <div class="login-form"><!-- 로그인 폼 -->
+                    <form>
+                        <div class="input-area">
+                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
                         </div>
-                        <a href="../member/find_info.html">아이디·비밀번호 찾기</a>
-                    </div>
-                    <button class="btn btn-login-submit" type="submit">로그인</button>
-                </form>
-                <a href="../member/join.html" class="btn btn-join">회원가입</a>
+                        <div class="input-area">
+                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
+                        </div>
+                        <div class="sub-area">
+                            <div class="save-area">
+                                <input type="checkbox" id="save-email-check">
+                                <label for="save-email-check" class="save-email-label">이메일 저장</label>
+                            </div>
+                            <a href="../member/find_info.html">아이디·비밀번호 찾기</a>
+                        </div>
+                        <button class="btn btn-login-submit" type="submit">로그인</button>
+                    </form>
+                    <a href="../member/join.html" class="btn btn-join">회원가입</a>
+                </div>
+                <button class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
             </div>
-            <button class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
         </div>
-    </div>
-    <!-- //modal -->
+        <!-- //modal -->
+
     </header>
     <!-- //header -->
 
@@ -96,55 +95,77 @@
                             <li class="search-member-box">
                                 <a href="javascript:void(0)" class="search-member" onclick="showMembers()">회원검색</a>
                             </li>
-                            <li class="repairman-member-box">
-                                <a href="javascript:void(0)" class="repairman-member" onclick="showRepairmen()">수리기사검색</a>
+                            <li class="master-member-box">
+                                <a href="javascript:void(0)" class="master-member" onclick="showMaster()">수리기사검색</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="content">
-                    <table class="table" id="memberTable">
+
+                <div class="content-member">
+                    <table class="memberTable" id="memberTable">
                         <tr>
                             <th>이름</th>
                             <th>회원</th>
                             <th>이메일</th>
                             <th>가입일자</th>
                         </tr>
-   
+
                         <tr>
                             <td><a href="user_detail.html">박서희</a></td>
                             <td>일반회원</td>
                             <td>tjgml2435@naver.com</td>
                             <td>2024.07.18</td>
                         </tr>
-                  
+
+                        <tr>
+                            <td><a href="user_detail.html">박서희</a></td>
+                            <td>일반회원</td>
+                            <td>tjgml2435@naver.com</td>
+                            <td>2024.07.18</td>
+                        </tr>
+
                     </table>
                 </div>
-                <div class="content">
-                    <table class="table master-table" id="repairmanTable">
+
+                <div class="content-master">
+                    <table class="masterTable" id="matserTable">
                         <tr>
                             <th>이름</th>
                             <th>회원</th>
                             <th>이메일</th>
                             <th>가입일자</th>
+                            <th>승인대기</th>
                         </tr>
 
                         <tr>
                             <td><a href="user_detail.html">김현용</a></td>
-                            <td>수리기사회원</td>
+                            <td>수리기사</td>
                             <td>aaa123456@naver.com</td>
                             <td>2024.07.01</td>
+                            <td><div class="content-delete">
+                                <a href="#" class="delete">승인대기</a>
+                            </div></td>
                         </tr>
-                        <div class="content-delete">
-                            <a href="#" class="delete">승인대기</a>
-                        </div>
- 
+
+                        <tr>
+                            <td><a href="user_detail.html">김현용</a></td>
+                            <td>수리기사</td>
+                            <td>aaa123456@naver.com</td>
+                            <td>2024.07.01</td>
+                            <td><div class="content-delete">
+                                <a href="#" class="delete">승인대기</a>
+                            </div></td>
+                        </tr>
+
+                        
+
                     </table>
                 </div>
             </div>
 
         </div>
-        
+
         <div class="content-p-box">
             <div class="content-page left">
                 <a href="#">이전</a>
@@ -171,7 +192,7 @@
         </div>
     </div>
 
-   
+
     <!-- footer -->
     <footer>
         <div class="container">
@@ -179,28 +200,29 @@
                 <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
                 <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
             </div>
-                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
-            </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
         </div>
     </footer>
     <!-- //footer -->
+
     <script>
-        function showMembers() {
-            document.getElementById('memberTable').style.display = 'table';
-            document.getElementById('repairmanTable').style.display = 'none';
+               function showMembers() {
+            document.querySelector('.content-member').style.display = 'block';
+            document.querySelector('.content-master').style.display = 'none';
         }
-    
-        function showRepairmen() {
-            document.getElementById('memberTable').style.display = 'none';
-            document.getElementById('repairmanTable').style.display = 'table';
+
+        function showMaster() {
+            document.querySelector('.content-member').style.display = 'none';
+            document.querySelector('.content-master').style.display = 'block';
         }
-    
-        // Initially display only the member table
-        document.addEventListener('DOMContentLoaded', function() {
+
+        // 초기default: 회원검색
+        document.addEventListener('DOMContentLoaded', function () {
             showMembers();
         });
 
-       // 모달 관련 변수들
+        // 모달 관련 변수들
         var modal = document.getElementById("myModal");
         var btn = document.querySelector(".delete");
         var span = document.getElementsByClassName("close")[0];
@@ -208,30 +230,30 @@
         var cancelDelete = document.getElementById("cancelDelete");
 
         // 삭제하기 버튼 클릭 시 모달 열기
-        btn.onclick = function(event) {
+        btn.onclick = function (event) {
             event.preventDefault();
             modal.style.display = "block";
         }
 
         // 닫기 버튼 클릭 시 모달 닫기
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // 취소 버튼 클릭 시 모달 닫기
-        cancelDelete.onclick = function() {
+        cancelDelete.onclick = function () {
             modal.style.display = "none";
         }
 
         // 확인 버튼 클릭 시 삭제 로직 실행
-        confirmDelete.onclick = function() {
+        confirmDelete.onclick = function () {
             // 여기에 삭제 로직 추가
             console.log("삭제 확인됨");
             modal.style.display = "none";
         }
 
         // 모달 외부 클릭 시 모달 닫기
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }

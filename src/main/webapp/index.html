@@ -18,7 +18,7 @@
     <link href="resources/css/common.css" rel="stylesheet">
     <link href="resources/css/cho.css" rel="stylesheet">
     <link href="resources/css/han.css" rel="stylesheet">
-    <link href="resources/css/kim.css" rel="stylesheet">
+    <link href="resources/css/kim.css" rel="stylesheet"> 
     <link href="resources/css/park.css" rel="stylesheet">
     <!-- JS -->
     <script src="resources/js/common.js"></script>
@@ -51,9 +51,9 @@
 
         .technician img {
             width: 100px;
-             height: 100px; 
-             border-radius: 50%; 
-             margin-bottom: 10px; 
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -73,8 +73,10 @@
             <ul class="login-area">
                 <li class="li-icon alarm"><!-- 알림 아이콘 -->
                     <div class="icon-area">
-                        <button id="btn-alarm-list"><img src="resources/img/alarm.png" alt="알림"></button>
-                        <span class="new-mark">1</span>
+                        <button id="btn-alarm-list">
+                            <img src="resources/img/alarm.png" alt="알림">
+                            <span class="new-mark">1</span>
+                        </button>
                     </div>
                     <div id="alram-list" class="alram-list"><!-- 알림 목록 -->
                         <a href="user/reserve_view.html" class="alram-item">
@@ -97,14 +99,17 @@
                 </li>
                 <li class="li-icon chat"><!-- 채팅 아이콘 -->
                     <div class="icon-area">
-                        <a href="user/message_list.html"><img src="resources/img/message.png" alt="채팅"></a>
-                        <span class="new-mark">2</span>
+                        <a href="user/message_list.html">
+                            <img src="resources/img/message.png" alt="채팅">
+                            <span class="new-mark">2</span>
+                        </a>
                     </div>
                 </li>
                 <li><a href="#" class="btn">로그아웃</a></li>
                 <li><a href="user/mypage.html" class="btn btn-join">의뢰인<i class="bi bi-chevron-right"></i></a></li>
                 <li><a href="master/mypage.html" class="btn btn-join">수리기사<i class="bi bi-chevron-right"></i></a></li>
                 <li><button id="btn-login-modal" class="btn btn-login">로그인</button></li>
+                <li><a href="admin/user/user.html" class="btn btn-join">관리자<i class="bi bi-chevron-right"></i></a></li>
                 <li><a href="member/join.html" class="btn btn-join">회원가입<i class="bi bi-chevron-right"></i></a></li>
             </ul>
         </div>
@@ -151,15 +156,19 @@
                     </div>
                     <div class="main-imgbox-kim">
                         <div class="main-img-kim">
-                            <a href="#"><img src="/resources/img/repair.jpg" alt="가전제품">가전제품</a>
-                            <a href="#"><img src="/resources/img/door.png" alt="문">문/창문</a>
-                            <a href="#"><img src="/resources/img/pipeman.avif" alt="수도">수도/보일러/전기</a>
-                            <a href="#"><img src="/resources/img/furniture.jpg" alt="가구">가구</a>
-                            <a href="#"><img src="/resources/img/etcrepair.png" alt="수리">기타 설치/수리</a>
+
+                            <a href="/user/master_list.html"><img src="/resources/img/repair.png" alt="가전제품">가전제품</a>
+                            <a href="/user/master_list.html"><img src="/resources/img/door.png" alt="문">문/창문</a>
+                            <a href="/user/master_list.html"><img src="/resources/img/susudo.png" alt="수도">수도/보일러/전기</a>
+                            <a href="/user/master_list.html"><img src="/resources/img/fusu.png" alt="가구">가구</a>
+                            <a href="/user/master_list.html"><img src="/resources/img/etcrepair.png" alt="수리">기타 설치/수리</a>
                             
+
                         </div>
                     </div>
-
+                </div>
+                <div class="main-master-intro">
+                    <h3>마법의 실력을가진 마스터님들</h3>
                 </div>
                 <div class="main-master-kim">
                     <a class="technician" style="text-decoration: none; color: black;" href="/user/master_view.html">
@@ -183,7 +192,97 @@
                         <p>지역: 서울시 강남구 (10km 이내 가능)</p>
                         <p>안녕하세요 저는 백엔드 경력 30년의 경력을 보유했습니다.</p>
                     </a>
+                </div>
+                <div class="main-review-text">
+                    <h3>마스터님들 자랑</h3>
+                </div>
+                
+                <div class="main-review-kim">
 
+                    <a href="/user/master_view.html" class="main-review-box">
+                        <div class="main-review-head">
+                            <img src="/resources/img/iconProfileDefault.png" alt="">
+                            <div class="main-review-head-text">
+                                <p>예원 초</p>
+                                <span>코딩마스터</span>
+                            </div>
+
+                        </div>
+                        <div class="main-review-foot">
+                            <div class="main-review-score">
+                                <ul>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    5.0
+                                </ul>
+                            </div>
+                            <div class="main-review-foot-text">
+                                <p>코딩관련으로 여러가지 사이트나 홈페이지들을 알아보다가 마스터님을 알게 됐는데, 친절하게 상담해주시고 요구사항들을 잘 들어주셔서 선택하게 됐습니다. 마스터님께서 요구사항들을 잘 들어주시고 여러가지 기능들을 잘 추가해주셔서...</p>
+                                <div class="main-review-user-name">
+                                    한** 고객님의 후기
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/user/master_view.html" class="main-review-box">
+                        <div class="main-review-head">
+                            <img src="/resources/img/iconProfileDefault.png" alt="">
+                            <div class="main-review-head-text">
+                                <p>예원 초</p>
+                                <span>코딩마스터</span>
+                            </div>
+
+                        </div>
+                        <div class="main-review-foot">
+                            <div class="main-review-score">
+                                <ul>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    5.0
+                                </ul>
+                            </div>
+                            <div class="main-review-foot-text">
+                                <p>코딩관련으로 여러가지 사이트나 홈페이지들을 알아보다가 마스터님을 알게 됐는데, 친절하게 상담해주시고 요구사항들을 잘 들어주셔서 선택하게 됐습니다. 마스터님께서 요구사항들을 잘 들어주시고 여러가지 기능들을 잘 추가해주셔서...</p>
+                                <div class="main-review-user-name">
+                                    한** 고객님의 후기
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/user/master_view.html" class="main-review-box">
+                        <div class="main-review-head">
+                            <img src="/resources/img/iconProfileDefault.png" alt="">
+                            <div class="main-review-head-text">
+                                <p>예원 초</p>
+                                <span>코딩마스터</span>
+                            </div>
+
+                        </div>
+                        <div class="main-review-foot">
+                            <div class="main-review-score">
+                                <ul>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    5.0
+                                </ul>
+                            </div>
+                            <div class="main-review-foot-text">
+                                <p>코딩관련으로 여러가지 사이트나 홈페이지들을 알아보다가 마스터님을 알게 됐는데, 친절하게 상담해주시고 요구사항들을 잘 들어주셔서 선택하게 됐습니다. 마스터님께서 요구사항들을 잘 들어주시고 여러가지 기능들을 잘 추가해주셔서...</p>
+                                <div class="main-review-user-name">
+                                    한** 고객님의 후기
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -205,8 +304,8 @@
                 <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
                 <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
             </div>
-                <span>Copyright 2024 SUSUMA© All rights reserved.</span>
-            </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
         </div>
     </footer>
     <!-- //footer -->

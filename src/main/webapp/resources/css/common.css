@@ -53,7 +53,7 @@ header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .message { f
 
 /* modal */
 .modal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 100; } 
-.modal.show { display: flex !important; } 
+.modal.show { display: flex !important; z-index: 100; }     
 .modal .container { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; } 
 .modal .container .logo-area { text-align: center; } 
 .modal .container .logo-area img { width: 110px; } 
