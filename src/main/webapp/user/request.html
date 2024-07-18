@@ -119,7 +119,7 @@
             <div class="main-area request">
                 <div class="title">수리 예약</div>
                 <div class="join-form request-form">
-                    <form action="#" id="form-request">
+                    <form action="request.user" method="post" id="form-request">
                         <div class="info-area">
                             <div class="title-main">수리기사 정보</div>
                             <div class="master-info-area">
@@ -136,11 +136,18 @@
                                     <!-- <p class="master-desc">믿고 맡겨주시면 최선을 다해 수리해드리겠습니다. 믿고 맡겨주시면 최선을 다해 수리해드리겠습니다.</p>--> <!--한 줄 소개 -->
                                 </div>
                             </div>
+                            <div class="calendar-wrap">
+                                <label><i class="bi bi-stopwatch"></i>근무 가능 일시</label>
+                                <div id="master-work-hours-list">
+                                </div>
+                            </div>
                         </div>
                         <div class="info-area">
-                            <div class="title-main">날짜 및 시간 선택</div>
+                            <div class="title-main" id="date-wrap-top">
+                                날짜 및 시간 선택
+                            </div>
                             <!-- 달력 -->
-                            <div class="my-calendar clearfix">
+                            <div class="calendar-wrap" id="calendar-wrap">
                                 <div class="calendar-box">
                                     <div class="ctr-box clearfix">
                                         <button type="button" title="prev" class="btn-cal prev"><i class="bi bi-chevron-left"></i></button>
@@ -164,20 +171,18 @@
                                 </div>
                             </div> <!-- //달력 -->
                             <!-- 시간 -->
-                            <div class="my-calendar clearfix">
-                                <div class="calendar-box">
-                                    <span class="cal-month-selected"></span>월
-                                    <span class="cal-date-selected"></span>일
-                                    <span class="cal-day-selected"></span>요일
-                                </div>
+                            <div class="calendar-wrap time-list-wrap">
+                                <ul class="time-list" id="time-list"></ul>
                             </div> <!-- //시간 -->
                         </div>
                         <div class="info-area">
                             <div class="title-main inline">예약자 정보</div>
                             <span class="title-sub2"><i class="bi bi-info-circle"></i>주소 및 연락처 수정 시 회원정보 갱신</span>
+                            <input type="hidden" name="date" value="">
+                            <input type="hidden" name="time" value="">
                         </div>
                         <div class="input-area">
-                            <label for="address">주소</label>
+                            <label for="address" class="required">주소</label>
                             <input type="hidden" name="address">
                             <input type="hidden" name="latitude">
                             <input type="hidden" name="longitude">
@@ -185,16 +190,16 @@
                             <input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail">
                         </div>
                         <div class="input-area">
-                            <label for="phone_num">연락처</label>
-                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13">
+                            <label for="phone_num" class="required">연락처</label>
+                            <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13" required>
                             <p class="caption-error">올바른 형식이 아닙니다.</p>
                         </div>
                         <div class="input-area">
-                            <label for="short_description">수리요청 상세내용</label>
-                            <textarea class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요.">에어컨 가동 시 곧바로 꺼지는 현상이 발생합니다.
+                            <label for="short_description" class="required">수리요청 상세내용</label>
+                            <textarea class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." required>에어컨 가동 시 곧바로 꺼지는 현상이 발생합니다.
 수리 요청드립니다.</textarea>
                         </div>
-                        <button class="btn-submit">수리 예약</button>
+                        <button type="submit" class="btn-submit">수리 예약</button>
                     </form>
                     <!-- modal -->
                     <div id="request-complete-modal" class="modal request">
@@ -249,6 +254,45 @@
         </div>
     </footer>
     <!-- //footer -->
+    <!-- 다음 주소검색 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- 카카오맵 api -->
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6e324617d728d10d01ca7e36c2a14bf1&libraries=services,clusterer&autoload=false"></script>
+    <script>
+        kakao.maps.load(function () {
+            //console.log("kakao.maps.load()");
+            var geocoder;
+        });
+        function execDaumPostcode() {
+            //console.log("execDaumPostcode()");
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    var addr = '';
+                    if (data.userSelectedType === 'R') addr = data.roadAddress; // 도로명주소
+                    else addr = data.jibunAddress; // 지번주소
+                    var zipcode = data.zonecode; // 우편번호
+
+                    // 위도 및 경도 좌푯값 구하기
+                    const geocoder = new kakao.maps.services.Geocoder();
+                    geocoder.addressSearch(data.roadAddress, (result, status) => {
+                        if (status === kakao.maps.services.Status.OK) {
+                            var latitude = result[0].y; // 위도
+                            var longitude = result[0].x; // 경도
+                            $("input[name=latitude]").val(latitude);
+                            $("input[name=longitude]").val(longitude);
+                        }
+                    });
+
+                    $("input[name=address]").val(addr); // 주소 값 넣기
+                    $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>'); // 주소 + 우편번호 보여주기
+                    $("#btn-zipcode").removeClass("error");
+
+                    $("input[name=address_detail]").focus(); // 상세주소 포커스
+                }
+            }).open();
+        }
+    </script>
+    <!-- //api -->
 </body>
 
 </html>

@@ -11,6 +11,7 @@
 /* 탭 메뉴 */
 .main-section .container.main-only .main-area.join .menu-tab { display: flex; justify-content: space-between; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 30px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn i { margin-left: 2px; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(1) { border-left: 1px solid #DDD; border-right: 1px solid #F49D00; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(2) { border-right: 1px solid #DDD; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn.active { color: #F49D00; border-color: #F49D00; border-bottom: none; cursor: default; font-weight: 700; } 
@@ -36,6 +37,8 @@
 .main-section .container .join-form .input-area.error .input-field,
 .main-section .container .join-form .input-area.error-re .input-field { border-color: #fa5963; } 
 .main-section .container .join-form .input-area button.btn-form { width: 100%; padding: 12px 12px; border: 1px solid #ccc; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; background-color: #eee; } 
+.main-section .container .join-form .input-area button.btn-form.error, 
+.main-section .container .join-form .input-area button.btn-form.error:hover { color: #ff1d2b; border-color: #ff8189; background-color: #fa596329; transition: all 0.5s; } 
 .main-section .container .join-form .input-area button.btn-form:hover { background-color: #eaeaea; color: #444; border-color: #aaa; } 
 .main-section .container .join-form .input-area .distance-radio-area { display: flex; justify-content: center; margin-top: 5px; } 
 .main-section .container .join-form .input-area .distance-radio-area input[type='radio'] { display: none; } 
@@ -55,7 +58,7 @@
 /* 이메일 수신 동의, 약관 동의 */
 .main-section .container .join-form .input-area .checkbox-area { margin-top: 15px; display: flex; } 
 .main-section .container .join-form .input-area .checkbox-area.all-check { border-bottom: 1px solid #ddd; padding-bottom: 10px; } 
-.main-section .container .join-form .input-area .checkbox-area input[type='checkbox'].checkbox-agree { width: 2.0rem; height: 2.0rem; margin: 1px 8px 0 2px; accent-color: #fff; } 
+.main-section .container .join-form .input-area .checkbox-area input[type='checkbox'].checkbox-agree { width: 2.0rem; height: 2.0rem; margin: 1px 8px 0 2px; accent-color: #888; } 
 .main-section .container .join-form .input-area .checkbox-area label,
 .main-section .container .join-form .input-area .checkbox-area span { font-size: 14px; color:#666; cursor: pointer; font-weight: 400; } 
 .main-section .container .join-form .input-area .checkbox-area span { margin-right: 3px; text-decoration: underline; color: #888; } 
@@ -143,7 +146,7 @@
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p { margin-top: 2px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p+ p { margin-top: 4px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name { font-size: 17px; font-weight: 500; } 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 400; } /* 별점 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 400; line-height: 22px; } /* 별점 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars .review-count { font-size: 12px; } /* 후기 개수 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 12px; } /* 위치 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area i { font-size: 12px; } /* 별점/위치 아이콘 */ 
@@ -151,33 +154,43 @@
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-desc { width: 390px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
 
 /* 캘린더(날짜 선택) */
-.my-calendar { margin: 15px 35px; padding: 20px 20px 10px; text-align: center; font-weight: 400; border: 1px solid #ddd; cursor: default; } 
-.my-calendar .calendar-box { width: 350px; margin: 0 auto; } 
-
-.ctr-box { padding: 0 16px; margin-bottom: 20px; font-size: 20px; } 
-.ctr-box .btn-cal { position: relative; float: left; width: 25px; height: 25px; margin-top: 5px; font-size: 16px; cursor: pointer; border: none; background: none; } 
-.ctr-box .btn-cal.next { float: right; } 
-.ctr-box .btn-cal:hover { background-color: #f8f8f8; border-radius: 9px; } 
-
-.cal-table { width: 100%; } 
-.cal-table th { width: 14.2857%; padding-bottom: 10px; font-size: 16px; font-weight: 400; text-align: center; } 
-.cal-table td { padding: 3px 0; height: 50px; font-size: 15px; vertical-align: top; } 
-.cal-table td.day { position: relative; cursor: pointer; } 
-.cal-table td.today span { background: #999; border-radius: 6px; color: #fff; display: inline-block; width: 95%; height: 98%; } 
-.cal-table td.today span:after { content: '오늘'; display: block; font-size: 11px; } 
-.cal-table td.day-active span { background: #F49D00; border-radius: 6px; color: #fff; display: inline-block; width: 95%; height: 98%; } 
-.cal-table td.has-event:after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #FFC107; } 
-
-
-
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap { margin: 15px 35px; padding: 15px 20px; text-align: center; font-weight: 400; border: 1px solid #ddd; cursor: default; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap.error { border-color: #ff8189; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap.time-list-wrap { display: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap.time-list-wrap.show { display:block; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list { display: flex; flex-wrap: wrap; gap: 12px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time { height: 36px; padding: 0 13px; border-radius: 6px; font-size: 13px; letter-spacing: 2px; font-weight: 400; background-color: #fff; border: 1px solid #ccc; color: #777; line-height: 36px; cursor: pointer; text-align: center; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time:hover { background-color: #eee; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time.selected { background-color: #f49d00; color: white; border-color: #F49D00; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap label { display: block; font-size: 14px; font-weight: 500; color: #555; text-align: left; margin: 3px 0 7px; line-height: 13px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap label i { margin-right: 3px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap p { display: block; font-size: 14px; font-weight: 400; color: #555; text-align: left; margin-bottom:3px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box { width: 350px; margin: 0 auto; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box { padding: 0 16px; margin-bottom: 15px; font-size: 20px; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box .btn-cal { position: relative; float: left; width: 25px; height: 25px; margin-top: 2px; font-size: 16px; cursor: pointer; border: none; background: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box .btn-cal.next { float: right; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box .btn-cal:hover { background-color: #f1f1f1; border-radius: 9px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table { width: 100%; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table th { width: 14.2857%; padding-bottom: 10px; font-size: 16px; font-weight: 400; text-align: center; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td { padding: 3px 0; height: 50px; font-size: 15px; vertical-align: top; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day { position: relative; cursor: pointer; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td span { border-radius: 6px; display: inline-block; width: 95%; height: 98%; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.today span { background: #ff6b6b; border-radius: 6px; color: #fff; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.today span:after { content: '오늘'; display: block; font-size: 11px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.disabled { cursor: default; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.disabled span { color: #ccc; font-weight: 400; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day-active span { background: #F49D00; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td:not(.disabled):hover span { background: #F49D00; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.has-event:after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #FFC107; } 
+.main-section .container.main-only .main-area.request .request-form .btn-submit { margin: 30px auto 0; width: 530px; } 
 
 /* 예약 신청 완료 */
 .modal.request .container { display: block; width: auto; height: auto; } 
 .modal.request .container .modal-title { font-size: 20px; font-weight: 600; text-align: center; } 
-.modal.request .container .request-content { margin-top: 18px; font-size: 13px; width: 380px; text-align: left; } 
+.modal.request .container .request-content { margin: 30px 0 15px; font-size: 13px; width: 380px; text-align: left; } 
 .modal.request .container .request-content p { font-size: 14px; margin-top: 5px; } 
 .modal.request .container .request-content .request-info-area { background-color: #eee; padding: 15px 20px; border-radius: 5px; } 
 .modal.request .container .request-content .request-info-area p { margin-top: 5px; } 
-.modal.request .container .request-content .request-info-area p + .info-title { margin-top: 12px; } 
+.modal.request .container .request-content .request-info-area p + .info-title { margin-top: 15px; } 
 .modal.request .container .request-content .request-info-area p.info-title { font-size: 16px; font-weight: 500; } 
 .modal.request .container .request-content .request-desc-area { margin-top: 10px; } 
