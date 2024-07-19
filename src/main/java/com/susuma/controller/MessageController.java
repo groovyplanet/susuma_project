@@ -1,4 +1,4 @@
-package com.susuma.message.model;
+package com.susuma.controller;
 
 
 import java.io.IOException;
