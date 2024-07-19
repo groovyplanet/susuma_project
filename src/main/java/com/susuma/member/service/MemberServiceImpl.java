@@ -1,4 +1,4 @@
-package com.myweb.board.service;
+package com.susuma.member.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.myweb.board.model.BoardDTO;
-import com.myweb.board.model.BoardMapper;
-import com.myweb.util.mybatis.MybatisUtil;
+import com.susuma.board.model.BoardDTO;
+import com.susuma.board.model.BoardMapper;
+import com.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class BoardServiceImpl implements BoardService {
+public class MemberServiceImpl implements MemberService {
 	
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 	
@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 		sql.close();
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("board_list.jsp").forward(request, response);
+		request.getRequestDispatcher("member_list.jsp").forward(request, response);
 		
 	}
 	
