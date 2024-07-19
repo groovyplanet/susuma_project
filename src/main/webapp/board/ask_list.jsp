@@ -18,7 +18,7 @@
 							<p>답변 대기</p>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.html">수수마 포인트 이용안내 입니다</a>
+							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
 							<div>
 								<p>2024-07-15</p>
 								<p>조예원</p>
@@ -34,7 +34,7 @@
 							<p>답변 완료</p>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.html">수수마 포인트 이용안내 입니다</a>
+							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
 							<div>
 								<p>2024-07-15</p>
 								<p>한정우</p>
@@ -50,7 +50,7 @@
 							<p>답변 완료</p>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.html">수수마 포인트 이용안내 입니다</a>
+							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
 							<div>
 								<p>2024-07-15</p>
 								<p>김현용</p>
@@ -66,7 +66,7 @@
 							<p>답변 완료</p>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.html">수수마 포인트 이용안내 입니다</a>
+							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
 							<div>
 								<p>2024-07-15</p>
 								<p>조예원</p>
@@ -82,7 +82,7 @@
 							<p>답변 완료</p>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.html">수수마 포인트 이용안내 입니다</a>
+							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
 							<div>
 								<p>2024-07-15</p>
 								<p>조예원</p>
@@ -104,7 +104,7 @@
 						<a href="#">다음</a>
 					</div>
 					<div class="content-ask">
-						<a href="${pageContext.request.contextPath }/board/ask_write.html">문의하기</a>
+						<a href="${pageContext.request.contextPath }/board/ask_write.jsp">문의하기</a>
 					</div>
 				</div>
 			</div>
