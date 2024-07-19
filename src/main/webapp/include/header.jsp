@@ -80,7 +80,7 @@
 				<button id="btn-login-modal" class="btn btn-login">로그인</button>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath }/admin/user/user.jsp" class="btn btn-join">
+				<a href="${pageContext.request.contextPath }/admin/" class="btn btn-join">
 					관리자<i class="bi bi-chevron-right"></i>
 				</a>
 			</li>

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import com.susuma.board.service.BoardService;
 import com.susuma.board.service.BoardServiceImpl;
+import com.susuma.member.service.MemberService;
+import com.susuma.member.service.MemberServiceImpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,7 +13,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 
 @WebServlet("*.board")
 public class BoardController extends HttpServlet {
@@ -37,17 +38,20 @@ public class BoardController extends HttpServlet {
 		String path = request.getContextPath(); //프로젝트 식별 이름
 		String command = uri.substring( path.length() );
 		
-		System.out.println(command);
-		System.out.println(request.getRemoteAddr());
-		
 		BoardService service;
-		
-		if(command.equals("/board/list.board")) { //목록화면
-			
+
+		if (command.equals("/admin/board/list.board")) {
+
 			service = new BoardServiceImpl();
 			service.getList(request, response);
-			
-		} 
+
+		} else if (command.equals("/admin/board/view.board")) {
+
+			service = new BoardServiceImpl();
+			service.getView(request, response);
+
+		}
+
 	
 	}
 	

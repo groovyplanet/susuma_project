@@ -1,5 +1,7 @@
 package com.susuma.message.model;
 
-public class MessageMapper {
+import java.util.ArrayList;
 
+public interface MessageMapper {
+	public ArrayList<MessageDTO> getList();
 }

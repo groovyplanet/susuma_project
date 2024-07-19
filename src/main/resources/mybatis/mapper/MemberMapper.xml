@@ -3,8 +3,11 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.member.model.MemberMapper">
-	<select id="getList" resultType="com.member.model.MemberDTO">
+<mapper namespace="com.susuma.member.model.MemberMapper">
+	<select id="getList" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER ORDER BY ME_NO ASC
+	</select>
+	<select id="getView" resultType="com.susuma.member.model.MemberDTO">
+		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
 	</select>
 </mapper>
