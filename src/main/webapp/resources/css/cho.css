@@ -1,6 +1,10 @@
 .underline { text-decoration: underline; } 
 .red { color:#dd0000; } 
 .inline { display: inline; } 
+.mt15 {margin-top: 15px;}
+.mt20 {margin-top: 20px;}
+.mt25 {margin-top: 25px;}
+.mt30 {margin-top: 30px;}
 
 /* snb 메뉴 없는 경우 */
 .main-section .container.main-only { justify-content: center; } 

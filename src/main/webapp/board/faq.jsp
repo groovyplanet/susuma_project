@@ -1,42 +1,133 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
- 	
- 	<%@ include file="../include/header.jsp" %>
- 
-    <div class="container">
- 		<%@ include file="../include/snb.jsp" %>
- 		<div>
- 			 <header id="header" style="height: 60px; border: 1px solid #777;">
+<%@ include file="../include/head.jsp"%>
+</head>
 
-    </header>
+<body>
+	<%@ include file="../include/header.jsp"%>
 
-    <section class="content-box">
-        <div class="nav">
-            <strong>고객센터</strong>
-            <div class="down notice">공지사항</div>
-            <div class="down faq">자주묻는 질문</div>
-            <div class="down ono">1:1 문의</div>
-        </div>
-        <div class="faq-content">
-            <div class="faq-box" style="height: 1000px;">
-                <div class="faq-up">
-                    공지사항
-                </div>
-                <div class="faq-down">
-                    <ul>
-                        <li>1</li>
-                        <li>내용</li>
-                        <li>날짜</li>
-                        
-                    </ul>
-                </div>
-            </div>
+	<section class="main-section">
+		<div class="container">
+			<%@ include file="../include/snb_board.jsp"%>
+			<div class="content-list">
+				<div class="content-box">
+					<div class="content-mix">
 
-        </div>
-    </section>
- 		</div>
-    </div>
-    
-    <%@ include file="../include/footer.jsp" %>
-    
+						<div class="content-num">
+							<p>10</p>
+						</div>
+						<div class="content-title">
+							<button type="button"></button>
+							<a href="#" class="post-link">매칭 방법은 어떻게 되나요?</a>
+							<p>2024-07-15</p>
+						</div>
+
+					</div>
+					<div class="post-content">
+						<h3>매칭 방법은 말이죠!!!~</h3>
+						<span>마법의 주문을 외쳐주면 매칭이 된답니다 하하하하하</span> <span>모두 같이 외쳐볼까요~?</span> <span>수리~ 수리~ 마수리~ 얍~</span>
+					</div>
+
+				</div>
+
+				<div class="content-box">
+					<div class="content-mix">
+
+						<div class="content-num">
+							<p>9</p>
+						</div>
+						<div class="content-title">
+							<button type="button"></button>
+							<a href="#" class="post-link">매칭 방법은 어떻게 되나요?</a>
+							<p>2024-07-15</p>
+						</div>
+
+					</div>
+					<div class="post-content">
+						<h3>매칭 방법은 말이죠!!!~</h3>
+						<span>마법의 주문을 외쳐주면 매칭이 된답니다 하하하하하</span> <span>모두 같이 외쳐볼까요~?</span> <span>수리~ 수리~ 마수리~ 얍~</span>
+					</div>
+
+				</div>
+				<div class="content-box">
+					<div class="content-mix">
+
+						<div class="content-num">
+							<p>8</p>
+						</div>
+						<div class="content-title">
+							<button type="button"></button>
+							<a href="#" class="post-link">매칭 방법은 어떻게 되나요?</a>
+							<p>2024-07-15</p>
+						</div>
+
+					</div>
+					<div class="post-content">
+						<h3>매칭 방법은 말이죠!!!~</h3>
+						<span>마법의 주문을 외쳐주면 매칭이 된답니다 하하하하하</span> <span>모두 같이 외쳐볼까요~?</span> <span>수리~ 수리~ 마수리~ 얍~</span>
+					</div>
+
+				</div>
+				<div class="content-box">
+					<div class="content-mix">
+
+						<div class="content-num">
+							<p>7</p>
+						</div>
+						<div class="content-title">
+							<button type="button"></button>
+							<a href="#" class="post-link">매칭 방법은 어떻게 되나요?</a>
+							<p>2024-07-15</p>
+						</div>
+
+					</div>
+					<div class="post-content">
+						<h3>매칭 방법은 말이죠!!!~</h3>
+						<span>마법의 주문을 외쳐주면 매칭이 된답니다 하하하하하</span> <span>모두 같이 외쳐볼까요~?</span> <span>수리~ 수리~ 마수리~ 얍~</span>
+					</div>
+
+				</div>
+				<div class="content-box">
+					<div class="content-mix">
+
+						<div class="content-num">
+							<p>6</p>
+						</div>
+						<div class="content-title">
+							<button type="button"></button>
+							<a href="#" class="post-link">매칭 방법은 어떻게 되나요?</a>
+							<p>2024-07-15</p>
+						</div>
+
+					</div>
+					<div class="post-content">
+						<h3>매칭 방법은 말이죠!!!~</h3>
+						<span>마법의 주문을 외쳐주면 매칭이 된답니다 하하하하하</span> <span>모두 같이 외쳐볼까요~?</span> <span>수리~ 수리~ 마수리~ 얍~</span>
+					</div>
+
+				</div>
+				<div class="content-p-box">
+					<div class="content-page left">
+						<a href="#">이전</a>
+					</div>
+					<div class="content-page">
+						<a href="#">1</a>
+					</div>
+					<div class="content-page">
+						<a href="#">2</a>
+					</div>
+					<div class="content-page right">
+						<a href="#">다음</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<%@ include file="../include/footer.jsp"%>
+
+</body>
+
+</html>
