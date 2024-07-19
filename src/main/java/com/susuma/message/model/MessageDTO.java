@@ -6,20 +6,65 @@ public class MessageDTO {
     private int msgNo;
     private int masterNo;
     private int clientNo;
-    private String messageText;
+    private String message;
     private char read;
     private Timestamp sendTime;
     private Timestamp readTime;
 
-    public MessageDTO(int msgNo, int masterNo, int clientNo, String messageText, char read, Timestamp sendTime, Timestamp readTime) {
-        this.msgNo = msgNo;
-        this.masterNo = masterNo;
-        this.clientNo = clientNo;
-        this.messageText = messageText;
-        this.read = read;
-        this.sendTime = sendTime;
-        this.readTime = readTime;
+    // Getters and Setters
+    public int getMsgNo() {
+        return msgNo;
     }
 
-    // Getters and setters...
+    public void setMsgNo(int msgNo) {
+        this.msgNo = msgNo;
+    }
+
+    public int getMasterNo() {
+        return masterNo;
+    }
+
+    public void setMasterNo(int masterNo) {
+        this.masterNo = masterNo;
+    }
+
+    public int getClientNo() {
+        return clientNo;
+    }
+
+    public void setClientNo(int clientNo) {
+        this.clientNo = clientNo;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public char getRead() {
+        return read;
+    }
+
+    public void setRead(char read) {
+        this.read = read;
+    }
+
+    public Timestamp getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(Timestamp sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public Timestamp getReadTime() {
+        return readTime;
+    }
+
+    public void setReadTime(Timestamp readTime) {
+        this.readTime = readTime;
+    }
 }
