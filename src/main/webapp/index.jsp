@@ -46,25 +46,11 @@
 					<div class="main-imgbox-kim">
 						<div class="main-img-kim">
 
-							<a href="${pageContext.request.contextPath }/user/master_list.jsp">
-								<img src="${pageContext.request.contextPath }/resources/img/repair.png" alt="가전제품">
-								가전제품
-							</a>
-							<a href="${pageContext.request.contextPath }/user/master_list.jsp">
-								<img src="${pageContext.request.contextPath }/resources/img/door.png" alt="문">
-								문/창문
-							</a>
-							<a href="${pageContext.request.contextPath }/user/master_list.jsp">
-								<img src="${pageContext.request.contextPath }/resources/img/susudo.png" alt="수도">
-								수도/보일러/전기
-							</a>
-							<a href="${pageContext.request.contextPath }/user/master_list.jsp">
-								<img src="${pageContext.request.contextPath }/resources/img/fusu.png" alt="가구">
-								가구
-							</a>
-							<a href="${pageContext.request.contextPath }/user/master_list.jsp">
-								<img src="${pageContext.request.contextPath }/resources/img/etcrepair.png" alt="수리">
-								기타 설치/수리
+							<a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/repair.png" alt="가전제품"> 가전제품
+							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/door.png" alt="문"> 문/창문
+							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/susudo.png" alt="수도"> 수도/보일러/전기
+							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/fusu.png" alt="가구"> 가구
+							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/etcrepair.png" alt="수리"> 기타 설치/수리
 							</a>
 						</div>
 					</div>
@@ -77,22 +63,17 @@
 					<h3>마법의 실력을가진 마스터님들</h3>
 				</div>
 				<div class="main-master-kim">
-					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp">
-						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
+					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp"> <img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>한정우</h3>
 						<p>별점: 4.5 (114)</p>
 						<p>지역: 서울시 강남구 (10km 이내 가능)</p>
 						<p>안녕하세요 저는 백엔드 유지보수 경력 15년의 경력을 보유했습니다.</p>
-					</a>
-					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp">
-						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
+					</a> <a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp"> <img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>조예원</h3>
 						<p>별점: 5.0 (229)</p>
 						<p>지역: 서울시 강남구 (10km 이내 가능)</p>
 						<p>안녕하세요 저는 백엔드 마스터입니다.</p>
-					</a>
-					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp">
-						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
+					</a> <a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp"> <img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>김현용</h3>
 						<p>별점: 4.9 (114)</p>
 						<p>지역: 서울시 강남구 (10km 이내 가능)</p>
@@ -121,8 +102,7 @@
 									<li>★</li>
 									<li>★</li>
 									<li>★</li>
-									<li>★</li>
-									5.0
+									<li>★</li> 5.0
 								</ul>
 							</div>
 							<div class="main-review-foot-text">
@@ -130,8 +110,7 @@
 								<div class="main-review-user-name">한** 고객님의 후기</div>
 							</div>
 						</div>
-					</a>
-					<a href="${pageContext.request.contextPath }/user/master_view.jsp" class="main-review-box">
+					</a> <a href="${pageContext.request.contextPath }/user/master_view.jsp" class="main-review-box">
 						<div class="main-review-head">
 							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="">
 							<div class="main-review-head-text">
@@ -146,8 +125,7 @@
 									<li>★</li>
 									<li>★</li>
 									<li>★</li>
-									<li>★</li>
-									5.0
+									<li>★</li> 5.0
 								</ul>
 							</div>
 							<div class="main-review-foot-text">
@@ -155,8 +133,7 @@
 								<div class="main-review-user-name">한** 고객님의 후기</div>
 							</div>
 						</div>
-					</a>
-					<a href="${pageContext.request.contextPath }/user/master_view.jsp" class="main-review-box">
+					</a> <a href="${pageContext.request.contextPath }/user/master_view.jsp" class="main-review-box">
 						<div class="main-review-head">
 							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="">
 							<div class="main-review-head-text">
@@ -171,8 +148,7 @@
 									<li>★</li>
 									<li>★</li>
 									<li>★</li>
-									<li>★</li>
-									5.0
+									<li>★</li> 5.0
 								</ul>
 							</div>
 							<div class="main-review-foot-text">
