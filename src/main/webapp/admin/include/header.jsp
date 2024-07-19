@@ -4,7 +4,7 @@
 	<div class="gnb">
 		<div class="logo-area">
 			<!-- 로고 -->
-			<a href="${pageContext.request.contextPath }/admin/index.jsp">
+			<a href="${pageContext.request.contextPath }/admin/">
 				<img src="${pageContext.request.contextPath }/resources/img/logo.png" alt="로고">
 			</a>
 		</div>

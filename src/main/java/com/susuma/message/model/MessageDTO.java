@@ -60,6 +60,7 @@ public class MessageDTO {
         this.sendTime = sendTime;
     }
 
+
     public Timestamp getReadTime() {
         return readTime;
     }
@@ -68,3 +69,4 @@ public class MessageDTO {
         this.readTime = readTime;
     }
 }
+

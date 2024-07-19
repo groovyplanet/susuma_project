@@ -1,4 +1,4 @@
-package com.util.mybatis;
+package com.susuma.util.mybatis;
 
 import java.io.InputStream;
 
@@ -18,10 +18,8 @@ public class MybatisUtil {
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
-			System.out.println("sqlSessionFactory :" + sqlSessionFactory);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("sqlSessionFactory Error");
 		}
 	}
 	

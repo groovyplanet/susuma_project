@@ -9,27 +9,53 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.susuma.board.model.BoardDTO;
 import com.susuma.board.model.BoardMapper;
-import com.util.mybatis.MybatisUtil;
+import com.susuma.member.model.MemberDTO;
+import com.susuma.member.model.MemberMapper;
+import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class BoardServiceImpl implements BoardService {
-	
+
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
-	
+
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String type = request.getParameter("type");
 		
 		SqlSession sql = sqlSessionFactory.openSession();
+
 		BoardMapper board = sql.getMapper(BoardMapper.class);
-		ArrayList<BoardDTO> list = board.getList();
-		sql.close(); 
-		
+		ArrayList<BoardDTO> list = board.getList(type);
+		sql.close();
+
+		request.setAttribute("snbCurrent", type);
+		request.setAttribute("type", type);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("board_list.jsp").forward(request, response);
-		
+
 	}
-	
+
+	@Override
+	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String type = request.getParameter("type");
+		String boNo = request.getParameter("boNo");
+
+		SqlSession sql = sqlSessionFactory.openSession();
+
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		BoardDTO dto = board.getView(boNo);
+		sql.close();
+
+		request.setAttribute("snbCurrent", type);
+		request.setAttribute("type", type);
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("board_view.jsp").forward(request, response);
+
+	}
+
 }
