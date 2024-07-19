@@ -68,25 +68,29 @@
 			</li>
 			<li>
 				<a href="${pageContext.request.contextPath }/user/mypage.jsp" class="btn btn-join">
-					의뢰인<i class="bi bi-chevron-right"></i>
+					의뢰인
+					<i class="bi bi-chevron-right"></i>
 				</a>
 			</li>
 			<li>
 				<a href="${pageContext.request.contextPath }/master/mypage.jsp" class="btn btn-join">
-					수리기사<i class="bi bi-chevron-right"></i>
+					수리기사
+					<i class="bi bi-chevron-right"></i>
 				</a>
 			</li>
 			<li>
 				<button id="btn-login-modal" class="btn btn-login">로그인</button>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath }/admin/" class="btn btn-join">
-					관리자<i class="bi bi-chevron-right"></i>
-				</a>
+				<a href="${pageContext.request.contextPath }/admin/" class="btn"> 관리자 </a>
+			</li>
+			<li>
+				<a href="${pageContext.request.contextPath }/index.html" class="btn"> html </a>
 			</li>
 			<li>
 				<a href="${pageContext.request.contextPath }/member/join.jsp" class="btn btn-join">
-					회원가입<i class="bi bi-chevron-right"></i>
+					회원가입
+					<i class="bi bi-chevron-right"></i>
 				</a>
 			</li>
 		</ul>
@@ -105,7 +109,7 @@
 						<input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
 					</div>
 					<div class="input-area">
-						<input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
+						<input type="password" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
 					</div>
 					<div class="sub-area">
 						<div class="save-area">
