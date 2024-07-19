@@ -1,65 +1,33 @@
 package com.susuma.controller;
 
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
-import org.apache.catalina.mapper.Mapper;
+import com.susuma.message.service.MessageService;
+import com.susuma.message.service.MessageServiceImpl;
+import com.susuma.message.model.MessageDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
+import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/chat")
 public class MessageController extends HttpServlet {
-//    private DatabaseManager dbManager = new DatabaseManager();
-//    private ObjectMapper mapper = new ObjectMapper();
+    private MessageService messageService = new MessageServiceImpl();
+    private ObjectMapper mapper = new ObjectMapper();
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
-    	doAction(request, response);
-//    	try {
-//            List<Message> messages = dbManager.getMessages();
-//            String json = Mapper.writeValueAsString(messages);
-//            response.setContentType("application/json");
-//            response.getWriter().write(json);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        }
-        
+        List<MessageDTO> messages = messageService.getMessages();
+        String json = mapper.writeValueAsString(messages);
+        response.setContentType("application/json");
+        response.getWriter().write(json);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	doAction(request, response);
-//        try {
-//            int masterNo = Integer.parseInt(request.getParameter("masterNo"));
-//            int clientNo = Integer.parseInt(request.getParameter("clientNo"));
-//            String messageText = request.getParameter("messageText");
-//            dbManager.addMessage(masterNo, clientNo, messageText);
-//            response.setStatus(HttpServletResponse.SC_OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        }
-        
+        int masterNo = Integer.parseInt(request.getParameter("masterNo"));
+        int clientNo = Integer.parseInt(request.getParameter("clientNo"));
+        String messageText = request.getParameter("messageText");
+        messageService.addMessage(masterNo, clientNo, messageText);
+        response.setStatus(HttpServletResponse.SC_OK);
     }
-    
-    protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	String name = request.getParameter("name");
-    	String age = request.getParameter("age");
-    	System.out.println(name);
-    	System.out.println(age);
-    	
-    	//....
-    	response.setContentType("application/json");
-    	PrintWriter out = response.getWriter();
-    	
-    	out.println("{\"key\" : \"value\"}");
-    }
-    
 }
