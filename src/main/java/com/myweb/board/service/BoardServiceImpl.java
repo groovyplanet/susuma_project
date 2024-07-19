@@ -25,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		BoardMapper board = sql.getMapper(BoardMapper.class);
 		ArrayList<BoardDTO> list = board.getList();
-		sql.close();
+		sql.close(); 
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("board_list.jsp").forward(request, response);
