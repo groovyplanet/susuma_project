@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 
 public class MessageDTO {
     private int msgNo;
-    private int masterNo;
-    private int clientNo;
+    private int sendMeNo;
+    private int getMeNo;
     private String message;
     private char read;
     private Timestamp sendTime;
@@ -20,20 +20,20 @@ public class MessageDTO {
         this.msgNo = msgNo;
     }
 
-    public int getMasterNo() {
-        return masterNo;
+    public int getSendMeNo() {
+        return sendMeNo;
     }
 
-    public void setMasterNo(int masterNo) {
-        this.masterNo = masterNo;
+    public void setSendMeNo(int sendMeNo) {
+        this.sendMeNo = sendMeNo;
     }
 
-    public int getClientNo() {
-        return clientNo;
+    public int getGetMeNo() {
+        return getMeNo;
     }
 
-    public void setClientNo(int clientNo) {
-        this.clientNo = clientNo;
+    public void setGetMeNo(int getMeNo) {
+        this.getMeNo = getMeNo;
     }
 
     public String getMessage() {
