@@ -1,4 +1,4 @@
-package com.myweb.util.mybatis;
+package com.util.mybatis;
 
 import java.io.InputStream;
 
