@@ -4,7 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.susuma.message.model.MessageMapper">
-	<select id="getList" resultType="com.susuma.message.model.MessageDTO">
-		SELECT * FROM MESSAGE ORDER BY MSG_NO ASC
+	<select id="getMessages" resultType="com.susuma.message.model.MessageDTO">
+		SELECT * FROM MESSAGE ORDER BY msg_no ASC
 	</select>
+	
+	<insert id="sendMessage" parameterType="com.susuma.message.model.MessageDTO">
+		INSERT INTO MESSAGE(msg_no, send_me_no, get_me_no, message)
+		VALUES( MESSAGE_SEQ.NEXTVAL, #{sendMeNo}, #{getMeNo}, #{message} )
+	</insert>
+	
 </mapper>
