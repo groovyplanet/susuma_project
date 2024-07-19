@@ -1,9 +1,9 @@
-package com.myweb.controller;
+package com.susuma.controller;
 
 import java.io.IOException;
 
-import com.myweb.board.service.BoardService;
-import com.myweb.board.service.BoardServiceImpl;
+import com.susuma.board.service.BoardService;
+import com.susuma.board.service.BoardServiceImpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -3,8 +3,8 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.board.model.BoardMapper">
-	<select id="getList" resultType="com.board.model.BoardDTO">
-		SELECT * FROM BOARD ORDER BY BO_NO ASC
+<mapper namespace="com.member.model.MemberMapper">
+	<select id="getList" resultType="com.member.model.MemberDTO">
+		SELECT * FROM MEMBER ORDER BY ME_NO ASC
 	</select>
 </mapper>
