@@ -6,24 +6,23 @@
 	<ul>
 		<li>
 			<!-- active 클래스 제어 -->
-			<a href="profile_edit.html" class="active">회원정보 수정</a>
+			<a href="${pageContext.request.contextPath }/profile_edit.jsp" class="active">회원정보 수정</a>
 		</li>
 		<li>
-			<a href="reserve_manage_list.html">예약 관리</a>
+			<a href="${pageContext.request.contextPath }/reserve_manage_list.jsp">예약 관리</a>
 		</li>
 		<li>
-			<a href="repair_list.html">수리 내역</a>
+			<a href="${pageContext.request.contextPath }/repair_list.jsp">수리 내역</a>
 		</li>
 		<li>
-			<a href="review_list.html">후기 내역</a>
+			<a href="${pageContext.request.contextPath }/review_list.jsp">후기 내역</a>
 		</li>
 		<li>
-			<a href="message_list.html">문의 내역</a>
+			<a href="${pageContext.request.contextPath }/message_list.jsp">문의 내역</a>
 		</li>
 		<li>
-			<a href="point.html">포인트</a>
+			<a href="${pageContext.request.contextPath }/point.jsp">포인트</a>
 		</li>
-
 	</ul>
 </nav>
 <!-- //sidebar -->
