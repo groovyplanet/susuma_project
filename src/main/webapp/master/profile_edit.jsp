@@ -16,7 +16,7 @@
 						<input type="hidden" name="me_no" value="">
 						<input type="hidden" name="type" value="master">
 						<div class="img-profile-area">
-							<label for="profile_photo" class="label-profile_photo"> <img id="img-profile" class="img-profile" src="../resources/img/iconProfileDefault.png" alt="Profile Image"> <span class="img-profile-overlay">프로필 변경</span> <img src="../resources/img/icon-edit.png" alt="수정 아이콘" class="icon">
+							<label for="profile_photo" class="label-profile_photo"> <img id="img-profile" class="img-profile" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Image"> <span class="img-profile-overlay">프로필 변경</span> <img src="${pageContext.request.contextPath }/resources/img/icon-edit.png" alt="수정 아이콘" class="icon">
 							</label>
 							<input type="file" class="input-file" id="profile_photo" name="profile_photo" onchange="readURL(this);" style="display: none;">
 						</div>
@@ -251,7 +251,7 @@
 								<button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
 							</div>
 							<button type="button" class="btn-close-modal">
-								<img src="../resources/img/iconClose.png" alt="닫기 버튼">
+								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
 							</button>
 						</div>
 					</div>
@@ -280,7 +280,7 @@
 								</form>
 							</div>
 							<button type="button" class="btn-close-modal">
-								<img src="../resources/img/iconClose.png" alt="닫기 버튼">
+								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
 							</button>
 						</div>
 					</div>

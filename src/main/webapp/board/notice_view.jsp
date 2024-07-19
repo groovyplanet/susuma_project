@@ -50,7 +50,7 @@
 					<div class="content-move-list">
 
 
-						<a href="${pageContext.request.contextPath }/board/notice_list.html" class="wpqkf">목록보기</a>
+						<a href="${pageContext.request.contextPath }/board/notice_list.jsp" class="wpqkf">목록보기</a>
 
 					</div>
 				</div>

@@ -215,8 +215,9 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 					}
 				});
 		window.onclick = function(event) {
+			var modal = document.getElementById('payModal');
 			if (event.target == modal) {
-				modal.style.display = "none";
+				modal.classList.remove("show");
 			}
 		}
 	</script>

@@ -18,13 +18,13 @@
 
 
 
-				<a href="repair_view.html">
+				<a href="repair_view.jsp">
 					<div class="repair-schecdule">
-						<img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+						<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 				</a>
 
 				<div class="info">
-					<a href="repair_view.html">
+					<a href="repair_view.jsp">
 						<div class="repair_date">2024.07.12</div>
 						<div class="name">
 							박서희 <span class="address"> 강남구 </span>
@@ -35,13 +35,13 @@
 				</div>
 			</div>
 
-			<a href="repair_view.html">
+			<a href="repair_view.jsp">
 				<div class="repair-schecdule">
-					<img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+					<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 			</a>
 
 			<div class="info">
-				<a href="repair_view.html">
+				<a href="repair_view.jsp">
 					<div class="repair_date">2024.07.12</div>
 					<div class="name">
 						박서희 <span class="address"> 강남구 </span>
@@ -51,13 +51,13 @@
 				</a>
 			</div>
 		</div>
-		<a href="repair_view.html">
+		<a href="repair_view.jsp">
 			<div class="repair-schecdule">
-				<img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+				<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 		</a>
 
 		<div class="info">
-			<a href="repair_view.html">
+			<a href="repair_view.jsp">
 				<div class="repair_date">2024.07.12</div>
 				<div class="name">
 					박서희 <span class="address"> 강남구 </span>
@@ -67,13 +67,13 @@
 			</a>
 		</div>
 		</div>
-		<a href="repair_view.html">
+		<a href="repair_view.jsp">
 			<div class="repair-schecdule">
-				<img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+				<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 		</a>
 
 		<div class="info">
-			<a href="repair_view.html">
+			<a href="repair_view.jsp">
 				<div class="repair_date">2024.07.12</div>
 				<div class="name">
 					박서희 <span class="address"> 강남구 </span>
@@ -83,13 +83,13 @@
 			</a>
 		</div>
 		</div>
-		<a href="repair_view.html">
+		<a href="repair_view.jsp">
 			<div class="repair-schecdule">
-				<img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+				<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 		</a>
 
 		<div class="info">
-			<a href="repair_view.html">
+			<a href="repair_view.jsp">
 				<div class="repair_date">2024.07.12</div>
 				<div class="name">
 					박서희 <span class="address"> 강남구 </span>
@@ -110,7 +110,7 @@
 				<div class="content">
 					<div class="edit-form">
 						<div class="profile-img">
-							<img src="../resources/img/iconProfileDefault.png" alt="Profile Image">
+							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Image">
 							<span class="profile-pic-upload"> <svg width="32" height="32" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                             <g clip-path="url(#icon_camera_light_svg__a)" fill="#121619">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
