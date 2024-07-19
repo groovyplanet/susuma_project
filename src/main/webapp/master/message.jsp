@@ -182,7 +182,7 @@ $(document).ready(function() {
 
         function fetchMessages() {
             $.ajax({
-                url: '/Susuma/master/messages', // 서버에서 정의된 실제 URL 확인 필요
+                url: 'http://localhost:8181/Susuma/master/messages', // 서버에서 정의된 실제 URL 확인 필요
                 type: 'GET',
                 success: function(data) {
                     const chatBox = $('#chat-box');

@@ -14,7 +14,7 @@
 //     })
 
 // });
-
+/*
 window.onload = function () {
     // 로그인 버튼 클릭 시 모달 띄우기
     document.getElementById('btn-login-modal').addEventListener('click', function () {
@@ -45,4 +45,50 @@ window.onload = function () {
         alarmList.style.display = (window.getComputedStyle(alarmList).getPropertyValue('display') == 'none') ? 'block' : 'none';
     });
 
-}
+}*/
+document.addEventListener('DOMContentLoaded', function() {
+    // 로그인 버튼 클릭 시 모달 띄우기
+    const loginButton = document.getElementById('btn-login-modal');
+    const loginModal = document.getElementById('login-modal');
+    
+    if (loginButton && loginModal) {
+        loginButton.addEventListener('click', function() {
+            loginModal.classList.add('show');
+        });
+
+        // 로그인 모달 배경 클릭 시 모달 닫기
+        loginModal.addEventListener('click', function(event) {
+            if (!event.target.closest('.container')) {
+                loginModal.classList.remove('show');
+            }
+        });
+    }
+
+    // 모달 닫기 버튼 클릭 시 모달 닫기(공통)
+    const closeButtons = document.querySelectorAll(".btn-close-modal");
+    closeButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            const modals = document.querySelectorAll(".modal");
+            modals.forEach(function(modal) {
+                modal.classList.remove("show");
+            });
+        });
+    });
+
+    const myElement = document.getElementById('myElementId');
+    if (myElement) {
+        myElement.addEventListener('click', function() {
+            // 클릭 시 실행할 코드
+        });
+    }
+
+    // 알림 버튼 클릭 시
+    const alarmButton = document.getElementById('btn-alarm-list');
+    const alarmList = document.getElementById('alram-list');
+
+    if (alarmButton && alarmList) {
+        alarmButton.addEventListener('click', function() {
+            alarmList.style.display = (window.getComputedStyle(alarmList).getPropertyValue('display') === 'none') ? 'block' : 'none';
+        });
+    }
+});

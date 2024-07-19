@@ -6,11 +6,14 @@ import com.susuma.message.model.MessageDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
+@WebServlet("/Susuma/master/messages")
 public class MessageController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private MessageService messageService = new MessageServiceImpl();
     private ObjectMapper mapper = new ObjectMapper();
 
