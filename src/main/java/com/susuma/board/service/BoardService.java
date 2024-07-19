@@ -1,4 +1,4 @@
-package com.myweb.board.service;
+package com.susuma.board.service;
 
 import java.io.IOException;
 

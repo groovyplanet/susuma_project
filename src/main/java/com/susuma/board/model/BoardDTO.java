@@ -1,4 +1,4 @@
-package com.myweb.board.model;
+package com.susuma.board.model;
 
 import java.sql.Timestamp;
 
