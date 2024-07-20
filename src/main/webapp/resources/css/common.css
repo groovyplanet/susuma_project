@@ -33,6 +33,8 @@ header .gnb ul.login-area li .btn:hover { background-color: #f3f3f3; transition:
 header .gnb ul.login-area li .btn.btn-join { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 0 15px; padding-right: 10px; line-height: 32px; } 
 header .gnb ul.login-area li .btn.btn-join:hover { background-color: #F5AF26; border: 1px solid #F5AF26; } 
 header .gnb ul.login-area li .btn.btn-join i { margin-left: 2px; } 
+header .gnb ul.login-area li .btn.btn-temp { background-color: #36454F; color: white; border: 1px solid #36454F; } 
+header .gnb ul.login-area li .btn.btn-temp:hover { background-color: #37555F; border: 1px solid #37555F; } 
 header .gnb ul.login-area li.li-icon { cursor: default; } 
 header .gnb ul.login-area li.li-icon .icon-area { position: relative; padding: 6px; border-radius: 50%; margin-right: 3px; cursor: pointer; } 
 header .gnb ul.login-area li.li-icon .icon-area:hover { background-color: #eee; transition: all 0.5s; } 
@@ -53,7 +55,7 @@ header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .message { f
 
 /* modal */
 .modal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 100; } 
-.modal.show { display: flex !important; z-index: 100; }     
+.modal.show { display: flex !important; z-index: 100; } 
 .modal .container { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; } 
 .modal .container .logo-area { text-align: center; } 
 .modal .container .logo-area img { width: 110px; } 
