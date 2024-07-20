@@ -57,5 +57,32 @@ public class BoardServiceImpl implements BoardService {
 		request.getRequestDispatcher("board_view.jsp").forward(request, response);
 
 	}
+	
+	@Override
+	public void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String title = request.getParameter("subject");
+		String content =request.getParameter("content");
+		String type = "notice";
+		int meNo = 1;
+		
+		BoardDTO dto = new BoardDTO();
+		dto.setContent(content);
+		dto.setTitle(title);
+		dto.setMeNo(meNo);
+		dto.setType(type);
+		
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		int result = board.regist(dto);
+		sql.close();
+		
+		request.setAttribute("snbCurrent", type);
+		request.setAttribute("type", type);
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("board_view.jsp").forward(request, response);
+		
+		
+	}
 
 }

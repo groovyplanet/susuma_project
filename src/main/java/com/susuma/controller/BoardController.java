@@ -37,7 +37,7 @@ public class BoardController extends HttpServlet {
 		String uri = request.getRequestURI(); //ip, port번호 제외된 주소
 		String path = request.getContextPath(); //프로젝트 식별 이름
 		String command = uri.substring( path.length() );
-		
+//		System.out.println(command);
 		BoardService service;
 
 		if (command.equals("/admin/board/list.board")) {
@@ -50,6 +50,9 @@ public class BoardController extends HttpServlet {
 			service = new BoardServiceImpl();
 			service.getView(request, response);
 
+		}else if (command.equals("/admin/board/registForm.board")) {
+			service = new BoardServiceImpl();
+			service.regist(request, response);
 		}
 
 	

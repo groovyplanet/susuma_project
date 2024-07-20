@@ -25,7 +25,7 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public List<MessageDTO> getMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SqlSession sql = sqlSessionFactory.openSession();
-		MessageMapper Message = sql.getMapper(MessageMapper.class);
+		MessageMapper Message = sql.getMapper(MessageMapper.class); 
 		ArrayList<MessageDTO> list = Message.getMessages();
 		sql.close();
 		return list;

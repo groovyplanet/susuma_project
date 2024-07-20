@@ -6,4 +6,6 @@ public interface BoardMapper {
 	public ArrayList<BoardDTO> getList(String type);
 
 	public BoardDTO getView(String boNo);
+	
+	public int regist(BoardDTO dto);
 }
