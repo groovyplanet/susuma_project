@@ -10,6 +10,12 @@
 		</div>
 		<ul class="login-area">
 			<li>
+				<a href="${pageContext.request.contextPath }/" class="btn btn-join">
+					사용자
+					<i class="bi bi-chevron-right"></i>
+				</a>
+			</li>
+			<li>
 				<a href="#" class="btn">관리자 로그아웃</a>
 			</li>
 		</ul>
