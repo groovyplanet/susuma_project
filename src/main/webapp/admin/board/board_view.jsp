@@ -10,7 +10,7 @@
 
 	<section class="main-section">
 		<div class="container">
-			<%@ include file="../include/snb.jsp"%>  
+			<%@ include file="../include/snb.jsp"%>   
 			<div class="content-wrap">
 				<div class="table-wrap">
 					<table class="table-type-view">

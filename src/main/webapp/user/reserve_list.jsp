@@ -160,19 +160,28 @@
 			<div class="content reservation-setting">
 
 				<h4 class="reserve-list-title">예약 내역</h4>
+				
 				<br>
+				
+				<c:forEach var="dto" items=${list }>
+				
+				
+								
 				<div class="reserve-schecdule">
 					<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 					<div class="info">
-						<div class="repair_date">2024.07.12</div>
+						<div class="repair_date">${dto.date }</div>
 						<div class="master_name">
-							김현용 <span class="address"> 잠실 </span>
+							김현용 <span class="address">주소 </span>
 						</div>
 						<div class="repair_type">[CSS 수리]</div>
-						<div class="explain">이러쿵 저러쿵 이런거 저런거 도와주세요</div>
+						<div class="explain">${dto.content }</div>
 					</div>
 					<button class="btn approve" id="wait">결제 요청</button>
 				</div>
+				</c:forEach>
+
+<!-- 				
 				<div class="reserve-schecdule">
 					<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 					<div class="info">
@@ -185,7 +194,7 @@
 					</div>
 					<button class="btn complete" id="complete">결제 완료</button>
 				</div>
-
+ -->
 				<button class="repair-more">더보기</button>
 			</div>
 		</div>
