@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/head.jsp"%>
 <style>
 /* 버튼 스타일 */
@@ -163,7 +163,7 @@
 				
 				<br>
 				
-				<c:forEach var="dto" items=${list }>
+				<c:forEach var="dto" items="${list }">
 				
 				
 								
@@ -172,7 +172,7 @@
 					<div class="info">
 						<div class="repair_date">${dto.date }</div>
 						<div class="master_name">
-							김현용 <span class="address">주소 </span>
+							김현용 <span class="address"> 강동구 </span>
 						</div>
 						<div class="repair_type">[CSS 수리]</div>
 						<div class="explain">${dto.content }</div>

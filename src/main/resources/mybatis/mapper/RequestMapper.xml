@@ -3,12 +3,13 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.susuma.board.model.BoardMapper">
+<mapper namespace="com.susuma.request.model.RequestMapper">
 	
 	<select id="getList" resultType="com.susuma.request.model.RequestDTO">
 	
-		SELECT * FROM REQUEST
+		SELECT * FROM REQUEST ORDER BY REQ_NO
 	
 	</select>
+	
 	
 </mapper>
