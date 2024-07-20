@@ -29,7 +29,7 @@
 						<div class="input-area">
 							<label for="pw" class="required">비밀번호</label>
 							<input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no" name="pw" id="pw" required>
-							<input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요." autocomplete="no" name="pw_re" id="pw_re" class="pw_re" required>
+           					<input type="password" class="input-field" placeholder="비밀번호를 다시 한번 입력해주세요." autocomplete="no" name="pw_re" id="pw_re" required>
 							<p class="caption-error">영문+숫자 조합 8자리 이상 입력해주세요.</p>
 							<p class="caption-error-re">비밀번호가 일치하지 않습니다.</p>
 						</div>
