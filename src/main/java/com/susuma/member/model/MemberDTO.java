@@ -1,246 +1,141 @@
 package com.susuma.member.model;
 
-import java.sql.Timestamp;
-
 public class MemberDTO {
+    private String email;
+    private String password;
+    private String name;
+    private String phoneNum;
+    private String address;
+    private String addressDetail;
+    private String latitude;
+    private String longitude;
+    private String businessNum;
+    private String[] categories; // 수리 분야
+    private String[] workHours; // 근무 가능 시간
+    private String shortDescription;
+    private String maxDistance;
+    private String emailNotification;
+    private String termsAgreement; // 'Y' or 'N'
 
-	private int meNo;
-	private String email;
-	private String pw;
-	private String address;
-	private String addressDetail;
-	private String zipcode;
-	private String phoneNum;
-	private char emailNotification;
-	private String profilePhoto;
-	private String type;
-	private String status;
-	private String latitude;
-	private String kyungdo;
-	private char joinApproval;
-	private Timestamp joinApprovalTime;
-	private String businessNumber;
-	private String shortDescription;
-	private int maxDistance;
-	private String description;
-	private int point;
-	private String workHours;
-	private Timestamp insertTime;
-	private Timestamp updateTime;
+    
 
-	public MemberDTO() {
-		super();
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public MemberDTO(int meNo, String email, String pw, String address, String addressDetail, String zipcode, String phoneNum, char emailNotification, String profilePhoto, String type, String status, String latitude, String kyungdo, char joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, int point, String workHours, Timestamp insertTime, Timestamp updateTime) {
-		super();
-		this.meNo = meNo;
-		this.email = email;
-		this.pw = pw;
-		this.address = address;
-		this.addressDetail = addressDetail;
-		this.zipcode = zipcode;
-		this.phoneNum = phoneNum;
-		this.emailNotification = emailNotification;
-		this.profilePhoto = profilePhoto;
-		this.type = type;
-		this.status = status;
-		this.latitude = latitude;
-		this.kyungdo = kyungdo;
-		this.joinApproval = joinApproval;
-		this.joinApprovalTime = joinApprovalTime;
-		this.businessNumber = businessNumber;
-		this.shortDescription = shortDescription;
-		this.maxDistance = maxDistance;
-		this.description = description;
-		this.point = point;
-		this.workHours = workHours;
-		this.insertTime = insertTime;
-		this.updateTime = updateTime;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public int getMeNo() {
-		return meNo;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setMeNo(int meNo) {
-		this.meNo = meNo;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPw() {
-		return pw;
-	}
+    public String getPhoneNum() {
+        return phoneNum;
+    }
 
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getAddressDetail() {
-		return addressDetail;
-	}
+    public String getAddressDetail() {
+        return addressDetail;
+    }
 
-	public void setAddressDetail(String addressDetail) {
-		this.addressDetail = addressDetail;
-	}
+    public void setAddressDetail(String addressDetail) {
+        this.addressDetail = addressDetail;
+    }
 
-	public String getZipcode() {
-		return zipcode;
-	}
+    public String getLatitude() {
+        return latitude;
+    }
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 
-	public String getPhoneNum() {
-		return phoneNum;
-	}
+    public String getLongitude() {
+        return longitude;
+    }
 
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
-	public char getEmailNotification() {
-		return emailNotification;
-	}
+    public String getBusinessNum() {
+        return businessNum;
+    }
 
-	public void setEmailNotification(char emailNotification) {
-		this.emailNotification = emailNotification;
-	}
+    public void setBusinessNum(String businessNum) {
+        this.businessNum = businessNum;
+    }
 
-	public String getProfilePhoto() {
-		return profilePhoto;
-	}
+    public String[] getCategories() {
+        return categories;
+    }
 
-	public void setProfilePhoto(String profilePhoto) {
-		this.profilePhoto = profilePhoto;
-	}
+    public void setCategories(String[] categories) {
+        this.categories = categories;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String[] getWorkHours() {
+        return workHours;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setWorkHours(String[] workHours) {
+        this.workHours = workHours;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getShortDescription() {
+        return shortDescription;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
 
-	public String getLatitude() {
-		return latitude;
-	}
+    public String getMaxDistance() {
+        return maxDistance;
+    }
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
+    public void setMaxDistance(String maxDistance) {
+        this.maxDistance = maxDistance;
+    }
 
-	public String getKyungdo() {
-		return kyungdo;
-	}
+    public String getEmailNotification() {
+        return emailNotification;
+    }
 
-	public void setKyungdo(String kyungdo) {
-		this.kyungdo = kyungdo;
-	}
+    public void setEmailNotification(String emailNotification) {
+        this.emailNotification = emailNotification;
+    }
 
-	public char getJoinApproval() {
-		return joinApproval;
-	}
+    public String getTermsAgreement() {
+        return termsAgreement;
+    }
 
-	public void setJoinApproval(char joinApproval) {
-		this.joinApproval = joinApproval;
-	}
-
-	public Timestamp getJoinApprovalTime() {
-		return joinApprovalTime;
-	}
-
-	public void setJoinApprovalTime(Timestamp joinApprovalTime) {
-		this.joinApprovalTime = joinApprovalTime;
-	}
-
-	public String getBusinessNumber() {
-		return businessNumber;
-	}
-
-	public void setBusinessNumber(String businessNumber) {
-		this.businessNumber = businessNumber;
-	}
-
-	public String getShortDescription() {
-		return shortDescription;
-	}
-
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
-	}
-
-	public int getMaxDistance() {
-		return maxDistance;
-	}
-
-	public void setMaxDistance(int maxDistance) {
-		this.maxDistance = maxDistance;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
-	public String getWorkHours() {
-		return workHours;
-	}
-
-	public void setWorkHours(String workHours) {
-		this.workHours = workHours;
-	}
-
-	public Timestamp getInsertTime() {
-		return insertTime;
-	}
-
-	public void setInsertTime(Timestamp insertTime) {
-		this.insertTime = insertTime;
-	}
-
-	public Timestamp getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Timestamp updateTime) {
-		this.updateTime = updateTime;
-	}
-
+    public void setTermsAgreement(String termsAgreement) {
+        this.termsAgreement = termsAgreement;
+    }
 }
