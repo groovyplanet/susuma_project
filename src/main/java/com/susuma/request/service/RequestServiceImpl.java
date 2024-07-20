@@ -22,20 +22,22 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class RequestServiceImpl implements RequestService{
 
-	private SqlSessionFactory sqlSeeFactory = MybatisUtil.getSqlSessionFactory();
+	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 	
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		SqlSession sql = sqlSeeFactory.openSession();
-		
-		RequestMapper Request  = sql.getMapper(RequestMapper.class);
-		
-		ArrayList<RequestDTO> list = Request.getList();
-		
+
+		SqlSession sql = sqlSessionFactory.openSession();
+		RequestMapper relist = sql.getMapper(RequestMapper.class);
+		ArrayList<RequestDTO> list = relist.getList();
+
 		sql.close();
 		
 		request.setAttribute("list", list);
+		request.getRequestDispatcher("reserve_list.jsp").forward(request, response);
+		
+		
 		
 	
 		
