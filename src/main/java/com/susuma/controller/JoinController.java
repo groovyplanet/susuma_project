@@ -2,9 +2,7 @@ package com.susuma.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.sql.Timestamp;
 
 import com.susuma.member.model.MemberDAO;
 import com.susuma.member.model.MemberDTO;
@@ -31,33 +29,45 @@ public class JoinController extends HttpServlet {
 
         // 폼 파라미터 받기
         String email = request.getParameter("email");
-        String password = request.getParameter("pw");
+        String pw = request.getParameter("pw");
         String name = request.getParameter("name");
         String phoneNum = request.getParameter("phone_num");
         String address = request.getParameter("address");
-        String latitude = request.getParameter("latitude");
-        String longitude = request.getParameter("longitude");
-        String businessNum = request.getParameter("business_num");
-        String workHours = request.getParameter("work_hours"); // 이 필드는 JSP에서 사용하지 않지만, 추가적으로 필요한 경우를 대비해 남겨둡니다.
-        String maxDistance = request.getParameter("max_distance");
+        String addressDetail = request.getParameter("address_detail");
+        String latitudeStr = request.getParameter("latitude");
+        String longitudeStr = request.getParameter("longitude");
+        String businessNumber = request.getParameter("business_number");
         String shortDescription = request.getParameter("short_description");
+        String maxDistanceStr = request.getParameter("max_distance");
+        String description = request.getParameter("description");
+        String workHours = request.getParameter("work_hours");
         String emailNotification = request.getParameter("email_notification");
-        String termsAgreement = request.getParameter("check-terms-all"); // JSP에서는 이 값이 `check-terms-all`으로 설정되어 있습니다.
+        String status = request.getParameter("status");
+
+        // 데이터 변환
+        Double latitude = latitudeStr != null ? Double.valueOf(latitudeStr) : null;
+        Double longitude = longitudeStr != null ? Double.valueOf(longitudeStr) : null;
+        int maxDistance = maxDistanceStr != null ? Integer.parseInt(maxDistanceStr) : 0;
 
         // DTO 객체 생성 및 데이터 설정
         MemberDTO member = new MemberDTO();
         member.setEmail(email);
-        member.setPassword(password);
+        member.setPw(pw);
         member.setName(name);
         member.setPhoneNum(phoneNum);
         member.setAddress(address);
+        member.setAddressDetail(addressDetail);
         member.setLatitude(latitude);
         member.setLongitude(longitude);
-        member.setBusinessNum(businessNum);
-        member.setMaxDistance(maxDistance);
+        member.setBusinessNumber(businessNumber);
         member.setShortDescription(shortDescription);
-        member.setEmailNotification(emailNotification != null ? "Y" : "N"); // 체크박스는 null이거나 "Y"로 설정됩니다.
-        member.setTermsAgreement(termsAgreement != null ? "Y" : "N"); // 전체 동의는 `check-terms-all`로 설정됨
+        member.setMaxDistance(maxDistance);
+        member.setDescription(description);
+        member.setWorkHours(workHours);
+        member.setEmailNotification(emailNotification);
+        member.setStatus(status);
+        member.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간으로 설정
+        member.setUpdateTime(new Timestamp(System.currentTimeMillis())); // 현재 시간으로 설정
 
         // 회원 가입 처리
         try {
