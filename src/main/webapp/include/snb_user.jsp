@@ -9,7 +9,7 @@
 			<a href="${pageContext.request.contextPath }/user/profile_edit.jsp" class="active">회원정보 수정</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath }/user/reserve_list.jsp">예약 내역</a>
+			<a href="${pageContext.request.contextPath }/user/request/list.request">예약 내역</a>
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath }/user/review_list.jsp">후기 내역</a>
