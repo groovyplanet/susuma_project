@@ -26,14 +26,18 @@ public class RequestController extends HttpServlet{
 	
 	 @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// TODO Auto-generated method stub
 		 doAction(req, resp);
+
 	}
 	
 	 @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// TODO Auto-generated method stub
 		 doAction(req, resp);
+
 	}
 	 
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

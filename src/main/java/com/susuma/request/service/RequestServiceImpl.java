@@ -27,9 +27,11 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+
 		SqlSession sql = sqlSessionFactory.openSession();
 		RequestMapper relist = sql.getMapper(RequestMapper.class);
 		ArrayList<RequestDTO> list = relist.getList();
+
 		sql.close();
 		
 		request.setAttribute("list", list);
