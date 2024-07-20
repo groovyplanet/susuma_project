@@ -4,57 +4,57 @@ import java.sql.Timestamp;
 
 public class MemberDTO {
 
-	private int meNo;
-	private String email;
-	private String pw;
-	private String address;
-	private String addressDetail;
-	private String zipcode;
-	private String phoneNum;
-	private char emailNotification;
-	private String profilePhoto;
-	private String type;
-	private String status;
-	private String latitude;
-	private String kyungdo;
-	private char joinApproval;
-	private Timestamp joinApprovalTime;
-	private String businessNumber;
-	private String shortDescription;
-	private int maxDistance;
-	private String description;
-	private int point;
-	private String workHours;
-	private Timestamp insertTime;
-	private Timestamp updateTime;
+	private int meNo; // "ME_NO"
+	private String type; // "TYPE"
+	private String email; // "EMAIL"
+	private String pw; // "PW"
+	private String name; // "NAME"
+	private String address; // "ADDRESS"
+	private String addressDetail; // "ADDRESS_DETAIL"
+	private Double latitude; // "LATITUDE"
+	private Double longitude; // "LONGITUDE"
+	private String phoneNum; // "PHONE_NUM"
+	private String emailNotification; // "EMAIL_NOTIFICATION"
+	private String profilePhoto; // "PROFILE_PHOTO"
+	private String joinApproval; // "JOIN_APPROVAL"
+	private Timestamp joinApprovalTime; // "JOIN_APPROVAL_TIME"
+	private String businessNumber; // "BUSINESS_NUMBER"
+	private String shortDescription; // "SHORT_DESCRIPTION"
+	private int maxDistance; // "MAX_DISTANCE"
+	private String description; // "DESCRIPTION"
+	private String workHours; // "WORK_HOURS"
+	private int point; // "POINT"
+	private String status; // "STATUS"
+	private Timestamp insertTime; // "INSERT_TIME"
+	private Timestamp updateTime; // "UPDATE_TIME"
 
+	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
-		super();
 	}
 
-	public MemberDTO(int meNo, String email, String pw, String address, String addressDetail, String zipcode, String phoneNum, char emailNotification, String profilePhoto, String type, String status, String latitude, String kyungdo, char joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, int point, String workHours, Timestamp insertTime, Timestamp updateTime) {
-		super();
+	// 모든 필드를 포함하는 생성자
+	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime) {
 		this.meNo = meNo;
+		this.type = type;
 		this.email = email;
 		this.pw = pw;
+		this.name = name;
 		this.address = address;
 		this.addressDetail = addressDetail;
-		this.zipcode = zipcode;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.phoneNum = phoneNum;
 		this.emailNotification = emailNotification;
 		this.profilePhoto = profilePhoto;
-		this.type = type;
-		this.status = status;
-		this.latitude = latitude;
-		this.kyungdo = kyungdo;
 		this.joinApproval = joinApproval;
 		this.joinApprovalTime = joinApprovalTime;
 		this.businessNumber = businessNumber;
 		this.shortDescription = shortDescription;
 		this.maxDistance = maxDistance;
 		this.description = description;
-		this.point = point;
 		this.workHours = workHours;
+		this.point = point;
+		this.status = status;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
 	}
@@ -65,6 +65,14 @@ public class MemberDTO {
 
 	public void setMeNo(int meNo) {
 		this.meNo = meNo;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getEmail() {
@@ -83,6 +91,14 @@ public class MemberDTO {
 		this.pw = pw;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -99,12 +115,20 @@ public class MemberDTO {
 		this.addressDetail = addressDetail;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public Double getLatitude() {
+		return latitude;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 	public String getPhoneNum() {
@@ -115,11 +139,11 @@ public class MemberDTO {
 		this.phoneNum = phoneNum;
 	}
 
-	public char getEmailNotification() {
+	public String getEmailNotification() {
 		return emailNotification;
 	}
 
-	public void setEmailNotification(char emailNotification) {
+	public void setEmailNotification(String emailNotification) {
 		this.emailNotification = emailNotification;
 	}
 
@@ -131,43 +155,11 @@ public class MemberDTO {
 		this.profilePhoto = profilePhoto;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getKyungdo() {
-		return kyungdo;
-	}
-
-	public void setKyungdo(String kyungdo) {
-		this.kyungdo = kyungdo;
-	}
-
-	public char getJoinApproval() {
+	public String getJoinApproval() {
 		return joinApproval;
 	}
 
-	public void setJoinApproval(char joinApproval) {
+	public void setJoinApproval(String joinApproval) {
 		this.joinApproval = joinApproval;
 	}
 
@@ -211,6 +203,14 @@ public class MemberDTO {
 		this.description = description;
 	}
 
+	public String getWorkHours() {
+		return workHours;
+	}
+
+	public void setWorkHours(String workHours) {
+		this.workHours = workHours;
+	}
+
 	public int getPoint() {
 		return point;
 	}
@@ -219,12 +219,12 @@ public class MemberDTO {
 		this.point = point;
 	}
 
-	public String getWorkHours() {
-		return workHours;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setWorkHours(String workHours) {
-		this.workHours = workHours;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Timestamp getInsertTime() {

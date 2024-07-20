@@ -5,7 +5,9 @@
 
 <mapper namespace="com.susuma.member.model.MemberMapper">
 	<select id="getList" resultType="com.susuma.member.model.MemberDTO">
-		SELECT * FROM MEMBER ORDER BY ME_NO ASC
+		SELECT * FROM MEMBER
+		WHERE TYPE = #{type}
+		ORDER BY ME_NO ASC
 	</select>
 	<select id="getView" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}

@@ -22,13 +22,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String type = request.getParameter("type");
+		
 		SqlSession sql = sqlSessionFactory.openSession();
 
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		ArrayList<MemberDTO> list = Member.getList();
+		ArrayList<MemberDTO> list = Member.getList(type);
 		sql.close();
 
-		request.setAttribute("snbCurrent", "member");
+		request.setAttribute("type", type);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("member_list.jsp").forward(request, response);
 
@@ -36,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String meNo = request.getParameter("meNo");
 
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -45,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberDTO dto = Member.getView(meNo);
 		sql.close();
 
-		request.setAttribute("snbCurrent", "member");
+		request.setAttribute("type", dto.getType());
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("member_view.jsp").forward(request, response);
 		
