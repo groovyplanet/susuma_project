@@ -29,9 +29,9 @@ public class RequestServiceImpl implements RequestService{
 	
 		SqlSession sql = sqlSeeFactory.openSession();
 		
-		RequestMapper request  = sql.getMapper(RequestMapper.class);
+		RequestMapper Request  = sql.getMapper(RequestMapper.class);
 		
-		ArrayList<RequestDTO> list = request.getList();
+		ArrayList<RequestDTO> list = Request.getList();
 		
 		sql.close();
 		
