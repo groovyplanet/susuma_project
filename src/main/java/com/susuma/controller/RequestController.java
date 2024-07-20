@@ -15,18 +15,29 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("*.request")
 public class RequestController extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public RequestController() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	 @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			doAction(req, resp);
+
+		// TODO Auto-generated method stub
+		 doAction(req, resp);
+
 	}
 	
 	 @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			doAction(req, resp);
+
+		// TODO Auto-generated method stub
+		 doAction(req, resp);
+
 	}
 	 
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +50,8 @@ public class RequestController extends HttpServlet{
 			
 		RequestService service;
 		
-		if(command.equals("/user/request/list.request")) {
+		System.out.println(command);
+		if(command.equals("/user/list.request")) {
 			
 			service = new RequestServiceImpl();
 			service.getList(request, response);
