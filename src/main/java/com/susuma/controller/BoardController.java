@@ -19,24 +19,24 @@ public class BoardController extends HttpServlet {
 
 	public BoardController() {
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doAction(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doAction(req, resp);
 	}
-	
+
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
-		
-		String uri = request.getRequestURI(); //ip, port번호 제외된 주소
-		String path = request.getContextPath(); //프로젝트 식별 이름
-		String command = uri.substring( path.length() );
+
+		String uri = request.getRequestURI(); // ip, port번호 제외된 주소
+		String path = request.getContextPath(); // 프로젝트 식별 이름
+		String command = uri.substring(path.length());
 //		System.out.println(command);
 		BoardService service;
 
@@ -50,12 +50,15 @@ public class BoardController extends HttpServlet {
 			service = new BoardServiceImpl();
 			service.getView(request, response);
 
-		}else if (command.equals("/admin/board/registForm.board")) {
+		} else if (command.equals("/admin/board/write.board")) {
+
+			request.getRequestDispatcher("board_write.jsp").forward(request, response);
+
+		} else if (command.equals("/admin/board/registForm.board")) {
 			service = new BoardServiceImpl();
 			service.regist(request, response);
 		}
 
-	
 	}
-	
+
 }

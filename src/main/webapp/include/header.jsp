@@ -82,16 +82,16 @@
 				<button id="btn-login-modal" class="btn btn-login">로그인</button>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath }/admin/" class="btn"> 관리자 </a>
-			</li>
-			<li>
-				<a href="${pageContext.request.contextPath }/index.html" class="btn"> html </a>
-			</li>
-			<li>
 				<a href="${pageContext.request.contextPath }/member/join.jsp" class="btn btn-join">
 					회원가입
 					<i class="bi bi-chevron-right"></i>
 				</a>
+			</li>
+			<li>
+				<a href="${pageContext.request.contextPath }/index.html" class="btn btn-temp"> html </a>
+			</li>
+			<li>
+				<a href="${pageContext.request.contextPath }/admin/" class="btn btn-temp"> 관리자 </a>
 			</li>
 		</ul>
 	</div>

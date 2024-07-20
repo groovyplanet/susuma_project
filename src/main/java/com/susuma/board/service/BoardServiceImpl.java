@@ -32,7 +32,6 @@ public class BoardServiceImpl implements BoardService {
 		ArrayList<BoardDTO> list = board.getList(type);
 		sql.close();
 
-		request.setAttribute("snbCurrent", type);
 		request.setAttribute("type", type);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("board_list.jsp").forward(request, response);
@@ -42,7 +41,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String type = request.getParameter("type");
 		String boNo = request.getParameter("boNo");
 
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -51,8 +49,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardDTO dto = board.getView(boNo);
 		sql.close();
 
-		request.setAttribute("snbCurrent", type);
-		request.setAttribute("type", type);
+		request.setAttribute("type", dto.getType());
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("board_view.jsp").forward(request, response);
 
@@ -77,7 +74,6 @@ public class BoardServiceImpl implements BoardService {
 		int result = board.regist(dto);
 		sql.close();
 		
-		request.setAttribute("snbCurrent", type);
 		request.setAttribute("type", type);
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("board_view.jsp").forward(request, response);

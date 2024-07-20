@@ -33,13 +33,13 @@ $(document).ready(function () {
         if (regex.test($(this).val())) {
             inputArea.removeClass("error");
             // ajax로 이메일 중복확인
-            if ($(this).val() == "ss@naver.com") {
+            // if ($(this).val() == "ss@naver.com") {
                 inputArea.addClass("duplicate-yes");
                 inputArea.removeClass("duplicate-no");
-            } else {
-                inputArea.removeClass("duplicate-yes");
-                inputArea.addClass("duplicate-no");
-            }
+            // } else {
+                // inputArea.removeClass("duplicate-yes");
+                // inputArea.addClass("duplicate-no");
+            // }
         } else {
             inputArea.addClass("error");
             inputArea.removeClass("duplicate-yes duplicate-no");
