@@ -1,70 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ include file="../include/head.jsp"%>
 </head>
 
 <body>
+	<%@ include file="../include/header.jsp"%>
 
-<%@ include file="../include/header.jsp"%>
-
-    <section class="main-section">
-        <div class="container">
-           <%@ include file="../include/snb.jsp"%>  
-            <div class="content">
-            
-                <div class="edit-form">
-                    <div class="widget-location">
-                        <div class="wrap">
-                            <h4 class="ask-write-title">공지사항 등록</h4>
-                        </div>
-                    </div>
-                    <div id="qna-write" class="section">
-                        <form name="form-qna-write" method="post" action="registForm.board" class="form-horizontal" target="actionFrame">
-                            <div class="panel-default">
-                                <div class="panel-heading">
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="control-label">제목</label>
-
-                                        <div>
-                                            <input name="subject" type="text" id="subject" class="form-control" value="">
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group">
-                                        <label class="control-label">관련 신청서</label>
-                                        <div>
-                                            <a href="/mypage/select/popup/1" class="event-click-select">선택하기</a>
-                                            <span class="text-success event-set-data-cart"></span>
-                                        </div>
-                                    </div> -->
-                                    <div class="form-group">
-                                        <label for="content" class="control-label">내용</label>
-                                        <div>
-                                            <textarea name="content" id="content" class="form-control" cols="50" rows="20"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="file" class="control-label">파일 첨부</label>
-                                        <div>
-                                                <input name="file[]" type="file">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-center">
-                                <button type="submit" class="event-common-click-back">등록하기</button>
-                                <button type="button" class="event-common-click-submit">뒤로</button>
-                            </p>
-                        </form>
-                    </div>
-                </div>
-                
-            </div>
-
-        </div>
-    </section>
-   
- <%@ include file="../include/footer.jsp"%>
+	<div class="container">
+		<%@ include file="../include/snb.jsp"%>
+		<div class="content_wrap">
+			<div class="title_wrap">
+				<span>공지사항 등록</span>
+				<a href="list.board?type=${dto.type }" class="btn"> 목록 </a>
+			</div>
+			<div class="table_wrap">
+				<form name="form-qna-write" method="post" action="registForm.board" class="form-horizontal" target="actionFrame">
+					<table class="view" id="board_view">
+						<tr>
+							<th>제목</th>
+							<td>
+								<input name="subject" type="text" id="subject" class="form-control" value="">
+							</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td>
+								<textarea name="content" id="content" class="form-control" cols="50" rows="20"></textarea>
+							</td>
+						</tr>
+					</table>
+					<p class="text-center">
+						<button type="submit" class="event-common-click-back">등록</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
 
 </body>
 
