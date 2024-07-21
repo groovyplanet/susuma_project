@@ -12,4 +12,8 @@
 	<select id="getView" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
 	</select>
+	 <insert id="addMember" parameterType="com.susuma.member.model.MemberDTO">
+        INSERT INTO member (me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, profile_photo, join_approval, join_approval_time, insert_time, update_time, business_number, short_description, max_distance, description, work_hours, point, status)
+        VALUES (#{meNo}, #{type}, #{email}, #{pw}, #{name}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum}, #{emailNotification}, #{profilePhoto}, #{joinApproval}, #{joinApprovalTime}, #{insertTime}, #{updateTime}, #{businessNumber}, #{shortDescription}, #{maxDistance}, #{description}, #{workHours}, #{point}, #{status})
+    </insert>
 </mapper>
