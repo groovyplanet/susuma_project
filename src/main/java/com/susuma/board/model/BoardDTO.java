@@ -19,6 +19,15 @@ public class BoardDTO {
 		super();
 	}
 
+	// 게시물 등록
+	public BoardDTO(int meNo, String type, String title, String content) {
+		super();
+		this.meNo = meNo;
+		this.type = type;
+		this.title = title;
+		this.content = content;
+	}
+
 	public BoardDTO(int boNo, int meNo, String type, String title, String content, Timestamp insertTime, Timestamp updateTime, String answer, Timestamp answerInsertTime, Timestamp answerUpdateTime) {
 		super();
 		this.boNo = boNo;

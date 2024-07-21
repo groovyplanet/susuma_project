@@ -13,7 +13,7 @@ public class JoinController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        memberService.addMember(request, response);
+        memberService.regist(request, response);
     }
 
     @Override

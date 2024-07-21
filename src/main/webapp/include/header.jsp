@@ -82,7 +82,7 @@
 				<button id="btn-login-modal" class="btn btn-login">로그인</button>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath }/member/join.jsp" class="btn btn-join">
+				<a href="${pageContext.request.contextPath }/member/join.member" class="btn btn-join">
 					회원가입
 					<i class="bi bi-chevron-right"></i>
 				</a>
@@ -120,7 +120,7 @@
 					</div>
 					<button class="btn btn-login-submit" type="submit">로그인</button>
 				</form>
-				<a href="${pageContext.request.contextPath }/member/join.jsp" class="btn btn-join">회원가입</a>
+				<a href="${pageContext.request.contextPath }/member/join.member" class="btn btn-join">회원가입</a>
 			</div>
 			<button class="btn-close-modal">
 				<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap'); body, html { font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-style: normal; background-color: #e6e6e6; height: 100%; } 
+button, input, textarea { font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-style: normal; } 
+
 * { margin : 0; padding : 0; box-sizing: border-box; } 
 a { text-decoration : none; color : black; } 
 ul, li, ol, dl, dd { list-style: none; margin: 0; } 
@@ -29,8 +31,10 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px; width: 100%; } 
 /* title_wrap */
 .container .content_wrap .title_wrap { display: flex; justify-content: space-between; font-size: 18px; font-weight: 600; align-items: center; } 
-.container .content_wrap .title_wrap a { padding: 4px 15px; border-radius: 7px; transition: 0.2s; } 
-.container .content_wrap .title_wrap a:hover { background-color: #f7f7f7; } 
+.container .content_wrap .title_wrap .btn_wrap { display: inline-flex; gap: 5px; } 
+.container .content_wrap .title_wrap .btn_wrap .btn { padding: 4px 15px; border-radius: 7px; transition: 0.2s; color: #ff6b6b; border: none; background: none; font-size: 17px; font-weight: 500; } 
+.container .content_wrap .title_wrap .btn_wrap .btn.black { color:#555 } 
+.container .content_wrap .title_wrap .btn_wrap .btn:hover { background-color: #f7f7f7; } 
 /* search_wrap */
 .container .content_wrap .search_wrap { margin-top: 20px; border: 1px solid #ddd; padding: 20px 0; } 
 .container .content_wrap .search_wrap table.search { width: 100%; } 
@@ -51,12 +55,17 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .table_wrap table.list tr th:first-child { padding-left: 10px; } 
 .container .content_wrap .table_wrap table.list tr td { font-size: 13px; font-weight: 400; color: #333; padding: 15px 5px; } 
 .container .content_wrap .table_wrap table.list tr td:first-child { padding-left: 20px; } 
+.container .content_wrap .table_wrap table.list tr td .btn { background-color: #ff6b6b14; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; } 
+.container .content_wrap .table_wrap table.list tr td .btn:hover { background-color: #ff6b6b47; font-weight: 600; } 
 .container .content_wrap .table_wrap table.view { width: 100%; text-align: left; } 
 .container .content_wrap .table_wrap table.view tr:first-child { border-top: 1px solid #ddd; } 
 .container .content_wrap .table_wrap table.view tr { border-bottom: 1px solid #ddd; } 
 .container .content_wrap .table_wrap table.view tr th { background-color: #e6e6e6; font-size: 15px; font-weight: 500; color: #555; padding: 14px 20px; width: 210px; } 
 .container .content_wrap .table_wrap table.view tr td { font-size: 13px; font-weight: 400; color: #333; padding: 14px 20px; } 
 .container .content_wrap .table_wrap table.view tr td img.profile { width: 60px; } 
+.container .content_wrap .table_wrap table.view.write input,
+.container .content_wrap .table_wrap table.view.write textarea { width: 100%; border: 1px solid #ccc; padding: 6px 8px; } 
+.container .content_wrap .table_wrap table.view.write textarea { min-height: 200px; resize: vertical; } 
 /* pagination */
 .container .content_wrap .pagination { display: flex; justify-content: center; padding: 20px 0; } 
 .container .content_wrap .pagination a { display: inline-flex; width: 26px; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; border-radius: 50%; line-height: 26px; transition: 0.2s; } 

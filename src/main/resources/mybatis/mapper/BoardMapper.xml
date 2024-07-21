@@ -4,14 +4,26 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.susuma.board.model.BoardMapper">
-	<select id="getList" resultType="com.susuma.board.model.BoardDTO">
-		SELECT * FROM BOARD WHERE TYPE = #{type} ORDER BY BO_NO ASC
+
+	<select id="getList" parameterType="map" resultType="com.susuma.board.model.BoardDTO">
+		SELECT * FROM BOARD
+		WHERE TYPE = #{type}
+		<if test="answerCheck.equals('Y')">
+			AND ANSWER IS NOT NULL
+		</if>
+		<if test="answerCheck.equals('N')">
+			AND ANSWER IS NULL
+		</if>
+		ORDER BY BO_NO DESC
 	</select>
+
 	<select id="getView" resultType="com.susuma.board.model.BoardDTO">
 		SELECT * FROM BOARD WHERE BO_NO = #{boNo}
 	</select>
+
 	<insert id="regist" parameterType="com.susuma.board.model.BoardDTO">
-		INSERT INTO BOARD(BO_NO,ME_NO,TYPE,TITLE,CONTENT)
-		VALUES(BOARD_SEQ.NEXTVAL,#{meNo},#{type},#{title},#{content})
+		INSERT INTO BOARD(BO_NO, ME_NO, TYPE, TITLE, CONTENT)
+		VALUES(BOARD_SEQ.NEXTVAL, #{meNo}, #{type}, #{title}, #{content})
 	</insert>
+
 </mapper>
