@@ -16,18 +16,23 @@
 			</div>
 			<c:if test="${type == 'master' }">
 				<div class="search_wrap">
-					<form action="list.member" method="get">
+					<form name="searchForm" action="list.member" method="get">
+						<input type="hidden" name="type" value="${type}">
 						<table class="search">
 							<tr>
-								<th>가입 승인 여부</th>
+								<th>가입 승인</th>
 								<td>
 									<ul class="check_list">
 										<li>
-											<input type="checkbox" name="join_approval" value="Y" id="join_approval_Y">
+											<input type="radio" name="join_approval" value="all" id="join_approval_all" ${joinApproval == 'all' ? 'checked' : ''}>
+											<label for="join_approval_all">전체</label>
+										</li>
+										<li>
+											<input type="radio" name="join_approval" value="Y" id="join_approval_Y" ${joinApproval == 'Y' ? 'checked' : ''}>
 											<label for="join_approval_Y">승인</label>
 										</li>
 										<li>
-											<input type="checkbox" name="join_approval" value="N" id="join_approval_N">
+											<input type="radio" name="join_approval" value="N" id="join_approval_N" ${joinApproval == 'N' ? 'checked' : ''}>
 											<label for="join_approval_N">미승인</label>
 										</li>
 									</ul>
@@ -62,8 +67,7 @@
 								<td>${dto.meNo}</td>
 								<td>${dto.name}</td>
 								<td>${dto.email}</td>
-								<td>${empty dto.address ? '-' : dto.address} ${empty dto.addressDetail ? '' : dto.addressDetail}
-								</td>
+								<td>${empty dto.address ? '-' : dto.address}${empty dto.addressDetail ? '' : dto.addressDetail}</td>
 								<td>${dto.phoneNum}</td>
 								<c:if test="${type == 'user' }">
 									<td>

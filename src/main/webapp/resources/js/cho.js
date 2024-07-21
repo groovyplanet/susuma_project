@@ -11,7 +11,7 @@ $(document).ready(function () {
             $(".tab-btn").toggleClass("active");
             $("#master-info-area").toggle();
             // 사업자등록번호 required 속성 토글
-            $("#business_num").prop('required', !$("#business_num").prop('required'));
+            $("#business_number").prop('required', !$("#business_number").prop('required'));
             // 폼 정보 리셋
             //$("#form-join")[0].reset(); 
             //$(".input-area").removeClass("error").removeClass("error-re");
@@ -69,12 +69,12 @@ $(document).ready(function () {
         if (regex.test($(this).val()) || $(this).val() == "") $(this).parent().removeClass("error");
         else $(this).parent().addClass("error");
     });
-    $(".main-area.join .join-form #business_num").keyup(function () { // 사업자 번호 자동 대쉬
+    $(".main-area.join .join-form #business_number").keyup(function () { // 사업자 번호 자동 대쉬
         if ($(this).val().length == 10) {
             $(this).val($(this).val().replace(/[^0-9]/, "").replace(/([0-9]{3})([0-9]{2})([0-9]{5})/, `$1-$2-$3`));
         }
     });
-    $(".main-area.join .join-form #business_num").blur(function () { // 사업자 번호
+    $(".main-area.join .join-form #business_number").blur(function () { // 사업자 번호
         var regex = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/;
         if (regex.test($(this).val())) $(this).parent().removeClass("error");
         else $(this).parent().addClass("error");
@@ -153,8 +153,8 @@ $(document).ready(function () {
             return false;
         }
         // 사업자등록번호
-        if ($("input[name=type]").val() == "master" && $("input[name=business_num]").parent().hasClass("error")) {
-            $("input[name=business_num]").focus();
+        if ($("input[name=type]").val() == "master" && $("input[name=business_number]").parent().hasClass("error")) {
+            $("input[name=business_number]").focus();
             return false;
         }
 
@@ -257,14 +257,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // 사업자 번호 자동 대쉬
-        profileEdit.querySelector("#business_num").addEventListener('keyup', function () {
+        profileEdit.querySelector("#business_number").addEventListener('keyup', function () {
             if (this.value.length === 10) {
                 this.value = this.value.replace(/[^0-9]/g, "").replace(/([0-9]{3})([0-9]{2})([0-9]{5})/, '$1-$2-$3');
             }
         });
 
         // 사업자 번호 유효성 검사
-        profileEdit.querySelector("#business_num").addEventListener('blur', function () {
+        profileEdit.querySelector("#business_number").addEventListener('blur', function () {
             var regex = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/;
             if (regex.test(this.value)) {
                 this.parentElement.classList.remove("error");
@@ -342,8 +342,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
             // 사업자등록번호
-            if (document.querySelector("input[name=type]").value == "master" && document.querySelector("input[name=business_num]").parentElement.classList.contains("error")) {
-                document.querySelector("input[name=business_num]").focus();
+            if (document.querySelector("input[name=type]").value == "master" && document.querySelector("input[name=business_number]").parentElement.classList.contains("error")) {
+                document.querySelector("input[name=business_number]").focus();
                 return false;
             }
             // submit

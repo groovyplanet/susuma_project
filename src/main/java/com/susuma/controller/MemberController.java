@@ -10,7 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.member")
 public class MemberController extends HttpServlet {
@@ -38,16 +37,24 @@ public class MemberController extends HttpServlet {
 
 		MemberService service;
 
-		if (command.equals("/admin/member/list.member")) {
+		if (command.equals("/admin/member/list.member")) { // 관리자 - 회원목록
 
 			service = new MemberServiceImpl();
 			service.getList(request, response);
 
-		} else if (command.equals("/admin/member/view.member")) {
+		} else if (command.equals("/admin/member/view.member")) { // 관리자 - 회원상세
 
 			service = new MemberServiceImpl();
 			service.getView(request, response);
 
+		} else if (command.equals("/member/join.member")) { // 사용자 - 회원가입 작성
+
+			request.getRequestDispatcher("join.jsp").forward(request, response);
+
+		} else if (command.equals("/member/joinForm.member")) { // 사용자 - 회원가입
+
+			service = new MemberServiceImpl();
+			service.regist(request, response);
 		}
 
 	}

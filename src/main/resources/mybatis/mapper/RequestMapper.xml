@@ -6,10 +6,7 @@
 <mapper namespace="com.susuma.request.model.RequestMapper">
 	
 	<select id="getList" resultType="com.susuma.request.model.RequestDTO">
-	
 		SELECT * FROM REQUEST ORDER BY REQ_NO
-	
 	</select>
-	
 	
 </mapper>

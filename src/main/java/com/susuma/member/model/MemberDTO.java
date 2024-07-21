@@ -32,6 +32,38 @@ public class MemberDTO {
 	public MemberDTO() {
 	}
 
+	// 회원가입(user)
+	public MemberDTO(String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification) {
+		this.type = type;
+		this.email = email;
+		this.pw = pw;
+		this.name = name;
+		this.phoneNum = phoneNum;
+		this.address = address;
+		this.addressDetail = addressDetail;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.emailNotification = emailNotification;
+	}
+
+	// 회원가입(master)
+	public MemberDTO(String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, String businessNumber, String shortDescription, int maxDistance, String workHours) {
+		this.type = type;
+		this.email = email;
+		this.pw = pw;
+		this.name = name;
+		this.phoneNum = phoneNum;
+		this.address = address;
+		this.addressDetail = addressDetail;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.emailNotification = emailNotification;
+		this.businessNumber = businessNumber;
+		this.shortDescription = shortDescription;
+		this.maxDistance = maxDistance;
+		this.workHours = workHours;
+	}
+
 	// 모든 필드를 포함하는 생성자
 	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime) {
 		this.meNo = meNo;

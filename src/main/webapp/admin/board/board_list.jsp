@@ -13,13 +13,43 @@
 		<div class="content_wrap">
 			<div class="title_wrap">
 				<span>${type=='notice'?'공지사항':type=='faq'?'FAQ':'1:1 문의' } 목록</span>
-				<a href="write.board?type=${type }" class="btn"> 등록 </a>
+				<div class="btn_wrap">
+					<a href="write.board?type=${type }" class="btn"> 작성 </a>
+				</div>
 			</div>
+			<c:if test="${type == 'ask' }">
+				<div class="search_wrap">
+					<form name="searchForm" action="list.board" method="get">
+						<input type="hidden" name="type" value="${type}">
+						<table class="search">
+							<tr>
+								<th>답변</th>
+								<td>
+									<ul class="check_list">
+										<li>
+											<input type="radio" name="answerCheck" value="all" id="answerCheck_all" ${answerCheck == 'all' ? 'checked' : ''}>
+											<label for="answerCheck_all">전체</label>
+										</li>
+										<li>
+											<input type="radio" name="answerCheck" value="Y" id="answerCheck_Y" ${answerCheck == 'Y' ? 'checked' : ''}>
+											<label for="answerCheck_Y">완료</label>
+										</li>
+										<li>
+											<input type="radio" name="answerCheck" value="N" id="answerCheck_N" ${answerCheck == 'N' ? 'checked' : ''}>
+											<label for="answerCheck_N">미완료</label>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</c:if>
 			<div class="table_wrap">
 				<table class="list" id="board_list">
 					<thead>
 						<tr>
-							<th>게시글번호</th>
+							<th>번호</th>
 							<th>회원번호</th>
 							<th>제목</th>
 							<th>작성 일시</th>

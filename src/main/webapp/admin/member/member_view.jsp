@@ -13,7 +13,9 @@
 		<div class="content_wrap">
 			<div class="title_wrap">
 				<span>${type=='user'?'의뢰인':'수리기사' } 상세</span>
-				<a href="list.member?type=${type }" class="btn"> 목록 </a>
+				<div class="btn_wrap">
+					<a href="list.member?type=${type }" class="btn"> 목록 </a>
+				</div>
 			</div>
 			<div class="table_wrap">
 				<table class="view" id="member_view">

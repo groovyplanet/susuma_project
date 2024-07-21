@@ -11,31 +11,33 @@
 	<div class="container">
 		<%@ include file="../include/snb.jsp"%>
 		<div class="content_wrap">
-			<div class="title_wrap">
-				<span>공지사항 등록</span>
-				<a href="list.board?type=${dto.type }" class="btn"> 목록 </a>
-			</div>
-			<div class="table_wrap">
-				<form name="form-qna-write" method="post" action="registForm.board" class="form-horizontal" target="actionFrame">
-					<table class="view" id="board_view">
+			<form name="writeForm" method="post" action="registForm.board">
+				<div class="title_wrap">
+					<span>${type=='notice'?'공지사항':type=='faq'?'FAQ':'1:1 문의' } 등록</span>
+					<div class="btn_wrap">
+						<a href="list.board?type=${type }" class="btn black"> 목록 </a>
+						<button type="submit" class="btn">등록</button>
+					</div>
+				</div>
+				<div class="table_wrap">
+					<input type="hidden" name="me_no" value="1">
+					<input type="hidden" name="type" value="${type}">
+					<table class="view write" id="board_view">
 						<tr>
 							<th>제목</th>
 							<td>
-								<input name="subject" type="text" id="subject" class="form-control" value="">
+								<input name="title" type="text" value="" required>
 							</td>
 						</tr>
 						<tr>
 							<th>내용</th>
 							<td>
-								<textarea name="content" id="content" class="form-control" cols="50" rows="20"></textarea>
+								<textarea name="content" required></textarea>
 							</td>
 						</tr>
 					</table>
-					<p class="text-center">
-						<button type="submit" class="event-common-click-back">등록</button>
-					</p>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 
