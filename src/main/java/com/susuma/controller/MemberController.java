@@ -80,6 +80,11 @@ public class MemberController extends HttpServlet {
 			// 화면 이동
 			request.getRequestDispatcher("mypage.jsp").forward(request, response);
 
+		} else if (command.equals("/member/masterList.member")) { // 사용자 - 수리 예약(수리기사 목록)
+
+			// select n
+			service.getMasterList(request, response);
+
 		} else if (command.equals("/member/logout.member")) { // 사용자 로그아웃
 
 			// 세션 삭제
