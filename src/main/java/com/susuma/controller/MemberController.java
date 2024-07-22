@@ -2,6 +2,7 @@ package com.susuma.controller;
 
 import java.io.IOException;
 
+import com.susuma.member.model.MemberDTO;
 import com.susuma.member.service.MemberService;
 import com.susuma.member.service.MemberServiceImpl;
 
@@ -10,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.member")
 public class MemberController extends HttpServlet {
@@ -55,8 +57,23 @@ public class MemberController extends HttpServlet {
 
 			service = new MemberServiceImpl();
 			service.regist(request, response);
-		}
+			
+		}else if (command.equals("/member/login.member")) { // 사용자 로그인
+				service = new MemberServiceImpl();
+	            service.login(request, response);
 
+	        } else if (command.equals("/member/logout.member")) { // 사용자 로그아웃
+	            HttpSession session = request.getSession();
+	            session.invalidate(); // 세션 무효화
+	            response.sendRedirect(request.getContextPath() + "/index.jsp"); // 로그아웃 후 리다이렉트
+
+	        } else if (command.equals("/member/profile_edit.member")) { // 사용자 - 프로필 수정
+	        	service = new MemberServiceImpl();
+	            HttpSession session = request.getSession();
+	            int me_no = (int) session.getAttribute("me_no");
+	            MemberDTO member = service.getMemberById(me_no);
+	            request.setAttribute("member", member);
+	            request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
+	        }
+	    }
 	}
-
-}
