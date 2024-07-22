@@ -141,13 +141,25 @@ public class BoardServiceImpl implements BoardService {
 			out.println("location.href='list.board?type=" + type + "';");
 			out.println("</script>");
 		}else {
-			response.sendRedirect("board_view.board?boNo="+boNo);
+			response.sendRedirect("board/view.board?boNo="+boNo);
 
 		}
-		
-		
-
 	
+	}
+	@Override
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		/* [1] 매개변수 */
+		String boNo = request.getParameter("boNo");
+		String type = request.getParameter("type");
+		
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		board.delete(boNo);
+		sql.close();
+		response.sendRedirect("list.board?type="+type);
+		
 		
 	}
 

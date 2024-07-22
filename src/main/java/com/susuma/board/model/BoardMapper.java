@@ -12,4 +12,6 @@ public interface BoardMapper {
 	public int regist(BoardDTO dto); // 관리자 - 게시물 등록
 	
 	public int update(BoardDTO dto); // 관리자 -게시물 수정
+	
+	public void delete(String boNo); // 관리자 - 게시물 삭제
 }

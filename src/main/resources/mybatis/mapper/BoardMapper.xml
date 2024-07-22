@@ -30,5 +30,8 @@
 		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},UPDATE_TIME=#{updateTime}
 		WHERE BO_NO=#{boNo}
 	</update>
+	<delete id="delete" parameterType="string">
+		DELETE FROM BOARD WHERE BO_NO = #{boNo}
+	</delete>
 
 </mapper>
