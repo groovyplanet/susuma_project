@@ -29,7 +29,7 @@
 				<c:when test="${sessionScope.email == null }">
 					<!-- 로그아웃 상태 -->
 					<li>
-						<button id="btn-login-modal" class="btn btn-login">로그인</button>
+						<button id="btn-login-modal" class="btn btn-login">로그인${loginModal}</button>
 					</li>
 					<li>
 						<a href="${pageContext.request.contextPath }/member/join.member" class="btn btn-join">
@@ -110,7 +110,7 @@
 	</div>
 
 	<!-- 로그인 모달 -->
-	<div id="login-modal" class="modal">
+	<div id="login-modal" class="modal ${param.loginModal == 'Y' ? 'show' : ''}">
 		<div class="container">
 			<div class="logo-area">
 				<img src="${pageContext.request.contextPath }/resources/img/logo.png" alt="로고">
