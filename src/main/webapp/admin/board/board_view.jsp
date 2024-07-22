@@ -14,9 +14,18 @@
 			<div class="title_wrap">
 				<span>${dto.type=='notice'?'공지사항':dto.type=='faq'?'FAQ':'1:1 문의' } 상세</span>
 				<div class="btn_wrap">
-					<a href="list.board?type=${dto.type }" class="btn black"> 목록 </a>
-					<a href="modify.board?boNo=${dto.boNo }&type=${dto.type}" class="btn"> 수정 </a>
-					<a href="delete.board?boNo=${dto.boNo }&type=${dto.type}" class="btn"> 삭제 </a>
+					<a href="list.board?type=${dto.type }" class="btn black">
+						<i class="bi bi-list-ul"></i>
+						목록
+					</a>
+					<a href="modify.board?boNo=${dto.boNo }" class="btn">
+						<i class="bi bi-pencil-square"></i>
+						수정
+					</a>
+					<a href="delete.board?boNo=${dto.boNo }&type=${dto.type}" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?')">
+						<i class="bi bi-trash3"></i>
+						삭제
+					</a>
 				</div>
 			</div>
 			<div class="table_wrap">

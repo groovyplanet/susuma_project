@@ -5,13 +5,13 @@ import java.util.Map;
 
 public interface BoardMapper {
 
-	public ArrayList<BoardDTO> getList(Map<String, Object> params); // 관리자 - 게시물 목록
+	public ArrayList<BoardDTO> selectBoards(Map<String, Object> params); // [1] 게시물 목록
 
-	public BoardDTO getView(String boNo); // 관리자 - 게시물 상세
+	public BoardDTO selectBoard(String boNo); // [2] 게시물
 
-	public int regist(BoardDTO dto); // 관리자 - 게시물 등록
+	public int insertBoard(BoardDTO dto); // [3] 게시물 등록
 	
-	public int update(BoardDTO dto); // 관리자 -게시물 수정
+	public int updateBoard(BoardDTO dto); // [4] 게시물 수정
 	
-	public void delete(String boNo); // 관리자 - 게시물 삭제
+	public void deleteBoard(String boNo); // [5] 게시물 삭제
 }

@@ -5,16 +5,29 @@
 
 	<!-- [1] 회원 목록 -->
 	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
-		SELECT * FROM MEMBER
-		WHERE TYPE = #{type}
-		<if test="joinApproval != null and !joinApproval.equals('all')">
-			AND JOIN_APPROVAL = #{joinApproval}
+		SELECT ME_NO,TYPE,EMAIL,PW,NAME,ADDRESS,ADDRESS_DETAIL,LATITUDE,LONGITUDE,PHONE_NUM,EMAIL_NOTIFICATION,PROFILE_PHOTO,JOIN_APPROVAL,JOIN_APPROVAL_TIME,BUSINESS_NUMBER,SHORT_DESCRIPTION,MAX_DISTANCE,DESCRIPTION,WORK_HOURS,POINT,STATUS,M.INSERT_TIME,M.UPDATE_TIME
+		, LISTAGG(C.CA_NAME, ', ') WITHIN GROUP (ORDER BY C.ROOT_NO) AS CA_NAME <!-- 카테고리가 여러개일 경우 하나의 열로 묶어서 출력 -->
+		, LISTAGG(CR.CA_NAME, ', ') WITHIN GROUP (ORDER BY CR.CA_NO) AS CA_ROOT_NAME
+		FROM MEMBER M
+		LEFT JOIN MASTER_CATEGORY MC
+		ON MC.MASTER_NO = M.ME_NO
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = MC.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE M.TYPE = #{type}
+		<if test="joinApproval != 'all'">
+			AND M.JOIN_APPROVAL = #{joinApproval}
 		</if>
-		ORDER BY ME_NO DESC
+		<if test="ca_no != null">
+			AND M.ME_NO = #{meNo}
+		</if>
+		GROUP BY ME_NO,TYPE,EMAIL,PW,NAME,ADDRESS,ADDRESS_DETAIL,LATITUDE,LONGITUDE,PHONE_NUM,EMAIL_NOTIFICATION,PROFILE_PHOTO,JOIN_APPROVAL,JOIN_APPROVAL_TIME,BUSINESS_NUMBER,SHORT_DESCRIPTION,MAX_DISTANCE,DESCRIPTION,WORK_HOURS,POINT,STATUS,M.INSERT_TIME,M.UPDATE_TIME
+		ORDER BY M.${sortField} ${sortOrder} NULLS LAST
 	</select>
 
 	<!-- [2] 회원(me_no / email,pw) -->
-	<select id="selectMember" resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMember" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER
 		WHERE 1 = 1
 		<if test="meNo != null">
@@ -25,9 +38,9 @@
 		</if>
 	</select>
 
-	<!-- [3] 회원 추가 -->
+	<!-- [3] 회원 등록 -->
 	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
-		INSERT INTO member (me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, business_number, short_description, max_distance, work_hours)
+		INSERT INTO MEMBER (me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, business_number, short_description, max_distance, work_hours)
 		VALUES (MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum}, #{emailNotification},
 		<if test="type == 'master'">
 			#{businessNumber}, #{shortDescription}, #{maxDistance}, #{workHours}
@@ -37,5 +50,17 @@
 		</if>
 		)
 	</insert>
+
+	<!-- [4] 회원 수정 -->
+	<update id="updateMember" parameterType="com.susuma.member.model.MemberDTO">
+		UPDATE MEMBER SET name = #{name} <!-- 구현 필요 -->
+		WHERE ME_NO = #{meNo}
+	</update>
+
+	<!-- [5] 회원 삭제 -->
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM MEMBER
+		WHERE ME_NO = #{meNo}
+	</delete>
 
 </mapper>

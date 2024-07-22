@@ -15,8 +15,14 @@
 				<div class="title_wrap">
 					<span>${type=='notice'?'공지사항':type=='faq'?'FAQ':'1:1 문의' } 등록</span>
 					<div class="btn_wrap">
-						<a href="list.board?type=${type }" class="btn black"> 목록 </a>
-						<button type="submit" class="btn">등록</button>
+						<a href="list.board?type=${type }" class="btn black">
+							<i class="bi bi-list-ul"></i>
+							목록
+						</a>
+						<button type="submit" class="btn">
+							<i class="bi bi-check-lg"></i>
+							등록
+						</button>
 					</div>
 				</div>
 				<div class="table_wrap">

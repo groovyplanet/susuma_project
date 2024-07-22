@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class MemberDTO {
 
+	// MEMBER 테이블
 	private int meNo; // "ME_NO"
 	private String type; // "TYPE"
 	private String email; // "EMAIL"
@@ -27,6 +28,10 @@ public class MemberDTO {
 	private String status; // "STATUS"
 	private Timestamp insertTime; // "INSERT_TIME"
 	private Timestamp updateTime; // "UPDATE_TIME"
+
+	// MASTER_CATEGORY, CATEGORY 테이블
+	private String caName; // "CA_NAME"
+	private String caRootName; // "CA_ROOT_NAME"
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -65,7 +70,8 @@ public class MemberDTO {
 	}
 
 	// 모든 필드를 포함하는 생성자
-	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime) {
+	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime, String caName, String caRootName) {
+		super();
 		this.meNo = meNo;
 		this.type = type;
 		this.email = email;
@@ -89,6 +95,8 @@ public class MemberDTO {
 		this.status = status;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
+		this.caName = caName;
+		this.caRootName = caRootName;
 	}
 
 	public int getMeNo() {
@@ -273,6 +281,22 @@ public class MemberDTO {
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getCaName() {
+		return caName;
+	}
+
+	public void setCaName(String caName) {
+		this.caName = caName;
+	}
+
+	public String getCaRootName() {
+		return caRootName;
+	}
+
+	public void setCaRootName(String caRootName) {
+		this.caRootName = caRootName;
 	}
 
 }
