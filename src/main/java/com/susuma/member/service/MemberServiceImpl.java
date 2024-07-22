@@ -13,6 +13,7 @@ import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -134,24 +135,29 @@ public class MemberServiceImpl implements MemberService {
 
 		/* [3] Request */
 		if (dto == null) {
+
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('이메일 또는 비밀번호를 확인하세요.');");
-			out.println("location.href = '../';");
+			//out.println("location.href = '" + request.getContextPath() + "/?loginModal=Y';");
+	        out.println("location.href = document.referrer + '?loginModal=Y';");
 			out.println("</script>");
+			
 		} else {
+
 			/* 세션에 값 저장 */
 			HttpSession session = request.getSession();
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("name", dto.getName());
-			
+
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('정상적으로 로그인되었습니다.');");
 			out.println("location.href = '../';");
 			out.println("</script>");
+
 		}
 	}
 
