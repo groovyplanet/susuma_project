@@ -2,6 +2,8 @@ package com.susuma.board.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -121,6 +123,7 @@ public class BoardServiceImpl implements BoardService {
 		dto.setTitle(title);
 		dto.setContent(content);
 		dto.setType(type);
+		dto.setUpdateTime(Timestamp.valueOf(LocalDateTime.now()));
 		
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession(true);
@@ -129,7 +132,8 @@ public class BoardServiceImpl implements BoardService {
 		sql.close();
 		
 		/* [3] location.href */
-		if (result == 1) { // 등록 성공
+		
+		if (result == 1) { // 수정 성공
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -137,7 +141,7 @@ public class BoardServiceImpl implements BoardService {
 			out.println("location.href='list.board?type=" + type + "';");
 			out.println("</script>");
 		}else {
-			response.sendRedirect("getContent.board?boNo="+boNo);
+			response.sendRedirect("board_view.board?boNo="+boNo);
 
 		}
 		

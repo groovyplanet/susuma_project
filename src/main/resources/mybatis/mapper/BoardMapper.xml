@@ -27,7 +27,7 @@
 	</insert>
 	
 	<update id="update" parameterType="com.susuma.board.model.BoardDTO">
-		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content}
+		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},UPDATE_TIME=#{updateTime}
 		WHERE BO_NO=#{boNo}
 	</update>
 
