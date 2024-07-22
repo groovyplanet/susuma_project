@@ -9,7 +9,7 @@
 		<div class="container">
 
 			<%@ include file="../include/snb_master.jsp"%>
-			<div class="content profile-edit">
+			<div class="content profile-edit master">
 				<div class="join-form profile-edit-form">
 					<form action="EditForm.member" method="post" id="form-profile-edit">
 						<input type="hidden" name="me_no" value="">
@@ -50,8 +50,8 @@
 						</div>
 						<div id="master-info-area" style="display: block;">
 							<div class="input-area">
-								<label for="business_num" class="required">사업자등록번호</label>
-								<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="business_num" id="business_num" maxlength="12" value="123-45-12345">
+								<label for="business_number" class="required">사업자등록번호</label>
+								<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="business_number" id="business_number" maxlength="12" value="123-45-12345">
 								<p class="caption-error">올바른 형식이 아닙니다.</p>
 							</div>
 							<!-- 수리 분야(동적 추가 및 삭제) -->
