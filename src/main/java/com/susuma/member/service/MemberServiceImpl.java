@@ -199,4 +199,16 @@ public class MemberServiceImpl implements MemberService {
 			return null;
 		}
 	}
+	@Override
+	public MemberDTO getMemberByEmail(String email) {
+	    try (SqlSession session = sqlSessionFactory.openSession()) {
+	        MemberMapper mapper = session.getMapper(MemberMapper.class);
+	        return mapper.selectMemberByEmail(email);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+
+	
 }

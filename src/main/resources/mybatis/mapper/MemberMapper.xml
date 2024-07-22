@@ -20,7 +20,7 @@
 	<select id="selectMemberById" parameterType="int" resultType="com.susuma.member.model.MemberDTO">
 		SELECT me_no, email, name, phone_num, address, latitude, longitude, email_notification
 		FROM member
-		WHERE me_no = #{me_no}
+		WHERE me_no = #{meNo}
 	</select>
 
 	<select id="getView" resultType="com.susuma.member.model.MemberDTO">
@@ -50,6 +50,11 @@
 		FROM members
 		WHERE email = #{email}
 	</select>
+	<select id="selectMemberByEmail" parameterType="String" resultType="com.susuma.member.model.MemberDTO">
+        SELECT *
+        FROM members
+        WHERE email = #{email}
+    </select>
 
 
 </mapper>
