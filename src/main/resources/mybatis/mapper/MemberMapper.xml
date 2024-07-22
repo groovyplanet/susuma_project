@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.susuma.member.model.MemberMapper">
 
-	<select id="getList" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
+	<!-- [1] 회원 목록 -->
+	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER
 		WHERE TYPE = #{type}
-
 		<if test="joinApproval != null and !joinApproval.equals('all')">
 			AND JOIN_APPROVAL = #{joinApproval}
 		</if>
 		ORDER BY ME_NO DESC
 	</select>
 
-	<!-- profile_edit.jsp selectMemberById -->
-
-	<select id="selectMemberById" parameterType="int" resultType="com.susuma.member.model.MemberDTO">
-		SELECT me_no, email, name, phone_num, address, latitude, longitude, email_notification
-		FROM member
-		WHERE me_no = #{meNo}
+	<!-- [2] 회원(me_no / email,pw) -->
+	<select id="selectMember" resultType="com.susuma.member.model.MemberDTO">
+		SELECT * FROM MEMBER
+		WHERE 1 = 1
+		<if test="meNo != null">
+			AND ME_NO = #{meNo}
+		</if>
+		<if test="email != null">
+			AND email = #{email} AND pw = #{pw}
+		</if>
 	</select>
 
-	<select id="getView" resultType="com.susuma.member.model.MemberDTO">
-		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
-	</select>
-
-	<insert id="regist" parameterType="com.susuma.member.model.MemberDTO">
+	<!-- [3] 회원 추가 -->
+	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
 		INSERT INTO member (me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, business_number, short_description, max_distance, work_hours)
 		VALUES (MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum}, #{emailNotification},
 		<if test="type == 'master'">
@@ -38,23 +37,5 @@
 		</if>
 		)
 	</insert>
-
-	<select id="login" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
-		SELECT me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, business_number, short_description, max_distance, work_hours
-		FROM member
-		WHERE email = #{email} AND pw = #{pw}
-	</select>
-
-	<select id="getMemberByEmail" parameterType="String" resultType="com.susuma.member.model.MemberDTO">
-		SELECT *
-		FROM members
-		WHERE email = #{email}
-	</select>
-	<select id="selectMemberByEmail" parameterType="String" resultType="com.susuma.member.model.MemberDTO">
-        SELECT *
-        FROM members
-        WHERE email = #{email}
-    </select>
-
 
 </mapper>

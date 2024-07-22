@@ -34,43 +34,59 @@ public class MemberController extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 
-		String uri = request.getRequestURI(); // ip, port번호 제외 주소
-		String path = request.getContextPath(); // 프로젝트 식별 이름
-		String command = uri.substring(path.length());
+		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
+		String path = request.getContextPath(); // path : '/Susuma'
+		String command = uri.substring(path.length()); // command : '/member/join.member'
 
-		MemberService service;
+		MemberService service = new MemberServiceImpl(); // 비즈니스 로직 처리(DB 접근 및 조작 등)
 
 		if (command.equals("/admin/member/list.member")) { // 관리자 - 회원목록
 
-			service = new MemberServiceImpl();
+			// select n
 			service.getList(request, response);
 
 		} else if (command.equals("/admin/member/view.member")) { // 관리자 - 회원상세
 
-			service = new MemberServiceImpl();
+			// select 1
 			service.getView(request, response);
 
 		} else if (command.equals("/member/join.member")) { // 사용자 - 회원가입 작성
 
+			// 화면 이동
 			request.getRequestDispatcher("join.jsp").forward(request, response);
 
 		} else if (command.equals("/member/joinForm.member")) { // 사용자 - 회원가입
 
-			service = new MemberServiceImpl();
+			// insert
 			service.regist(request, response);
 
 		} else if (command.equals("/member/loginForm.member")) { // 사용자 로그인
 
-			service = new MemberServiceImpl();
+			// select 1 -> 비교
 			service.login(request, response);
+
+		} else if (command.equals("/member/profileEdit.member")) { // 사용자 - 프로필 수정
+
+			// select 1
+			service.profileEdit(request, response);
+
+		} else if (command.equals("/member/find_info.member")) { // 사용자 - 비밀번호 찾기
+
+			// 화면 이동
+			request.getRequestDispatcher("find_info.jsp").forward(request, response);
+
+		} else if (command.equals("/member/mypage.member")) { // 사용자 - 마이페이지
+
+			// 화면 이동
+			request.getRequestDispatcher("mypage.jsp").forward(request, response);
 
 		} else if (command.equals("/member/logout.member")) { // 사용자 로그아웃
 
-			/* 세션 값 삭제 */
+			// 세션 삭제
 			HttpSession session = request.getSession();
 			session.invalidate();
 
-			/* 화면 이동 */
+			// 화면 이동
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			String contextPath = request.getContextPath();
@@ -79,21 +95,6 @@ public class MemberController extends HttpServlet {
 			out.println("location.href = '" + contextPath + "/';");
 			out.println("</script>");
 
-		} else if (command.equals("/profileEdit.member")) { // 사용자 - 프로필 수정
-
-		    service = new MemberServiceImpl();
-		    HttpSession session = request.getSession();
-		    Integer me_no = (Integer) session.getAttribute("me_no");
-
-		    // 세션에 me_no가 없을 경우 로그인 페이지로 리다이렉트
-		    if (me_no == null) {
-		        response.sendRedirect(request.getContextPath() + "/login.jsp");
-		        return;
-		    }
-
-		    MemberDTO member = service.getMemberById(me_no);
-		    request.setAttribute("member", member);
-		    request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
 		}
 	}
 }

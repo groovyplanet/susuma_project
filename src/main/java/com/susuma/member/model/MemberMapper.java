@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public interface MemberMapper {
-    public ArrayList<MemberDTO> getList(Map<String, Object> params); // 관리자 - 회원목록
-    public MemberDTO getView(String meNo); // 관리자 - 회원상세
-    public int regist(MemberDTO dto); // 사용자 - 회원가입
-    public MemberDTO getMemberByEmail(String email);
-    public MemberDTO login(Map<String, Object> params);
-    public MemberDTO selectMemberById(int me_no); // 사용자 - profile_edit.jsp 구현
-    MemberDTO selectMemberByEmail(String email);
+	public ArrayList<MemberDTO> selectMembers(Map<String, Object> params); // [1] 회원 목록
+
+	public MemberDTO selectMember(Map<String, Object> params); // [2] 회원(me_no / email, pw)
+
+	public int insertMember(MemberDTO dto); // [3] 회원 추가
+
 }
