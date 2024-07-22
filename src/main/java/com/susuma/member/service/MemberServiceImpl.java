@@ -2,18 +2,13 @@ package com.susuma.member.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.susuma.board.model.BoardDTO;
-import com.susuma.board.model.BoardMapper;
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
 import com.susuma.util.mybatis.MybatisUtil;
@@ -29,6 +24,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// 회원 목록 처리 로직
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
@@ -56,7 +52,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // 회원 상세 정보 처리 로직
+
+		// 회원 상세 정보 처리 로직
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
 
@@ -74,7 +71,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // 회원 가입 처리 로직
+
+		// 회원 가입 처리 로직
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		String email = request.getParameter("email");
@@ -112,40 +110,59 @@ public class MemberServiceImpl implements MemberService {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('회원가입이 완료 되었습니다. 로그인 후 이용해주세요.');");
-			out.println("location.href='../';");
+			out.println("location.href = '../';");
 			out.println("</script>");
 		}
 	}
+
 	@Override
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    String email = request.getParameter("email");
-	    String password = request.getParameter("pw");
 
-	    try (SqlSession session = sqlSessionFactory.openSession()) {
-	        MemberMapper mapper = session.getMapper(MemberMapper.class);
-	        MemberDTO member = mapper.getMemberByEmail(email);
+		// 로그인 처리 로직
+		/* [1] 매개변수 */
+		String email = request.getParameter("email");
+		String pw = request.getParameter("pw");
+		Map<String, Object> params = new HashMap<>();
+		params.put("email", email);
+		params.put("pw", pw);
 
-	        if (member != null && password.equals(member.getPw())) { // 암호화된 비밀번호 비교 필요 시 수정
-	            HttpSession httpSession = request.getSession();
-	            httpSession.setAttribute("loggedInUser", member);
-	            response.sendRedirect(request.getContextPath() + "/index.jsp");
-	        } else {
-	            response.sendRedirect(request.getContextPath() + "/login.jsp?error=invalid");
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        response.sendRedirect(request.getContextPath() + "/login.jsp?error=exception");
-	    }
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		MemberDTO dto = Member.login(params);
+		sql.close();
+
+		/* [3] Request */
+		if (dto == null) {
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('이메일 또는 비밀번호를 확인하세요.');");
+			out.println("location.href = '../';");
+			out.println("</script>");
+		} else {
+			/* 세션에 값 저장 */
+			HttpSession session = request.getSession();
+			session.setAttribute("email", dto.getEmail());
+			session.setAttribute("name", dto.getName());
+			
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('정상적으로 로그인되었습니다.');");
+			out.println("location.href = '../';");
+			out.println("</script>");
+		}
 	}
 
-	    @Override
-	    public MemberDTO getMemberById(int me_no) {
-	        try (SqlSession session = sqlSessionFactory.openSession()) {
-	            MemberMapper mapper = session.getMapper(MemberMapper.class);
-	            return mapper.selectMemberById(me_no);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            return null;
-	        }
-	    }
+	@Override
+	public MemberDTO getMemberById(int me_no) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			return mapper.selectMemberById(me_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
+}
