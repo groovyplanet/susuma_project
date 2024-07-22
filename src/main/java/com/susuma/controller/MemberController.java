@@ -1,6 +1,7 @@
 package com.susuma.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.service.MemberService;
@@ -59,27 +60,36 @@ public class MemberController extends HttpServlet {
 			service.regist(request, response);
 
 		} else if (command.equals("/member/loginForm.member")) { // 사용자 로그인
-			
+
 			service = new MemberServiceImpl();
 			service.login(request, response);
 
 		} else if (command.equals("/member/logout.member")) { // 사용자 로그아웃
-			
+
+			/* 세션 값 삭제 */
 			HttpSession session = request.getSession();
-			session.invalidate(); // 세션 무효화
-			response.sendRedirect(request.getContextPath() + "/index.jsp"); // 로그아웃 후 리다이렉트
+			session.invalidate();
+
+			/* 화면 이동 */
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			String contextPath = request.getContextPath();
+			out.println("<script>");
+			out.println("alert('로그아웃 되었습니다.');");
+			out.println("location.href = '" + contextPath + "/';");
+			out.println("</script>");
 
 		} else if (command.equals("/member/profile_edit.member")) { // 사용자 - 프로필 수정
-			
+
 			service = new MemberServiceImpl();
 			HttpSession session = request.getSession();
 			int me_no = (int) session.getAttribute("me_no");
 			MemberDTO member = service.getMemberById(me_no);
 			request.setAttribute("member", member);
 			request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
-			
+
 		} else if (command.equals("/member/find_info.member")) { // 사용자 - 비밀번호 찾기
-			
+
 			request.getRequestDispatcher("find_info.jsp").forward(request, response);
 		}
 	}
