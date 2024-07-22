@@ -28,7 +28,7 @@ if (arr != null) {
 				<a href="${pageContext.request.contextPath }/member/introduce.jsp">수수마 소개</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath }/user/master_list.jsp">수리 예약</a>
+				<a href="${pageContext.request.contextPath }/member/masterList.member">수리 예약</a>
 			</li>
 			<li>
 				<a href="${pageContext.request.contextPath }/board/notice_list.jsp">고객센터</a>

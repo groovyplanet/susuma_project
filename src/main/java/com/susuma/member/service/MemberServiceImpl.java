@@ -52,6 +52,31 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 수리기사 목록 처리 로직
+		/* [1] 매개변수 */
+		String type = "master";
+		String joinApproval = "Y";
+		Map<String, Object> params = new HashMap<>();
+		params.put("type", type);
+		params.put("joinApproval", joinApproval);
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		ArrayList<MemberDTO> list = Member.selectMembers(params);
+		sql.close();
+
+		/* [3] Request */
+		request.setAttribute("list", list);
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			request.setAttribute(entry.getKey(), entry.getValue());
+		}
+		request.getRequestDispatcher("master_list.jsp").forward(request, response);
+	}
+
+	@Override
 	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 회원 상세 정보 처리 로직
