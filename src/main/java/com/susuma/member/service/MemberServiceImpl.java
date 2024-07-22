@@ -9,6 +9,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.susuma.category.model.CategoryDTO;
+import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
 
@@ -52,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 		if (type.equals("master")) {
 			// 수리분야 리스트 출력
 			//CategoryMapper Category = sql.getMapper(CategoryMapper.class);
-			//ArrayList<CategoryDTO> CategoryList = Category.getList(params);
+			//ArrayList<CategoryDTO> CategoryMainList = Category.getList(null); // 메인 카테고리 출력 시 파라미터는 null
 		}
 		sql.close();
 
