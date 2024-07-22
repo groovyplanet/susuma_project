@@ -38,9 +38,9 @@
 		</if>
 		)
 	</insert>
-	
+
 	<select id="login" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
-		SELECT me_no, email, name, phone_num, address, latitude, longitude, email_notification
+		SELECT me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, business_number, short_description, max_distance, work_hours
 		FROM member
 		WHERE email = #{email} AND pw = #{pw}
 	</select>
