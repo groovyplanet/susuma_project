@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -20,6 +21,7 @@ import com.susuma.util.mybatis.MybatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -27,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// 회원 목록 처리 로직
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		type = (type == null || type.isEmpty()) ? "user" : type; // 기본 : 회원 구분 user
@@ -54,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		 // 회원 상세 정보 처리 로직
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
 
@@ -72,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		 // 회원 가입 처리 로직
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		String email = request.getParameter("email");
@@ -114,4 +116,36 @@ public class MemberServiceImpl implements MemberService {
 			out.println("</script>");
 		}
 	}
-}
+	@Override
+	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    String email = request.getParameter("email");
+	    String password = request.getParameter("pw");
+
+	    try (SqlSession session = sqlSessionFactory.openSession()) {
+	        MemberMapper mapper = session.getMapper(MemberMapper.class);
+	        MemberDTO member = mapper.getMemberByEmail(email);
+
+	        if (member != null && password.equals(member.getPw())) { // 암호화된 비밀번호 비교 필요 시 수정
+	            HttpSession httpSession = request.getSession();
+	            httpSession.setAttribute("loggedInUser", member);
+	            response.sendRedirect(request.getContextPath() + "/index.jsp");
+	        } else {
+	            response.sendRedirect(request.getContextPath() + "/login.jsp?error=invalid");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.sendRedirect(request.getContextPath() + "/login.jsp?error=exception");
+	    }
+	}
+
+	    @Override
+	    public MemberDTO getMemberById(int me_no) {
+	        try (SqlSession session = sqlSessionFactory.openSession()) {
+	            MemberMapper mapper = session.getMapper(MemberMapper.class);
+	            return mapper.selectMemberById(me_no);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+	}
