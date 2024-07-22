@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
+
+
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
@@ -26,24 +28,35 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 회원 목록 처리 로직
+		// 관리자 - 회원 목록
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		type = (type == null || type.isEmpty()) ? "user" : type; // 기본 : 회원 구분 user
 		String joinApproval = request.getParameter("join_approval");
 		joinApproval = (joinApproval == null || joinApproval.isEmpty()) ? "all" : joinApproval; // 기본 : 가입 승인 전체(승인/미승인)
+		String sortField = request.getParameter("sortField");
+		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
+		String sortOrder = request.getParameter("sortOrder");
+		sortOrder = (sortOrder == null || sortOrder.isEmpty()) ? "DESC" : sortOrder;
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", type);
 		params.put("joinApproval", joinApproval);
+		params.put("sortField", sortField);
+		params.put("sortOrder", sortOrder);
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class); // MemberMapper 인터페이스를 사용하여 쿼리 실행을 위한 매퍼 객체 생성
 		ArrayList<MemberDTO> list = Member.selectMembers(params); // MemberMapper 메서드 호출
+		if (type.equals("master")) {
+			// 수리분야 리스트 출력
+			//CategoryMapper Category = sql.getMapper(CategoryMapper.class);
+			//ArrayList<CategoryDTO> CategoryList = Category.getList(params);
+		}
 		sql.close();
 
-		/* [3] Request */
+		/* [3] 화면이동 */
 		request.setAttribute("list", list);
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			request.setAttribute(entry.getKey(), entry.getValue());
@@ -54,13 +67,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 수리기사 목록 처리 로직
+		// 사용자 - 수리기사 목록(수리 예약 메뉴)
 		/* [1] 매개변수 */
-		String type = "master";
-		String joinApproval = "Y";
 		Map<String, Object> params = new HashMap<>();
-		params.put("type", type);
-		params.put("joinApproval", joinApproval);
+		params.put("type", "master");
+		params.put("joinApproval", "Y");
+		params.put("sortField", "insert_time");
+		params.put("sortOrder", "DESC");
+		// 카테고리 매개변수로 받아서 검색하는 기능 구현 필요
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -68,11 +82,8 @@ public class MemberServiceImpl implements MemberService {
 		ArrayList<MemberDTO> list = Member.selectMembers(params);
 		sql.close();
 
-		/* [3] Request */
+		/* [3] 화면이동 */
 		request.setAttribute("list", list);
-		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			request.setAttribute(entry.getKey(), entry.getValue());
-		}
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
 	}
 
@@ -91,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberDTO dto = Member.selectMember(params);
 		sql.close();
 
-		/* [3] Request */
+		/* [3] 화면이동 */
 		request.setAttribute("type", dto.getType());
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("member_view.jsp").forward(request, response);
@@ -132,7 +143,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = Member.insertMember(dto);
 		sql.close();
 
-		/* [3] location.href */
+		/* [3] 화면이동 */
 		if (result == 1) { // 등록 성공
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
@@ -161,7 +172,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberDTO dto = Member.selectMember(params);
 		sql.close();
 
-		/* [3] Request */
+		/* [3] 화면이동 */
 		if (dto == null) { // 로그인 실패(email과 pw 일치하는 회원 없음)
 
 			response.setContentType("text/html; charset=UTF-8;");
@@ -234,7 +245,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberDTO dto = Member.selectMember(params);
 		sql.close();
 
-		/* [3] Request */
+		/* [3] 화면이동 */
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
 

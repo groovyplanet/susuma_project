@@ -1,3 +1,14 @@
+
+/*
+list.jsp (회원/게시물)목록
+*/
+function sort(sortField, sortOrder) {
+	const currentUrl = new URL(location.href);
+	currentUrl.searchParams.set('sortField', sortField);
+	currentUrl.searchParams.set('sortOrder', sortOrder);
+	location.href = currentUrl.toString(); // 현재 url에 정렬 관련 파라미터만 추가
+}
+
 /*
 member_list.jsp 회원 목록
 */
@@ -10,12 +21,15 @@ if (member_list) {
 	}
 
 	// 라디오 버튼(가입 승인 여부) 클릭 시 검색
-	const radios = document.searchForm.querySelectorAll('input[name="join_approval"]');
-	radios.forEach(radio => {
-		radio.addEventListener('change', function() {
-			document.searchForm.submit();
+	const radios = document.searchForm ? document.searchForm.querySelectorAll('input[name="join_approval"]') : [];
+	if (radios.length > 0) {
+		radios.forEach(radio => {
+			radio.addEventListener('change', function() {
+				document.searchForm.submit();
+			});
 		});
-	});
+	}
+
 }
 /*
 board_list.jsp 게시판 목록
@@ -29,10 +43,13 @@ if (board_list) {
 	}
 
 	// 라디오 버튼(답변 완료 여부) 클릭 시 검색
-	const radios = document.searchForm.querySelectorAll('input[name="answerCheck"]');
-	radios.forEach(radio => {
-		radio.addEventListener('change', function() {
-			document.searchForm.submit();
+	const radios = document.searchForm ? document.searchForm.querySelectorAll('input[name="answerCheck"]') : [];
+	if (radios.length > 0) {
+		radios.forEach(radio => {
+			radio.addEventListener('change', function() {
+				document.searchForm.submit();
+			});
 		});
-	});
+	}
+
 }

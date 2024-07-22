@@ -2,8 +2,6 @@ package com.susuma.member.service;
 
 import java.io.IOException;
 
-import com.susuma.member.model.MemberDTO;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

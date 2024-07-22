@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.susuma.board.model.BoardMapper">
 
-	<select id="getList" parameterType="map" resultType="com.susuma.board.model.BoardDTO">
+	<!-- [1] 게시물 목록 -->
+	<select id="selectBoards" parameterType="map" resultType="com.susuma.board.model.BoardDTO">
 		SELECT * FROM BOARD
 		WHERE TYPE = #{type}
-		<if test="answerCheck.equals('Y')">
+		<if test="answerCheck.equals('yes')">
 			AND ANSWER IS NOT NULL
 		</if>
-		<if test="answerCheck.equals('N')">
+		<if test="answerCheck.equals('no')">
 			AND ANSWER IS NULL
 		</if>
-		ORDER BY BO_NO DESC
+		ORDER BY ${sortField} ${sortOrder} NULLS LAST
 	</select>
 
-	<select id="getView" resultType="com.susuma.board.model.BoardDTO">
+	<!-- [2] 게시물 -->
+	<select id="selectBoard" resultType="com.susuma.board.model.BoardDTO">
 		SELECT * FROM BOARD WHERE BO_NO = #{boNo}
 	</select>
 
-	<insert id="regist" parameterType="com.susuma.board.model.BoardDTO">
+	<!-- [3] 게시물 등록 -->
+	<insert id="insertBoard" parameterType="com.susuma.board.model.BoardDTO">
 		INSERT INTO BOARD(BO_NO, ME_NO, TYPE, TITLE, CONTENT)
 		VALUES(BOARD_SEQ.NEXTVAL, #{meNo}, #{type}, #{title}, #{content})
 	</insert>
-	
-	<update id="update" parameterType="com.susuma.board.model.BoardDTO">
+
+	<!-- [4] 게시물 수정 -->
+	<update id="updateBoard" parameterType="com.susuma.board.model.BoardDTO">
 		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},UPDATE_TIME=#{updateTime}
 		WHERE BO_NO=#{boNo}
 	</update>
-	<delete id="delete" parameterType="string">
-		DELETE FROM BOARD WHERE BO_NO = #{boNo}
+
+	<!-- [5] 게시물 삭제 -->
+	<delete id="deleteBoard" parameterType="string">
+		DELETE FROM BOARD
+		WHERE BO_NO = #{boNo}
 	</delete>
 
 </mapper>

@@ -14,16 +14,24 @@
 			<div class="title_wrap">
 				<span>${type=='notice'?'공지사항':type=='faq'?'FAQ':'1:1 문의' } 목록</span>
 				<div class="btn_wrap">
-					<a href="write.board?type=${type }" class="btn"> 작성 </a>
+					<a href="write.board?type=${type }" class="btn">
+						<i class="bi bi-pencil-square"></i>
+						작성
+					</a>
 				</div>
 			</div>
 			<c:if test="${type == 'ask' }">
 				<div class="search_wrap">
 					<form name="searchForm" action="list.board" method="get">
 						<input type="hidden" name="type" value="${type}">
+						<input type="hidden" name="sortField" value="${sortField}">
+						<input type="hidden" name="sortOrder" value="${sortOrder}">
 						<table class="search">
 							<tr>
-								<th>답변</th>
+								<th style="width: 85px;">
+									<i class="bi bi-search"></i>
+									답변
+								</th>
 								<td>
 									<ul class="check_list">
 										<li>
@@ -31,11 +39,11 @@
 											<label for="answerCheck_all">전체</label>
 										</li>
 										<li>
-											<input type="radio" name="answerCheck" value="Y" id="answerCheck_Y" ${answerCheck == 'Y' ? 'checked' : ''}>
+											<input type="radio" name="answerCheck" value="yes" id="answerCheck_Y" ${answerCheck == 'yes' ? 'checked' : ''}>
 											<label for="answerCheck_Y">완료</label>
 										</li>
 										<li>
-											<input type="radio" name="answerCheck" value="N" id="answerCheck_N" ${answerCheck == 'N' ? 'checked' : ''}>
+											<input type="radio" name="answerCheck" value="no" id="answerCheck_N" ${answerCheck == 'no' ? 'checked' : ''}>
 											<label for="answerCheck_N">미완료</label>
 										</li>
 									</ul>
@@ -51,12 +59,37 @@
 						<tr>
 							<th>번호</th>
 							<th>회원번호</th>
-							<th>제목</th>
-							<th>작성 일시</th>
-							<th>수정 일시</th>
+							<th>
+								<button class="btn_sort" onclick="sort('title', '${sortField != 'title' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									제목
+									<i class="bi bi-caret-${sortField != 'title' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th>
+								<button class="btn_sort" onclick="sort('insert_time', '${sortField != 'insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									작성 일시
+									<i class="bi bi-caret-${sortField != 'insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th>
+								<button class="btn_sort" onclick="sort('update_time', '${sortField != 'update_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									수정 일시
+									<i class="bi bi-caret-${sortField != 'update_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
 							<c:if test="${type == 'ask' }">
-								<th>답변 작성 일시</th>
-								<th>답변 수정 일시</th>
+								<th>
+									<button class="btn_sort" onclick="sort('answer_insert_time', '${sortField != 'answer_insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+										답변 작성 일시
+										<i class="bi bi-caret-${sortField != 'answer_insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+									</button>
+								</th>
+								<th>
+									<button class="btn_sort" onclick="sort('answer_update_time', '${sortField != 'answer_update_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+										답변 수정 일시
+										<i class="bi bi-caret-${sortField != 'answer_update_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+									</button>
+								</th>
 							</c:if>
 						</tr>
 					</thead>

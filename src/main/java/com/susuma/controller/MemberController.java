@@ -3,7 +3,6 @@ package com.susuma.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.susuma.member.model.MemberDTO;
 import com.susuma.member.service.MemberService;
 import com.susuma.member.service.MemberServiceImpl;
 
@@ -16,6 +15,8 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.member")
 public class MemberController extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 
 	public MemberController() {
 	}
@@ -42,47 +43,38 @@ public class MemberController extends HttpServlet {
 
 		if (command.equals("/admin/member/list.member")) { // 관리자 - 회원목록
 
-			// select n
 			service.getList(request, response);
 
 		} else if (command.equals("/admin/member/view.member")) { // 관리자 - 회원상세
 
-			// select 1
 			service.getView(request, response);
 
 		} else if (command.equals("/member/join.member")) { // 사용자 - 회원가입 작성
 
-			// 화면 이동
 			request.getRequestDispatcher("join.jsp").forward(request, response);
 
 		} else if (command.equals("/member/joinForm.member")) { // 사용자 - 회원가입
 
-			// insert
 			service.regist(request, response);
 
 		} else if (command.equals("/member/loginForm.member")) { // 사용자 로그인
 
-			// select 1 -> 비교
 			service.login(request, response);
 
 		} else if (command.equals("/member/profileEdit.member")) { // 사용자 - 프로필 수정
 
-			// select 1
 			service.profileEdit(request, response);
 
 		} else if (command.equals("/member/find_info.member")) { // 사용자 - 비밀번호 찾기
 
-			// 화면 이동
 			request.getRequestDispatcher("find_info.jsp").forward(request, response);
 
 		} else if (command.equals("/member/mypage.member")) { // 사용자 - 마이페이지
 
-			// 화면 이동
 			request.getRequestDispatcher("mypage.jsp").forward(request, response);
 
 		} else if (command.equals("/member/masterList.member")) { // 사용자 - 수리 예약(수리기사 목록)
 
-			// select n
 			service.getMasterList(request, response);
 
 		} else if (command.equals("/member/logout.member")) { // 사용자 로그아웃

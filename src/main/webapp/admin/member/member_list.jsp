@@ -18,9 +18,14 @@
 				<div class="search_wrap">
 					<form name="searchForm" action="list.member" method="get">
 						<input type="hidden" name="type" value="${type}">
+						<input type="hidden" name="sortField" value="${sortField}">
+						<input type="hidden" name="sortOrder" value="${sortOrder}">
 						<table class="search">
 							<tr>
-								<th>가입 승인</th>
+								<th>
+									<i class="bi bi-search"></i>
+									가입 승인
+								</th>
 								<td>
 									<ul class="check_list">
 										<li>
@@ -38,6 +43,34 @@
 									</ul>
 								</td>
 							</tr>
+							<tr>
+								<th>
+									<i class="bi bi-search"></i>
+									수리 분야(상위)
+								</th>
+								<td>
+									<ul class="check_list">
+										<li>
+											<input type="radio" name="temp" value="temp" id="temp" checked>
+											<label for="temp">전체</label>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<i class="bi bi-search"></i>
+									수리 분야(하위)
+								</th>
+								<td>
+									<ul class="check_list">
+										<li>
+											<input type="radio" name="temp2" value="temp2" id="temp2" checked>
+											<label for="temp2">전체</label>
+										</li>
+									</ul>
+								</td>
+							</tr>
 						</table>
 					</form>
 				</div>
@@ -46,18 +79,47 @@
 				<table class="list" id="member_list">
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>이름</th>
-							<th>이메일</th>
-							<th>주소</th>
-							<th>연락처</th>
-							<c:if test="${type == 'user' }">
-								<th>가입 일시</th>
-							</c:if>
+							<th>번호${sortStr}</th>
+							<th>
+								<button class="btn_sort" onclick="sort('name', '${sortField != 'name' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									이름
+									<i class="bi bi-caret-${sortField != 'name' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th>
+								<button class="btn_sort" onclick="sort('email', '${sortField != 'email' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									이메일
+									<i class="bi bi-caret-${sortField != 'email' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th>
+								<button class="btn_sort" onclick="sort('address', '${sortField != 'address' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									주소
+									<i class="bi bi-caret-${sortField != 'address' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th>
+								<button class="btn_sort" onclick="sort('phone_num', '${sortField != 'phone_num' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									연락처
+									<i class="bi bi-caret-${sortField != 'phone_num' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
 							<c:if test="${type == 'master' }">
 								<th>수리 분야</th>
-								<th>가입 신청 일시</th>
-								<th>가입 승인 일시</th>
+							</c:if>
+							<th>
+								<button class="btn_sort" onclick="sort('insert_time', '${sortField != 'insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									${type=='user'?'가입 일시':'가입 신청 일시' }
+									<i class="bi bi-caret-${sortField != 'insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<c:if test="${type == 'master' }">
+								<th>
+									<button class="btn_sort" onclick="sort('join_approval_time', '${sortField != 'join_approval_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+										가입 승인 일시
+										<i class="bi bi-caret-${sortField != 'join_approval_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+									</button>
+								</th>
 							</c:if>
 						</tr>
 					</thead>
@@ -75,7 +137,7 @@
 									</td>
 								</c:if>
 								<c:if test="${type == 'master' }">
-									<td>냉장고</td>
+									<td>${dto.caName}</td>
 									<td>
 										<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 									</td>
