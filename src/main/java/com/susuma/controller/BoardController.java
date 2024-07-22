@@ -61,7 +61,8 @@ public class BoardController extends HttpServlet {
 			service.regist(request, response);
 			
 		} else if (command.equals("/admin/board/modify.board")) { // 게시물 수정화면
-			
+			request.setAttribute("type", request.getParameter("type"));
+
 			service = new BoardServiceImpl();
 			service.modify(request, response); //구현 필요
 			
@@ -73,7 +74,7 @@ public class BoardController extends HttpServlet {
 		} else if(command.equals("/admin/board/delete.board")) { // 게시물 삭제 
 			
 			service = new BoardServiceImpl();
-			//service.delete(request, response); 구현 필요
+			service.delete(request, response);// 구현 필요
 			
 		}
 		
