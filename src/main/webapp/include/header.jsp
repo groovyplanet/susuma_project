@@ -95,17 +95,11 @@ if (arr != null) {
 						</div>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath }/member/logout.member" class="btn"> (${sessionScope.type eq 'user'?'의뢰인' : '수리기사'}) ${sessionScope.name}님 로그아웃 </a>
+						<a href="${pageContext.request.contextPath }/member/logout.member" class="btn">${sessionScope.type eq 'user'?'의뢰인' : '수리기사'} ${sessionScope.name}님 로그아웃</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath }/user/mypage.jsp" class="btn btn-join">
-							의뢰인
-							<i class="bi bi-chevron-right"></i>
-						</a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath }/master/mypage.jsp" class="btn btn-join">
-							수리기사
+						<a href="${pageContext.request.contextPath }/member/mypage.member" class="btn btn-join">
+							마이페이지
 							<i class="bi bi-chevron-right"></i>
 						</a>
 					</li>

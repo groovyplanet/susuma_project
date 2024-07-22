@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class); // MemberMapper 인터페이스를 사용하여 쿼리 실행을 위한 매퍼 객체 생성
-		ArrayList<MemberDTO> list = Member.getList(params); // MemberMapper 메서드 호출
+		ArrayList<MemberDTO> list = Member.selectMembers(params); // MemberMapper 메서드 호출
 		sql.close();
 
 		/* [3] Request */
@@ -57,11 +57,13 @@ public class MemberServiceImpl implements MemberService {
 		// 회원 상세 정보 처리 로직
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
+		Map<String, Object> params = new HashMap<>();
+		params.put("meNo", meNo);
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		MemberDTO dto = Member.getView(meNo);
+		MemberDTO dto = Member.selectMember(params);
 		sql.close();
 
 		/* [3] Request */
@@ -102,7 +104,7 @@ public class MemberServiceImpl implements MemberService {
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession(true);
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		int result = Member.regist(dto);
+		int result = Member.insertMember(dto);
 		sql.close();
 
 		/* [3] location.href */
@@ -131,11 +133,11 @@ public class MemberServiceImpl implements MemberService {
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		MemberDTO dto = Member.login(params);
+		MemberDTO dto = Member.selectMember(params);
 		sql.close();
 
 		/* [3] Request */
-		if (dto == null) { // 로그인 실패
+		if (dto == null) { // 로그인 실패(email과 pw 일치하는 회원 없음)
 
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
@@ -154,6 +156,7 @@ public class MemberServiceImpl implements MemberService {
 
 			/* 세션(로그인 정보) */
 			HttpSession session = request.getSession();
+			session.setAttribute("meNo", dto.getMeNo() + ""); // 처리하기 쉽게 String형으로 저장
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("type", dto.getType());
@@ -191,25 +194,25 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO getMemberById(int me_no) {
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			return mapper.selectMemberById(me_no);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	@Override
-	public MemberDTO getMemberByEmail(String email) {
-	    try (SqlSession session = sqlSessionFactory.openSession()) {
-	        MemberMapper mapper = session.getMapper(MemberMapper.class);
-	        return mapper.selectMemberByEmail(email);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return null;
-	    }
+	public void profileEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 회원 정보 수정 처리 로직
+		/* [1] 매개변수 */
+		HttpSession session = request.getSession();
+		String meNo = (String) session.getAttribute("meNo"); // 세션 값 가져오기
+		Map<String, Object> params = new HashMap<>();
+		params.put("meNo", meNo);
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		MemberDTO dto = Member.selectMember(params);
+		sql.close();
+
+		/* [3] Request */
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
+
 	}
 
-	
 }
