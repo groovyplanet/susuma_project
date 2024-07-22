@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+// 이메일 저장 쿠키
+Cookie[] arr = request.getCookies();
 
+String email = "";
+if (arr != null) {
+	for (Cookie c : arr) {
+		if (c.getName().equals("saveEmail")) {
+	email = c.getValue();
+		}
+	}
+}
+%>
 <!-- header -->
 <header>
 	<div class="gnb">
@@ -117,16 +129,16 @@
 			</div>
 			<div class="login-form">
 				<!-- 로그인 폼 -->
-				<form action="${pageContext.request.contextPath }/member/loginForm.member" method="post">
+				<form name="loginForm" action="${pageContext.request.contextPath }/member/loginForm.member" method="post">
 					<div class="input-area">
-						<input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email">
+						<input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="<%=email%>">
 					</div>
 					<div class="input-area">
 						<input type="password" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw">
 					</div>
 					<div class="sub-area">
 						<div class="save-area">
-							<input type="checkbox" id="save-email-check">
+							<input type="checkbox" name="saveEmail" value="Y" id="save-email-check" <%=!email.equals("") ? "checked" : ""%>>
 							<label for="save-email-check" class="save-email-label">이메일 저장</label>
 						</div>
 						<a href="${pageContext.request.contextPath }/member/find_info.member">비밀번호 찾기</a>

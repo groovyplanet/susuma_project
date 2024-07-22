@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (loginButton && loginModal) {
         loginButton.addEventListener('click', function() {
             loginModal.classList.add('show');
+            document.loginForm.email.focus(); // 이메일에 포커스
         });
 
         // 로그인 모달 배경 클릭 시 모달 닫기

@@ -13,8 +13,8 @@ import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -123,6 +123,7 @@ public class MemberServiceImpl implements MemberService {
 		/* [1] 매개변수 */
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
+		String saveEmail = request.getParameter("saveEmail"); // 이메일 저장 체크박스
 		Map<String, Object> params = new HashMap<>();
 		params.put("email", email);
 		params.put("pw", pw);
@@ -134,31 +135,58 @@ public class MemberServiceImpl implements MemberService {
 		sql.close();
 
 		/* [3] Request */
-		if (dto == null) {
+		if (dto == null) { // 로그인 실패
 
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
+			String referrer = request.getHeader("Referer");
+
+			if (referrer.indexOf("loginModal=Y") == -1) {
+				referrer += "?loginModal=Y";
+			}
+
 			out.println("<script>");
 			out.println("alert('이메일 또는 비밀번호를 확인하세요.');");
-			//out.println("location.href = '" + request.getContextPath() + "/?loginModal=Y';");
-	        out.println("location.href = document.referrer + '?loginModal=Y';");
+			out.println("window.location.href = '" + referrer + "';"); // 이전 페이지 보여주기 + 모달 창 다시 띄우기
 			out.println("</script>");
-			
-		} else {
 
-			/* 세션에 값 저장 */
+		} else { // 로그인 성공
+
+			/* 세션(로그인 정보) */
 			HttpSession session = request.getSession();
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("name", dto.getName());
+			session.setMaxInactiveInterval(36000); // 10시간
+
+			/* 쿠키(이메일 저장 체크박스) */
+			if (saveEmail != null) { // 이메일 저장 체크했을 경우 쿠키 저장
+
+				Cookie saveEmailCookie = new Cookie("saveEmail", email);
+				saveEmailCookie.setMaxAge(36000); // 10시간
+				saveEmailCookie.setPath(request.getContextPath()); // 쿠키 경로 설정
+				response.addCookie(saveEmailCookie);
+
+			} else { // 이메일 저장 체크 해제 시 쿠키 삭제
+
+				Cookie saveEmailCookie = new Cookie("saveEmail", ""); // 빈 값으로 설정
+				saveEmailCookie.setMaxAge(0); // 즉시 만료
+				saveEmailCookie.setPath(request.getContextPath()); // 쿠키 경로 설정
+				response.addCookie(saveEmailCookie);
+
+			}
 
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('정상적으로 로그인되었습니다.');");
-			out.println("location.href = '../';");
+			// out.println("location.href = document.referrer;"); // 이전 페이지 보여주기
+			out.println("var url = new URL(document.referrer);");
+			out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
+			out.println("location.href = url.toString();"); // 수정된 URL로 리디렉션
 			out.println("</script>");
 
 		}
+
 	}
 
 	@Override
