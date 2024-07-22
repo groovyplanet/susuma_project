@@ -92,5 +92,59 @@ public class BoardServiceImpl implements BoardService {
 			out.println("</script>");
 		}
 	}
+	@Override
+	public void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/* [1] 매개변수 */
+		String boNo = request.getParameter("boNo");
+		String type = request.getParameter("type");
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper Board = sql.getMapper(BoardMapper.class);
+		BoardDTO dto = Board.getView(boNo);
+		sql.close();
+		/* [3] Request */
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("board_modify.jsp").forward(request, response);
+	}
+	@Override
+	public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		/* [1] 매개변수 */
+		String boNo = request.getParameter("boNo");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String type = request.getParameter("type");
+		BoardDTO dto = new BoardDTO();
+		dto.setBoNo(Integer.parseInt(boNo));
+		dto.setTitle(title);
+		dto.setContent(content);
+		dto.setType(type);
+		
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		int result = board.update(dto);
+		sql.close();
+		
+		/* [3] location.href */
+		if (result == 1) { // 등록 성공
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('게시물이 수정되었습니다.');");
+			out.println("location.href='list.board?type=" + type + "';");
+			out.println("</script>");
+		}else {
+			response.sendRedirect("getContent.board?boNo="+boNo);
+
+		}
+		
+		
+
+	
+		
+	}
 
 }
