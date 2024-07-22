@@ -95,7 +95,7 @@ if (arr != null) {
 						</div>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath }/member/logout.member" class="btn">${sessionScope.name}님 로그아웃</a>
+						<a href="${pageContext.request.contextPath }/member/logout.member" class="btn"> (${sessionScope.type eq 'user'?'의뢰인' : '수리기사'}) ${sessionScope.name}님 로그아웃 </a>
 					</li>
 					<li>
 						<a href="${pageContext.request.contextPath }/user/mypage.jsp" class="btn btn-join">

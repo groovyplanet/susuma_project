@@ -156,6 +156,7 @@ public class MemberServiceImpl implements MemberService {
 			HttpSession session = request.getSession();
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("name", dto.getName());
+			session.setAttribute("type", dto.getType());
 			session.setMaxInactiveInterval(36000); // 10시간
 
 			/* 쿠키(이메일 저장 체크박스) */
