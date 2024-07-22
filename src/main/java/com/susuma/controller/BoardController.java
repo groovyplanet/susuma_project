@@ -63,12 +63,12 @@ public class BoardController extends HttpServlet {
 		} else if (command.equals("/admin/board/modify.board")) { // 게시물 수정화면
 			
 			service = new BoardServiceImpl();
-			//service.modify(request, response); 구현 필요
+			service.modify(request, response); //구현 필요
 			
 		} else if (command.equals("/admin/board/updateForm.board")) { // 게시물 수정
 			
 			service = new BoardServiceImpl();
-			//service.update(request, response); 구현 필요
+			service.update(request, response); //구현 필요
 			
 		} else if(command.equals("/admin/board/delete.board")) { // 게시물 삭제 
 			

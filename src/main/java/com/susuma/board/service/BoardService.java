@@ -10,6 +10,8 @@ public interface BoardService {
 	void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 } 
 
 

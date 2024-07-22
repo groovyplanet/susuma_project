@@ -25,5 +25,10 @@
 		INSERT INTO BOARD(BO_NO, ME_NO, TYPE, TITLE, CONTENT)
 		VALUES(BOARD_SEQ.NEXTVAL, #{meNo}, #{type}, #{title}, #{content})
 	</insert>
+	
+	<update id="update" parameterType="com.susuma.board.model.BoardDTO">
+		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content}
+		WHERE BO_NO=#{boNo}
+	</update>
 
 </mapper>
