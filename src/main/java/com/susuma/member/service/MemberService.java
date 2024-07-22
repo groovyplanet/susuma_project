@@ -14,4 +14,5 @@ public interface MemberService {
     void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     MemberDTO getMemberById(int me_no);
+    MemberDTO getMemberByEmail(String email);
 }

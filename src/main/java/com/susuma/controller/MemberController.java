@@ -79,18 +79,21 @@ public class MemberController extends HttpServlet {
 			out.println("location.href = '" + contextPath + "/';");
 			out.println("</script>");
 
-		} else if (command.equals("/member/profile_edit.member")) { // 사용자 - 프로필 수정
+		} else if (command.equals("/profileEdit.member")) { // 사용자 - 프로필 수정
 
-			service = new MemberServiceImpl();
-			HttpSession session = request.getSession();
-			int me_no = (int) session.getAttribute("me_no");
-			MemberDTO member = service.getMemberById(me_no);
-			request.setAttribute("member", member);
-			request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
+		    service = new MemberServiceImpl();
+		    HttpSession session = request.getSession();
+		    Integer me_no = (Integer) session.getAttribute("me_no");
 
-		} else if (command.equals("/member/find_info.member")) { // 사용자 - 비밀번호 찾기
+		    // 세션에 me_no가 없을 경우 로그인 페이지로 리다이렉트
+		    if (me_no == null) {
+		        response.sendRedirect(request.getContextPath() + "/login.jsp");
+		        return;
+		    }
 
-			request.getRequestDispatcher("find_info.jsp").forward(request, response);
+		    MemberDTO member = service.getMemberById(me_no);
+		    request.setAttribute("member", member);
+		    request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
 		}
 	}
 }

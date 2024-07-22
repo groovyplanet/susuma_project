@@ -22,7 +22,7 @@
 						</div>
 						<div class="input-area">
 							<label for="email">이메일</label>
-							<input type="text" class="input-field" value="ssm@naver.com" autocomplete="no" name="email" id="email" disabled>
+							<input type="text" class="input-field" value="${member.email}" autocomplete="no" name="email" id="email" disabled>
 						</div>
 						<div class="input-area">
 							<label for="">비밀번호</label>

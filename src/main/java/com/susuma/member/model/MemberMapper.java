@@ -10,4 +10,5 @@ public interface MemberMapper {
     public MemberDTO getMemberByEmail(String email);
     public MemberDTO login(Map<String, Object> params);
     public MemberDTO selectMemberById(int me_no); // 사용자 - profile_edit.jsp 구현
+    MemberDTO selectMemberByEmail(String email);
 }
