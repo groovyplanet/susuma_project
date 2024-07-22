@@ -3,7 +3,7 @@ package com.susuma.category.model;
 import java.util.ArrayList;
 
 public interface CategoryMapper {
-	
-	public ArrayList<CategoryDTO> getList();
+
+	public ArrayList<CategoryDTO> getList(String rootNo);
 
 }
