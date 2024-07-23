@@ -26,6 +26,7 @@
 		<mapper resource="mybatis/mapper/MemberMapper.xml" />
 		<mapper resource="mybatis/mapper/MessageMapper.xml" />
 		<mapper resource="mybatis/mapper/RequestMapper.xml" />
+		<mapper resource="mybatis/mapper/CategoryMapper.xml" />
 
 
 	</mappers>

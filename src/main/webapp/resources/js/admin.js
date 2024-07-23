@@ -30,6 +30,16 @@ if (member_list) {
 		});
 	}
 
+	// 라디오 버튼(수리분야 상위) 클릭 시 검색
+	const radios2 = document.searchForm ? document.searchForm.querySelectorAll('input[name="rootNo"]') : [];
+	if (radios2.length > 0) {
+		radios2.forEach(radio => {
+			radio.addEventListener('change', function() {
+				document.searchForm.submit();
+			});
+		});
+	}
+
 }
 /*
 board_list.jsp 게시판 목록

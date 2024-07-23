@@ -40,12 +40,18 @@ public class MemberServiceImpl implements MemberService {
 		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
 		String sortOrder = request.getParameter("sortOrder");
 		sortOrder = (sortOrder == null || sortOrder.isEmpty()) ? "DESC" : sortOrder;
+		String rootNo = request.getParameter("rootNo");
+		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
+		String caNo = request.getParameter("caNo");
+		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", type);
 		params.put("joinApproval", joinApproval);
 		params.put("sortField", sortField);
 		params.put("sortOrder", sortOrder);
+		params.put("rootNo", rootNo);
+		//params.put("caNo", caNo);
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -53,8 +59,14 @@ public class MemberServiceImpl implements MemberService {
 		ArrayList<MemberDTO> list = Member.selectMembers(params); // MemberMapper 메서드 호출
 		if (type.equals("master")) {
 			// 수리분야 리스트 출력
-			//CategoryMapper Category = sql.getMapper(CategoryMapper.class);
-			//ArrayList<CategoryDTO> CategoryMainList = Category.getList(null); // 메인 카테고리 출력 시 파라미터는 null
+			CategoryMapper Category = sql.getMapper(CategoryMapper.class);
+			ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
+			request.setAttribute("CategoryMainList", CategoryMainList);
+			if(!rootNo.equals("all")) {
+				// 수리분야 리스트(하위) 출력
+				ArrayList<CategoryDTO> CategorySubList = Category.selectCategorys(rootNo);
+				request.setAttribute("CategorySubList", CategorySubList);
+			}
 		}
 		sql.close();
 
@@ -245,6 +257,7 @@ public class MemberServiceImpl implements MemberService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		MemberDTO dto = Member.selectMember(params);
+		//System.out.println(dto.getAddress());
 		sql.close();
 
 		/* [3] 화면이동 */
