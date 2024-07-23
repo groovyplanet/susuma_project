@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -10,86 +11,30 @@
 		<div class="container">
 			<%@ include file="../include/snb_board.jsp"%>
 			<div class="content-list">
+			<c:forEach var="dto" items="${list}">
 				<div class="content-box">
 					<div class="content-mix">
 
 						<div class="content-status-wait">
+							
 							<!-- <button class="btn complete" id="approve-button">답변 대기</button> -->
-							<p>답변 대기</p>
+							<c:choose>
+								<c:when test="${dto.answer !=null}"><p>답변 완료</p></c:when>
+								<c:otherwise><p>답변 대기</p></c:otherwise>
+							</c:choose>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
+							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">${dto.title }</a>
 							<div>
-								<p>2024-07-15</p>
-								<p>조예원</p>
+							<p><fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd"/></p>
+								<p>${dto.name }</p>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-status-ok">
-							<!-- <button class="btn complete">답변 완료</button> -->
-							<p>답변 완료</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<div>
-								<p>2024-07-15</p>
-								<p>한정우</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-status-ok">
-							<!-- <button class="btn complete">답변 완료</button> -->
-							<p>답변 완료</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<div>
-								<p>2024-07-15</p>
-								<p>김현용</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-status-ok">
-							<!-- <button class="btn complete">답변 완료</button> -->
-							<p>답변 완료</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<div>
-								<p>2024-07-15</p>
-								<p>조예원</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-status-ok">
-							<!-- <button class="btn complete">답변 완료</button> -->
-							<p>답변 완료</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/ask_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<div>
-								<p>2024-07-15</p>
-								<p>조예원</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
+				
+				
 				<div class="content-p-box">
 					<div class="content-page left">
 						<a href="#">이전</a>

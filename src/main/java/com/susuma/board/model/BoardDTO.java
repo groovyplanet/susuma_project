@@ -14,6 +14,7 @@ public class BoardDTO {
 	private String answer;
 	private Timestamp answerInsertTime;
 	private Timestamp answerUpdateTime;
+	private String name;
 
 	public BoardDTO() {
 		super();
@@ -28,7 +29,7 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public BoardDTO(int boNo, int meNo, String type, String title, String content, Timestamp insertTime, Timestamp updateTime, String answer, Timestamp answerInsertTime, Timestamp answerUpdateTime) {
+	public BoardDTO(int boNo, int meNo, String type, String title, String content, Timestamp insertTime, Timestamp updateTime, String answer, Timestamp answerInsertTime, Timestamp answerUpdateTime,String name) {
 		super();
 		this.boNo = boNo;
 		this.meNo = meNo;
@@ -40,6 +41,16 @@ public class BoardDTO {
 		this.answer = answer;
 		this.answerInsertTime = answerInsertTime;
 		this.answerUpdateTime = answerUpdateTime;
+		this.name = name;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getBoNo() {

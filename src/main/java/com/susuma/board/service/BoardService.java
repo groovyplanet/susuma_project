@@ -13,6 +13,8 @@ public interface BoardService {
 	void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void ngetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void askList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 } 
 
 
