@@ -92,8 +92,10 @@ public class MemberController extends HttpServlet {
 			out.println("location.href = '" + contextPath + "/';");
 			out.println("</script>");
 
-		}else if (command.equals("/member/ExitForm.member")) { // 사용자 - 회원 탈퇴
+		}else if (command.equals("/member/exitForm.member")) { // 사용자 - 회원 탈퇴
 		    service.deleteAccount(request, response);
-		}
+		} else if (command.equals("/member/exit.member")) { // 사용자 - 마이페이지
+			request.getRequestDispatcher("exit.jsp").forward(request, response);
 	}
+}
 }
