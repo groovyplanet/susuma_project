@@ -49,7 +49,7 @@
 							<input type="hidden" name="latitude">
 							<input type="hidden" name="longitude">
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
-								<p style="text-align: left;">${dto.address}22</p>
+								<p style="text-align: left;">${dto.address}</p>
 							</button>
 							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail" value="${dto.addressDetail}">
 						</div>

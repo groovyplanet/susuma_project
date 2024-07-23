@@ -15,7 +15,7 @@
 					<a href="${pageContext.request.contextPath }/user/list.request">예약 내역</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/user/review_list.jsp">후기 내역</a>
+					<a href="${pageContext.request.contextPath }/member/list.review">후기 내역</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/user/message_list.jsp">문의 내역</a>
@@ -29,7 +29,7 @@
 					<a href="${pageContext.request.contextPath }/master/repair_list.jsp">수리 내역</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/master/review_list.jsp">후기 내역</a>
+					<a href="${pageContext.request.contextPath }/member/list.review">후기 내역</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/master/message_list.jsp">문의 내역</a>
