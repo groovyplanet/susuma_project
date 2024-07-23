@@ -147,7 +147,11 @@
 			<p>결제 버튼을 누르시면 결제가 완료됩니다.</p>
 			<p style="color: red;">결제요청 시 결제 금액 환불은 불가합니다.</p>
 			<div>
-				결제 하실 금액은<span id="usermoney"><strong> 10,000원 </strong> 입니다. </span>
+				결제 하실 금액은
+				<span id="usermoney">
+					<strong> 10,000원 </strong>
+					입니다.
+				</span>
 			</div>
 			<div class="modal-buttons">
 				<button class="btn-confirm">결제</button>
@@ -160,28 +164,27 @@
 			<div class="content reservation-setting">
 
 				<h4 class="reserve-list-title">예약 내역</h4>
-				
+
 				<br>
-				
+
 				<c:forEach var="dto" items="${list }">
-				
-				
-								
-				<div class="reserve-schecdule">
-					<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
-					<div class="info">
-						<div class="repair_date">${dto.date }</div>
-						<div class="master_name">
-							김현용 <span class="address"> 강동구 </span>
+
+					<div class="reserve-schecdule">
+						<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+						<div class="info">
+							<div class="repair_date">${dto.date }</div>
+							<div class="master_name">
+								김현용
+								<span class="address"> 강동구 </span>
+							</div>
+							<div class="repair_type">[CSS 수리]</div>
+							<div class="explain">${dto.content }</div>
 						</div>
-						<div class="repair_type">[CSS 수리]</div>
-						<div class="explain">${dto.content }</div>
+						<button class="btn approve" id="wait">결제 요청</button>
 					</div>
-					<button class="btn approve" id="wait">결제 요청</button>
-				</div>
 				</c:forEach>
 
-<!-- 				
+				<!-- 				
 				<div class="reserve-schecdule">
 					<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 					<div class="info">

@@ -14,7 +14,6 @@ import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
 
-
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
@@ -51,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 		params.put("sortField", sortField);
 		params.put("sortOrder", sortOrder);
 		params.put("rootNo", rootNo);
-		//params.put("caNo", caNo);
+		// params.put("caNo", caNo);
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -62,7 +61,7 @@ public class MemberServiceImpl implements MemberService {
 			CategoryMapper Category = sql.getMapper(CategoryMapper.class);
 			ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
 			request.setAttribute("CategoryMainList", CategoryMainList);
-			if(!rootNo.equals("all")) {
+			if (!rootNo.equals("all")) {
 				// 수리분야 리스트(하위) 출력
 				ArrayList<CategoryDTO> CategorySubList = Category.selectCategorys(rootNo);
 				request.setAttribute("CategorySubList", CategorySubList);
@@ -93,12 +92,18 @@ public class MemberServiceImpl implements MemberService {
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		ArrayList<MemberDTO> list = Member.selectMembers(params);
-		sql.close();
+		ArrayList<MemberDTO> memberList = Member.selectMembers(params);
+		CategoryMapper Category = sql.getMapper(CategoryMapper.class);
+		ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
+		
+		sql.close(); 
 
 		/* [3] 화면이동 */
-		request.setAttribute("list", list);
+		
+		request.setAttribute("memberList", memberList);
+		request.setAttribute("CategoryMainList", CategoryMainList);
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
+
 	}
 
 	@Override
@@ -257,7 +262,7 @@ public class MemberServiceImpl implements MemberService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		MemberDTO dto = Member.selectMember(params);
-		//System.out.println(dto.getAddress());
+		// System.out.println(dto.getAddress());
 		sql.close();
 
 		/* [3] 화면이동 */

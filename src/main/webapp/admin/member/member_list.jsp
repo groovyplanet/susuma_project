@@ -63,26 +63,28 @@
 									</ul>
 								</td>
 							</tr>
-							<tr>
-								<th>
-									<i class="bi bi-search"></i>
-									수리 분야(하위)
-								</th>
-								<td>
-									<ul class="check_list">
-										<li>
-											<input type="radio" name="caNo" value="all" id="caNo_all" ${caNo == 'all' ? 'checked' : ''}>
-											<label for="temp2">전체</label>
-										</li>
-										<c:forEach var="categorySubDto" items="${CategorySubList}">
+							<c:if test="${rootNo != 'all' }">
+								<tr>
+									<th>
+										<i class="bi bi-search"></i>
+										수리 분야(하위)
+									</th>
+									<td>
+										<ul class="check_list">
 											<li>
-												<input type="radio" name="caNo" value="${categorySubDto.caNo}" id="caNo_${categorySubDto.caNo}" ${caNo == categorySubDto.caNo ? 'checked' : ''}>
-												<label for="caNo_${categorySubDto.caNo}">${categorySubDto.caName}</label>
+												<input type="radio" name="caNo" value="all" id="caNo_all" ${caNo == 'all' ? 'checked' : ''}>
+												<label for="temp2">전체</label>
 											</li>
-										</c:forEach>
-									</ul>
-								</td>
-							</tr>
+											<c:forEach var="categorySubDto" items="${CategorySubList}">
+												<li>
+													<input type="radio" name="caNo" value="${categorySubDto.caNo}" id="caNo_${categorySubDto.caNo}" ${caNo == categorySubDto.caNo ? 'checked' : ''}>
+													<label for="caNo_${categorySubDto.caNo}">${categorySubDto.caName}</label>
+												</li>
+											</c:forEach>
+										</ul>
+									</td>
+								</tr>
+							</c:if>
 						</table>
 					</form>
 				</div>
