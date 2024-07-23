@@ -285,6 +285,55 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
 
-	}
+	}@Override
+	 public void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        
+		/* [1] 매개변수 */
+		HttpSession session = request.getSession();
+        String meNo = (String) session.getAttribute("meNo");
+        String inputPassword = request.getParameter("pw");
 
+        if (meNo == null || inputPassword == null) {
+            response.setContentType("text/html; charset=UTF-8;");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('잘못된 요청입니다. 다시 시도해 주세요.');");
+            out.println("history.back();");
+            out.println("</script>");
+            return;
+        }
+        /* [2] Mapper */
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        try {
+            // DB에서 비밀번호 가져오기
+            String storedPassword = memberMapper.getPassword(meNo);
+
+            if (storedPassword != null && storedPassword.equals(inputPassword)) {
+                // 비밀번호가 일치하면 회원 정보 삭제
+                memberMapper.deleteMember(meNo);
+                sqlSession.commit();
+                session.invalidate();
+
+                response.setContentType("text/html; charset=UTF-8;");
+                PrintWriter out = response.getWriter();
+                String contextPath = request.getContextPath();
+                out.println("<script>");
+                out.println("alert('회원 탈퇴가 완료되었습니다.');");
+                out.println("location.href = '" + contextPath + "/';");
+                out.println("</script>");
+            } else {
+                // 비밀번호가 일치하지 않으면 에러 메시지 출력
+                response.setContentType("text/html; charset=UTF-8;");
+                PrintWriter out = response.getWriter();
+                out.println("<script>");
+                out.println("alert('비밀번호가 일치하지 않습니다.');");
+                out.println("history.back();");
+                out.println("</script>");
+            }
+        } finally {
+            sqlSession.close();
+        }
+    }
 }

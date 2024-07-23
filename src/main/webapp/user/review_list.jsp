@@ -89,7 +89,7 @@
 						<div class="infodetail">
 							<a href="${pageContext.request.contextPath }/user/review_view.jsp" style="text-decoration: none;">
 								<div class="member-name">
-									<strong>${dto.content }</strong>
+									<strong></strong>
 									<span></span>
 								</div>
 								<div class="member-map">
@@ -102,7 +102,7 @@
 								</div>
 							</a>
 						</div>
-						<div class="review-status">
+						<div class="review-status">${dto.content }
 							<button class="btn request">수리완료</button>
 						</div>
 					</div>
