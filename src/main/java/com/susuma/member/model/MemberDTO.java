@@ -30,6 +30,7 @@ public class MemberDTO {
 	private Timestamp updateTime; // "UPDATE_TIME"
 
 	// MASTER_CATEGORY, CATEGORY 테이블
+	private String caNo; // "CA_NO"
 	private String caName; // "CA_NAME"
 	private String caRootName; // "CA_ROOT_NAME"
 
@@ -70,7 +71,8 @@ public class MemberDTO {
 	}
 
 	// 모든 필드를 포함하는 생성자
-	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime, String caName, String caRootName) {
+	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, 
+			Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootName) {
 		super();
 		this.meNo = meNo;
 		this.type = type;
@@ -95,6 +97,7 @@ public class MemberDTO {
 		this.status = status;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
+		this.caNo = caNo;
 		this.caName = caName;
 		this.caRootName = caRootName;
 	}
@@ -281,6 +284,14 @@ public class MemberDTO {
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getCaNo() {
+		return caNo;
+	}
+
+	public void setCaNo(String caNo) {
+		this.caNo = caNo;
 	}
 
 	public String getCaName() {

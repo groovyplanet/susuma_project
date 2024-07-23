@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface CategoryMapper {
 
-	public ArrayList<CategoryDTO> getList(String rootNo);
+	public ArrayList<CategoryDTO> selectCategorys(String rootNo);
 
 }

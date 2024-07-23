@@ -72,7 +72,6 @@
 							<div class="input-area">
 								<div class="category-add-area">
 									<label for="category" class="required">수리 분야</label>
-									<span id="add-category-btn">분야 추가</span>
 								</div>
 								<div id="category-select-area-template" style="display: none;">
 									<div class="category-select-area">

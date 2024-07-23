@@ -1,112 +1,51 @@
 package com.susuma.category.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class CategoryDTO {
-	
-	private int reqNo;
-	private int masterNo;
-	private int clientNo;
-	private String content;
-	private String date;
-	private String time;
-	private String status;
-	private String cancelReason;
-	private Timestamp insertTime;
-	private Timestamp approvalTime;
-	private Timestamp cancelTime;
-	private int payAmount;
-	private String payStatus;
-	private Timestamp payRequestTime;
-	private Timestamp paidTime;
+
+	// CATEGORY 테이블
+	private String caNo; // "CA_NO"
+	private String rootNo; // "ROOT_NO"
+	private String caName; // "CA_NAME"
+	private Timestamp insertTime; // "INSERT_TIME"
+	private Timestamp updateTime; // "UPDATE_TIME"
 
 	public CategoryDTO() {
-		
-	}
-
-	public CategoryDTO(int reqNo, int masterNo, int clientNo, String content, String date, String time, String status,
-			String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, int payAmount,
-			String payStatus, Timestamp payRequestTime, Timestamp paidTime) {
 		super();
-		this.reqNo = reqNo;
-		this.masterNo = masterNo;
-		this.clientNo = clientNo;
-		this.content = content;
-		this.date = date;
-		this.time = time;
-		this.status = status;
-		this.cancelReason = cancelReason;
+	}
+
+	public CategoryDTO(String caNo, String rootNo, String caName, Timestamp insertTime, Timestamp updateTime) {
+		super();
+		this.caNo = caNo;
+		this.rootNo = rootNo;
+		this.caName = caName;
 		this.insertTime = insertTime;
-		this.approvalTime = approvalTime;
-		this.cancelTime = cancelTime;
-		this.payAmount = payAmount;
-		this.payStatus = payStatus;
-		this.payRequestTime = payRequestTime;
-		this.paidTime = paidTime;
+		this.updateTime = updateTime;
 	}
 
-	public int getReqNo() {
-		return reqNo;
+	public String getcaNo() {
+		return caNo;
 	}
 
-	public void setReqNo(int reqNo) {
-		this.reqNo = reqNo;
+	public void setcaNo(String caNo) {
+		this.caNo = caNo;
 	}
 
-	public int getMasterNo() {
-		return masterNo;
+	public String getRootNo() {
+		return rootNo;
 	}
 
-	public void setMasterNo(int masterNo) {
-		this.masterNo = masterNo;
+	public void setRootNo(String rootNo) {
+		this.rootNo = rootNo;
 	}
 
-	public int getClientNo() {
-		return clientNo;
+	public String getCaName() {
+		return caName;
 	}
 
-	public void setClientNo(int clientNo) {
-		this.clientNo = clientNo;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getCancelReason() {
-		return cancelReason;
-	}
-
-	public void setCancelReason(String cancelReason) {
-		this.cancelReason = cancelReason;
+	public void setCaName(String caName) {
+		this.caName = caName;
 	}
 
 	public Timestamp getInsertTime() {
@@ -117,55 +56,12 @@ public class CategoryDTO {
 		this.insertTime = insertTime;
 	}
 
-	public Timestamp getApprovalTime() {
-		return approvalTime;
+	public Timestamp getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setApprovalTime(Timestamp approvalTime) {
-		this.approvalTime = approvalTime;
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
 	}
 
-	public Timestamp getCancelTime() {
-		return cancelTime;
-	}
-
-	public void setCancelTime(Timestamp cancelTime) {
-		this.cancelTime = cancelTime;
-	}
-
-	public int getPayAmount() {
-		return payAmount;
-	}
-
-	public void setPayAmount(int payAmount) {
-		this.payAmount = payAmount;
-	}
-
-	public String getPayStatus() {
-		return payStatus;
-	}
-
-	public void setPayStatus(String payStatus) {
-		this.payStatus = payStatus;
-	}
-
-	public Timestamp getPayRequestTime() {
-		return payRequestTime;
-	}
-
-	public void setPayRequestTime(Timestamp payRequestTime) {
-		this.payRequestTime = payRequestTime;
-	}
-
-	public Timestamp getPaidTime() {
-		return paidTime;
-	}
-
-	public void setPaidTime(Timestamp paidTime) {
-		this.paidTime = paidTime;
-	}
-	
-	
 }
-
-

@@ -51,9 +51,15 @@
 								<td>
 									<ul class="check_list">
 										<li>
-											<input type="radio" name="temp" value="temp" id="temp" checked>
-											<label for="temp">전체</label>
+											<input type="radio" name="rootNo" value="all" id="rootNo_all" ${rootNo == 'all' ? 'checked' : ''}>
+											<label for="rootNo_all">전체</label>
 										</li>
+										<c:forEach var="categoryDto" items="${CategoryMainList}">
+											<li>
+												<input type="radio" name="rootNo" value="${categoryDto.caNo}" id="rootNo_${categoryDto.caNo}" ${rootNo == categoryDto.caNo ? 'checked' : ''}>
+												<label for="rootNo_${categoryDto.caNo}">${categoryDto.caName}</label>
+											</li>
+										</c:forEach>
 									</ul>
 								</td>
 							</tr>
@@ -65,9 +71,15 @@
 								<td>
 									<ul class="check_list">
 										<li>
-											<input type="radio" name="temp2" value="temp2" id="temp2" checked>
+											<input type="radio" name="caNo" value="all" id="caNo_all" ${caNo == 'all' ? 'checked' : ''}>
 											<label for="temp2">전체</label>
 										</li>
+										<c:forEach var="categorySubDto" items="${CategorySubList}">
+											<li>
+												<input type="radio" name="caNo" value="${categorySubDto.caNo}" id="caNo_${categorySubDto.caNo}" ${caNo == categorySubDto.caNo ? 'checked' : ''}>
+												<label for="caNo_${categorySubDto.caNo}">${categorySubDto.caName}</label>
+											</li>
+										</c:forEach>
 									</ul>
 								</td>
 							</tr>
