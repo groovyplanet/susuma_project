@@ -94,6 +94,8 @@ public class MemberController extends HttpServlet {
 
 		}else if (command.equals("/member/ExitForm.member")) { // 사용자 - 회원 탈퇴
 		    service.deleteAccount(request, response);
-		}
+		} else if (command.equals("/member/Exit.member")) { // 사용자 - 마이페이지
+			request.getRequestDispatcher("exit.jsp").forward(request, response);
 	}
+}
 }
