@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -10,78 +11,21 @@
 		<div class="container">
 			<%@ include file="../include/snb_board.jsp"%>
 			<div class="content-list">
+			<c:forEach var="dto" items="${list }">
 				<div class="content-box">
 					<div class="content-mix">
-
+	
 						<div class="content-num">
-							<p>10</p>
+							<p>${dto.boNo}</p>
 						</div>
 						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<p>2024-07-15</p>
+							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">${dto.title}</a>
+							<p><fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd"/></p>
 						</div>
 					</div>
 				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-num">
-							<p>9</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<p>2024-07-15</p>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-num">
-							<p>8</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<p>2024-07-15</p>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-num">
-							<p>7</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<p>2024-05-15</p>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-num">
-							<p>6</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<p>2024-07-15</p>
-						</div>
-					</div>
-				</div>
-				<div class="content-box">
-					<div class="content-mix">
-
-						<div class="content-num">
-							<p>5</p>
-						</div>
-						<div class="content-title">
-							<a href="${pageContext.request.contextPath }/board/notice_view.jsp">수수마 포인트 이용안내 입니다</a>
-							<p>2024-07-15</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
+				
 				<div class="content-p-box">
 					<div class="content-page left">
 						<a href="#">이전</a>

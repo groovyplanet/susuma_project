@@ -39,6 +39,7 @@ public class BoardController extends HttpServlet {
 		
 		BoardService service = new BoardServiceImpl(); // 비즈니스 로직 처리(DB 접근 및 조작 등)
 
+		
 		if (command.equals("/admin/board/list.board")) { // 게시물 목록
 
 			service.getList(request, response);
@@ -68,6 +69,13 @@ public class BoardController extends HttpServlet {
 			
 			service.delete(request, response);
 			
+		} else if(command.equals("/board/notice_list.board")) {
+			service.ngetList(request, response);
+		} else if(command.equals("/board/faq_list.board")) {
+			service.ngetList(request, response);
+		} else if(command.equals("/board/ask_list.board")) {
+			
+			service.askList(request, response);
 		}
 		
 	}

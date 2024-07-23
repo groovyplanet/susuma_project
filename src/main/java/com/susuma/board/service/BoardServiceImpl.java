@@ -177,5 +177,41 @@ public class BoardServiceImpl implements BoardService {
 		out.println("</script>");
 
 	}
+	@Override
+	public void ngetList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String type = request.getParameter("type");
+		
+		SqlSession sql = sqlSessionFactory.openSession();
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		ArrayList<BoardDTO> list = board.ngetlist(type);
+		sql.close();
+		
+		
+		request.setAttribute("list", list);
+		if(type.equals("notice")) {
+			request.getRequestDispatcher("notice_list.jsp").forward(request, response);
+		} else if(type.equals("faq")) {
+			request.getRequestDispatcher("faq.jsp").forward(request, response);
+		} 
+		
+		
+	}
+	@Override
+	public void askList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String type = request.getParameter("type");
+		
+		SqlSession sql = sqlSessionFactory.openSession();
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		ArrayList<BoardDTO> list = board.getAsk(type);
+		
+		sql.close();
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("ask_list.jsp").forward(request, response);
+		
+	}
 
 }
