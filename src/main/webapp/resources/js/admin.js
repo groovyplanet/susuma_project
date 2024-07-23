@@ -13,6 +13,22 @@ function goPage(page) {
 	document.searchForm.submit();
 }
 
+// 라디오 버튼 클릭 시 검색
+const radios = document.searchForm ? document.searchForm.querySelectorAll('input[type="radio"]') : [];
+if (radios.length > 0) {
+	radios.forEach(radio => {
+		radio.addEventListener('change', function() {
+			if (radio.name == 'rootNo') { // 상위 카테고리 변경 시
+				const caNoAllRadio = document.getElementById('caNo_all');
+				if (caNoAllRadio) {
+					caNoAllRadio.checked = true; // 하위 카테고리가 있다면 초기화
+				}
+			}
+			document.searchForm.submit();
+		});
+	});
+}
+
 /*
 member_list.jsp 회원 목록
 */
@@ -23,27 +39,6 @@ if (member_list) {
 		if (e.target.tagName != "TD") return;
 		location.href = "view.member?meNo=" + e.target.closest("tr").dataset.meno;
 	}
-
-	// 라디오 버튼(가입 승인 여부) 클릭 시 검색
-	const radios = document.searchForm ? document.searchForm.querySelectorAll('input[name="join_approval"]') : [];
-	if (radios.length > 0) {
-		radios.forEach(radio => {
-			radio.addEventListener('change', function() {
-				document.searchForm.submit();
-			});
-		});
-	}
-
-	// 라디오 버튼(수리분야 상위) 클릭 시 검색
-	const radios2 = document.searchForm ? document.searchForm.querySelectorAll('input[name="rootNo"]') : [];
-	if (radios2.length > 0) {
-		radios2.forEach(radio => {
-			radio.addEventListener('change', function() {
-				document.searchForm.submit();
-			});
-		});
-	}
-
 }
 /*
 board_list.jsp 게시판 목록
@@ -55,15 +50,4 @@ if (board_list) {
 		if (e.target.tagName != "TD") return;
 		location.href = "view.board?boNo=" + e.target.closest("tr").dataset.bono;
 	}
-
-	// 라디오 버튼(답변 완료 여부) 클릭 시 검색
-	const radios = document.searchForm ? document.searchForm.querySelectorAll('input[name="answerCheck"]') : [];
-	if (radios.length > 0) {
-		radios.forEach(radio => {
-			radio.addEventListener('change', function() {
-				document.searchForm.submit();
-			});
-		});
-	}
-
 }

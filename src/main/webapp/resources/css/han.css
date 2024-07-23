@@ -15,7 +15,7 @@
 .main-section .container .content .status-section .content-text p { margin: 10px 0; } 
 .main-section .container .content .progress-text { margin-top: 20px; border: 1px solid gray; padding: 10px; border-radius: 5px; width: 300px; display: inline-block; text-align: center; } 
 /* ===========profile_edit css start======== */
-.main-section .container .content .edit-form.profile { margin-top: 30px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 14px; width: 90%; justify-content: center; flex-direction: row;} 
+.main-section .container .content .edit-form.profile { margin-top: 30px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 14px; width: 90%; justify-content: center; flex-direction: row; } 
 .main-section .container .content .edit-form .profile-img { position: relative; flex: none; width: 100px; height: 80px; margin-left: 40px; border-radius: 50%; background-size: cover; } 
 .main-section .container .content .edit-form .master-section { font-size: 14px; font-weight: 600; margin-left: 20px; text-align: center; margin-top: 30px; } 
 .main-section .container .content .edit-form .profile-img .profile-pic-upload { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #44474b; } 
@@ -56,7 +56,7 @@
 /* ===reserve manage list page css start === */
 .main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 30px 50px; } 
 .main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
-.main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+/*.main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } */
 .main-section .container .reservation-setting .reserve-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
 .main-section .container .reservation-setting .reserve-schecdule .approve,
 .main-section .container .reservation-setting .reserve-schecdule .pending { background-color: #ff6b6b; color: white; } 
@@ -71,7 +71,7 @@
 #reserve-approve-btn .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
 #reserve-approve-btn .modal-buttons { margin-top: 20px; } 
 #reserve-approve-btn .approve-confirm, 
-#reserve-approve-btn .approve-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; }
+#reserve-approve-btn .approve-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
 #reserve-approve-btn .approve-cancel { background-color: #999; } 
 #reserve-approve-btn .approve-confirm:hover, 
 #reserve-approve-btn .approve-cancel:hover { opacity: 0.8; } 
@@ -127,8 +127,8 @@
 .main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn { margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; } 
 .main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; } 
 .main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
-#payButton{background-color: #ff6b6b; color: white; border: none; cursor: pointer;}
-#payButton:hover{cursor: pointer;}
+#payButton { background-color: #ff6b6b; color: white; border: none; cursor: pointer; } 
+#payButton:hover { cursor: pointer; } 
 /* ========repair view page css end ===== */
 /* ====point page css start ==== */
 .main-section .container .content .account-info .account-info { display: flex; flex-direction: column; } 
@@ -152,9 +152,9 @@
 .main-section .container .content .account-info .transaction-pop { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
 .main-section .container .content .account-info .date { color: #999; } 
 .main-section .container .content .account-info .description { flex: 1; text-align: center; } 
-.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold;  text-align: center; z-index: 1000; } 
+.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold; text-align: center; z-index: 1000; } 
 /* point.html modal css */
-#withdrawModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center;}
+#withdrawModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; } 
 #withdrawModal.show { display: flex !important; } 
 #withdrawModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
 #withdrawModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
@@ -233,11 +233,10 @@
 .main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
 /* == review_view user ver end== */
 /* ask */
-.main-section .container .content .edit-form {padding: 20px; margin-top: 10px; margin-left: 50px; padding-top: 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 90%; flex-direction: column;}
+.main-section .container .content .edit-form { padding: 20px; margin-top: 10px; margin-left: 50px; padding-top: 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 90%; flex-direction: column; } 
 .main-section .container .content .edit-form .widget-location h3 { font-size: 24px; font-weight: bold; margin-bottom: 20px; } 
 .main-section .container .content .edit-form .form-group { margin-bottom: 15px; } 
-.main-section .container .content .edit-form .form-group label {
- font-size: 16px; margin-bottom: 5px; } 
+.main-section .container .content .edit-form .form-group label { font-size: 16px; margin-bottom: 5px; } 
 .main-section .container .content .edit-form .form-group input[type="text"],
 .main-section .container .content .edit-form .form-group textarea { width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; } 
 .main-section .container .content .edit-form .form-group .btn { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; background-color: #F49D00; color: #fff; cursor: pointer; text-decoration: none; } 
@@ -250,33 +249,28 @@
 .event-common-click-back,
 .event-click-add-file,
 .event-click-select { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; background-color: #F49D00; color: #fff; cursor: pointer; text-decoration: none; } 
-.event-common-click-submit { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; border: 1px solid #ddd; background-color: #fff; color: #555; }
+.event-common-click-submit { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; border: 1px solid #ddd; background-color: #fff; color: #555; } 
 .ask-write-title { text-align: center; } 
 /* ==============master_view================== */
 .main-section .container .content .new-edit-form { margin-top: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 14px; justify-content: center; } 
-.main-section .container .content .new-edit-form .new-profile-img { 
- height: 80px; border-radius: 50%; background-size: cover; display: flex; justify-content: center; } 
+.main-section .container .content .new-edit-form .new-profile-img { height: 80px; border-radius: 50%; background-size: cover; display: flex; justify-content: center; } 
 .main-section .container .content .new-edit-form .new-profile-img img { width: 100px; height: 100px; } 
-.main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; margin-left: 20px; text-align: center; margin-top: 30px;
- }
-.main-section .container .content .new-edit-form .new-master-section div { padding: 2px;}
+.main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; margin-left: 20px; text-align: center; margin-top: 30px; } 
+.main-section .container .content .new-edit-form .new-master-section div { padding: 2px; } 
 .main-section .container .content .new-career_infoarea,
 .main-section .container .content .new-location_management,
 .main-section .container .content .new-detailed_description,
-.main-section .container .content .new-service_scheduling {
- margin-bottom: 15px;}
+.main-section .container .content .new-service_scheduling { margin-bottom: 15px; } 
 .main-section .container .content .new-career_sectiontitle,
 .main-section .container .content .new-location_managementtitle,
 .main-section .container .content .new-detailed_descriptiontitle,
-.main-section .container .content .new-service_schedulingtitle { margin-left: 10px; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 5px; margin-top: 20px;
-}
-.main-section .container .content .new-career_details ul { margin-left: 40px; list-style: none; padding: 0; display: flex; 
-}
+.main-section .container .content .new-service_schedulingtitle { margin-left: 10px; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 5px; margin-top: 20px; } 
+.main-section .container .content .new-career_details ul { margin-left: 40px; list-style: none; padding: 0; display: flex; } 
 .main-section .container .content .new-location_details,
 .new-description_details,
 .new-schedule_details { margin-left: 40px; } 
 .main-section .container .content .new-career_details ul li,
-.main-section .container .content .new-schedule_details ul li { margin-bottom: 0.5rem; margin-right: 10px; }
+.main-section .container .content .new-schedule_details ul li { margin-bottom: 0.5rem; margin-right: 10px; } 
 .main-section .container .content .new-edit-form .new-master-section .new-btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; background-color: #F49D00; color: white; justify-content: center; } 
 #reserve-button-btn { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 1000; } 
 #reserve-button-btn.show { display: flex !important; } 
@@ -284,7 +278,7 @@
 #reserve-button-btn .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
 #reserve-button-btn .modal-buttons { margin-top: 20px; } 
 #reserve-button-btn .reserve-confirm, 
-#reserve-button-btn .reserve-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; }
+#reserve-button-btn .reserve-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
  .main-section .container .content .new-edit-form .new-master-section .reserve-button-block { display: block; } 
  .main-section .container .content .new-edit-form .new-master-section .one-line-pr { margin-bottom: 10px; } 
  .main-section .container .content .new-edit-form .new-master-section .new-review-star { color: gold; } 
@@ -304,26 +298,102 @@
 .main-section .container .review-list-master .review-list .pic-review-view .starreview { color: gold; } 
 /* =========master_view end======= */
 #mArticle { overflow: hidden; position: relative; max-width: 1160px; margin: 0 auto; padding-bottom: 180px; } 
-/* ==========master list  =====*/
-.main-section .container.filter{
-    justify-content: center;
-    margin-top: 20px;
-}
-body.message {font-family: Arial, sans-serif;background-color: #f0f0f0;width: 420px;height: 450px;overflow: hidden; } 
-body.message .chat-container {width: 400px;max-width: 600px;margin: 0 auto;border: 1px solid #ccc;border-radius: 10px;overflow: hidden;background-color: #fff; } 
-body.message .chat-box {height: 400px;overflow-y: auto;padding: 10px;border-bottom: 1px solid #ccc;padding-top: 0px; } 
-body.message .chat-box .right {display: flex;justify-content: flex-end; } 
-body.message .chat-box .left {display: flex;justify-content: flex-start;align-items: center; } 
-body.message .input-group {display: flex;padding: 10px; } 
-body.message #chat-input {flex: 1;padding: 10px;border: 1px solid #ccc;border-radius: 5px;margin-right: 10px; } 
-body.message button {padding: 10px 20px;border: none;border-radius: 5px;background-color: #F49D00;color: #fff;cursor: pointer; } 
-body.message button:hover {background-color: #d68b00; } 
-body.message .message {margin: 10px 0;padding: 10px;border-radius: 5px; } 
-body.message .message.member {background-color: #dcf8c6;align-self: flex-end;max-width: calc(100% - 115px); } 
-body.message .message.memberlf {background-color: #F49D00;color: white;max-width: calc(100% - 115px);margin-left: 10px; } 
-body.message .message.counselor {background-color: #fff;border: 1px solid #ccc;align-self: flex-start; } 
-body.message .message.timestamp {font-size: 0.5em;color: #666;position: relative;display: block; } 
-body.message .message.timestamplf {font-size: 0.5em;color: #666;position: relative;display: block; } 
-body.message .calender {text-align: center;font-size: 12px;color: #666;border-radius: 5px;background-color: #eee; } 
-body.message .master-name {font-size: 14px;width: 400px;color: white; } 
-
+/* ==========master list =====*/
+.main-section .container.filter { justify-content: center; margin-top: 20px; } 
+.main-section .container.filter .filters, .search-filters { display: flex; justify-content: center; margin: 20px 0; } 
+.main-section .container.filter .filter, .search-filter { margin: 0 10px; } 
+.main-section .container.filter .filters { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; } 
+.main-section .container.filter .filter { margin: 10px; } 
+.main-section .container.filter .filter label { margin-right: 10px; font-weight: bold; color: #333; } 
+.main-section .container.filter .filter select, .search-filter input, .search-filter select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ddd; transition: border-color 0.3s ease; } 
+.main-section .container.filter .filter select:focus, .search-filter input:focus, .search-filter select:focus { border-color: #aaa; outline: none; } 
+.main-section .container.filter .search-filters button { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
+.main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
+.main-section .container.filter .technician { border: 1px solid #ddd; margin: 10px; padding: 20px; width: 300px; text-align: center; transition: transform 0.3s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; background-color: #fff; } 
+.main-section .container.filter .technician:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
+.main-section .container.filter .technician img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; } 
+.main-section .container.filter .search-filters { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
+.main-section .container.filter .search-filter { margin: 0 10px; } 
+.main-section .container.filter .search-filter label { margin-right: 10px; font-weight: bold; color: #333; } 
+.main-section .container.filter .search-filters button { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
+.main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
+/* CSS 추가 */
+.main-section .container.filter #sub-category { pointer-events: none; opacity: 0.5; /* 상위 카테고리를 선택하지 않았을 때, 하위 카테고리 선택 불가능하도록 설정 *//* 선택할 수 없는 상태에서는 투명도를 조정하여 비활성화된 상태를 시각적으로 구분 */ } 
+.main-section .container.filter #sub-category-filter { margin-top: 10px; /* 하위 카테고리 필터의 상단 여백 설정 */ } 
+.main-section .container.filter .main-area { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; } 
+.main-section .container.filter .filter, .search-filters { display: flex; flex-direction: column; margin-right: 10px; } 
+.main-section .container.filter .search-filters { flex-direction: row; align-items: center; margin: 0px; } 
+.main-section .container.filter .search-filter { margin-right: 10px; } 
+.main-section .container.filter .distance-radio-area { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
+.main-section .container.filter .distance-radio-area input[type="radio"] { display: none; } 
+.main-section .container.filter .main-area { margin-top: 10px; } 
+.main-section .container.filter .distance-radio-area label { background-color: #f8f9fa; border: 1px solid #ced4da; border-radius: 5px; padding: 10px 15px; margin: 0 5px; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; } 
+.main-section .container.filter .distance-radio-area input[type="radio"]:checked+label { background-color: #F49D00; color: white; border-color: #F49D00; } 
+.main-section .container.filter .distance-radio-area label:hover { background-color: #e9ecef; } 
+/**/
+body.message { font-family: Arial, sans-serif; background-color: #f0f0f0; width: 420px; height: 450px; overflow: hidden; } 
+body.message .chat-container { width: 400px; max-width: 600px; margin: 0 auto; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; background-color: #fff; } 
+body.message .chat-box { height: 400px; overflow-y: auto; padding: 10px; border-bottom: 1px solid #ccc; padding-top: 0px; } 
+body.message .chat-box .right { display: flex; justify-content: flex-end; } 
+body.message .chat-box .left { display: flex; justify-content: flex-start; align-items: center; } 
+body.message .input-group { display: flex; padding: 10px; } 
+body.message #chat-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; } 
+body.message button { padding: 10px 20px; border: none; border-radius: 5px; background-color: #F49D00; color: #fff; cursor: pointer; } 
+body.message button:hover { background-color: #d68b00; } 
+body.message .message { margin: 10px 0; padding: 10px; border-radius: 5px; } 
+body.message .message.member { background-color: #dcf8c6; align-self: flex-end; max-width: calc(100% - 115px); } 
+body.message .message.memberlf { background-color: #F49D00; color: white; max-width: calc(100% - 115px); margin-left: 10px; } 
+body.message .message.counselor { background-color: #fff; border: 1px solid #ccc; align-self: flex-start; } 
+body.message .message.timestamp { font-size: 0.5em; color: #666; position: relative; display: block; } 
+body.message .message.timestamplf { font-size: 0.5em; color: #666; position: relative; display: block; } 
+body.message .calender { text-align: center; font-size: 12px; color: #666; border-radius: 5px; background-color: #eee; } 
+body.message .master-name { font-size: 14px; width: 400px; color: white; } 
+/**/
+.main-section .container.message-list .content { padding: 30px 50px; } 
+.main-section .container.message-list .chatlist-container { max-width: 300px; margin: 20px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); } 
+.main-section .container.message-list .chatlist { overflow-y: auto; max-height: 400px; } 
+.main-section .container.message-list .chatroom { display: flex; padding: 15px; border-bottom: 1px solid #ccc; cursor: pointer; transition: background-color 0.3s; } 
+.main-section .container.message-list .chatroom:hover { background-color: #f2f2f2; } 
+.main-section .container.message-list .new-mark.active { position: absolute; width: 14px; height: 14px; background: #ff5b16; border-radius: 100%; font-size: 10px; color: white; text-align: center; font-weight: 100; line-height: 14px; } 
+.main-section .container.message-list .chatroom-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; } 
+.main-section .container.message-list .chatroom-info { flex: 1; margin-left: 10px; } 
+.main-section .container.message-list .chatroom-name { font-weight: bold; } 
+.main-section .container.message-list .last-message { color: #666; } 
+.main-section .container.message-list .chatroom-time { font-size: 12px; color: #999; } 
+/**/
+/* 버튼 스타일 */
+.request-list .btn { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
+.request-list .btn:hover { background-color: #D98C00; } 
+.request-list .btn.approve { /* 결제 요청 버튼에 대한 추가 스타일 */ } 
+.request-list .btn.complete { border: 1px solid #DDD; background-color: #fff; color: #555; } 
+/* 프로필 이미지 스타일 */
+.request-list .profile-logo-sm { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; } 
+.request-list .reservation-setting .reserve-schecdule .info { padding: 10px; background-color: #f9f9f9; } 
+/* 예약 스케줄 스타일 */
+.request-list .reserve-schecdule { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); width: 80%; margin-top: 10px; } 
+.request-list .reserve-schecdule:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
+/* 예약 스케줄 정보 스타일 */
+.request-list .info { text-align: left; margin-right: 10px; flex-grow: 1; margin-left: 20px; width: 50%; } 
+.request-list .repair_date, .master_name, .repair_type, .explain { margin-bottom: 10px; } 
+.request-list .master_name { font-weight: bold; } 
+.request-list .address { margin-left: 5px; color: #666; } 
+.request-list #payModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; align-items: center; justify-content: center; } 
+.request-list #payModal.show { display: flex !important; } 
+.request-list #payModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+.request-list #payModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+.request-list #payModal .modal-buttons { margin-top: 20px; } 
+.request-list #payModal .btn-confirm, .request-list #payModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+.request-list #payModal .btn-cancel { background-color: #999; } 
+.request-list #payModal .btn-confirm:hover, #payModal .btn-cancel:hover { opacity: 0.8; } 
+/**/
+.request-view #payModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; align-items: center; justify-content: center; } 
+.request-view #payModal.show { display: flex !important; } 
+.request-view #payModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+.request-view #payModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+.request-view #payModal .modal-buttons { margin-top: 20px; } 
+.request-view #payModal .btn-confirm, .request-view #payModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+.request-view #payModal .btn-cancel { background-color: #999; } 
+.request-view #payModal .btn-confirm:hover, #payModal .btn-cancel:hover { opacity: 0.8; } 
+.request-view input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
+ {
+ -webkit-appearance: none; margin: 0; } 
