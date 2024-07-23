@@ -23,9 +23,11 @@ header .gnb .logo-area { float: left; width: 110px; }
 header .gnb .logo-area img { height: 100%; } 
 header .gnb ul.menu-area { margin-left: 35px; display: flex; } 
 header .gnb ul.menu-area li { display: inline; margin-right: 10px; padding: 0 20px; cursor: pointer; } 
+header .gnb ul.menu-area li.active,
 header .gnb ul.menu-area li:hover { border-bottom: 1px solid #F49D00; } 
 header .gnb ul.menu-area li a { display: inline-block; font-size: 15px; padding: 20px 0; color:#444; font-weight: 500; text-decoration: none; } 
-header .gnb ul.menu-area li:hover a { color:#111; } 
+header .gnb ul.menu-area li.active a,
+header .gnb ul.menu-area li:hover a { color:#F49D00; } 
 header .gnb ul.login-area { margin-left: auto; display: flex; align-items: center; } 
 header .gnb ul.login-area li { display: inline; margin-left: 5px; cursor: pointer; } 
 header .gnb ul.login-area li .btn { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; line-height: 32px; } 

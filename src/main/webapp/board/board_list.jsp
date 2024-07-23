@@ -52,7 +52,7 @@
 										<!-- <button class="btn complete" id="approve-button">답변 대기</button> -->
 										<c:choose>
 											<c:when test="${dto.answer !=null}">
-												<p>답변 완료</p>
+												<p class="approve">답변 완료</p>
 											</c:when>
 											<c:otherwise>
 												<p>답변 대기</p>
