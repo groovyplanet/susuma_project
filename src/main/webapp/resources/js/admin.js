@@ -3,10 +3,14 @@
 list.jsp (회원/게시물)목록
 */
 function sort(sortField, sortOrder) {
-	const currentUrl = new URL(location.href);
-	currentUrl.searchParams.set('sortField', sortField);
-	currentUrl.searchParams.set('sortOrder', sortOrder);
-	location.href = currentUrl.toString(); // 현재 url에 정렬 관련 파라미터만 추가
+	document.searchForm.sortField.value = sortField;
+	document.searchForm.sortOrder.value = sortOrder;
+	document.searchForm.submit();
+}
+
+function goPage(page) {
+	document.searchForm.page.value = page;
+	document.searchForm.submit();
 }
 
 /*

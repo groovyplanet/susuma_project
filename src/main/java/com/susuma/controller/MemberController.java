@@ -43,11 +43,11 @@ public class MemberController extends HttpServlet {
 
 		if (command.equals("/admin/member/list.member")) { // 관리자 - 회원목록
 
-			service.getList(request, response);
+			service.adminGetList(request, response);
 
 		} else if (command.equals("/admin/member/view.member")) { // 관리자 - 회원상세
 
-			service.getView(request, response);
+			service.adminGetView(request, response);
 
 		} else if (command.equals("/member/join.member")) { // 사용자 - 회원가입 작성
 
@@ -55,7 +55,7 @@ public class MemberController extends HttpServlet {
 
 		} else if (command.equals("/member/joinForm.member")) { // 사용자 - 회원가입
 
-			service.regist(request, response);
+			service.register(request, response);
 
 		} else if (command.equals("/member/loginForm.member")) { // 사용자 로그인
 

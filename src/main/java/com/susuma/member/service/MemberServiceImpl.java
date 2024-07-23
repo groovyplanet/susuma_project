@@ -25,11 +25,11 @@ import jakarta.servlet.http.HttpSession;
 public class MemberServiceImpl implements MemberService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
+	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
 	@Override
-	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 관리자 - 회원 목록
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		type = (type == null || type.isEmpty()) ? "user" : type; // 기본 : 회원 구분 user
@@ -43,6 +43,9 @@ public class MemberServiceImpl implements MemberService {
 		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
 		String caNo = request.getParameter("caNo");
 		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
+		int currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+		int startRow = (currentPage - 1) * recordsPerPage + 1;
+		int endRow = startRow + recordsPerPage - 1;
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", type);
@@ -51,11 +54,27 @@ public class MemberServiceImpl implements MemberService {
 		params.put("sortOrder", sortOrder);
 		params.put("rootNo", rootNo);
 		// params.put("caNo", caNo);
+		params.put("startRow", startRow); // rownum 시작값
+		params.put("endRow", endRow); // rownum 끝값
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class); // MemberMapper 인터페이스를 사용하여 쿼리 실행을 위한 매퍼 객체 생성
 		ArrayList<MemberDTO> list = Member.selectMembers(params); // MemberMapper 메서드 호출
+
+		// 페이징 관련
+		int totalRecords = Member.countMembers(params); // 해당되는 회원 수 (페이징)
+		int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
+		int startPage = Math.max(currentPage - 2, 1);
+		int endPage = Math.min(currentPage + 2, totalPages);
+		endPage = (currentPage == 1 || currentPage == 2) ? Math.min(endPage + 3 - currentPage, totalPages) : endPage;
+		startPage = (currentPage == totalPages || currentPage == totalPages - 1) ? Math.max(startPage - 2 + totalPages - currentPage, 1) : startPage;
+		params.put("currentPage", currentPage); // 현재 페이지
+		params.put("totalPages", totalPages); // 총 페이지 수
+		params.put("totalRecords", totalRecords); // 총 레코드 수
+		params.put("startPage", startPage); // 표시할 시작 페이지
+		params.put("endPage", endPage); // 표시할 마지막 페이지
+
 		if (type.equals("master")) {
 			// 수리분야 리스트 출력
 			CategoryMapper Category = sql.getMapper(CategoryMapper.class);
@@ -80,13 +99,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 사용자 - 수리기사 목록(수리 예약 메뉴)
 		/* [1] 매개변수 */
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", "master");
 		params.put("joinApproval", "Y");
 		params.put("sortField", "insert_time");
 		params.put("sortOrder", "DESC");
+		params.put("startRow", 1); // rownum 시작값
+		params.put("endRow", 999); // rownum 끝값
 		// 카테고리 매개변수로 받아서 검색하는 기능 구현 필요
 
 		/* [2] Mapper */
@@ -95,11 +115,11 @@ public class MemberServiceImpl implements MemberService {
 		ArrayList<MemberDTO> memberList = Member.selectMembers(params);
 		CategoryMapper Category = sql.getMapper(CategoryMapper.class);
 		ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
-		
-		sql.close(); 
+
+		sql.close();
 
 		/* [3] 화면이동 */
-		
+
 		request.setAttribute("memberList", memberList);
 		request.setAttribute("CategoryMainList", CategoryMainList);
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
@@ -107,9 +127,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 회원 상세 정보 처리 로직
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
 		Map<String, Object> params = new HashMap<>();
@@ -128,9 +147,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 회원 가입 처리 로직
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		String email = request.getParameter("email");
@@ -176,7 +194,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 로그인 처리 로직
 		/* [1] 매개변수 */
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
@@ -251,7 +268,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void profileEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 회원 정보 수정 처리 로직
 		/* [1] 매개변수 */
 		HttpSession session = request.getSession();
 		String meNo = (String) session.getAttribute("meNo"); // 세션 값 가져오기

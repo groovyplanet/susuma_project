@@ -34,6 +34,8 @@ public class MemberDTO {
 	private String caName; // "CA_NAME"
 	private String caRootName; // "CA_ROOT_NAME"
 
+	private int rn; // 페이징 처리
+
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
 	}
@@ -71,8 +73,8 @@ public class MemberDTO {
 	}
 
 	// 모든 필드를 포함하는 생성자
-	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, 
-			Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootName) {
+	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootName,
+			int rn) {
 		super();
 		this.meNo = meNo;
 		this.type = type;
@@ -100,6 +102,7 @@ public class MemberDTO {
 		this.caNo = caNo;
 		this.caName = caName;
 		this.caRootName = caRootName;
+		this.rn = rn;
 	}
 
 	public int getMeNo() {
@@ -310,4 +313,14 @@ public class MemberDTO {
 		this.caRootName = caRootName;
 	}
 
+	public int getrn() {
+		return rn;
+	}
+
+	public void setrn(int rn) {
+		this.rn = rn;
+	}
+
+	
+	
 }

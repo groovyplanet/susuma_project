@@ -22,9 +22,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class BoardServiceImpl implements BoardService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
+	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
 	@Override
-	public void adminGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
@@ -35,17 +36,35 @@ public class BoardServiceImpl implements BoardService {
 		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
 		String sortOrder = request.getParameter("sortOrder");
 		sortOrder = (sortOrder == null || sortOrder.isEmpty()) ? "DESC" : sortOrder;
+		int currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+		int startRow = (currentPage - 1) * recordsPerPage + 1;
+		int endRow = startRow + recordsPerPage - 1;
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", type);
 		params.put("answerCheck", answerCheck);
 		params.put("sortField", sortField);
 		params.put("sortOrder", sortOrder);
+		params.put("startRow", startRow); // rownum 시작값
+		params.put("endRow", endRow); // rownum 끝값
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		BoardMapper Board = sql.getMapper(BoardMapper.class); // BoardMapper 인터페이스를 사용하여 쿼리 실행을 위한 매퍼 객체 생성
 		ArrayList<BoardDTO> list = Board.selectBoards(params); // BoardMapper 메서드 호출
+
+		// 페이징 관련
+		int totalRecords = Board.countBoards(params); // 해당되는 게시물 수 (페이징)
+		int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
+		int startPage = Math.max(currentPage - 2, 1);
+		int endPage = Math.min(currentPage + 2, totalPages);
+		endPage = (currentPage == 1 || currentPage == 2) ? Math.min(endPage + 3 - currentPage, totalPages) : endPage;
+		startPage = (currentPage == totalPages || currentPage == totalPages - 1) ? Math.max(startPage - 2 + totalPages - currentPage, 1) : startPage;
+		params.put("currentPage", currentPage); // 현재 페이지
+		params.put("totalPages", totalPages); // 총 페이지 수
+		params.put("totalRecords", totalRecords); // 총 레코드 수
+		params.put("startPage", startPage); // 표시할 시작 페이지
+		params.put("endPage", endPage); // 표시할 마지막 페이지
 		sql.close();
 
 		/* [3] 화면이동 */
@@ -176,35 +195,6 @@ public class BoardServiceImpl implements BoardService {
 		out.println("location.href='list.board?type=" + type + "';");
 		out.println("</script>");
 
-	}
-
-	@Override
-	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		/* [1] 매개변수 */
-		String type = request.getParameter("type");
-		type = (type == null || type.isEmpty()) ? "notice" : type; // 기본 : notice
-		String sortField = request.getParameter("sortField");
-		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
-		String sortOrder = request.getParameter("sortOrder");
-		sortOrder = (sortOrder == null || sortOrder.isEmpty()) ? "DESC" : sortOrder;
-		Map<String, Object> params = new HashMap<>();
-		params.put("type", type);
-		params.put("sortField", sortField);
-		params.put("sortOrder", sortOrder);
-
-		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
-		BoardMapper Board = sql.getMapper(BoardMapper.class);
-		ArrayList<BoardDTO> list = Board.selectBoards(params);
-		sql.close();
-
-		/* [3] 화면이동 */
-		request.setAttribute("list", list);
-		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			request.setAttribute(entry.getKey(), entry.getValue());
-		}
-		request.getRequestDispatcher("board_list.jsp").forward(request, response);
 	}
 
 }

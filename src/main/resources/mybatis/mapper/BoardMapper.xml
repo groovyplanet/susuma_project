@@ -5,11 +5,34 @@
 
 	<!-- [1] 게시물 목록 -->
 	<select id="selectBoards" parameterType="map" resultType="com.susuma.board.model.BoardDTO">
-		SELECT B.BO_NO, B.ME_NO, B.TYPE, B.TITLE, B.CONTENT, B.INSERT_TIME, B.UPDATE_TIME, B.ANSWER, B.ANSWER_INSERT_TIME, B.ANSWER_UPDATE_TIME
-				, M.NAME 
-		FROM 	BOARD B
-		JOIN 	MEMBER M 
-		ON 		M.ME_NO = B.ME_NO
+	    SELECT *
+	    FROM (
+	        SELECT A.*, ROWNUM AS RN
+	        FROM (
+	            SELECT B.BO_NO, B.ME_NO, B.TYPE, B.TITLE, B.CONTENT, B.INSERT_TIME, B.UPDATE_TIME, B.ANSWER, B.ANSWER_INSERT_TIME, B.ANSWER_UPDATE_TIME
+						, M.NAME
+				FROM BOARD B
+				JOIN MEMBER M
+				ON M.ME_NO = B.ME_NO
+				WHERE B.TYPE = #{type}
+				<if test="answerCheck != NULL and answerCheck.equals('yes')">
+					AND B.ANSWER IS NOT NULL
+				</if>
+				<if test="answerCheck != NULL and answerCheck.equals('no')">
+					AND B.ANSWER IS NULL
+				</if>
+				ORDER BY B.${sortField} ${sortOrder} NULLS LAST
+	        ) A
+	    )
+	    WHERE RN BETWEEN #{startRow} and #{endRow}
+	</select>
+
+	<!-- [1-2] 게시물 목록 수(페이징 처리) -->
+	<select id="countBoards" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M
+		ON M.ME_NO = B.ME_NO
 		WHERE B.TYPE = #{type}
 		<if test="answerCheck != NULL and answerCheck.equals('yes')">
 			AND B.ANSWER IS NOT NULL
@@ -17,7 +40,6 @@
 		<if test="answerCheck != NULL and answerCheck.equals('no')">
 			AND B.ANSWER IS NULL
 		</if>
-		ORDER BY B.${sortField} ${sortOrder} NULLS LAST
 	</select>
 
 	<!-- [2] 게시물 -->

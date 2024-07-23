@@ -20,9 +20,9 @@ img { max-width: 100%; height: auto; }
 /* ====================================================board-notice_list */
 .main-section { /* border: 1px solid #777; */ } 
 .main-section .container .content-list { width: 1000px; margin-top: 30px; } 
-.main-section .content-box { display: flex; flex-direction: column; margin: 0 20px; padding: 15px 0 15px; border-bottom: 1px solid #ddd; cursor: pointer; } 
+.main-section .content-box { display: flex; flex-direction: column; margin: 0 20px; padding: 15px 0 15px; border-bottom: 1px solid #ddd; } 
 .main-section .content-box .content-mix { display: flex; align-items: center; } 
-.main-section .content-box .content-mix.faq { justify-content: space-between; } 
+.main-section .content-box .content-mix.faq { justify-content: space-between; cursor: pointer; } 
 .content-box .content-num { padding: 10px; text-align: center; border-radius: 14px; font-size: 12px; display: flex; align-items: center; } 
 .content-box .content-title { display: flex; flex-direction: column; justify-content: center; padding: 5px 15px; border-radius: 14px; gap: 3px; } 
 .content-box .content-title a { /* line-height: 31px; */
