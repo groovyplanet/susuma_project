@@ -31,7 +31,7 @@ if (arr != null) {
 				<a href="${pageContext.request.contextPath }/member/masterList.member">수리 예약</a>
 			</li>
 			<li>
-				<a href="${pageContext.request.contextPath }/board/notice_list.board?type=notice">고객센터</a>
+				<a href="${pageContext.request.contextPath }/board/list.board">고객센터</a>
 			</li>
 		</ul>
 
