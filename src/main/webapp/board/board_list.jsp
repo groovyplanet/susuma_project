@@ -28,28 +28,24 @@
 								</div>
 							</c:when>
 							<c:when test="${type eq 'faq'}">
-								<div class="content-mix">
-									<div class="content-num">
-										<p>${dto.boNo }</p>
-									</div>
+								<div class="content-mix faq">
 									<div class="content-title">
-										<button type="button"></button>
 										<a href="#" class="post-link">${dto.title }</a>
 										<p>
-
 											<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
 										</p>
 									</div>
+									<div class="icon-wrap" style="margin-right: 20px;">
+										<i class="bi bi-chevron-down"></i>
+									</div>
 								</div>
 								<div class="post-content">
-									<!-- <h3>매칭 방법은 말이죠!!!~</h3> -->
 									<span>${dto.content }</span>
 								</div>
 							</c:when>
 							<c:when test="${type eq 'ask'}">
 								<div class="content-mix">
 									<div class="content-status-wait">
-										<!-- <button class="btn complete" id="approve-button">답변 대기</button> -->
 										<c:choose>
 											<c:when test="${dto.answer !=null}">
 												<p class="approve">답변 완료</p>
