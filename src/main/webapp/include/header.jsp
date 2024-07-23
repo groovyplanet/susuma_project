@@ -24,13 +24,13 @@ if (arr != null) {
 		</div>
 		<ul class="menu-area">
 			<!-- 메뉴 -->
-			<li>
+			<li class="${pageContext.request.servletPath == '/member/introduce.jsp' ? 'active' : ''}">
 				<a href="${pageContext.request.contextPath }/member/introduce.jsp">수수마 소개</a>
 			</li>
-			<li>
+			<li class="${pageContext.request.servletPath == '/member/master_list.jsp' ? 'active' : ''}">
 				<a href="${pageContext.request.contextPath }/member/masterList.member">수리 예약</a>
 			</li>
-			<li>
+			<li class="${pageContext.request.servletPath == '/board/board_list.jsp' ? 'active' : ''}">
 				<a href="${pageContext.request.contextPath }/board/list.board">고객센터</a>
 			</li>
 		</ul>
