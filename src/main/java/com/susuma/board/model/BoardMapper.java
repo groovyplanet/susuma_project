@@ -9,6 +9,8 @@ public interface BoardMapper {
 
 	public ArrayList<BoardDTO> selectBoards(Map<String, Object> params); // [1] 게시물 목록
 
+	public int countBoards(Map<String, Object> params); // [1-2] 게시물 목록 수(페이징 처리)
+
 	public BoardDTO selectBoard(String boNo); // [2] 게시물
 
 	public int insertBoard(BoardDTO dto); // [3] 게시물 등록

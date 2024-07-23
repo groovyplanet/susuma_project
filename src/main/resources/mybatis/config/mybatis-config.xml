@@ -7,6 +7,7 @@
 
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 
 	<environments default="development">

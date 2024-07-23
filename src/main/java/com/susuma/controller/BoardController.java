@@ -41,7 +41,7 @@ public class BoardController extends HttpServlet {
 
 		if (command.equals("/admin/board/list.board")) { // 게시물 목록
 
-			service.adminGetList(request, response);
+			service.getList(request, response);
 
 		} else if (command.equals("/admin/board/view.board")) { // 게시물 상세
 
@@ -70,7 +70,8 @@ public class BoardController extends HttpServlet {
 
 		} else if (command.equals("/board/list.board")) { // 사용자 화면 게시물 목록
 
-			service.getList(request, response);
+			//request.setAttribute("key","value"); // 사용자 화면만 별도로 파라미터 지정할 경우 사용, getAttribute로 꺼내기
+			service.getList(request, response); // 관리자 게시물 목록과 동일한 메서드 사용
 		}
 
 	}

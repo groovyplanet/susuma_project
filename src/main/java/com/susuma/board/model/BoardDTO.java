@@ -15,6 +15,7 @@ public class BoardDTO {
 	private Timestamp answerInsertTime;
 	private Timestamp answerUpdateTime;
 	private String name;
+	private int rn; // 페이징 처리
 
 	public BoardDTO() {
 		super();
@@ -29,7 +30,7 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public BoardDTO(int boNo, int meNo, String type, String title, String content, Timestamp insertTime, Timestamp updateTime, String answer, Timestamp answerInsertTime, Timestamp answerUpdateTime,String name) {
+	public BoardDTO(int boNo, int meNo, String type, String title, String content, Timestamp insertTime, Timestamp updateTime, String answer, Timestamp answerInsertTime, Timestamp answerUpdateTime, String name, int rn) {
 		super();
 		this.boNo = boNo;
 		this.meNo = meNo;
@@ -42,15 +43,7 @@ public class BoardDTO {
 		this.answerInsertTime = answerInsertTime;
 		this.answerUpdateTime = answerUpdateTime;
 		this.name = name;
-	}
-	
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		this.rn = rn;
 	}
 
 	public int getBoNo() {
@@ -131,6 +124,22 @@ public class BoardDTO {
 
 	public void setAnswerUpdateTime(Timestamp answerUpdateTime) {
 		this.answerUpdateTime = answerUpdateTime;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 
 }

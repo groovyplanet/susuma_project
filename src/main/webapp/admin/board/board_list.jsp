@@ -20,12 +20,13 @@
 					</a>
 				</div>
 			</div>
-			<c:if test="${type == 'ask' }">
-				<div class="search_wrap">
-					<form name="searchForm" action="list.board" method="get">
-						<input type="hidden" name="type" value="${type}">
-						<input type="hidden" name="sortField" value="${sortField}">
-						<input type="hidden" name="sortOrder" value="${sortOrder}">
+			<form name="searchForm" action="list.board" method="get">
+				<input type="hidden" name="type" value="${type}">
+				<input type="hidden" name="sortField" value="${sortField}">
+				<input type="hidden" name="sortOrder" value="${sortOrder}">
+				<input type="hidden" name="page" value="1">
+				<c:if test="${type == 'ask' }">
+					<div class="search_wrap">
 						<table class="search">
 							<tr>
 								<th style="width: 85px;">
@@ -50,15 +51,15 @@
 								</td>
 							</tr>
 						</table>
-					</form>
-				</div>
-			</c:if>
+					</div>
+				</c:if>
+			</form>
 			<div class="table_wrap">
 				<table class="list" id="board_list">
 					<thead>
 						<tr>
 							<th>번호</th>
-							<th>회원번호</th>
+							<th>회원이름</th>
 							<th>
 								<button class="btn_sort" onclick="sort('title', '${sortField != 'title' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									제목
@@ -96,8 +97,8 @@
 					<tbody>
 						<c:forEach var="dto" items="${list}">
 							<tr data-boNo="${dto.boNo}">
-								<td>${dto.boNo}</td>
-								<td>${dto.meNo}</td>
+								<td>${totalRecords - dto.rn + 1}</td>
+								<td>${dto.name}</td>
 								<td>${dto.title}</td>
 								<td>
 									<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
@@ -121,31 +122,39 @@
 			</div>
 			<div class="pagination">
 				<ul>
-					<li>
-						<a href="#">
-							<i class="bi bi-chevron-left"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#" class="active">1</a>
-					</li>
-					<li>
-						<a href="#">2</a>
-					</li>
-					<li>
-						<a href="#">3</a>
-					</li>
-					<li>
-						<a href="#">4</a>
-					</li>
-					<li>
-						<a href="#">5</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="bi bi-chevron-right"></i>
-						</a>
-					</li>
+					<c:if test="${startPage > 1}">
+						<li>
+							<a href="#" onClick="goPage('1')" style="margin-right: -10px;">
+								<i class="bi bi-chevron-double-left"></i>
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${currentPage > 1}">
+						<li>
+							<a href="#" onClick="goPage('${currentPage - 1}')">
+								<i class="bi bi-chevron-left"></i>
+							</a>
+						</li>
+					</c:if>
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<li>
+							<a href="#" onClick="goPage('${i}')" class="${i == currentPage ? 'active' : ''}">${i}</a>
+						</li>
+					</c:forEach>
+					<c:if test="${currentPage < totalPages}">
+						<li>
+							<a href="#" onClick="goPage('${currentPage + 1}')">
+								<i class="bi bi-chevron-right"></i>
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${endPage < totalPages}">
+						<li>
+							<a href="#" onClick="goPage('${totalPages}')" style="margin-left: -10px;">
+								<i class="bi bi-chevron-double-right"></i>
+							</a>
+						</li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
