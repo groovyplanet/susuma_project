@@ -61,5 +61,11 @@
 		DELETE FROM MEMBER
 		WHERE ME_NO = #{meNo}
 	</delete>
+	
+	 <select id="getPassword" parameterType="string" resultType="string">
+        SELECT pw
+        FROM MEMBER
+        WHERE ME_NO = #{meNo}
+    </select>
 
 </mapper>
