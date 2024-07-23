@@ -36,17 +36,16 @@ public class BoardController extends HttpServlet {
 		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
 		String path = request.getContextPath(); // path : '/Susuma'
 		String command = uri.substring(path.length()); // command : '/member/join.member'
-		
+
 		BoardService service = new BoardServiceImpl(); // 비즈니스 로직 처리(DB 접근 및 조작 등)
 
-		
 		if (command.equals("/admin/board/list.board")) { // 게시물 목록
 
-			service.getList(request, response);
+			service.adminGetList(request, response);
 
 		} else if (command.equals("/admin/board/view.board")) { // 게시물 상세
 
-			service.getView(request, response);
+			service.adminGetView(request, response);
 
 		} else if (command.equals("/admin/board/write.board")) { // 게시물 작성화면
 
@@ -54,30 +53,26 @@ public class BoardController extends HttpServlet {
 			request.getRequestDispatcher("board_write.jsp").forward(request, response);
 
 		} else if (command.equals("/admin/board/registForm.board")) { // 게시물 등록
-			
-			service.regist(request, response);
-			
+
+			service.adminRegister(request, response);
+
 		} else if (command.equals("/admin/board/modify.board")) { // 게시물 수정화면
-			
-			service.modify(request, response);
-			
+
+			service.adminModify(request, response);
+
 		} else if (command.equals("/admin/board/updateForm.board")) { // 게시물 수정
-			
-			service.update(request, response);
-			
-		} else if(command.equals("/admin/board/delete.board")) { // 게시물 삭제 
-			
-			service.delete(request, response);
-			
-		} else if(command.equals("/board/notice_list.board")) {
-			service.ngetList(request, response);
-		} else if(command.equals("/board/faq_list.board")) {
-			service.ngetList(request, response);
-		} else if(command.equals("/board/ask_list.board")) {
-			
-			service.askList(request, response);
+
+			service.adminUpdate(request, response);
+
+		} else if (command.equals("/admin/board/delete.board")) { // 게시물 삭제
+
+			service.adminDelete(request, response);
+
+		} else if (command.equals("/board/list.board")) { // 사용자 화면 게시물 목록
+
+			service.getList(request, response);
 		}
-		
+
 	}
 
 }

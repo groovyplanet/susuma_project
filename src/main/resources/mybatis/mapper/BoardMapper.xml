@@ -5,15 +5,19 @@
 
 	<!-- [1] 게시물 목록 -->
 	<select id="selectBoards" parameterType="map" resultType="com.susuma.board.model.BoardDTO">
-		SELECT * FROM BOARD
-		WHERE TYPE = #{type}
-		<if test="answerCheck.equals('yes')">
-			AND ANSWER IS NOT NULL
+		SELECT B.BO_NO, B.ME_NO, B.TYPE, B.TITLE, B.CONTENT, B.INSERT_TIME, B.UPDATE_TIME, B.ANSWER, B.ANSWER_INSERT_TIME, B.ANSWER_UPDATE_TIME
+				, M.NAME 
+		FROM 	BOARD B
+		JOIN 	MEMBER M 
+		ON 		M.ME_NO = B.ME_NO
+		WHERE B.TYPE = #{type}
+		<if test="answerCheck != NULL and answerCheck.equals('yes')">
+			AND B.ANSWER IS NOT NULL
 		</if>
-		<if test="answerCheck.equals('no')">
-			AND ANSWER IS NULL
+		<if test="answerCheck != NULL and answerCheck.equals('no')">
+			AND B.ANSWER IS NULL
 		</if>
-		ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		ORDER BY B.${sortField} ${sortOrder} NULLS LAST
 	</select>
 
 	<!-- [2] 게시물 -->
@@ -38,22 +42,5 @@
 		DELETE FROM BOARD
 		WHERE BO_NO = #{boNo}
 	</delete>
-	
-	<!-- [6] 공지사항 게시물 -->
-	<select id="ngetlist" resultType="com.susuma.board.model.BoardDTO">
-		SELECT * FROM BOARD
-		WHERE TYPE = #{type}
-		ORDER BY BO_NO DESC
-	</select>
-	
-	<!-- [7] 1:1이름포함 가져오기 -->
-	<select id="getAsk" resultType="com.susuma.board.model.BoardDTO">
-		SELECT M.NAME,B.TITLE,B.CONTENT,B.INSERT_TIME,B.ANSWER 
-		FROM BOARD B JOIN  MEMBER M ON M.ME_NO = B.ME_NO 
-		WHERE B.TYPE =#{type}
-		ORDER BY INSERT_TIME DESC
-	</select>
-
-	
 
 </mapper>

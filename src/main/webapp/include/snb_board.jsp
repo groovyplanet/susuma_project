@@ -6,13 +6,13 @@
 	<ul>
 		<li>
 			<!-- active 클래스 제어 -->
-			<a href="${pageContext.request.contextPath }/board/notice_list.board?type=notice" class="active">공지사항</a>
+			<a href="${pageContext.request.contextPath }/board/list.board?type=notice" class="${type=='notice'?'active':'' }">공지사항</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath }/board/faq_list.board?type=faq">FAQ</a>
+			<a href="${pageContext.request.contextPath }/board/list.board?type=faq" class="${type=='faq'?'active':'' }">FAQ</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath }/board/ask_list.board?type=ask">1:1 문의</a>
+			<a href="${pageContext.request.contextPath }/board/list.board?type=ask" class="${type=='ask'?'active':'' }">1:1 문의</a>
 		</li>
 	</ul>
 </nav>

@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 
 	@Override
-	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
@@ -57,7 +57,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void getView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -75,7 +75,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		int meNo = Integer.parseInt(request.getParameter("me_no"));
@@ -102,7 +102,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -112,7 +112,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper Board = sql.getMapper(BoardMapper.class);
 		BoardDTO dto = Board.selectBoard(boNo);
 		sql.close();
-		
+
 		/* [3] 화면이동 */
 		request.setAttribute("dto", dto);
 		request.setAttribute("type", dto.getType());
@@ -120,7 +120,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -156,7 +156,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -177,41 +177,34 @@ public class BoardServiceImpl implements BoardService {
 		out.println("</script>");
 
 	}
+
 	@Override
-	public void ngetList(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		/* [1] 매개변수 */
 		String type = request.getParameter("type");
-		
+		type = (type == null || type.isEmpty()) ? "notice" : type; // 기본 : notice
+		String sortField = request.getParameter("sortField");
+		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
+		String sortOrder = request.getParameter("sortOrder");
+		sortOrder = (sortOrder == null || sortOrder.isEmpty()) ? "DESC" : sortOrder;
+		Map<String, Object> params = new HashMap<>();
+		params.put("type", type);
+		params.put("sortField", sortField);
+		params.put("sortOrder", sortOrder);
+
+		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
-		BoardMapper board = sql.getMapper(BoardMapper.class);
-		ArrayList<BoardDTO> list = board.ngetlist(type);
+		BoardMapper Board = sql.getMapper(BoardMapper.class);
+		ArrayList<BoardDTO> list = Board.selectBoards(params);
 		sql.close();
-		
-		
+
+		/* [3] 화면이동 */
 		request.setAttribute("list", list);
-		if(type.equals("notice")) {
-			request.getRequestDispatcher("notice_list.jsp").forward(request, response);
-		} else if(type.equals("faq")) {
-			request.getRequestDispatcher("faq.jsp").forward(request, response);
-		} 
-		
-		
-	}
-	@Override
-	public void askList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String type = request.getParameter("type");
-		
-		SqlSession sql = sqlSessionFactory.openSession();
-		BoardMapper board = sql.getMapper(BoardMapper.class);
-		ArrayList<BoardDTO> list = board.getAsk(type);
-		
-		sql.close();
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("ask_list.jsp").forward(request, response);
-		
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			request.setAttribute(entry.getKey(), entry.getValue());
+		}
+		request.getRequestDispatcher("board_list.jsp").forward(request, response);
 	}
 
 }
