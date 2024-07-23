@@ -12,7 +12,7 @@
 			<div class="content exit">
 				<div class="join-form exit-form">
 					<div class="title">회원탈퇴</div>
-					<form action="${pageContext.request.contextPath }/ExitForm.member" method="post" id="form-exit">
+					<form action="ExitForm.member" method="post" id="form-exit">
 						<div class="desc-area">
 							<p>회원 탈퇴 시 아래 사항을 숙지하시기 바랍니다.</p>
 							<p class="mt15">1. 회원 탈퇴 시 고객님의 정보는 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 고객정보 보호정책에 따라 관리 됩니다.</p>

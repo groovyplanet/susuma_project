@@ -62,7 +62,7 @@
 						</div>
 						<input type="submit" class="btn-submit" value="회원정보 수정">
 						<div class="exit-area">
-							<a href="${pageContext.request.contextPath }/ExitForm.member">
+							<a href="${pageContext.request.contextPath }/member/exit.jsp">
 								회원탈퇴
 								<i class="bi bi-chevron-right"></i>
 							</a>
