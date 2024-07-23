@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("*.request")
-public class RequestController extends HttpServlet{
+public class RequestController extends HttpServlet {
 
 	/**
 	 * 
@@ -21,44 +21,36 @@ public class RequestController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	public RequestController() {
-		// TODO Auto-generated constructor stub
 	}
-	
-	 @Override
+
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		// TODO Auto-generated method stub
-		 doAction(req, resp);
-
+		doAction(req, resp);
 	}
-	
-	 @Override
+
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		// TODO Auto-generated method stub
-		 doAction(req, resp);
-
+		doAction(req, resp);
 	}
-	 
+
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+
 		request.setCharacterEncoding("utf-8");
-			
-		String uri = request.getRequestURI(); //ip, port번호 제외된 주소
-		String path = request.getContextPath(); //프로젝트 식별 이름
-		String command = uri.substring( path.length() );
-			
+
+		String uri = request.getRequestURI(); // ip, port번호 제외된 주소
+		String path = request.getContextPath(); // 프로젝트 식별 이름
+		String command = uri.substring(path.length());
+
 		RequestService service;
-		
+
 		System.out.println(command);
-		if(command.equals("/user/list.request")) {
-			
+		if (command.equals("/member/list.request")) {
+
 			service = new RequestServiceImpl();
 			service.getList(request, response);
-			
+
 		}
-	 
+
 	}
-	
-	 
+
 }

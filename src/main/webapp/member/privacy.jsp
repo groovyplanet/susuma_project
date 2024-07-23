@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../include/head.jsp"%>
-<style>
-.screen_out {
-	border: none;
-}
-</style>
 </head>
 
 <body>
@@ -15,28 +10,34 @@
 		<div class="container">
 			<div class="main-area">
 				<div id="mArticle">
-					<title class="screen_out" style="margin-top: 30px;">수수마 개인정보 처리방침</title>
+					<p class="screen_out" style="margin-top: 30px; border: none;">수수마 개인정보 처리방침</p>
 					<div class="wrap_terms wrap_privacy">
 						<!-- 1. 수수마 개인정보처리방침 시작 -->
 						<h4 id="tab1" class="tit_policy" tabindex="-1">1. 수수마 개인정보 처리방침</h4>
 						<p class="desc_g">
-							“개인정보 처리방침”이란 이용자가 안심하고 서비스를 이용할 수 있도록 회사가 준수해야 할 지침을 의미하며, 수수마는 개인정보처리자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호 규정, 가이드라인을 준수하여 개인정보 처리방침을 제공합니다.<br> <br> 수수마는 이용자의 동의를 기반으로 개인정보를 수집·이용 및 제공하고 있습니다. 이용자의 권리(개인정보 자기결정권)를 적극적으로 보장하기 위해 개인정보 처리방침을 알기 쉽게 제공할 수 있도록 다양한 노력을 기울이고 있으며, 이러한 노력의 일환으로 수수마의 주요 개인정보 처리 관련 정보를 라벨링으로 제공합니다.
+							“개인정보 처리방침”이란 이용자가 안심하고 서비스를 이용할 수 있도록 회사가 준수해야 할 지침을 의미하며, 수수마는 개인정보처리자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호 규정, 가이드라인을 준수하여 개인정보 처리방침을 제공합니다.
+							<br>
+							<br>
+							수수마는 이용자의 동의를 기반으로 개인정보를 수집·이용 및 제공하고 있습니다. 이용자의 권리(개인정보 자기결정권)를 적극적으로 보장하기 위해 개인정보 처리방침을 알기 쉽게 제공할 수 있도록 다양한 노력을 기울이고 있으며, 이러한 노력의 일환으로 수수마의 주요 개인정보 처리 관련 정보를 라벨링으로 제공합니다.
 						</p>
 						<div class="wrap_labeling">
 							<div class="inner_labeling">
 								<ul class="list_labeling">
 									<li>
 										<a href="#tab2" class="btn_labeling" role="button" aria-expanded="false">
-											<span class="wrap_img"> <img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling01_221109.png" alt="" class="img_labeling">
+											<span class="wrap_img">
+												<img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling01_221109.png" alt="" class="img_labeling">
 											</span>
 										</a>
 										<div class="layer_labeling">
 											<strong class="tit_layer">개인정보</strong>
 											<p class="desc_layer">
-												<em class="emph_g">[필수]</em> 이메일, 비밀번호, 이름(닉네임), 프로필사진, 친구목록, 수수마톡 전화번호(수수마톡 이용자의 경우에 한함), 연락처, 서비스 이용내역, 서비스 내 구매 및 결제 내역
+												<em class="emph_g">[필수]</em>
+												이메일, 비밀번호, 이름(닉네임), 프로필사진, 친구목록, 수수마톡 전화번호(수수마톡 이용자의 경우에 한함), 연락처, 서비스 이용내역, 서비스 내 구매 및 결제 내역
 											</p>
 											<p class="desc_layer">
-												<em class="emph_g">[선택]</em> 생년월일, 성별, 배송지정보(수령인명, 배송지 주소, 전화번호)
+												<em class="emph_g">[선택]</em>
+												생년월일, 성별, 배송지정보(수령인명, 배송지 주소, 전화번호)
 											</p>
 											<p class="txt_more">
 												해당 항목은 ‘수수마 계정’ 가입 시 수집하는 개인정보 항목이며, 더 자세한 내용은
@@ -50,13 +51,16 @@
 									</li>
 									<li>
 										<a href="#tab3" class="btn_labeling" role="button" aria-expanded="false">
-											<span class="wrap_img"> <img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling02_221109.png" alt="" class="img_labeling">
+											<span class="wrap_img">
+												<img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling02_221109.png" alt="" class="img_labeling">
 											</span>
 										</a>
 										<div class="layer_labeling">
 											<strong class="tit_layer">처리목적</strong>
 											<p class="desc_layer">
-												수수마에서 수집한 이용자 개인정보는 회원관리, 서비스 제공·개선, 신규 서비스 개발 등 수수마 서비스 제공을 위해 필요한 목적으로만 이용합니다.<br> 개인정보 수집 시 반드시 이용자에게 처리 목적을 고지하여 동의를 받고 있습니다.
+												수수마에서 수집한 이용자 개인정보는 회원관리, 서비스 제공·개선, 신규 서비스 개발 등 수수마 서비스 제공을 위해 필요한 목적으로만 이용합니다.
+												<br>
+												개인정보 수집 시 반드시 이용자에게 처리 목적을 고지하여 동의를 받고 있습니다.
 											</p>
 											<p class="txt_more">
 												수수마에서 수집하는 개인정보의 처리 목적은
@@ -70,7 +74,8 @@
 									</li>
 									<li>
 										<a href="#tab4" class="btn_labeling" role="button" aria-expanded="false">
-											<span class="wrap_img"> <img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling03_221109.png" alt="" class="img_labeling">
+											<span class="wrap_img">
+												<img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling03_221109.png" alt="" class="img_labeling">
 											</span>
 										</a>
 										<div class="layer_labeling">
@@ -88,7 +93,8 @@
 									</li>
 									<li>
 										<a href="#tab4" class="btn_labeling" role="button" aria-expanded="false">
-											<span class="wrap_img"> <img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling04_221109.png" alt="" class="img_labeling">
+											<span class="wrap_img">
+												<img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling04_221109.png" alt="" class="img_labeling">
 											</span>
 										</a>
 										<div class="layer_labeling">
@@ -106,13 +112,16 @@
 									</li>
 									<li>
 										<a href="#tab7" class="btn_labeling" role="button" aria-expanded="false">
-											<span class="wrap_img"> <img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling05_221109.png" alt="" class="img_labeling">
+											<span class="wrap_img">
+												<img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling05_221109.png" alt="" class="img_labeling">
 											</span>
 										</a>
 										<div class="layer_labeling direction_right">
 											<strong class="tit_layer">정보주체의 권리의무</strong>
 											<p class="desc_layer">
-												수수마는 개인정보 처리에 대한 정보주체의 권리 의무를 보장합니다.<br> 수수마 이용자는 언제든지 본인의 개인정보를 조회하거나 수정할 수 있으며, 수집·이용, 제공에 대한 동의를 철회하거나 가입 해지를 요청할 수 있습니다.
+												수수마는 개인정보 처리에 대한 정보주체의 권리 의무를 보장합니다.
+												<br>
+												수수마 이용자는 언제든지 본인의 개인정보를 조회하거나 수정할 수 있으며, 수집·이용, 제공에 대한 동의를 철회하거나 가입 해지를 요청할 수 있습니다.
 											</p>
 											<p class="txt_more">
 												수수마의 정보주체 권리의무 관련 보다 자세한 내용은
@@ -126,7 +135,8 @@
 									</li>
 									<li>
 										<a href="#tab10" class="btn_labeling" role="button">
-											<span class="wrap_img"> <img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling06_221109.png" alt="" class="img_labeling">
+											<span class="wrap_img">
+												<img src="https://t1.susumacdn.net/susumacorp/pw/policy/labeling/ico_labeling06_221109.png" alt="" class="img_labeling">
 											</span>
 										</a>
 										<div class="layer_labeling direction_right">
@@ -152,7 +162,10 @@
 						<h4 id="tab2" class="tit_policy" tabindex="-1">2. 개인정보 수집</h4>
 						<strong class="tit_subject">서비스 제공을 위한 필요 최소한의 개인정보를 수집합니다.</strong>
 						<p class="desc_g">
-							회원 가입 시 또는 서비스 이용 과정에서 홈페이지 또는 개별 어플리케이션이나 프로그램 등을 통해 서비스 제공을 위해 필요 최소한의 개인정보를 수집하고 있습니다.<br> <br>서비스 제공을 위해 반드시 필요한 최소한의 정보를 필수항목으로, 그 외 특화된 서비스를 제공하기 위해 추가 수집하는 정보는 선택항목으로 동의를 받고 있으며, 선택항목에 동의하지 않은 경우에도 서비스 이용 제한은 없습니다.
+							회원 가입 시 또는 서비스 이용 과정에서 홈페이지 또는 개별 어플리케이션이나 프로그램 등을 통해 서비스 제공을 위해 필요 최소한의 개인정보를 수집하고 있습니다.
+							<br>
+							<br>
+							서비스 제공을 위해 반드시 필요한 최소한의 정보를 필수항목으로, 그 외 특화된 서비스를 제공하기 위해 추가 수집하는 정보는 선택항목으로 동의를 받고 있으며, 선택항목에 동의하지 않은 경우에도 서비스 이용 제한은 없습니다.
 						</p>
 						<strong class="tit_group">[수수마계정 가입 시]</strong>
 						<p class="desc_group">[필수] 이메일, 비밀번호, 이름(닉네임), 프로필사진, 친구목록, 수수마톡 전화번호(수수마톡 이용자의 경우에 한함), 연락처, 서비스 이용내역, 서비스 내 구매 및 결제 내역</p>
@@ -167,7 +180,13 @@
 						<p class="desc_group">[필수] 법정대리인 정보(이름, 성별, 생년월일, 휴대전화번호, 통신사업자, 내/외국인 여부, 암호화된 이용자 확인값(CI), 중복가입확인정보(DI))</p>
 						<strong class="tit_group">[유료서비스 이용 시]</strong>
 						<p class="desc_group">
-							[필수] 신용카드 결제 시: 카드번호(일부), 카드사명 등<br>[필수] 휴대전화번호 결제 시: 휴대전화번호, 결제승인번호 등<br>[필수] 계좌이체 시: 예금주명, 계좌번호, 계좌은행 등<br>[필수] 상품권 이용 시: 상품권 번호, 해당 사이트 아이디
+							[필수] 신용카드 결제 시: 카드번호(일부), 카드사명 등
+							<br>
+							[필수] 휴대전화번호 결제 시: 휴대전화번호, 결제승인번호 등
+							<br>
+							[필수] 계좌이체 시: 예금주명, 계좌번호, 계좌은행 등
+							<br>
+							[필수] 상품권 이용 시: 상품권 번호, 해당 사이트 아이디
 						</p>
 						<strong class="tit_group">[환불처리 시]</strong>
 						<p class="desc_group">[필수] 계좌은행, 계좌번호, 예금주명, 이메일</p>
@@ -177,14 +196,17 @@
 						<p class="desc_group">고객센터로 문의 및 상담 시 상담 처리를 위한 추가적인 정보를 수집할 수 있습니다.</p>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/policyPrivacyCenter?lang=ko" target="_blank" class="btn_step btn_with btn_center">
-							고객상담을 위해 추가 수집하는 개인정보 항목 자세히 보기<span class="ico_corp ico_arr"></span>
+							고객상담을 위해 추가 수집하는 개인정보 항목 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
-						<br> <strong class="tit_subject">일부 서비스에서는 특화된 여러 기능을 제공하기 위해 이용자에게 동의를 받고 추가적인 개인정보를 수집할 수 있습니다.</strong>
+						<br>
+						<strong class="tit_subject">일부 서비스에서는 특화된 여러 기능을 제공하기 위해 이용자에게 동의를 받고 추가적인 개인정보를 수집할 수 있습니다.</strong>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/collectSeparately?type=susuma&amp;lang=ko" target="_blank" class="btn_step btn_with">
-							서비스에서 별도로 수집하는 개인정보 항목 자세히 보기<span class="ico_corp ico_arr"></span>
+							서비스에서 별도로 수집하는 개인정보 항목 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -196,14 +218,16 @@
 							<li>고객센터를 통한 상담 과정에서 웹페이지, 메일, 팩스, 전화 등</li>
 							<li>온·오프라인에서 진행되는 이벤트/행사 등 참여</li>
 						</ul>
-						<strong class="tit_subject">서비스 이용 과정에서 단말기정보, IP주소, 쿠키, 서비스 이용 내역* 등의 정보가 자동으로 생성되어 수집될 수 있습니다.</strong> <br>
+						<strong class="tit_subject">서비스 이용 과정에서 단말기정보, IP주소, 쿠키, 서비스 이용 내역* 등의 정보가 자동으로 생성되어 수집될 수 있습니다.</strong>
+						<br>
 						<p class="desc_group">*서비스 이용 내역이란 서비스 이용 과정에서 자동화된 방법으로 생성되거나 이용자가 입력한 정보가 송수신되면서 수수마 서버에 자동으로 기록 및 수집될 수 있는 정보를 의미합니다. 이와 같은 정보는 다른 정보와의 결합 여부, 처리하는 방식 등에 따라 개인정보에 해당할 수 있고 개인정보에 해당하지 않을 수도 있습니다.</p>
 						<br>
 						<p class="desc_group">서비스 이용 내역에는 이용자가 입력 및 공유한 콘텐츠, 이용자가 입력한 검색어, 방문 및 접속기록, 서비스 부정이용 기록, 위치정보 등이 포함될 수 있습니다. 예를 들면, 이용자간 주고받은 메시지의 텍스트, 이미지, 동영상, 음성 등은 회사의 서버를 경유하여 상대방에게 송신됩니다. 이 때 콘텐츠 수신자, 데이터 형식, 게시 일시 등 이용자와 상대방과의 사이에서 송수신하는 형태, 방식 정보도 서버에 기록됩니다. 수수마는 이용자간 주고받은 메시지 등 전송하는 콘텐츠 내용은 원칙적으로 전송 이외의 목적으로는 사용하지 않습니다. 수수마는 서비스 이용기록 등의 정보를 서비스 제공 목적으로 처리할 수 있으며 필요한 경우에는 이용자의 추가 동의 등을 받고 이용할 수 있습니다.</p>
 						<strong class="tit_subject">서비스 간 제휴, 연계 등으로 제3자로부터 개인정보를 제공받습니다.</strong>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/providedInfo?lang=ko" target="_blank" class="btn_step btn_with">
-							제공받는 개인정보 항목 자세히 보기<span class="ico_corp ico_arr"></span>
+							제공받는 개인정보 항목 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -260,12 +284,17 @@
 						</ul>
 						<strong class="tit_subject">개인정보의 추가적인 이용・제공을 하는 경우가 있습니다.</strong>
 						<p class="desc_g">
-							수집 목적과 합리적으로 관련된 범위에서는 법령에 따라 이용자의 동의 없이 개인정보를 이용하거나 제3자에게 제공할 수 있습니다. 이때 ‘당초 수집 목적과 관련성이 있는지, 수집한 정황 또는 처리 관행에 비추어 볼 때 개인정보의 추가적인 이용 또는 제공에 대한 예측 가능성이 있는지, 이용자의 이익을 부당하게 침해하는지, 가명처리 또는 암호화 등 안전성 확보에 필요한 조치를 하였는지’를 종합적으로 고려합니다.<br> <br> 수수마는 수집한 개인정보를 특정 개인을 알아볼 수 없도록 가명처리하여 통계작성, 과학적 연구, 공익적 기록보존 등을 위하여 처리할 수 있습니다. 이 때 가명정보는 재식별되지 않도록 추가정보와 분리하여 별도 저장・관리하고 필요한 기술적・관리적 보호조치를 취합니다.<br>먼저, 가명정보에 접근할 수 있는 권한은 최소한의 인원으로 제한하며, 접근 권한을 관리하고 있습니다. 가명정보를 보호하기 위해 보안 시스템을 운영하며, 정기적인
-							내부 감사를 통해 가명처리 및 보호조치가 적절하게 이행되고 있는지 확인하고 개선 사항을 지속적으로 반영합니다. 또한, 가명정보를 취급하는 직원들에게 정기적으로 교육을 실시하고 있습니다.
+							수집 목적과 합리적으로 관련된 범위에서는 법령에 따라 이용자의 동의 없이 개인정보를 이용하거나 제3자에게 제공할 수 있습니다. 이때 ‘당초 수집 목적과 관련성이 있는지, 수집한 정황 또는 처리 관행에 비추어 볼 때 개인정보의 추가적인 이용 또는 제공에 대한 예측 가능성이 있는지, 이용자의 이익을 부당하게 침해하는지, 가명처리 또는 암호화 등 안전성 확보에 필요한 조치를 하였는지’를 종합적으로 고려합니다.
+							<br>
+							<br>
+							수수마는 수집한 개인정보를 특정 개인을 알아볼 수 없도록 가명처리하여 통계작성, 과학적 연구, 공익적 기록보존 등을 위하여 처리할 수 있습니다. 이 때 가명정보는 재식별되지 않도록 추가정보와 분리하여 별도 저장・관리하고 필요한 기술적・관리적 보호조치를 취합니다.
+							<br>
+							먼저, 가명정보에 접근할 수 있는 권한은 최소한의 인원으로 제한하며, 접근 권한을 관리하고 있습니다. 가명정보를 보호하기 위해 보안 시스템을 운영하며, 정기적인 내부 감사를 통해 가명처리 및 보호조치가 적절하게 이행되고 있는지 확인하고 개선 사항을 지속적으로 반영합니다. 또한, 가명정보를 취급하는 직원들에게 정기적으로 교육을 실시하고 있습니다.
 						</p>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/aliasInfo?lang=ko" target="_blank" class="btn_step btn_with">
-							가명정보 처리현황 자세히보기<span class="ico_corp ico_arr"></span>
+							가명정보 처리현황 자세히보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -306,18 +335,22 @@
 						<h4 id="tab4" class="tit_policy" tabindex="-1">4. 개인정보 제공</h4>
 						<strong class="tit_subject">수수마는 이용자의 별도 동의가 있거나 법령에 규정된 경우를 제외하고는 이용자의 개인정보를 제3자에게 제공하지 않습니다.</strong>
 						<p class="desc_g">
-							수수마는 이용자의 사전 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 다만, 이용자가 수수마계정 로그인 서비스를 이용하거나 외부 제휴사 등의 서비스를 이용하는 경우 필요한 범위 내에서 이용자의 동의를 얻은 후에 개인정보를 제3자에게 제공하고 있습니다. <br> 또한 해외 서비스 이용을 위해 이용자의 동의를 받아 국외로 개인정보가 제공될 수 있으며, 국외 이전 시 제공받는 자 및 이전국가 등에 대해 고지하여 별도 동의를 받고 있습니다.
+							수수마는 이용자의 사전 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 다만, 이용자가 수수마계정 로그인 서비스를 이용하거나 외부 제휴사 등의 서비스를 이용하는 경우 필요한 범위 내에서 이용자의 동의를 얻은 후에 개인정보를 제3자에게 제공하고 있습니다.
+							<br>
+							또한 해외 서비스 이용을 위해 이용자의 동의를 받아 국외로 개인정보가 제공될 수 있으며, 국외 이전 시 제공받는 자 및 이전국가 등에 대해 고지하여 별도 동의를 받고 있습니다.
 						</p>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/informationThirdParty?lang=ko" target="_blank" class="btn_step btn_with">
-							수수마 개인정보 제3자 제공이 발생하는 경우<span class="ico_corp ico_arr"></span>
+							수수마 개인정보 제3자 제공이 발생하는 경우
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
 						<p class="desc_g">수수마는 재난, 감염병, 급박한 생명・신체 위험을 초래하는 사건사고, 급박한 재산 손실 등의 긴급상황이 발생하는 경우 정보주체의 동의 없이 관계기관에 개인정보를 제공할 수 있습니다.</p>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/personalInformationEmergency?lang=ko" target="_blank" class="btn_step btn_with">
-							긴급상황 발생 시 개인정보 제3자 제공이 발생하는 경우<span class="ico_corp ico_arr"></span>
+							긴급상황 발생 시 개인정보 제3자 제공이 발생하는 경우
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -325,7 +358,8 @@
 						<p class="desc_g">서비스 제공을 위해 필요한 경우 개인정보 처리 업무 중 일부를 외부에 위탁할 수 있습니다. 위탁받은 업체가 위탁받은 업무 목적 외로 개인정보를 처리하는 것을 제한하고, 기술적・관리적 보호조치 적용 및 재위탁 제한 등 위탁받은 업체의 개인정보 보호 관련 법령 준수 여부를 관리·감독하고 있습니다. 이용자는 고객센터를 통해 개인정보의 국외 이전을 거부할 수 있습니다. 이용자가 개인정보의 국외 이전을 거부하는 경우, 개인정보 국외이전이 필수적으로 수반되는 서비스의 이용이 제한될 수 있습니다.</p>
 
 						<a href="//www.susuma.com/policy/privacyPolicy/policyPrivacyBusiness?lang=ko" target="_blank" class="btn_step btn_with">
-							개인정보 처리 위탁현황 자세히 보기<span class="ico_corp ico_arr"></span>
+							개인정보 처리 위탁현황 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -365,39 +399,48 @@
 						<h4 id="tab5" class="tit_policy" tabindex="-1">5. 개인정보 파기</h4>
 						<strong class="tit_subject">수집 및 이용목적이 달성된 경우 수집한 개인정보는 지체없이 파기하며, 절차 및 방법은 아래와 같습니다.</strong>
 						<p class="desc_g">
-							수집 및 이용 목적의 달성 또는 회원 탈퇴 등 파기 사유가 발생한 경우 개인정보의 형태를 고려하여 파기방법을 정합니다. 전자적 파일 형태인 경우 복구 및 재생되지 않도록 안전하게 삭제하고, 그 밖에 기록물, 인쇄물, 서면 등의 경우 분쇄하거나 소각하여 파기합니다.<br> <br> 내부 방침에 따라 일정 기간 보관 후 파기하는 정보는 아래와 같습니다.
+							수집 및 이용 목적의 달성 또는 회원 탈퇴 등 파기 사유가 발생한 경우 개인정보의 형태를 고려하여 파기방법을 정합니다. 전자적 파일 형태인 경우 복구 및 재생되지 않도록 안전하게 삭제하고, 그 밖에 기록물, 인쇄물, 서면 등의 경우 분쇄하거나 소각하여 파기합니다.
+							<br>
+							<br>
+							내부 방침에 따라 일정 기간 보관 후 파기하는 정보는 아래와 같습니다.
 						</p>
 						<ul class="list_1depth">
 							<li>
-								<span class="txt_num">1)</span>아래 정보는 탈퇴일부터 최대 1년간 보관 후 파기합니다.
+								<span class="txt_num">1)</span>
+								아래 정보는 탈퇴일부터 최대 1년간 보관 후 파기합니다.
 								<ul class="list_2depth">
 									<li>안내메일 발송 및 CS문의 대응을 위해 수수마계정과 탈퇴안내 이메일 주소를 암호화하여 보관</li>
 									<li>서비스 부정이용 기록</li>
 								</ul>
 							</li>
 							<li>
-								<span class="txt_num">2)</span>권리침해 신고 및 유해정보 신고 이력은 5년간 보관 후 파기합니다.
+								<span class="txt_num">2)</span>
+								권리침해 신고 및 유해정보 신고 이력은 5년간 보관 후 파기합니다.
 							</li>
 							<li>
-								<span class="txt_num">3)</span>수수마같이가치: 프로젝트 모금함 최종 종료일부터 3년 경과 후 파기합니다.(단, 미선정의 경우, 미선정일로부터 90일 경과 후 파기)
+								<span class="txt_num">3)</span>
+								수수마같이가치: 프로젝트 모금함 최종 종료일부터 3년 경과 후 파기합니다.(단, 미선정의 경우, 미선정일로부터 90일 경과 후 파기)
 								<ul class="list_2depth">
 									<li>지원대상 선정 시 수집한 증빙서류</li>
 								</ul>
 							</li>
 							<li>
-								<span class="txt_num">4)</span>수수마 인증서: 인증서 이용내역은 인증서 폐지 시점으로부터 10년 보관 후 파기합니다.
+								<span class="txt_num">4)</span>
+								수수마 인증서: 인증서 이용내역은 인증서 폐지 시점으로부터 10년 보관 후 파기합니다.
 								<ul class="list_2depth">
 									<li>이름, 생년월일, 성별, 휴대전화번호, 암호화된 이용자 확인값(CI), 인증서 데이터</li>
 								</ul>
 							</li>
 							<li>
-								<span class="txt_num">5)</span>수수마톡: 이용자 보호조치 완화 적용 시 수집한 개인정보는 1년간 보관 후 파기합니다.
+								<span class="txt_num">5)</span>
+								수수마톡: 이용자 보호조치 완화 적용 시 수집한 개인정보는 1년간 보관 후 파기합니다.
 								<ul class="list_2depth">
 									<li>암호화된 이용자 확인값(CI)</li>
 								</ul>
 							</li>
 							<li>
-								<span class="txt_num">6)</span>카드영수증: 카드영수증 서비스 탈퇴일부터 1년 보관 후 파기합니다.
+								<span class="txt_num">6)</span>
+								카드영수증: 카드영수증 서비스 탈퇴일부터 1년 보관 후 파기합니다.
 								<ul class="list_2depth">
 									<li>암호화된 이용자 확인값(CI), 카드영수증 항목 및 상세내역</li>
 								</ul>
@@ -406,11 +449,15 @@
 						<p class="desc_g">
 							또한, 수수마는
 							<a href="https://www.susuma.com/policy/oppolicy?lang=ko" class="link_policy">운영정책</a>
-							에 따라 1년간 서비스를 이용하지 않은 이용자의 개인정보를 별도로 분리 보관 또는 삭제하고 있으며, 분리 보관된 개인정보는 4년간 보관 후 지체없이 파기합니다. <br> <br>이 외에 법령에 따라 일정기간 보관해야 하는 개인정보는 아래 표와 같습니다.
+							에 따라 1년간 서비스를 이용하지 않은 이용자의 개인정보를 별도로 분리 보관 또는 삭제하고 있으며, 분리 보관된 개인정보는 4년간 보관 후 지체없이 파기합니다.
+							<br>
+							<br>
+							이 외에 법령에 따라 일정기간 보관해야 하는 개인정보는 아래 표와 같습니다.
 						</p>
 
 						<a href="//www.susuma.com/location_term_purpose?lang=ko" target="_blank" class="btn_step btn_with">
-							관계법령에 따른 개인정보 보관 자세히 보기<span class="ico_corp ico_arr"></span>
+							관계법령에 따른 개인정보 보관 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -431,7 +478,11 @@
 						<!-- 5. 개인정보 파기 끝 -->
 						<!-- 6. 개인위치정보의 처리 시작 -->
 						<h4 id="tab6" class="tit_policy" tabindex="-1">6. 개인위치정보의 처리</h4>
-						<strong class="tit_subject">수수마는 위치정보의 보호 및 이용 등에 관한 법률(이하 ‘위치정보법’)에 따라 아래와 같이 개인위치정보를 처리합니다.</strong> <strong class="tit_subject"><a class="link_policy btn_fold" role="button" href="javascript:;">수수마 위치정보 이용약관 제4조</a>에 따른 서비스의 제공을 위해 개인위치정보를 보유할 수 있습니다.</strong>
+						<strong class="tit_subject">수수마는 위치정보의 보호 및 이용 등에 관한 법률(이하 ‘위치정보법’)에 따라 아래와 같이 개인위치정보를 처리합니다.</strong>
+						<strong class="tit_subject">
+							<a class="link_policy btn_fold" role="button" href="javascript:;">수수마 위치정보 이용약관 제4조</a>
+							에 따른 서비스의 제공을 위해 개인위치정보를 보유할 수 있습니다.
+						</strong>
 						<div class="layer_fold">
 							<strong class="tit_terms">수수마 위치기반 서비스 이용약관 제4조 (서비스의 내용)</strong>
 							<ol class="list_terms">
@@ -448,15 +499,24 @@
 						</ul>
 						<strong class="tit_subject">개인위치정보의 수집 및 이용목적이 달성되면 지체없이 파기합니다.</strong>
 						<p class="desc_g">
-							수집 및 이용 목적의 달성 또는 회원 탈퇴 등 개인위치정보 처리목적이 달성된 경우, 개인위치정보를 복구 및 재생되지 않도록 안전하게 삭제합니다.<br> 다만, 다른 법령에 따라 보관해야 하는 등 정당한 사유가 있는 경우에는 그에 따릅니다.<br> <br> 또한, 위치정보법 제16조2항에 따라 이용자의 위치정보의 이용ㆍ제공사실 확인자료를 위치정보시스템에 6개월간 보관합니다.
+							수집 및 이용 목적의 달성 또는 회원 탈퇴 등 개인위치정보 처리목적이 달성된 경우, 개인위치정보를 복구 및 재생되지 않도록 안전하게 삭제합니다.
+							<br>
+							다만, 다른 법령에 따라 보관해야 하는 등 정당한 사유가 있는 경우에는 그에 따릅니다.
+							<br>
+							<br>
+							또한, 위치정보법 제16조2항에 따라 이용자의 위치정보의 이용ㆍ제공사실 확인자료를 위치정보시스템에 6개월간 보관합니다.
 						</p>
 						<strong class="tit_subject">이용자의 사전 동의 없이 개인위치정보를 제3자에게 제공하지 않습니다.</strong>
 						<p class="desc_g">
-							수수마는 이용자의 동의 없이 개인위치정보를 제3자에게 제공하지 않으며, 제3자에게 제공하는 경우에는 제공받는 자 및 제공목적을 사전에 이용자에게 고지하고 동의를 받습니다.<br> <br> 이용자의 동의를 거쳐 개인위치정보를 제3자에게 제공하는 경우, 이용자에게 매회 이용자에게 제공받는 자, 제공일시 및 제공목적을 즉시 통지합니다.
+							수수마는 이용자의 동의 없이 개인위치정보를 제3자에게 제공하지 않으며, 제3자에게 제공하는 경우에는 제공받는 자 및 제공목적을 사전에 이용자에게 고지하고 동의를 받습니다.
+							<br>
+							<br>
+							이용자의 동의를 거쳐 개인위치정보를 제3자에게 제공하는 경우, 이용자에게 매회 이용자에게 제공받는 자, 제공일시 및 제공목적을 즉시 통지합니다.
 						</p>
 
 						<a href="//www.susuma.com/locationStatus?lang=ko" target="_blank" class="btn_step btn_with">
-							위치정보 제공 현황 자세히 보기<span class="ico_corp ico_arr"></span>
+							위치정보 제공 현황 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 
 
@@ -494,7 +554,9 @@
 						<p class="desc_g">
 							이용자는 서비스 내 다음과 같은 기능을 통해 언제든지 개인정보 열람(조회) 등의 권리를 직접 행사하거나 또는 고객센터(
 							<a href="https://cs.susuma.com/requests?category=262&amp;locale=ko&amp;node=66240&amp;service=87&amp;select=combo2" class="link_policy">문의하기</a>
-							)를 통해 요청할 수 있습니다. <br> <br>
+							)를 통해 요청할 수 있습니다.
+							<br>
+							<br>
 							<a href="https://accounts.susuma.com/weblogin/account/info" class="link_policy">- 수수마계정 정보 열람(조회) 및 수정</a>
 							<br>
 							<a href="https://accounts.susuma.com/weblogin/account/partner" class="link_policy">- 수수마계정과 연결된 서비스 관리</a>
@@ -537,7 +599,8 @@
 						</div>
 						<p class="desc_g">또한, '온라인 맞춤형 광고 개인정보보호 가이드 라인'에 따른 이용자 권리보호를 위한 페이지도 제공하고 있습니다.</p>
 						<a href="https://info.ad.daum.net/optout.do" target="_blank" class="btn_step btn_with">
-							맞춤형 광고소개 및 거부방법 자세히 보기<span class="ico_corp ico_arr"></span>
+							맞춤형 광고소개 및 거부방법 자세히 보기
+							<span class="ico_corp ico_arr"></span>
 						</a>
 						<div class="info_labeling">
 							<ul class="list_labeling">
@@ -605,7 +668,8 @@
 							<li>
 								<em class="emph_g">이용자 정보의 보호 활동 및 체계에 대해 국내 및 국제 인증 규격을 충족하고 있습니다.</em>
 								<p class="desc_privacy">
-									정보보호 및 개인정보보호 관리 체계에 대해 국내 및 국제 인증 심사 규격 대비 충족 여부를 매년 독립된 심사 기관으로부터 검증을 받고 개선의 기회를 마련하고 있습니다.<br>
+									정보보호 및 개인정보보호 관리 체계에 대해 국내 및 국제 인증 심사 규격 대비 충족 여부를 매년 독립된 심사 기관으로부터 검증을 받고 개선의 기회를 마련하고 있습니다.
+									<br>
 									<a href="https://privacy.susuma.com/protect?lang=ko#protectAuth" class="link_policy">정보보호 인증 보기</a>
 								</p>
 								<p class="desc_privacy"></p>
@@ -645,7 +709,9 @@
 						<p class="desc_g">유럽연합 내 이용자를 대상으로 서비스를 제공하는 경우, 아래 내용이 적용될 수 있습니다.</p>
 						<strong class="tit_terms">[개인정보 처리의 목적 및 처리근거]</strong>
 						<p class="desc_g">
-							수수마는 수집한 개인정보를 "3. 개인정보의 이용"에 기재된 목적으로만 이용하며, 사전에 이용자에게 해당 사실을 알리고 동의를 구하고 있습니다.<br> 그리고 GDPR 등에 따라 수수마는 아래 하나에 해당하는 경우에 이용자의 개인정보를 처리할 수 있습니다.
+							수수마는 수집한 개인정보를 "3. 개인정보의 이용"에 기재된 목적으로만 이용하며, 사전에 이용자에게 해당 사실을 알리고 동의를 구하고 있습니다.
+							<br>
+							그리고 GDPR 등에 따라 수수마는 아래 하나에 해당하는 경우에 이용자의 개인정보를 처리할 수 있습니다.
 						</p>
 						<ul class="list_2depth">
 							<li>정보주체의 동의</li>
@@ -656,7 +722,13 @@
 						</ul>
 						<strong class="tit_terms">[유럽연합 내 이용자의 권리 보장]</strong>
 						<p class="desc_g">
-							GDPR 등에 따라 이용자는 자신의 개인정보를 다른 관리자에게 이전해 달라고 요청할 수 있고, 자신의 정보 처리 거부를 요청 할 수 있습니다. 그리고 이용자는 개인정보보호 권한 당국에 불만을 제기할 권리가 있습니다.<br> 또한, 수수마는 이벤트 및 광고 등 마케팅을 제공하기 위해 개인정보를 활용할 수 있으며, 사전에 이용자의 동의를 구하고 있습니다. 이용자는 원하지 않은 경우 언제든지 동의를 철회할 수 있습니다.<br> 위와 관련한 요청사항은 고객센터를 통해 서면, 전화 또는 이메일로 연락하시면 지체 없이 조치하겠습니다.<br> 개인정보의 오류에 대한 정정을 요청하신 경우 정정을 완료하기 전까지 해당 개인정보를 이용 또는 제공하지 않습니다.
+							GDPR 등에 따라 이용자는 자신의 개인정보를 다른 관리자에게 이전해 달라고 요청할 수 있고, 자신의 정보 처리 거부를 요청 할 수 있습니다. 그리고 이용자는 개인정보보호 권한 당국에 불만을 제기할 권리가 있습니다.
+							<br>
+							또한, 수수마는 이벤트 및 광고 등 마케팅을 제공하기 위해 개인정보를 활용할 수 있으며, 사전에 이용자의 동의를 구하고 있습니다. 이용자는 원하지 않은 경우 언제든지 동의를 철회할 수 있습니다.
+							<br>
+							위와 관련한 요청사항은 고객센터를 통해 서면, 전화 또는 이메일로 연락하시면 지체 없이 조치하겠습니다.
+							<br>
+							개인정보의 오류에 대한 정정을 요청하신 경우 정정을 완료하기 전까지 해당 개인정보를 이용 또는 제공하지 않습니다.
 						</p>
 
 
@@ -668,12 +740,15 @@
 						<!-- 9. 개인정보의 안전성 확보 조치에 관한 사항 끝 -->
 						<!-- 10. 개인정보 보호책임자 및 고충처리 부서 안내 시작 -->
 						<h4 id="tab10" class="tit_policy" tabindex="-1">10. 개인정보 보호책임자 및 고충처리 부서</h4>
-						<strong class="tit_subject">수수마는 이용자의 개인정보 관련 문의사항 및 불만 처리 등을 위하여 개인정보 보호책임자 및 고충처리 부서를 지정하고 있습니다.</strong> <strong class="tit_terms">개인정보 보호책임자 및 고충처리 부서</strong>
+						<strong class="tit_subject">수수마는 이용자의 개인정보 관련 문의사항 및 불만 처리 등을 위하여 개인정보 보호책임자 및 고충처리 부서를 지정하고 있습니다.</strong>
+						<strong class="tit_terms">개인정보 보호책임자 및 고충처리 부서</strong>
 						<ul class="list_2depth">
 							<li>책임자: 김연지 (개인정보 보호책임자/DPO/위치정보관리책임자)</li>
 							<li>소속: 개인정보보호부서</li>
 							<li>
-								문의 <br> - 수수마 고객센터 (
+								문의
+								<br>
+								- 수수마 고객센터 (
 								<a href="https://cs.susuma.com/requests?category=262&amp;locale=ko&amp;node=66240&amp;service=87&amp;select=combo2" class="link_policy">바로가기</a>
 								) : 1577-3754 (유료)
 							</li>
@@ -745,7 +820,9 @@
 						<!-- 11. 개정 전 고지의무 및 이전 개인정보 처리방침 안내 시작 -->
 						<h4 id="tab11" class="tit_policy" tabindex="-1">11. 개정 전 고지의무 등 안내</h4>
 						<p class="desc_g">
-							법령이나 서비스의 변경사항을 반영하기 위한 목적 등으로 개인정보 처리방침을 수정할 수 있습니다. 개인정보 처리방침이 변경되는 경우 최소 7일 전 변경 사항을 사전에 안내 하겠습니다.<br>다만, 이용자 권리의 중대한 변경이 발생할 때에는 최소 30일 전에 미리 알려드리겠습니다.
+							법령이나 서비스의 변경사항을 반영하기 위한 목적 등으로 개인정보 처리방침을 수정할 수 있습니다. 개인정보 처리방침이 변경되는 경우 최소 7일 전 변경 사항을 사전에 안내 하겠습니다.
+							<br>
+							다만, 이용자 권리의 중대한 변경이 발생할 때에는 최소 30일 전에 미리 알려드리겠습니다.
 						</p>
 						<p class="desc_g">수수마는 이용자 여러분의 정보를 소중히 생각하며, 이용자가 더욱 안심하고 서비스를 이용할 수 있도록 최선의 노력을 다할것을 약속드립니다.</p>
 						<ul class="list_2depth">

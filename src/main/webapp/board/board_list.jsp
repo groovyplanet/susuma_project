@@ -70,6 +70,13 @@
 							</c:choose>
 						</div>
 					</c:forEach>
+					<c:if test="${type eq 'ask'}">
+						<div class="content-p-box" style="margin-bottom: 0">
+							<div class="content-ask">
+								<a href="${pageContext.request.contextPath }/board/ask_write.jsp">문의하기</a>
+							</div>
+						</div>
+					</c:if>
 				</div>
 				<div class="pagination">
 					<ul>

@@ -8,7 +8,6 @@
 
 	<section class="main-section">
 		<div class="container">
-
 			<%@ include file="../include/snb.jsp"%>
 			<div class="content profile-edit">
 				<div class="join-form profile-edit-form">

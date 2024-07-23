@@ -35,12 +35,7 @@ public class RequestServiceImpl implements RequestService{
 		sql.close();
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("reserve_list.jsp").forward(request, response);
-		
-		
-		
-	
-		
+		request.getRequestDispatcher("request_list.jsp").forward(request, response);
 
 	}
 

@@ -87,7 +87,7 @@
 							<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 						</div>
 						<div class="infodetail">
-							<a href="${pageContext.request.contextPath }/user/review_view.jsp" style="text-decoration: none;">
+							<a href="review_view.jsp" style="text-decoration: none;">
 								<div class="member-name">
 									<strong>${dto.content }</strong>
 									<span></span>

@@ -2,21 +2,6 @@
 
 <!-- sidebar -->
 <nav class="sidebar">
-	<div class="title">마이페이지</div>
-	<ul>
-		<li>
-			<!-- active 클래스 제어 -->
-			<a href="${pageContext.request.contextPath }/user/profile_edit.jsp" class="active">회원정보 수정</a>
-		</li>
-		<li>
-			<a href="${pageContext.request.contextPath }/user/list.request">예약 내역</a>
-		</li>
-		<li>
-			<a href="${pageContext.request.contextPath }/user/review_list.jsp">후기 내역</a>
-		</li>
-		<li>
-			<a href="${pageContext.request.contextPath }/user/message_list.jsp">문의 내역</a>
-		</li>
-	</ul>
+snb.jsp로 include 해주세요.
 </nav>
 <!-- //sidebar -->

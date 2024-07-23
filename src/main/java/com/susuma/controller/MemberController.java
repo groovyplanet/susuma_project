@@ -61,9 +61,9 @@ public class MemberController extends HttpServlet {
 
 			service.login(request, response);
 
-		} else if (command.equals("/member/profileEdit.member")) { // 사용자 - 프로필 수정
+		} else if (command.equals("/member/edit.member")) { // 사용자 - 프로필 수정
 
-			service.profileEdit(request, response);
+			service.edit(request, response);
 
 		} else if (command.equals("/member/find_info.member")) { // 사용자 - 비밀번호 찾기
 

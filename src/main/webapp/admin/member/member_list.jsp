@@ -30,16 +30,16 @@
 								<td>
 									<ul class="check_list">
 										<li>
-											<input type="radio" name="join_approval" value="all" id="join_approval_all" ${joinApproval == 'all' ? 'checked' : ''}>
-											<label for="join_approval_all">전체</label>
+											<input type="radio" name="joinApproval" value="all" id="joinApproval_all" ${joinApproval == 'all' ? 'checked' : ''}>
+											<label for="joinApproval_all">전체</label>
 										</li>
 										<li>
-											<input type="radio" name="join_approval" value="Y" id="join_approval_Y" ${joinApproval == 'Y' ? 'checked' : ''}>
-											<label for="join_approval_Y">승인</label>
+											<input type="radio" name="joinApproval" value="Y" id="joinApproval_Y" ${joinApproval == 'Y' ? 'checked' : ''}>
+											<label for="joinApproval_Y">승인</label>
 										</li>
 										<li>
-											<input type="radio" name="join_approval" value="N" id="join_approval_N" ${joinApproval == 'N' ? 'checked' : ''}>
-											<label for="join_approval_N">미승인</label>
+											<input type="radio" name="joinApproval" value="N" id="joinApproval_N" ${joinApproval == 'N' ? 'checked' : ''}>
+											<label for="joinApproval_N">미승인</label>
 										</li>
 									</ul>
 								</td>
@@ -74,7 +74,7 @@
 										<ul class="check_list">
 											<li>
 												<input type="radio" name="caNo" value="all" id="caNo_all" ${caNo == 'all' ? 'checked' : ''}>
-												<label for="temp2">전체</label>
+												<label for="caNo_all">전체</label>
 											</li>
 											<c:forEach var="categorySubDto" items="${CategorySubList}">
 												<li>
@@ -152,7 +152,7 @@
 									</td>
 								</c:if>
 								<c:if test="${type == 'master' }">
-									<td>${dto.caName}</td>
+									<td>${dto.caRootName} > ${dto.caName}</td>
 									<td>
 										<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 									</td>

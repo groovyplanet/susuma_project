@@ -8,7 +8,7 @@
 
 	<section class="main-section">
 		<div class="container">
-			<%@ include file="../include/snb_user.jsp"%>
+			<%@ include file="../include/snb.jsp"%>
 			<div class="content exit">
 				<div class="join-form exit-form">
 					<div class="title">회원탈퇴</div>

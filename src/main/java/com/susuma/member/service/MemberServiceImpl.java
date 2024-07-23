@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
 		type = (type == null || type.isEmpty()) ? "user" : type; // 기본 : 회원 구분 user
-		String joinApproval = request.getParameter("join_approval");
+		String joinApproval = request.getParameter("joinApproval");
 		joinApproval = (joinApproval == null || joinApproval.isEmpty()) ? "all" : joinApproval; // 기본 : 가입 승인 전체(승인/미승인)
 		String sortField = request.getParameter("sortField");
 		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
@@ -53,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
 		params.put("sortField", sortField);
 		params.put("sortOrder", sortOrder);
 		params.put("rootNo", rootNo);
-		// params.put("caNo", caNo);
+		params.put("caNo", caNo);
 		params.put("startRow", startRow); // rownum 시작값
 		params.put("endRow", endRow); // rownum 끝값
 
@@ -100,11 +100,18 @@ public class MemberServiceImpl implements MemberService {
 	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
+		String rootNo = request.getParameter("rootNo");
+		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
+		String caNo = request.getParameter("caNo");
+		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
+
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", "master");
 		params.put("joinApproval", "Y");
 		params.put("sortField", "insert_time");
 		params.put("sortOrder", "DESC");
+		params.put("rootNo", rootNo);
+		params.put("caNo", caNo);
 		params.put("startRow", 1); // rownum 시작값
 		params.put("endRow", 999); // rownum 끝값
 		// 카테고리 매개변수로 받아서 검색하는 기능 구현 필요
@@ -115,11 +122,9 @@ public class MemberServiceImpl implements MemberService {
 		ArrayList<MemberDTO> memberList = Member.selectMembers(params);
 		CategoryMapper Category = sql.getMapper(CategoryMapper.class);
 		ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
-
 		sql.close();
 
 		/* [3] 화면이동 */
-
 		request.setAttribute("memberList", memberList);
 		request.setAttribute("CategoryMainList", CategoryMainList);
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
@@ -266,7 +271,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void profileEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		HttpSession session = request.getSession();
@@ -285,55 +290,57 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("profile_edit.jsp").forward(request, response);
 
-	}@Override
-	 public void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        
+	}
+
+	@Override
+	public void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
 		/* [1] 매개변수 */
 		HttpSession session = request.getSession();
-        String meNo = (String) session.getAttribute("meNo");
-        String inputPassword = request.getParameter("pw");
+		String meNo = (String) session.getAttribute("meNo");
+		String inputPassword = request.getParameter("pw");
 
-        if (meNo == null || inputPassword == null) {
-            response.setContentType("text/html; charset=UTF-8;");
-            PrintWriter out = response.getWriter();
-            out.println("<script>");
-            out.println("alert('잘못된 요청입니다. 다시 시도해 주세요.');");
-            out.println("history.back();");
-            out.println("</script>");
-            return;
-        }
-        /* [2] Mapper */
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		if (meNo == null || inputPassword == null) {
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('잘못된 요청입니다. 다시 시도해 주세요.');");
+			out.println("history.back();");
+			out.println("</script>");
+			return;
+		}
+		/* [2] Mapper */
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 
-        try {
-            // DB에서 비밀번호 가져오기
-            String storedPassword = memberMapper.getPassword(meNo);
+		try {
+			// DB에서 비밀번호 가져오기
+			String storedPassword = memberMapper.getPassword(meNo);
 
-            if (storedPassword != null && storedPassword.equals(inputPassword)) {
-                // 비밀번호가 일치하면 회원 정보 삭제
-                memberMapper.deleteMember(meNo);
-                sqlSession.commit();
-                session.invalidate();
+			if (storedPassword != null && storedPassword.equals(inputPassword)) {
+				// 비밀번호가 일치하면 회원 정보 삭제
+				memberMapper.deleteMember(meNo);
+				sqlSession.commit();
+				session.invalidate();
 
-                response.setContentType("text/html; charset=UTF-8;");
-                PrintWriter out = response.getWriter();
-                String contextPath = request.getContextPath();
-                out.println("<script>");
-                out.println("alert('회원 탈퇴가 완료되었습니다.');");
-                out.println("location.href = '" + contextPath + "/';");
-                out.println("</script>");
-            } else {
-                // 비밀번호가 일치하지 않으면 에러 메시지 출력
-                response.setContentType("text/html; charset=UTF-8;");
-                PrintWriter out = response.getWriter();
-                out.println("<script>");
-                out.println("alert('비밀번호가 일치하지 않습니다.');");
-                out.println("history.back();");
-                out.println("</script>");
-            }
-        } finally {
-            sqlSession.close();
-        }
-    }
+				response.setContentType("text/html; charset=UTF-8;");
+				PrintWriter out = response.getWriter();
+				String contextPath = request.getContextPath();
+				out.println("<script>");
+				out.println("alert('회원 탈퇴가 완료되었습니다.');");
+				out.println("location.href = '" + contextPath + "/';");
+				out.println("</script>");
+			} else {
+				// 비밀번호가 일치하지 않으면 에러 메시지 출력
+				response.setContentType("text/html; charset=UTF-8;");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('비밀번호가 일치하지 않습니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

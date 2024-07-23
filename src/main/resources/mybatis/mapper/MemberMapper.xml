@@ -14,13 +14,18 @@
 				, C.CA_NAME
 				, CR.CA_NAME AS CA_ROOT_NAME
 	            FROM MEMBER M
-	            LEFT JOIN CATEGORY C ON C.CA_NO = M.CA_NO
-	            LEFT JOIN CATEGORY CR ON CR.CA_NO = C.ROOT_NO
+	            LEFT JOIN CATEGORY C 
+	            ON C.CA_NO = M.CA_NO
+	            LEFT JOIN CATEGORY CR 
+	            ON CR.CA_NO = C.ROOT_NO
 	            WHERE M.TYPE = #{type}
 	            <if test="joinApproval != 'all'">
 	                AND M.JOIN_APPROVAL = #{joinApproval}
 	            </if>
-	            <if test="caNo != null">
+	            <if test="rootNo != 'all'">
+	                AND CR.CA_NO = #{rootNo}
+	            </if>
+	            <if test="rootNo != 'all' and caNo != 'all'">
 	                AND C.CA_NO = #{caNo}
 	            </if>
 	            ORDER BY M.${sortField} ${sortOrder} NULLS LAST
@@ -41,7 +46,10 @@
 		<if test="joinApproval != 'all'">
 			AND M.JOIN_APPROVAL = #{joinApproval}
 		</if>
-		<if test="caNo != null">
+        <if test="rootNo != 'all'">
+            AND CR.CA_NO = #{rootNo}
+        </if>
+		<if test="rootNo != 'all' and caNo != 'all'">
 			AND C.CA_NO = #{caNo}
 		</if>
 	</select>
