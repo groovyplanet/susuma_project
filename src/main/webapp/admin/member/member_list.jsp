@@ -169,7 +169,7 @@
 											<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 										</c:if>
 										<c:if test="${dto.joinApproval=='N' }">
-											<button class="btn red">승인</button>
+											<a href="approve.member?meNo=${dto.meNo }&type=${dto.type}" class="btn" onclick="return confirm('가입을 승인하시겠습니까?')">승인</a>
 										</c:if>
 									</td>
 								</c:if>

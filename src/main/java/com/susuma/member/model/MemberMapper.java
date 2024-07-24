@@ -15,6 +15,8 @@ public interface MemberMapper {
 
 	public int updateMember(MemberDTO dto); // [4] 회원 수정
 
+	public int updateMemberApprove(String meNo); // [4-2] 회원 수정(수리기사 승인)
+
 	public void deleteMember(String meNo); // [5] 회원 삭제
 
 	public MemberDTO selectMemberByMeNo(Map<String, Object> params);
