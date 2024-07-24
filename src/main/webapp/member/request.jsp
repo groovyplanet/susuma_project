@@ -77,23 +77,17 @@
 						</div>
 						<div class="info-area">
 							<div class="title-main inline">예약자 정보</div>
-							<span class="title-sub2"><i class="bi bi-info-circle"></i>주소 및 연락처 수정 시 회원정보 갱신</span>
-							<input type="hidden" name="date" value="">
-							<input type="hidden" name="time" value="">
+							<span class="title-sub2"><i class="bi bi-info-circle"></i>주소 및 연락처 수정 시 회원정보 갱신</span> <input type="hidden" name="date" value=""> <input type="hidden" name="time" value="">
 						</div>
 						<div class="input-area">
-							<label for="address" class="required">주소</label>
-							<input type="hidden" name="address">
-							<input type="hidden" name="latitude">
-							<input type="hidden" name="longitude">
+							<label for="address" class="required">주소</label> <input type="hidden" name="address"> <input type="hidden" name="latitude"> <input type="hidden" name="longitude">
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
 								주소 입력<i class="bi bi-chevron-right"></i>
 							</button>
 							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail">
 						</div>
 						<div class="input-area">
-							<label for="phone_num" class="required">연락처</label>
-							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13" required>
+							<label for="phone_num" class="required">연락처</label> <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13" required>
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
@@ -110,15 +104,15 @@
 							<div class="request-content">
 								<div class="request-info-area">
 									<p class="info-title">예약 신청 일시</p>
-									<p class="underline">2024. 07. 08(월) 10:00</p>
+									<p id="modal-date" class="underline"></p>
 									<p class="info-title">수리기사 성함</p>
-									<p>홍길동</p>
+									<p id="modal-name"></p>
 									<p class="info-title">예약자 연락처</p>
-									<p>010-1030-5060</p>
+									<p id="modal-phone"></p>
 									<p class="info-title">예약자 주소</p>
-									<p>서울 강남구 테헤란로7길 7, 에스코빌딩 5층</p>
+									<p id="modal-address"></p>
 									<p class="info-title">수리 신청 내용</p>
-									<p>에어컨 수리요청합니다.</p>
+									<p id="modal-description"></p>
 								</div>
 								<div class="request-desc-area">
 									<p class="red">수리기사 승인 시 예약이 확정됩니다.</p>
@@ -175,7 +169,79 @@
                 }
             }).open();
         }
-    </script>
+        
+   
+        $(document).ready(function() {
+            // 폼 제출 시 이벤트
+            $('#form-request').on('submit', function(event) {
+                event.preventDefault(); // 기본 제출 동작 방지
+
+                // 폼 데이터 가져오기
+                var date = $('input[name="date"]').val();
+                var time = $('input[name="time"]').val();
+                var name = $('.master-name').text().trim();
+                var phone = $('#phone_num').val();
+                var address = $('input[name="address"]').val();
+                var description = $('textarea[name="short_description"]').val();
+
+                // 데이터 출력 확인
+                console.log(date, time, name, phone, address, description);
+
+                // 모달에 데이터 설정
+                $('#modal-date').text(date + ' ' + time);
+                $('#modal-name').text(name);
+                $('#modal-phone').text(phone);
+                $('#modal-address').text(address);
+                $('#modal-description').html(description); // HTML 태그가 있는 경우 .html() 사용
+
+                // 모달 표시
+                $('#modal').show();
+            });
+
+            // 모달 닫기 버튼 클릭 시
+            $('.btn-close-modal').on('click', function() {
+                $('#modal').hide();
+            });
+
+            // 확인 버튼 클릭 시 데이터 전송
+            $('#confirm-btn').on('click', function(event) {
+                event.preventDefault(); // 기본 링크 동작 방지
+
+                // 폼 데이터 가져오기
+                var date = $('input[name="date"]').val();
+                var time = $('input[name="time"]').val();
+                var name = $('.master-name').text().trim();
+                var phone = $('#phone_num').val();
+                var address = $('input[name="address"]').val();
+                var description = $('textarea[name="short_description"]').val();
+
+                // AJAX 요청
+                $.ajax({
+                    url: '/api/insertRequest', // 서버측 엔드포인트
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        date: date,
+                        time: time,
+                        name: name,
+                        phone: phone,
+                        address: address,
+                        description: description
+                    }),
+                    success: function(response) {
+                        // 서버 응답 성공 시 처리
+                        alert('예약이 성공적으로 등록되었습니다.');
+                        // 모달 유지
+                    },
+                    error: function(xhr, status, error) {
+                        // 서버 응답 실패 시 처리
+                        alert('예약 등록에 실패했습니다. 다시 시도해 주세요.');
+                    }
+                });
+            });
+        });
+
+	</script>
 	<!-- //api -->
 
 </body>
