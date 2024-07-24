@@ -16,10 +16,11 @@ public interface MemberMapper {
 	public int updateMember(MemberDTO dto); // [4] 회원 수정
 
 	public void deleteMember(String meNo); // [5] 회원 삭제
-	
+
 	public MemberDTO selectMemberByMeNo(Map<String, Object> params);
-	
-	String getPassword(String meNo);
+
+	public String getPassword(String meNo);
+
 	public MemberDTO selectMemberById(String meNo);
 
 }

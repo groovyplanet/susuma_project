@@ -21,7 +21,7 @@
 						</a>
 						<button type="submit" class="btn">
 							<i class="bi bi-check-lg"></i>
-							등록
+							완료
 						</button>
 					</div>
 				</div>

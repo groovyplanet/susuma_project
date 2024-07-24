@@ -14,9 +14,17 @@
 			<div class="title_wrap">
 				<span>${type=='user'?'의뢰인':'수리기사' } 상세</span>
 				<div class="btn_wrap">
-					<a href="list.member?type=${type }" class="btn black">
+					<a href="list.member?type=${dto.type }" class="btn black">
 						<i class="bi bi-list-ul"></i>
 						목록
+					</a>
+					<a href="edit.member?meNo=${dto.meNo }" class="btn">
+						<i class="bi bi-pencil-square"></i>
+						수정
+					</a>
+					<a href="delete.member?meNo=${dto.meNo }&type=${dto.type}" class="btn" onclick="return confirm('정말로 회원정보를 삭제하시겠습니까?')">
+						<i class="bi bi-trash3"></i>
+						삭제
 					</a>
 				</div>
 			</div>
@@ -26,22 +34,28 @@
 						<th>회원 번호</th>
 						<td>${dto.meNo}</td>
 						<th>프로필 사진</th>
-						<td>
+						<td style="display: flex;">
 							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
 							<!-- ${dto.profilePhoto } -->
 						</td>
 					</tr>
 					<tr>
+						<th class="wp13">이메일</th>
+						<td class="wp37">${dto.email}</td>
+						<th class="wp13">비밀번호</th>
+						<td>${dto.pw}</td>
+					</tr>
+					<tr>
 						<th>이름</th>
 						<td>${dto.name}</td>
-						<th>이메일</th>
-						<td>${dto.email}</td>
+						<th>연락처</th>
+						<td>${dto.phoneNum}</td>
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>${empty dto.address ? '-' : dto.address}${empty dto.addressDetail ? '' : dto.addressDetail}</td>
-						<th>연락처</th>
-						<td>${dto.phoneNum}</td>
+						<td>${empty dto.address ? '-' : dto.address}</td>
+						<th>상세 주소</th>
+						<td>${empty dto.addressDetail ? '-' : dto.addressDetail}</td>
 					</tr>
 					<tr>
 						<th>위도</th>
@@ -49,20 +63,27 @@
 						<th>경도</th>
 						<td>${dto.longitude}</td>
 					</tr>
-					<tr>
-						<th>이메일 알림 수신 여부</th>
-						<td>${dto.emailNotification}</td>
-						<th>회원 상태</th>
-						<td>${dto.status}</td>
-					</tr>
 					<c:if test="${type == 'master' }">
 						<tr>
 							<th>수리기사 가입 승인여부</th>
 							<td>${dto.joinApproval}</td>
 							<th>수리기사 가입 승인일시</th>
 							<td>
-								<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+								<c:choose>
+									<c:when test="${empty dto.joinApprovalTime}">
+							        -
+							    </c:when>
+									<c:otherwise>
+										<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+									</c:otherwise>
+								</c:choose>
 							</td>
+						</tr>
+						<tr>
+							<th>수리분야</th>
+							<td>${dto.caRootName}<span> > </span>${dto.caName}</td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
 							<th>사업자등록번호</th>
@@ -73,24 +94,39 @@
 						<tr>
 							<th>수리기사 한줄소개</th>
 							<td>${dto.shortDescription}</td>
-							<th>수리 상세 내용</th>
-							<td>${dto.description}</td>
-						</tr>
-						<tr>
 							<th>수리기사 포인트</th>
 							<td>${dto.point}</td>
+						</tr>
+						<tr>
 							<th>근무가능 요일별 시간</th>
 							<td>${dto.workHours}</td>
+							<th>수리 상세 내용</th>
+							<td>
+								<div style="white-space: pre;">${dto.description}</div>
+							</td>
 						</tr>
 					</c:if>
 					<tr>
+						<th>이메일 알림 수신 여부</th>
+						<td>${dto.emailNotification}</td>
+						<th>회원 상태</th>
+						<td>${dto.status}</td>
+					</tr>
+					<tr>
 						<th>가입 일시</th>
 						<td>
-							<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+							<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
 						</td>
 						<th>수정 일시</th>
 						<td>
-							<fmt:formatDate value="${dto.updateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+							<c:choose>
+								<c:when test="${empty dto.updateTime}">
+							        -
+							    </c:when>
+								<c:otherwise>
+									<fmt:formatDate value="${dto.updateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</table>

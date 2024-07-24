@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.susuma.board.model.BoardMapper;
 import com.susuma.category.model.CategoryDTO;
 import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
@@ -27,8 +28,91 @@ public class MemberServiceImpl implements MemberService {
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
+	// DTO 생성
+	private MemberDTO createMemberDTO(HttpServletRequest request) {
+
+		String meNo = request.getParameter("meNo");
+		String type = request.getParameter("type");
+		String email = request.getParameter("email");
+		String pw = request.getParameter("pw");
+		String name = request.getParameter("name");
+		String phoneNum = request.getParameter("phoneNum");
+		String address = request.getParameter("address");
+		String addressDetail = request.getParameter("addressDetail");
+		Double latitude = Double.parseDouble(request.getParameter("latitude"));
+		Double longitude = Double.parseDouble(request.getParameter("longitude"));
+		String emailNotification = request.getParameter("emailNotification");
+		emailNotification = emailNotification == null ? "N" : emailNotification;
+		String businessNumber = request.getParameter("businessNumber");
+		String shortDescription = request.getParameter("shortDescription");
+		String maxDistance = request.getParameter("maxDistance");
+		String description = request.getParameter("description");
+		String workHours = request.getParameter("workHours");
+		String joinApproval = request.getParameter("joinApproval");
+		joinApproval = joinApproval == null ? "N" : joinApproval;
+		String caNo = request.getParameter("caNo");
+		String point = request.getParameter("point");
+		String status = request.getParameter("status");
+		status = status == null ? "NORMAL" : status;
+
+		return new MemberDTO(meNo, type, email, pw, name, phoneNum, address, addressDetail, latitude, longitude, emailNotification, businessNumber, shortDescription, maxDistance, description, workHours, joinApproval, caNo, point, status);
+	}
+
+	// 데이터베이스 작업
+	private int memberUpsert(MemberDTO dto, boolean isUpdate) {
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		int result;
+		if (isUpdate) {
+			result = Member.updateMember(dto);
+		} else {
+			result = Member.insertMember(dto);
+		}
+		sql.close();
+		return result;
+	}
+
+	// 상위 카테고리 가져오기
+	public void getCategoryMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		SqlSession sql = sqlSessionFactory.openSession();
+		CategoryMapper Category = sql.getMapper(CategoryMapper.class);
+		ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
+		sql.close();
+		request.setAttribute("CategoryMainList", CategoryMainList);
+	}
+
+	// 하위 카테고리 가져오기
+	public void getCategorySub(HttpServletRequest request, HttpServletResponse response, String rootNo) throws ServletException, IOException {
+
+		SqlSession sql = sqlSessionFactory.openSession();
+		CategoryMapper Category = sql.getMapper(CategoryMapper.class);
+		ArrayList<CategoryDTO> CategorySubList = Category.selectCategorys(rootNo);
+		sql.close();
+		request.setAttribute("CategorySubList", CategorySubList);
+	}
+
+	// 회원정보 가져오기
+	public void getMember(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		/* [1] 매개변수 */
+		String meNo = request.getParameter("meNo");
+		Map<String, Object> params = new HashMap<>();
+		params.put("meNo", meNo);
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		MemberDTO dto = Member.selectMember(params);
+		sql.close();
+
+		/* [3] 요청에 데이터 설정 */
+		request.setAttribute("type", dto.getType());
+		request.setAttribute("dto", dto);
+	}
+
 	@Override
-	public void adminGetList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String type = request.getParameter("type");
@@ -62,7 +146,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberMapper Member = sql.getMapper(MemberMapper.class); // MemberMapper 인터페이스를 사용하여 쿼리 실행을 위한 매퍼 객체 생성
 		ArrayList<MemberDTO> list = Member.selectMembers(params); // MemberMapper 메서드 호출
 
-		// 페이징 관련
+		// 페이징
 		int totalRecords = Member.countMembers(params); // 해당되는 회원 수 (페이징)
 		int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
 		int startPage = Math.max(currentPage - 2, 1);
@@ -74,19 +158,15 @@ public class MemberServiceImpl implements MemberService {
 		params.put("totalRecords", totalRecords); // 총 레코드 수
 		params.put("startPage", startPage); // 표시할 시작 페이지
 		params.put("endPage", endPage); // 표시할 마지막 페이지
+		sql.close();
 
+		// 카테고리
 		if (type.equals("master")) {
-			// 수리분야 리스트 출력
-			CategoryMapper Category = sql.getMapper(CategoryMapper.class);
-			ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
-			request.setAttribute("CategoryMainList", CategoryMainList);
+			getCategoryMain(request, response);
 			if (!rootNo.equals("all")) {
-				// 수리분야 리스트(하위) 출력
-				ArrayList<CategoryDTO> CategorySubList = Category.selectCategorys(rootNo);
-				request.setAttribute("CategorySubList", CategorySubList);
+				getCategorySub(request, response, rootNo);
 			}
 		}
-		sql.close();
 
 		/* [3] 화면이동 */
 		request.setAttribute("list", list);
@@ -120,73 +200,109 @@ public class MemberServiceImpl implements MemberService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		ArrayList<MemberDTO> memberList = Member.selectMembers(params);
-		CategoryMapper Category = sql.getMapper(CategoryMapper.class);
-		ArrayList<CategoryDTO> CategoryMainList = Category.selectCategorys(null); // 메인 카테고리 출력 시 파라미터는 null
 		sql.close();
+
+		// 카테고리
+		getCategoryMain(request, response);
 
 		/* [3] 화면이동 */
 		request.setAttribute("memberList", memberList);
-		request.setAttribute("CategoryMainList", CategoryMainList);
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
 
 	}
 
 	@Override
-	public void adminGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 회원 정보 가져오기
+		getMember(request, response);
+
+		// 포워딩
+		request.getRequestDispatcher("member_view.jsp").forward(request, response);
+	}
+
+	@Override
+	public void adminWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String type = request.getParameter("type");
+		request.setAttribute("type", type);
+		if (type.equals("master")) {
+			getCategoryMain(request, response); // 수리기사 추가할 경우 우선 상위 카테고리만 가져오기
+		}
+
+		// 포워딩
+		request.getRequestDispatcher("member_edit.jsp").forward(request, response);
+	}
+
+	@Override
+	public void adminEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 회원 정보 가져오기
+		getMember(request, response);
+		MemberDTO dto = (MemberDTO) request.getAttribute("dto");
+		// 수리기사 수정인 경우
+		if (dto.getType().equals("master")) {
+			// 상위 카테고리 가져오기
+			getCategoryMain(request, response);
+			// 카테고리가 있을 때만 하위 카테고리 가져오기
+			if (dto.getCaRootNo() != null && !dto.getCaRootNo().isEmpty()) {
+				getCategorySub(request, response, dto.getCaRootNo());
+			}
+		}
+
+		// 포워딩
+		request.getRequestDispatcher("member_edit.jsp").forward(request, response);
+
+	}
+
+	@Override
+	public void adminUpsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		MemberDTO dto = createMemberDTO(request); // 별도 함수로 처리
+		boolean isUpdate = dto.getMeNo() != null && !dto.getMeNo().isEmpty();
+		int result = memberUpsert(dto, isUpdate);
+
+		if (result == 1) {
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('정상적으로 " + (isUpdate ? "수정" : "등록") + "되었습니다.');");
+			out.println("location.href = 'list.member?type=" + dto.getType() + "';");
+			out.println("</script>");
+		}
+
+	}
+
+	@Override
+	public void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
-		Map<String, Object> params = new HashMap<>();
-		params.put("meNo", meNo);
+		String type = request.getParameter("type");
 
 		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
+		SqlSession sql = sqlSessionFactory.openSession(true);
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		MemberDTO dto = Member.selectMember(params);
+		Member.deleteMember(meNo);
 		sql.close();
 
 		/* [3] 화면이동 */
-		request.setAttribute("type", dto.getType());
-		request.setAttribute("dto", dto);
-		request.getRequestDispatcher("member_view.jsp").forward(request, response);
+		response.setContentType("text/html; charset=UTF-8;");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('회원정보가 삭제되었습니다.');");
+		out.println("location.href='list.member?type=" + type + "';");
+		out.println("</script>");
+
 	}
 
 	@Override
 	public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/* [1] 매개변수 */
-		String type = request.getParameter("type");
-		String email = request.getParameter("email");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String phoneNum = request.getParameter("phone_num");
-		String address = request.getParameter("address");
-		String addressDetail = request.getParameter("address_detail");
-		Double latitude = Double.parseDouble(request.getParameter("latitude"));
-		Double longitude = Double.parseDouble(request.getParameter("longitude"));
-		String emailNotification = request.getParameter("email_notification");
-		emailNotification = emailNotification == null ? "N" : "Y";
+		MemberDTO dto = createMemberDTO(request); // 별도 함수로 처리
+		int result = memberUpsert(dto, false); // insert
 
-		MemberDTO dto;
-		if (type.equals("user")) {
-			dto = new MemberDTO(type, email, pw, name, phoneNum, address, addressDetail, latitude, longitude, emailNotification);
-		} else { // master
-			String businessNumber = request.getParameter("business_number");
-			String shortDescription = request.getParameter("short_description");
-			int maxDistance = Integer.parseInt(request.getParameter("max_distance"));
-			String workHours = request.getParameter("work_hours");
-			// 수리분야 추가 필요(category)
-			dto = new MemberDTO(type, email, pw, name, phoneNum, address, addressDetail, latitude, longitude, emailNotification, businessNumber, shortDescription, maxDistance, workHours);
-		}
-
-		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession(true);
-		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		int result = Member.insertMember(dto);
-		sql.close();
-
-		/* [3] 화면이동 */
-		if (result == 1) { // 등록 성공
+		if (result == 1) {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -342,7 +458,9 @@ public class MemberServiceImpl implements MemberService {
 		} finally {
 			sqlSession.close();
 		}
-	}@Override
+	}
+
+	@Override
 	public void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo"); // 세션 값 가져오기 (*)
@@ -358,5 +476,5 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("master_view.jsp").forward(request, response);
 
-}
+	}
 }

@@ -13,6 +13,12 @@
 		<div class="content_wrap">
 			<div class="title_wrap">
 				<span>${type=='user'?'의뢰인':'수리기사' } 목록</span>
+				<div class="btn_wrap">
+					<a href="write.member?type=${type }" class="btn">
+						<i class="bi bi-plus-circle"></i>
+						추가
+					</a>
+				</div>
 			</div>
 			<form name="searchForm" action="list.member" method="get">
 				<input type="hidden" name="type" value="${type}">
@@ -145,9 +151,9 @@
 								<td>${dto.name}</td>
 								<td>${dto.email}</td>
 								<c:if test="${type == 'master' }">
-									<td>${dto.caRootName}> ${dto.caName}</td>
+									<td>${dto.caRootName}<span> > </span>${dto.caName}</td>
 								</c:if>
-								<td>${empty dto.address ? '-' : dto.address}${empty dto.addressDetail ? '' : dto.addressDetail}</td>
+								<td>${empty dto.address ? '-' : dto.address}<span> </span>${empty dto.addressDetail ? '' : dto.addressDetail}</td>
 								<td>${dto.phoneNum}</td>
 								<c:if test="${type == 'user' }">
 									<td>

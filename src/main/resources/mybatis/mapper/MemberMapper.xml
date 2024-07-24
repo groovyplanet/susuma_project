@@ -5,33 +5,34 @@
 
 	<!-- [1] 회원 목록 -->
 	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
-	    SELECT *
-	    FROM (
-	        SELECT A.*, ROWNUM AS RN
-	        FROM (
-	            SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM, EMAIL_NOTIFICATION, PROFILE_PHOTO, JOIN_APPROVAL, JOIN_APPROVAL_TIME, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE, DESCRIPTION, WORK_HOURS, POINT, STATUS, M.INSERT_TIME, M.UPDATE_TIME
-				, C.CA_NO
-				, C.CA_NAME
-				, CR.CA_NAME AS CA_ROOT_NAME
-	            FROM MEMBER M
-	            LEFT JOIN CATEGORY C 
-	            ON C.CA_NO = M.CA_NO
-	            LEFT JOIN CATEGORY CR 
-	            ON CR.CA_NO = C.ROOT_NO
-	            WHERE M.TYPE = #{type}
-	            <if test="joinApproval != 'all'">
-	                AND M.JOIN_APPROVAL = #{joinApproval}
-	            </if>
-	            <if test="rootNo != 'all'">
-	                AND CR.CA_NO = #{rootNo}
-	            </if>
-	            <if test="rootNo != 'all' and caNo != 'all'">
-	                AND C.CA_NO = #{caNo}
-	            </if>
-	            ORDER BY M.${sortField} ${sortOrder} NULLS LAST
-	        ) A
-	    )
-	    WHERE RN BETWEEN #{startRow} and #{endRow}
+		SELECT *
+		FROM (
+		SELECT A.*, ROWNUM AS RN
+		FROM (
+		SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM, EMAIL_NOTIFICATION, PROFILE_PHOTO, JOIN_APPROVAL, JOIN_APPROVAL_TIME, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE, DESCRIPTION, WORK_HOURS, POINT, STATUS, M.INSERT_TIME, M.UPDATE_TIME
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		FROM MEMBER M
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = M.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE M.TYPE = #{type}
+		<if test="joinApproval != 'all'">
+			AND M.JOIN_APPROVAL = #{joinApproval}
+		</if>
+		<if test="rootNo != 'all'">
+			AND CR.CA_NO = #{rootNo}
+		</if>
+		<if test="rootNo != 'all' and caNo != 'all'">
+			AND C.CA_NO = #{caNo}
+		</if>
+		ORDER BY M.${sortField} ${sortOrder} NULLS LAST
+		) A
+		)
+		WHERE RN BETWEEN #{startRow} and #{endRow}
 	</select>
 
 	<!-- [1-2] 회원 목록 수(페이징 처리) -->
@@ -46,9 +47,9 @@
 		<if test="joinApproval != 'all'">
 			AND M.JOIN_APPROVAL = #{joinApproval}
 		</if>
-        <if test="rootNo != 'all'">
-            AND CR.CA_NO = #{rootNo}
-        </if>
+		<if test="rootNo != 'all'">
+			AND CR.CA_NO = #{rootNo}
+		</if>
 		<if test="rootNo != 'all' and caNo != 'all'">
 			AND C.CA_NO = #{caNo}
 		</if>
@@ -56,33 +57,57 @@
 
 	<!-- [2] 회원(me_no / email,pw) -->
 	<select id="selectMember" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
-		SELECT * FROM MEMBER
+		SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM, EMAIL_NOTIFICATION, PROFILE_PHOTO, JOIN_APPROVAL, JOIN_APPROVAL_TIME, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE, DESCRIPTION, WORK_HOURS, POINT, STATUS, M.INSERT_TIME, M.UPDATE_TIME
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		FROM MEMBER M
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = M.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
 		WHERE 1 = 1
 		<if test="meNo != null">
-			AND ME_NO = #{meNo}
+			AND M.ME_NO = #{meNo}
 		</if>
 		<if test="email != null">
-			AND email = #{email} AND pw = #{pw}
+			AND M.EMAIL = #{email} AND M.PW = #{pw}
 		</if>
 	</select>
 
 	<!-- [3] 회원 등록 -->
 	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
-		INSERT INTO MEMBER (me_no, type, email, pw, name, address, address_detail, latitude, longitude, phone_num, email_notification, business_number, short_description, max_distance, work_hours)
-		VALUES (MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum}, #{emailNotification},
-		<if test="type == 'master'">
-			#{businessNumber}, #{shortDescription}, #{maxDistance}, #{workHours}
-		</if>
-		<if test="type == 'user'">
-			NULL, NULL, NULL, NULL
-		</if>
+		INSERT INTO MEMBER (me_no, type, email, pw, name, phone_num, address, address_detail, latitude, longitude, email_notification, business_number, short_description, max_distance, description, work_hours, ca_no, join_approval, point, status)
+		VALUES (MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{phoneNum}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{emailNotification}, #{businessNumber}, #{shortDescription}, #{maxDistance}, #{description}, #{workHours}, #{caNo}, #{joinApproval}, #{point}, #{status}
 		)
 	</insert>
 
 	<!-- [4] 회원 수정 -->
 	<update id="updateMember" parameterType="com.susuma.member.model.MemberDTO">
-		UPDATE MEMBER SET name = #{name} <!-- 구현 필요 -->
-		WHERE ME_NO = #{meNo}
+		UPDATE MEMBER
+		SET
+		email = #{email},
+		pw = #{pw},
+		name = #{name},
+		phone_num = #{phoneNum},
+		address = #{address},
+		address_detail = #{addressDetail},
+		latitude = #{latitude},
+		longitude = #{longitude},
+		email_notification = #{emailNotification},
+		business_number = #{businessNumber},
+		short_description = #{shortDescription},
+		max_distance = #{maxDistance},
+		description = #{description},
+		work_hours = #{workHours},
+		ca_no = #{caNo},
+		join_approval = #{joinApproval},
+		point = #{point},
+		status = #{status},
+		update_time = SYSDATE
+		WHERE
+		me_no = #{meNo}
 	</update>
 
 	<!-- [5] 회원 삭제 -->
@@ -90,15 +115,15 @@
 		DELETE FROM MEMBER
 		WHERE ME_NO = #{meNo}
 	</delete>
-	
-	 <select id="getPassword" parameterType="string" resultType="string">
-        SELECT pw
-        FROM MEMBER
-        WHERE ME_NO = #{meNo}
-    </select>
-    
-     <select id="selectMemberById" resultType="com.susuma.member.model.MemberDTO">
-        SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
-    </select>
+
+	<select id="getPassword" parameterType="string" resultType="string">
+		SELECT pw
+		FROM MEMBER
+		WHERE ME_NO = #{meNo}
+	</select>
+
+	<select id="selectMemberById" resultType="com.susuma.member.model.MemberDTO">
+		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
+	</select>
 
 </mapper>

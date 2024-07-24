@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class MemberDTO {
 
 	// MEMBER 테이블
-	private int meNo; // "ME_NO"
+	private String meNo; // "ME_NO"
 	private String type; // "TYPE"
 	private String email; // "EMAIL"
 	private String pw; // "PW"
@@ -21,10 +21,10 @@ public class MemberDTO {
 	private Timestamp joinApprovalTime; // "JOIN_APPROVAL_TIME"
 	private String businessNumber; // "BUSINESS_NUMBER"
 	private String shortDescription; // "SHORT_DESCRIPTION"
-	private int maxDistance; // "MAX_DISTANCE"
+	private String maxDistance; // "MAX_DISTANCE"
 	private String description; // "DESCRIPTION"
 	private String workHours; // "WORK_HOURS"
-	private int point; // "POINT"
+	private String point; // "point"
 	private String status; // "STATUS"
 	private Timestamp insertTime; // "INSERT_TIME"
 	private Timestamp updateTime; // "UPDATE_TIME"
@@ -32,16 +32,18 @@ public class MemberDTO {
 	// MASTER_CATEGORY, CATEGORY 테이블
 	private String caNo; // "CA_NO"
 	private String caName; // "CA_NAME"
+	private String caRootNo; // "CA_ROOT_NO"
 	private String caRootName; // "CA_ROOT_NAME"
 
-	private int rn; // 페이징 처리
+	private String rn; // 페이징 처리
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
 	}
 
-	// 회원가입(user)
-	public MemberDTO(String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification) {
+	// insert/update 시 이용
+	public MemberDTO(String meNo, String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String joinApproval, String caNo, String point, String status) {
+		this.meNo = meNo; // 수정일 경우만
 		this.type = type;
 		this.email = email;
 		this.pw = pw;
@@ -52,29 +54,20 @@ public class MemberDTO {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.emailNotification = emailNotification;
-	}
-
-	// 회원가입(master)
-	public MemberDTO(String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, String businessNumber, String shortDescription, int maxDistance, String workHours) {
-		this.type = type;
-		this.email = email;
-		this.pw = pw;
-		this.name = name;
-		this.phoneNum = phoneNum;
-		this.address = address;
-		this.addressDetail = addressDetail;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.emailNotification = emailNotification;
-		this.businessNumber = businessNumber;
-		this.shortDescription = shortDescription;
-		this.maxDistance = maxDistance;
-		this.workHours = workHours;
+		this.businessNumber = businessNumber; // 수리기사
+		this.shortDescription = shortDescription; // 수리기사
+		this.maxDistance = maxDistance; // 수리기사
+		this.description = description; // 수리기사
+		this.workHours = workHours; // 수리기사
+		this.caNo = caNo; // 수리기사
+		this.joinApproval = joinApproval; // 관리자
+		this.point = point; // 관리자
+		this.status = status; // 관리자
 	}
 
 	// 모든 필드를 포함하는 생성자
-	public MemberDTO(int meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, int maxDistance, String description, String workHours, int point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootName,
-			int rn) {
+	public MemberDTO(String meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootNo,
+			String caRootName, String rn) {
 		super();
 		this.meNo = meNo;
 		this.type = type;
@@ -101,15 +94,16 @@ public class MemberDTO {
 		this.updateTime = updateTime;
 		this.caNo = caNo;
 		this.caName = caName;
+		this.caRootNo = caRootNo;
 		this.caRootName = caRootName;
 		this.rn = rn;
 	}
 
-	public int getMeNo() {
+	public String getMeNo() {
 		return meNo;
 	}
 
-	public void setMeNo(int meNo) {
+	public void setMeNo(String meNo) {
 		this.meNo = meNo;
 	}
 
@@ -233,11 +227,11 @@ public class MemberDTO {
 		this.shortDescription = shortDescription;
 	}
 
-	public int getMaxDistance() {
+	public String getMaxDistance() {
 		return maxDistance;
 	}
 
-	public void setMaxDistance(int maxDistance) {
+	public void setMaxDistance(String maxDistance) {
 		this.maxDistance = maxDistance;
 	}
 
@@ -257,11 +251,11 @@ public class MemberDTO {
 		this.workHours = workHours;
 	}
 
-	public int getPoint() {
+	public String getpoint() {
 		return point;
 	}
 
-	public void setPoint(int point) {
+	public void setpoint(String point) {
 		this.point = point;
 	}
 
@@ -309,18 +303,24 @@ public class MemberDTO {
 		return caRootName;
 	}
 
+	public void setCaRootNo(String caRootNo) {
+		this.caRootNo = caRootNo;
+	}
+
+	public String getCaRootNo() {
+		return caRootNo;
+	}
+
 	public void setCaRootName(String caRootName) {
 		this.caRootName = caRootName;
 	}
 
-	public int getrn() {
+	public String getrn() {
 		return rn;
 	}
 
-	public void setrn(int rn) {
+	public void setrn(String rn) {
 		this.rn = rn;
 	}
 
-	
-	
 }

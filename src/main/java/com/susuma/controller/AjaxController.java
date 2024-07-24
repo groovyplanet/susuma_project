@@ -42,7 +42,7 @@ public class AjaxController extends HttpServlet {
 		String command = uri.substring(path.length());
 		System.out.println("command : " + command);
 
-		if (command.equals("/member/getCategory.ajax")) { // 상위 카테고리로 하위 카테고리 리스트 가져오기
+		if (command.equals("/member/getCategory.ajax") || command.equals("/admin/member/getCategory.ajax")) { // 상위 카테고리로 하위 카테고리 리스트 가져오기
 
 			String rootNo = request.getParameter("rootNo");
 

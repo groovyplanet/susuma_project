@@ -26,6 +26,12 @@ td, th { padding: 0; }
 .wp20 { width:20%; } 
 .wp25 { width:25%; } 
 .wp30 { width:30%; } 
+.wp37 { width:37%; } 
+.mh60 { min-height: 60px !important; } 
+.mh70 { min-height: 70px !important; } 
+.mh80 { min-height: 80px !important; } 
+.mh90 { min-height: 90px !important; } 
+.mh100 { min-height: 100px !important; } 
 /* header */
 header { display: flex; padding: 0 40px; height: 60px; align-items: center; justify-content: space-between; } 
 header .logo_wrap { width: 170px; display: flex; justify-content: center; position: relative; } 
@@ -48,9 +54,9 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 /* content_wrap */
 .container .content_wrap { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px; width: 100%; } 
 /* title_wrap */
-.container .content_wrap .title_wrap { display: flex; justify-content: space-between; font-size: 18px; font-weight: 600; align-items: center; } 
+.container .content_wrap .title_wrap { display: flex; justify-content: space-between; font-size: 21px; font-weight: 600; align-items: center; } 
 .container .content_wrap .title_wrap .btn_wrap { display: inline-flex; gap: 10px; } 
-.container .content_wrap .title_wrap .btn_wrap .btn { padding: 4px 15px; border-radius: 7px; transition: 0.2s; color: #ff6b6b; border: none; background: none; font-size: 17px; font-weight: 500; border: 1px solid #ff6b6b5e; } 
+.container .content_wrap .title_wrap .btn_wrap .btn { padding: 4px 15px; border-radius: 7px; transition: 0.2s; color: #ff6b6b; border: none; background: none; font-size: 17px; font-weight: 500; border: 1px solid #ff6b6b5e; cursor: pointer; } 
 .container .content_wrap .title_wrap .btn_wrap .btn.black { color:#555; border: 1px solid #ddd; } 
 .container .content_wrap .title_wrap .btn_wrap .btn:hover { background-color: #ff6b6b1c; font-weight: 600; } 
 .container .content_wrap .title_wrap .btn_wrap .btn.black:hover { background-color: #f7f7f7; } 
@@ -85,11 +91,19 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .table_wrap table.view tr:first-child { border-top: 1px solid #ddd; } 
 .container .content_wrap .table_wrap table.view tr { border-bottom: 1px solid #ddd; } 
 .container .content_wrap .table_wrap table.view tr th { background-color: #e6e6e6; font-size: 15px; font-weight: 500; color: #555; padding: 14px 20px; width: 210px; } 
-.container .content_wrap .table_wrap table.view tr td { font-size: 13px; font-weight: 400; color: #333; padding: 14px 20px; } 
-.container .content_wrap .table_wrap table.view tr td img.profile { width: 60px; } 
+.container .content_wrap .table_wrap table.view tr td { font-size: 13px; font-weight: 400; color: #333; padding: 17px 20px; } 
+.container .content_wrap .table_wrap table.view tr td img.profile { width: 55px; } 
+.container .content_wrap .table_wrap table.view.write tr td { padding: 14px 20px; } 
 .container .content_wrap .table_wrap table.view.write input,
 .container .content_wrap .table_wrap table.view.write textarea { width: 100%; border: 1px solid #ccc; padding: 6px 8px; } 
 .container .content_wrap .table_wrap table.view.write textarea { min-height: 200px; resize: vertical; } 
+.container .content_wrap .table_wrap table.view.write .img_wrap { display: flex; align-items: center; gap: 10px; } 
+.container .content_wrap .table_wrap table.view.write .img_wrap input[type="file"] { width: auto; border: none; cursor: pointer; } 
+.container .content_wrap .table_wrap table.view.write .radio_wrap { display: flex; gap: 5px; padding-left: 5px; } 
+.container .content_wrap .table_wrap table.view.write .radio_wrap input[type="radio"] { width: auto; cursor: pointer; } 
+.container .content_wrap .table_wrap table.view.write .radio_wrap input[type="radio"] + label { margin-right: 15px; cursor: pointer; } 
+.container .content_wrap .table_wrap table.view.write .select_wrap { display: flex; gap: 5px; padding-left: 2px; } 
+.container .content_wrap .table_wrap table.view.write .select_wrap select { border: 1px solid #ccc; padding: 6px 8px; border-radius: 5px; cursor: pointer; } 
 /* pagination */
 .container .content_wrap .pagination { display: flex; justify-content: center; padding: 40px 0; } 
 .container .content_wrap .pagination a { display: inline-flex; width: 26px; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; border-radius: 50%; line-height: 26px; transition: 0.2s; } 
