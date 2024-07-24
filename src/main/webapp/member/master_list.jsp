@@ -93,11 +93,11 @@ function handleCategoryChange() {
 
 				<c:forEach var="dto" items="${memberList}">
 					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/member/masterView.member?meNo=${dto.meNo}">
-						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
+						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="프로필기본">
 						<h3>${dto.name}</h3>
 						<p>별점: 4.9 (114)</p>
 						<p>지역: 서울시 강남구 (10km 이내 가능)</p>
-						<p>안녕하세요 저는 백엔드 경력 30년의 경력을 보유했습니다.</p>
+						<p>${dto.shortDescription}</p>
 					</a>
 				</c:forEach>
 
