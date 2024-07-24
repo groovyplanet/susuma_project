@@ -94,8 +94,8 @@
 				<table class="list" id="member_list">
 					<thead>
 						<tr>
-							<th>번호${sortStr}</th>
-							<th>
+							<th class="wp5">번호${sortStr}</th>
+							<th class="wp7">
 								<button class="btn_sort" onclick="sort('name', '${sortField != 'name' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									이름
 									<i class="bi bi-caret-${sortField != 'name' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
@@ -107,29 +107,29 @@
 									<i class="bi bi-caret-${sortField != 'email' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th>
+							<c:if test="${type == 'master' }">
+								<th class="wp17">수리 분야</th>
+							</c:if>
+							<th class="wp17">
 								<button class="btn_sort" onclick="sort('address', '${sortField != 'address' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									주소
 									<i class="bi bi-caret-${sortField != 'address' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th>
+							<th class="wp10">
 								<button class="btn_sort" onclick="sort('phone_num', '${sortField != 'phone_num' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									연락처
 									<i class="bi bi-caret-${sortField != 'phone_num' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<c:if test="${type == 'master' }">
-								<th>수리 분야</th>
-							</c:if>
-							<th>
+							<th class="wp15">
 								<button class="btn_sort" onclick="sort('insert_time', '${sortField != 'insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									${type=='user'?'가입 일시':'가입 신청 일시' }
 									<i class="bi bi-caret-${sortField != 'insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
 							<c:if test="${type == 'master' }">
-								<th>
+								<th class="wp15">
 									<button class="btn_sort" onclick="sort('join_approval_time', '${sortField != 'join_approval_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 										가입 승인 일시
 										<i class="bi bi-caret-${sortField != 'join_approval_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
@@ -144,6 +144,9 @@
 								<td>${totalRecords - dto.rn + 1}</td>
 								<td>${dto.name}</td>
 								<td>${dto.email}</td>
+								<c:if test="${type == 'master' }">
+									<td>${dto.caRootName}> ${dto.caName}</td>
+								</c:if>
 								<td>${empty dto.address ? '-' : dto.address}${empty dto.addressDetail ? '' : dto.addressDetail}</td>
 								<td>${dto.phoneNum}</td>
 								<c:if test="${type == 'user' }">
@@ -152,7 +155,6 @@
 									</td>
 								</c:if>
 								<c:if test="${type == 'master' }">
-									<td>${dto.caRootName} > ${dto.caName}</td>
 									<td>
 										<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 									</td>

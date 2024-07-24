@@ -58,34 +58,34 @@
 				<table class="list" id="board_list">
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>회원이름</th>
+							<th class="wp6">번호</th>
+							<th class="wp8">이름</th>
 							<th>
 								<button class="btn_sort" onclick="sort('title', '${sortField != 'title' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									제목
 									<i class="bi bi-caret-${sortField != 'title' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th>
+							<th class="wp15">
 								<button class="btn_sort" onclick="sort('insert_time', '${sortField != 'insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									작성 일시
 									<i class="bi bi-caret-${sortField != 'insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th>
+							<th class="wp15">
 								<button class="btn_sort" onclick="sort('update_time', '${sortField != 'update_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									수정 일시
 									<i class="bi bi-caret-${sortField != 'update_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
 							<c:if test="${type == 'ask' }">
-								<th>
+								<th class="wp15">
 									<button class="btn_sort" onclick="sort('answer_insert_time', '${sortField != 'answer_insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 										답변 작성 일시
 										<i class="bi bi-caret-${sortField != 'answer_insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 									</button>
 								</th>
-								<th>
+								<th class="wp15">
 									<button class="btn_sort" onclick="sort('answer_update_time', '${sortField != 'answer_update_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 										답변 수정 일시
 										<i class="bi bi-caret-${sortField != 'answer_update_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
