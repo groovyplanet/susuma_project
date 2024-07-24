@@ -32,4 +32,7 @@ public interface MemberService {
 	void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 
 	void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+	
+	void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 }
+

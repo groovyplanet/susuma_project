@@ -135,5 +135,11 @@
 	<select id="selectMemberById" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
 	</select>
+	
+	<select id="getMemberByNo" resultType="com.susuma.member.model.MemberDTO">
+    SELECT ME_NO, NAME, ADDRESS, WORK_HOURS
+    FROM MEMBER
+    WHERE ME_NO = #{meNo}
+</select>
 
 </mapper>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="com.susuma.member.model.MemberDTO"%>
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -20,10 +20,10 @@
 								</div>
 								<div class="text-area">
 									<p class="master-name">
-										홍길동 <span class="master-stars"><i class="bi bi-star-fill"></i> 4.5 <span class="review-count">(114)</span></span>
+										${dto.name } <span class="master-stars"><i class="bi bi-star-fill"></i> 4.5 <span class="review-count">(114)</span></span>
 									</p>
 									<p class="master-location">
-										<i class="bi bi-geo-alt"></i> 서울시 강남구 개포동 (10km 이내 이동 가능)
+										<i class="bi bi-geo-alt"></i> ${dto.address} (10km 이내 이동 가능)
 									</p>
 									<p class="master-category">
 										<span>에어컨 수리</span> <span>냉장고 수리</span>
