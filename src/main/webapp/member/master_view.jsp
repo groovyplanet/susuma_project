@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="new-map">위치 : <c:out value="${dto.address}"/></div>
-                        <div class="one-line-pr">안녕하세요 ! 저는 정보처리기사 필기 공부에 15년이상 종사해왔습니다. <c:out value="${dto.shortDescription}"/></div>
+                        <div class="one-line-pr"> <c:out value="${dto.shortDescription}"/></div>
 
                         <div class="reserve-button-block">
                             <a href="${pageContext.request.contextPath }/member/request.jsp" class="new-btn new-reserve" id="reserve-button">예약 신청</a>

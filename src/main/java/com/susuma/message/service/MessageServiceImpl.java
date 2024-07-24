@@ -47,9 +47,5 @@ public class MessageServiceImpl implements MessageService {
 
 	}
 	
-	private MemberMapper memberMapper;
-	public MemberDTO getMemberById(int meNo) {
-		// TODO Auto-generated method stub
-		return memberMapper.selectMemberById(meNo);
-	}
+	
 }
