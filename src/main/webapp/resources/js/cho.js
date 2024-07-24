@@ -32,14 +32,28 @@ $(document).ready(function() {
 		var inputArea = $(this).parent();
 		if (regex.test($(this).val())) {
 			inputArea.removeClass("error");
+
 			// ajax로 이메일 중복확인
-			// if ($(this).val() == "ss@naver.com") {
-			inputArea.addClass("duplicate-yes");
-			inputArea.removeClass("duplicate-no");
-			// } else {
-			// inputArea.removeClass("duplicate-yes");
-			// inputArea.addClass("duplicate-no");
-			// }
+			fetch('checkEmailDuplication.ajax', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'email=' + encodeURIComponent($(this).val()) // 이메일 주소에 @가 포함되므로 인코딩
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.available) {
+						// 이메일 사용 가능
+						inputArea.addClass("duplicate-yes");
+						inputArea.removeClass("duplicate-no");
+					} else {
+						// 이메일 중복
+						inputArea.removeClass("duplicate-yes");
+						inputArea.addClass("duplicate-no");
+					}
+				})
+				
 		} else {
 			inputArea.addClass("error");
 			inputArea.removeClass("duplicate-yes duplicate-no");

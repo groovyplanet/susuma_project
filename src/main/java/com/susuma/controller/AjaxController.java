@@ -3,6 +3,8 @@ package com.susuma.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,6 +12,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.google.gson.Gson;
 import com.susuma.category.model.CategoryDTO;
 import com.susuma.category.model.CategoryMapper;
+import com.susuma.member.model.MemberDTO;
+import com.susuma.member.model.MemberMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
@@ -50,13 +54,30 @@ public class AjaxController extends HttpServlet {
 			SqlSession sql = sqlSessionFactory.openSession();
 			CategoryMapper Category = sql.getMapper(CategoryMapper.class);
 			ArrayList<CategoryDTO> CategorySubList = Category.selectCategorys(rootNo);
-			request.setAttribute("CategorySubList", CategorySubList);
 
 			Gson gson = new Gson();
 			String json = gson.toJson(CategorySubList);
-
+			response.setContentType("application/json; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(json);
+			out.flush();
+
+		} else if (command.equals("/member/checkEmailDuplication.ajax")) { // 회원가입 시 이메일 중복 확인
+
+			String email = request.getParameter("email");
+			Map<String, Object> params = new HashMap<>();
+			params.put("email", email);
+
+			SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
+			SqlSession sql = sqlSessionFactory.openSession();
+			MemberMapper Member = sql.getMapper(MemberMapper.class);
+			MemberDTO dto = Member.selectMember(params);
+			sql.close();
+
+			boolean isAvailable = dto == null; // 이메일이 일치하는 회원정보가 없으면 회원가입 가능(true)
+			response.setContentType("application/json; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("{\"available\":" + isAvailable + "}"); // JSON 형태로 응답
 			out.flush();
 
 		}
