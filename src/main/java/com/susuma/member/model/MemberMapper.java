@@ -20,5 +20,6 @@ public interface MemberMapper {
 	public MemberDTO selectMemberByMeNo(Map<String, Object> params);
 	
 	String getPassword(String meNo);
+	public MemberDTO selectMemberById(String meNo);
 
 }

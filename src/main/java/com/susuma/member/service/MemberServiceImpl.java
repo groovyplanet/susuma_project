@@ -342,5 +342,21 @@ public class MemberServiceImpl implements MemberService {
 		} finally {
 			sqlSession.close();
 		}
-	}
+	}@Override
+	public void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		/* [1] 매개변수 */
+		String meNo = request.getParameter("meNo"); // 세션 값 가져오기 (*)
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		MemberDTO dto = Member.selectMemberById(meNo);
+		// System.out.println(dto.getAddress());
+		sql.close();
+
+		/* [3] 화면이동 */
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("master_view.jsp").forward(request, response);
+
+}
 }

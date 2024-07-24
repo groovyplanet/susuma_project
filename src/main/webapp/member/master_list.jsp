@@ -92,7 +92,7 @@ function handleCategoryChange() {
 				</form>
 
 				<c:forEach var="dto" items="${memberList}">
-					<a class="technician" style="text-decoration: none; color: black;" href="master_view.jsp?meNo=${dto.meNo}">
+					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/member/masterView.member?meNo=${dto.meNo}">
 						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>${dto.name}</h3>
 						<p>별점: 4.9 (114)</p>

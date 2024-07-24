@@ -1,6 +1,8 @@
 package com.susuma.message.service;
 
 import com.google.gson.Gson;
+import com.susuma.member.model.MemberDTO;
+import com.susuma.member.model.MemberMapper;
 import com.susuma.message.model.MessageDTO;
 import com.susuma.message.model.MessageMapper;
 import com.susuma.util.mybatis.MybatisUtil;
@@ -43,5 +45,11 @@ public class MessageServiceImpl implements MessageService {
 		Message.sendMessage(dto);
 		sql.close();
 
+	}
+	
+	private MemberMapper memberMapper;
+	public MemberDTO getMemberById(int meNo) {
+		// TODO Auto-generated method stub
+		return memberMapper.selectMemberById(meNo);
 	}
 }

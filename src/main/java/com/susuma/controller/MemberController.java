@@ -3,6 +3,7 @@ package com.susuma.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.susuma.member.model.MemberDTO;
 import com.susuma.member.service.MemberService;
 import com.susuma.member.service.MemberServiceImpl;
 
@@ -94,8 +95,13 @@ public class MemberController extends HttpServlet {
 
 		}else if (command.equals("/member/exitForm.member")) { // 사용자 - 회원 탈퇴
 		    service.deleteAccount(request, response);
+		    
 		} else if (command.equals("/member/exit.member")) { // 사용자 - 마이페이지
 			request.getRequestDispatcher("exit.jsp").forward(request, response);
+			
+		} else if (command.equals("/member/masterView.member")) { // 사용자 - 회원 상세 정보 보기
+	       service.getMemberById(request, response);
+	
+       }
 	}
-}
 }
