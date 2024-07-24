@@ -14,11 +14,12 @@
 .main-section .container.main-only .main-area.join { width: 500px; margin:40px 0; } 
 /* 탭 메뉴 */
 .main-section .container.main-only .main-area.join .menu-tab { display: flex; justify-content: space-between; } 
-.main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 30px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 30px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; border-radius: 13px 13px 0 0; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn ~ .tab-btn.active { border-left: 1px solid #F49D00; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn i { margin-left: 2px; } 
-.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(1) { border-left: 1px solid #DDD; border-right: 1px solid #F49D00; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(1) { border-left: 1px solid #DDD; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(2) { border-right: 1px solid #DDD; } 
-.main-section .container.main-only .main-area.join .menu-tab label.tab-btn.active { color: #F49D00; border-color: #F49D00; border-bottom: none; cursor: default; font-weight: 700; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn.active { color: #F49D00; border-color: #F49D00; border-right: 1px solid #F49D00; border-bottom: none; cursor: default; font-weight: 700; } 
 .main-section .container.main-only .main-area.join .menu-tab label.tab-btn:not(.active):hover { color: #F49D00; } 
 /* form */
 .main-section .container .input-field { width: 100%; padding: 12px 12px; border: 1px solid #ccc; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
