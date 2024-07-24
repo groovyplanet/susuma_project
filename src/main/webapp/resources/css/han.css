@@ -299,14 +299,14 @@
 /* =========master_view end======= */
 #mArticle { overflow: hidden; position: relative; max-width: 1160px; margin: 0 auto; padding-bottom: 180px; } 
 /* ==========master list =====*/
-.main-section .container.filter { justify-content: center; margin-top: 20px; } 
+.main-section .container.filter { justify-content: center; margin-top: 20px; margin-bottom: 20px; } 
 .main-section .container.filter .filters, .search-filters { display: flex; justify-content: center; margin: 20px 0; } 
 .main-section .container.filter .filter, .search-filter { margin: 0 10px; } 
 .main-section .container.filter .filters { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; } 
 .main-section .container.filter .filter { margin: 10px; } 
 .main-section .container.filter .filter label { margin-right: 10px; font-weight: bold; color: #333; } 
-.main-section .container.filter .filter select, .search-filter input, .search-filter select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ddd; transition: border-color 0.3s ease; } 
-.main-section .container.filter .filter select:focus, .search-filter input:focus, .search-filter select:focus { border-color: #aaa; outline: none; } 
+.main-section .container.filter .filter select, .search-filter input, .search-filter select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ddd; transition: border-color 0.3s ease; cursor: pointer; } 
+.main-section .container.filter .filter select:focus, .search-filter input:focus, .search-filter select:focus { border: 1px solid #F49D00; } 
 .main-section .container.filter .search-filters button { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
 .main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
 .main-section .container.filter .technician { border: 1px solid #ddd; margin: 10px; padding: 20px; width: 300px; text-align: center; transition: transform 0.3s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; background-color: #fff; } 
@@ -318,7 +318,6 @@
 .main-section .container.filter .search-filters button { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
 .main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
 /* CSS 추가 */
-.main-section .container.filter #sub-category { pointer-events: none; opacity: 0.5; /* 상위 카테고리를 선택하지 않았을 때, 하위 카테고리 선택 불가능하도록 설정 *//* 선택할 수 없는 상태에서는 투명도를 조정하여 비활성화된 상태를 시각적으로 구분 */ } 
 .main-section .container.filter #sub-category-filter { margin-top: 10px; /* 하위 카테고리 필터의 상단 여백 설정 */ } 
 .main-section .container.filter .main-area { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; } 
 .main-section .container.filter .filter, .search-filters { display: flex; flex-direction: column; margin-right: 10px; } 

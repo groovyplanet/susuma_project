@@ -2,6 +2,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/head.jsp"%>
+<script>
+
+function handleCategoryChange() {
+    const categorySelect = document.getElementById('category');
+    const subCategorySelect = document.getElementById('sub-category');
+    const selectedCategory = categorySelect.value;
+
+    // 선택된 상위 카테고리가 없는 경우, 하위 카테고리 초기화
+    if (!selectedCategory) {
+        subCategorySelect.innerHTML = '<option value="">선택</option>';
+        return;
+    }
+
+    // AJAX 요청을 통해 하위 카테고리 가져오기
+	fetch("getCategory.ajax?rootNo="+selectedCategory)
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(data) {
+        subCategorySelect.innerHTML = '<option value="">선택</option>';
+        data.forEach(function(subCategory) {
+            console.log(22);
+            const option = document.createElement('option');
+            option.value = subCategory.caNo; // 하위 카테고리 번호
+            option.textContent = subCategory.caName; // 하위 카테고리 이름
+            subCategorySelect.appendChild(option);
+        });
+        subCategorySelect.focus();
+	})
+    .catch(function(error) {
+        console.error('Fetch error:', error);
+    });
+}
+</script>
 </head>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -15,19 +49,13 @@
 						<select id="category" onchange="handleCategoryChange()">
 							<option value="">선택</option>
 							<c:forEach var="dtox" items="${CategoryMainList}">
-								<option value="">${dtox.caName }</option>
+								<option value="${dtox.caNo }">${dtox.caName }</option>
 							</c:forEach>
 						</select>
 					</div>
-					<div class="filter" id="sub-category-filter" style="display: none;">
+					<div class="filter" id="sub-category-filter">
 						<label for="sub-category">하위 카테고리</label>
 						<select id="sub-category">
-							<option value="">선택</option>
-						</select>
-					</div>
-					<div class="filter">
-						<label for="region">지역</label>
-						<select id="region">
 							<option value="">선택</option>
 						</select>
 					</div>
@@ -64,7 +92,7 @@
 				</form>
 
 				<c:forEach var="dto" items="${memberList}">
-					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp?meNo=${dto.meNo}">
+					<a class="technician" style="text-decoration: none; color: black;" href="master_view.jsp?meNo=${dto.meNo}">
 						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>${dto.name}</h3>
 						<p>별점: 4.9 (114)</p>
