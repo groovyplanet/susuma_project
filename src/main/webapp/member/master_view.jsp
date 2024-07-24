@@ -1,47 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="com.susuma.member.model.MemberDTO" %>
 <%@ include file="../include/head.jsp"%>
 </head>
 
 <body>
 	<%@ include file="../include/header.jsp"%>
 
-	<section class="main-section">
-		<div class="container">
-			<div class="content master-view">
-				<div class="new-edit-form">
-					<div class="new-profile-img">
-						<img class="#" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png">
-					</div>
-					<div class="new-master-section">
-						<div class="new-master-name">벨기에재즈퀸서희</div>
-						<div class="new-review-star">
-							★4.73
-							<span>(400)</span>
-						</div>
+	 <section class="main-section">
+        <div class="container">
+            <div class="content master-view">
+                <div class="new-edit-form">
+                    <div class="new-profile-img">
+                        <img class="#" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png">
+                    </div>
+                    <div class="new-master-section">
+                        <div class="new-master-name"><c:out value="${dto.name}"/></div>
+                        <div class="new-review-star">
+                            ★4.73 <span>(400)</span>
+                        </div>
 
-						<div class="new-map">위치 : 강남구</div>
-						<div class="one-line-pr">안녕하세요 ! 저는 정보처리기사 필기 공부에 15년이상 종사해왔습니다.</div>
+                        <div class="new-map">위치 : <c:out value="${dto.address}"/></div>
+                        <div class="one-line-pr">안녕하세요 ! 저는 정보처리기사 필기 공부에 15년이상 종사해왔습니다. <c:out value="${dto.shortDescription}"/></div>
 
-						<div class="reserve-button-block">
-							<a href="${pageContext.request.contextPath }/member/request.jsp" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
-							<a class="new-btn new-reserve-contact" id="reserve-contact" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">문의 신청</a>
-						</div>
-					</div>
-				</div>
-				<div class="new-location_management">
-					<div class="new-location_managementtitle">
-						<img width="25" height="25" src="${pageContext.request.contextPath }/resources/img/iconmap.png" alt="">
-						위치 관리
-					</div>
-					<div class="new-location_details">
-						<p>현재 위치: 강남구</p>
-						<p>이전 위치: 서초구</p>
-					</div>
-				</div>
-				<div class="new-detailed_description">
-					<div class="new-detailed_descriptiontitle">
-						<svg width="30" height="30" fill="#121619" xmlns="http://www.w3.org/2000/svg" class="assets_asset__PJO1J" viewBox="0 0 48 48" name="folderLight">
+                        <div class="reserve-button-block">
+                            <a href="${pageContext.request.contextPath }/member/request.jsp" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
+                            <a class="new-btn new-reserve-contact" id="reserve-contact" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">문의 신청</a>
+                        </div>
+                    </div>
+
+                    <div class="new-location_management">
+                        <div class="new-location_managementtitle">
+                            <img width="25" height="25" src="${pageContext.request.contextPath }/resources/img/iconmap.png" alt=""> 위치 관리
+                        </div>
+                        <div class="new-location_details">
+                            <p>현재 위치: <c:out value="${dto.address}"/></p>
+                        </div>
+                    </div>
+
+                    <div class="new-detailed_description">
+                        <div class="new-detailed_descriptiontitle">
+                            서비스 상세 설명
+                        </div>
+                        <div class="new-description_details">
+                            <p><c:out value="${dto.description}"/></p>
+                        </div>
+                    </div>
+					<div class="new-detailed_description">
+						<div class="new-detailed_descriptiontitle">
+							<svg width="30" height="30" fill="#121619" xmlns="http://www.w3.org/2000/svg" class="assets_asset__PJO1J" viewBox="0 0 48 48" name="folderLight">
                             <g clip-path="url(#icon_folder_light_svg__a)">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9 15.7c0-2.607 2.092-4.7 4.7-4.7h4.1c1.031 0 2.188.374 3.004 1.055l.004.003L25.5 16H34.5c2.608 0 4.7 2.093 4.7 4.7v11.8c0 2.608-2.093 4.7-4.7 4.7H13.7A4.685 4.685 0 0 1 9 32.5V15.7Zm4.7-2.5a2.485 2.485 0 0 0-2.5 2.5v16.8c0 1.392 1.107 2.5 2.5 2.5h20.8c1.392 0 2.5-1.108 2.5-2.5V20.7c0-1.392-1.108-2.5-2.5-2.5h-9.4a1.1 1.1 0 0 1-.708-.258l-4.996-4.197-.002-.001c-.383-.319-1.026-.544-1.594-.544h-4.1Z" fill="#121619"></path>
                             </g>
@@ -51,25 +57,18 @@
                                 </clipPath>
                             </defs>
                         </svg>
-						서비스 상세 설명
+							서비스 상세 설명
+						</div>
+						<div class="new-description_details">
+							<p>
+
+								안녕하세요 고객님! 패밀리크린입니다 의뢰 주심에 감사드립니다. <br> 패밀리크린 청소팀은 내 가족이 사는 집이라 생각하고 친환경세제를 사용하여 <br> 정성스런 마음으로 꼼꼼하고 건강한 청소를 지향하며 소독으로 시작하여 깨끗하게 마무리 해 드립니다 <br> 청소전과 후 사진자료 남겨드립니다 전과 후가 완전히 달라집니다 결정 되시면 연락주십시요 감사합니다. <br> [청소범위 안내]입니다 *모든창틀과  유리청소(외부쪽 외창은 제외)
+							</p>
+						</div>
 					</div>
-					<div class="new-description_details">
-						<p>
-							안녕하세요 고객님! 패밀리크린입니다 의뢰 주심에 감사드립니다.
-							<br>
-							패밀리크린 청소팀은 내 가족이 사는 집이라 생각하고 친환경세제를 사용하여
-							<br>
-							정성스런 마음으로 꼼꼼하고 건강한 청소를 지향하며 소독으로 시작하여 깨끗하게 마무리 해 드립니다
-							<br>
-							청소전과 후 사진자료 남겨드립니다 전과 후가 완전히 달라집니다 결정 되시면 연락주십시요 감사합니다.
-							<br>
-							[청소범위 안내]입니다 *모든창틀과  유리청소(외부쪽 외창은 제외)
-						</p>
-					</div>
-				</div>
-				<div class="new-service_scheduling">
-					<div class="new-service_schedulingtitle">
-						<svg width=25 height=22 fill="#121619" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 610.398 610.398" xml:space="preserve">
+					<div class="new-service_scheduling">
+						<div class="new-service_schedulingtitle">
+							<svg width=25 height=22 fill="#121619" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 610.398 610.398" xml:space="preserve">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -101,61 +100,46 @@
                                 </g>
                             </g>
                         </svg>
-						서비스 일정 관리
-					</div>
-					<div class="new-schedule_details">
-						<ul>
-							예약 가능한 시간 :
-							<li>월요일: 10:00 - 12:00</li>
-							<li>화요일: 14:00 - 16:00</li>
-							<li>수요일: 09:00 - 11:00</li>
-						</ul>
-					</div>
-
-				</div>
-
-				<div class="review-list-master">
-					<div class="review">
-						<div class="tab-review">
-							<button id="tab-pic-list" class="tab active">사진/비디오</button>
-							<button id="tab-review-list" class="tab">후기</button>
+							서비스 일정 관리
 						</div>
-						<div class="review-list">
-							<ul class="pic-list-view item">
-								<li>
-									<img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt="">
-								</li>
-								<li>
-									<img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt="">
-								</li>
-								<li>
-									<img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt="">
-								</li>
-								<li>
-									<img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt="">
-								</li>
+						<div class="new-schedule_details">
+							<ul>
+								예약 가능한 시간 :
+								<li>월요일: 10:00 - 12:00</li>
+								<li>화요일: 14:00 - 16:00</li>
+								<li>수요일: 09:00 - 11:00</li>
 							</ul>
-							<div class="pic-review-view item" style="display: none;">
-								<div class="member-review-pic">
-									<img src="${pageContext.request.contextPath }/resources/img/example1.jpeg" alt="">
-									<img src="${pageContext.request.contextPath }/resources/img/example2.jpg" alt="">
-									<img src="${pageContext.request.contextPath }/resources/img/example3.jpg" alt="">
-								</div>
-								<span class="sizetype-view">
-									<span class="date">24.07.09</span>
-									<span class="starreview">★★★★★</span>
-									<span class="nickname">김모씨</span>
-									<span class="review-oneline">기사님이 깨끗하고 집안이 멋져요</span>
-								</span>
+						</div>
 
+					</div>
+
+					<div class="review-list-master">
+						<div class="review">
+							<div class="tab-review">
+								<button id="tab-pic-list" class="tab active">사진/비디오</button>
+								<button id="tab-review-list" class="tab">후기</button>
+							</div>
+							<div class="review-list">
+								<ul class="pic-list-view item">
+									<li><img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt=""></li>
+									<li><img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt=""></li>
+									<li><img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt=""></li>
+									<li><img width="50px" height="150px" src="${pageContext.request.contextPath }/resources/img/exampleidentify.png" alt=""></li>
+								</ul>
+								<div class="pic-review-view item" style="display: none;">
+									<div class="member-review-pic">
+										<img src="${pageContext.request.contextPath }/resources/img/example1.jpeg" alt=""> <img src="${pageContext.request.contextPath }/resources/img/example2.jpg" alt=""> <img src="${pageContext.request.contextPath }/resources/img/example3.jpg" alt="">
+									</div>
+									<span class="sizetype-view"> <span class="date">24.07.09</span> <span class="starreview">★★★★★</span> <span class="nickname">김모씨</span> <span class="review-oneline">기사님이 깨끗하고 집안이 멋져요</span>
+									</span>
+
+								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
-
 			</div>
-		</div>
-
 	</section>
 
 	<%@ include file="../include/footer.jsp"%>

@@ -13,4 +13,5 @@ import com.susuma.message.model.MessageDTO;
 public interface MessageService {
 	List<MessageDTO> getMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void sendMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
 }
