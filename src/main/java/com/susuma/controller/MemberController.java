@@ -139,6 +139,9 @@ public class MemberController extends HttpServlet {
 			// 사용자 - 회원 상세 정보 보기
 			service.getMemberById(request, response);
 
+		}else if(command.equals("/member/memberRequest.member")) {
+			
+			service.getMemberDetails(request, response);
 		}
 	}
 }

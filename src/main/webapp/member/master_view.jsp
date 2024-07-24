@@ -31,7 +31,7 @@
 						</div>
 
 						<div class="reserve-button-block">
-							<a href="${pageContext.request.contextPath }/member/request.jsp" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
+							<a href="${pageContext.request.contextPath }/member/memberRequest.member?meNo=${dto.meNo}" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
 							<a class="new-btn new-reserve-contact" id="reserve-contact" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">문의 신청</a>
 						</div>
 					</div>

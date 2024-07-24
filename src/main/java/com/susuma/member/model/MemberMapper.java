@@ -23,4 +23,5 @@ public interface MemberMapper {
 
 	public MemberDTO selectMemberById(String meNo);
 
+	public MemberDTO getMemberByNo(String meNo);
 }
