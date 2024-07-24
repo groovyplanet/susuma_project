@@ -42,43 +42,74 @@ public class MemberController extends HttpServlet {
 
 		MemberService service = new MemberServiceImpl(); // 비즈니스 로직 처리(DB 접근 및 조작 등)
 
-		if (command.equals("/admin/member/list.member")) { // 관리자 - 회원목록
+		if (command.equals("/admin/member/list.member")) {
 
-			service.adminGetList(request, response);
+			// 관리자 - 회원 목록
+			service.adminList(request, response);
 
-		} else if (command.equals("/admin/member/view.member")) { // 관리자 - 회원상세
+		} else if (command.equals("/admin/member/view.member")) {
 
-			service.adminGetView(request, response);
+			// 관리자 - 회원 상세
+			service.adminView(request, response);
 
-		} else if (command.equals("/member/join.member")) { // 사용자 - 회원가입 작성
+		} else if (command.equals("/admin/member/write.member")) {
 
+			// 관리자 - 회원 추가 화면
+			service.adminWrite(request, response);
+
+		} else if (command.equals("/admin/member/edit.member")) {
+
+			// 관리자 - 회원 수정 화면
+			service.adminEdit(request, response);
+
+		} else if (command.equals("/admin/member/editForm.member")) {
+
+			// 관리자 - 회원 추가/수정
+			service.adminUpsert(request, response);
+
+		} else if (command.equals("/admin/member/delete.member")) {
+
+			// 관리자 - 회원 정보 삭제
+			service.adminDelete(request, response);
+
+		} else if (command.equals("/member/join.member")) {
+
+			// 사용자 - 회원가입 작성
 			request.getRequestDispatcher("join.jsp").forward(request, response);
 
-		} else if (command.equals("/member/joinForm.member")) { // 사용자 - 회원가입
+		} else if (command.equals("/member/joinForm.member")) {
 
+			// 사용자 - 회원가입
 			service.register(request, response);
 
-		} else if (command.equals("/member/loginForm.member")) { // 사용자 로그인
+		} else if (command.equals("/member/loginForm.member")) {
 
+			// 사용자 로그인
 			service.login(request, response);
 
-		} else if (command.equals("/member/edit.member")) { // 사용자 - 프로필 수정
+		} else if (command.equals("/member/edit.member")) {
 
+			// 사용자 - 프로필 수정
 			service.edit(request, response);
 
-		} else if (command.equals("/member/find_info.member")) { // 사용자 - 비밀번호 찾기
+		} else if (command.equals("/member/find_info.member")) {
 
+			// 사용자 - 비밀번호 찾기
 			request.getRequestDispatcher("find_info.jsp").forward(request, response);
 
-		} else if (command.equals("/member/mypage.member")) { // 사용자 - 마이페이지
+		} else if (command.equals("/member/mypage.member")) {
 
+			// 사용자 - 마이페이지
 			request.getRequestDispatcher("mypage.jsp").forward(request, response);
 
-		} else if (command.equals("/member/masterList.member")) { // 사용자 - 수리 예약(수리기사 목록)
+		} else if (command.equals("/member/masterList.member")) {
 
+			// 사용자 - 수리 예약(수리기사 목록)
 			service.getMasterList(request, response);
 
-		} else if (command.equals("/member/logout.member")) { // 사용자 로그아웃
+		} else if (command.equals("/member/logout.member")) {
+
+			// 사용자 로그아웃
 
 			// 세션 삭제
 			HttpSession session = request.getSession();
@@ -93,15 +124,21 @@ public class MemberController extends HttpServlet {
 			out.println("location.href = '" + contextPath + "/';");
 			out.println("</script>");
 
-		}else if (command.equals("/member/exitForm.member")) { // 사용자 - 회원 탈퇴
-		    service.deleteAccount(request, response);
-		    
-		} else if (command.equals("/member/exit.member")) { // 사용자 - 마이페이지
+		} else if (command.equals("/member/exitForm.member")) {
+
+			// 사용자 - 회원 탈퇴
+			service.deleteAccount(request, response);
+
+		} else if (command.equals("/member/exit.member")) {
+
+			// 사용자 - 마이페이지
 			request.getRequestDispatcher("exit.jsp").forward(request, response);
-			
-		} else if (command.equals("/member/masterView.member")) { // 사용자 - 회원 상세 정보 보기
-	       service.getMemberById(request, response);
-	
-       }
+
+		} else if (command.equals("/member/masterView.member")) {
+
+			// 사용자 - 회원 상세 정보 보기
+			service.getMemberById(request, response);
+
+		}
 	}
 }

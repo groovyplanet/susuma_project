@@ -197,38 +197,38 @@ public class BoardServiceImpl implements BoardService {
 		out.println("</script>");
 
 	}
-	
+
 	@Override
 	public void askregist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
-		String meNoStr = (String)session.getAttribute("meNo");
-		int meNo=0;
+		String meNoStr = (String) session.getAttribute("meNo");
+		int meNo = 0;
 		if (meNoStr != null) {
-		    try {
-		        meNo = Integer.parseInt(meNoStr);
-		    } catch (NumberFormatException e) {
-		        // 로그에 오류 기록 또는 기본값 설정
-		        System.out.println("meNo is not a valid integer: " + meNoStr);
-		        meNo = -1; // 기본값 설정
-		    }
+			try {
+				meNo = Integer.parseInt(meNoStr);
+			} catch (NumberFormatException e) {
+				// 로그에 오류 기록 또는 기본값 설정
+				System.out.println("meNo is not a valid integer: " + meNoStr);
+				meNo = -1; // 기본값 설정
+			}
 		}
 //		int meNo = 30;
 		String title = request.getParameter("subject");
 		String content = request.getParameter("content");
-		String type="ask";
-		
+		String type = "ask";
+
 		BoardDTO dto = new BoardDTO();
 		dto.setMeNo(meNo);
 		dto.setTitle(title);
 		dto.setContent(content);
 		dto.setType(type);
-		
-		SqlSession sql = sqlSessionFactory.openSession(true); 
+
+		SqlSession sql = sqlSessionFactory.openSession(true);
 		BoardMapper board = sql.getMapper(BoardMapper.class);
 		int result = board.askWrite(dto);
 		sql.close();
-		
+
 		if (result == 1) {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
@@ -236,12 +236,8 @@ public class BoardServiceImpl implements BoardService {
 			out.println("alert('1:1문의가 등록되었습니다');");
 			out.println("location.href='/Susuma/board/list.board?type=" + type + "';");
 			out.println("</script>");
-		} 
+		}
 
-		
-		
-		
-		
 	}
 
 }

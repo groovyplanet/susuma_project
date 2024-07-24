@@ -45,8 +45,8 @@
 							<input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required>
 						</div>
 						<div class="input-area">
-							<label for="phone_num">연락처</label>
-							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13">
+							<label for="phoneNum">연락처</label>
+							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13">
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
@@ -57,15 +57,15 @@
 							<input type="hidden" name="longitude" value="0.0">
 							<!-- 경도 -->
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
-								주소 입력
-								<i class="bi bi-chevron-right"></i>
+								주소 검색
+								<i class="bi bi-search"></i>
 							</button>
-							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail">
+							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail">
 						</div>
 						<div id="master-info-area" style="display: none;">
 							<div class="input-area">
-								<label for="business_number" class="required">사업자등록번호</label>
-								<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="business_number" id="business_number" maxlength="12">
+								<label for="businessNumber" class="required">사업자등록번호</label>
+								<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="businessNumber" id="businessNumber" maxlength="12">
 								<p class="caption-error">올바른 형식이 아닙니다.</p>
 							</div>
 							<!-- 수리 분야(동적 추가 및 삭제) -->
@@ -115,13 +115,13 @@
 								<input type="hidden" name="work_hours">
 							</div>
 							<div class="input-area">
-								<label for="max_distance">이동 가능 거리</label>
+								<label for="maxDistance">이동 가능 거리</label>
 								<div class="distance-radio-area">
-									<input type="radio" name="max_distance" value="5" id="distanc-5" checked>
-									<input type="radio" name="max_distance" value="10" id="distanc-10">
-									<input type="radio" name="max_distance" value="20" id="distanc-20">
-									<input type="radio" name="max_distance" value="50" id="distanc-50">
-									<input type="radio" name="max_distance" value="100" id="distanc-100">
+									<input type="radio" name="maxDistance" value="5" id="distanc-5" checked>
+									<input type="radio" name="maxDistance" value="10" id="distanc-10">
+									<input type="radio" name="maxDistance" value="20" id="distanc-20">
+									<input type="radio" name="maxDistance" value="50" id="distanc-50">
+									<input type="radio" name="maxDistance" value="100" id="distanc-100">
 									<label for="distanc-5" class="distance-radio active">5km 이내</label>
 									<label for="distanc-10" class="distance-radio">10km 이내</label>
 									<label for="distanc-20" class="distance-radio">20km 이내</label>
@@ -130,16 +130,16 @@
 								</div>
 							</div>
 							<div class="input-area">
-								<label for="short_description">한 줄 소개</label>
-								<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="short_description" id="short_description">
+								<label for="shortDescription">한 줄 소개</label>
+								<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription">
 							</div>
 						</div>
 						<!-- //master-info-area -->
 						<div class="input-area">
 							<label>이메일 수신 동의</label>
 							<div class="checkbox-area">
-								<input type="checkbox" name="email_notification" id="email_notification" value="Y" class="checkbox-agree">
-								<label for="email_notification">SUSUMA 이용과 관련한 알림을 이메일로도 받아보실 수 있습니다.</label>
+								<input type="checkbox" name="emailNotification" id="emailNotification" value="Y" class="checkbox-agree">
+								<label for="emailNotification">SUSUMA 이용과 관련한 알림을 이메일로도 받아보실 수 있습니다.</label>
 							</div>
 						</div>
 						<div class="input-area">
@@ -432,7 +432,7 @@
                     $("input[name=address]").val(addr); // 주소 값 넣기
                     $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>'); // 주소 + 우편번호 보여주기
 
-                    $("input[name=address_detail]").focus(); // 상세주소 포커스
+                    $("input[name=addressDetail]").focus(); // 상세주소 포커스
                 }
             }).open();
         }
