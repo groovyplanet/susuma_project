@@ -11,16 +11,16 @@
 			<%@ include file="../include/snb.jsp"%>
 			<div class="content profile-edit">
 				<div class="join-form profile-edit-form">
-					<form action="EditForm.member" method="post" id="form-profile-edit">
-						<input type="hidden" name="me_no" value="">
-						<input type="hidden" name="type" value="master">
+					<form action="editForm.member" method="post" id="form-profile-edit">
+						<input type="hidden" name="meNo" value="${dto.meNo}">
+						<input type="hidden" name="type" value="${dto.type}">
 						<div class="img-profile-area">
 							<label for="profile_photo" class="label-profile_photo">
 								<img id="img-profile" class="img-profile" src="../resources/img/iconProfileDefault.png" alt="Profile Image">
 								<span class="img-profile-overlay">프로필 변경</span>
-								<img src="../resources/img/icon-edit.png" alt="수정 아이콘" class="icon">
+								<img src="${pageContext.request.contextPath }/resources/img/icon-edit.png" alt="수정 아이콘" class="icon">
 							</label>
-							<input type="file" class="input-file" id="profile_photo" name="profile_photo" onchange="readURL(this);" style="display: none;">
+							<input type="file" class="input-file" id="profile_photo" name="profilePhoto" onchange="readURL(this);" style="display: none;">
 						</div>
 						<div class="input-area">
 							<label for="email">이메일</label>
@@ -38,25 +38,89 @@
 							<input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required value="${dto.name}">
 						</div>
 						<div class="input-area">
-							<label for="phone_num">연락처</label>
-							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13" value="${dto.phoneNum}">
+							<label for="phoneNum">연락처</label>
+							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13" value="${dto.phoneNum}">
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
 							<label for="address">주소</label>
-							<input type="hidden" name="address">
-							<input type="hidden" name="latitude">
-							<input type="hidden" name="longitude">
+							<input type="hidden" name="address" value="${dto.address}">
+							<input type="hidden" name="latitude" value="${dto.latitude}">
+							<input type="hidden" name="longitude" value="${dto.longitude}">
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
 								<p style="text-align: left;">${dto.address}</p>
 							</button>
-							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail" value="${dto.addressDetail}">
+							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail" value="${dto.addressDetail}">
 						</div>
+						<div id="master-info-area" style="display: ${dto.type=='master' ? 'block' : 'none'};">
+							<div class="input-area">
+								<label for="businessNumber" class="required">사업자등록번호</label>
+								<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="businessNumber" id="businessNumber" maxlength="12" value="${dto.businessNumber}">
+								<p class="caption-error">올바른 형식이 아닙니다.</p>
+							</div>
+							<!-- 수리 분야(동적 추가 및 삭제) -->
+							<div class="input-area">
+								<div class="category-add-area">
+									<label for="category" class="required">수리 분야</label>
+								</div>
+								<div id="category-select-area-wrap">
+									<div class="category-select-area">
+										<select name="category" class="select-category">
+											<option value="">가전제품</option>
+											<option value="">가전제품</option>
+											<option value="">가전제품</option>
+										</select>
+										<select name="ca_no" class="select-category">
+											<option value="">에어컨</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
+							<div class="input-area">
+								<label>근무 가능 요일 및 시간</label>
+								<button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">
+									시간 입력
+									<i class="bi bi-chevron-right"></i>
+								</button>
+								<div id="work-hours-list" class="work-hours-list">
+									<!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
+									<input type="hidden" name="workHours" value="${dto.workHours}">
+									<p>월 09:00 ~ 20:00</p>
+									<p>수 10:00 ~ 20:00</p>
+									<p>금 10:00 ~ 20:00</p>
+								</div>
+							</div>
+							<div class="input-area">
+								<label for="max_distance">이동 가능 거리</label>
+								<div class="distance-radio-area">
+									<input type="radio" name="max_distance" value="5" id="distanc-5" checked>
+									<input type="radio" name="max_distance" value="10" id="distanc-10">
+									<input type="radio" name="max_distance" value="20" id="distanc-20">
+									<input type="radio" name="max_distance" value="50" id="distanc-50">
+									<input type="radio" name="max_distance" value="100" id="distanc-100">
+									<label for="distanc-5" class="distance-radio active">5km 이내</label>
+									<label for="distanc-10" class="distance-radio">10km 이내</label>
+									<label for="distanc-20" class="distance-radio">20km 이내</label>
+									<label for="distanc-50" class="distance-radio">50km 이내</label>
+									<label for="distanc-100" class="distance-radio">100km 이내</label>
+								</div>
+							</div>
+							<div class="input-area">
+								<label for="shortDescription">한 줄 소개</label>
+								<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription" value="${dto.shortDescription}">
+							</div>
+							<div class="input-area">
+								<label for="description">수리 상세 내용</label>
+								<textarea class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." name="description">${dto.description}</textarea>
+							</div>
+						</div>
+						<!-- //master-info-area -->
 						<div class="input-area">
 							<label>이메일 수신 동의</label>
 							<div class="checkbox-area">
-								<input type="checkbox" name="email_notification" id="email_notification" value="Y" class="checkbox-agree" ${dto.emailNotification == 'Y' ? 'checked' : ''}>
-								<label for="email_notification">SUSUMA 이용과 관련한 알림을 이메일로도 받아보실 수 있습니다.</label>
+								<input type="checkbox" name="emailNotification" id="emailNotification" value="Y" class="checkbox-agree" ${dto.emailNotification == 'Y' ? 'checked' : ''}>
+								<label for="emailNotification">SUSUMA 이용과 관련한 알림을 이메일로도 받아보실 수 있습니다.</label>
 							</div>
 						</div>
 						<input type="submit" class="btn-submit" value="회원정보 수정">
@@ -196,7 +260,7 @@
 								<button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
 							</div>
 							<button type="button" class="btn-close-modal">
-								<img src="../resources/img/iconClose.png" alt="닫기 버튼">
+								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
 							</button>
 						</div>
 					</div>
@@ -225,7 +289,7 @@
 								</form>
 							</div>
 							<button type="button" class="btn-close-modal">
-								<img src="../resources/img/iconClose.png" alt="닫기 버튼">
+								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
 							</button>
 						</div>
 					</div>
@@ -267,7 +331,7 @@
                     $("input[name=address]").val(addr); // 주소 값 넣기
                     $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>'); // 주소 + 우편번호 보여주기
 
-                    $("input[name=address_detail]").focus(); // 상세주소 포커스
+                    $("input[name=addressDetail]").focus(); // 상세주소 포커스
                 }
             }).open();
         }

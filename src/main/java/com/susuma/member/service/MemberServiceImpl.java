@@ -422,6 +422,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		MemberDTO dto = createMemberDTO(request); // 별도 함수로 처리
+		boolean isUpdate = true;
+		int result = memberUpsert(dto, isUpdate);
+
+		if (result == 1) {
+			alertRedirect(response, "정상적으로 수정되었습니다.", "edit.member");
+		}
+
+	}
+
+	@Override
 	public void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		/* [1] 매개변수 */

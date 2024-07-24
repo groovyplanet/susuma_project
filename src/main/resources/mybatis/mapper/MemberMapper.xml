@@ -71,8 +71,11 @@
 		<if test="meNo != null">
 			AND M.ME_NO = #{meNo}
 		</if>
-		<if test="email != null">
+		<if test="email != null and pw != null">
 			AND M.EMAIL = #{email} AND M.PW = #{pw}
+		</if>
+		<if test="email != null and pw == null">
+			AND M.EMAIL = #{email}
 		</if>
 	</select>
 

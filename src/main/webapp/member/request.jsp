@@ -20,13 +20,20 @@
 								</div>
 								<div class="text-area">
 									<p class="master-name">
-										${dto.name } <span class="master-stars"><i class="bi bi-star-fill"></i> 4.5 <span class="review-count">(114)</span></span>
+										${dto.name }
+										<span class="master-stars">
+											<i class="bi bi-star-fill"></i>
+											4.5
+											<span class="review-count">(114)</span>
+										</span>
 									</p>
 									<p class="master-location">
-										<i class="bi bi-geo-alt"></i> ${dto.address} (10km 이내 이동 가능)
+										<i class="bi bi-geo-alt"></i>
+										${dto.address} (10km 이내 이동 가능)
 									</p>
 									<p class="master-category">
-										<span>에어컨 수리</span> <span>냉장고 수리</span>
+										<span>에어컨 수리</span>
+										<span>냉장고 수리</span>
 									</p>
 									<!-- 분야 -->
 									<!-- <p class="master-desc">믿고 맡겨주시면 최선을 다해 수리해드리겠습니다. 믿고 맡겨주시면 최선을 다해 수리해드리겠습니다.</p>-->
@@ -34,7 +41,10 @@
 								</div>
 							</div>
 							<div class="calendar-wrap">
-								<label><i class="bi bi-stopwatch"></i>근무 가능 일시</label>
+								<label>
+									<i class="bi bi-stopwatch"></i>
+									근무 가능 일시
+								</label>
 								<div id="master-work-hours-list"></div>
 							</div>
 						</div>
@@ -47,7 +57,9 @@
 										<button type="button" title="prev" class="btn-cal prev">
 											<i class="bi bi-chevron-left"></i>
 										</button>
-										<span class="cal-year"></span>.<span class="cal-month"></span>
+										<span class="cal-year"></span>
+										.
+										<span class="cal-month"></span>
 										<button type="button" title="next" class="btn-cal next">
 											<i class="bi bi-chevron-right"></i>
 										</button>
@@ -77,22 +89,32 @@
 						</div>
 						<div class="info-area">
 							<div class="title-main inline">예약자 정보</div>
-							<span class="title-sub2"><i class="bi bi-info-circle"></i>주소 및 연락처 수정 시 회원정보 갱신</span> <input type="hidden" name="date" value=""> <input type="hidden" name="time" value="">
+							<span class="title-sub2">
+								<i class="bi bi-info-circle"></i>
+								주소 및 연락처 수정 시 회원정보 갱신
+							</span>
+							<input type="hidden" name="date" value="">
+							<input type="hidden" name="time" value="">
 						</div>
 						<div class="input-area">
-							<label for="address" class="required">주소</label> <input type="hidden" name="address"> <input type="hidden" name="latitude"> <input type="hidden" name="longitude">
+							<label for="address" class="required">주소</label>
+							<input type="hidden" name="address">
+							<input type="hidden" name="latitude">
+							<input type="hidden" name="longitude">
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
-								주소 입력<i class="bi bi-chevron-right"></i>
+								주소 입력
+								<i class="bi bi-chevron-right"></i>
 							</button>
-							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="address_detail">
+							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail">
 						</div>
 						<div class="input-area">
-							<label for="phone_num" class="required">연락처</label> <input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phone_num" id="phone_num" maxlength="13" required>
+							<label for="phoneNum" class="required">연락처</label>
+							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13" required>
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
-							<label for="short_description" class="required">수리요청 상세내용</label>
-							<textarea class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." required>에어컨 가동 시 곧바로 꺼지는 현상이 발생합니다.
+							<label for="content" class="required">수리요청 상세내용</label>
+							<textarea name="content" class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." required>에어컨 가동 시 곧바로 꺼지는 현상이 발생합니다.
 수리 요청드립니다.</textarea>
 						</div>
 						<button type="submit" class="btn-submit">수리 예약</button>
@@ -165,7 +187,7 @@
                     $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>'); // 주소 + 우편번호 보여주기
                     $("#btn-zipcode").removeClass("error");
 
-                    $("input[name=address_detail]").focus(); // 상세주소 포커스
+                    $("input[name=addressDetail]").focus(); // 상세주소 포커스
                 }
             }).open();
         }
@@ -180,9 +202,9 @@
                 var date = $('input[name="date"]').val();
                 var time = $('input[name="time"]').val();
                 var name = $('.master-name').text().trim();
-                var phone = $('#phone_num').val();
+                var phone = $('#phoneNum').val();
                 var address = $('input[name="address"]').val();
-                var description = $('textarea[name="short_description"]').val();
+                var description = $('textarea[name="content"]').val();
 
                 // 데이터 출력 확인
                 console.log(date, time, name, phone, address, description);
@@ -211,9 +233,9 @@
                 var date = $('input[name="date"]').val();
                 var time = $('input[name="time"]').val();
                 var name = $('.master-name').text().trim();
-                var phone = $('#phone_num').val();
+                var phone = $('#phoneNum').val();
                 var address = $('input[name="address"]').val();
-                var description = $('textarea[name="short_description"]').val();
+                var description = $('textarea[name="content"]').val();
 
                 // AJAX 요청
                 $.ajax({

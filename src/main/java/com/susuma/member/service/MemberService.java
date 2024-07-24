@@ -29,6 +29,8 @@ public interface MemberService {
 
 	void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 
 	void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
