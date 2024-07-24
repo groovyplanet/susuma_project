@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.board")
 public class BoardController extends HttpServlet {
@@ -72,6 +73,20 @@ public class BoardController extends HttpServlet {
 
 			//request.setAttribute("key","value"); // 사용자 화면만 별도로 파라미터 지정할 경우 사용, getAttribute로 꺼내기
 			service.getList(request, response); // 관리자 게시물 목록과 동일한 메서드 사용
+		} else if (command.equals("/board/ask/write.board")) {
+			
+			HttpSession session = request.getSession();
+			String meNo = (String)session.getAttribute("meNo");
+			
+			if(meNo == null) {
+				response.sendRedirect("/Susuma/index.jsp");
+				return;
+			}
+			
+			request.getRequestDispatcher("/board/ask_write.jsp").forward(request, response);
+ 
+		} else if (command.equals("/board/ask/regist.board")) {
+			service.askregist(request, response);
 		}
 
 	}

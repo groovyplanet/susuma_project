@@ -13,6 +13,8 @@ public interface BoardService {
 	void adminModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void adminUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void askregist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 } 
 
 

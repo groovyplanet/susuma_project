@@ -17,7 +17,7 @@
 						</div>
 					</div>
 					<div id="qna-write" class="section">
-						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/ask_list.jsp" class="form-horizontal" target="actionFrame">
+						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/ask/regist.board" class="form-horizontal" target="actionFrame">
 							<div class="panel-default">
 								<div class="panel-heading"></div>
 								<div class="panel-body">
