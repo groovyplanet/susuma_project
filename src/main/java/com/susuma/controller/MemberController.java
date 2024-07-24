@@ -67,6 +67,11 @@ public class MemberController extends HttpServlet {
 			// 관리자 - 회원 추가/수정
 			service.adminUpsert(request, response);
 
+		} else if (command.equals("/admin/member/approve.member")) {
+
+			// 관리자 - 수리기사 승인
+			service.adminUpdateApprove(request, response);
+
 		} else if (command.equals("/admin/member/delete.member")) {
 
 			// 관리자 - 회원 정보 삭제

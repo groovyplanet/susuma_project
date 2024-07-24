@@ -19,6 +19,8 @@ public interface MemberService {
 
 	void adminUpsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void adminUpdateApprove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;

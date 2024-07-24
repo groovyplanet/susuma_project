@@ -72,6 +72,16 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	// alert창 띄우고 화면 이동
+	private void alertRedirect(HttpServletResponse response, String message, String url) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('" + message + "');");
+		out.println("location.href='" + url + "';");
+		out.println("</script>");
+	}
+
 	// 상위 카테고리 가져오기
 	public void getCategoryMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -263,13 +273,26 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberUpsert(dto, isUpdate);
 
 		if (result == 1) {
-			response.setContentType("text/html; charset=UTF-8;");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('정상적으로 " + (isUpdate ? "수정" : "등록") + "되었습니다.');");
-			out.println("location.href = 'list.member?type=" + dto.getType() + "';");
-			out.println("</script>");
+			alertRedirect(response, "정상적으로 " + (isUpdate ? "수정" : "등록") + "되었습니다.", "list.member?type=" + dto.getType());
 		}
+
+	}
+
+	@Override
+	public void adminUpdateApprove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		/* [1] 매개변수 */
+		String meNo = request.getParameter("meNo");
+		String type = request.getParameter("type");
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		Member.updateMemberApprove(meNo);
+		sql.close();
+
+		/* [3] 화면이동 */
+		alertRedirect(response, "승인되었습니다", "list.member?type=" + type);
 
 	}
 
@@ -287,12 +310,7 @@ public class MemberServiceImpl implements MemberService {
 		sql.close();
 
 		/* [3] 화면이동 */
-		response.setContentType("text/html; charset=UTF-8;");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('회원정보가 삭제되었습니다.');");
-		out.println("location.href='list.member?type=" + type + "';");
-		out.println("</script>");
+		alertRedirect(response, "회원정보가 삭제되었습니다.", "list.member?type=" + type);
 
 	}
 
@@ -303,12 +321,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberUpsert(dto, false); // insert
 
 		if (result == 1) {
-			response.setContentType("text/html; charset=UTF-8;");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('회원가입이 완료 되었습니다. 로그인 후 이용해주세요.');");
-			out.println("location.href = '../';");
-			out.println("</script>");
+			alertRedirect(response, "회원가입이 완료 되었습니다. 로그인 후 이용해주세요.", "../");
 		}
 	}
 
@@ -439,13 +452,8 @@ public class MemberServiceImpl implements MemberService {
 				sqlSession.commit();
 				session.invalidate();
 
-				response.setContentType("text/html; charset=UTF-8;");
-				PrintWriter out = response.getWriter();
-				String contextPath = request.getContextPath();
-				out.println("<script>");
-				out.println("alert('회원 탈퇴가 완료되었습니다.');");
-				out.println("location.href = '" + contextPath + "/';");
-				out.println("</script>");
+				alertRedirect(response, "회원 탈퇴가 완료되었습니다.", request.getContextPath() + "/");
+
 			} else {
 				// 비밀번호가 일치하지 않으면 에러 메시지 출력
 				response.setContentType("text/html; charset=UTF-8;");
@@ -454,6 +462,7 @@ public class MemberServiceImpl implements MemberService {
 				out.println("alert('비밀번호가 일치하지 않습니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+
 			}
 		} finally {
 			sqlSession.close();

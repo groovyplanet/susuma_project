@@ -78,7 +78,7 @@
 
 	<!-- [3] 회원 등록 -->
 	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
-		INSERT INTO MEMBER (me_no, type, email, pw, name, phone_num, address, address_detail, latitude, longitude, email_notification, business_number, short_description, max_distance, description, work_hours, ca_no, join_approval, point, status)
+		INSERT INTO MEMBER (ME_NO, TYPE, EMAIL, PW, NAME, PHONE_NUM, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, EMAIL_NOTIFICATION, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE, DESCRIPTION, WORK_HOURS, CA_NO, JOIN_APPROVAL, POINT, STATUS)
 		VALUES (MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{phoneNum}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{emailNotification}, #{businessNumber}, #{shortDescription}, #{maxDistance}, #{description}, #{workHours}, #{caNo}, #{joinApproval}, #{point}, #{status}
 		)
 	</insert>
@@ -87,28 +87,38 @@
 	<update id="updateMember" parameterType="com.susuma.member.model.MemberDTO">
 		UPDATE MEMBER
 		SET
-		email = #{email},
-		pw = #{pw},
-		name = #{name},
-		phone_num = #{phoneNum},
-		address = #{address},
-		address_detail = #{addressDetail},
-		latitude = #{latitude},
-		longitude = #{longitude},
-		email_notification = #{emailNotification},
-		business_number = #{businessNumber},
-		short_description = #{shortDescription},
-		max_distance = #{maxDistance},
-		description = #{description},
-		work_hours = #{workHours},
-		ca_no = #{caNo},
-		join_approval = #{joinApproval},
-		point = #{point},
-		status = #{status},
-		update_time = SYSDATE
+		EMAIL = #{email},
+		PW = #{pw},
+		NAME = #{name},
+		PHONE_NUM = #{phoneNum},
+		ADDRESS = #{address},
+		ADDRESS_DETAIL = #{addressDetail},
+		LATITUDE = #{latitude},
+		LONGITUDE = #{longitude},
+		EMAIL_NOTIFICATION = #{emailNotification},
+		BUSINESS_NUMBER = #{businessNumber},
+		SHORT_DESCRIPTION = #{shortDescription},
+		MAX_DISTANCE = #{maxDistance},
+		DESCRIPTION = #{description},
+		WORK_HOURS = #{workHours},
+		CA_NO = #{caNo},
+		JOIN_APPROVAL = #{joinApproval},
+		POINT = #{point},
+		STATUS = #{status},
+		UPDATE_TIME = SYSDATE
 		WHERE
-		me_no = #{meNo}
+		ME_NO = #{meNo}
 	</update>
+
+	<!-- [4-2] 회원 수정(수리기사 승인) -->
+	<delete id="updateMemberApprove" parameterType="string">
+		UPDATE MEMBER
+		SET
+		JOIN_APPROVAL = 'Y',
+		JOIN_APPROVAL_TIME = SYSDATE
+		WHERE
+		ME_NO = #{meNo}
+	</delete>
 
 	<!-- [5] 회원 삭제 -->
 	<delete id="deleteMember" parameterType="string">

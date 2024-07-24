@@ -31,9 +31,9 @@
 			<div class="table_wrap">
 				<table class="view" id="board_view">
 					<tr>
-						<th>게시글 번호</th>
-						<td>${dto.boNo}</td>
-						<th>회원 번호</th>
+						<th class="wp13">게시글 번호</th>
+						<td class="wp37">${dto.boNo}</td>
+						<th class="wp13">회원 번호</th>
 						<td>${dto.meNo}</td>
 					</tr>
 					<tr>
