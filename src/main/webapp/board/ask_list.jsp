@@ -49,10 +49,10 @@
 						<a href="#">다음</a>
 					</div>
 					<div class="content-ask">
-						<a href="${pageContext.request.contextPath }/board/ask_write.jsp">문의하기</a>
+						<a href="${pageContext.request.contextPath }/board/ask/write.board">문의하기</a>
 					</div>
 				</div>
-			</div>
+			</div> 
 		</div>
 	</section>
 

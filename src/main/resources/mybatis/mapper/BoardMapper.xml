@@ -64,5 +64,11 @@
 		DELETE FROM BOARD
 		WHERE BO_NO = #{boNo}
 	</delete>
-
+	
+	<!-- [6] 1:1문의 등록 -->
+	<insert id="askWrite" parameterType="com.susuma.board.model.BoardDTO">
+		INSERT INTO BOARD(BO_NO, ME_NO, TITLE, CONTENT, TYPE)
+		VALUES(BOARD_SEQ.NEXTVAL, #{meNo}, #{title}, #{content}, #{type})
+	</insert>
+	
 </mapper>
