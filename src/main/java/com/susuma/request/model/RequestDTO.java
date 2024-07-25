@@ -4,9 +4,9 @@ import java.sql.Timestamp;
 
 public class RequestDTO {
 
-	private int reqNo;
-	private int masterNo;
-	private int clientNo;
+	private String reqNo;
+	private String masterNo;
+	private String clientNo;
 	private String content;
 	private String date;
 	private String time;
@@ -15,7 +15,7 @@ public class RequestDTO {
 	private Timestamp insertTime;
 	private Timestamp approvalTime;
 	private Timestamp cancelTime;
-	private int payAmount;
+	private String payAmount;
 	private String payStatus;
 	private Timestamp payRequestTime;
 	private Timestamp paidTime;
@@ -29,8 +29,8 @@ public class RequestDTO {
 	public RequestDTO() {
 
 	}
-
-	public RequestDTO(int masterNo, int clientNo, String content, String date, String time, String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+	//예약 신청 시 사용
+	public RequestDTO(String masterNo, String clientNo, String content, String date, String time, String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
 		super();
 		this.masterNo = masterNo;
 		this.clientNo = clientNo;
@@ -44,7 +44,7 @@ public class RequestDTO {
 		this.phoneNum = phoneNum;
 	}
 
-	public RequestDTO(int reqNo, int masterNo, int clientNo, String content, String date, String time, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, int payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String date, String time, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -68,27 +68,27 @@ public class RequestDTO {
 		this.phoneNum = phoneNum;
 	}
 
-	public int getReqNo() {
+	public String getReqNo() {
 		return reqNo;
 	}
 
-	public void setReqNo(int reqNo) {
+	public void setReqNo(String reqNo) {
 		this.reqNo = reqNo;
 	}
 
-	public int getMasterNo() {
+	public String getMasterNo() {
 		return masterNo;
 	}
 
-	public void setMasterNo(int masterNo) {
+	public void setMasterNo(String masterNo) {
 		this.masterNo = masterNo;
 	}
 
-	public int getClientNo() {
+	public String getClientNo() {
 		return clientNo;
 	}
 
-	public void setClientNo(int clientNo) {
+	public void setClientNo(String clientNo) {
 		this.clientNo = clientNo;
 	}
 
@@ -156,11 +156,11 @@ public class RequestDTO {
 		this.cancelTime = cancelTime;
 	}
 
-	public int getPayAmount() {
+	public String getPayAmount() {
 		return payAmount;
 	}
 
-	public void setPayAmount(int payAmount) {
+	public void setPayAmount(String payAmount) {
 		this.payAmount = payAmount;
 	}
 
