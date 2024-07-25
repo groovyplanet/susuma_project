@@ -11,24 +11,20 @@
 	<div class="container">
 		<%@ include file="../include/snb.jsp"%>
 		<div class="content_wrap">
+		<form action="replyWriteForm.board?type=${type }&boNo=${dto.boNo}" method="post">
 			<div class="title_wrap">
-				<span>${dto.type=='notice'?'공지사항':dto.type=='faq'?'FAQ':'1:1 문의' } 상세</span>
+				<span>${dto.type=='notice'?'공지사항':dto.type=='faq'?'FAQ':'1:1 문의' } 작성</span>
 				<div class="btn_wrap">
 					<a href="list.board?type=${dto.type }" class="btn black">
 						<i class="bi bi-list-ul"></i>
 						목록
 					</a>
-					<c:choose>
-				<c:when test="${type=='notice'||type=='faq' }">
-				</c:when>
-				<c:otherwise>
-				<a href="replyWrite.board?type=${type }&boNo=${dto.boNo}" class="btn">
+					<button type="submit" class="btn">
+					
 						<i class="bi bi-pencil-square"></i>
 						작성
-					</a>
-				</c:otherwise>
-				
-				</c:choose>
+					
+					</button>
 					<a href="modify.board?boNo=${dto.boNo }" class="btn">
 						<i class="bi bi-pencil-square"></i>
 						수정
@@ -68,7 +64,7 @@
 					<c:if test="${dto.type == 'ask' }">
 						<tr>
 							<th>답변</th>
-							<td colspan="3">${dto.answer}</td>
+							<td colspan="3"><input type="text" name="answer" value="" required> </td>
 						</tr>
 						<tr>
 							<th>답변 작성 일시</th>
@@ -83,6 +79,7 @@
 					</c:if>
 				</table>
 			</div>
+		</form>
 		</div>
 	</div>
 

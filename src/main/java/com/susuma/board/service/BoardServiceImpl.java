@@ -300,5 +300,54 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 	}
+	@Override
+	public void adminReplyWrite(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		/* [1] 매개변수 */
+		String boNo = request.getParameter("boNo");
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper Board = sql.getMapper(BoardMapper.class);
+		BoardDTO dto = Board.selectBoard(boNo);
+		sql.close();
+
+		/* [3] 화면이동 */
+		request.setAttribute("dto", dto);
+		request.setAttribute("type", dto.getType());
+		request.getRequestDispatcher("board_view_modify.jsp").forward(request, response);
+		
+	}
+	@Override
+	public void adminReplyRegister(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String boNo = request.getParameter("boNo");
+		String answer = request.getParameter("answer");
+		
+		
+		BoardDTO dto = new BoardDTO();
+		dto.setBoNo(Integer.parseInt(boNo));
+		dto.setAnswer(answer);
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		int result = board.insertReply(dto);
+		sql.close();
+		
+		if (result == 1) {
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('1:1답변이 등록되었습니다');");
+			out.println("location.href='list.board?type=ask';");
+			out.println("</script>");
+		}
+		
+		
+		
+
+		
+	}
 
 }
