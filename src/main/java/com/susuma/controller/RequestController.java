@@ -49,6 +49,11 @@ public class RequestController extends HttpServlet {
 			service = new RequestServiceImpl();
 			service.getList(request, response);
 
+		}else if(command.equals("/member/requestView.request")) {
+			//멤버 예약 내역 보기
+			service = new RequestServiceImpl();
+			service.getMemberRequest(request,response);
+			
 		}
 
 	}

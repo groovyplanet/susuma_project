@@ -36,5 +36,7 @@ public interface MemberService {
 	void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 	
 	void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+	
+	void reviewWrite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 }
 

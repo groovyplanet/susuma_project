@@ -514,5 +514,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		
+	}@Override
+	public void reviewWrite(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
 	}
+	
+	
 }

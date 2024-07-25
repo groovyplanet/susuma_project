@@ -152,6 +152,10 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/member/memberRequest.member")) {
 			
 			service.getMemberDetails(request, response);
+			
+		}else if(command.equals("/member/reviewForm.member")) {
+			//멤버 예약내역에서 리뷰 작성 구현
+			service.reviewWrite(request,response);
 		}
 	}
 }

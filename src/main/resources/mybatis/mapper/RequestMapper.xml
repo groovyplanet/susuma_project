@@ -4,15 +4,35 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.susuma.request.model.RequestMapper">
-	
-	<select id="getList" resultType="com.susuma.request.model.RequestDTO">
+
+	<select id="getList"
+		resultType="com.susuma.request.model.RequestDTO">
 		SELECT * FROM REQUEST ORDER BY REQ_NO
 	</select>
-	
-	<insert id="insertRequest" parameterType="com.susuma.request.model.RequestDTO">
-    INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, REQUEST_DATE, REQUEST_TIME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM)
-    VALUES (REQUEST_SEQ.NEXTVAL, #{masterNo}, #{clientNo}, #{content}, #{requestDate}, #{requestTime}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum})
-</insert>
 
+	<insert id="insertRequest"
+		parameterType="com.susuma.request.model.RequestDTO">
+		INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, REQUEST_DATE,
+		REQUEST_TIME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM)
+		VALUES (REQUEST_SEQ.NEXTVAL, #{masterNo}, #{clientNo}, #{content},
+		#{requestDate}, #{requestTime}, #{address}, #{addressDetail},
+		#{latitude}, #{longitude}, #{phoneNum})
+	</insert>
+	<select id="getListByMember" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
+        SELECT R.REQ_NO, R.CONTENT, MM.NAME AS MASTER_NAME, MC.NAME AS CLIENT_NAME, MC.ADDRESS
+        FROM REQUEST R
+        JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+        JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+        WHERE MC.ME_NO = #{meNo}
+        ORDER BY R.REQ_NO
+    </select>
+    <select id="getRequestByNo" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
+        SELECT R.REQ_NO, R.LATITUDE, R.LONGITUDE, R.CONTENT, MM.NAME AS MASTER_NAME, MC.NAME AS CLIENT_NAME, MM.ADDRESS 
+        FROM REQUEST R
+        JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+        JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+        WHERE R.REQ_NO = #{reqNo}
+	</select>
 	
+
 </mapper>

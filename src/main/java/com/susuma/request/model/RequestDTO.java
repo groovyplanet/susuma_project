@@ -25,14 +25,16 @@ public class RequestDTO {
 	private Double latitude; // "LATITUDE"
 	private Double longitude; // "LONGITUDE"
 	private String phoneNum; // "PHONE_NUM"
-
+	private String masterName;
+	private String clientName;
 	public RequestDTO() {
 
 	}
 
-	public RequestDTO(String masterNo, String clientNo, String content, String requestDate, String requestTime,
-			String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime,
+			String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName , String clientName) {
 		super();
+		this.reqNo = reqNo;
 		this.masterNo = masterNo;
 		this.clientNo = clientNo;
 		this.content = content;
@@ -43,12 +45,15 @@ public class RequestDTO {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.phoneNum = phoneNum;
+		this.masterName = masterName;
+		this.clientName = clientName;
 	}
 
 	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate,
 			String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime,
 			Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime,
-			String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+			String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName,
+			String clientName) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -70,6 +75,8 @@ public class RequestDTO {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.phoneNum = phoneNum;
+		this.masterName = masterName;
+		this.clientName = clientName;
 	}
 
 	public String getReqNo() {
@@ -231,4 +238,24 @@ public class RequestDTO {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	
 }
+	
+
+	

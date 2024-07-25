@@ -33,11 +33,11 @@
 				<c:forEach var="dto" items="${list }">
 					<div class="reserve-schecdule">
 						<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
-						<a href="request_view.jsp" class="info">
+						<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }" class="info">
 							<div class="repair_date">${dto.requestDate }</div>
 							<div class="master_name">
-								김현용
-								<span class="address"> 강동구 </span>
+								${dto.masterName }
+								<span class="address"> ${dto.address } </span>
 							</div>
 							<div class="repair_type">[CSS 수리]</div>
 							<div class="explain">${dto.content }</div>

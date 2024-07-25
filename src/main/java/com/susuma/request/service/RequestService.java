@@ -9,4 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public interface RequestService {
 
 	void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void getMemberRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
 }
