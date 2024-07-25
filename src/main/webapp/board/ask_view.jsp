@@ -40,8 +40,8 @@
 						<c:if test="${dto.answer ==null}">
 							<!-- 답변 대기 상태일 때만 수정/삭제 가능 -->
 							<div class="content-controll">
-								<a href="${pageContext.request.contextPath }/board/ask/modify.board?boNo=${dto.boNo}">수정</a>
-								<a href="${pageContext.request.contextPath }/board/ask/delete.board?boNo=${dto.boNo}">삭제</a>
+								<a href="${pageContext.request.contextPath }/board/askModify.board?boNo=${dto.boNo}">수정</a>
+								<a href="${pageContext.request.contextPath }/board/askDelete.board?boNo=${dto.boNo}">삭제</a>
 							</div>
 						</c:if>
 					</div>

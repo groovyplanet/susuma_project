@@ -21,7 +21,7 @@
 											<p>${totalRecords - dto.rn + 1}</p>
 										</div>
 										<div class="content-title">
-											<a href="${pageContext.request.contextPath }/board/notice/view.board?boNo=${dto.boNo}">${dto.title}</a>
+											<a href="${pageContext.request.contextPath }/board/noticeView.board?boNo=${dto.boNo}">${dto.title}</a>
 											<p>
 												<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
 											</p>
@@ -57,7 +57,7 @@
 											</c:choose>
 										</div>
 										<div class="content-title">
-											<a href="${pageContext.request.contextPath }/board/ask_view.board?boNo=${dto.boNo}">${dto.title }</a>
+											<a href="${pageContext.request.contextPath }/board/askView.board?boNo=${dto.boNo}">${dto.title }</a>
 											<div>
 												<p>
 													<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
@@ -73,7 +73,7 @@
 					<c:if test="${type eq 'ask'}">
 						<div class="content-p-box" style="margin-bottom: 0">
 							<div class="content-ask">
-								<a href="${pageContext.request.contextPath }/board/ask/write.board">문의하기</a>
+								<a href="${pageContext.request.contextPath }/board/askWrite.board">문의하기</a>
 							</div>
 						</div>
 					</c:if>

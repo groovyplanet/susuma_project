@@ -135,7 +135,7 @@ if (arr != null) {
 							<input type="checkbox" name="saveEmail" value="Y" id="save-email-check" <%=!email.equals("") ? "checked" : ""%>>
 							<label for="save-email-check" class="save-email-label">이메일 저장</label>
 						</div>
-						<a href="${pageContext.request.contextPath }/member/find_info.member">비밀번호 찾기</a>
+						<a href="${pageContext.request.contextPath }/member/findPw.member">비밀번호 찾기</a>
 					</div>
 					<button class="btn btn-login-submit" type="submit">로그인</button>
 				</form>

@@ -52,7 +52,7 @@ public class MemberDTO {
 	}
 
 	// insert/update 시 이용
-	public MemberDTO(String meNo, String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String joinApproval, String caNo, String point, String status) {
+	public MemberDTO(String meNo, String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, String profilePhoto, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String joinApproval, String caNo, String point, String status) {
 		this.meNo = meNo; // 수정일 경우만
 		this.type = type;
 		this.email = email;
@@ -64,6 +64,7 @@ public class MemberDTO {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.emailNotification = emailNotification;
+		this.profilePhoto = profilePhoto;
 		this.businessNumber = businessNumber; // 수리기사
 		this.shortDescription = shortDescription; // 수리기사
 		this.maxDistance = maxDistance; // 수리기사

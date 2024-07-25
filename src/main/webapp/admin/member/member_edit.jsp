@@ -45,7 +45,7 @@ function handleCategoryChange() {
 	<div class="container">
 		<%@ include file="../include/snb.jsp"%>
 		<div class="content_wrap">
-			<form name="EditForm" method="post" action="editForm.member">
+			<form name="EditForm" method="post" action="editForm.member" enctype="multipart/form-data">
 				<input type="hidden" name="meNo" value="${dto.meNo}">
 				<input type="hidden" name="type" value="${type}">
 				<div class="title_wrap">
