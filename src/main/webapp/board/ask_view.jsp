@@ -23,40 +23,42 @@
 
 							<div class="content-status-ok">
 								<c:choose>
-												<c:when test="${dto.answer !=null}">
-													<p class="approve">답변 완료</p>
-												</c:when>
-												<c:otherwise>
-													<p>답변 대기</p>
-												</c:otherwise>
-											</c:choose>
+									<c:when test="${dto.answer !=null}">
+										<p class="approve">답변 완료</p>
+									</c:when>
+									<c:otherwise>
+										<p>답변 대기</p>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="content-date">
-								<p><fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" /></p>
+								<p>
+									<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
+								</p>
 							</div>
 						</div>
-						<div class="content-controll">
-							<a href="${pageContext.request.contextPath }/board/modifyAsk.board?boNo=${dto.boNo}">수정</a>
-							<a href="${pageContext.request.contextPath }/board/deleteAsk.board?boNo=${dto.boNo}">삭제</a>
-						</div>
+						<c:if test="${dto.answer ==null}">
+							<!-- 답변 대기 상태일 때만 수정/삭제 가능 -->
+							<div class="content-controll">
+								<a href="${pageContext.request.contextPath }/board/ask/modify.board?boNo=${dto.boNo}">수정</a>
+								<a href="${pageContext.request.contextPath }/board/ask/delete.board?boNo=${dto.boNo}">삭제</a>
+							</div>
+						</c:if>
 					</div>
 					<div class="content-detail-box">
 						<div class="content-detail">
 							<div class="content-detail-my">
-
-								<p>${dto.content }</p>
-								
-
+								<p style="white-space: pre;">${dto.content }</p>
 							</div>
 						</div>
 						<div class="content-detail">
-							<div class="content-detail-answer">
-								<p>${dto.answer }
-							
-							</div>
+							<c:if test="${dto.answer != null}">
+								<div class="content-detail-answer">
+									<div class="title">답변 내용</div>
+									<p style="white-space: pre;">${dto.answer }</p>
+								</div>
+							</c:if>
 						</div>
-
-
 					</div>
 
 					<div class="content-move-list">

@@ -20,13 +20,12 @@
 							<h3>${dto.title}</h3>
 						</div>
 						<div class="content-date">
-							<p><fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" /></p>
+							<p>
+								<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
+							</p>
 						</div>
 					</div>
 					<div class="content-detail-box">
-						<div class="content-detail">
-							<h3>${dto.title }</h3>
-						</div>
 						<div class="content-detail">
 							<p>${dto.content }</p>
 						</div>

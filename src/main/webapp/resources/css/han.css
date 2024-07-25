@@ -229,8 +229,8 @@
 .main-section .container .user-review-detail .review-box-content .review-input .file-attachment .file-item { background-color: #ddd; padding: 5px 10px; border-radius: 5px; } 
 .main-section .container .user-review-detail .review-box-content .review-input .action-buttons { display: flex; gap: 10px; margin-top: 10px; } 
 .main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn { margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; } 
-.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; } 
-.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
+.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; border:none; } 
+.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; border:none; } 
 /* == review_view user ver end== */
 /* ask */
 .main-section .container .content .edit-form { padding: 20px; margin-top: 10px; margin-left: 50px; padding-top: 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 90%; flex-direction: column; } 

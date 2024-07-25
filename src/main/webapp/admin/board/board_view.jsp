@@ -19,16 +19,16 @@
 						목록
 					</a>
 					<c:choose>
-				<c:when test="${type=='notice'||type=='faq' }">
-				</c:when>
-				<c:otherwise>
-				<a href="replyWrite.board?type=${type }&boNo=${dto.boNo}" class="btn">
-						<i class="bi bi-pencil-square"></i>
-						답변작성
-					</a>
-				</c:otherwise>
-				
-				</c:choose>
+						<c:when test="${type=='notice'||type=='faq' }">
+						</c:when>
+						<c:otherwise>
+							<a href="replyWrite.board?type=${type }&boNo=${dto.boNo}" class="btn">
+								<i class="bi bi-pencil-square"></i>
+								답변작성
+							</a>
+						</c:otherwise>
+
+					</c:choose>
 					<a href="modify.board?boNo=${dto.boNo }" class="btn">
 						<i class="bi bi-pencil-square"></i>
 						문의수정
@@ -53,7 +53,9 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td colspan="3">${dto.content}</td>
+						<td colspan="3">
+							<div style="white-space: pre;">${dto.content}</div>
+						</td>
 					</tr>
 					<tr>
 						<th>작성 일시</th>
@@ -68,7 +70,9 @@
 					<c:if test="${dto.type == 'ask' }">
 						<tr>
 							<th>답변</th>
-							<td colspan="3">${dto.answer}</td>
+							<td colspan="3">
+								<div style="white-space: pre;">${dto.answer}</div>
+							</td>
 						</tr>
 						<tr>
 							<th>답변 작성 일시</th>

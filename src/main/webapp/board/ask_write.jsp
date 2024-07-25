@@ -25,14 +25,14 @@
 									<div class="form-group">
 										<label class="control-label">제목</label>
 										<div>
-											<input name="title" type="text" id="subject" class="form-control" value="${dto.title }">
+											<input name="title" type="text" id="subject" class="form-control" value="${dto.title }" required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label for="content" class="control-label">내용</label>
 										<div>
-											<textarea name="content" id="content" class="form-control" cols="50" rows="20"> ${dto.content }</textarea>
+											<textarea name="content" id="content" class="form-control" cols="50" rows="20" required>${dto.content }</textarea>
 										</div>
 									</div>
 								</div>
