@@ -75,8 +75,9 @@ public class BoardController extends HttpServlet {
 			// request.setAttribute("key","value"); // 사용자 화면만 별도로 파라미터 지정할 경우 사용,
 			// getAttribute로 꺼내기
 			service.getList(request, response); // 관리자 게시물 목록과 동일한 메서드 사용
-		} else if (command.equals("/board/ask/write.board")) {
 
+		} else if (command.equals("/board/ask/write.board")) { // 1:1문의 작성화면
+			
 			HttpSession session = request.getSession();
 			String meNo = (String) session.getAttribute("meNo");
 
@@ -100,12 +101,17 @@ public class BoardController extends HttpServlet {
 				return;
 			}
 			service.askGetView(request, response);
+
 			
 		} else if (command.equals("/board/modifyAsk.board")) { //수정화면
 			
 			service.askModify(request, response);
 
 		} 
+
+		} else if(command.equals("/board/notice/view.board")) {
+			service.noticeGetView(request, response);
+		}
 
 	}
 

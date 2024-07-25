@@ -76,5 +76,21 @@
 		SELECT * FROM BOARD WHERE BO_NO = #{boNo}
 	</select>
 	
+	<select id="getPreNext" resultType="com.susuma.board.model.BoardDTO">
+		select * from(SELECT 
+		BO_NO,
+         LEAD(BO_NO,1,9999) OVER(ORDER BY BO_NO) AS next,
+         LAG(BO_NO,1,9999) OVER(ORDER BY BO_NO) AS last,
+         TITLE,
+         LEAD(TITLE,1,9999) OVER(ORDER BY BO_NO) AS nexttitle,
+         LAG(TITLE,1,9999) OVER(ORDER BY BO_NO) AS lasttitle
+         
+		FROM BOARD
+		WHERE TYPE = 'notice'
+        order by BO_NO DESC) 
+        WHERE BO_NO = #{boNo}
+        
+	</select>
+	
 	
 </mapper>

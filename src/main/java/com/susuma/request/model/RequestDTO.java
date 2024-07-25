@@ -3,38 +3,59 @@ package com.susuma.request.model;
 import java.sql.Timestamp;
 
 public class RequestDTO {
-	
-	private int reqNo;
-	private int masterNo;
-	private int clientNo;
+
+	private String reqNo;
+	private String masterNo;
+	private String clientNo;
 	private String content;
-	private String date;
-	private String time;
+	private String requestDate;
+	private String requestTime;
 	private String status;
 	private String cancelReason;
 	private Timestamp insertTime;
 	private Timestamp approvalTime;
 	private Timestamp cancelTime;
-	private int payAmount;
+	private String payAmount;
 	private String payStatus;
 	private Timestamp payRequestTime;
 	private Timestamp paidTime;
-	
-	public RequestDTO() {
-		
-	}
-	
 
-	public RequestDTO(int reqNo, int masterNo, int clientNo, String content, String date, String time, String status,
-			String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, int payAmount,
-			String payStatus, Timestamp payRequestTime, Timestamp paidTime) {
+	private String address; // "ADDRESS"
+	private String addressDetail; // "ADDRESS_DETAIL"
+	private Double latitude; // "LATITUDE"
+	private Double longitude; // "LONGITUDE"
+	private String phoneNum; // "PHONE_NUM"
+
+	public RequestDTO() {
+
+	}
+
+	public RequestDTO(String masterNo, String clientNo, String content, String requestDate, String requestTime,
+			String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+		super();
+		this.masterNo = masterNo;
+		this.clientNo = clientNo;
+		this.content = content;
+		this.requestDate = requestDate;
+		this.requestTime = requestTime;
+		this.address = address;
+		this.addressDetail = addressDetail;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.phoneNum = phoneNum;
+	}
+
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate,
+			String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime,
+			Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime,
+			String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
 		this.clientNo = clientNo;
 		this.content = content;
-		this.date = date;
-		this.time = time;
+		this.requestDate = requestDate;
+		this.requestTime = requestTime;
 		this.status = status;
 		this.cancelReason = cancelReason;
 		this.insertTime = insertTime;
@@ -44,31 +65,34 @@ public class RequestDTO {
 		this.payStatus = payStatus;
 		this.payRequestTime = payRequestTime;
 		this.paidTime = paidTime;
+		this.address = address;
+		this.addressDetail = addressDetail;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.phoneNum = phoneNum;
 	}
 
-
-
-	public int getReqNo() {
+	public String getReqNo() {
 		return reqNo;
 	}
 
-	public void setReqNo(int reqNo) {
+	public void setReqNo(String reqNo) {
 		this.reqNo = reqNo;
 	}
 
-	public int getMasterNo() {
+	public String getMasterNo() {
 		return masterNo;
 	}
 
-	public void setMasterNo(int masterNo) {
+	public void setMasterNo(String masterNo) {
 		this.masterNo = masterNo;
 	}
 
-	public int getClientNo() {
+	public String getClientNo() {
 		return clientNo;
 	}
 
-	public void setClientNo(int clientNo) {
+	public void setClientNo(String clientNo) {
 		this.clientNo = clientNo;
 	}
 
@@ -80,20 +104,20 @@ public class RequestDTO {
 		this.content = content;
 	}
 
-	public String getDate() {
-		return date;
+	public String getRequestDate() {
+		return requestDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setRequestDate(String requestDate) {
+		this.requestDate = requestDate;
 	}
 
-	public String getTime() {
-		return time;
+	public String getRequestTime() {
+		return requestTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setRequestTime(String requestTime) {
+		this.requestTime = requestTime;
 	}
 
 	public String getStatus() {
@@ -136,11 +160,11 @@ public class RequestDTO {
 		this.cancelTime = cancelTime;
 	}
 
-	public int getPayAmount() {
+	public String getPayAmount() {
 		return payAmount;
 	}
 
-	public void setPayAmount(int payAmount) {
+	public void setPayAmount(String payAmount) {
 		this.payAmount = payAmount;
 	}
 
@@ -167,9 +191,44 @@ public class RequestDTO {
 	public void setPaidTime(Timestamp paidTime) {
 		this.paidTime = paidTime;
 	}
-	
-	
-	
-	
-	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
 }

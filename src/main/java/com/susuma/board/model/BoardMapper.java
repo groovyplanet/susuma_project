@@ -23,4 +23,6 @@ public interface BoardMapper {
 	
 	public BoardDTO askView(String boNo); // [7] 1:1문의 상세보기
 	
+	public BoardDTO getPreNext(String boNo);
+
 }

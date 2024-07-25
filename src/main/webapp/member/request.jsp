@@ -12,6 +12,7 @@
 				<div class="title">수리 예약</div>
 				<div class="join-form request-form">
 					<form action="request.user" method="post" id="form-request">
+					<input type="hidden" name="masterNo" value="${dto.meNo }">
 						<div class="info-area">
 							<div class="title-main">수리기사 정보</div>
 							<div class="master-info-area">
@@ -93,8 +94,8 @@
 								<i class="bi bi-info-circle"></i>
 								주소 및 연락처 수정 시 회원정보 갱신
 							</span>
-							<input type="hidden" name="date" value="">
-							<input type="hidden" name="time" value="">
+							<input type="hidden" name="requestDate" value="">
+							<input type="hidden" name="requestTime" value="">
 						</div>
 						<div class="input-area">
 							<label for="address" class="required">주소</label>
@@ -191,78 +192,6 @@
                 }
             }).open();
         }
-        
-   
-        $(document).ready(function() {
-            // 폼 제출 시 이벤트
-            $('#form-request').on('submit', function(event) {
-                event.preventDefault(); // 기본 제출 동작 방지
-
-                // 폼 데이터 가져오기
-                var date = $('input[name="date"]').val();
-                var time = $('input[name="time"]').val();
-                var name = $('.master-name').text().trim();
-                var phone = $('#phoneNum').val();
-                var address = $('input[name="address"]').val();
-                var description = $('textarea[name="content"]').val();
-
-                // 데이터 출력 확인
-                console.log(date, time, name, phone, address, description);
-
-                // 모달에 데이터 설정
-                $('#modal-date').text(date + ' ' + time);
-                $('#modal-name').text(name);
-                $('#modal-phone').text(phone);
-                $('#modal-address').text(address);
-                $('#modal-description').html(description); // HTML 태그가 있는 경우 .html() 사용
-
-                // 모달 표시
-                $('#modal').show();
-            });
-
-            // 모달 닫기 버튼 클릭 시
-            $('.btn-close-modal').on('click', function() {
-                $('#modal').hide();
-            });
-
-            // 확인 버튼 클릭 시 데이터 전송
-            $('#confirm-btn').on('click', function(event) {
-                event.preventDefault(); // 기본 링크 동작 방지
-
-                // 폼 데이터 가져오기
-                var date = $('input[name="date"]').val();
-                var time = $('input[name="time"]').val();
-                var name = $('.master-name').text().trim();
-                var phone = $('#phoneNum').val();
-                var address = $('input[name="address"]').val();
-                var description = $('textarea[name="content"]').val();
-
-                // AJAX 요청
-                $.ajax({
-                    url: '/api/insertRequest', // 서버측 엔드포인트
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        date: date,
-                        time: time,
-                        name: name,
-                        phone: phone,
-                        address: address,
-                        description: description
-                    }),
-                    success: function(response) {
-                        // 서버 응답 성공 시 처리
-                        alert('예약이 성공적으로 등록되었습니다.');
-                        // 모달 유지
-                    },
-                    error: function(xhr, status, error) {
-                        // 서버 응답 실패 시 처리
-                        alert('예약 등록에 실패했습니다. 다시 시도해 주세요.');
-                    }
-                });
-            });
-        });
-
 	</script>
 	<!-- //api -->
 

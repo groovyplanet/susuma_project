@@ -285,7 +285,7 @@ public class BoardServiceImpl implements BoardService {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('권한이 없는 사람입니다.');");
+			out.println("alert('작성자 본인만 확인할 수 있습니다.');");
 			out.println("location.href='/Susuma/board/list.board?type=ask';");
 			out.println("</script>");
 		}
@@ -318,6 +318,32 @@ public class BoardServiceImpl implements BoardService {
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("ask_write.jsp").forward(request, response);
 
+	}
+	@Override
+	public void noticeGetView(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		/* [1] 매개변수 */
+		String boNo = request.getParameter("boNo");
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession();
+		BoardMapper Board = sql.getMapper(BoardMapper.class);
+		BoardDTO dto = Board.selectBoard(boNo);
+		sql.close();
+		
+		SqlSession sql2 = sqlSessionFactory.openSession();
+		BoardMapper Board2 = sql2.getMapper(BoardMapper.class);
+		BoardDTO sidedto = Board2.getPreNext(boNo);
+		sql.close();
+
+		/* [3] 화면이동 */
+		request.setAttribute("type", dto.getType());
+		request.setAttribute("sidedto", sidedto);
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("/board/notice_view.jsp").forward(request, response);
+		
+		
 	}
 
 }

@@ -35,7 +35,6 @@
 											<textarea name="content" id="content" class="form-control" cols="50" rows="20"> ${dto.content }</textarea>
 										</div>
 									</div>
-
 								</div>
 							</div>
 							<p class="text-center">

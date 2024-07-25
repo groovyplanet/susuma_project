@@ -16,6 +16,10 @@ public class BoardDTO {
 	private Timestamp answerUpdateTime;
 	private String name;
 	private int rn; // 페이징 처리
+	private int next;
+	private int last;
+	private String nextTitle;
+	private String lastTitle;
 
 	public BoardDTO() {
 		super();
@@ -44,6 +48,43 @@ public class BoardDTO {
 		this.answerUpdateTime = answerUpdateTime;
 		this.name = name;
 		this.rn = rn;
+	}
+	
+	
+	
+
+	
+
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+
+	public int getLast() {
+		return last;
+	}
+
+	public void setLast(int last) {
+		this.last = last;
+	}
+
+	public String getNextTitle() {
+		return nextTitle;
+	}
+
+	public void setNextTitle(String nextTitle) {
+		this.nextTitle = nextTitle;
+	}
+
+	public String getLastTitle() {
+		return lastTitle;
+	}
+
+	public void setLastTitle(String lastTitle) {
+		this.lastTitle = lastTitle;
 	}
 
 	public int getBoNo() {
