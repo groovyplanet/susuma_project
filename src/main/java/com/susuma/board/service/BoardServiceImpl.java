@@ -280,6 +280,7 @@ public class BoardServiceImpl implements BoardService {
 
 		if (meNo == dto.getMeNo()) {
 			request.setAttribute("dto", dto);
+			request.setAttribute("type", dto.getType());
 			request.getRequestDispatcher("ask_view.jsp").forward(request, response);
 		} else {
 			response.setContentType("text/html; charset=UTF-8;");
