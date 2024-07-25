@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="com.susuma.member.model.MemberDTO"%>
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -27,10 +27,10 @@
 						</div>
 						<div class="infodetail">
 							<div class="member-name">
-								<strong>의뢰인 성함 : </strong> <span>벨기에재즈퀸서희</span>
+								<strong>마스터님 성함 : </strong> <span>${dto.masterName }</span>
 							</div>
 							<div class="member-map">
-								<strong>위치 : </strong> 강남구
+								<strong>위치 : </strong> ${dto.address }
 							</div>
 							<div class="repair-type">
 								<strong>수리 희망 분야 :</strong> [CSS / 백엔드]
@@ -45,29 +45,36 @@
 						<div id="map" style="width: 500px; height: 400px;"></div>
 					</div>
 
-
+				<form action="reviewForm.member" method="post" id="form-review">
 					<div class="review-box-content">
 						<div class="detail-content">수리 리뷰 상세</div>
 						<div class="review-input">
 							<div class="review-rating">
 								서비스는 어떠셨나요?
 								<div class="stars">★★★★☆</div>
-
 							</div>
-							<label for="title"> 기사님이 불친절했어요. </label> <label for="content">
-								<div class="file-list">
-									<span class="file-item"><img src="/resources/img/example1.jpeg" alt="" style="width: 100px; height: 100px;"></span> <span class="file-item"><img src="/resources/img/example2.jpg" alt="" style="width: 100px; height: 100px;"></span> <span class="file-item"><img src="/resources/img/example3.jpg" alt="" style="width: 100px; height: 100px;"></span>
-
+							<div class="review-title">
+								<label for="title">제목 :</label> <input type="text" id="title" placeholder="후기 제목을 입력해 주세요.">
+							</div>
+							
+							<div class="review-content">
+								<label for="content">내용 :</label>
+								<textarea id="content" placeholder="후기 내용을 입력해 주세요."></textarea>
+							</div>
+							<div class="file-attachment">
+								파일 첨부 <input type="file" id="file-upload" multiple="">
+								<div class="file-list" id="file-list">
+									<span class="file-item">수리사진01.png</span> <span class="file-item">수리사진02.png</span> <span class="file-item">수리사진03.png</span> <span class="file-item">수리사진04.png</span>
 								</div>
-							</label>
-
-
+							</div>
+							<div class="action-buttons">
+								<button class="btn cancel" onclick="cancelReview()">취소</button>
+								<button class="btn save" onclick="saveReview()">저장</button>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-
+					</form>
+			
 	</section>
 
 	<%@ include file="../include/footer.jsp"%>
@@ -97,8 +104,8 @@
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6e324617d728d10d01ca7e36c2a14bf1&libraries=services,clusterer&autoload=false"></script>
 	<script>
 		// 위도, 경도 변수 세팅 
-		var latitude = 37.4996310406531; // 위도(가로선) -> 높을수록 y좌표 값이 커짐
-		var longitude = 127.030473092157; // 경도(세로선) -> 높을수록 x좌표 값이 커짐
+		var latitude = ${dto.latitude}; // 위도(가로선) -> 높을수록 y좌표 값이 커짐
+		var longitude = ${dto.longitude}; // 경도(세로선) -> 높을수록 x좌표 값이 커짐
 
 		kakao.maps
 				.load(function() {

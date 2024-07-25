@@ -11,7 +11,8 @@
 			<div class="main-area request">
 				<div class="title">수리 예약</div>
 				<div class="join-form request-form">
-					<form action="request.user" method="post" id="form-request">
+					<!-- ajax로 처리 -->
+					<form method="post" id="form-request">
 					<input type="hidden" name="masterNo" value="${dto.meNo }">
 						<div class="info-area">
 							<div class="title-main">수리기사 정보</div>

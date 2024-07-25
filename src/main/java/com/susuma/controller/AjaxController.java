@@ -89,7 +89,7 @@ public class AjaxController extends HttpServlet {
 			out.flush();
 
 		} else if (command.equals("/member/insertRequest.ajax")) {
-			
+			String reqNo = request.getParameter("reqNo");
 			String masterNo = request.getParameter("masterNo");
 			HttpSession session = request.getSession();
 			String clientNo = (String) session.getAttribute("meNo");
@@ -102,7 +102,7 @@ public class AjaxController extends HttpServlet {
 			Double longitude = (request.getParameter("longitude"))==null ? 0.0: Double.parseDouble(request.getParameter("longitude")) ;
 			String phoneNum = request.getParameter("phoneNum");
 			
-			RequestDTO dto = new RequestDTO(masterNo, clientNo, content, requestDate, requestTime, address, addressDetail, latitude, longitude, phoneNum);
+			RequestDTO dto = new RequestDTO(reqNo, masterNo, clientNo, content, requestDate, requestTime, address, addressDetail, latitude, longitude, phoneNum , null , null);
 
 			SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 			SqlSession sql = sqlSessionFactory.openSession(true);

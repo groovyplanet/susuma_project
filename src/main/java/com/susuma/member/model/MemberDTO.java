@@ -6,9 +6,19 @@ public class MemberDTO {
 
 	// MEMBER 테이블
 	private String meNo; // "ME_NO"
+	private String clientNo; // "CLIENT_NO"
 	private String type; // "TYPE"
 	private String email; // "EMAIL"
+	public String getClientNo() {
+		return clientNo;
+	}
+
+	public void setClientNo(String clientNo) {
+		this.clientNo = clientNo;
+	}
+
 	private String pw; // "PW"
+
 	private String name; // "NAME"
 	private String address; // "ADDRESS"
 	private String addressDetail; // "ADDRESS_DETAIL"

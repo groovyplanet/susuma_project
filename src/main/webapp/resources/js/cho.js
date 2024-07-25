@@ -669,8 +669,8 @@ document.addEventListener("DOMContentLoaded", function() {
 						// insert 완료, 모달창 보여주기
 
 						// 폼 데이터 가져오기
-						var date = $('input[name="date"]').val();
-						var time = $('input[name="time"]').val();
+						var date = $('input[name="requestDate"]').val();
+						var time = $('input[name="requestTime"]').val();
 						var name = $('.master-name').text().trim();
 						var phone = $('#phoneNum').val();
 						var address = $('input[name="address"]').val();
