@@ -92,5 +92,10 @@
         
 	</select>
 	
+	<update id="insertReply" parameterType="com.susuma.board.model.BoardDTO">
+		UPDATE BOARD SET ANSWER =#{answer} , ANSWER_INSERT_TIME= SYSDATE
+		WHERE BO_NO=#{boNo}
+	</update>
+	
 	
 </mapper>

@@ -13,12 +13,19 @@
 		<div class="content_wrap">
 			<div class="title_wrap">
 				<span>${type=='notice'?'공지사항':type=='faq'?'FAQ':'1:1 문의' } 목록</span>
+				<c:choose>
+				<c:when test="${type=='notice'||type=='faq' }">
 				<div class="btn_wrap">
 					<a href="write.board?type=${type }" class="btn">
 						<i class="bi bi-pencil-square"></i>
 						작성
 					</a>
 				</div>
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+				
+				</c:choose>
 			</div>
 			<form name="searchForm" action="list.board" method="get">
 				<input type="hidden" name="type" value="${type}">

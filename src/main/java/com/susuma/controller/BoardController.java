@@ -102,15 +102,14 @@ public class BoardController extends HttpServlet {
 			}
 			service.askGetView(request, response);
 
-			
 		} else if (command.equals("/board/modifyAsk.board")) { //수정화면
-			
 			service.askModify(request, response);
-
-		} 
-
 		} else if(command.equals("/board/notice/view.board")) {
 			service.noticeGetView(request, response);
+		} else if(command.equals("/admin/board/replyWrite.board")) { //관리자 답글화면
+			service.adminReplyWrite(request, response);
+		} else if(command.equals("/admin/board/replyWriteForm.board")) {
+			service.adminReplyRegister(request, response);
 		}
 
 	}

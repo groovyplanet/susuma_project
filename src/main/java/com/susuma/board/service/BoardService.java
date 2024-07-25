@@ -26,5 +26,9 @@ public interface BoardService {
 	void askModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void noticeGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	void adminReplyWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	void adminReplyRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }
