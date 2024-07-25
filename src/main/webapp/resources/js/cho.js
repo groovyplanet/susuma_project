@@ -53,7 +53,7 @@ $(document).ready(function() {
 						inputArea.addClass("duplicate-no");
 					}
 				})
-				
+
 		} else {
 			inputArea.addClass("error");
 			inputArea.removeClass("duplicate-yes duplicate-no");
@@ -73,12 +73,12 @@ $(document).ready(function() {
 		else inputArea.addClass("error-re");
 	});
 
-	$(".main-area.join .join-form #phone_num").keyup(function() { // 연락처 자동 대쉬
+	$(".main-area.join .join-form #phoneNum").keyup(function() { // 연락처 자동 대쉬
 		if ($(this).val().length == 11) {
 			$(this).val($(this).val().replace(/[^0-9]/, "").replace(/^(010)(\d{4})(\d{4})$/, `$1-$2-$3`));
 		}
 	});
-	$(".main-area.join .join-form #phone_num").blur(function() { // 연락처
+	$(".main-area.join .join-form #phoneNum").blur(function() { // 연락처
 		var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
 		if (regex.test($(this).val()) || $(this).val() == "") $(this).parent().removeClass("error");
 		else $(this).parent().addClass("error");
@@ -162,8 +162,8 @@ $(document).ready(function() {
 			return false;
 		}
 		// 연락처
-		if ($("input[name=phone_num]").parent().hasClass("error")) {
-			$("input[name=phone_num]").focus();
+		if ($("input[name=phoneNum]").parent().hasClass("error")) {
+			$("input[name=phoneNum]").focus();
 			return false;
 		}
 		// 사업자등록번호
@@ -254,14 +254,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 
 		// 연락처 자동 대쉬
-		profileEdit.querySelector("#phone_num").addEventListener('keyup', function() {
+		profileEdit.querySelector("#phoneNum").addEventListener('keyup', function() {
 			if (this.value.length === 11) {
 				this.value = this.value.replace(/[^0-9]/g, "").replace(/^(010)(\d{4})(\d{4})$/, '$1-$2-$3');
 			}
 		});
 
 		// 연락처 유효성 검사
-		profileEdit.querySelector("#phone_num").addEventListener('blur', function() {
+		profileEdit.querySelector("#phoneNum").addEventListener('blur', function() {
 			var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
 			if (regex.test(this.value) || this.value == "") {
 				this.parentElement.classList.remove("error");
@@ -353,8 +353,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				return false;
 			}
 			// 연락처
-			if (document.querySelector("input[name=phone_num]").parentElement.classList.contains("error")) {
-				document.querySelector("input[name=phone_num]").focus();
+			if (document.querySelector("input[name=phoneNum]").parentElement.classList.contains("error")) {
+				document.querySelector("input[name=phoneNum]").focus();
 				return false;
 			}
 
@@ -403,13 +403,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	if (requestArea) {
 
 		// 연락처 자동 대쉬
-		requestArea.querySelector("#phone_num").addEventListener('keyup', function() {
+		requestArea.querySelector("#phoneNum").addEventListener('keyup', function() {
 			if (this.value.length === 11) {
 				this.value = this.value.replace(/[^0-9]/g, "").replace(/^(010)(\d{4})(\d{4})$/, '$1-$2-$3');
 			}
 		});
 		// 연락처 유효성 검사
-		requestArea.querySelector("#phone_num").addEventListener('blur', function() {
+		requestArea.querySelector("#phoneNum").addEventListener('blur', function() {
 			var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
 			if (regex.test(this.value) || this.value == "") {
 				this.parentElement.classList.remove("error");
@@ -650,15 +650,46 @@ document.addEventListener("DOMContentLoaded", function() {
 				return false;
 			}
 			// 연락처
-			if (document.querySelector("input[name=phone_num]").parentElement.classList.contains("error")) {
-				document.querySelector("input[name=phone_num]").focus();
+			if (document.querySelector("input[name=phoneNum]").parentElement.classList.contains("error")) {
+				document.querySelector("input[name=phoneNum]").focus();
 				return false;
 			}
 
-			document.getElementById('request-complete-modal').classList.add('show');
 
-			// submit 
-			//this.submit(); // db 저장 후 다시 돌아와서 모달창 보이기
+			// ajax로 db 저장 후 다시 돌아와서 모달창 보이기
+			console.log(formRequest.querySelector("textarea[name=content]").value);
+			const formData = new FormData(formRequest);
+			fetch('insertRequest.ajax', {
+				method: 'POST',
+				body: formData
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.available) {
+						// insert 완료, 모달창 보여주기
+
+						// 폼 데이터 가져오기
+						var date = $('input[name="date"]').val();
+						var time = $('input[name="time"]').val();
+						var name = $('.master-name').text().trim();
+						var phone = $('#phoneNum').val();
+						var address = $('input[name="address"]').val();
+						var description = $('textarea[name="content"]').val();
+
+						// 데이터 출력 확인
+						console.log(date, time, name, phone, address, description);
+
+						// 모달에 데이터 설정
+						$('#modal-date').text(date + ' ' + time);
+						$('#modal-name').text(name);
+						$('#modal-phone').text(phone);
+						$('#modal-address').text(address);
+						$('#modal-description').html(description); // HTML 태그가 있는 경우 .html() 사용
+
+						document.getElementById('request-complete-modal').classList.add('show');
+					}
+				})
+
 		})
 	} //if (requestArea)
 

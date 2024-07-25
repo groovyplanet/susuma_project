@@ -6,5 +6,7 @@ public interface RequestMapper {
 
 	public ArrayList<RequestDTO> getList();
 
+	public int insertRequest(RequestDTO dto);
+
 	
 }
