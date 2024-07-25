@@ -22,13 +22,10 @@
 					<button type="submit" class="btn">
 					
 						<i class="bi bi-pencil-square"></i>
-						작성
+						완료
 					
 					</button>
-					<a href="modify.board?boNo=${dto.boNo }" class="btn">
-						<i class="bi bi-pencil-square"></i>
-						수정
-					</a>
+					
 					<a href="delete.board?boNo=${dto.boNo }&type=${dto.type}" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?')">
 						<i class="bi bi-trash3"></i>
 						삭제
@@ -36,7 +33,7 @@
 				</div>
 			</div>
 			<div class="table_wrap">
-				<table class="view" id="board_view">
+				<table class="view write" id="board_view">
 					<tr>
 						<th class="wp13">게시글 번호</th>
 						<td class="wp37">${dto.boNo}</td>
@@ -64,7 +61,7 @@
 					<c:if test="${dto.type == 'ask' }">
 						<tr>
 							<th>답변</th>
-							<td colspan="3"><input type="text" name="answer" value="" required> </td>
+							<td colspan="3"><textarea  name="answer"  required></textarea> </td>
 						</tr>
 						<tr>
 							<th>답변 작성 일시</th>

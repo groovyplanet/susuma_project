@@ -24,14 +24,14 @@
 				<c:otherwise>
 				<a href="replyWrite.board?type=${type }&boNo=${dto.boNo}" class="btn">
 						<i class="bi bi-pencil-square"></i>
-						작성
+						답변작성
 					</a>
 				</c:otherwise>
 				
 				</c:choose>
 					<a href="modify.board?boNo=${dto.boNo }" class="btn">
 						<i class="bi bi-pencil-square"></i>
-						수정
+						문의수정
 					</a>
 					<a href="delete.board?boNo=${dto.boNo }&type=${dto.type}" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?')">
 						<i class="bi bi-trash3"></i>
