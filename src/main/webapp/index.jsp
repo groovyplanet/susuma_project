@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="include/head.jsp"%>
 <style>
@@ -46,11 +48,11 @@
 					<div class="main-imgbox-kim">
 						<div class="main-img-kim">
 
-							<a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/repair.png" alt="가전제품"> 가전제품
-							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/door.png" alt="문"> 문/창문
-							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/susudo.png" alt="수도"> 수도/보일러/전기
-							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/fusu.png" alt="가구"> 가구
-							</a> <a href="${pageContext.request.contextPath }/user/master_list.jsp"> <img src="${pageContext.request.contextPath }/resources/img/etcrepair.png" alt="수리"> 기타 설치/수리
+							<a href="${pageContext.request.contextPath }/member/masterList.member"> <img src="${pageContext.request.contextPath }/resources/img/repair.png" alt="가전제품"> 가전제품
+							</a> <a href="${pageContext.request.contextPath }/member/masterList.member"> <img src="${pageContext.request.contextPath }/resources/img/door.png" alt="문"> 문/창문
+							</a> <a href="${pageContext.request.contextPath }/member/masterList.member"> <img src="${pageContext.request.contextPath }/resources/img/susudo.png" alt="수도"> 수도/보일러/전기
+							</a> <a href="${pageContext.request.contextPath }/member/masterList.member"> <img src="${pageContext.request.contextPath }/resources/img/fusu.png" alt="가구"> 가구
+							</a> <a href="${pageContext.request.contextPath }/member/masterList.member"> <img src="${pageContext.request.contextPath }/resources/img/etcrepair.png" alt="수리"> 기타 설치/수리
 							</a>
 						</div>
 					</div>
@@ -62,12 +64,16 @@
 				<div class="main-master-intro">
 					<h3>마법의 실력을가진 마스터님들</h3>
 				</div>
+			<!-- 	<c:forEach var="dto" items="${list}" begin="0" end="2"> -->
+
 				<div class="main-master-kim">
 					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp"> <img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>한정우</h3>
 						<p>별점: 4.5 (114)</p>
 						<p>지역: 서울시 강남구 (10km 이내 가능)</p>
 						<p>안녕하세요 저는 백엔드 유지보수 경력 15년의 경력을 보유했습니다.</p>
+				<!-- 		</c:forEach> -->
+						
 					</a> <a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp"> <img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
 						<h3>조예원</h3>
 						<p>별점: 5.0 (229)</p>
