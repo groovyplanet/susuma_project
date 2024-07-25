@@ -87,6 +87,14 @@ public class BoardController extends HttpServlet {
  
 		} else if (command.equals("/board/ask/regist.board")) {
 			service.askregist(request, response);
+		} else if (command.equals("/board/ask_view.board")) {
+			HttpSession session = request.getSession();
+			String meNo = (String)session.getAttribute("meNo");
+			if(meNo == null) {
+				response.sendRedirect("/Susuma/index.jsp");
+				return;
+			}
+			service.askGetView(request, response);
 		}
 
 	}

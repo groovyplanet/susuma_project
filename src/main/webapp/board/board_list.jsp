@@ -57,7 +57,7 @@
 											</c:choose>
 										</div>
 										<div class="content-title">
-											<a href="${pageContext.request.contextPath }/board/ask_view.jsp">${dto.title }</a>
+											<a href="${pageContext.request.contextPath }/board/ask_view.board?boNo=${dto.boNo}">${dto.title }</a>
 											<div>
 												<p>
 													<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
