@@ -4,8 +4,8 @@ import java.security.Timestamp;
 
 public class ReviewDTO {
 
-	private String reNo;
-	private String reqNo;
+    private int reNo; // reNo는 자동 생성
+    private String reqNo; // reqNo를 int 타입으로 선언
 	private String masterNo;
 	private String clientNo;
 	private String content;
@@ -16,8 +16,11 @@ public class ReviewDTO {
 	public ReviewDTO() {
 		super();
 	}
+	
+	
 
-	public ReviewDTO(String reNo, String reqNo, String masterNo, String clientNo, String content, int starScore, Timestamp insertTime, Timestamp updateTime) {
+	public ReviewDTO(int reNo, String reqNo, String masterNo, String clientNo, String content, int starScore,
+			Timestamp insertTime, Timestamp updateTime) {
 		super();
 		this.reNo = reNo;
 		this.reqNo = reqNo;
@@ -29,11 +32,13 @@ public class ReviewDTO {
 		this.updateTime = updateTime;
 	}
 
-	public String getReNo() {
+
+
+	public int getReNo() {
 		return reNo;
 	}
 
-	public void setReNo(String reNo) {
+	public void setReNo(int reNo) {
 		this.reNo = reNo;
 	}
 
@@ -92,5 +97,7 @@ public class ReviewDTO {
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-
 }
+	
+
+	

@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.susuma.member.model.MemberDTO"%>
+<%@ page import="com.susuma.request.model.RequestDTO"%>
 <%@ include file="../include/head.jsp"%>
 </head>
+<style>
+.stars {
+	display: flex;
+	cursor: pointer;
+}
+
+.star {
+	font-size: 4rem;
+	color: lightgray;
+}
+
+.star.checked {
+	color: gold;
+}
+
+.hidden-input {
+	display: none;
+}
+</style>
+
 
 <body class="request-view">
 	<%@ include file="../include/header.jsp"%>
@@ -45,41 +66,82 @@
 						<div id="map" style="width: 500px; height: 400px;"></div>
 					</div>
 
-				<form action="reviewForm.member" method="post" id="form-review">
-					<div class="review-box-content">
-						<div class="detail-content">수리 리뷰 상세</div>
-						<div class="review-input">
-							<div class="review-rating">
-								서비스는 어떠셨나요?
-								<div class="stars">★★★★☆</div>
-							</div>
-							<div class="review-title">
-								<label for="title">제목 :</label> <input type="text" id="title" placeholder="후기 제목을 입력해 주세요.">
-							</div>
-							
-							<div class="review-content">
-								<label for="content">내용 :</label>
-								<textarea id="content" placeholder="후기 내용을 입력해 주세요."></textarea>
-							</div>
-							<div class="file-attachment">
-								파일 첨부 <input type="file" id="file-upload" multiple="">
-								<div class="file-list" id="file-list">
-									<span class="file-item">수리사진01.png</span> <span class="file-item">수리사진02.png</span> <span class="file-item">수리사진03.png</span> <span class="file-item">수리사진04.png</span>
+					<form action="reviewForm.review" method="post" id="form-review">
+						<input type="hidden" name="reqNo" value="${reqNo}">
+						<div class="review-box-content">
+							<div class="detail-content">수리 리뷰 상세</div>
+							<div class="review-input">
+								<div class="review-rating">
+									서비스는 어떠셨나요?
+									<div class="stars">
+										<span class="star" data-value="1">★</span> <span class="star" data-value="2">★</span> <span class="star" data-value="3">★</span> <span class="star" data-value="4">★</span> <span class="star" data-value="5">★</span>
+									</div>
+									<input type="hidden" id="starScore" name="starScore" value="0">
+									<!-- 별점 hidden 필드 추가 -->
+									<div class="review-title">
+										<label for="title">제목 :</label> <input type="text" id="title" name="title" placeholder="후기 제목을 입력해 주세요.">
+									</div>
+									<div class="review-content">
+										<label for="content">내용 :</label>
+										<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요."></textarea>
+									</div>
+									<div class="file-attachment">
+										파일 첨부 <input type="file" id="file-upload" name="files" multiple>
+										<div class="file-list" id="file-list">
+											<span class="file-item">수리사진01.png</span> <span class="file-item">수리사진02.png</span> <span class="file-item">수리사진03.png</span> <span class="file-item">수리사진04.png</span>
+										</div>
+									</div>
+									<div class="action-buttons">
+										<button type="button" class="btn cancel" onclick="cancelReview()">취소</button>
+										<button type="submit" class="btn save" onclick="saveReview()">저장</button>
+									</div>
 								</div>
 							</div>
-							<div class="action-buttons">
-								<button class="btn cancel" onclick="cancelReview()">취소</button>
-								<button class="btn save" onclick="saveReview()">저장</button>
-							</div>
 						</div>
-					</div>
 					</form>
-			
 	</section>
 
 	<%@ include file="../include/footer.jsp"%>
 
 	<script>
+	 // 별점 선택 기능
+    document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            document.querySelectorAll('.star').forEach(s => {
+                s.classList.remove('checked');
+            });
+            for (let i = 0; i < value; i++) {
+                document.querySelectorAll('.star')[i].classList.add('checked');
+            }
+            document.getElementById('rating').value = value;
+        });
+    });
+	 
+    document.addEventListener('DOMContentLoaded', () => {
+        const stars = document.querySelectorAll('.stars .star');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                stars.forEach(s => s.classList.remove('selected'));
+                star.classList.add('selected');
+                document.getElementById('starScore').value = star.getAttribute('data-value');
+            });
+        });
+    });
+	 
+ // 파일 업로드 기능 (선택사항, 필요시 구현)
+    document.getElementById('file-upload').addEventListener('change', function() {
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = '';
+        for (let i = 0; i < this.files.length; i++) {
+            const fileItem = document.createElement('span');
+            fileItem.classList.add('file-item');
+            fileItem.textContent = this.files[i].name;
+            fileList.appendChild(fileItem);
+        }
+    });
+	
+	
 		function showEditForm() {
 			document.getElementById('edit-button').style.display = 'none';
 			document.getElementById('edit-form').style.display = 'flex';

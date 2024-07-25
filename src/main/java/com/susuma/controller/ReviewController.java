@@ -2,6 +2,7 @@ package com.susuma.controller;
 
 import java.io.IOException;
 
+import com.susuma.request.service.RequestServiceImpl;
 import com.susuma.review.service.ReviewService;
 import com.susuma.review.service.ReviewServiceImpl;
 
@@ -45,6 +46,9 @@ public class ReviewController extends HttpServlet {
 			service = new ReviewServiceImpl();
 			service.getList(request, response);
 
+		}else if(command.equals("/member/reviewForm.review")) {
+			service = new ReviewServiceImpl();
+			service.submitReview(request,response);
 		}
 
 	}

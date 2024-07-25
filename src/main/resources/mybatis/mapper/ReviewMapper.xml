@@ -8,5 +8,15 @@
 	<select id="getList" resultType="com.susuma.review.model.ReviewDTO">
 		SELECT * FROM REVIEW ORDER BY RE_NO
 	</select>
-
+	
+	 <select id="getMasterNoByReqNo" parameterType="int" resultType="string">
+        SELECT master_no
+        FROM request
+        WHERE req_no = #{reqNo}
+    </select>
+	
+	<insert id="insertReview" parameterType="com.susuma.review.model.ReviewDTO" useGeneratedKeys="true" keyProperty="reNo">
+    INSERT INTO REVIEW (re_no, req_no, content, star_score, insert_time, update_time)
+    VALUES (review_seq.NEXTVAL, #{reqNo}, #{content}, #{starScore}, SYSDATE, SYSDATE)
+</insert>
 </mapper>

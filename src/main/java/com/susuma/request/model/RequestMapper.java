@@ -13,4 +13,6 @@ public interface RequestMapper {
 	public int insertRequest(RequestDTO dto);
 
 	public RequestDTO getRequestByNo(String reqNo);
+	
+	RequestDTO getRequestByReqNo(String reqNo);
 }
