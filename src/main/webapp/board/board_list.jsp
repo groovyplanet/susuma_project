@@ -21,7 +21,7 @@
 											<p>${totalRecords - dto.rn + 1}</p>
 										</div>
 										<div class="content-title">
-											<a href="${pageContext.request.contextPath }/board/notice_view.jsp">${dto.title}</a>
+											<a href="${pageContext.request.contextPath }/board/notice/view.board?boNo=${dto.boNo}">${dto.title}</a>
 											<p>
 												<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
 											</p>
