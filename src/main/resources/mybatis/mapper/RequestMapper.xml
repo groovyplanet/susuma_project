@@ -10,8 +10,8 @@
 	</select>
 	
 	<insert id="insertRequest" parameterType="com.susuma.request.model.RequestDTO">
-    INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, DATE, TIME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM)
-    VALUES (REQUEST_SEQ.NEXTVAL, #{masterNo}, #{clientNo}, #{content}, #{date}, #{time}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum})
+    INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, REQUEST_DATE, REQUEST_TIME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM)
+    VALUES (REQUEST_SEQ.NEXTVAL, #{masterNo}, #{clientNo}, #{content}, #{requestDate}, #{requestTime}, #{address}, #{addressDetail}, #{latitude}, #{longitude}, #{phoneNum})
 </insert>
 
 	

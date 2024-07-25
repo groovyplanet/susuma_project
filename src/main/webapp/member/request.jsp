@@ -94,8 +94,8 @@
 								<i class="bi bi-info-circle"></i>
 								주소 및 연락처 수정 시 회원정보 갱신
 							</span>
-							<input type="hidden" name="date" value="">
-							<input type="hidden" name="time" value="">
+							<input type="hidden" name="requestDate" value="">
+							<input type="hidden" name="requestTime" value="">
 						</div>
 						<div class="input-area">
 							<label for="address" class="required">주소</label>
