@@ -9,4 +9,10 @@
 		SELECT * FROM REQUEST ORDER BY REQ_NO
 	</select>
 	
+	<insert id="insertRequest" parameterType="com.susuma.request.model.RequestDTO">
+		INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, PHONE_NUM)
+		VALUES (REQUEST_SEQ.NEXTVAL, 1, 1, #{content}, #{phoneNum}
+		)
+	</insert>
+	
 </mapper>
