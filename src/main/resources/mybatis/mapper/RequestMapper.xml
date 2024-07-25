@@ -33,6 +33,9 @@
         JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
         WHERE R.REQ_NO = #{reqNo}
 	</select>
+	   <select id="getRequestByReqNo" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
+        SELECT * FROM REQUEST WHERE REQ_NO = #{reqNo}
+    </select>
 	
 
 </mapper>
