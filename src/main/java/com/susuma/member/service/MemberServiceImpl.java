@@ -388,8 +388,7 @@ public class MemberServiceImpl implements MemberService {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('정상적으로 로그인되었습니다.');");
-			// out.println("location.href = document.referrer;"); // 이전 페이지 보여주기
+			//out.println("alert('정상적으로 로그인되었습니다.');");
 			out.println("var url = new URL(document.referrer);");
 			out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
 			out.println("location.href = url.toString();"); // 수정된 URL로 리디렉션

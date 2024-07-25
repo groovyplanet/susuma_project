@@ -19,9 +19,12 @@ public interface BoardService {
 
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
-	void askregist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void askUpsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void askGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
+
+	void askModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void noticeGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 }

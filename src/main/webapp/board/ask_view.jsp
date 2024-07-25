@@ -36,8 +36,8 @@
 							</div>
 						</div>
 						<div class="content-controll">
-							<a href="${pageContext.request.contextPath }/board/ask/modify.board?boNo=${dto.boNo}">수정</a>
-							<a href="${pageContext.request.contextPath }/board/ask/delete.board?boNo=${dto.boNo}">삭제</a>
+							<a href="${pageContext.request.contextPath }/board/modifyAsk.board?boNo=${dto.boNo}">수정</a>
+							<a href="${pageContext.request.contextPath }/board/deleteAsk.board?boNo=${dto.boNo}">삭제</a>
 						</div>
 					</div>
 					<div class="content-detail-box">

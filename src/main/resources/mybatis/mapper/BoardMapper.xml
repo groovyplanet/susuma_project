@@ -55,7 +55,7 @@
 
 	<!-- [4] 게시물 수정 -->
 	<update id="updateBoard" parameterType="com.susuma.board.model.BoardDTO">
-		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},UPDATE_TIME=#{updateTime}
+		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},UPDATE_TIME = SYSDATE
 		WHERE BO_NO=#{boNo}
 	</update>
 

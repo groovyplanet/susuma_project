@@ -30,7 +30,8 @@ public class BoardController extends HttpServlet {
 		doAction(req, resp);
 	}
 
-	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doAction(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
 
@@ -71,30 +72,43 @@ public class BoardController extends HttpServlet {
 
 		} else if (command.equals("/board/list.board")) { // 사용자 화면 게시물 목록
 
-			//request.setAttribute("key","value"); // 사용자 화면만 별도로 파라미터 지정할 경우 사용, getAttribute로 꺼내기
+			// request.setAttribute("key","value"); // 사용자 화면만 별도로 파라미터 지정할 경우 사용,
+			// getAttribute로 꺼내기
 			service.getList(request, response); // 관리자 게시물 목록과 동일한 메서드 사용
+
 		} else if (command.equals("/board/ask/write.board")) { // 1:1문의 작성화면
 			
 			HttpSession session = request.getSession();
-			String meNo = (String)session.getAttribute("meNo");
-			
-			if(meNo == null) {
+			String meNo = (String) session.getAttribute("meNo");
+
+			if (meNo == null) {
 				response.sendRedirect("/Susuma/index.jsp");
 				return;
 			}
-			
+
 			request.getRequestDispatcher("/board/ask_write.jsp").forward(request, response);
- 
-		} else if (command.equals("/board/ask/regist.board")) { // 1:1문의 등록
-			service.askregist(request, response);
-		} else if (command.equals("/board/ask_view.board")) { // 1:1문의 상세
+
+		} else if (command.equals("/board/registAskForm.board")) { //등록 & 수정완료
+			
+			service.askUpsert(request, response);
+			
+		} else if (command.equals("/board/ask_view.board")) {
+
 			HttpSession session = request.getSession();
-			String meNo = (String)session.getAttribute("meNo");
-			if(meNo == null) {
+			String meNo = (String) session.getAttribute("meNo");
+			if (meNo == null) {
 				response.sendRedirect("/Susuma/index.jsp");
 				return;
 			}
 			service.askGetView(request, response);
+
+			
+		} else if (command.equals("/board/modifyAsk.board")) { //수정화면
+			
+			service.askModify(request, response);
+
+		} 
+
 		} else if(command.equals("/board/notice/view.board")) {
 			service.noticeGetView(request, response);
 		}
