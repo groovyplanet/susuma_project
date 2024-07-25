@@ -9,7 +9,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.susuma.board.model.BoardMapper;
 import com.susuma.category.model.CategoryDTO;
 import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
@@ -39,10 +38,11 @@ public class MemberServiceImpl implements MemberService {
 		String phoneNum = request.getParameter("phoneNum");
 		String address = request.getParameter("address");
 		String addressDetail = request.getParameter("addressDetail");
-		Double latitude = Double.parseDouble(request.getParameter("latitude"));
-		Double longitude = Double.parseDouble(request.getParameter("longitude"));
+		Double latitude = (request.getParameter("latitude") != null && !request.getParameter("latitude").isEmpty()) ? Double.parseDouble(request.getParameter("latitude")) : 0.0;
+		Double longitude = (request.getParameter("longitude") != null && !request.getParameter("longitude").isEmpty()) ? Double.parseDouble(request.getParameter("longitude")) : 0.0;
 		String emailNotification = request.getParameter("emailNotification");
 		emailNotification = emailNotification == null ? "N" : emailNotification;
+		String profilePhoto = request.getParameter("profilePhoto");
 		String businessNumber = request.getParameter("businessNumber");
 		String shortDescription = request.getParameter("shortDescription");
 		String maxDistance = request.getParameter("maxDistance");
@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService {
 		String status = request.getParameter("status");
 		status = status == null ? "NORMAL" : status;
 
-		return new MemberDTO(meNo, type, email, pw, name, phoneNum, address, addressDetail, latitude, longitude, emailNotification, businessNumber, shortDescription, maxDistance, description, workHours, joinApproval, caNo, point, status);
+		return new MemberDTO(meNo, type, email, pw, name, phoneNum, address, addressDetail, latitude, longitude, emailNotification, profilePhoto, businessNumber, shortDescription, maxDistance, description, workHours, joinApproval, caNo, point, status);
 	}
 
 	// 데이터베이스 작업
@@ -388,7 +388,7 @@ public class MemberServiceImpl implements MemberService {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			//out.println("alert('정상적으로 로그인되었습니다.');");
+			// out.println("alert('정상적으로 로그인되었습니다.');"); // 임시 주석
 			out.println("var url = new URL(document.referrer);");
 			out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
 			out.println("location.href = url.toString();"); // 수정된 URL로 리디렉션
@@ -497,9 +497,10 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("master_view.jsp").forward(request, response);
 
-	}@Override
-	public void getMemberDetails(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	}
+
+	@Override
+	public void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo"); // 세션 값 가져오기 (*)
 
@@ -507,19 +508,16 @@ public class MemberServiceImpl implements MemberService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		MemberDTO dto = Member.getMemberByNo(meNo);
-		
+
 		/* [3] 화면이동 */
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("request.jsp").forward(request, response);
-		
-		
-		
-	}@Override
-	public void reviewWrite(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
+	@Override
+	public void reviewWrite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+
+	}
 }

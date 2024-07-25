@@ -10,7 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.board")
 public class BoardController extends HttpServlet {
@@ -30,8 +29,7 @@ public class BoardController extends HttpServlet {
 		doAction(req, resp);
 	}
 
-	protected void doAction(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
 
@@ -39,85 +37,78 @@ public class BoardController extends HttpServlet {
 		String path = request.getContextPath(); // path : '/Susuma'
 		String command = uri.substring(path.length()); // command : '/member/join.member'
 
-		BoardService service = new BoardServiceImpl(); // 비즈니스 로직 처리(DB 접근 및 조작 등)
+		BoardService service = new BoardServiceImpl();
 
-		if (command.equals("/admin/board/list.board")) { // 게시물 목록
-
-			service.getList(request, response);
-
-		} else if (command.equals("/admin/board/view.board")) { // 게시물 상세
-
-			service.adminGetView(request, response);
-
-		} else if (command.equals("/admin/board/write.board")) { // 게시물 작성화면
-
+		switch (command) {
+		case "/admin/board/list.board":
+			service.getList(request, response); // 게시물 목록
+			break;
+			
+		case "/admin/board/view.board":
+			service.adminGetView(request, response); // 게시물 상세
+			break;
+			
+		case "/admin/board/write.board":
 			request.setAttribute("type", request.getParameter("type"));
-			request.getRequestDispatcher("board_write.jsp").forward(request, response);
-
-		} else if (command.equals("/admin/board/registForm.board")) { // 게시물 등록
-
-			service.adminRegister(request, response);
-
-		} else if (command.equals("/admin/board/modify.board")) { // 게시물 수정화면
-
-			service.adminModify(request, response);
-
-		} else if (command.equals("/admin/board/updateForm.board")) { // 게시물 수정
-
-			service.adminUpdate(request, response);
-
-		} else if (command.equals("/admin/board/delete.board")) { // 게시물 삭제
-
-			service.adminDelete(request, response);
-
-		} else if (command.equals("/board/list.board")) { // 사용자 화면 게시물 목록
-
-			// request.setAttribute("key","value"); // 사용자 화면만 별도로 파라미터 지정할 경우 사용,
-			// getAttribute로 꺼내기
-			service.getList(request, response); // 관리자 게시물 목록과 동일한 메서드 사용
-
-		} else if (command.equals("/board/ask/write.board")) { // 1:1문의 작성화면
+			request.getRequestDispatcher("board_write.jsp").forward(request, response); // 게시물 작성화면
+			break;
 			
-			HttpSession session = request.getSession();
-			String meNo = (String) session.getAttribute("meNo");
-
-			if (meNo == null) {
-				response.sendRedirect("/Susuma/index.jsp");
-				return;
-			}
-
-			request.getRequestDispatcher("/board/ask_write.jsp").forward(request, response);
-
-		} else if (command.equals("/board/registAskForm.board")) { //등록 & 수정완료
+		case "/admin/board/registForm.board":
+			service.adminRegister(request, response); // 게시물 등록
+			break;
 			
-			service.askUpsert(request, response);
+		case "/admin/board/modify.board":
+			service.adminModify(request, response); // 게시물 수정화면
+			break;
 			
-		} else if (command.equals("/board/ask_view.board")) {
-
-			HttpSession session = request.getSession();
-			String meNo = (String) session.getAttribute("meNo");
-			if (meNo == null) {
-				response.sendRedirect("/Susuma/index.jsp");
-				return;
-			}
-			service.askGetView(request, response);
-
-		} else if (command.equals("/board/modifyAsk.board")) { //수정화면
-			service.askModify(request, response);
+		case "/admin/board/updateForm.board":
+			service.adminUpdate(request, response); // 게시물 수정
+			break;
 			
-		} else if(command.equals("/board/deleteAsk.board")) { //삭제화면
-			service.askDelete(request, response);
+		case "/admin/board/delete.board":
+			service.adminDelete(request, response); // 게시물 삭제
+			break;
 			
-		} else if(command.equals("/board/notice/view.board")) {
-			service.noticeGetView(request, response);
+		case "/admin/board/replyWrite.board":
+			service.adminReplyWrite(request, response); // 게시물 답글화면
+			break;
 			
-		} else if(command.equals("/admin/board/replyWrite.board")) { //관리자 답글화면
-			service.adminReplyWrite(request, response);
+		case "/admin/board/replyWriteForm.board":
+			service.adminReplyRegister(request, response); // 관리자 답글 작성 완료
+			break;
 			
-		} else if(command.equals("/admin/board/replyWriteForm.board")) {
-			service.adminReplyRegister(request, response);
+		case "/board/list.board":
+			service.getList(request, response); // 게시물 목록(공지사항, faq, 1:1문의)
+			break;
+			
+		case "/board/noticeView.board":
+			service.noticeGetView(request, response); // 공지사항 상세
+			break;
+			
+		case "/board/askWrite.board":
+			request.getRequestDispatcher("/board/ask_write.jsp").forward(request, response); // 1:1문의 작성 & 수정 화면
+			break;
+			
+		case "/board/askRegistForm.board":
+			service.askUpsert(request, response); // 1:1문의 등록 & 수정완료
+			break;
+			
+		case "/board/askView.board":
+			service.askGetView(request, response); // 1:1 문의 상세
+			break;
+			
+		case "/board/askModify.board":
+			service.askModify(request, response); // 1:1 문의 수정
+			break;
+			
+		case "/board/askDelete.board":
+			service.askDelete(request, response); // 1:1 문의 삭제
+			break;
+			
+		default:
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			break;
 		}
-
 	}
 
 }

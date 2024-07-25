@@ -4,8 +4,7 @@
 <mapper namespace="com.susuma.member.model.MemberMapper">
 
 	<!-- [1] 회원 목록 -->
-	<select id="selectMembers" parameterType="map"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT *
 		FROM (
 		SELECT A.*, ROWNUM AS RN
@@ -64,8 +63,7 @@
 	</select>
 
 	<!-- [2] 회원(me_no / email,pw) -->
-	<select id="selectMember" parameterType="map"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMember" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL,
 		LATITUDE, LONGITUDE, PHONE_NUM, EMAIL_NOTIFICATION, PROFILE_PHOTO,
 		JOIN_APPROVAL, JOIN_APPROVAL_TIME, BUSINESS_NUMBER, SHORT_DESCRIPTION,
@@ -94,8 +92,7 @@
 	</select>
 
 	<!-- [3] 회원 등록 -->
-	<insert id="insertMember"
-		parameterType="com.susuma.member.model.MemberDTO">
+	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
 		INSERT INTO MEMBER (ME_NO, TYPE, EMAIL, PW, NAME,
 		PHONE_NUM, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE,
 		EMAIL_NOTIFICATION, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE,
@@ -110,33 +107,63 @@
 	</insert>
 
 	<!-- [4] 회원 수정 -->
-	<update id="updateMember"
-		parameterType="com.susuma.member.model.MemberDTO">
+	<update id="updateMember" parameterType="com.susuma.member.model.MemberDTO">
 		UPDATE MEMBER
 		SET
-		EMAIL = #{email},
-		PW = #{pw},
-		NAME =
-		#{name},
-		PHONE_NUM = #{phoneNum},
-		ADDRESS = #{address},
-		ADDRESS_DETAIL =
-		#{addressDetail},
-		LATITUDE = #{latitude},
-		LONGITUDE = #{longitude},
-		EMAIL_NOTIFICATION = #{emailNotification},
-		BUSINESS_NUMBER =
-		#{businessNumber},
-		SHORT_DESCRIPTION = #{shortDescription},
-		MAX_DISTANCE = #{maxDistance},
-		DESCRIPTION = #{description},
-		WORK_HOURS
-		= #{workHours},
-		CA_NO = #{caNo},
-		JOIN_APPROVAL = #{joinApproval},
-		POINT =
-		#{point},
-		STATUS = #{status},
+		<if test="email != null">
+			EMAIL = #{email},
+		</if>
+		<if test="pw != null">
+			PW = #{pw},
+		</if>
+		<if test="name != null">
+			NAME = #{name},
+		</if>
+		<if test="phoneNum != null">
+			PHONE_NUM = #{phoneNum},
+		</if>
+		<if test="address != null">
+			ADDRESS = #{address},
+		</if>
+		<if test="addressDetail != null">
+			ADDRESS_DETAIL = #{addressDetail},
+		</if>
+		<if test="latitude != null">
+			LATITUDE = #{latitude},
+		</if>
+		<if test="longitude != null">
+			LONGITUDE = #{longitude},
+		</if>
+		<if test="emailNotification != null">
+			EMAIL_NOTIFICATION = #{emailNotification},
+		</if>
+		<if test="businessNumber != null">
+			BUSINESS_NUMBER = #{businessNumber},
+		</if>
+		<if test="shortDescription != null">
+			SHORT_DESCRIPTION = #{shortDescription},
+		</if>
+		<if test="maxDistance != null">
+			MAX_DISTANCE = #{maxDistance},
+		</if>
+		<if test="description != null">
+			DESCRIPTION = #{description},
+		</if>
+		<if test="workHours != null">
+			WORK_HOURS = #{workHours},
+		</if>
+		<if test="caNo != null">
+			CA_NO = #{caNo},
+		</if>
+		<if test="joinApproval != null">
+			JOIN_APPROVAL = #{joinApproval},
+		</if>
+		<if test="point != null">
+			POINT = #{point},
+		</if>
+		<if test="status != null">
+			STATUS = #{status},
+		</if>
 		UPDATE_TIME = SYSDATE
 		WHERE
 		ME_NO = #{meNo}
@@ -159,26 +186,20 @@
 		ME_NO = #{meNo}
 	</delete>
 
-	<select id="getPassword" parameterType="string"
-		resultType="string">
+	<select id="getPassword" parameterType="string" resultType="string">
 		SELECT pw
 		FROM MEMBER
 		WHERE ME_NO = #{meNo}
 	</select>
 
-	<select id="selectMemberById"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMemberById" resultType="com.susuma.member.model.MemberDTO">
 		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
 	</select>
 
-	<select id="getMemberByNo"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="getMemberByNo" resultType="com.susuma.member.model.MemberDTO">
 		SELECT ME_NO, NAME, ADDRESS, WORK_HOURS
 		FROM MEMBER
 		WHERE ME_NO = #{meNo}
 	</select>
-	
-	
-
 
 </mapper>

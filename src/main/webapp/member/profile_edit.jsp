@@ -1,6 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ include file="../include/head.jsp"%>
+<script>
+
+function handleCategoryChange() {
+    const categorySelect = document.getElementById('category');
+    const subCategorySelect = document.getElementById('sub-category');
+    const selectedCategory = categorySelect.value;
+
+    // 선택된 상위 카테고리가 없는 경우, 하위 카테고리 초기화
+    if (!selectedCategory) {
+        subCategorySelect.innerHTML = '<option value="">선택</option>';
+        return;
+    }
+
+    // AJAX 요청을 통해 하위 카테고리 가져오기
+	fetch("getCategory.ajax?rootNo="+selectedCategory)
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(data) {
+        subCategorySelect.innerHTML = '<option value="">선택</option>';
+        data.forEach(function(subCategory) {
+            const option = document.createElement('option');
+            option.value = subCategory.caNo; // 하위 카테고리 번호
+            option.textContent = subCategory.caName; // 하위 카테고리 이름
+            subCategorySelect.appendChild(option);
+        });
+        subCategorySelect.focus();
+	})
+    .catch(function(error) {
+        console.error('Fetch error:', error);
+    });
+}
+</script>
 </head>
 
 <body>
@@ -65,17 +99,22 @@
 								</div>
 								<div id="category-select-area-wrap">
 									<div class="category-select-area">
-										<select name="category" class="select-category">
-											<option value="">가전제품</option>
-											<option value="">가전제품</option>
-											<option value="">가전제품</option>
+										<select id="category" onchange="handleCategoryChange()" class="select-category">
+											<option value="">선택</option>
+											<c:forEach var="categoryDto" items="${CategoryMainList}">
+												<option value="${categoryDto.caNo }" ${dto.caRootNo == categoryDto.caNo ? 'selected' : ''}>${categoryDto.caName }</option>
+											</c:forEach>
 										</select>
-										<select name="ca_no" class="select-category">
-											<option value="">에어컨</option>
+										<select name="caNo" id="sub-category" class="select-category">
+											<option value="">선택</option>
+											<c:forEach var="categorySubDto" items="${CategorySubList}">
+												<option value="${categorySubDto.caNo }" ${dto.caNo == categorySubDto.caNo ? 'selected' : ''}>${categorySubDto.caName }</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
 							</div>
+
 							<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
 							<div class="input-area">
 								<label>근무 가능 요일 및 시간</label>

@@ -250,7 +250,7 @@ public class BoardServiceImpl implements BoardService {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('1:1문의가 " + (boNo == null || boNo.equals("") ? "등록" : "수정") + "되었습니다');");
-			out.println("location.href='/Susuma/board/list.board?type=" + type + "';");
+			out.println("location.href='list.board?type=" + type + "';");
 			out.println("</script>");
 		}
 
@@ -287,7 +287,7 @@ public class BoardServiceImpl implements BoardService {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('작성자 본인만 확인할 수 있습니다.');");
-			out.println("location.href='/Susuma/board/list.board?type=ask';");
+			out.println("location.href='list.board?type=ask';");
 			out.println("</script>");
 		}
 

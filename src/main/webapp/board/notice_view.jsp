@@ -14,7 +14,6 @@
 			<div class="content">
 				<div class="content-case">
 
-
 					<div class="content-title-box">
 						<div class="content-title">
 							<h3>${dto.title}</h3>
@@ -33,17 +32,21 @@
 					</div>
 					<div class="content-move-box">
 						<div class="content-back">
-							<div class="figure">▲</div>
+							<div class="figure">
+								<i class="bi bi-chevron-up"></i>
+							</div>
 							<div class="content-back-back">이전글</div>
 							<div class="content-back-title">
-								<a href="${pageContext.request.contextPath }/board/notice/view.board?boNo=${sidedto.last}">${sidedto.lastTitle }</a>
+								<a href="${pageContext.request.contextPath }/board/noticeView.board?boNo=${sidedto.last}">${sidedto.lastTitle }</a>
 							</div>
 						</div>
 						<div class="content-next">
-							<div class="figure">▼</div>
+							<div class="figure">
+								<i class="bi bi-chevron-down"></i>
+							</div>
 							<div class="content-next-next">다음글</div>
 							<div class="content-next-title">
-								<a href="${pageContext.request.contextPath }/board/notice/view.board?boNo=${sidedto.next}">${sidedto.nextTitle}</a>
+								<a href="${pageContext.request.contextPath }/board/noticeView.board?boNo=${sidedto.next}">${sidedto.nextTitle}</a>
 							</div>
 						</div>
 					</div>
