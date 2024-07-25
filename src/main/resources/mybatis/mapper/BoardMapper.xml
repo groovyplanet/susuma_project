@@ -76,6 +76,7 @@
 		SELECT * FROM BOARD WHERE BO_NO = #{boNo}
 	</select>
 	
+	<!-- [8] 이전글 다음글 -->
 	<select id="getPreNext" resultType="com.susuma.board.model.BoardDTO">
 		select * from(SELECT 
 		BO_NO,
@@ -91,11 +92,18 @@
         WHERE BO_NO = #{boNo}
         
 	</select>
-	
+	<!-- [9] 1:1답변 등록 -->
 	<update id="insertReply" parameterType="com.susuma.board.model.BoardDTO">
 		UPDATE BOARD SET ANSWER =#{answer} , ANSWER_INSERT_TIME= SYSDATE
 		WHERE BO_NO=#{boNo}
 	</update>
+	
+	<!-- [10] 1:1문의 삭제 -->
+	<delete id="askDelete" parameterType="string">
+		DELETE FROM BOARD
+		WHERE BO_NO = #{boNo}
+	</delete>
+	
 	
 	
 </mapper>

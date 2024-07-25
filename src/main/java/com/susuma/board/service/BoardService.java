@@ -24,6 +24,8 @@ public interface BoardService {
 	void askGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void askModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	void askDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void noticeGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	

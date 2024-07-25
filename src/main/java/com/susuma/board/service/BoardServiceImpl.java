@@ -319,6 +319,39 @@ public class BoardServiceImpl implements BoardService {
 		request.getRequestDispatcher("ask_write.jsp").forward(request, response);
 
 	}
+	
+	@Override
+	public void askDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String meNoStr = (String) session.getAttribute("meNo");
+		String boNo = request.getParameter("boNo");
+		int meNo = 0;
+		
+		if (meNoStr != null) {
+			try {
+				meNo = Integer.parseInt(meNoStr);
+			} catch (NumberFormatException e) {
+				// 로그에 오류 기록 또는 기본값 설정
+				System.out.println("meNo is not a valid integer: " + meNoStr);
+				meNo = -1; // 기본값 설정
+			}
+		}
+
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		board.deleteBoard(boNo);
+		sql.close();
+		
+		response.setContentType("text/html; charset=UTF-8;");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('1:1 문의가 삭제되었습니다.');");
+		out.println("location.href='list.board?type=ask';");
+		out.println("</script>");
+		
+	}
+	
 	@Override
 	public void noticeGetView(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -388,11 +421,8 @@ public class BoardServiceImpl implements BoardService {
 			out.println("location.href='list.board?type=ask';");
 			out.println("</script>");
 		}
-		
-		
-		
-
-		
 	}
+	
+
 
 }

@@ -26,5 +26,7 @@ public interface BoardMapper {
 	public BoardDTO getPreNext(String boNo);//[8] 이전글 다음글
 	
 	public int insertReply(BoardDTO dto); //[9] 1:1답변 등록
+	
+	public void askDelete(String boNo); // [10] 1:1문의 삭제
 
 }
