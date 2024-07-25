@@ -28,25 +28,14 @@
 											<input name="subject" type="text" id="subject" class="form-control" value="">
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="control-label">관련 신청서</label>
-										<div>
-											<a href="/mypage/select/popup/1" class="event-click-select">선택하기</a>
-											<span class="text-success event-set-data-cart"></span>
-										</div>
-									</div>
+									
 									<div class="form-group">
 										<label for="content" class="control-label">내용</label>
 										<div>
 											<textarea name="content" id="content" class="form-control" cols="50" rows="20"></textarea>
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="file" class="control-label">파일 첨부</label>
-										<div>
-											<input name="file[]" type="file">
-										</div>
-									</div>
+									
 								</div>
 							</div>
 							<p class="text-center">
