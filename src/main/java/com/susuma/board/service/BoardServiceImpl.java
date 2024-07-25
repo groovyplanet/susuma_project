@@ -60,7 +60,9 @@ public class BoardServiceImpl implements BoardService {
 		int startPage = Math.max(currentPage - 2, 1);
 		int endPage = Math.min(currentPage + 2, totalPages);
 		endPage = (currentPage == 1 || currentPage == 2) ? Math.min(endPage + 3 - currentPage, totalPages) : endPage;
-		startPage = (currentPage == totalPages || currentPage == totalPages - 1) ? Math.max(startPage - 2 + totalPages - currentPage, 1) : startPage;
+		startPage = (currentPage == totalPages || currentPage == totalPages - 1)
+				? Math.max(startPage - 2 + totalPages - currentPage, 1)
+				: startPage;
 		params.put("currentPage", currentPage); // 현재 페이지
 		params.put("totalPages", totalPages); // 총 페이지 수
 		params.put("totalRecords", totalRecords); // 총 레코드 수
@@ -77,7 +79,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void adminGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminGetView(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -95,7 +98,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void adminRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminRegister(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		int meNo = Integer.parseInt(request.getParameter("me_no"));
@@ -122,7 +126,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void adminModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminModify(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -140,7 +145,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void adminUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminUpdate(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -176,7 +182,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void adminDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		/* [1] 매개변수 */
 		String boNo = request.getParameter("boNo");
@@ -199,7 +206,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void askregist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void askUpsert(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		String meNoStr = (String) session.getAttribute("meNo");
@@ -214,7 +222,8 @@ public class BoardServiceImpl implements BoardService {
 			}
 		}
 //		int meNo = 30;
-		String title = request.getParameter("subject");
+		String boNo = request.getParameter("boNo");
+		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String type = "ask";
 
@@ -226,23 +235,31 @@ public class BoardServiceImpl implements BoardService {
 
 		SqlSession sql = sqlSessionFactory.openSession(true);
 		BoardMapper board = sql.getMapper(BoardMapper.class);
-		int result = board.askWrite(dto);
+		int result = 0;
+		if (boNo == null || boNo.equals("")) { // insert
+			result = board.askWrite(dto);
+		} else {
+			dto.setBoNo(Integer.parseInt(boNo));
+			result = board.updateBoard(dto);
+		}
+
 		sql.close();
 
 		if (result == 1) {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('1:1문의가 등록되었습니다');");
+			out.println("alert('1:1문의가 " + (boNo == null || boNo.equals("") ? "등록" : "수정") + "되었습니다');");
 			out.println("location.href='/Susuma/board/list.board?type=" + type + "';");
 			out.println("</script>");
 		}
 
 	}
+
 	@Override
 	public void askGetView(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		String meNoStr = (String) session.getAttribute("meNo");
 		String boNo = request.getParameter("boNo");
@@ -260,11 +277,11 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper board = sql.getMapper(BoardMapper.class);
 		BoardDTO dto = board.askView(boNo);
 		sql.close();
-		
-		if(meNo==dto.getMeNo()) {
+
+		if (meNo == dto.getMeNo()) {
 			request.setAttribute("dto", dto);
 			request.getRequestDispatcher("ask_view.jsp").forward(request, response);
-		}else {
+		} else {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -272,7 +289,35 @@ public class BoardServiceImpl implements BoardService {
 			out.println("location.href='/Susuma/board/list.board?type=ask';");
 			out.println("</script>");
 		}
-		
+
+	}
+
+	@Override
+	public void askModify(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		String meNoStr = (String) session.getAttribute("meNo");
+		String boNo = request.getParameter("boNo");
+		int meNo = 0;
+		if (meNoStr != null) {
+			try {
+				meNo = Integer.parseInt(meNoStr);
+			} catch (NumberFormatException e) {
+				// 로그에 오류 기록 또는 기본값 설정
+				System.out.println("meNo is not a valid integer: " + meNoStr);
+				meNo = -1; // 기본값 설정
+			}
+		}
+
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		BoardDTO dto = board.selectBoard(boNo);
+		sql.close();
+
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("ask_write.jsp").forward(request, response);
+
 	}
 
 }

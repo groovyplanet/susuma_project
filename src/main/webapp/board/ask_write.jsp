@@ -17,36 +17,25 @@
 						</div>
 					</div>
 					<div id="qna-write" class="section">
-						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/ask/regist.board" class="form-horizontal" target="actionFrame">
+						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/registAskForm.board" class="form-horizontal" target="actionFrame">
+							<input type="hidden" name="boNo" value="${dto.boNo }">
 							<div class="panel-default">
 								<div class="panel-heading"></div>
 								<div class="panel-body">
 									<div class="form-group">
 										<label class="control-label">제목</label>
+										<div>
+											<input name="title" type="text" id="subject" class="form-control" value="${dto.title }">
+										</div>
+									</div>
 
-										<div>
-											<input name="subject" type="text" id="subject" class="form-control" value="">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">관련 신청서</label>
-										<div>
-											<a href="/mypage/select/popup/1" class="event-click-select">선택하기</a>
-											<span class="text-success event-set-data-cart"></span>
-										</div>
-									</div>
 									<div class="form-group">
 										<label for="content" class="control-label">내용</label>
 										<div>
-											<textarea name="content" id="content" class="form-control" cols="50" rows="20"></textarea>
+											<textarea name="content" id="content" class="form-control" cols="50" rows="20"> ${dto.content }</textarea>
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="file" class="control-label">파일 첨부</label>
-										<div>
-											<input name="file[]" type="file">
-										</div>
-									</div>
+
 								</div>
 							</div>
 							<p class="text-center">
