@@ -8,8 +8,8 @@ public class RequestDTO {
 	private String masterNo;
 	private String clientNo;
 	private String content;
-	private String date;
-	private String time;
+	private String requestDate;
+	private String requestTime;
 	private String status;
 	private String cancelReason;
 	private Timestamp insertTime;
@@ -29,14 +29,15 @@ public class RequestDTO {
 	public RequestDTO() {
 
 	}
-	//예약 신청 시 사용
-	public RequestDTO(String masterNo, String clientNo, String content, String date, String time, String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+
+	public RequestDTO(String masterNo, String clientNo, String content, String requestDate, String requestTime,
+			String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
 		super();
 		this.masterNo = masterNo;
 		this.clientNo = clientNo;
 		this.content = content;
-		this.date = date;
-		this.time = time;
+		this.requestDate = requestDate;
+		this.requestTime = requestTime;
 		this.address = address;
 		this.addressDetail = addressDetail;
 		this.latitude = latitude;
@@ -44,14 +45,17 @@ public class RequestDTO {
 		this.phoneNum = phoneNum;
 	}
 
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String date, String time, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate,
+			String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime,
+			Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime,
+			String address, String addressDetail, Double latitude, Double longitude, String phoneNum) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
 		this.clientNo = clientNo;
 		this.content = content;
-		this.date = date;
-		this.time = time;
+		this.requestDate = requestDate;
+		this.requestTime = requestTime;
 		this.status = status;
 		this.cancelReason = cancelReason;
 		this.insertTime = insertTime;
@@ -100,20 +104,20 @@ public class RequestDTO {
 		this.content = content;
 	}
 
-	public String getDate() {
-		return date;
+	public String getRequestDate() {
+		return requestDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setRequestDate(String requestDate) {
+		this.requestDate = requestDate;
 	}
 
-	public String getTime() {
-		return time;
+	public String getRequestTime() {
+		return requestTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setRequestTime(String requestTime) {
+		this.requestTime = requestTime;
 	}
 
 	public String getStatus() {
@@ -227,5 +231,4 @@ public class RequestDTO {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-
 }

@@ -94,15 +94,15 @@ public class AjaxController extends HttpServlet {
 			HttpSession session = request.getSession();
 			String clientNo = (String) session.getAttribute("meNo");
 			String content = request.getParameter("content");
-			String date = request.getParameter("date");
-			String time = request.getParameter("time");
+			String requestDate = request.getParameter("requestDate");
+			String requestTime = request.getParameter("requestTime");
 			String address = request.getParameter("address");
 			String addressDetail = request.getParameter("address_detail");
 			Double latitude = (request.getParameter("latitude"))==null ? 0.0: Double.parseDouble(request.getParameter("latitude")) ;
 			Double longitude = (request.getParameter("longitude"))==null ? 0.0: Double.parseDouble(request.getParameter("longitude")) ;
 			String phoneNum = request.getParameter("phoneNum");
 			
-			RequestDTO dto = new RequestDTO(masterNo, clientNo, content, date, time, address, addressDetail, latitude, longitude, phoneNum);
+			RequestDTO dto = new RequestDTO(masterNo, clientNo, content, requestDate, requestTime, address, addressDetail, latitude, longitude, phoneNum);
 
 			SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 			SqlSession sql = sqlSessionFactory.openSession(true);

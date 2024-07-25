@@ -488,7 +488,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		function loadDate(date, dayIn) {
 			let dateStr = document.querySelector('.cal-year').textContent + ". " + document.querySelector('.cal-month').textContent + ". " + date + "(" + init.dayList[dayIn] + ")";
 			//2024. 07. 31(월)
-			document.querySelector("input[name='date']").value = dateStr;
+			document.querySelector("input[name='requestDate']").value = dateStr;
 		}
 
 		/* loadYYMM() : 달력 한장 불러오기 */
@@ -617,7 +617,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				if (init.activeBtnTag) init.activeBtnTag.classList.remove('selected');
 				btn.classList.add('selected');
 				init.activeBtnTag = btn;
-				document.querySelector("input[name='time']").value = btn.innerHTML;
+				document.querySelector("input[name='requestTime']").value = btn.innerHTML;
 				document.querySelector(".time-list-wrap").classList.remove("error");
 			}
 		});
@@ -630,8 +630,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			event.preventDefault(); // 기본 폼 제출 막기
 
 			//시간 
-			var time = document.querySelector("input[name='time']");
-			var date = document.querySelector("input[name='date']");
+			var time = document.querySelector("input[name='requestTime']");
+			var date = document.querySelector("input[name='requestDate']");
 			if (time.value == "") {
 				// 날짜 선택 전 - 날짜부터 선택
 				if (!document.querySelector(".time-list-wrap").classList.contains("show")) {

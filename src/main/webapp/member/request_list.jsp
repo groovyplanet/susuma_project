@@ -34,7 +34,7 @@
 					<div class="reserve-schecdule">
 						<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
 						<a href="request_view.jsp" class="info">
-							<div class="repair_date">${dto.date }</div>
+							<div class="repair_date">${dto.requestDate }</div>
 							<div class="master_name">
 								김현용
 								<span class="address"> 강동구 </span>

@@ -21,9 +21,10 @@ public interface BoardMapper {
 	
 	public int askWrite(BoardDTO dto); // [6] 1:1문의 등록
 	
-	public BoardDTO askView(String boNo); // [7] 1:1문의 
+	public BoardDTO askView(String boNo); // [7] 1:1문의 상세보기
 	
 	public BoardDTO getPreNext(String boNo);//[8] 이전글 다음글
 	
 	public int insertReply(BoardDTO dto); //[9] 1:1답변 등록
+
 }
