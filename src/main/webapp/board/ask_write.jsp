@@ -17,7 +17,7 @@
 						</div>
 					</div>
 					<div id="qna-write" class="section">
-						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/askRegistForm.board" class="form-horizontal" target="actionFrame">
+						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/askRegistForm.board" class="form-horizontal">
 							<input type="hidden" name="boNo" value="${dto.boNo }">
 							<div class="panel-default">
 								<div class="panel-heading"></div>
@@ -38,8 +38,7 @@
 								</div>
 							</div>
 							<p class="text-center">
-								<button type="button" class="event-common-click-back">뒤로</button>
-								<button type="submit" class="event-common-click-submit">저장하기</button>
+								<button type="submit" class="event-common-click-back">저장하기</button>
 							</p>
 						</form>
 					</div>

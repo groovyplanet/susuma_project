@@ -317,6 +317,7 @@ public class BoardServiceImpl implements BoardService {
 		sql.close();
 
 		request.setAttribute("dto", dto);
+		request.setAttribute("type", "ask");
 		request.getRequestDispatcher("ask_write.jsp").forward(request, response);
 
 	}

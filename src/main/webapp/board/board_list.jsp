@@ -2,6 +2,44 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/head.jsp"%>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const postLinks = document.querySelectorAll(".content-mix");
+
+    postLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+
+            const contentBox = this.closest('.content-box');
+            const postContent = contentBox.querySelector(".post-content");
+            if (postContent) {
+                if (postContent.classList.contains('open')) {
+                    postContent.style.maxHeight = postContent.scrollHeight + 'px'; // 콘텐츠의 실제 높이만큼 확장
+                    setTimeout(() => {
+                        postContent.style.maxHeight = '0'; //maxHeight를 0으로 설정하여 콘텐츠가 부드럽게 접히도록 합니다. 이 지연은 브라우저가 높이 변경을 인식할 시간을 주기 위한 것입니다.
+                    }, 10);
+                } else {
+                    postContent.style.maxHeight = postContent.scrollHeight + 'px'; // maxHeight를 scrollHeight로 설정하여 콘텐츠가 펼쳐지도록 합니다.
+                }
+                postContent.classList.toggle("open"); // open 클래스 토글
+                let chevronDown = contentBox.querySelector(".bi-chevron-down");
+                if (chevronDown) {
+                    chevronDown.classList.remove("bi-chevron-down");
+                    chevronDown.classList.add("bi-chevron-up");
+                } else {
+                    let chevronUp = contentBox.querySelector(".bi-chevron-up");
+                    chevronUp.classList.remove("bi-chevron-up");
+                    chevronUp.classList.add("bi-chevron-down");
+                }
+            }
+        });
+    });
+    document.querySelectorAll('.content-box').forEach(element => {
+        element.addEventListener('click', function () {
+            window.location.href = this.querySelector('a').href;
+        });
+    });
+});
+</script>
 </head>
 
 <body>
@@ -31,7 +69,8 @@
 								<c:when test="${type eq 'faq'}">
 									<div class="content-mix faq">
 										<div class="content-title">
-											<a href="#" class="post-link">${dto.title }</a>
+											<a href="#" class="post-link">
+												<i class="bi bi-quora" style="margin-right: 5px; font-size: 15px;"></i>${dto.title }</a>
 											<p>
 												<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
 											</p>
@@ -57,7 +96,13 @@
 											</c:choose>
 										</div>
 										<div class="content-title">
-											<a href="${pageContext.request.contextPath }/board/askView.board?boNo=${dto.boNo}">${dto.title }</a>
+											<a href="${pageContext.request.contextPath }/board/askView.board?boNo=${dto.boNo}">
+												<c:if test="${dto.meNo != sessionScope.meNo }">
+													<!-- 내가 작성한 게시물이 아닐 경우 자물쇠 아이콘 표시 -->
+													<i class="bi bi-lock" style="margin-right: 3px;"></i>
+												</c:if>
+												${dto.title }
+											</a>
 											<div>
 												<p>
 													<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />

@@ -87,11 +87,11 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .table_wrap table.list tr td:first-child { padding-left: 20px; } 
 .container .content_wrap .table_wrap table.list tr td .btn { background-color: white; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; } 
 .container .content_wrap .table_wrap table.list tr td .btn:hover { background-color: #ff6b6b1c; font-weight: 600; } 
-.container .content_wrap .table_wrap table.view { width: 100%; text-align: left; } 
+.container .content_wrap .table_wrap table.view { width: 100%; text-align: left; line-height: 25px; } 
 .container .content_wrap .table_wrap table.view tr:first-child { border-top: 1px solid #ddd; } 
 .container .content_wrap .table_wrap table.view tr { border-bottom: 1px solid #ddd; } 
 .container .content_wrap .table_wrap table.view tr th { background-color: #e6e6e6; font-size: 15px; font-weight: 500; color: #555; padding: 14px 20px; width: 210px; } 
-.container .content_wrap .table_wrap table.view tr td { font-size: 13px; font-weight: 400; color: #333; padding: 17px 20px; } 
+.container .content_wrap .table_wrap table.view tr td { font-size: 13px; font-weight: 400; color: #333; padding: 15px 20px; } 
 .container .content_wrap .table_wrap table.view tr td img.profile { width: 55px; } 
 .container .content_wrap .table_wrap table.view.write tr td { padding: 14px 20px; } 
 .container .content_wrap .table_wrap table.view.write input,

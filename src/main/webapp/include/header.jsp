@@ -38,7 +38,7 @@ if (arr != null) {
 		<ul class="login-area">
 
 			<c:choose>
-				<c:when test="${sessionScope.email == null }">
+				<c:when test="${sessionScope.meNo == null }">
 					<!-- 로그아웃 상태 -->
 					<li>
 						<button id="btn-login-modal" class="btn btn-login">로그인${loginModal}</button>

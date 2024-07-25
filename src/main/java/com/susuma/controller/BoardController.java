@@ -86,6 +86,7 @@ public class BoardController extends HttpServlet {
 			break;
 			
 		case "/board/askWrite.board":
+			request.setAttribute("type", "ask");
 			request.getRequestDispatcher("/board/ask_write.jsp").forward(request, response); // 1:1문의 작성 & 수정 화면
 			break;
 			
