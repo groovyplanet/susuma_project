@@ -20,4 +20,6 @@ public interface BoardMapper {
 	public void deleteBoard(String boNo); // [5] 게시물 삭제
 	
 	public int askWrite(BoardDTO dto); // [6] 1:1문의 등록
+	
+	public BoardDTO askView(String boNo); // [7] 1:1문의 
 }

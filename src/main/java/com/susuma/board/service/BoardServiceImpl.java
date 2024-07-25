@@ -239,5 +239,40 @@ public class BoardServiceImpl implements BoardService {
 		}
 
 	}
+	@Override
+	public void askGetView(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String meNoStr = (String) session.getAttribute("meNo");
+		String boNo = request.getParameter("boNo");
+		int meNo = 0;
+		if (meNoStr != null) {
+			try {
+				meNo = Integer.parseInt(meNoStr);
+			} catch (NumberFormatException e) {
+				// 로그에 오류 기록 또는 기본값 설정
+				System.out.println("meNo is not a valid integer: " + meNoStr);
+				meNo = -1; // 기본값 설정
+			}
+		}
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		BoardMapper board = sql.getMapper(BoardMapper.class);
+		BoardDTO dto = board.askView(boNo);
+		sql.close();
+		
+		if(meNo==dto.getMeNo()) {
+			request.setAttribute("dto", dto);
+			request.getRequestDispatcher("ask_view.jsp").forward(request, response);
+		}else {
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('권한이 없는 사람입니다.');");
+			out.println("location.href='/Susuma/board/list.board?type=ask';");
+			out.println("</script>");
+		}
+		
+	}
 
 }

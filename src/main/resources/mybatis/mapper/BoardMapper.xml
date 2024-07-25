@@ -71,4 +71,10 @@
 		VALUES(BOARD_SEQ.NEXTVAL, #{meNo}, #{title}, #{content}, #{type})
 	</insert>
 	
+	<!-- [7] 1:1문의 -->
+	<select id="askView" resultType="com.susuma.board.model.BoardDTO">
+		SELECT * FROM BOARD WHERE BO_NO = #{boNo}
+	</select>
+	
+	
 </mapper>

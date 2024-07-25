@@ -21,4 +21,5 @@ public interface BoardService {
 
 	void askregist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void askGetView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }
