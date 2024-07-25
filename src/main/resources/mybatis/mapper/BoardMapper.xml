@@ -94,8 +94,18 @@
 	</select>
 	<!-- [9] 1:1답변 등록 -->
 	<update id="insertReply" parameterType="com.susuma.board.model.BoardDTO">
-		UPDATE BOARD SET ANSWER =#{answer} , ANSWER_INSERT_TIME= SYSDATE
-		WHERE BO_NO=#{boNo}
+		UPDATE BOARD 
+    SET 
+        ANSWER = #{answer}, 
+        ANSWER_INSERT_TIME = CASE 
+                                WHEN ANSWER_INSERT_TIME IS NULL THEN SYSDATE 
+                                ELSE ANSWER_INSERT_TIME 
+                             END,
+        ANSWER_UPDATE_TIME = CASE 
+                                WHEN ANSWER_INSERT_TIME IS NOT NULL THEN SYSDATE 
+                                ELSE ANSWER_UPDATE_TIME 
+                             END
+    WHERE BO_NO = #{boNo}
 	</update>
 	
 	<!-- [10] 1:1문의 삭제 -->
