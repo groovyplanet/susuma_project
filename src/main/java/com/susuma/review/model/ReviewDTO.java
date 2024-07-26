@@ -1,6 +1,7 @@
 package com.susuma.review.model;
 
 import java.security.Timestamp;
+import java.util.Base64;
 
 public class ReviewDTO {
 
@@ -15,8 +16,8 @@ public class ReviewDTO {
 	private String masterName;
 
 	// 후기 내역 DTO 추가
-	private String profilePhoto;
 	private String address;
+	private byte[] profilePhoto; // "PROFILE_PHOTO"
 
 	public ReviewDTO() {
 		super();
@@ -116,11 +117,18 @@ public class ReviewDTO {
 		this.address = address;
 	}
 
-	public String getProfilePhoto() {
+	public byte[] getProfilePhoto() {
 		return profilePhoto;
 	}
 
-	public void setProfilePhoto(String profilePhoto) {
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
+	}
+
+	public void setProfilePhoto(byte[] profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
 
