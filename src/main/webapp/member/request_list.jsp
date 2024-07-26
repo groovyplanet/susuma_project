@@ -7,21 +7,23 @@
 	<%@ include file="../include/header.jsp"%>
 
 	<div id="payModal" class="payModal">
-		<div class="modal-content">
-			<p>결제 금액을 확인하시고 ,</p>
-			<p>결제 버튼을 누르시면 결제가 완료됩니다.</p>
-			<p style="color: red;">결제요청 시 결제 금액 환불은 불가합니다.</p>
-			<div>
-				결제 하실 금액은
-				<span id="usermoney">
-					<strong> 10,000원 </strong>
-					입니다.
-				</span>
+		<form id="form-payrequest">
+			<div class="modal-content">
+				<p>결제 금액을 확인하시고 ,</p>
+				<p>결제 버튼을 누르시면 결제가 완료됩니다.</p>
+				<p style="color: red;">결제요청 시 결제 금액 환불은 불가합니다.</p>
+				<div>
+					결제 하실 금액은
+					<span id="usermoney">
+						<strong> 10,000원 </strong>
+						입니다.
+					</span>
+				</div>
+				<div class="modal-buttons">
+					<button class="btn-confirm">결제</button>
+				</div>
 			</div>
-			<div class="modal-buttons">
-				<button class="btn-confirm">결제</button>
-			</div>
-		</div>
+		</form>
 	</div>
 	<section class="main-section">
 		<div class="container">
@@ -42,7 +44,14 @@
 							<div class="repair_type">[CSS 수리]</div>
 							<div class="explain">${dto.content }</div>
 						</a>
-						<button class="btn approve pay-request">결제 요청</button>
+						<c:choose>
+							<c:when test="${dto.payStatus == 'N'}">
+								<button class="btn approve pay-request" data-reqno="${dto.reqNo}">결제 요청</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn complete" disabled>결제 완료</button>
+							</c:otherwise>
+						</c:choose>
 						<!-- <button class="btn complete" id="complete">결제 완료</button> -->
 					</div>
 				</c:forEach>
@@ -54,28 +63,53 @@
 	<%@ include file="../include/footer.jsp"%>
 	<script>
 	document.querySelectorAll('.pay-request').forEach(function(button) {
-		button.addEventListener('click', function() {
-			// 결제 요청 버튼을 클릭하면 결제 모달을 표시
-			document.getElementById('payModal').classList.add('show');
-			
-			// 기존에 바인딩된 이벤트 리스너 제거
-			var newButtonConfirm = document.querySelector('#payModal .btn-confirm');
-			var newButtonConfirmClone = newButtonConfirm.cloneNode(true);
-			newButtonConfirm.parentNode.replaceChild(newButtonConfirmClone, newButtonConfirm);
+	    button.addEventListener('click', function() {
+	        // 결제 요청 버튼을 클릭하면 결제 모달을 표시
+	        document.getElementById('payModal').classList.add('show');
 
-			// 모달에서 확인 버튼 클릭 이벤트
-			newButtonConfirmClone.addEventListener('click', function() {
-				// 클릭된 결제 요청 버튼을 업데이트
-				button.textContent = '결제 완료';
-				button.classList.remove('approve');
-				button.classList.add('complete');
-				button.classList.remove('pay-request');
-				
-				// 결제 모달을 숨김
-				document.getElementById('payModal').classList.remove('show');
-				alert('결제가 완료되었습니다.');
-			});
-		});
+	        // 모달에서 확인 버튼 클릭 이벤트
+	        document.querySelector('#payModal .btn-confirm').addEventListener('click', function() {
+	            var reqNo = button.getAttribute('data-reqno');
+
+	            // FormData 객체를 사용하여 폼 데이터를 생성
+	            var formData = new FormData();
+	            formData.append('reqNo', reqNo);
+	            formData.append('payStatus', 'Y');
+
+	            // fetch API를 사용하여 서버에 결제 상태를 업데이트
+	            fetch('/member/payAjax.request', { // 절대 경로 사용
+	                method: 'POST',
+	                body: formData
+	            })
+	            .then(response => {
+	                if (response.ok) {
+	                    return response.text(); // 서버 응답을 텍스트로 반환
+	                } else {
+	                    throw new Error('서버 오류: ' + response.status);
+	                }
+	            })
+	            .then(data => {
+	                // 서버 응답이 'Success'이면 버튼을 업데이트
+	                if (data.trim() === 'Success') {
+	                    button.textContent = '결제 완료';
+	                    button.classList.remove('approve');
+	                    button.classList.add('complete');
+	                    button.classList.remove('pay-request');
+	                    button.disabled = true;
+	                    
+	                    // 결제 모달을 숨김
+	                    document.getElementById('payModal').classList.remove('show');
+	                    alert('결제가 완료되었습니다.');
+	                } else {
+	                    throw new Error('결제 처리 실패');
+	                }
+	            })
+	            .catch(error => {
+	                console.error('Error:', error);
+	                alert('결제 처리 중 오류가 발생했습니다.');
+	            });
+	        });
+	    });
 	});
 	</script>
 

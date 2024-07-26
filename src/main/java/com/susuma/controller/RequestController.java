@@ -41,7 +41,7 @@ public class RequestController extends HttpServlet {
 		String path = request.getContextPath(); // 프로젝트 식별 이름
 		String command = uri.substring(path.length());
 
-		RequestService service;
+		RequestService service = new RequestServiceImpl(); 
 
 		System.out.println(command);
 		if (command.equals("/member/list.request")) {
@@ -49,13 +49,14 @@ public class RequestController extends HttpServlet {
 			service = new RequestServiceImpl();
 			service.getList(request, response);
 
-		}else if(command.equals("/member/requestView.request")) {
-			//멤버 예약 내역 보기
+		} else if (command.equals("/member/requestView.request")) {
+			// 멤버 예약 내역 보기
 			service = new RequestServiceImpl();
-			service.getMemberRequest(request,response);
-			
-		}
+			service.getMemberRequest(request, response);
 
-	}
-
+		} if (command.equals("/member/payAjax.request")) {
+			service = new RequestServiceImpl();
+            service.updatePaymentStatus(request, response);
+        }
+}
 }
