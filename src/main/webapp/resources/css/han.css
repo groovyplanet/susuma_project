@@ -97,7 +97,6 @@
 .main-section .container .repair-setting .repair-set-title { border-bottom: 1px solid black; padding: 5px; } 
 /* ===reserve manage list page css end === */
 /* ========repair view page css start ===== */
-.main-section .container .profile-logo-sm { margin-top: 5px; width: 50px; margin-right: 20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
 .main-section .container .repair-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
 .main-section .container .repair-detail .info-reserve .member-section { font-size: 15px; text-align: left; margin-top: 40px; margin-left: 20px; display: flex; align-items: center; } 
 .main-section .container .repair-detail .info-reserve .member-section .infodetail { height: 100%; } 
@@ -179,7 +178,6 @@
 .main-section .container .review-setting .review-set-title { border-bottom: 1px solid black; padding: 5px; } 
 /*master-review_list css end */
 /* == review_view master ver start == */
-.main-section .container .profile-logo-sm { margin-top: 5px; width: 50px; margin-right: 20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
 .main-section .container .review-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
 .main-section .container .review-detail .info-review .member-section { font-size: 15px; text-align: left; margin-top: 10px; margin-left: 20px; display: flex; } 
 .main-section .container .review-detail .info-review .member-section .info-review { height: 100%; } 
@@ -206,7 +204,7 @@
 .main-section .container .review-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
 /* == review_view master ver end == */
 /* == review_view user ver start == */
-.main-section .container .profile-logo-sm { margin-top: 5px; width: 50px; margin-right: 20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
+.main-section .container .profile-logo-sm { width: 50px; margin-right: 20px; height: 50px; margin-left: 50px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container .user-review-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
 .main-section .container .user-review-detail .info-review .member-section { font-size: 15px; text-align: left; margin-top: 10px; margin-left: 20px; display: flex; } 
 .main-section .container .user-review-detail .info-review .member-section .info-review { height: 100%; } 
