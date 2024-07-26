@@ -49,8 +49,15 @@ public class MemberDTO {
 
 	private String rn; // 페이징 처리
 	
+	// 메인 리뷰화면
 	private String averageScore; // 별점 평균
 	private String reviewCount; // 별점 갯수
+	private String masterName; //마스터 이름
+	private String clientName; //의뢰인 이름
+	private String reNo; //리뷰 번호
+	private String content; // 리뷰내역
+	private String starScore;  //별점
+	
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -115,9 +122,45 @@ public class MemberDTO {
 		this.rn = rn;
 	}
 
-	
-	
-	
+	public String getReNo() {
+		return reNo;
+	}
+
+	public void setReNo(String reNo) {
+		this.reNo = reNo;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getStarScore() {
+		return starScore;
+	}
+
+	public void setStarScore(String starScore) {
+		this.starScore = starScore;
+	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
 
 	public String getAverageScore() {
 		return averageScore;
@@ -223,8 +266,15 @@ public class MemberDTO {
 		this.emailNotification = emailNotification;
 	}
 
-	public String getProfilePhoto() {
-		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
+	public byte[] getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
 	}
 
 	public void setProfilePhoto(byte[] profilePhoto) {
@@ -357,10 +407,6 @@ public class MemberDTO {
 
 	public void setrn(String rn) {
 		this.rn = rn;
-	}
-
-	public String getImg() {
-		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
 	}
 
 }

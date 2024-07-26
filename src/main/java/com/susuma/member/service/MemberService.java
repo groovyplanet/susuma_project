@@ -23,6 +23,8 @@ public interface MemberService {
 
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
@@ -34,11 +36,10 @@ public interface MemberService {
 	void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 
 	void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
-	
+
 	void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
-	
+
 	void reviewWrite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
-	
+
 	void getMainMaster(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 }
-

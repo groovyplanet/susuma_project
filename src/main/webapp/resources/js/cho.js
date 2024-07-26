@@ -17,12 +17,12 @@ function handleCategoryChange() {
 
 	// AJAX 요청을 통해 하위 카테고리 가져오기
 	fetch("getCategory.ajax?rootNo=" + selectedCategory)
-		.then(function(response) {
+		.then(function (response) {
 			return response.json();
 		})
-		.then(function(data) {
+		.then(function (data) {
 			subCategorySelect.innerHTML = '<option value="">선택</option>';
-			data.forEach(function(subCategory) {
+			data.forEach(function (subCategory) {
 				const option = document.createElement('option');
 				option.value = subCategory.caNo; // 하위 카테고리 번호
 				option.textContent = subCategory.caName; // 하위 카테고리 이름
@@ -30,25 +30,25 @@ function handleCategoryChange() {
 			});
 			subCategorySelect.focus();
 		})
-		.catch(function(error) {
+		.catch(function (error) {
 			console.error('Fetch error:', error);
 		});
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 	/*
 	member/join.html
 	*/
 
 	// 탭 메뉴(의뢰인으로 가입 or 수리기사로 가입)
-	$(".main-area.join .tab-btn").click(function() {
+	$(".main-area.join .tab-btn").click(function () {
 		if (!$(this).hasClass("active")) {
 			$(".tab-btn").toggleClass("active");
 			$("#master-info-area").toggle();
 			// 사업자등록번호 required 속성 토글
-			$("#business_number").prop('required', !$("#business_number").prop('required'));
+			$("#businessNumber").prop('required', !$("#businessNumber").prop('required'));
 			// 폼 정보 리셋
 			//$("#form-join")[0].reset(); 
 			//$(".input-area").removeClass("error").removeClass("error-re");
@@ -59,9 +59,10 @@ $(document).ready(function() {
 	/*
 	member/join.member
 	member/edit.member
+	.profile-edit 클래스 공통으로 사용
 	*/
 
-	$(".profile-edit .join-form #email").blur(function() { // 이메일
+	$(".profile-edit #email").blur(function () { // 이메일
 		var regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
 		var inputArea = $(this).parent();
 		if (regex.test($(this).val())) {
@@ -94,7 +95,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".profile-edit .join-form #pw").blur(function() { // 비밀번호
+	$(".profile-edit #pw").blur(function () { // 비밀번호
 		var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/;
 		var inputArea = $(this).parent();
 		if (regex.test($(this).val())) inputArea.removeClass("error");
@@ -103,46 +104,47 @@ $(document).ready(function() {
 		else if ($('#pw_re').val() != "") inputArea.addClass("error-re");
 	});
 
-	$(".profile-edit .join-form #pw_re").blur(function() { // 비밀번호 확인
+	$(".profile-edit #pw_re").blur(function () { // 비밀번호 확인
 		var inputArea = $(this).parent();
 		if ($('#pw').val() == $('#pw_re').val()) inputArea.removeClass("error-re");
 		else inputArea.addClass("error-re");
 	});
 
-	$(".profile-edit .join-form #phoneNum").keyup(function() { // 연락처 자동 대쉬
+	$(".profile-edit #phoneNum").keyup(function () { // 연락처 자동 대쉬
 		if ($(this).val().length == 11) {
 			$(this).val($(this).val().replace(/[^0-9]/, "").replace(/^(010)(\d{4})(\d{4})$/, `$1-$2-$3`));
 		}
 	});
 
-	$(".profile-edit .join-form #phoneNum").blur(function() { // 연락처
+	$(".profile-edit #phoneNum").blur(function () { // 연락처
 		var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
 		if (regex.test($(this).val()) || $(this).val() == "") $(this).parent().removeClass("error");
 		else $(this).parent().addClass("error");
 	});
 
-	$(".profile-edit .join-form #business_number").keyup(function() { // 사업자 번호 자동 대쉬
+	$(".profile-edit #businessNumber").keyup(function () { // 사업자 번호 자동 대쉬
 		if ($(this).val().length == 10) {
 			$(this).val($(this).val().replace(/[^0-9]/, "").replace(/([0-9]{3})([0-9]{2})([0-9]{5})/, `$1-$2-$3`));
 		}
 	});
 
-	$(".profile-edit .join-form #business_number").blur(function() { // 사업자 번호
+	$(".profile-edit #businessNumber").blur(function () { // 사업자 번호
 		var regex = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/;
 		if (regex.test($(this).val())) $(this).parent().removeClass("error");
 		else $(this).parent().addClass("error");
 	});
 
 	// 근무 요일 및 시간
-	$(".profile-edit .join-form .check-area input[type='checkbox']").click(function() {
+	$(".profile-edit .check-area input[type='checkbox']").click(function () {
 		if ($(this).prop('checked')) $(this).parent().parent().find("select").removeAttr("disabled"); // 체크 시 select 활성화
 		else $(this).parent().parent().find("select").attr("disabled", "disabled"); // 비활성화
 	})
 
-	$(".profile-edit .join-form #btn-work-hours-enter").click(function() {
+	$(".profile-edit #btn-work-hours-enter").click(function () {
 		// form에 반영
 		$("#work-hours-list").empty();
-		$('input:checkbox[name=work-hours-week]:checked').each(function(index) {
+		var workHours = "";
+		$('input:checkbox[name=work-hours-week]:checked').each(function (index) {
 			var num = $(this).val();
 			var startTime = $(this).parent().parent().find("select[name='work_hours_" + num + "_s']").val();
 			var endTime = $(this).parent().parent().find("select[name='work_hours_" + num + "_e']").val();
@@ -157,8 +159,10 @@ $(document).ready(function() {
 				case "7": day = "일"; break;
 				default: day = "잘못된 입력";
 			}
-			$("#work-hours-list").append("<p>" + day + " " + startTime + ":00 ~ " + endTime + ":00</p>");
+			$("#work-hours-list").append("<p>" + day + " " + startTime + " ~ " + endTime + "</p>");
+			workHours += (workHours != "" ? "\n" : "") + day + " " + startTime + " ~ " + endTime;
 		})
+		$("input[name=workHours]").val(workHours); // DB에 저장될 값
 
 		if ($('input:checkbox[name=work-hours-week]:checked').length > 0) $("#work-hours-list").show();
 		else $("#work-hours-list").hide();
@@ -167,7 +171,7 @@ $(document).ready(function() {
 	})
 
 	// 이동 가능 거리 radio
-	$(".profile-edit .join-form .distance-radio").click(function() {
+	$(".profile-edit .distance-radio").click(function () {
 		if (!$(this).hasClass("active")) {
 			$(".distance-radio").removeClass("active");
 			$(this).addClass("active");
@@ -175,18 +179,18 @@ $(document).ready(function() {
 	})
 
 	// 이용약관 동의 체크박스
-	$(".profile-edit .join-form #check-terms-all").click(function() {
+	$(".profile-edit #check-terms-all").click(function () {
 		$("input[name=checkbox-terms]").prop("checked", $(this).is(":checked"));
 	});
 
-	$(".profile-edit .join-form input[name=checkbox-terms]").click(function() {
+	$(".profile-edit input[name=checkbox-terms]").click(function () {
 		var total = $("input[name=checkbox-terms]").length;
 		var checked = $("input[name=checkbox-terms]:checked").length;
 		$("#check-terms-all").prop("checked", total == checked);
 	});
 
 	// 가입하기/프로필 수정 버튼 클릭 시
-	$('#form-join, #form-profile-edit').on('submit', function(event) {
+	$('#form-join, #form-profile-edit').on('submit', function (event) {
 		event.preventDefault(); // 기본 폼 제출 막기
 		// 이메일
 		if ($("input[name=email]").parent().hasClass("error")) {
@@ -209,8 +213,8 @@ $(document).ready(function() {
 			return false;
 		}
 		// 사업자등록번호
-		if ($("input[name=type]").val() == "master" && $("input[name=business_number]").parent().hasClass("error")) {
-			$("input[name=business_number]").focus();
+		if ($("input[name=type]").val() == "master" && $("input[name=businessNumber]").parent().hasClass("error")) {
+			$("input[name=businessNumber]").focus();
 			return false;
 		}
 
@@ -219,14 +223,14 @@ $(document).ready(function() {
 	});
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 	/*
 	member/find_info.html 비밀번호 찾기
 	*/
 	var formFindInfo = document.getElementById('form-find-info');
 	if (formFindInfo) { // Vanilla JavaScript를 사용할 때는 요소의 존재 여부를 반드시 확인하고 이벤트 바인딩(null 값에 이벤트 리스너를 등록하려고 시도하기 때문에 오류 발생)
 		// 임시 비밀번호 발급 버튼 클릭 시
-		formFindInfo.addEventListener('submit', function(event) {
+		formFindInfo.addEventListener('submit', function (event) {
 			event.preventDefault(); // 기본 폼 제출 막기
 
 			var emailInput = this.querySelector('#email');
@@ -252,44 +256,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		var formPwChange = document.getElementById('form-pw-change');
 
-		// 비밀번호 변경 버튼 클릭 시
-		formPwChange.addEventListener('submit', function(event) {
-			event.preventDefault(); // 기본 폼 제출 막기
+		if (formPwChange) {
+			// 비밀번호 변경 버튼 클릭 시
+			formPwChange.addEventListener('submit', function (event) {
+				event.preventDefault(); // 기본 폼 제출 막기
 
-			// 비밀번호
-			var pwInput = document.querySelector("input[name='pw']");
-			if (pwInput.parentElement.classList.contains("error")) {
-				pwInput.focus();
-				return false;
-			}
+				// 비밀번호
+				var pwInput = document.querySelector("input[name='pw']");
+				if (pwInput.parentElement.classList.contains("error")) {
+					pwInput.focus();
+					return false;
+				}
 
-			// 비밀번호 확인
-			var pwReInput = document.querySelector("input[name='pw_re']");
-			if (pwReInput.parentElement.classList.contains("error-re")) {
-				pwReInput.focus();
-				return false;
-			}
+				// 비밀번호 확인
+				var pwReInput = document.querySelector("input[name='pw_re']");
+				if (pwReInput.parentElement.classList.contains("error-re")) {
+					pwReInput.focus();
+					return false;
+				}
 
-			// submit
-			this.submit();
-		})
+				// submit
+				this.submit();
+			})
+		}
 	} //if (profileEdit)
 
 	/*
-	user/request.html 수리 예약
+	user/request.member 수리 예약
 	*/
 
 	var requestArea = document.querySelector(".main-area.request");
 	if (requestArea) {
 
 		// 연락처 자동 대쉬
-		requestArea.querySelector("#phoneNum").addEventListener('keyup', function() {
+		requestArea.querySelector("#phoneNum").addEventListener('keyup', function () {
 			if (this.value.length === 11) {
 				this.value = this.value.replace(/[^0-9]/g, "").replace(/^(010)(\d{4})(\d{4})$/, '$1-$2-$3');
 			}
 		});
 		// 연락처 유효성 검사
-		requestArea.querySelector("#phoneNum").addEventListener('blur', function() {
+		requestArea.querySelector("#phoneNum").addEventListener('blur', function () {
 			var regex = /^(010-[0-9]{4}-[0-9]{4})$/;
 			if (regex.test(this.value) || this.value == "") {
 				this.parentElement.classList.remove("error");
@@ -334,14 +340,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			activeDate: new Date(),
 			getFirstDay: (yy, mm) => new Date(yy, mm, 1),
 			getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-			nextMonth: function() {
+			nextMonth: function () {
 				let d = new Date();
 				d.setDate(1);
 				d.setMonth(++this.monForChange);
 				this.activeDate = d;
 				return d;
 			},
-			prevMonth: function() {
+			prevMonth: function () {
 				let d = new Date();
 				d.setDate(1);
 				d.setMonth(--this.monForChange);
@@ -351,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			addZero: (num) => (num < 10) ? '0' + num : num,
 			activeTDTag: null,
 			activeBtnTag: null,
-			getIndex: function(node) {
+			getIndex: function (node) {
 				let index = 0;
 				while (node = node.previousElementSibling) {
 					index++;
@@ -506,7 +512,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var formRequest = document.getElementById('form-request');
 
 		// 예약 신청 버튼 클릭 시
-		formRequest.addEventListener('submit', function(event) {
+		formRequest.addEventListener('submit', function (event) {
 			event.preventDefault(); // 기본 폼 제출 막기
 
 			//시간 

@@ -62,7 +62,7 @@ public class AuthenticationFilter implements Filter {
 					PrintWriter out = response.getWriter();
 					out.println("<script>");
 					out.println("alert('로그인이 필요한 서비스 입니다.');");
-					out.println("history.back();"); // 이전 페이지로 돌아가기
+					out.println("location.href='" + request.getContextPath() + "/';");
 					out.println("</script>");
 					return; // 컨트롤러 실행 x
 				}

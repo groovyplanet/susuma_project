@@ -11,7 +11,14 @@
 			<div class="content master-view">
 				<div class="new-edit-form">
 					<div class="new-profile-img">
-						<img class="#" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png">
+						<c:choose>
+							<c:when test="${dto.profilePhotoImg == '' }">
+								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+							</c:when>
+							<c:otherwise>
+								<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="new-master-section">
 						<div class="new-master-name">
@@ -31,7 +38,7 @@
 						</div>
 
 						<div class="reserve-button-block">
-							<a href="${pageContext.request.contextPath }/member/memberRequest.member?meNo=${dto.meNo}" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
+							<a href="${pageContext.request.contextPath }/member/request.member?meNo=${dto.meNo}" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
 							<a class="new-btn new-reserve-contact" id="reserve-contact" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">문의 신청</a>
 						</div>
 					</div>
