@@ -17,7 +17,7 @@
 		#{latitude}, #{longitude}, #{phoneNum})
 	</insert>
 	<select id="getListByMember" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
-		SELECT R.REQ_NO, R.PAY_STATUS, R.CONTENT, MM.NAME AS MASTER_NAME, MC.NAME AS CLIENT_NAME, MC.ADDRESS
+		SELECT R.REQ_NO, R.PAY_STATUS, R.CONTENT, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, MC.ADDRESS
 		FROM REQUEST R
 		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
 		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO

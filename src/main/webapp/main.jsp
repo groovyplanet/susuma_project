@@ -26,7 +26,8 @@
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
-	margin-bottom: 10px;
+	object-fit: cover;
+	border: 1px solid #ccc;
 }
 </style>
 </head>

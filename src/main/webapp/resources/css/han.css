@@ -62,7 +62,7 @@
 .main-section .container .reservation-setting .reserve-schecdule .pending { background-color: #ff6b6b; color: white; } 
 .main-section .container .reservation-setting .reserve-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
 .main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
-.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 50px; height: 50px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 50px; height: 50px; margin-left: 20px; border-radius: 50%; background-size: cover; margin-top: 0; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container .reservation-setting .reserve-list-title { border-bottom: 1px solid black; padding: 5px; } 
 /* == reserve manage list 예약관리 승인 모달 == */
 #reserve-approve-btn { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 1000; } 

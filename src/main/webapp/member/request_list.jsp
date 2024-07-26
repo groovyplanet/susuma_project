@@ -34,7 +34,14 @@
 				<br>
 				<c:forEach var="dto" items="${list }">
 					<div class="reserve-schecdule">
-						<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+						<c:choose>
+							<c:when test="${dto.profilePhotoImg == '' }">
+								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
+							</c:when>
+							<c:otherwise>
+								<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+							</c:otherwise>
+						</c:choose>
 						<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }" class="info">
 							<div class="repair_date">${dto.requestDate }</div>
 							<div class="master_name">
