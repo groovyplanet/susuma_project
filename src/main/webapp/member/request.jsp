@@ -13,12 +13,19 @@
 				<div class="join-form request-form">
 					<!-- ajax로 처리 -->
 					<form method="post" id="form-request">
-					<input type="hidden" name="masterNo" value="${dto.meNo }">
+						<input type="hidden" name="masterNo" value="${dto.meNo }">
 						<div class="info-area">
 							<div class="title-main">수리기사 정보</div>
 							<div class="master-info-area">
 								<div class="img-profile-area">
-									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="프로필 이미지">
+									<c:choose>
+										<c:when test="${dto.profilePhotoImg == '' }">
+											<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+										</c:when>
+										<c:otherwise>
+											<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="text-area">
 									<p class="master-name">
@@ -48,6 +55,7 @@
 									근무 가능 일시
 								</label>
 								<div id="master-work-hours-list"></div>
+								<!-- <div style="white-space: pre;">${dto.workHours}</div> -->
 							</div>
 						</div>
 						<div class="info-area">

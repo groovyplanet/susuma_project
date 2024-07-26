@@ -122,11 +122,6 @@ public class MemberDTO {
 		this.rn = rn;
 	}
 
-	
-	
-	
-	
-
 	public String getReNo() {
 		return reNo;
 	}
@@ -271,8 +266,15 @@ public class MemberDTO {
 		this.emailNotification = emailNotification;
 	}
 
-	public String getProfilePhoto() {
-		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
+	public byte[] getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
 	}
 
 	public void setProfilePhoto(byte[] profilePhoto) {
@@ -405,10 +407,6 @@ public class MemberDTO {
 
 	public void setrn(String rn) {
 		this.rn = rn;
-	}
-
-	public String getImg() {
-		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
 	}
 
 }

@@ -254,8 +254,8 @@
 /* ==============master_view================== */
 .main-section .container .content .new-edit-form { margin-top: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 14px; justify-content: center; } 
 .main-section .container .content .new-edit-form .new-profile-img { height: 80px; border-radius: 50%; background-size: cover; display: flex; justify-content: center; } 
-.main-section .container .content .new-edit-form .new-profile-img img { width: 100px; height: 100px; } 
-.main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; margin-left: 20px; text-align: center; margin-top: 30px; } 
+.main-section .container .content .new-edit-form .new-profile-img img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; text-align: center; margin-top: 30px; } 
 .main-section .container .content .new-edit-form .new-master-section div { padding: 2px; } 
 .main-section .container .content .new-career_infoarea,
 .main-section .container .content .new-location_management,
@@ -311,7 +311,7 @@
 .main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
 .main-section .container.filter .technician { border: 1px solid #ddd; margin: 10px; padding: 20px; width: 300px; text-align: center; transition: transform 0.3s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; background-color: #fff; } 
 .main-section .container.filter .technician:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
-.main-section .container.filter .technician img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; } 
+.main-section .container.filter .technician img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container.filter .search-filters { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
 .main-section .container.filter .search-filter { margin: 0 10px; } 
 .main-section .container.filter .search-filter label { margin-right: 10px; font-weight: bold; color: #333; } 

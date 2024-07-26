@@ -23,10 +23,6 @@ public interface MemberMapper {
 
 	public String getPassword(String meNo);
 
-	public MemberDTO selectMemberById(String meNo);
-
-	public MemberDTO getMemberByNo(String meNo);
-	
 	public ArrayList<MemberDTO> selectMain(); // 메인 마스터리스트
 	
 	public ArrayList<MemberDTO> selectMainRe(); //메인 리뷰리스트

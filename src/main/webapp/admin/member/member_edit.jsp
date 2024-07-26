@@ -69,7 +69,7 @@ function handleCategoryChange() {
 									<th>프로필 사진</th>
 									<td>
 										<div class="img_wrap">
-											<input type="file" name="profilePhoto" >
+											<input type="file" name="profilePhoto">
 										</div>
 									</td>
 									<td></td>
@@ -81,8 +81,15 @@ function handleCategoryChange() {
 									<th>프로필 사진</th>
 									<td>
 										<div class="img_wrap">
-											<img src="data:image/png;base64,${dto.img }" alt="Profile Picture" class="profile">
-											<input type="file" name="profilePhoto" value="${dto.profilePhoto }">
+											<c:choose>
+												<c:when test="${dto.profilePhotoImg == '' }">
+													<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+												</c:when>
+												<c:otherwise>
+													<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+												</c:otherwise>
+											</c:choose>
+											<input type="file" name="profilePhoto">
 										</div>
 									</td>
 								</c:otherwise>
@@ -243,7 +250,7 @@ function handleCategoryChange() {
 									        -
 									    </c:when>
 										<c:otherwise>
-											<fmt:formatDate value="${dto.updateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초"  />
+											<fmt:formatDate value="${dto.updateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
 										</c:otherwise>
 									</c:choose>
 								</td>

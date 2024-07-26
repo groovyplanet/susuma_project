@@ -77,7 +77,7 @@ public class MemberController extends HttpServlet {
 			break;
 
 		case "/member/join.member":
-			request.getRequestDispatcher("join.jsp").forward(request, response); // 회원가입 화면
+			service.join(request, response); // 회원가입 화면
 			break;
 
 		case "/member/joinForm.member":

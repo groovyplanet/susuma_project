@@ -35,8 +35,14 @@
 						<td>${dto.meNo}</td>
 						<th>프로필 사진</th>
 						<td style="display: flex;">
-							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
-							<!-- ${dto.profilePhoto } -->
+							<c:choose>
+								<c:when test="${dto.profilePhotoImg == '' }">
+									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+								</c:when>
+								<c:otherwise>
+									<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 					<tr>
@@ -99,7 +105,9 @@
 						</tr>
 						<tr>
 							<th>근무가능 요일별 시간</th>
-							<td>${dto.workHours}</td>
+							<td>
+								<div style="white-space: pre;">${dto.workHours}</div>
+							</td>
 							<th>수리 상세 내용</th>
 							<td>
 								<div style="white-space: pre;">${dto.description}</div>

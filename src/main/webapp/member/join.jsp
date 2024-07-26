@@ -23,7 +23,7 @@
 				</div>
 				<!-- 입력 폼 -->
 				<div class="join-form">
-					<form action="joinForm.member" method="post" id="form-join">
+					<form action="joinForm.member" method="post" id="form-join" enctype="multipart/form-data">
 						<input type="radio" name="type" value="user" id="radio-user" checked style="display: none;">
 						<input type="radio" name="type" value="master" id="radio-master" style="display: none;">
 						<div class="input-area">
@@ -97,10 +97,10 @@
 									시간 입력
 									<i class="bi bi-chevron-right"></i>
 								</button>
+								<input type="hidden" name="workHours" value="${dto.workHours}">
 								<div id="work-hours-list" class="work-hours-list" style="display: none;">
 									<!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
 								</div>
-								<input type="hidden" name="work_hours">
 							</div>
 							<div class="input-area">
 								<label for="maxDistance">이동 가능 거리</label>
@@ -162,13 +162,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_1_s" disabled>
-												<option value="09">09:00</option>
-												<option value="1010">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_1_e" disabled>
-												<option value="20">20:00</option>
-												<option value="21">21:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -181,11 +189,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_2_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_2_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -198,11 +216,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_3_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_3_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -215,11 +243,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_4_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_4_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -232,11 +270,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_5_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_5_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -249,11 +297,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_6_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_6_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -266,11 +324,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_7_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_7_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>

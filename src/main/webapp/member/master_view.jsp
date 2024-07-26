@@ -11,7 +11,14 @@
 			<div class="content master-view">
 				<div class="new-edit-form">
 					<div class="new-profile-img">
-						<img class="#" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png">
+						<c:choose>
+							<c:when test="${dto.profilePhotoImg == '' }">
+								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+							</c:when>
+							<c:otherwise>
+								<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="new-master-section">
 						<div class="new-master-name">

@@ -12,14 +12,23 @@
 			<%@ include file="../include/snb.jsp"%>
 			<div class="content profile-edit">
 				<div class="join-form profile-edit-form">
-					<form action="editForm.member" method="post" id="form-profile-edit">
+					<form action="editForm.member" method="post" id="form-profile-edit" enctype="multipart/form-data">
 						<input type="hidden" name="meNo" value="${dto.meNo}">
 						<input type="hidden" name="type" value="${dto.type}">
 						<div class="img-profile-area">
 							<label for="profile_photo" class="label-profile_photo">
-								<img id="img-profile" class="img-profile" src="../resources/img/iconProfileDefault.png" alt="Profile Image">
+
+								<c:choose>
+									<c:when test="${dto.profilePhotoImg == '' }">
+										<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" id="img-profile" class="img-profile" alt="Profile Picture" class="profile">
+									</c:when>
+									<c:otherwise>
+										<img src="data:image/png;base64,${dto.profilePhotoImg }" id="img-profile" class="img-profile" alt="Profile Picture" class="profile">
+									</c:otherwise>
+								</c:choose>
 								<span class="img-profile-overlay">프로필 변경</span>
 								<img src="${pageContext.request.contextPath }/resources/img/icon-edit.png" alt="수정 아이콘" class="icon">
+
 							</label>
 							<input type="file" class="input-file" id="profile_photo" name="profilePhoto" onchange="readURL(this);" style="display: none;">
 						</div>
@@ -89,12 +98,10 @@
 									시간 입력
 									<i class="bi bi-chevron-right"></i>
 								</button>
+								<input type="hidden" name="workHours" value="${dto.workHours}">
 								<div id="work-hours-list" class="work-hours-list">
 									<!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
-									<input type="hidden" name="workHours" value="${dto.workHours}">
-									<p>월 09:00 ~ 20:00</p>
-									<p>수 10:00 ~ 20:00</p>
-									<p>금 10:00 ~ 20:00</p>
+									<div style="white-space: pre-line;">${dto.workHours}</div>
 								</div>
 							</div>
 							<div class="input-area">
@@ -150,13 +157,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_1_s" disabled>
-												<option value="09">09:00</option>
-												<option value="1010">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_1_e" disabled>
-												<option value="20">20:00</option>
-												<option value="21">21:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -169,11 +184,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_2_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_2_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -186,11 +211,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_3_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_3_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -203,11 +238,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_4_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_4_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -220,11 +265,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_5_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_5_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -237,11 +292,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_6_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_6_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -254,11 +319,21 @@
 									<div class="time-area">
 										<div class="time-select-area">
 											<select name="work_hours_7_s" disabled>
-												<option value="10">10:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 											<span>~</span>
 											<select name="work_hours_7_e" disabled>
-												<option value="20">20:00</option>
+												<%
+												for (int i = 9; i <= 21; i++) {
+													String hour = String.format("%02d:00", i);
+													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												}
+												%>
 											</select>
 										</div>
 									</div>
@@ -270,6 +345,7 @@
 							</button>
 						</div>
 					</div>
+					<!-- //modal -->
 					<!-- 비밀번호 변경 모달 -->
 					<div id="pw-change-modal" class="modal">
 						<div class="container">
