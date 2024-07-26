@@ -26,7 +26,7 @@
         WHERE MC.ME_NO = #{meNo}
         ORDER BY R.REQ_NO
     </select>
-    <select id="getRequestByNo" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
+    <select id="selectRequest" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
         SELECT R.REQ_NO, R.LATITUDE, R.LONGITUDE, R.CONTENT, MM.NAME AS MASTER_NAME, MC.NAME AS CLIENT_NAME, MM.ADDRESS 
         FROM REQUEST R
         JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO

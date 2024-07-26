@@ -14,5 +14,5 @@ public interface RequestMapper {
 
 	public RequestDTO getRequestByNo(String reqNo);
 	
-	RequestDTO getRequestByReqNo(String reqNo);
+	RequestDTO selectRequest(String reqNo);
 }

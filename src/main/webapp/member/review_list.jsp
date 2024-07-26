@@ -98,7 +98,20 @@
 								</div>
 								<div class="review-type">
 									<strong>별점 :</strong>
-									<span id="starview" style="color: gold;">★★★★☆</span>
+									<span id="starview" style="color: gold;">
+							
+										<c:forEach var="i" begin="1" end="5">
+											<c:choose>
+												<c:when test="${i <= dto.starScore}">
+                ★
+            </c:when>
+												<c:otherwise>
+                ☆
+            </c:otherwise>
+											</c:choose>
+										</c:forEach>
+
+									</span>
 								</div>
 							</a>
 						</div>
