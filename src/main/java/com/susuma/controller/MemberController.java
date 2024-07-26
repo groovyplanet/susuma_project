@@ -124,7 +124,7 @@ public class MemberController extends HttpServlet {
 			service.getMemberById(request, response); // 회원 상세 정보 보기
 			break;
 
-		case "/member/memberRequest.member":
+		case "/member/request.member":
 			service.getMemberDetails(request, response); // 수리 예약
 			break;
 

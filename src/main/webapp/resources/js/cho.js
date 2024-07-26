@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	} //if (profileEdit)
 
 	/*
-	user/request.html 수리 예약
+	user/request.member 수리 예약
 	*/
 
 	var requestArea = document.querySelector(".main-area.request");
