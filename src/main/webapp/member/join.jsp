@@ -8,7 +8,7 @@
 
 	<section class="main-section">
 		<div class="container main-only">
-			<div class="main-area join">
+			<div class="main-area join profile-edit">
 				<div class="title">회원가입</div>
 				<div class="menu-tab">
 					<!-- 의뢰인으로 가입 or 수리기사로 가입 -->
@@ -73,31 +73,19 @@
 								<div class="category-add-area">
 									<label for="category" class="required">수리 분야</label>
 								</div>
-								<div id="category-select-area-template" style="display: none;">
-									<div class="category-select-area">
-										<select name="category" class="select-category">
-											<option value="">가전제품</option>
-											<option value="">가전제품</option>
-										</select>
-										<select name="ca_no" class="select-category">
-											<option value="">에어컨</option>
-											<option value="">에어컨</option>
-										</select>
-										<span class="del-category-btn" onclick="$(this).parent().remove();">
-											<i class="bi bi-trash3"></i>
-										</span>
-									</div>
-								</div>
 								<div id="category-select-area-wrap">
 									<div class="category-select-area">
-										<select name="category" class="select-category">
-											<option value="">가전제품</option>
-											<option value="">가전제품</option>
-											<option value="">가전제품</option>
+										<select id="category" onchange="handleCategoryChange()" class="select-category">
+											<option value="">선택</option>
+											<c:forEach var="categoryDto" items="${CategoryMainList}">
+												<option value="${categoryDto.caNo }" ${dto.caRootNo == categoryDto.caNo ? 'selected' : ''}>${categoryDto.caName }</option>
+											</c:forEach>
 										</select>
-										<!-- TODO: 1차 카테고리 선택에 따라 2차 카테고리를 db에서 가져와서 세팅 -->
-										<select name="ca_no" class="select-category">
-											<option value="">에어컨</option>
+										<select name="caNo" id="sub-category" class="select-category">
+											<option value="">선택</option>
+											<c:forEach var="categorySubDto" items="${CategorySubList}">
+												<option value="${categorySubDto.caNo }" ${dto.caNo == categorySubDto.caNo ? 'selected' : ''}>${categorySubDto.caName }</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>

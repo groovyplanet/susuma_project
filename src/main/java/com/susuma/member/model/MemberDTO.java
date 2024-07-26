@@ -1,6 +1,7 @@
 package com.susuma.member.model;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 
 public class MemberDTO {
 
@@ -9,6 +10,7 @@ public class MemberDTO {
 	private String clientNo; // "CLIENT_NO"
 	private String type; // "TYPE"
 	private String email; // "EMAIL"
+
 	public String getClientNo() {
 		return clientNo;
 	}
@@ -26,7 +28,7 @@ public class MemberDTO {
 	private Double longitude; // "LONGITUDE"
 	private String phoneNum; // "PHONE_NUM"
 	private String emailNotification; // "EMAIL_NOTIFICATION"
-	private String profilePhoto; // "PROFILE_PHOTO"
+	private byte[] profilePhoto; // "PROFILE_PHOTO"
 	private String joinApproval; // "JOIN_APPROVAL"
 	private Timestamp joinApprovalTime; // "JOIN_APPROVAL_TIME"
 	private String businessNumber; // "BUSINESS_NUMBER"
@@ -46,13 +48,16 @@ public class MemberDTO {
 	private String caRootName; // "CA_ROOT_NAME"
 
 	private String rn; // 페이징 처리
+	
+	private String averageScore; // 별점 평균
+	private String reviewCount; // 별점 갯수
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
 	}
 
 	// insert/update 시 이용
-	public MemberDTO(String meNo, String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, String profilePhoto, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String joinApproval, String caNo, String point, String status) {
+	public MemberDTO(String meNo, String type, String email, String pw, String name, String phoneNum, String address, String addressDetail, Double latitude, Double longitude, String emailNotification, byte[] profilePhoto, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String joinApproval, String caNo, String point, String status) {
 		this.meNo = meNo; // 수정일 경우만
 		this.type = type;
 		this.email = email;
@@ -77,7 +82,7 @@ public class MemberDTO {
 	}
 
 	// 모든 필드를 포함하는 생성자
-	public MemberDTO(String meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, String profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootNo,
+	public MemberDTO(String meNo, String type, String email, String pw, String name, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String emailNotification, byte[] profilePhoto, String joinApproval, Timestamp joinApprovalTime, String businessNumber, String shortDescription, String maxDistance, String description, String workHours, String point, String status, Timestamp insertTime, Timestamp updateTime, String caNo, String caName, String caRootNo,
 			String caRootName, String rn) {
 		super();
 		this.meNo = meNo;
@@ -108,6 +113,26 @@ public class MemberDTO {
 		this.caRootNo = caRootNo;
 		this.caRootName = caRootName;
 		this.rn = rn;
+	}
+
+	
+	
+	
+
+	public String getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(String averageScore) {
+		this.averageScore = averageScore;
+	}
+
+	public String getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	public String getMeNo() {
@@ -199,10 +224,10 @@ public class MemberDTO {
 	}
 
 	public String getProfilePhoto() {
-		return profilePhoto;
+		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
 	}
 
-	public void setProfilePhoto(String profilePhoto) {
+	public void setProfilePhoto(byte[] profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
 
@@ -332,6 +357,10 @@ public class MemberDTO {
 
 	public void setrn(String rn) {
 		this.rn = rn;
+	}
+
+	public String getImg() {
+		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
 	}
 
 }
