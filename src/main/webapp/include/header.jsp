@@ -27,10 +27,10 @@ if (arr != null) {
 			<li class="${pageContext.request.servletPath == '/member/introduce.jsp' ? 'active' : ''}">
 				<a href="${pageContext.request.contextPath }/member/introduce.jsp">수수마 소개</a>
 			</li>
-			<li class="${pageContext.request.servletPath == '/member/master_list.jsp' ? 'active' : ''}">
+			<li class="${gnb == 'request' ? 'active' : ''}">
 				<a href="${pageContext.request.contextPath }/member/masterList.member">수리 예약</a>
 			</li>
-			<li class="${pageContext.request.servletPath == '/board/board_list.jsp' ? 'active' : ''}">
+			<li class="${gnb == 'board' ? 'active' : ''}">
 				<a href="${pageContext.request.contextPath }/board/list.board">고객센터</a>
 			</li>
 		</ul>

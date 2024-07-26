@@ -78,15 +78,18 @@ public class BoardController extends HttpServlet {
 			break;
 			
 		case "/board/list.board":
+			request.setAttribute("gnb", "board");
 			service.getList(request, response); // 게시물 목록(공지사항, faq, 1:1문의)
 			break;
 			
 		case "/board/noticeView.board":
+			request.setAttribute("gnb", "board");
 			service.noticeGetView(request, response); // 공지사항 상세
 			break;
 			
 		case "/board/askWrite.board":
 			request.setAttribute("type", "ask");
+			request.setAttribute("gnb", "board");
 			request.getRequestDispatcher("/board/ask_write.jsp").forward(request, response); // 1:1문의 작성 & 수정 화면
 			break;
 			
@@ -95,10 +98,12 @@ public class BoardController extends HttpServlet {
 			break;
 			
 		case "/board/askView.board":
+			request.setAttribute("gnb", "board");
 			service.askGetView(request, response); // 1:1 문의 상세
 			break;
 			
 		case "/board/askModify.board":
+			request.setAttribute("gnb", "board");
 			service.askModify(request, response); // 1:1 문의 수정
 			break;
 			
