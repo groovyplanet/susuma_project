@@ -12,16 +12,15 @@ public class ReviewDTO {
 	private String starScore;
 	private Timestamp insertTime;
 	private Timestamp updateTime;
-	
-	
+	private String masterName;
+	private String address;
 	
 	
 	public ReviewDTO() {
 		super();
 	}
-	
 	public ReviewDTO(String reNo, String reqNo, String masterNo, String clientNo, String content, String starScore,
-			Timestamp insertTime, Timestamp updateTime) {
+			Timestamp insertTime, Timestamp updateTime, String masterName, String address) {
 		super();
 		this.reNo = reNo;
 		this.reqNo = reqNo;
@@ -31,6 +30,8 @@ public class ReviewDTO {
 		this.starScore = starScore;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
+		this.masterName = masterName;
+		this.address = address;
 	}
 	public String getReNo() {
 		return reNo;
@@ -80,9 +81,21 @@ public class ReviewDTO {
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
+	public String getMasterName() {
+		return masterName;
+	}
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }
-
-
 	
 	
-
+	
+	
+	

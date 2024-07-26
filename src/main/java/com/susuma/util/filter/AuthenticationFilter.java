@@ -51,6 +51,11 @@ public class AuthenticationFilter implements Filter {
 			case "/board/askWrite.board": // 1:1 문의 작성
 			case "/board/askView.board": // 1:1 문의 상세
 			case "/board/askModify.board": // 1:1 문의 수정
+			case "/member/list.review" : //리뷰 리스트 페이지
+			case "/member/list.request" : //예약 신청 페이지
+			case "/member/requestView.request" : //예약 내역 보기
+			
+				
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();
@@ -60,6 +65,7 @@ public class AuthenticationFilter implements Filter {
 					out.println("</script>");
 					return; // 컨트롤러 실행 x
 				}
+			
 			}
 
 		}
