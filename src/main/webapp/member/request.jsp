@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.susuma.member.model.MemberDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -30,19 +33,22 @@
 								<div class="text-area">
 									<p class="master-name">
 										${dto.name }
-										<span class="master-stars">
-											<i class="bi bi-star-fill"></i>
-											4.5
-											<span class="review-count">(114)</span>
-										</span>
+										<c:if test="${dto.reviewCount > 0}">
+											<span class="master-stars">
+												<i class="bi bi-star-fill gold"></i>
+												<strong>${dto.averageScore }</strong>
+												<span class="review-count">(${dto.reviewCount })</span>
+											</span>
+										</c:if>
 									</p>
 									<p class="master-location">
-										<i class="bi bi-geo-alt"></i>
-										${dto.address} (10km 이내 이동 가능)
+										<c:set var="addressParts" value="${fn:split(dto.address, ' ')}" />
+										<i class="bi bi-geo-alt"></i>${addressParts[0]}
+										${addressParts[1]} (${dto.maxDistance}km 이내 가능)
 									</p>
 									<p class="master-category">
-										<span>에어컨 수리</span>
-										<span>냉장고 수리</span>
+										<span>${dto.caRootName }
+											<i class="bi bi-chevron-right"></i>${dto.caName }</span>
 									</p>
 									<!-- 분야 -->
 									<!-- <p class="master-desc">믿고 맡겨주시면 최선을 다해 수리해드리겠습니다. 믿고 맡겨주시면 최선을 다해 수리해드리겠습니다.</p>-->
@@ -54,8 +60,10 @@
 									<i class="bi bi-stopwatch"></i>
 									근무 가능 일시
 								</label>
-								<div id="master-work-hours-list"></div>
-								<!-- <div style="white-space: pre;">${dto.workHours}</div> -->
+								<input type="hidden" name="workHours" value="${dto.workHours}">
+								<div id="master-work-hours-list">
+									<!-- js로 삽입 -->
+								</div>
 							</div>
 						</div>
 						<div class="info-area">
@@ -100,8 +108,8 @@
 						<div class="info-area">
 							<div class="title-main inline">예약자 정보</div>
 							<span class="title-sub2">
-								<i class="bi bi-info-circle"></i>
-								주소 및 연락처 수정 시 회원정보 갱신
+								<!-- <i class="bi bi-info-circle"></i>
+								주소 및 연락처 수정 시 회원정보 갱신 -->
 							</span>
 							<input type="hidden" name="requestDate" value="">
 							<input type="hidden" name="requestTime" value="">
@@ -124,8 +132,7 @@
 						</div>
 						<div class="input-area">
 							<label for="content" class="required">수리요청 상세내용</label>
-							<textarea name="content" class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." required>에어컨 가동 시 곧바로 꺼지는 현상이 발생합니다.
-수리 요청드립니다.</textarea>
+							<textarea name="content" class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." required></textarea>
 						</div>
 						<button type="submit" class="btn-submit">수리 예약</button>
 					</form>

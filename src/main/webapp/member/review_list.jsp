@@ -94,7 +94,7 @@
 							</c:choose>
 						</div>
 						<div class="infodetail">
-							<a href="review_view.jsp" style="text-decoration: none;">
+							<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }">
 								<div class="member-name">
 									<strong>마스터 성함 :</strong>
 									${dto.masterName }

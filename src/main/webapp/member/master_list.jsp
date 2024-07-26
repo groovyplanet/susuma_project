@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/head.jsp"%>
@@ -96,9 +99,25 @@
 							</c:otherwise>
 						</c:choose>
 						<h3>${dto.name}</h3>
-						<p>별점: 4.9 (114)</p>
-						<p>지역: 서울시 강남구 (10km 이내 가능)</p>
-						<p>${dto.shortDescription}</p>
+						<div class="master-info">
+							<c:if test="${dto.reviewCount > 0}">
+								<p class="master-stars">
+									<i class="bi bi-star-fill gold"></i>
+									<strong>${dto.averageScore }</strong>
+									<span class="review-count">(${dto.reviewCount })</span>
+								</p>
+							</c:if>
+							<p>
+								<c:set var="addressParts" value="${fn:split(dto.address, ' ')}" />
+								<i class="bi bi-geo-alt"></i>${addressParts[0]}
+								${addressParts[1]} (${dto.maxDistance}km 이내 가능)
+							</p>
+							<p class="master-category">
+								<span>${dto.caRootName }
+									<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+							</p>
+							<p>${dto.shortDescription }</p>
+						</div>
 					</a>
 				</c:forEach>
 

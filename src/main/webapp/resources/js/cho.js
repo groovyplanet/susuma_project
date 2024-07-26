@@ -221,9 +221,8 @@ $(document).ready(function () {
 		// submit
 		$(this)[0].submit();
 	});
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+
 	/*
 	member/find_info.html 비밀번호 찾기
 	*/
@@ -251,35 +250,44 @@ document.addEventListener("DOMContentLoaded", function () {
 	/*
 	member/edit.member 회원정보 수정 비밀번호 변경
 	*/
-	var profileEdit = document.querySelector(".profile-edit");
-	if (profileEdit) {
 
-		var formPwChange = document.getElementById('form-pw-change');
+	var formPwChange = document.getElementById('form-pw-change');
+	if (formPwChange) {
+		formPwChange.addEventListener('submit', function (event) {
+			event.preventDefault(); // 기본 폼 제출 막기
 
-		if (formPwChange) {
-			// 비밀번호 변경 버튼 클릭 시
-			formPwChange.addEventListener('submit', function (event) {
-				event.preventDefault(); // 기본 폼 제출 막기
+			// 비밀번호
+			var $pwInput = $("input[name='pw']");
+			if ($pwInput.parent().hasClass("error")) {
+				$pwInput.focus();
+				return false;
+			}
 
-				// 비밀번호
-				var pwInput = document.querySelector("input[name='pw']");
-				if (pwInput.parentElement.classList.contains("error")) {
-					pwInput.focus();
-					return false;
-				}
+			// 비밀번호 확인
+			var $pwReInput = $("input[name='pw_re']");
+			if ($pwReInput.parent().hasClass("error-re")) {
+				$pwReInput.focus();
+				return false;
+			}
 
-				// 비밀번호 확인
-				var pwReInput = document.querySelector("input[name='pw_re']");
-				if (pwReInput.parentElement.classList.contains("error-re")) {
-					pwReInput.focus();
-					return false;
-				}
-
-				// submit
-				this.submit();
+			// ajax로 현재 비밀번호 일치 여부 체크 후 새로운 비밀번호로 업데이트
+			const formData = new FormData(formPwChange);
+			fetch('changePwAjax.member', {
+				method: 'POST',
+				body: formData
 			})
-		}
-	} //if (profileEdit)
+				.then(response => response.json())
+				.then(data => {
+					if (data.available) {
+						alert("비밀번호가 변경되었습니다.");
+						location.href = "edit.member";
+					} else {
+						alert(data.msg);
+						$("input[name='pw_old']").focus();
+					}
+				})
+		})
+	} //if (formPwChange)
 
 	/*
 	user/request.member 수리 예약
@@ -305,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 
 		// 수리기사 근무일시 파싱 후 출력
-		var masterScheduleStr = "월 09:00 ~ 22:00화 10:00 ~ 20:00토 14:00 ~ 21:00"; // "월 09:00 ~ 22:00화 10:00 ~ 20:00"
+		var masterScheduleStr = $("input[name=workHours]").val().replace(/[\r\n]+/g, ''); // 개행문자 제거 -> "월 09:00 ~ 22:00화 10:00 ~ 20:00"
 		var masterScheduleData = parseSchedule(masterScheduleStr); // [{ day: '월', startHour: 9, endHour: 22 }, { day: '화', startHour: 10, endHour: 20 }]
 		var scheduleList = document.getElementById('master-work-hours-list');
 		masterScheduleData.forEach(schedule => {
@@ -579,7 +587,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	} //if (requestArea)
 
-}); /* DOMContentLoaded */
+
+}); // $(document).ready(function () {})
 
 
 

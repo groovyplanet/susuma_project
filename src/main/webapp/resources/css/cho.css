@@ -1,5 +1,6 @@
 .underline { text-decoration: underline; } 
 .red { color:#dd0000; } 
+.gold { color:gold !important; } 
 .inline { display: inline; } 
 .mt15 { margin-top: 15px; } 
 .mt20 { margin-top: 20px; } 
@@ -29,9 +30,9 @@
 .main-section .container .join-form .input-area .input-field::placeholder { color: #ccc; } 
 .main-section .container .join-form .input-area label { display: block; font-size: 14px; font-weight: 500; color: #555; text-align: left; } 
 .main-section .container .join-form .input-area label.required::after { content: "*"; color: rgb(255, 114, 98); } 
-.main-section .container .join-form .input-area p.caption-error { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
-.main-section .container .join-form .input-area p.caption-error-re { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; } 
-.main-section .container .join-form .input-area.error p.caption-error { display: block; } 
+.main-section .container .join-form .input-area p.caption-error,
+.main-section .container .join-form .input-area p.caption-error-re { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; text-align: left; } 
+.main-section .container .join-form .input-area.error p.caption-error,
 .main-section .container .join-form .input-area.error-re p.caption-error-re { display: block; } 
 .main-section .container .join-form .input-area p.caption-duplicate-check { display: none; font-size: 12px; font-weight: 400; margin-left: 2px; } 
 .main-section .container .join-form .input-area p.caption-duplicate-check.yes { color: #00b700; } 
@@ -59,7 +60,7 @@
 .main-section .container .join-form .input-area .category-select-area .select-category:hover { background-color: #eaeaea; color: #444; border-color: #aaa; } 
 .main-section .container .join-form .input-area .category-select-area .select-category option { background-color: #fff; font-size: 14px; } 
 .main-section .container .join-form .input-area .category-select-area .del-category-btn { position: absolute; right: -20px; top: 12px; cursor: pointer; } 
-.main-section .container .join-form .input-area .work-hours-list { border: 1px solid #ccc; padding: 10px; border-radius: 8px; margin-top: 5px; } 
+.main-section .container .join-form .input-area .work-hours-list { border: 1px solid #ccc; padding: 10px 14px; border-radius: 8px; margin-top: 5px; line-height: 23px; } 
 /* 이메일 수신 동의, 약관 동의 */
 .main-section .container .join-form .input-area .checkbox-area { margin-top: 15px; display: flex; } 
 .main-section .container .join-form .input-area .checkbox-area.all-check { border-bottom: 1px solid #ddd; padding-bottom: 10px; } 
@@ -155,7 +156,6 @@
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars .review-count { font-size: 12px; } /* 후기 개수 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 12px; } /* 위치 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area i { font-size: 12px; } /* 별점/위치 아이콘 */ 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-category span { font-size: 11px; background-color: #eee; border-radius: 5px; padding: 2px 5px; margin-right: 1px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-desc { width: 390px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
 
 /* 캘린더(날짜 선택) */
@@ -185,6 +185,7 @@
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.disabled { cursor: default; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.disabled span { color: #ccc; font-weight: 400; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day-active span { background: #F49D00; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day-active span:after { content: '선택'; display: block; font-size: 11px; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td:not(.disabled):hover span { background: #F49D00; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.has-event:after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #FFC107; } 
 .main-section .container.main-only .main-area.request .request-form .btn-submit { margin: 30px auto 0; width: 530px; } 
@@ -208,14 +209,6 @@
 .main-section .pagination a i { font-size: 13px; } 
 .main-section .pagination ul { display: flex; gap: 3px; } 
 
-/* 관리자 */
-.admin .content-wrap { width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; } 
-.admin .content-wrap .table-wrap { width: 100%; } 
-.admin .content-wrap .table-wrap table { margin: 0 auto; } 
-.admin .content-wrap .table-wrap table.table-type-list { width: 100%; } 
-.admin .content-wrap .table-wrap table.table-type-view { width: 70%; } 
-.admin .content-wrap .table-wrap table.table-type-list tr { cursor: pointer; } 
-.admin .content-wrap .table-wrap table.table-type-list tr:hover td { background-color: #efefef; } 
-.admin .content-wrap .table-wrap table tr th,
-.admin .content-wrap .table-wrap table tr td { text-align: center; padding: 5px; border: 1px solid #ddd; } 
+/* 기타 공통 */
+.master-category { color: #2257df; background-color: #eff4ff; font-size: 12px; padding: 0px 8px; border-radius: 5px; display: inline-flex; line-height: 25px; font-weight: 400; } 
 

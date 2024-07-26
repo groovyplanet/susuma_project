@@ -108,7 +108,11 @@ public class MemberServiceImpl implements MemberService {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('" + message + "');");
-		out.println("location.href='" + url + "';");
+		if (url.equals("back")) {
+			out.println("history.back();");
+		} else {
+			out.println("location.href='" + url + "';");
+		}
 		out.println("</script>");
 	}
 
@@ -287,7 +291,7 @@ public class MemberServiceImpl implements MemberService {
 		// 회원 정보 가져오기
 		getMember(request, response);
 		MemberDTO dto = (MemberDTO) request.getAttribute("dto");
-		
+
 		// 수리기사 수정인 경우
 		if (dto.getType().equals("master")) {
 			// 상위 카테고리 가져오기
@@ -392,24 +396,18 @@ public class MemberServiceImpl implements MemberService {
 		/* [3] 화면이동 */
 		if (dto == null) { // 로그인 실패(email과 pw 일치하는 회원 없음)
 
-			response.setContentType("text/html; charset=UTF-8;");
-			PrintWriter out = response.getWriter();
 			String referrer = request.getHeader("Referer");
-
 			if (referrer.indexOf("loginModal=Y") == -1) {
 				referrer += "?loginModal=Y";
 			}
-
-			out.println("<script>");
-			out.println("alert('이메일 또는 비밀번호를 확인하세요.');");
-			out.println("window.location.href = '" + referrer + "';"); // 이전 페이지 보여주기 + 모달 창 다시 띄우기
-			out.println("</script>");
+			alertRedirect(response, "이메일 또는 비밀번호를 확인하세요.", referrer); // 이전 페이지 보여주기 + 모달 창 다시 띄우기
 
 		} else { // 로그인 성공
 
 			/* 세션(로그인 정보) */
 			HttpSession session = request.getSession();
-			session.setAttribute("meNo", dto.getMeNo() + ""); // 처리하기 쉽게 String형으로 저장
+			session.setAttribute("meNo", dto.getMeNo());
+			System.out.println(dto.getMeNo());
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("type", dto.getType());
@@ -438,7 +436,7 @@ public class MemberServiceImpl implements MemberService {
 			// out.println("alert('정상적으로 로그인되었습니다.');"); // 임시 주석
 			out.println("var url = new URL(document.referrer);");
 			out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
-			out.println("location.href = url.toString();"); // 수정된 URL로 리디렉션
+			out.println("location.href = url.toString();"); // 이전 페이지 보여주기
 			out.println("</script>");
 
 		}
@@ -491,6 +489,53 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void changePwAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		/* [1] 매개변수 */
+		HttpSession session = request.getSession();
+		String meNo = (String) session.getAttribute("meNo");
+		String oldPassword = request.getParameter("pw_old");
+		String newPassword = request.getParameter("pw");
+
+		/* [2] Mapper */
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
+
+		boolean isAvailable = false;
+		String msg = "";
+		try {
+			String storedPassword = memberMapper.getPassword(meNo);
+			System.out.println("storedPassword " + storedPassword);
+			System.out.println("newPassword" + newPassword);
+			if (storedPassword.equals(newPassword)) {
+				msg = "현재 비밀번호와 다른 비밀번호로 설정해주세요.";
+			} else if (storedPassword != null && storedPassword.equals(oldPassword)) { // 비밀번호 일치
+				// 비밀번호 일치 -> 비밀번호 변경
+				isAvailable = true;
+				MemberDTO dto = new MemberDTO();
+				dto.setMeNo(meNo);
+				dto.setPw(newPassword);
+				int result = memberMapper.updateMember(dto);
+				if (result == 1) { // 비밀번호 변경완료
+					isAvailable = true;
+				} else {
+					msg = "비밀번호 변경 실패";
+				}
+			} else {
+				msg = "현재 비밀번호가 일치하지 않습니다.";
+			}
+		} finally {
+			sql.close();
+		}
+
+		/* [3] 응답 */
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print("{\"available\":" + isAvailable + ", \"msg\":\"" + msg + "\"}");
+		out.flush();
+	}
+
+	@Override
 	public void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		/* [1] 매개변수 */
@@ -499,12 +544,7 @@ public class MemberServiceImpl implements MemberService {
 		String inputPassword = request.getParameter("pw");
 
 		if (meNo == null || inputPassword == null) {
-			response.setContentType("text/html; charset=UTF-8;");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('잘못된 요청입니다. 다시 시도해 주세요.');");
-			out.println("history.back();");
-			out.println("</script>");
+			alertRedirect(response, "잘못된 요청입니다. 다시 시도해 주세요.", "back");
 			return;
 		}
 		/* [2] Mapper */
@@ -525,13 +565,7 @@ public class MemberServiceImpl implements MemberService {
 
 			} else {
 				// 비밀번호가 일치하지 않으면 에러 메시지 출력
-				response.setContentType("text/html; charset=UTF-8;");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('비밀번호가 일치하지 않습니다.');");
-				out.println("history.back();");
-				out.println("</script>");
-
+				alertRedirect(response, "비밀번호가 일치하지 않습니다.", "back");
 			}
 		} finally {
 			sqlSession.close();
