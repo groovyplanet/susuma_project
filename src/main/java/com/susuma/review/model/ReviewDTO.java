@@ -22,8 +22,7 @@ public class ReviewDTO {
 		super();
 	}
 
-	public ReviewDTO(String reNo, String reqNo, String masterNo, String clientNo, String content, String starScore,
-			Timestamp insertTime, Timestamp updateTime, String masterName, String address) {
+	public ReviewDTO(String reNo, String reqNo, String masterNo, String clientNo, String content, String starScore, Timestamp insertTime, Timestamp updateTime, String masterName, String address) {
 		super();
 		this.reNo = reNo;
 		this.reqNo = reqNo;

@@ -17,6 +17,7 @@ import com.susuma.util.mybatis.MybatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class ReviewServiceImpl implements ReviewService {
 
@@ -25,9 +26,12 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		String meNo = (String)session.getAttribute("meNo");
+		
 		SqlSession sql = sqlSessionFactory.openSession();
 		ReviewMapper Review = sql.getMapper(ReviewMapper.class);
-		ArrayList<ReviewDTO> list = Review.getList();
+		ArrayList<ReviewDTO> list = Review.getLists(meNo);
 		sql.close();
 
 		request.setAttribute("list", list);
