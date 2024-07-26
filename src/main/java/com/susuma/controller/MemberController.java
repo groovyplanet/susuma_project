@@ -1,19 +1,24 @@
 package com.susuma.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 
 import com.susuma.member.service.MemberService;
 import com.susuma.member.service.MemberServiceImpl;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 
 @WebServlet("*.member")
+@MultipartConfig()
 public class MemberController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -60,7 +65,6 @@ public class MemberController extends HttpServlet {
 			break;
 
 		case "/admin/member/editForm.member":
-			// fileUpload(request, response); // 파일 첨부 처리
 			service.adminUpsert(request, response); // 관리자 - 회원 추가/수정
 			break;
 
@@ -123,16 +127,16 @@ public class MemberController extends HttpServlet {
 		case "/member/memberRequest.member":
 			service.getMemberDetails(request, response); // 수리 예약
 			break;
-			
+
 		case "/member/reviewForm.member":
 			service.reviewWrite(request, response); // 멤버 예약내역에서 리뷰 작성 구현
 			break;
-			
+
 		case "/main.member":
 			// 메인페이지 - 기사님정보가져오기+리뷰
 			request.getRequestDispatcher("main.jsp").forward(request, response);
 			break;
-			
+
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			break;
@@ -156,12 +160,6 @@ public class MemberController extends HttpServlet {
 		out.println("alert('로그아웃 되었습니다.');");
 		out.println("location.href = '" + contextPath + "/';");
 		out.println("</script>");
-	}
-
-	/**
-	 * 파일 업로드를 처리하는 메서드
-	 */
-	private void fileUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	}
 
 }

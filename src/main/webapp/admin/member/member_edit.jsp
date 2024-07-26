@@ -81,7 +81,7 @@ function handleCategoryChange() {
 									<th>프로필 사진</th>
 									<td>
 										<div class="img_wrap">
-											<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+											<img src="data:image/png;base64,${dto.img }" alt="Profile Picture" class="profile">
 											<input type="file" name="profilePhoto" value="${dto.profilePhoto }">
 										</div>
 									</td>

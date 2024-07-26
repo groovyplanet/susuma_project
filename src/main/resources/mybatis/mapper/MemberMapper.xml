@@ -95,12 +95,12 @@
 	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
 		INSERT INTO MEMBER (ME_NO, TYPE, EMAIL, PW, NAME,
 		PHONE_NUM, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE,
-		EMAIL_NOTIFICATION, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE,
+		EMAIL_NOTIFICATION, PROFILE_PHOTO, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE,
 		DESCRIPTION, WORK_HOURS, CA_NO, JOIN_APPROVAL, POINT, STATUS)
 		VALUES
 		(MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{phoneNum},
 		#{address}, #{addressDetail}, #{latitude}, #{longitude},
-		#{emailNotification}, #{businessNumber}, #{shortDescription},
+		#{emailNotification}, #{profilePhoto}, #{businessNumber}, #{shortDescription},
 		#{maxDistance}, #{description}, #{workHours}, #{caNo},
 		#{joinApproval}, #{point}, #{status}
 		)
@@ -136,6 +136,9 @@
 		</if>
 		<if test="emailNotification != null">
 			EMAIL_NOTIFICATION = #{emailNotification},
+		</if>
+		<if test="profilePhoto != null">
+			PROFILE_PHOTO = #{profilePhoto},
 		</if>
 		<if test="businessNumber != null">
 			BUSINESS_NUMBER = #{businessNumber},
