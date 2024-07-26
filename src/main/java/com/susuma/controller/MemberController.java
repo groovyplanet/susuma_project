@@ -134,7 +134,8 @@ public class MemberController extends HttpServlet {
 
 		case "/main.member":
 			// 메인페이지 - 기사님정보가져오기+리뷰
-			request.getRequestDispatcher("main.jsp").forward(request, response);
+			//request.getRequestDispatcher("main.jsp").forward(request, response);
+			service.getMainMaster(request, response);
 			break;
 
 		default:

@@ -48,6 +48,9 @@ public class MemberDTO {
 	private String caRootName; // "CA_ROOT_NAME"
 
 	private String rn; // 페이징 처리
+	
+	private String averageScore; // 별점 평균
+	private String reviewCount; // 별점 갯수
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -110,6 +113,26 @@ public class MemberDTO {
 		this.caRootNo = caRootNo;
 		this.caRootName = caRootName;
 		this.rn = rn;
+	}
+
+	
+	
+	
+
+	public String getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(String averageScore) {
+		this.averageScore = averageScore;
+	}
+
+	public String getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	public String getMeNo() {
