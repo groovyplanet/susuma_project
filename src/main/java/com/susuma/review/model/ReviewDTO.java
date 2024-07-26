@@ -12,9 +12,31 @@ public class ReviewDTO {
 	private String starScore;
 	private Timestamp insertTime;
 	private Timestamp updateTime;
+	
+	//후기 내역 DTO 추가
+	private String profilePhoto;
+	private String address;
+	
+	public String getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	private String masterName;
 	private String address;
 	
+	///
 	
 	public ReviewDTO() {
 		super();

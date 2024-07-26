@@ -23,4 +23,6 @@
 		INSERT INTO REVIEW (re_no, req_no, content, star_score)
 		VALUES (review_seq.NEXTVAL, #{reqNo}, #{content}, #{starScore})
 	</insert>
+	
+	
 </mapper>
