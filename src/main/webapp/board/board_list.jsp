@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 									<div class="content-mix faq">
 										<div class="content-title">
 											<a href="#" class="post-link">
-												<i class="bi bi-quora" style="margin-right: 5px; font-size: 15px;"></i>${dto.title }</a>
+												<i class="bi bi-quora" style="margin-right: 5px; font-size: 15px; color: #444;"></i>${dto.title }</a>
 											<p>
 												<fmt:formatDate value="${dto.insertTime }" pattern="yyyy-MM-dd" />
 											</p>
