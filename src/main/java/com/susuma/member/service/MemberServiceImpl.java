@@ -3,9 +3,7 @@ package com.susuma.member.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -528,7 +526,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
+
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
 		Map<String, Object> params = new HashMap<>();
@@ -548,7 +546,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
+
 		/* [1] 매개변수 */
 		String meNo = request.getParameter("meNo");
 		Map<String, Object> params = new HashMap<>();
@@ -579,12 +577,12 @@ public class MemberServiceImpl implements MemberService {
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		ArrayList<MemberDTO> list = Member.selectMain();
 		sql.close();
-		
+
 		SqlSession sql2 = sqlSessionFactory.openSession();
 		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
 		ArrayList<MemberDTO> list2 = Member2.selectMainRe();
 		sql.close();
-    
+
 		request.setAttribute("list", list);
 		request.setAttribute("list2", list2);
 		request.getRequestDispatcher("main.jsp").forward(request, response);

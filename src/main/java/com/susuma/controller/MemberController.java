@@ -1,9 +1,7 @@
 package com.susuma.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Base64;
 
 import com.susuma.member.service.MemberService;
 import com.susuma.member.service.MemberServiceImpl;
@@ -15,7 +13,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 
 @WebServlet("*.member")
 @MultipartConfig()
@@ -134,7 +131,7 @@ public class MemberController extends HttpServlet {
 
 		case "/main.member":
 			// 메인페이지 - 기사님정보가져오기+리뷰
-			//request.getRequestDispatcher("main.jsp").forward(request, response);
+			// request.getRequestDispatcher("main.jsp").forward(request, response);
 			service.getMainMaster(request, response);
 			break;
 
