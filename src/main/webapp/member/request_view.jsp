@@ -43,7 +43,14 @@
 				<div class="info-reserve">
 					<div class="member-section">
 						<div class="profile-logoimg">
-							<img class="profile-logo-sm" src="../resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+							<c:choose>
+								<c:when test="${dto.profilePhotoImg == '' }">
+									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
+								</c:when>
+								<c:otherwise>
+									<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="infodetail">
 							<div class="member-name">
@@ -71,9 +78,9 @@
 					<form action="reviewForm.review" method="post" id="form-review">
 						<input type="hidden" name="reqNo" value="${dto.reqNo}">
 						<div class="review-box-content">
-							<div class="detail-content">
-								수리 리뷰 상세
-							</div>
+
+							<div class="detail-content">수리 리뷰 상세</div>
+
 							<span style="margin-left: 50px;">${dto.content }</span>
 
 							<div class="review-input">
