@@ -38,5 +38,7 @@ public interface MemberService {
 	void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 	
 	void reviewWrite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+	
+	void getMainMaster(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 }
 

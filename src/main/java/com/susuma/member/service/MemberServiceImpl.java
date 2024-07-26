@@ -520,4 +520,17 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+	public void getMainMaster(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		ArrayList<MemberDTO> list = Member.selectMain();
+		sql.close();
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("main.jsp").forward(request, response);
+		
+	}
 }

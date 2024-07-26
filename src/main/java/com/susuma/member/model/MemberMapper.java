@@ -27,7 +27,7 @@ public interface MemberMapper {
 
 	public MemberDTO getMemberByNo(String meNo);
 	
-	
+	public ArrayList<MemberDTO> selectMain(); // 메인 마스터리스트
 	
 	
 }
