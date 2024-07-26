@@ -12,4 +12,5 @@ public interface RequestService {
 
 	void getMemberRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
+	void updatePaymentStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

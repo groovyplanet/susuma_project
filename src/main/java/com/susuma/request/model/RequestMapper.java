@@ -15,4 +15,8 @@ public interface RequestMapper {
 	public RequestDTO getRequestByNo(String reqNo);
 	
 	RequestDTO selectRequest(String reqNo);
+	
+	boolean updatePaymentStatus(String reqNo, String payStatus);
+
+	public boolean updatePaymentStatus(RequestDTO dto);
 }
