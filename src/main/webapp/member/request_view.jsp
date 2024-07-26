@@ -78,7 +78,9 @@
 					<form action="reviewForm.review" method="post" id="form-review">
 						<input type="hidden" name="reqNo" value="${dto.reqNo}">
 						<div class="review-box-content">
+
 							<div class="detail-content">수리 리뷰 상세</div>
+
 							<span style="margin-left: 50px;">${dto.content }</span>
 
 							<div class="review-input">

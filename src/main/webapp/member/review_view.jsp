@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../include/head.jsp"%>
+
 </head>
 
 <body>
@@ -44,8 +45,10 @@
 						<div class="detail-content">수리 내역</div>
 					</div>
 					<div class="review-box-content">
+
 						<div class="detail-content">수리 리뷰 상세</div>
 						<span style="margin-left: 50px;">${dto.content }</span>
+
 
 						<div class="review-input">
 							<div class="review-rating">
