@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.susuma.member.model.MemberDTO"%>
-<%@ page import="com.susuma.request.model.RequestDTO"%>
+
 <%@ include file="../include/head.jsp"%>
 </head>
 <style>
@@ -67,7 +66,7 @@
 					</div>
 
 					<form action="reviewForm.review" method="post" id="form-review">
-						<input type="hidden" name="reqNo" value="${reqNo}">
+						<input type="hidden" name="reqNo" value="${dto.reqNo}">
 						<div class="review-box-content">
 							<div class="detail-content">수리 리뷰 상세</div>
 							<div class="review-input">

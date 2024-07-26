@@ -44,7 +44,7 @@ public class RequestServiceImpl implements RequestService{
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
-		RequestDTO dto = requestMapper.getRequestByNo(reqNo);
+		RequestDTO dto = requestMapper.selectRequest(reqNo);
 		
 		/* [3] 화면이동 */
 		request.setAttribute("dto", dto);
