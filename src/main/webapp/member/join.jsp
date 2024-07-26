@@ -57,7 +57,7 @@
 							<input type="hidden" name="longitude" value="0.0">
 							<!-- 경도 -->
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
-								주소 검색
+								주소
 								<i class="bi bi-search"></i>
 							</button>
 							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail">
@@ -154,303 +154,151 @@
 						<div class="container">
 							<div class="modal-title">근무 가능 요일 및 시간</div>
 							<div class="work-hours-form">
+								<%
+								String[] days = {"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
+								for (int i = 0; i < days.length; i++) {
+									String num = String.valueOf(i + 1); // 1부터 시작하는 값
+									String day = days[i];
+								%>
 								<div class="week-area">
 									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_1" value="1">
-										<label for="work_hours_1">월요일</label>
+										<input type="checkbox" name="work-hours-week" id="work_hours_<%=num%>" value="<%=num%>">
+										<label for="work_hours_<%=num%>"><%=day%></label>
 									</div>
 									<div class="time-area">
 										<div class="time-select-area">
-											<select name="work_hours_1_s" disabled>
+											<select name="work_hours_<%=num%>_s" disabled>
 												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												for (int hour = 9; hour <= 21; hour++) {
+													String hourStr = String.format("%02d:00", hour);
+													out.println("<option value=\"" + hourStr + "\">" + hourStr + "</option>");
 												}
 												%>
 											</select>
 											<span>~</span>
-											<select name="work_hours_1_e" disabled>
+											<select name="work_hours_<%=num%>_e" disabled>
 												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												for (int hour = 9; hour <= 21; hour++) {
+													String hourStr = String.format("%02d:00", hour);
+													out.println("<option value=\"" + hourStr + "\">" + hourStr + "</option>");
 												}
 												%>
 											</select>
 										</div>
 									</div>
 								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_2" value="2">
-										<label for="work_hours_2">화요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_2_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_2_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_3" value="3">
-										<label for="work_hours_3">수요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_3_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_3_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_4" value="4">
-										<label for="work_hours_4">목요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_4_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_4_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_5" value="5">
-										<label for="work_hours_5">금요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_5_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_5_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_6" value="6">
-										<label for="work_hours_6">토요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_6_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_6_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_7" value="7">
-										<label for="work_hours_7">일요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_7_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_7_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
+								<%
+								}
+								%>
 							</div>
-							<button type="button" class="btn-close-modal">
-								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
-							</button>
+							<button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
 						</div>
+						<button type="button" class="btn-close-modal">
+							<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
+						</button>
 					</div>
-					<!-- //modal -->
-					<!-- modal -->
-					<div id="terms-modal" class="modal terms">
-						<div class="container">
-							<div class="modal-title">이용약관</div>
-							<div class="terms-content">
-								<h6>제1조 (목적)</h6>
-								<p>이 약관은 '수수마' (이하 '회사')가 제공하는 모든 서비스(이하 '서비스')의 이용조건 및 절차, 이용자와 회사의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
-
-								<h6>제2조 (정의)</h6>
-								<p>
-									1. '웹사이트'란 회사가 서비스를 이용자에게 제공하기 위하여 설정한 온라인 플랫폼을 말합니다.
-									<br>
-									2. '이용자'란 웹사이트에 접속하여 이 약관에 따라 회사가 제공하는 서비스를 받는 회원 및 비회원을 말합니다.
-									<br>
-									3. '회원'이란 웹사이트에 개인정보를 제공하여 회원등록을 한 자로서, 회사의 정보를 지속적으로 제공받으며 서비스를 계속적으로 이용할 수 있는 자를 말합니다.
-									<br>
-									4. '비회원'이란 회원에 가입하지 않고 회사가 제공하는 서비스를 이용하는 자를 말합니다.
-								</p>
-
-								<h6>제3조 (약관의 명시와 개정)</h6>
-								<p>
-									1. 회사는 이 약관의 내용을 웹사이트의 초기 서비스화면에 게시합니다.
-									<br>
-									2. 회사는 약관을 개정할 경우, 적용일자 및 개정사유를 명시하여 적용일자 7일 이전부터 적용일자 전일까지 공지합니다.
-								</p>
-
-								<h6>제4조 (서비스의 제공 및 변경)</h6>
-								<p>
-									1. 회사는 다음과 같은 업무를 수행합니다:
-									<br>
-									- 정보 제공
-									<br>
-									- 콘텐츠 제공
-									<br>
-									- 기타 회사가 정하는 업무
-									<br>
-									2. 회사는 필요에 따라 서비스의 내용을 변경할 수 있으며, 이 경우 변경된 서비스의 내용 및 제공일자를 명시하여 이용자에게 통지합니다.
-								</p>
-
-								<h6>제5조 (서비스의 중단)</h6>
-								<p>회사는 컴퓨터 등 정보통신설비의 보수점검, 교체 및 고장, 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을 일시적으로 중단할 수 있습니다.</p>
-
-							</div>
-							<button type="button" class="btn-close-modal">
-								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
-							</button>
-						</div>
-					</div>
-					<!-- //modal -->
-					<!-- modal -->
-					<div id="privacy-modal" class="modal terms">
-						<div class="container">
-							<div class="modal-title">개인정보처리방침</div>
-							<div class="terms-content">
-								<h6>제1조 (개인정보의 수집 및 이용 목적)</h6>
-								<p>회사는 다음의 목적을 위하여 개인정보를 수집 및 이용합니다: 서비스 제공 및 운영, 회원관리, 고객 문의 및 불만 처리.</p>
-
-								<h6>제2조 (수집하는 개인정보 항목)</h6>
-								<p>회사는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집할 수 있습니다: 이메일 주소, 비밀번호, 이름 (선택사항).</p>
-
-								<h6>제3조 (개인정보의 보유 및 이용기간)</h6>
-								<p>회사는 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 법령에 따라 보존해야 하는 경우에는 그러하지 아니합니다.</p>
-
-								<h6>제4조 (개인정보의 제3자 제공)</h6>
-								<p>
-									회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다:
-									<br>
-									- 이용자가 사전에 동의한 경우
-									<br>
-									- 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우.
-								</p>
-
-								<h6>제5조 (개인정보의 안전성 확보 조치)</h6>
-								<p>
-									회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다:
-									<br>
-									- 관리적 조치: 내부관리계획 수립 및 시행
-									<br>
-									- 기술적 조치: 개인정보처리시스템 등의 접근권한 관리.
-								</p>
-
-								<h6>제6조 (개인정보 보호책임자)</h6>
-								<p>
-									회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 이용자의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다:
-									<br>
-									- 개인정보 보호책임자: [홍길동]
-									<br>
-									- 연락처: [이메일 주소].
-								</p>
-
-								<p>이 약관과 개인정보처리방침은 [날짜]부터 적용됩니다.</p>
-							</div>
-							<button type="button" class="btn-close-modal">
-								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
-							</button>
-						</div>
-					</div>
-					<!-- //modal -->
 				</div>
+				<!-- //modal -->
+				<!-- modal -->
+				<div id="terms-modal" class="modal terms">
+					<div class="container">
+						<div class="modal-title">이용약관</div>
+						<div class="terms-content">
+							<h6>제1조 (목적)</h6>
+							<p>이 약관은 '수수마' (이하 '회사')가 제공하는 모든 서비스(이하 '서비스')의 이용조건 및 절차, 이용자와 회사의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+
+							<h6>제2조 (정의)</h6>
+							<p>
+								1. '웹사이트'란 회사가 서비스를 이용자에게 제공하기 위하여 설정한 온라인 플랫폼을 말합니다.
+								<br>
+								2. '이용자'란 웹사이트에 접속하여 이 약관에 따라 회사가 제공하는 서비스를 받는 회원 및 비회원을 말합니다.
+								<br>
+								3. '회원'이란 웹사이트에 개인정보를 제공하여 회원등록을 한 자로서, 회사의 정보를 지속적으로 제공받으며 서비스를 계속적으로 이용할 수 있는 자를 말합니다.
+								<br>
+								4. '비회원'이란 회원에 가입하지 않고 회사가 제공하는 서비스를 이용하는 자를 말합니다.
+							</p>
+
+							<h6>제3조 (약관의 명시와 개정)</h6>
+							<p>
+								1. 회사는 이 약관의 내용을 웹사이트의 초기 서비스화면에 게시합니다.
+								<br>
+								2. 회사는 약관을 개정할 경우, 적용일자 및 개정사유를 명시하여 적용일자 7일 이전부터 적용일자 전일까지 공지합니다.
+							</p>
+
+							<h6>제4조 (서비스의 제공 및 변경)</h6>
+							<p>
+								1. 회사는 다음과 같은 업무를 수행합니다:
+								<br>
+								- 정보 제공
+								<br>
+								- 콘텐츠 제공
+								<br>
+								- 기타 회사가 정하는 업무
+								<br>
+								2. 회사는 필요에 따라 서비스의 내용을 변경할 수 있으며, 이 경우 변경된 서비스의 내용 및 제공일자를 명시하여 이용자에게 통지합니다.
+							</p>
+
+							<h6>제5조 (서비스의 중단)</h6>
+							<p>회사는 컴퓨터 등 정보통신설비의 보수점검, 교체 및 고장, 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을 일시적으로 중단할 수 있습니다.</p>
+
+						</div>
+						<button type="button" class="btn-close-modal">
+							<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
+						</button>
+					</div>
+				</div>
+				<!-- //modal -->
+				<!-- modal -->
+				<div id="privacy-modal" class="modal terms">
+					<div class="container">
+						<div class="modal-title">개인정보처리방침</div>
+						<div class="terms-content">
+							<h6>제1조 (개인정보의 수집 및 이용 목적)</h6>
+							<p>회사는 다음의 목적을 위하여 개인정보를 수집 및 이용합니다: 서비스 제공 및 운영, 회원관리, 고객 문의 및 불만 처리.</p>
+
+							<h6>제2조 (수집하는 개인정보 항목)</h6>
+							<p>회사는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집할 수 있습니다: 이메일 주소, 비밀번호, 이름 (선택사항).</p>
+
+							<h6>제3조 (개인정보의 보유 및 이용기간)</h6>
+							<p>회사는 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 법령에 따라 보존해야 하는 경우에는 그러하지 아니합니다.</p>
+
+							<h6>제4조 (개인정보의 제3자 제공)</h6>
+							<p>
+								회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다:
+								<br>
+								- 이용자가 사전에 동의한 경우
+								<br>
+								- 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우.
+							</p>
+
+							<h6>제5조 (개인정보의 안전성 확보 조치)</h6>
+							<p>
+								회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다:
+								<br>
+								- 관리적 조치: 내부관리계획 수립 및 시행
+								<br>
+								- 기술적 조치: 개인정보처리시스템 등의 접근권한 관리.
+							</p>
+
+							<h6>제6조 (개인정보 보호책임자)</h6>
+							<p>
+								회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 이용자의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다:
+								<br>
+								- 개인정보 보호책임자: [홍길동]
+								<br>
+								- 연락처: [이메일 주소].
+							</p>
+
+							<p>이 약관과 개인정보처리방침은 [날짜]부터 적용됩니다.</p>
+						</div>
+						<button type="button" class="btn-close-modal">
+							<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
+						</button>
+					</div>
+				</div>
+				<!-- //modal -->
 			</div>
+		</div>
 		</div>
 	</section>
 
