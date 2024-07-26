@@ -579,8 +579,14 @@ public class MemberServiceImpl implements MemberService {
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		ArrayList<MemberDTO> list = Member.selectMain();
 		sql.close();
-
+		
+		SqlSession sql2 = sqlSessionFactory.openSession();
+		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
+		ArrayList<MemberDTO> list2 = Member2.selectMainRe();
+		sql.close();
+    
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
 		request.getRequestDispatcher("main.jsp").forward(request, response);
 
 	}
