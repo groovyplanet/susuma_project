@@ -67,6 +67,7 @@ public class AuthenticationFilter implements Filter {
 					return; // 컨트롤러 실행 x
 				}
 			
+
 			}
 
 			// 의뢰인만 접근 가능
@@ -81,6 +82,7 @@ public class AuthenticationFilter implements Filter {
 					out.println("</script>");
 					return;
 				}
+
 			}
 
 		}

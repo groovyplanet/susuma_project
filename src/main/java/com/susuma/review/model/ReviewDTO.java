@@ -12,6 +12,7 @@ public class ReviewDTO {
 	private String starScore;
 	private Timestamp insertTime;
 	private Timestamp updateTime;
+
 	
 	//후기 내역 DTO 추가
 	private String profilePhoto;
@@ -32,6 +33,7 @@ public class ReviewDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 
 	private String masterName;
 	private String address;

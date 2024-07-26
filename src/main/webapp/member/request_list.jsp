@@ -53,24 +53,30 @@
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
-		document.getElementById('wait').addEventListener('click', function() {
+	document.querySelectorAll('.pay-request').forEach(function(button) {
+		button.addEventListener('click', function() {
+			// 결제 요청 버튼을 클릭하면 결제 모달을 표시
 			document.getElementById('payModal').classList.add('show');
+			
+			// 기존에 바인딩된 이벤트 리스너 제거
+			var newButtonConfirm = document.querySelector('#payModal .btn-confirm');
+			var newButtonConfirmClone = newButtonConfirm.cloneNode(true);
+			newButtonConfirm.parentNode.replaceChild(newButtonConfirmClone, newButtonConfirm);
+
+			// 모달에서 확인 버튼 클릭 이벤트
+			newButtonConfirmClone.addEventListener('click', function() {
+				// 클릭된 결제 요청 버튼을 업데이트
+				button.textContent = '결제 완료';
+				button.classList.remove('approve');
+				button.classList.add('complete');
+				button.classList.remove('pay-request');
+				
+				// 결제 모달을 숨김
+				document.getElementById('payModal').classList.remove('show');
+				alert('결제가 완료되었습니다.');
+			});
 		});
-
-		document.querySelector('#payModal .btn-confirm').addEventListener(
-				'click',
-				function() {
-					var requestButton = document.getElementById('wait');
-					requestButton.textContent = '결제 완료';
-					requestButton.classList.remove('approve');
-					requestButton.classList.add('complete');
-					requestButton.id = 'complete';
-
-					document.getElementById('payModal').classList
-							.remove('show');
-					alert('결제가 완료되었습니다.');
-
-				});
+	});
 	</script>
 
 
