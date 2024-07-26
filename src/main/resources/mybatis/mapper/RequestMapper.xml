@@ -35,9 +35,10 @@
 		SELECT * FROM REQUEST WHERE REQ_NO = #{reqNo}
 	</select>
 	<update id="updatePaymentStatus" parameterType="com.susuma.request.model.RequestDTO">
-    UPDATE REQUEST
-    SET PAY_STATUS = '#{payStatus}'
-    WHERE REQ_NO = #{reqNo}
-</update>
+		UPDATE REQUEST
+		SET PAY_STATUS = '${payStatus}'
+		WHERE REQ_NO = #{reqNo}
+	</update>
+
 
 </mapper>

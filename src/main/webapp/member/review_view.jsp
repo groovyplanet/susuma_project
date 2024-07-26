@@ -34,7 +34,10 @@
 						<div class="detail-content">수리 내역</div>
 					</div>
 					<div class="review-box-content">
-						<div class="detail-content">수리 리뷰 상세</div>
+						<div class="detail-content">수리 리뷰 상세
+						</div>
+						<span style="margin-left: 50px;">${dto.content }</span>
+						
 						<div class="review-input">
 							<div class="review-rating">
 								서비스는 어떠셨나요?
