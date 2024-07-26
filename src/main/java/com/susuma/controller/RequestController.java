@@ -54,9 +54,13 @@ public class RequestController extends HttpServlet {
 			service = new RequestServiceImpl();
 			service.getMemberRequest(request, response);
 
-		} if (command.equals("/member/payAjax.request")) {
+		} else if (command.equals("/member/payAjax.request")) {
 			service = new RequestServiceImpl();
             service.updatePaymentStatus(request, response);
+		}else {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND, "Not Found");
+                
+            }
         }
 }
-}
+    

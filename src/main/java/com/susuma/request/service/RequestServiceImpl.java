@@ -50,29 +50,37 @@ public class RequestServiceImpl implements RequestService{
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("request_view.jsp").forward(request, response);
 		
-	}public void updatePaymentStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    String reqNo = request.getParameter("reqNo");
-	    String payStatus = request.getParameter("payStatus");
-
-	    SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession();
-	    RequestMapper requestMapper = sqlSession.getMapper(RequestMapper.class);
-
-	    // RequestDTO 객체 생성 및 설정
-	    RequestDTO dto = new RequestDTO();
-	    dto.setReqNo(reqNo);
-	    dto.setPayStatus(payStatus);
-
-	    boolean success = requestMapper.updatePaymentStatus(dto); // DTO를 전달
-	    sqlSession.commit(); // 커밋
-	    sqlSession.close();
-
-	    response.setContentType("text/plain");
-	    response.setCharacterEncoding("UTF-8");
-	    PrintWriter out = response.getWriter();
-	    if (success) {
-	        out.write("Success");
-	    } else {
-	        out.write("Failure");
-	    }
 	}
+	public void updatePaymentStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  String reqNo = request.getParameter("reqNo");
+		    String payStatus = request.getParameter("payStatus");
+		    System.out.println(reqNo);
+		    // RequestDTO 객체 생성 및 설정
+		    RequestDTO dto = new RequestDTO();
+		    dto.setReqNo(reqNo);
+		    dto.setPayStatus(payStatus);
+
+		    // MyBatis SQL 세션 관리
+		    try (SqlSession sqlSession = MybatisUtil.getSqlSessionFactory().openSession()) {
+		        RequestMapper requestMapper = sqlSession.getMapper(RequestMapper.class);
+		        
+		        
+		        boolean success = requestMapper.updatePaymentStatus(dto); // DTO를 전달
+		        sqlSession.commit(); // 커밋
+
+		        // 응답 설정
+		        response.setContentType("text/plain");
+		        response.setCharacterEncoding("UTF-8");
+		        try (PrintWriter out = response.getWriter()) {
+		            if (success) {
+		                out.write("Success");
+		            } else {
+		                out.write("Failure");
+		            }
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류 발생");
+		    }
+		}
 }

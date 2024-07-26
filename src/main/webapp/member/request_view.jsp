@@ -47,13 +47,16 @@
 						</div>
 						<div class="infodetail">
 							<div class="member-name">
-								<strong>마스터님 성함 : </strong> <span>${dto.masterName }</span>
+								<strong>마스터님 성함 : </strong>
+								<span>${dto.masterName }</span>
 							</div>
 							<div class="member-map">
-								<strong>위치 : </strong> ${dto.address }
+								<strong>위치 : </strong>
+								${dto.address }
 							</div>
 							<div class="repair-type">
-								<strong>수리 희망 분야 :</strong> [CSS / 백엔드]
+								<strong>수리 희망 분야 :</strong>
+								[CSS / 백엔드]
 							</div>
 						</div>
 						<div class="repair-status">
@@ -68,26 +71,39 @@
 					<form action="reviewForm.review" method="post" id="form-review">
 						<input type="hidden" name="reqNo" value="${dto.reqNo}">
 						<div class="review-box-content">
-							<div class="detail-content">수리 리뷰 상세</div>
+							<div class="detail-content">
+								수리 리뷰 상세
+							</div>
+							<span style="margin-left: 50px;">${dto.content }</span>
+
 							<div class="review-input">
 								<div class="review-rating">
 									서비스는 어떠셨나요?
 									<div class="stars">
-										<span class="star" data-value="1">★</span> <span class="star" data-value="2">★</span> <span class="star" data-value="3">★</span> <span class="star" data-value="4">★</span> <span class="star" data-value="5">★</span>
+										<span class="star" data-value="1">★</span>
+										<span class="star" data-value="2">★</span>
+										<span class="star" data-value="3">★</span>
+										<span class="star" data-value="4">★</span>
+										<span class="star" data-value="5">★</span>
 									</div>
 									<input type="hidden" id="starScore" name="starScore" value="0">
 									<!-- 별점 hidden 필드 추가 -->
 									<div class="review-title">
-										<label for="title">제목 :</label> <input type="text" id="title" name="title" placeholder="후기 제목을 입력해 주세요.">
+										<label for="title">제목 :</label>
+										<input type="text" id="title" name="title" placeholder="후기 제목을 입력해 주세요.">
 									</div>
 									<div class="review-content">
 										<label for="content">내용 :</label>
 										<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요."></textarea>
 									</div>
 									<div class="file-attachment">
-										파일 첨부 <input type="file" id="file-upload" name="files" multiple>
+										파일 첨부
+										<input type="file" id="file-upload" name="files" multiple>
 										<div class="file-list" id="file-list">
-											<span class="file-item">수리사진01.png</span> <span class="file-item">수리사진02.png</span> <span class="file-item">수리사진03.png</span> <span class="file-item">수리사진04.png</span>
+											<span class="file-item">수리사진01.png</span>
+											<span class="file-item">수리사진02.png</span>
+											<span class="file-item">수리사진03.png</span>
+											<span class="file-item">수리사진04.png</span>
 										</div>
 									</div>
 									<div class="action-buttons">
