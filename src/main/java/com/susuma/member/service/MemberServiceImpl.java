@@ -18,6 +18,7 @@ import com.susuma.member.model.MemberMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,10 +31,10 @@ public class MemberServiceImpl implements MemberService {
 	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
 	/**
-	 * 파일 업로드를 처리하는 메서드 이 메서드는 클라이언트로부터 업로드된 파일을 읽어와 Base64로 인코딩된 문자열로 변환하여 반환합니다.
-	 * 업로드된 파일이 없을 경우 빈 문자열을 반환합니다.
+	 * 파일 데이터를 수신해서 바이트 배열 형태로 반환(경로 지정 x 파일 시스템에 저장 x) 추후 데이터베이스의 BLOB (Binary
+	 * Large Object) 필드에 저장 '@MultipartConfig()' 어노테이션은 MemberController.java
 	 */
-	private byte[] fileUpload(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	private byte[] getFileBytes(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		Part filePart = request.getPart("profilePhoto");
 
@@ -41,18 +42,19 @@ public class MemberServiceImpl implements MemberService {
 
 			InputStream inputStream = filePart.getInputStream(); // 파일의 입력 스트림을 얻어 파일 데이터를 읽음
 			byte[] fileBytes = new byte[(int) filePart.getSize()]; // 파일 크기만큼의 바이트 배열을 생성
-			inputStream.read(fileBytes); // 입력 스트림에서 바이트 배열로 파일 데이터를 읽음
-			return fileBytes; // Base64 인코딩된 파일 데이터를 반환
+			inputStream.read(fileBytes); // 입력 스트림에서 파일 데이터를 읽어 바이트 배열에 저장
+			return fileBytes; // 파일 데이터가 담긴 배열 반환
 
 		} else {
 			System.out.println("No file uploaded."); // 파일이 업로드되지 않은 경우 콘솔에 메시지 출력
 		}
 
-		// 파일이 업로드되지 않은 경우 빈 문자열 반환
-		return null;
+		return null; // 파일이 업로드되지 않은 경우 빈 문자열 반환
 	}
 
-	// DTO 생성
+	/**
+	 * DTO 생성
+	 */
 	private MemberDTO createMemberDTO(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		String meNo = request.getParameter("meNo");
@@ -82,7 +84,9 @@ public class MemberServiceImpl implements MemberService {
 		return new MemberDTO(meNo, type, email, pw, name, phoneNum, address, addressDetail, latitude, longitude, emailNotification, null, businessNumber, shortDescription, maxDistance, description, workHours, joinApproval, caNo, point, status);
 	}
 
-	// 데이터베이스 작업
+	/**
+	 * 데이터베이스 작업
+	 */
 	private int memberUpsert(MemberDTO dto, boolean isUpdate) {
 		SqlSession sql = sqlSessionFactory.openSession(true);
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
@@ -96,7 +100,9 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// alert창 띄우고 화면 이동
+	/**
+	 * alert창 띄우고 화면 이동
+	 */
 	private void alertRedirect(HttpServletResponse response, String message, String url) throws IOException {
 		response.setContentType("text/html; charset=UTF-8;");
 		PrintWriter out = response.getWriter();
@@ -106,7 +112,9 @@ public class MemberServiceImpl implements MemberService {
 		out.println("</script>");
 	}
 
-	// 상위 카테고리 가져오기
+	/**
+	 * 상위 카테고리 가져오기
+	 */
 	public void getCategoryMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -116,7 +124,9 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("CategoryMainList", CategoryMainList);
 	}
 
-	// 하위 카테고리 가져오기
+	/**
+	 * 하위 카테고리 가져오기
+	 */
 	public void getCategorySub(HttpServletRequest request, HttpServletResponse response, String rootNo) throws ServletException, IOException {
 
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -126,7 +136,9 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("CategorySubList", CategorySubList);
 	}
 
-	// 회원정보 가져오기
+	/**
+	 * 회원정보 가져오기
+	 */
 	public void getMember(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
@@ -275,6 +287,7 @@ public class MemberServiceImpl implements MemberService {
 		// 회원 정보 가져오기
 		getMember(request, response);
 		MemberDTO dto = (MemberDTO) request.getAttribute("dto");
+		
 		// 수리기사 수정인 경우
 		if (dto.getType().equals("master")) {
 			// 상위 카테고리 가져오기
@@ -294,7 +307,7 @@ public class MemberServiceImpl implements MemberService {
 	public void adminUpsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		MemberDTO dto = createMemberDTO(request, response); // 별도 함수로 처리
-		byte[] profilePhoto = fileUpload(request, response); // 프로필 사진 파일 첨부 처리
+		byte[] profilePhoto = getFileBytes(request, response); // 프로필 사진 파일 첨부 처리
 		dto.setProfilePhoto(profilePhoto);
 		boolean isUpdate = dto.getMeNo() != null && !dto.getMeNo().isEmpty();
 		int result = memberUpsert(dto, isUpdate);
@@ -466,7 +479,7 @@ public class MemberServiceImpl implements MemberService {
 	public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		MemberDTO dto = createMemberDTO(request, response); // 별도 함수로 처리
-		byte[] profilePhoto = fileUpload(request, response); // 프로필 사진 파일 첨부 처리
+		byte[] profilePhoto = getFileBytes(request, response); // 프로필 사진 파일 첨부 처리
 		dto.setProfilePhoto(profilePhoto);
 		boolean isUpdate = true;
 		int result = memberUpsert(dto, isUpdate);
@@ -528,19 +541,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		/* [1] 매개변수 */
-		String meNo = request.getParameter("meNo");
-		Map<String, Object> params = new HashMap<>();
-		params.put("meNo", meNo);
+		// 회원 정보 가져오기
+		getMember(request, response);
 
-		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
-		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		MemberDTO dto = Member.selectMember(params);
-		sql.close();
-
-		/* [3] 화면이동 */
-		request.setAttribute("dto", dto);
+		// 포워딩
 		request.setAttribute("gnb", "request");
 		request.getRequestDispatcher("master_view.jsp").forward(request, response);
 
@@ -549,19 +553,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		/* [1] 매개변수 */
-		String meNo = request.getParameter("meNo");
-		Map<String, Object> params = new HashMap<>();
-		params.put("meNo", meNo);
+		// 회원 정보 가져오기
+		getMember(request, response);
 
-		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
-		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		MemberDTO dto = Member.selectMember(params);
-		sql.close();
-
-		/* [3] 화면이동 */
-		request.setAttribute("dto", dto);
+		// 포워딩
 		request.setAttribute("gnb", "request");
 		request.getRequestDispatcher("request.jsp").forward(request, response);
 
