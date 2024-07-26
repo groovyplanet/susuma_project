@@ -4,8 +4,7 @@
 <mapper namespace="com.susuma.member.model.MemberMapper">
 
 	<!-- [1] 회원 목록 -->
-	<select id="selectMembers" parameterType="map"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT *
 		FROM (
 		SELECT A.*, ROWNUM AS RN
@@ -64,8 +63,7 @@
 	</select>
 
 	<!-- [2] 회원(me_no / email,pw) -->
-	<select id="selectMember" parameterType="map"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMember" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL,
 		LATITUDE, LONGITUDE, PHONE_NUM, EMAIL_NOTIFICATION, PROFILE_PHOTO,
 		JOIN_APPROVAL, JOIN_APPROVAL_TIME, BUSINESS_NUMBER, SHORT_DESCRIPTION,
@@ -94,8 +92,7 @@
 	</select>
 
 	<!-- [3] 회원 등록 -->
-	<insert id="insertMember"
-		parameterType="com.susuma.member.model.MemberDTO">
+	<insert id="insertMember" parameterType="com.susuma.member.model.MemberDTO">
 		INSERT INTO MEMBER (ME_NO, TYPE, EMAIL, PW, NAME,
 		PHONE_NUM, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE,
 		EMAIL_NOTIFICATION, PROFILE_PHOTO, BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE,
@@ -103,15 +100,14 @@
 		VALUES
 		(MEMBER_SEQ.NEXTVAL, #{type}, #{email}, #{pw}, #{name}, #{phoneNum},
 		#{address}, #{addressDetail}, #{latitude}, #{longitude},
-		#{emailNotification}, #{profilePhoto}, #{businessNumber}, #{shortDescription},
+		#{emailNotification}, #{profilePhoto, jdbcType=BLOB}, #{businessNumber}, #{shortDescription},
 		#{maxDistance}, #{description}, #{workHours}, #{caNo},
 		#{joinApproval}, #{point}, #{status}
 		)
 	</insert>
 
 	<!-- [4] 회원 수정 -->
-	<update id="updateMember"
-		parameterType="com.susuma.member.model.MemberDTO">
+	<update id="updateMember" parameterType="com.susuma.member.model.MemberDTO">
 		UPDATE MEMBER
 		SET
 		<if test="email != null">
@@ -142,7 +138,7 @@
 			EMAIL_NOTIFICATION = #{emailNotification},
 		</if>
 		<if test="profilePhoto != null">
-			PROFILE_PHOTO = #{profilePhoto},
+			PROFILE_PHOTO = #{profilePhoto, jdbcType=BLOB},
 		</if>
 		<if test="businessNumber != null">
 			BUSINESS_NUMBER = #{businessNumber},
@@ -193,28 +189,13 @@
 		ME_NO = #{meNo}
 	</delete>
 
-	<select id="getPassword" parameterType="string"
-		resultType="string">
+	<select id="getPassword" parameterType="string" resultType="string">
 		SELECT pw
 		FROM MEMBER
 		WHERE ME_NO = #{meNo}
 	</select>
 
-	<select id="selectMemberById"
-		resultType="com.susuma.member.model.MemberDTO">
-		SELECT * FROM MEMBER WHERE ME_NO = #{meNo}
-	</select>
-
-	<select id="getMemberByNo"
-		resultType="com.susuma.member.model.MemberDTO">
-		SELECT ME_NO, NAME, ADDRESS, WORK_HOURS
-		FROM MEMBER
-		WHERE
-		ME_NO = #{meNo}
-	</select>
-
-	<select id="selectMain"
-		resultType="com.susuma.member.model.MemberDTO">
+	<select id="selectMain" resultType="com.susuma.member.model.MemberDTO">
 		SELECT *
 		FROM (
 		SELECT M.ME_NO, M.NAME,M.ADDRESS,M.SHORT_DESCRIPTION,M.MAX_DISTANCE,

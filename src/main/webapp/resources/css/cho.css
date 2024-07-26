@@ -146,7 +146,7 @@
 .main-section .container.main-only .main-area.request .request-form .title-sub2 i { margin-right: 3px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area { display: flex; align-items: center; margin: 15px 35px; padding: 20px 25px; border: 1px solid #ddd; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area { width: 130px; } 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area img { width: 80px; height: 80px; border-radius: 100%; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area img { width: 80px; height: 80px; border-radius: 100%; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area { font-size: 15px; width: 100%; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p { margin-top: 2px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p+ p { margin-top: 4px; } 

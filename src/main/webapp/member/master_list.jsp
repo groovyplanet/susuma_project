@@ -87,7 +87,14 @@
 
 				<c:forEach var="dto" items="${memberList}">
 					<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/member/masterView.member?meNo=${dto.meNo}">
-						<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="프로필기본">
+						<c:choose>
+							<c:when test="${dto.profilePhotoImg == '' }">
+								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+							</c:when>
+							<c:otherwise>
+								<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+							</c:otherwise>
+						</c:choose>
 						<h3>${dto.name}</h3>
 						<p>별점: 4.9 (114)</p>
 						<p>지역: 서울시 강남구 (10km 이내 가능)</p>

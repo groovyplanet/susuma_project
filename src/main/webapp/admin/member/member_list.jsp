@@ -100,7 +100,8 @@
 				<table class="list" id="member_list">
 					<thead>
 						<tr>
-							<th class="wp5">번호${sortStr}</th>
+							<th class="wp4">번호${sortStr}</th>
+							<th class="wp4">프로필</th>
 							<th class="wp7">
 								<button class="btn_sort" onclick="sort('name', '${sortField != 'name' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									이름
@@ -148,6 +149,16 @@
 						<c:forEach var="dto" items="${list}">
 							<tr data-meNo="${dto.meNo}">
 								<td>${totalRecords - dto.rn + 1}</td>
+								<td style="display: flex;">
+									<c:choose>
+										<c:when test="${dto.profilePhotoImg == '' }">
+											<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+										</c:when>
+										<c:otherwise>
+											<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+										</c:otherwise>
+									</c:choose>
+								</td>
 								<td>${dto.name}</td>
 								<td>${dto.email}</td>
 								<c:if test="${type == 'master' }">

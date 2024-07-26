@@ -48,7 +48,7 @@ public class MemberDTO {
 	private String caRootName; // "CA_ROOT_NAME"
 
 	private String rn; // 페이징 처리
-	
+
 	private String averageScore; // 별점 평균
 	private String reviewCount; // 별점 갯수
 
@@ -114,10 +114,6 @@ public class MemberDTO {
 		this.caRootName = caRootName;
 		this.rn = rn;
 	}
-
-	
-	
-	
 
 	public String getAverageScore() {
 		return averageScore;
@@ -223,8 +219,15 @@ public class MemberDTO {
 		this.emailNotification = emailNotification;
 	}
 
-	public String getProfilePhoto() {
-		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
+	public byte[] getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
 	}
 
 	public void setProfilePhoto(byte[] profilePhoto) {
@@ -357,10 +360,6 @@ public class MemberDTO {
 
 	public void setrn(String rn) {
 		this.rn = rn;
-	}
-
-	public String getImg() {
-		return Base64.getEncoder().encodeToString(profilePhoto); // 바이트 배열을
 	}
 
 }
