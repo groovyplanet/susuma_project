@@ -240,6 +240,7 @@ public class MemberServiceImpl implements MemberService {
 		getCategoryMain(request, response);
 
 		/* [3] 화면이동 */
+		request.setAttribute("gnb", "request");
 		request.setAttribute("memberList", memberList);
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
 
@@ -540,6 +541,7 @@ public class MemberServiceImpl implements MemberService {
 
 		/* [3] 화면이동 */
 		request.setAttribute("dto", dto);
+		request.setAttribute("gnb", "request");
 		request.getRequestDispatcher("master_view.jsp").forward(request, response);
 
 	}
@@ -560,6 +562,7 @@ public class MemberServiceImpl implements MemberService {
 
 		/* [3] 화면이동 */
 		request.setAttribute("dto", dto);
+		request.setAttribute("gnb", "request");
 		request.getRequestDispatcher("request.jsp").forward(request, response);
 
 	}
