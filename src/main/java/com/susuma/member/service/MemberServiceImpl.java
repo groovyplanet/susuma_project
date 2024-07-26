@@ -411,7 +411,15 @@ public class MemberServiceImpl implements MemberService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		MemberDTO dto = Member.selectMember(params);
-		// System.out.println(dto.getAddress());
+		// 수리기사 수정인 경우
+		if (dto.getType().equals("master")) {
+			// 상위 카테고리 가져오기
+			getCategoryMain(request, response);
+			// 카테고리가 있을 때만 하위 카테고리 가져오기
+			if (dto.getCaRootNo() != null && !dto.getCaRootNo().isEmpty()) {
+				getCategorySub(request, response, dto.getCaRootNo());
+			}
+		}
 		sql.close();
 
 		/* [3] 화면이동 */

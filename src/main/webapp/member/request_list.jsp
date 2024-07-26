@@ -42,7 +42,7 @@
 							<div class="repair_type">[CSS 수리]</div>
 							<div class="explain">${dto.content }</div>
 						</a>
-						<button class="btn approve" id="wait">결제 요청</button>
+						<button class="btn approve pay-request">결제 요청</button>
 						<!-- <button class="btn complete" id="complete">결제 완료</button> -->
 					</div>
 				</c:forEach>

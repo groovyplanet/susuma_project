@@ -89,12 +89,13 @@
 						<div class="infodetail">
 							<a href="review_view.jsp" style="text-decoration: none;">
 								<div class="member-name">
-									<strong>${dto.content }</strong>
+									<strong>마스터 성함 :</strong>
+									${dto.masterName }
 									<span></span>
 								</div>
 								<div class="member-map">
 									<strong>위치 :</strong>
-									서울시 광진구
+									${dto.address }
 								</div>
 								<div class="review-type">
 									<strong>별점 :</strong>

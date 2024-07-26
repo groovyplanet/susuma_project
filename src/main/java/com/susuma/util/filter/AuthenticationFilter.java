@@ -28,8 +28,9 @@ public class AuthenticationFilter implements Filter {
 
 		HttpSession session = request.getSession();
 		String meNo = (String) session.getAttribute("meNo");
+		String type = (String) session.getAttribute("type");
 
-		// 관리 페이지 접근 제어
+		// 관리자 페이지 접근 제어
 		if (command.startsWith("/admin")) {
 			/*
 			 * if (meNo == null || !meNo.equals("1")) {
@@ -51,6 +52,11 @@ public class AuthenticationFilter implements Filter {
 			case "/board/askWrite.board": // 1:1 문의 작성
 			case "/board/askView.board": // 1:1 문의 상세
 			case "/board/askModify.board": // 1:1 문의 수정
+			case "/member/list.review" : //리뷰 리스트 페이지
+			case "/member/list.request" : //예약 신청 페이지
+			case "/member/requestView.request" : //예약 내역 보기
+			
+				
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();
@@ -59,6 +65,21 @@ public class AuthenticationFilter implements Filter {
 					out.println("history.back();"); // 이전 페이지로 돌아가기
 					out.println("</script>");
 					return; // 컨트롤러 실행 x
+				}
+			
+			}
+
+			// 의뢰인만 접근 가능
+			switch (command) {
+			case "/member/memberRequest.member": // 수리 예약
+				if (!type.equals("user")) {
+					response.setContentType("text/html; charset=UTF-8;");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('의뢰인만 이용 가능한 서비스 입니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+					return;
 				}
 			}
 

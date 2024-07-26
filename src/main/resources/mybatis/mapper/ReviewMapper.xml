@@ -6,7 +6,11 @@
 <mapper namespace="com.susuma.review.model.ReviewMapper">
 
 	<select id="getList" resultType="com.susuma.review.model.ReviewDTO">
-		SELECT * FROM REVIEW ORDER BY RE_NO
+		SELECT RE.*, MASTER_NO, MM.NAME AS MASTER_NAME, MM.ADDRESS
+		FROM REVIEW RE
+		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
+		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
+
 	</select>
 
 	<select id="getMasterNoByReqNo" parameterType="int" resultType="string">
