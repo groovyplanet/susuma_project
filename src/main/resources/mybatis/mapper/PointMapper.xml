@@ -5,38 +5,43 @@
 
 <mapper namespace="com.susuma.point.model.PointMapper">
 
-<!-- 회원의 포인트 잔액을 조회 -->
+	<!-- 회원의 포인트 잔액을 조회 -->
 	<select id="MemberPoints" parameterType="String" resultType="Integer">
 		SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
 	</select>
 
 	<!-- 포인트 적립 내역 조회 -->
-	 <select id="getPointEarnings" resultType="com.susuma.point.model.PointDTO">
-        SELECT pc_no, me_no, point, pc_time AS insertTime
-        FROM POINT_HISTORY
-        WHERE me_no = #{meNo} AND point > 0
-        ORDER BY pc_time DESC
-    </select>
-
-	<!-- 포인트 사용 내역 조회 -->
-	<select id="getPointSpendings" resultType="com.susuma.point.model.PointDTO">
-		SELECT req_no AS meNo, pay_amount AS point, paid_time AS insertTime
-		FROM REQUEST
-		WHERE client_no = #{meNo} AND pay_status = 'Y'
-		ORDER BY paid_time DESC
+	<select id="getPointEarnings" parameterType="String" resultType="com.susuma.point.model.PointDTO">
+		SELECT pc_no, me_no, point, pc_time AS insertTime
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point > 0
+		ORDER BY pc_time DESC
 	</select>
 
-	
-    <update id="updateMemberPoints">
-        UPDATE MEMBER SET point = #{point} WHERE me_no = #{meNo}
-    </update>
+	<!-- 포인트 사용 내역 조회 -->
+	<select id="getPointSpendings" parameterType="String" resultType="com.susuma.point.model.PointDTO">
+		SELECT pc_no, me_no, point, pc_time AS insertTime
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo}
+		ORDER BY pc_time DESC
+	</select>
 
-    <insert id="addSpendingHistory">
-        INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, -#{point}, SYSDATE)
-    </insert>
+	<!-- 회원 포인트 업데이트 -->
+	<update id="updateMemberPoints">
+		UPDATE MEMBER SET point = #{point} WHERE me_no = #{meNo}
+	</update>
 
-    <insert id="addEarningHistory">
-        INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, #{point}, SYSDATE)
-    </insert>
+	<!-- 포인트 사용 내역 추가 -->
+	<insert id="addSpendingHistory">
+		INSERT INTO POINT_HISTORY (me_no, point, pc_time)
+		VALUES (#{meNo}, #{point}, #{insertTime})
+	</insert>
+
+	<!-- 포인트 적립 내역 추가 -->
+	<insert id="addEarningHistory">
+		INSERT INTO POINT_HISTORY (me_no, point, pc_time)
+		VALUES (#{meNo}, #{point}, #{insertTime})
+	</insert>
+
 
 </mapper>

@@ -7,46 +7,45 @@ public class PointDTO {
     private String meNo;
     private int point;
     private Timestamp insertTime;
-    
-	public PointDTO(String pcNo, String meNo, int point, Timestamp insertTime) {
-		super();
-		this.pcNo = pcNo;
-		this.meNo = meNo;
-		this.point = point;
-		this.insertTime = insertTime;
-	}
 
-	public String getPcNo() {
-		return pcNo;
-	}
+    public PointDTO() {}
 
-	public void setPcNo(String pcNo) {
-		this.pcNo = pcNo;
-	}
+    public PointDTO(String pcNo, String meNo, int point, Timestamp insertTime) {
+        this.pcNo = pcNo;
+        this.meNo = meNo;
+        this.point = point;
+        this.insertTime = insertTime;
+    }
 
-	public String getMeNo() {
-		return meNo;
-	}
+    public String getPcNo() {
+        return pcNo;
+    }
 
-	public void setMeNo(String meNo) {
-		this.meNo = meNo;
-	}
+    public void setPcNo(String pcNo) {
+        this.pcNo = pcNo;
+    }
 
-	public int getPoint() {
-		return point;
-	}
+    public String getMeNo() {
+        return meNo;
+    }
 
-	public void setPoint(int point) {
-		this.point = point;
-	}
+    public void setMeNo(String meNo) {
+        this.meNo = meNo;
+    }
 
-	public Timestamp getInsertTime() {
-		return insertTime;
-	}
+    public int getPoint() {
+        return point;
+    }
 
-	public void setInsertTime(Timestamp insertTime) {
-		this.insertTime = insertTime;
-	}
+    public void setPoint(int point) {
+        this.point = point;
+    }
 
-    // getters and setters
+    public Timestamp getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Timestamp insertTime) {
+        this.insertTime = insertTime;
+    }
 }

@@ -50,5 +50,7 @@ public interface MemberService {
 	void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	
 
 }
