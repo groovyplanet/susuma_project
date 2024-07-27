@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="../include/head.jsp"%>
 <style>
@@ -96,8 +97,16 @@
 						<div class="infodetail">
 							<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }">
 								<div class="member-name">
-									<strong>마스터 성함 :</strong>
-									${dto.masterName }
+								<c:choose>
+										<c:when test="${not empty dto.masterName}">
+											<strong>마스터 성함 :</strong>
+											${dto.masterName}
+										</c:when>
+										<c:when test="${not empty dto.clientName}">
+											<strong>고객 성함 :</strong>
+											${dto.clientName}
+										</c:when>
+									</c:choose>
 									<span></span>
 								</div>
 								<div class="member-map">

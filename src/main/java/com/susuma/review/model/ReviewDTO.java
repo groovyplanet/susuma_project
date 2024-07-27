@@ -14,6 +14,7 @@ public class ReviewDTO {
 	private Timestamp insertTime;
 	private Timestamp updateTime;
 	private String masterName;
+	private String clientName;
 
 	// 후기 내역 DTO 추가
 	private String address;
@@ -35,6 +36,15 @@ public class ReviewDTO {
 		this.updateTime = updateTime;
 		this.masterName = masterName;
 		this.address = address;
+	}
+	
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
 
 	public String getReNo() {

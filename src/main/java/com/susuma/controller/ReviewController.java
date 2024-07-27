@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.review")
 public class ReviewController extends HttpServlet {
@@ -43,8 +44,14 @@ public class ReviewController extends HttpServlet {
 		System.out.println(command);
 		if (command.equals("/member/list.review")) {
 
+			HttpSession session = request.getSession();
+			String type = (String)session.getAttribute("type");
 			service = new ReviewServiceImpl();
-			service.getList(request, response);
+			if("master".equals(type)) {
+				service.getListMaster(request, response);
+			}else if("user".equals(type)) {				
+				service.getList(request, response);
+			}
 
 		}else if(command.equals("/member/reviewForm.review")) {
 			service = new ReviewServiceImpl();

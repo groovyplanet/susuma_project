@@ -26,9 +26,16 @@ public class RequestServiceImpl implements RequestService{
 	
 		HttpSession session = request.getSession();
         String meNo = (String) session.getAttribute("meNo");
+        String type = (String) session.getAttribute("type");
         SqlSession sql = sqlSessionFactory.openSession();
         RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
-        ArrayList<RequestDTO> list = requestMapper.getListByMember(meNo);
+        ArrayList<RequestDTO> list = null;
+//        ArrayList<RequestDTO> list = requestMapper.getListByMember(meNo);
+        if("master".equals(type)) {
+        	list = requestMapper.getListByMaster(meNo);
+        }else if("user".equals(type)) {
+        	list = requestMapper.getListByMember(meNo);
+        }
        
 
         sql.close();
