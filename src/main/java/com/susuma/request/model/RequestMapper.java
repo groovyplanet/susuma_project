@@ -10,6 +10,8 @@ public interface RequestMapper {
 	
 	ArrayList<RequestDTO> getListByMember(String clientNo); // 추가된 메서드
 
+	ArrayList<RequestDTO> getListByMaster(String masterNo);
+	
 	public int insertRequest(RequestDTO dto);
 
 	public RequestDTO getRequestByNo(String reqNo);
