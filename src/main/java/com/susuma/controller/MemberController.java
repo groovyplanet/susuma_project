@@ -134,6 +134,10 @@ public class MemberController extends HttpServlet {
 			// request.getRequestDispatcher("main.jsp").forward(request, response);
 			service.getMainMaster(request, response);
 			break;
+			
+		case "/member/point.member":
+			 service.getMemberPoints(request, response); // 포인트 정보 조회
+			break;
 
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);

@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -590,5 +591,39 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("list2", list2);
 		request.getRequestDispatcher("main.jsp").forward(request, response);
 
+	}
+
+	@Override
+	public void getMemberPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String meNo = (String) session.getAttribute("meNo");
+		
+		
+	    try (SqlSession sql = sqlSessionFactory.openSession()) {
+	        MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
+
+	        // 포인트 조회
+	        Integer points = memberMapper.MemberPoints(meNo);
+	     
+	        if (points == null) {
+	            points = 0; // 포인트가 없으면 기본값 설정
+	        }
+
+	        // 포인트 적립 내역 및 사용 내역 조회
+	        List<MemberDTO> earnings = memberMapper.getPointEarnings(meNo);
+	        List<MemberDTO> spendings = memberMapper.getPointSpendings(meNo);
+
+	        // 결과를 요청 속성에 설정
+	        request.setAttribute("points", points);
+	        request.setAttribute("earnings", earnings);
+	        request.setAttribute("spendings", spendings);
+
+	        // 포워딩
+	        request.getRequestDispatcher("point.jsp").forward(request, response);
+	    } catch (Exception e) {
+	        e.printStackTrace(); // 예외 로그
+	        throw new ServletException("데이터베이스 오류", e);
+	    }
 	}
 }

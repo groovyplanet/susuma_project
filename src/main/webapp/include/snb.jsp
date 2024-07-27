@@ -19,7 +19,7 @@
 			<a href="${pageContext.request.contextPath }/member/message_list.jsp" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">문의 내역</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath }/member/point.jsp" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>
+			<a href="${pageContext.request.contextPath }/member/point.member" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>
 		</li>
 	</ul>
 </nav>
