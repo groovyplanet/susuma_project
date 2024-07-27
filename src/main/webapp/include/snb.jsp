@@ -18,9 +18,11 @@
 		<li>
 			<a href="${pageContext.request.contextPath }/member/message_list.jsp" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">문의 내역</a>
 		</li>
+		<c:if test="${sessionScope.type eq 'master' }">
 		<li>
 			<a href="${pageContext.request.contextPath }/member/point.member" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>
 		</li>
+		</c:if>
 	</ul>
 </nav>
 <!-- //sidebar -->

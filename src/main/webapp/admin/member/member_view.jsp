@@ -86,10 +86,27 @@
 							</td>
 						</tr>
 						<tr>
+							<th>별점(후기건수)</th>
+							<td>
+								<c:choose>
+									<c:when test="${dto.reviewCount > 0}">
+										<span class="master-stars">
+											<i class="bi bi-star-fill gold"></i>
+											<strong>${dto.averageScore }</strong>
+											<span class="review-count">(${dto.reviewCount })</span>
+										</span>
+									</c:when>
+									<c:otherwise>
+										<span>-</span>
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<th>수리분야</th>
-							<td>${dto.caRootName}<span> > </span>${dto.caName}</td>
-							<td></td>
-							<td></td>
+							<td>
+								<span class="master-category">
+									${dto.caRootName}
+									<i class="bi bi-chevron-right"></i>${dto.caName}</span>
+							</td>
 						</tr>
 						<tr>
 							<th>사업자등록번호</th>

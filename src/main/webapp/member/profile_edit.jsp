@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.susuma.member.model.MemberDTO"%>
 
 <%@ include file="../include/head.jsp"%>
 </head>
@@ -58,77 +59,87 @@
 							<input type="hidden" name="latitude" value="${dto.latitude}">
 							<input type="hidden" name="longitude" value="${dto.longitude}">
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
-								<p style="text-align: left;">${dto.address}</p>
+								<c:choose>
+									<c:when test="${dto.address == null or dto.address eq '' }">
+										주소 검색
+										<i class="bi bi-search"></i>
+									</c:when>
+									<c:otherwise>
+										<p style="text-align: left;">${dto.address}</p>
+									</c:otherwise>
+								</c:choose>
 							</button>
 							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail" value="${dto.addressDetail}">
 						</div>
-						<div id="master-info-area" style="display: ${dto.type=='master' ? 'block' : 'none'};">
-							<div class="input-area">
-								<label for="businessNumber" class="required">사업자등록번호</label>
-								<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="businessNumber" id="businessNumber" maxlength="12" value="${dto.businessNumber}">
-								<p class="caption-error">올바른 형식이 아닙니다.</p>
-							</div>
-							<!-- 수리 분야(동적 추가 및 삭제) -->
-							<div class="input-area">
-								<div class="category-add-area">
-									<label for="category" class="required">수리 분야</label>
+						<c:if test="${dto.type eq 'master' }">
+							<div id="master-info-area">
+								<div class="input-area">
+									<label for="businessNumber" class="required">사업자등록번호</label>
+									<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="businessNumber" id="businessNumber" maxlength="12" value="${dto.businessNumber}">
+									<p class="caption-error">올바른 형식이 아닙니다.</p>
 								</div>
-								<div id="category-select-area-wrap">
-									<div class="category-select-area">
-										<select id="category" onchange="handleCategoryChange()" class="select-category">
-											<option value="">선택</option>
-											<c:forEach var="categoryDto" items="${CategoryMainList}">
-												<option value="${categoryDto.caNo }" ${dto.caRootNo == categoryDto.caNo ? 'selected' : ''}>${categoryDto.caName }</option>
-											</c:forEach>
-										</select>
-										<select name="caNo" id="sub-category" class="select-category">
-											<option value="">선택</option>
-											<c:forEach var="categorySubDto" items="${CategorySubList}">
-												<option value="${categorySubDto.caNo }" ${dto.caNo == categorySubDto.caNo ? 'selected' : ''}>${categorySubDto.caName }</option>
-											</c:forEach>
-										</select>
+								<!-- 수리 분야(동적 추가 및 삭제) -->
+								<div class="input-area">
+									<div class="category-add-area">
+										<label for="category" class="required">수리 분야</label>
+									</div>
+									<div id="category-select-area-wrap">
+										<div class="category-select-area">
+											<select id="category" onchange="handleCategoryChange()" class="select-category">
+												<option value="">선택</option>
+												<c:forEach var="categoryDto" items="${CategoryMainList}">
+													<option value="${categoryDto.caNo }" ${dto.caRootNo == categoryDto.caNo ? 'selected' : ''}>${categoryDto.caName }</option>
+												</c:forEach>
+											</select>
+											<select name="caNo" id="sub-category" class="select-category">
+												<option value="">선택</option>
+												<c:forEach var="categorySubDto" items="${CategorySubList}">
+													<option value="${categorySubDto.caNo }" ${dto.caNo == categorySubDto.caNo ? 'selected' : ''}>${categorySubDto.caName }</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
-							<div class="input-area">
-								<label>근무 가능 요일 및 시간</label>
-								<button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">
-									시간 입력
-									<i class="bi bi-chevron-right"></i>
-								</button>
-								<input type="hidden" name="workHours" value="${dto.workHours}">
-								<div id="work-hours-list" class="work-hours-list">
-									<!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
-									<div style="white-space: pre-line;">${dto.workHours}</div>
+								<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
+								<div class="input-area">
+									<label>근무 가능 요일 및 시간</label>
+									<button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">
+										시간 입력
+										<i class="bi bi-chevron-right"></i>
+									</button>
+									<input type="hidden" name="workHours" value="${dto.workHours}">
+									<div id="work-hours-list" class="work-hours-list">
+										<!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
+										<div style="white-space: pre-line;">${dto.workHours}</div>
+									</div>
+								</div>
+								<div class="input-area">
+									<label for="distanc-5">이동 가능 거리</label>
+									<div class="distance-radio-area">
+										<input type="radio" name="maxDistance" value="5" id="distance-5" ${dto.maxDistance eq '5' ? 'checked' : ''}>
+										<input type="radio" name="maxDistance" value="10" id="distance-10" ${dto.maxDistance eq '10' ? 'checked' : ''}>
+										<input type="radio" name="maxDistance" value="20" id="distance-20" ${dto.maxDistance eq '20' ? 'checked' : ''}>
+										<input type="radio" name="maxDistance" value="50" id="distance-50" ${dto.maxDistance eq '50' ? 'checked' : ''}>
+										<input type="radio" name="maxDistance" value="100" id="distance-100" ${dto.maxDistance eq '100' ? 'checked' : ''}>
+										<label for="distanc-5" class="distance-radio ${dto.maxDistance eq '5' ? 'active' : ''}">5km 이내</label>
+										<label for="distanc-10" class="distance-radio ${dto.maxDistance eq '10' ? 'active' : ''}">10km 이내</label>
+										<label for="distanc-20" class="distance-radio ${dto.maxDistance eq '20' ? 'active' : ''}">20km 이내</label>
+										<label for="distanc-50" class="distance-radio ${dto.maxDistance eq '50' ? 'active' : ''}">50km 이내</label>
+										<label for="distanc-100" class="distance-radio ${dto.maxDistance eq '100' ? 'active' : ''}">100km 이내</label>
+									</div>
+								</div>
+								<div class="input-area">
+									<label for="shortDescription">한 줄 소개</label>
+									<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription" value="${dto.shortDescription}">
+								</div>
+								<div class="input-area">
+									<label for="description">수리 상세 내용</label>
+									<textarea class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." name="description">${dto.description}</textarea>
 								</div>
 							</div>
-							<div class="input-area">
-								<label for="max_distance">이동 가능 거리</label>
-								<div class="distance-radio-area">
-									<input type="radio" name="max_distance" value="5" id="distanc-5" checked>
-									<input type="radio" name="max_distance" value="10" id="distanc-10">
-									<input type="radio" name="max_distance" value="20" id="distanc-20">
-									<input type="radio" name="max_distance" value="50" id="distanc-50">
-									<input type="radio" name="max_distance" value="100" id="distanc-100">
-									<label for="distanc-5" class="distance-radio active">5km 이내</label>
-									<label for="distanc-10" class="distance-radio">10km 이내</label>
-									<label for="distanc-20" class="distance-radio">20km 이내</label>
-									<label for="distanc-50" class="distance-radio">50km 이내</label>
-									<label for="distanc-100" class="distance-radio">100km 이내</label>
-								</div>
-							</div>
-							<div class="input-area">
-								<label for="shortDescription">한 줄 소개</label>
-								<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription" value="${dto.shortDescription}">
-							</div>
-							<div class="input-area">
-								<label for="description">수리 상세 내용</label>
-								<textarea class="input-field" placeholder="고객에게 보여질 수리 상세 내용을 입력해주세요." name="description">${dto.description}</textarea>
-							</div>
-						</div>
-						<!-- //master-info-area -->
+							<!-- //master-info-area -->
+						</c:if>
 						<div class="input-area">
 							<label>이메일 수신 동의</label>
 							<div class="checkbox-area">
@@ -149,195 +160,63 @@
 						<div class="container">
 							<div class="modal-title">근무 가능 요일 및 시간</div>
 							<div class="work-hours-form">
+								<%
+								String[] days = {"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
+								for (int i = 0; i < days.length; i++) {
+									String num = String.valueOf(i + 1); // 1부터 시작하는 값
+									String day = days[i];
+
+									// 회원 정보 checked, selected 처리
+									boolean isChecked = false;
+									String startHour = "";
+									String endHour = "";
+									MemberDTO dto = (MemberDTO) request.getAttribute("dto");
+									String workingDaysStr = dto.getWorkHours(); // "월 09:00 ~ 10:00\n수 09:00 ~ 13:00"
+									if (workingDaysStr != null && !workingDaysStr.equals("")) { // 등록된 값이 있다면
+										String[] workingDays = workingDaysStr.split("\n"); // {"월 09:00 ~ 10:00", "수 09:00 ~ 13:00"}
+										for (String workingDay : workingDays) { // "월 09:00 ~ 10:00"
+									if (workingDay.startsWith(day.substring(0, 1))) {
+										isChecked = true;
+										String[] times = workingDay.trim().substring(2).split(" ~ ");
+										startHour = times[0];
+										endHour = times[1];
+										break;
+									}
+										}
+									}
+								%>
 								<div class="week-area">
 									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_1" value="1">
-										<label for="work_hours_1">월요일</label>
+										<input type="checkbox" name="work-hours-week" id="work_hours_<%=num%>" value="<%=num%>" <%=isChecked ? "checked" : ""%>>
+										<label for="work_hours_<%=num%>"><%=day%></label>
 									</div>
 									<div class="time-area">
 										<div class="time-select-area">
-											<select name="work_hours_1_s" disabled>
+											<select name="work_hours_<%=num%>_s" <%=isChecked ? "" : "disabled"%>>
 												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												for (int hour = 9; hour <= 21; hour++) {
+													String hourStr = String.format("%02d:00", hour);
+													String selected = hourStr.equals(startHour) ? "selected" : "";
+													out.println("<option value=\"" + hourStr + "\" " + selected + ">" + hourStr + "</option>");
 												}
 												%>
 											</select>
 											<span>~</span>
-											<select name="work_hours_1_e" disabled>
+											<select name="work_hours_<%=num%>_e" <%=isChecked ? "" : "disabled"%>>
 												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												for (int hour = 9; hour <= 21; hour++) {
+													String hourStr = String.format("%02d:00", hour);
+													String selected = hourStr.equals(endHour) ? "selected" : "";
+													out.println("<option value=\"" + hourStr + "\" " + selected + ">" + hourStr + "</option>");
 												}
 												%>
 											</select>
 										</div>
 									</div>
 								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_2" value="2">
-										<label for="work_hours_2">화요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_2_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_2_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_3" value="3">
-										<label for="work_hours_3">수요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_3_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_3_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_4" value="4">
-										<label for="work_hours_4">목요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_4_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_4_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_5" value="5">
-										<label for="work_hours_5">금요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_5_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_5_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_6" value="6">
-										<label for="work_hours_6">토요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_6_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_6_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_7" value="7">
-										<label for="work_hours_7">일요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_7_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_7_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
+								<%
+								}
+								%>
 								<button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
 							</div>
 							<button type="button" class="btn-close-modal">
@@ -351,7 +230,7 @@
 						<div class="container">
 							<div class="modal-title">비밀번호 변경</div>
 							<div class="pw-change-form">
-								<form action="changePwForm.member" method="post" id="form-pw-change">
+								<form method="post" id="form-pw-change">
 									<div class="input-area">
 										<label for="pw_old">현재 비밀번호</label>
 										<input type="password" class="input-field" placeholder="현재 비밀번호를 입력해주세요." autocomplete="no" name="pw_old" id="pw_old" required>

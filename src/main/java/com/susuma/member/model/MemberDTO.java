@@ -10,17 +10,7 @@ public class MemberDTO {
 	private String clientNo; // "CLIENT_NO"
 	private String type; // "TYPE"
 	private String email; // "EMAIL"
-
-	public String getClientNo() {
-		return clientNo;
-	}
-
-	public void setClientNo(String clientNo) {
-		this.clientNo = clientNo;
-	}
-
 	private String pw; // "PW"
-
 	private String name; // "NAME"
 	private String address; // "ADDRESS"
 	private String addressDetail; // "ADDRESS_DETAIL"
@@ -48,16 +38,15 @@ public class MemberDTO {
 	private String caRootName; // "CA_ROOT_NAME"
 
 	private String rn; // 페이징 처리
-	
+
 	// 메인 리뷰화면
 	private String averageScore; // 별점 평균
 	private String reviewCount; // 별점 갯수
-	private String masterName; //마스터 이름
-	private String clientName; //의뢰인 이름
-	private String reNo; //리뷰 번호
+	private String masterName; // 마스터 이름
+	private String clientName; // 의뢰인 이름
+	private String reNo; // 리뷰 번호
 	private String content; // 리뷰내역
-	private String starScore;  //별점
-	
+	private String starScore; // 별점
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -409,4 +398,11 @@ public class MemberDTO {
 		this.rn = rn;
 	}
 
+	public String getClientNo() {
+		return clientNo;
+	}
+
+	public void setClientNo(String clientNo) {
+		this.clientNo = clientNo;
+	}
 }
