@@ -3,6 +3,7 @@ package com.susuma.member.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.susuma.category.model.CategoryDTO;
 import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
+import com.susuma.point.model.PointDTO;
 import com.susuma.point.model.PointMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
@@ -660,32 +662,114 @@ public class MemberServiceImpl implements MemberService {
 	    }
 	}
 	
-	 @Override
-	    public void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        String meNo = (String) request.getSession().getAttribute("meNo");
-	        int pointsToWithdraw = Integer.parseInt(request.getParameter("points"));
+	public void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    HttpSession session = request.getSession();
+	    String meNo = (String) session.getAttribute("meNo");
+	    String pointsParam = request.getParameter("point");
 
-	        try (SqlSession sql = sqlSessionFactory.openSession(true)) {
-	            PointMapper pointMapper = sql.getMapper(PointMapper.class);
-	            pointMapper.updateMemberPoints(meNo, -pointsToWithdraw);
-	            pointMapper.addSpendingHistory(meNo, pointsToWithdraw);
-	            response.setContentType("application/json");
-	            response.getWriter().write("{\"status\":\"success\",\"message\":\"포인트가 차감되었습니다.\"}");
-	        }
+	    System.out.println("Session meNo: " + meNo);
+	    System.out.println("Request pointsParam: " + pointsParam);
+
+	    // 세션에서 meNo가 null이거나 pointsParam이 null일 경우
+	    if (meNo == null || pointsParam == null) {
+	        response.setContentType("application/json");
+	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid request.\"}");
+	        return;
 	    }
 
-	    // 포인트 충전
-	    @Override
-	    public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        String meNo = (String) request.getSession().getAttribute("meNo");
-	        int pointsToCharge = Integer.parseInt(request.getParameter("points"));
+	    try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+	        PointMapper pointMapper = sql.getMapper(PointMapper.class);
 
-	        try (SqlSession sql = sqlSessionFactory.openSession(true)) {
-	            PointMapper pointMapper = sql.getMapper(PointMapper.class);
-	            pointMapper.updateMemberPoints(meNo, pointsToCharge);
-	            pointMapper.addEarningHistory(meNo, pointsToCharge);
-	            response.setContentType("application/json");
-	            response.getWriter().write("{\"status\":\"success\",\"message\":\"포인트가 충전되었습니다.\"}");
+	        // 포인트가 'ALL'일 경우 현재 포인트를 조회
+	        if ("ALL".equals(pointsParam)) {
+	            Integer currentPoints = pointMapper.MemberPoints(meNo);
+	            if (currentPoints == null) currentPoints = 0; // 현재 포인트가 null일 경우 0으로 설정
+	            pointsParam = String.valueOf(currentPoints); // 현재 포인트로 설정
 	        }
+
+	        // 포인트 문자열을 정수로 변환
+	        int pointsToWithdraw;
+	        try {
+	            pointsToWithdraw = Integer.parseInt(pointsParam);
+	        } catch (NumberFormatException e) {
+	            response.setContentType("application/json");
+	            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	            response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	            return;
+	        }
+
+	        // 포인트가 0 이하인 경우 에러 처리
+	        if (pointsToWithdraw <= 0) {
+	            response.setContentType("application/json");
+	            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	            response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	            return;
+	        }
+
+	        // 현재 사용자의 포인트 조회
+	        Integer currentPoints = pointMapper.MemberPoints(meNo);
+	        if (currentPoints == null) currentPoints = 0;
+
+	        // 출금할 포인트가 현재 포인트보다 큰 경우 에러 처리
+	        if (pointsToWithdraw > currentPoints) {
+	            response.setContentType("application/json");
+	            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	            response.getWriter().write("{\"status\":\"error\",\"message\":\"Insufficient points.\"}");
+	            return;
+	        }
+
+	        // PointDTO 객체 생성
+	        PointDTO pointDTO = new PointDTO();
+	        pointDTO.setMeNo(meNo);
+	        pointDTO.setPoint(-pointsToWithdraw); // 출금이므로 음수로 설정
+	        pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
+
+	        // 포인트 업데이트 및 내역 추가
+	        pointMapper.updateMemberPoints(meNo, -pointsToWithdraw); // MEMBER 테이블의 포인트 업데이트
+	        pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
+
+	        // 성공 응답
+	        response.setContentType("application/json");
+	        response.getWriter().write("{\"status\":\"success\",\"message\":\"출금이 완료되었습니다.\"}");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	        response.setContentType("application/json");
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"출금에 실패했습니다.\"}");
 	    }
 	}
+
+
+	@Override
+	public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    String meNo = (String) request.getSession().getAttribute("meNo");
+	    int pointsToCharge = Integer.parseInt(request.getParameter("point"));
+
+	    // PointDTO 객체 생성
+	    PointDTO pointDTO = new PointDTO();
+	    pointDTO.setMeNo(meNo);
+	    pointDTO.setPoint(pointsToCharge);
+	    pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
+
+	    try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+	        PointMapper pointMapper = sql.getMapper(PointMapper.class);
+	        // 포인트 업데이트
+	        pointMapper.updateMemberPoints(meNo, pointsToCharge);
+	        // 포인트 충전 내역 추가
+	        pointMapper.addEarningHistory(pointDTO);
+	        response.setContentType("application/json");
+	        
+	        // 응답 JSON 생성
+	        PrintWriter out = response.getWriter();
+	        out.print("{\"status\":\"success\",\"message\":\"충전이 완료되었습니다.\"}");
+	        out.flush();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.setContentType("application/json");
+	        PrintWriter out = response.getWriter();
+	        out.print("{\"status\":\"error\",\"message\":\"충전에 실패했습니다.\"}");
+	        out.flush();
+	    }
+	}
+}

@@ -72,70 +72,99 @@
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
-	 $(document).ready(function() {
-         $("#tab-add, #tab-pop").click(function() {
-             if (!$(this).hasClass("active")) {
-                 $(".item").toggle();
-                 $(".tab").toggleClass("active");
-             }
-         });
+	$(document).ready(function() {
+	    // 탭 전환 처리
+	    $("#tab-add, #tab-pop").click(function() {
+	        if (!$(this).hasClass("active")) {
+	            $(".item").toggle();
+	            $(".tab").toggleClass("active");
+	        }
+	    });
 
-         // 출금 모달
-         document.getElementById('withdrawButton').addEventListener('click', function() {
-             document.getElementById('withdrawModal').classList.add('show');
-         });
+	    // 출금 모달 열기
+	    document.getElementById('withdrawButton').addEventListener('click', function() {
+	        document.getElementById('withdrawModal').classList.add('show');
+	    });
 
-         document.querySelector('#withdrawModal .btn-cancel').addEventListener('click', function() {
-             document.getElementById('withdrawModal').classList.remove('show');
-         });
+	    // 출금 모달 닫기
+	    document.querySelector('#withdrawModal .btn-cancel').addEventListener('click', function() {
+	        document.getElementById('withdrawModal').classList.remove('show');
+	    });
 
-         document.querySelector('#withdrawModal .btn-confirm').addEventListener('click', function() {
-             $.ajax({
-                 url: 'withdrawPoints', // 요청을 처리할 URL
-                 type: 'POST',
-                 data: { points: 1000 }, // 출금할 포인트 (여기서는 예시로 1000을 사용)
-                 success: function(response) {
-                     if (response.status === 'success') {
-                         alert(response.message);
-                         location.reload(); // 페이지를 새로고침하여 포인트를 업데이트합니다.
-                     }
-                 },
-                 error: function() {
-                     alert('출금에 실패했습니다.');
-                 }
-             });
-             document.getElementById('withdrawModal').classList.remove('show');
-         });
+	    // 출금 모달에서 확인 버튼 클릭 시
+	    document.querySelector('#withdrawModal .btn-confirm').addEventListener('click', function() {
+	        fetch('/Susuma/member/withdrawPoints.member', { // 절대 경로 사용
+	            method: 'POST',
+	            headers: {
+	                'Content-Type': 'application/x-www-form-urlencoded',
+	            },
+	            body: new URLSearchParams({ points: 'ALL' }), // 'ALL'을 사용하여 전체 출금을 의미
+	        })
+	        .then(response => response.json()) // 응답을 JSON으로 파싱
+	        .then(data => {
+	            if (data.status === 'success') {
+	                alert(data.message);
+	                location.reload(); // 페이지를 새로고침하여 포인트를 업데이트합니다.
+	            } else {
+	                alert(data.message); // 실패 메시지 표시
+	            }
+	        })
+	        .catch(error => {
+	            alert('출금에 실패했습니다.');
+	            console.error('Error:', error);
+	        });
 
-         // 충전 모달
-         document.getElementById('chargeButton').addEventListener('click', function() {
-             document.getElementById('chargeModal').classList.add('show');
-         });
+	        // 모달 닫기
+	        document.getElementById('withdrawModal').classList.remove('show');
+	    });
 
-         document.querySelector('#chargeModal .btn-cancel').addEventListener('click', function() {
-             document.getElementById('chargeModal').classList.remove('show');
-         });
+	    // 충전 모달 열기
+	    document.getElementById('chargeButton').addEventListener('click', function() {
+	        document.getElementById('chargeModal').classList.add('show');
+	    });
 
-         document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
-             const amount = document.getElementById('chargeAmount').value;
-             $.ajax({
-                 url: 'chargePoints', // 요청을 처리할 URL
-                 type: 'POST',
-                 data: { points: amount },
-                 success: function(response) {
-                     if (response.status === 'success') {
-                         alert(response.message);
-                         location.reload(); // 페이지를 새로고침하여 포인트를 업데이트합니다.
-                     }
-                 },
-                 error: function() {
-                     alert('충전에 실패했습니다.');
-                 }
-             });
-             document.getElementById('chargeModal').classList.remove('show');
-         });
-     });
- </script>
+	    // 충전 모달 닫기
+	    document.querySelector('#chargeModal .btn-cancel').addEventListener('click', function() {
+	        document.getElementById('chargeModal').classList.remove('show');
+	    });
+
+	    // 충전 모달에서 확인 버튼 클릭 시
+	    document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
+	        const amount = document.getElementById('chargeAmount').value;
+	        
+	        if (amount <= 0) {
+	            alert('충전 금액은 0보다 커야 합니다.');
+	            return;
+	        }
+
+	        fetch('/Susuma/member/chargePoints.member', { // 절대 경로 사용
+	            method: 'POST',
+	            headers: {
+	                'Content-Type': 'application/x-www-form-urlencoded',
+	            },
+	            body: new URLSearchParams({ points: amount }), // 충전할 포인트
+	        })
+	        .then(response => response.json()) // 응답을 JSON으로 파싱
+	        .then(data => {
+	            if (data.status === 'success') {
+	                alert(data.message);
+	                location.reload(); // 페이지를 새로고침하여 포인트를 업데이트합니다.
+	            } else {
+	                alert(data.message); // 실패 메시지 표시
+	            }
+	        })
+	        .catch(error => {
+	            alert('충전에 실패했습니다.');
+	            console.error('Error:', error);
+	        });
+
+	        // 모달 닫기
+	        document.getElementById('chargeModal').classList.remove('show');
+	    });
+	});
+	</script>
+
+
 	<style>
 	
 
