@@ -52,7 +52,7 @@
 					</div>
 					<div class="filter" id="sub-category-filter">
 						<label for="sub-category">하위 카테고리</label>
-						<select id="sub-category">
+						<select id="sub-category" name="subCate">
 							<option value="">선택</option>
 						</select>
 					</div>
@@ -129,7 +129,10 @@
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
-		
+		function applyFilters() {
+			const form = document.getElementById('filter-form');
+			form.submit();
+		}
 	</script>
 
 </body>

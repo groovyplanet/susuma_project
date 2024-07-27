@@ -235,7 +235,8 @@ public class MemberServiceImpl implements MemberService {
 		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
 		String caNo = request.getParameter("caNo");
 		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
-
+		String subCate = request.getParameter("subCate");
+		
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", "master");
 		params.put("joinApproval", "Y");
@@ -245,6 +246,9 @@ public class MemberServiceImpl implements MemberService {
 		params.put("caNo", caNo);
 		params.put("startRow", 1); // rownum 시작값
 		params.put("endRow", 999); // rownum 끝값
+		if(subCate!=null && !subCate.isEmpty()) {			
+			params.put("subCate", subCate);
+		}
 		// 카테고리 매개변수로 받아서 검색하는 기능 구현 필요
 
 		/* [2] Mapper */
