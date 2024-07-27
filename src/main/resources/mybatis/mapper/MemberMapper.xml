@@ -48,6 +48,9 @@
 		<if test="rootNo != 'all' and caNo != 'all'">
 			AND C.CA_NO = #{caNo}
 		</if>
+		<if test="subCate != null and subCate != ''">
+                AND C.CA_NO = #{subCate}
+        </if>
 		ORDER BY M.${sortField} ${sortOrder} NULLS LAST
 		) A
 		)
