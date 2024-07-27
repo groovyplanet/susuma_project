@@ -6,6 +6,8 @@
 .mt20 { margin-top: 20px; } 
 .mt25 { margin-top: 25px; } 
 .mt30 { margin-top: 30px; } 
+.preserve-line-breaks { white-space: pre-wrap; /* 줄바꿈 및 공백 문자 유지 */
+ word-wrap: break-word; /* 단어가 길 때 줄 바꿈 처리 */ } 
 
 /* snb 메뉴 없는 경우 */
 .main-section .container.main-only { justify-content: center; } 
@@ -167,6 +169,7 @@
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time { height: 36px; padding: 0 13px; border-radius: 6px; font-size: 13px; letter-spacing: 2px; font-weight: 400; background-color: #fff; border: 1px solid #ccc; color: #777; line-height: 36px; cursor: pointer; text-align: center; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time:hover { background-color: #eee; color: #444; border-color: #aaa; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time.selected { background-color: #f49d00; color: white; border-color: #F49D00; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time.disabled { cursor: default; border-color: #ddd; color: #999; background-color: #eee; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap label { display: block; font-size: 14px; font-weight: 500; color: #555; text-align: left; margin: 3px 0 7px; line-height: 13px; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap label i { margin-right: 3px; } 
 .main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap p { display: block; font-size: 14px; font-weight: 400; color: #555; text-align: left; margin-bottom:3px; } 
@@ -200,6 +203,12 @@
 .modal.request .container .request-content .request-info-area p + .info-title { margin-top: 15px; } 
 .modal.request .container .request-content .request-info-area p.info-title { font-size: 16px; font-weight: 500; } 
 .modal.request .container .request-content .request-desc-area { margin-top: 10px; } 
+
+/* 예약 내역 모달 */
+.modal.request-list .container { display: block; width: auto; height: auto; } 
+.modal.request-list .container .modal-title { font-size: 20px; font-weight: 600; text-align: center; } 
+.modal.request-list .container .pay-content { margin: 30px 0 15px; font-size: 13px; width: 380px; text-align: left; } 
+.modal.request-list .container .pay-content p { font-size: 15px; margin-top: 7px; } 
 
 /* pagination */
 .main-section .pagination { display: flex; justify-content: center; padding: 40px 0; } 

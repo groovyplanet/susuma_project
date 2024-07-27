@@ -71,7 +71,7 @@ img { max-width: 100%; height: auto; }
 .content-list .content-mix .content-status #approve-button { margin-left: 20px; margin-top: 10px; margin-right: 10px; background-color: #f8f8f8; color: #000; } */
 .content-list .content-mix .content-status-wait p { background-color: #f8f8f8; color: #000; width: 74px; height: 32px; font-size: 13px; line-height: 32px; text-align: center; border-radius: 5px; user-select: none; } 
 .content-list .content-mix .content-status-wait p.approve { color: #569aff; background-color: #ebf3ff; } 
-.content-list .content-mix .content-status-ok p { margin-left: 20px; margin-top: 10px; margin-right: 10px; background-color: #F49D00; color: white; width: 74px; height: 32px; font-size: 13px; line-height: 32px; text-align: center; border-radius: 5px; } 
+.content-list .content-mix .content-status-ok p { background-color: #F49D00; color: white; width: 74px; height: 32px; font-size: 13px; line-height: 32px; text-align: center; border-radius: 5px; } 
 .content-case .content-title-box .content-sd { display: flex; align-items: center; } 
 .content-case .content-title-box .content-status-ok p { color: #fb584d; background-color: #fee4e2; width: 74px; height: 32px; font-size: 13px; line-height: 32px; text-align: center; border-radius: 5px; display: inline-block; margin-right: 20px; } 
 .content-case .content-title-box .content-status-ok p.approve { color: #569aff; background-color: #ebf3ff; } 

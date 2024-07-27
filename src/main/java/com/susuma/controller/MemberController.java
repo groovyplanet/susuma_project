@@ -138,9 +138,9 @@ public class MemberController extends HttpServlet {
 			// 메인페이지 - 기사님정보가져오기 + 리뷰
 			service.getMainMaster(request, response);
 			break;
-			
+
 		case "/member/point.member":
-			 service.getMemberPoints(request, response); // 포인트 정보 조회
+			service.getMemberPoints(request, response); // 포인트 정보 조회
 			break;
 		
 		case "/member/withdrawPoints.member":
@@ -171,7 +171,7 @@ public class MemberController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String contextPath = request.getContextPath();
 		out.println("<script>");
-		out.println("alert('로그아웃 되었습니다.');");
+		// out.println("alert('로그아웃 되었습니다.');");
 		out.println("location.href = '" + contextPath + "/';");
 		out.println("</script>");
 	}

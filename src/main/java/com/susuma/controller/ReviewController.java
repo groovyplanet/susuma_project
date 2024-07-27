@@ -2,7 +2,6 @@ package com.susuma.controller;
 
 import java.io.IOException;
 
-import com.susuma.request.service.RequestServiceImpl;
 import com.susuma.review.service.ReviewService;
 import com.susuma.review.service.ReviewServiceImpl;
 
@@ -11,7 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.review")
 public class ReviewController extends HttpServlet {
@@ -35,27 +33,43 @@ public class ReviewController extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 
-		String uri = request.getRequestURI(); // ip, port번호 제외된 주소
-		String path = request.getContextPath(); // 프로젝트 식별 이름
-		String command = uri.substring(path.length());
+		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
+		String path = request.getContextPath(); // path : '/Susuma'
+		String command = uri.substring(path.length()); // command : '/member/join.member'
+		System.out.println("command : " + command);
 
-		ReviewService service;
+		ReviewService service = new ReviewServiceImpl();
 
-		System.out.println(command);
-		if (command.equals("/member/list.review")) {
+		switch (command) {
 
-			HttpSession session = request.getSession();
-			String type = (String)session.getAttribute("type");
-			service = new ReviewServiceImpl();
-			if("master".equals(type)) {
-				service.getListMaster(request, response);
-			}else if("user".equals(type)) {				
-				service.getList(request, response);
-			}
+		case "/admin/member/list.review":
 
-		}else if(command.equals("/member/reviewForm.review")) {
-			service = new ReviewServiceImpl();
-			service.submitReview(request,response);
+			service.adminList(request, response); // 관리자 - 목록
+			break;
+
+		case "/admin/member/editForm.review":
+			service.adminUpsert(request, response); // 관리자 - 수정
+			break;
+
+		case "/admin/member/delete.review":
+			service.adminDelete(request, response); // 관리자 - 삭제
+			break;
+
+		case "/member/list.review":
+			service.getReviewList(request, response);
+			break;
+
+		case "/member/edit.review":
+			// service.edit(request, response);
+			break;
+
+		case "/member/editForm.review":
+			service.upsertReview(request, response);
+			break;
+
+		default:
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			break;
 		}
 
 	}

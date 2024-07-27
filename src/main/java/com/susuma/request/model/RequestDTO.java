@@ -26,12 +26,35 @@ public class RequestDTO {
 	private Double latitude; // "LATITUDE"
 	private Double longitude; // "LONGITUDE"
 	private String phoneNum; // "PHONE_NUM"
+
 	private String masterName;
 	private String clientName;
-	private byte[] profilePhoto; // "PROFILE_PHOTO"
+	private String masterAddress;
+	private String clientAddress;
+	private byte[] masterProfilePhoto;
+	private byte[] clientProfilePhoto;
+
+	// CATEGORY 테이블
+	private String caNo; // "CA_NO"
+	private String caName; // "CA_NAME"
+	private String caRootNo; // "CA_ROOT_NO"
+	private String caRootName; // "CA_ROOT_NAME"
 
 	public RequestDTO() {
 
+	}
+
+	// upsert 시 사용
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String payStatus, String cancelReason) {
+		super();
+		this.reqNo = reqNo;
+		this.masterNo = masterNo;
+		this.clientNo = clientNo;
+		this.content = content;
+		this.requestDate = requestDate;
+		this.requestTime = requestTime;
+		this.payStatus = payStatus;
+		this.cancelReason = cancelReason;
 	}
 
 	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName) {
@@ -51,7 +74,8 @@ public class RequestDTO {
 		this.clientName = clientName;
 	}
 
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName, String masterAddress, String clientAddress,
+			byte[] masterProfilePhoto, byte[] clientProfilePhoto) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -75,6 +99,10 @@ public class RequestDTO {
 		this.phoneNum = phoneNum;
 		this.masterName = masterName;
 		this.clientName = clientName;
+		this.masterAddress = masterAddress;
+		this.clientAddress = clientAddress;
+		this.masterProfilePhoto = masterProfilePhoto;
+		this.clientProfilePhoto = clientProfilePhoto;
 	}
 
 	public String getReqNo() {
@@ -253,18 +281,82 @@ public class RequestDTO {
 		this.clientName = clientName;
 	}
 
-	public byte[] getProfilePhoto() {
-		return profilePhoto;
+	public String getMasterAddress() {
+		return masterAddress;
 	}
 
-	public String getProfilePhotoImg() {
-		if (profilePhoto == null || profilePhoto.equals("")) {
+	public void setMasterAddress(String masterAddress) {
+		this.masterAddress = masterAddress;
+	}
+
+	public String getClientAddress() {
+		return clientAddress;
+	}
+
+	public void setClientAddress(String clientAddress) {
+		this.clientAddress = clientAddress;
+	}
+
+	public byte[] getMasterProfilePhoto() {
+		return masterProfilePhoto;
+	}
+
+	public void setMasterProfilePhoto(byte[] masterProfilePhoto) {
+		this.masterProfilePhoto = masterProfilePhoto;
+	}
+
+	public byte[] getClientProfilePhoto() {
+		return clientProfilePhoto;
+	}
+
+	public void setClientProfilePhoto(byte[] clientProfilePhoto) {
+		this.clientProfilePhoto = clientProfilePhoto;
+	}
+
+	public String getmasterProfilePhotoImg() {
+		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
 			return "";
 		}
-		return Base64.getEncoder().encodeToString(profilePhoto);
+		return Base64.getEncoder().encodeToString(masterProfilePhoto);
 	}
 
-	public void setProfilePhoto(byte[] profilePhoto) {
-		this.profilePhoto = profilePhoto;
+	public String getClientProfilePhotoImg() {
+		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(masterProfilePhoto);
 	}
+
+	public String getCaNo() {
+		return caNo;
+	}
+
+	public void setCaNo(String caNo) {
+		this.caNo = caNo;
+	}
+
+	public String getCaName() {
+		return caName;
+	}
+
+	public void setCaName(String caName) {
+		this.caName = caName;
+	}
+
+	public String getCaRootNo() {
+		return caRootNo;
+	}
+
+	public void setCaRootNo(String caRootNo) {
+		this.caRootNo = caRootNo;
+	}
+
+	public String getCaRootName() {
+		return caRootName;
+	}
+
+	public void setCaRootName(String caRootName) {
+		this.caRootName = caRootName;
+	}
+
 }

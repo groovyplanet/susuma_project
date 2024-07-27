@@ -92,7 +92,7 @@
 							</div>
 							<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
 							<div class="input-area">
-								<label for="">근무 가능 요일 및 시간</label>
+								<label class="required">근무 가능 요일 및 시간</label>
 								<button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">
 									시간 입력
 									<i class="bi bi-chevron-right"></i>

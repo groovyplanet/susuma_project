@@ -5,10 +5,79 @@
 
 <mapper namespace="com.susuma.request.model.RequestMapper">
 
-	<select id="getList" resultType="com.susuma.request.model.RequestDTO">
-		SELECT * FROM REQUEST ORDER BY REQ_NO
+	<!-- [1] 수리 요청 목록 -->
+	<select id="selectRequests" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
+		SELECT *
+		FROM (
+		SELECT A.*, ROWNUM AS RN
+		FROM (
+		SELECT R.REQ_NO, R.REQUEST_DATE, R.REQUEST_TIME, R.STATUS, R.PAY_STATUS, R.PAY_AMOUNT, R.CONTENT, R.INSERT_TIME,
+		R.MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO AS MASTER_PROFILE_PHOTO, MM.ADDRESS AS MASTER_ADDRESS,
+		R.CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO AS CLIENT_PROFILE_PHOTO, MC.ADDRESS AS CLIENT_ADDRESS, MC.ADDRESS_DETAIL
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = MM.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND MC.ME_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MM.ME_NO = #{masterNo}
+		</if>
+		ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		) A
+		)
+		WHERE RN BETWEEN
+		#{startRow} and #{endRow}
 	</select>
 
+	<!-- [1-2] 수리 요청 목록 수(페이징 처리) -->
+	<select id="countRequests" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND MC.ME_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MM.ME_NO = #{masterNo}
+		</if>
+	</select>
+
+	<!-- [2] 수리 요청 1건 -->
+	<select id="selectRequest" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
+		SELECT R.REQ_NO, R.REQUEST_DATE, R.REQUEST_TIME, R.STATUS, R.PAY_STATUS, R.PAY_AMOUNT, R.CONTENT, R.INSERT_TIME,
+		R.LATITUDE, R.LONGITUDE,
+		R.MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO AS MASTER_PROFILE_PHOTO, MM.ADDRESS AS MASTER_ADDRESS,
+		R.CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO AS CLIENT_PROFILE_PHOTO, MC.ADDRESS AS CLIENT_ADDRESS, MC.ADDRESS_DETAIL
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = MM.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE 1 = 1
+		<if test="reqNo != null">
+			AND R.REQ_NO = #{reqNo}
+		</if>
+	</select>
+
+	<!-- [3] 수리 요청 등록 -->
 	<insert id="insertRequest" parameterType="com.susuma.request.model.RequestDTO">
 		INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, REQUEST_DATE,
 		REQUEST_TIME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM)
@@ -16,37 +85,25 @@
 		#{requestDate}, #{requestTime}, #{address}, #{addressDetail},
 		#{latitude}, #{longitude}, #{phoneNum})
 	</insert>
-	<select id="getListByMember" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
-		SELECT R.REQ_NO, R.PAY_STATUS, R.CONTENT, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, MC.ADDRESS
-		FROM REQUEST R
-		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
-		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
-		WHERE MC.ME_NO = #{meNo}
-		ORDER BY R.REQ_NO
-	</select>
-	<select id="getListByMaster" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
-		SELECT R.REQ_NO, R.PAY_STATUS, R.CONTENT, MM.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO, MC.NAME AS MASTER_NAME, MC.ADDRESS
-		FROM REQUEST R
-		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
-		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
-		WHERE MM.ME_NO = #{meNo}
-		ORDER BY R.REQ_NO
-	</select>
-	<select id="selectRequest" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
-		SELECT R.REQ_NO, R.LATITUDE, R.LONGITUDE, R.CONTENT, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, MM.ADDRESS
-		FROM REQUEST R
-		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
-		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
-		WHERE R.REQ_NO = #{reqNo}
-	</select>
-	<select id="getRequestByReqNo" parameterType="String" resultType="com.susuma.request.model.RequestDTO">
-		SELECT * FROM REQUEST WHERE REQ_NO = #{reqNo}
-	</select>
-	<update id="updatePaymentStatus" parameterType="com.susuma.request.model.RequestDTO">
+
+	<!-- [4] 수리 요청 수정(결제상태) -->
+	<update id="updateRequest" parameterType="com.susuma.request.model.RequestDTO">
 		UPDATE REQUEST
-		SET PAY_STATUS = '${payStatus}'
-		WHERE REQ_NO = #{reqNo}
+		SET
+		<if test="payStatus != null">
+			PAY_STATUS = #{payStatus},
+			STATUS = 'paid',
+			PAID_TIME = SYSDATE
+		</if>
+		WHERE
+		REQ_NO = #{reqNo}
 	</update>
 
+	<!-- [5] 수리 요청 삭제 -->
+	<delete id="deleteRequest" parameterType="string">
+		DELETE FROM REQUEST
+		WHERE
+		REQ_NO = #{reqNo}
+	</delete>
 
 </mapper>

@@ -31,7 +31,7 @@ public class MemberDTO {
 	private Timestamp insertTime; // "INSERT_TIME"
 	private Timestamp updateTime; // "UPDATE_TIME"
 
-	// MASTER_CATEGORY, CATEGORY 테이블
+	// CATEGORY 테이블
 	private String caNo; // "CA_NO"
 	private String caName; // "CA_NAME"
 	private String caRootNo; // "CA_ROOT_NO"
@@ -39,7 +39,7 @@ public class MemberDTO {
 
 	private String rn; // 페이징 처리
 
-	// 메인 리뷰화면
+	// 수리기사 추가 정보(JOIN)
 	private String averageScore; // 별점 평균
 	private String reviewCount; // 별점 갯수
 	private String masterName; // 마스터 이름
@@ -47,6 +47,7 @@ public class MemberDTO {
 	private String reNo; // 리뷰 번호
 	private String content; // 리뷰내역
 	private String starScore; // 별점
+	private String requestDateTime; // 예약되어있는 날짜 및 시간
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -405,4 +406,29 @@ public class MemberDTO {
 	public void setClientNo(String clientNo) {
 		this.clientNo = clientNo;
 	}
+
+	public String getPoint() {
+		return point;
+	}
+
+	public void setPoint(String point) {
+		this.point = point;
+	}
+
+	public String getRn() {
+		return rn;
+	}
+
+	public void setRn(String rn) {
+		this.rn = rn;
+	}
+
+	public String getRequestDateTime() {
+		return requestDateTime;
+	}
+
+	public void setRequestDateTime(String requestDateTime) {
+		this.requestDateTime = requestDateTime;
+	}
+
 }
