@@ -13,7 +13,8 @@
 
 	</select>
 	
-		<select id="getLists" resultType="com.susuma.review.model.ReviewDTO">
+	<select id="getLists" resultType="com.susuma.review.model.ReviewDTO">
+		
 		SELECT RE.*, MASTER_NO, MM.NAME AS MASTER_NAME, MM.ADDRESS
 		FROM REVIEW RE
 		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
@@ -23,7 +24,18 @@
 
 	</select>
 	
+	<select id="getListMaster" resultType="com.susuma.review.model.ReviewDTO">
+		
+		SELECT RE.*, CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.ADDRESS
+		FROM REVIEW RE
+		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
+		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
+		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO;
+		WHERE MC.ME_NO = #{meNo};
 
+	</select>
+	
+	
 	<select id="getMasterNoByReqNo" parameterType="int" resultType="string">
 		SELECT master_no
 		FROM request
