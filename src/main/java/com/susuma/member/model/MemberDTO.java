@@ -112,61 +112,6 @@ public class MemberDTO {
 		this.rn = rn;
 	}
 
-	public String getReNo() {
-		return reNo;
-	}
-
-	public void setReNo(String reNo) {
-		this.reNo = reNo;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getStarScore() {
-		return starScore;
-	}
-
-	public void setStarScore(String starScore) {
-		this.starScore = starScore;
-	}
-
-	public String getMasterName() {
-		return masterName;
-	}
-
-	public void setMasterName(String masterName) {
-		this.masterName = masterName;
-	}
-
-	public String getClientName() {
-		return clientName;
-	}
-
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
-	}
-
-	public String getAverageScore() {
-		return averageScore;
-	}
-
-	public void setAverageScore(String averageScore) {
-		this.averageScore = averageScore;
-	}
-
-	public String getReviewCount() {
-		return reviewCount;
-	}
-
-	public void setReviewCount(String reviewCount) {
-		this.reviewCount = reviewCount;
-	}
 
 	public String getMeNo() {
 		return meNo;
@@ -174,6 +119,14 @@ public class MemberDTO {
 
 	public void setMeNo(String meNo) {
 		this.meNo = meNo;
+	}
+
+	public String getClientNo() {
+		return clientNo;
+	}
+
+	public void setClientNo(String clientNo) {
+		this.clientNo = clientNo;
 	}
 
 	public String getType() {
@@ -260,13 +213,6 @@ public class MemberDTO {
 		return profilePhoto;
 	}
 
-	public String getProfilePhotoImg() {
-		if (profilePhoto == null || profilePhoto.equals("")) {
-			return "";
-		}
-		return Base64.getEncoder().encodeToString(profilePhoto);
-	}
-
 	public void setProfilePhoto(byte[] profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
@@ -327,11 +273,11 @@ public class MemberDTO {
 		this.workHours = workHours;
 	}
 
-	public String getpoint() {
+	public String getPoint() {
 		return point;
 	}
 
-	public void setpoint(String point) {
+	public void setPoint(String point) {
 		this.point = point;
 	}
 
@@ -375,44 +321,20 @@ public class MemberDTO {
 		this.caName = caName;
 	}
 
-	public String getCaRootName() {
-		return caRootName;
+	public String getCaRootNo() {
+		return caRootNo;
 	}
 
 	public void setCaRootNo(String caRootNo) {
 		this.caRootNo = caRootNo;
 	}
 
-	public String getCaRootNo() {
-		return caRootNo;
+	public String getCaRootName() {
+		return caRootName;
 	}
 
 	public void setCaRootName(String caRootName) {
 		this.caRootName = caRootName;
-	}
-
-	public String getrn() {
-		return rn;
-	}
-
-	public void setrn(String rn) {
-		this.rn = rn;
-	}
-
-	public String getClientNo() {
-		return clientNo;
-	}
-
-	public void setClientNo(String clientNo) {
-		this.clientNo = clientNo;
-	}
-
-	public String getPoint() {
-		return point;
-	}
-
-	public void setPoint(String point) {
-		this.point = point;
 	}
 
 	public String getRn() {
@@ -423,6 +345,62 @@ public class MemberDTO {
 		this.rn = rn;
 	}
 
+	public String getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(String averageScore) {
+		this.averageScore = averageScore;
+	}
+
+	public String getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public String getReNo() {
+		return reNo;
+	}
+
+	public void setReNo(String reNo) {
+		this.reNo = reNo;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getStarScore() {
+		return starScore;
+	}
+
+	public void setStarScore(String starScore) {
+		this.starScore = starScore;
+	}
+
 	public String getRequestDateTime() {
 		return requestDateTime;
 	}
@@ -430,5 +408,13 @@ public class MemberDTO {
 	public void setRequestDateTime(String requestDateTime) {
 		this.requestDateTime = requestDateTime;
 	}
+
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
+	}
+
 
 }
