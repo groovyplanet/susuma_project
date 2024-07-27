@@ -39,6 +39,22 @@ public class ReviewServiceImpl implements ReviewService {
 
 	}
 
+	
+	public void getListMaster(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		String meNo = (String)session.getAttribute("meNo");
+		
+		SqlSession sql = sqlSessionFactory.openSession();
+		ReviewMapper Review = sql.getMapper(ReviewMapper.class);
+		ArrayList<ReviewDTO> list = Review.getListMaster(meNo);
+		sql.close();
+
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("review_list.jsp").forward(request, response);
+
+	}
+	
 	@Override
 	public void submitReview(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

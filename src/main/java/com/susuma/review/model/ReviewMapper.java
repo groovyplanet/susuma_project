@@ -10,6 +10,7 @@ public interface ReviewMapper {
 	
 	public ArrayList<ReviewDTO> getList();
 	public ArrayList<ReviewDTO> getLists(String meNo);
+	public ArrayList<ReviewDTO> getListMaster(String meNo);
 	void insertReview(ReviewDTO review);
 
 
