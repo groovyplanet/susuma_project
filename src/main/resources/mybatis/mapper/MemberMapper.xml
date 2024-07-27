@@ -250,6 +250,7 @@
 		ON C.CA_NO = M.CA_NO
 		JOIN CATEGORY CR
 		ON CR.CA_NO = C.ROOT_NO
+
 		) WHERE ROWNUM &lt;= 3
 	</select>
 
@@ -261,6 +262,27 @@
 		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
 		WHERE ROWNUM &lt;=3
 		ORDER BY RE.RE_NO DESC
+	</select>
+
+	<!-- 회원의 포인트 잔액을 조회 -->
+	<select id="MemberPoints" parameterType="String" resultType="Integer">
+    SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
+</select>
+
+	<!-- 포인트 적립 내역 조회 -->
+	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT pc_no AS meNo, master_no AS clientNo, point, clear_time AS insertTime
+		FROM POINT_CLEAR
+		WHERE master_no = #{meNo}
+		ORDER BY clear_time DESC
+	</select>
+
+	<!-- 포인트 사용 내역 조회 -->
+	<select id="getPointSpendings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT req_no AS meNo, pay_amount AS point, paid_time AS insertTime
+		FROM REQUEST
+		WHERE client_no = #{meNo} AND pay_status = 'Y'
+		ORDER BY paid_time DESC
 	</select>
 
 </mapper>

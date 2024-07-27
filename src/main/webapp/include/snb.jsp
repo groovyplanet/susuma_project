@@ -20,7 +20,7 @@
 		</li>
 		<c:if test="${sessionScope.type eq 'master' }">
 		<li>
-			<a href="${pageContext.request.contextPath }/member/point.jsp" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>
+			<a href="${pageContext.request.contextPath }/member/point.member" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>
 		</li>
 		</c:if>
 	</ul>

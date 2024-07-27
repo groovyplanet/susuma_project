@@ -138,6 +138,10 @@ public class MemberController extends HttpServlet {
 			// 메인페이지 - 기사님정보가져오기 + 리뷰
 			service.getMainMaster(request, response);
 			break;
+			
+		case "/member/point.member":
+			 service.getMemberPoints(request, response); // 포인트 정보 조회
+			break;
 
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
