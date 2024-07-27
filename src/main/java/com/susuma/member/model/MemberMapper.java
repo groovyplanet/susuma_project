@@ -1,6 +1,7 @@
 package com.susuma.member.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public interface MemberMapper {
@@ -9,7 +10,7 @@ public interface MemberMapper {
 
 	public int countMembers(Map<String, Object> params); // [1-2] 회원 목록 수(페이징 처리)
 
-	public MemberDTO selectMember(Map<String, Object> params); // [2] 회원(me_no / email, pw)
+	public MemberDTO selectMember(Map<String, Object> params); // [2] 회원
 
 	public int insertMember(MemberDTO dto); // [3] 회원 등록
 
@@ -24,8 +25,11 @@ public interface MemberMapper {
 	public String getPassword(String meNo);
 
 	public ArrayList<MemberDTO> selectMain(); // 메인 마스터리스트
+
+	public ArrayList<MemberDTO> selectMainRe(); // 메인 리뷰리스트
 	
-	public ArrayList<MemberDTO> selectMainRe(); //메인 리뷰리스트
-	
-	
+	Integer MemberPoints(String meNo);
+    List<MemberDTO> getPointEarnings(String meNo);
+    List<MemberDTO> getPointSpendings(String meNo);
+
 }

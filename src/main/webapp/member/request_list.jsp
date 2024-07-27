@@ -34,7 +34,14 @@
 				<br>
 				<c:forEach var="dto" items="${list }">
 					<div class="reserve-schecdule">
-						<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+						<c:choose>
+							<c:when test="${dto.profilePhotoImg == '' }">
+								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
+							</c:when>
+							<c:otherwise>
+								<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+							</c:otherwise>
+						</c:choose>
 						<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }" class="info">
 							<div class="repair_date">${dto.requestDate }</div>
 							<div class="master_name">
@@ -46,7 +53,7 @@
 						</a>
 						<c:choose>
 							<c:when test="${dto.payStatus == 'N'}">
-								<button class="btn approve pay-request" data-reqno="${dto.reqNo}">결제 요청</button>
+								<button type="button" class="btn approve pay-request" data-reqno="${dto.reqNo}">결제 요청</button>
 							</c:when>
 							<c:otherwise>
 								<button class="btn complete" disabled>결제 완료</button>
@@ -64,22 +71,29 @@
 	<script>
 	document.querySelectorAll('.pay-request').forEach(function(button) {
 	    button.addEventListener('click', function() {
+	    	
 	        // 결제 요청 버튼을 클릭하면 결제 모달을 표시
 	        document.getElementById('payModal').classList.add('show');
 
 	        // 모달에서 확인 버튼 클릭 이벤트
 	        document.querySelector('#payModal .btn-confirm').addEventListener('click', function() {
+	        	event.preventDefault()
 	            var reqNo = button.getAttribute('data-reqno');
 
 	            // FormData 객체를 사용하여 폼 데이터를 생성
 	            var formData = new FormData();
 	            formData.append('reqNo', reqNo);
 	            formData.append('payStatus', 'Y');
+	            
 
+	            
 	            // fetch API를 사용하여 서버에 결제 상태를 업데이트
-	            fetch('/member/payAjax.request', { // 절대 경로 사용
+	            fetch('payAjax.request', { // 절대 경로 사용
 	                method: 'POST',
-	                body: formData
+	                headers: {
+	                	"Content-type" : "application/x-www-form-urlencoded"
+	                },
+	                body: 'reqNo=' + reqNo + "&payStatus=Y"
 	            })
 	            .then(response => {
 	                if (response.ok) {
@@ -89,6 +103,7 @@
 	                }
 	            })
 	            .then(data => {
+	            	console.log(data)
 	                // 서버 응답이 'Success'이면 버튼을 업데이트
 	                if (data.trim() === 'Success') {
 	                    button.textContent = '결제 완료';
@@ -96,7 +111,7 @@
 	                    button.classList.add('complete');
 	                    button.classList.remove('pay-request');
 	                    button.disabled = true;
-	                    
+
 	                    // 결제 모달을 숨김
 	                    document.getElementById('payModal').classList.remove('show');
 	                    alert('결제가 완료되었습니다.');
@@ -104,11 +119,8 @@
 	                    throw new Error('결제 처리 실패');
 	                }
 	            })
-	            .catch(error => {
-	                console.error('Error:', error);
-	                alert('결제 처리 중 오류가 발생했습니다.');
-	            });
-	        });
+	           
+	        }, { once: true }); // 추가된 { once: true } 옵션은 이벤트 리스너가 한 번만 실행되도록 합니다.
 	    });
 	});
 	</script>

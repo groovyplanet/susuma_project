@@ -12,10 +12,10 @@
 		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
 
 	</select>
-	
-	<select id="getLists" resultType="com.susuma.review.model.ReviewDTO">
-		
-		SELECT RE.*, MASTER_NO, MM.NAME AS MASTER_NAME, MM.ADDRESS
+
+		<select id="getLists" resultType="com.susuma.review.model.ReviewDTO">
+		SELECT RE.*, MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MM.ADDRESS
+
 		FROM REVIEW RE
 		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
 		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO

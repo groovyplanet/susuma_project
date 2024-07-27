@@ -1,6 +1,7 @@
 package com.susuma.request.model;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 
 public class RequestDTO {
 
@@ -27,12 +28,13 @@ public class RequestDTO {
 	private String phoneNum; // "PHONE_NUM"
 	private String masterName;
 	private String clientName;
+	private byte[] profilePhoto; // "PROFILE_PHOTO"
+
 	public RequestDTO() {
 
 	}
 
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime,
-			String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName , String clientName) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -49,11 +51,7 @@ public class RequestDTO {
 		this.clientName = clientName;
 	}
 
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate,
-			String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime,
-			Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime,
-			String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName,
-			String clientName) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -254,8 +252,19 @@ public class RequestDTO {
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
-	
-}
-	
 
-	
+	public byte[] getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
+	}
+
+	public void setProfilePhoto(byte[] profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
+}

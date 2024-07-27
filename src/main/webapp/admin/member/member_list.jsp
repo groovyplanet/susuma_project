@@ -115,28 +115,29 @@
 								</button>
 							</th>
 							<c:if test="${type == 'master' }">
+								<th>별점</th>
 								<th class="wp17">수리 분야</th>
 							</c:if>
-							<th class="wp17">
+							<th class="${type == 'master' ? 'wp15' : 'wp17' }">
 								<button class="btn_sort" onclick="sort('address', '${sortField != 'address' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									주소
 									<i class="bi bi-caret-${sortField != 'address' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp10">
+							<th class="${type == 'master' ? 'wp8' : 'wp12' }">
 								<button class="btn_sort" onclick="sort('phone_num', '${sortField != 'phone_num' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									연락처
 									<i class="bi bi-caret-${sortField != 'phone_num' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp15">
+							<th class="${type == 'master' ? 'wp12' : 'wp16' }">
 								<button class="btn_sort" onclick="sort('insert_time', '${sortField != 'insert_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									${type=='user'?'가입 일시':'가입 신청 일시' }
 									<i class="bi bi-caret-${sortField != 'insert_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
 							<c:if test="${type == 'master' }">
-								<th class="wp15">
+								<th class="wp12">
 									<button class="btn_sort" onclick="sort('join_approval_time', '${sortField != 'join_approval_time' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 										가입 승인 일시
 										<i class="bi bi-caret-${sortField != 'join_approval_time' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
@@ -162,7 +163,25 @@
 								<td>${dto.name}</td>
 								<td>${dto.email}</td>
 								<c:if test="${type == 'master' }">
-									<td>${dto.caRootName}<span> > </span>${dto.caName}</td>
+									<td>
+										<c:choose>
+											<c:when test="${dto.reviewCount > 0}">
+												<span class="master-stars">
+													<i class="bi bi-star-fill gold"></i>
+													<strong>${dto.averageScore }</strong>
+													<span class="review-count">(${dto.reviewCount })</span>
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span>-</span>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
+										<span class="master-category">
+											${dto.caRootName}
+											<i class="bi bi-chevron-right"></i>${dto.caName}</span>
+									</td>
 								</c:if>
 								<td>${empty dto.address ? '-' : dto.address}<span> </span>${empty dto.addressDetail ? '' : dto.addressDetail}</td>
 								<td>${dto.phoneNum}</td>

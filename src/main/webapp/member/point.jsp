@@ -24,9 +24,8 @@
 						<div class="points-header">
 							<span class="points-label">보유 포인트</span>
 						</div>
-						<div class="points-value">120,000 P</div>
+						<div class="points-value">${points} P</div>
 						<button class="btn-withdraw" id="withdrawButton">전체출금</button>
-
 					</div>
 					<div class="transaction-history">
 						<div class="tab-menu">
@@ -34,14 +33,22 @@
 							<button id="tab-pop" class="tab">사용 내역</button>
 						</div>
 						<div class="transaction-list">
-							<div class="transaction-item item">
-								<span class="date">24.07.09</span>
-								<span class="amount">150,000P</span>
-							</div>
-							<div class="transaction-pop item" style="display: none;">
-								<span class="date">24.07.09</span>
-								<span class="amount">-30,000P</span>
-							</div>
+							<c:forEach var="earning" items="${earnings}">
+								<div class="transaction-item item">
+									<span class="date">
+										<fmt:formatDate value="${earning.insertTime}" pattern="yy.MM.dd" />
+									</span>
+									<span class="amount">${earning.point}P</span>
+								</div>
+							</c:forEach>
+							<c:forEach var="spending" items="${spendings}">
+								<div class="transaction-pop item" style="display: none;">
+									<span class="date">
+										<fmt:formatDate value="${spending.insertTime}" pattern="yy.MM.dd" />
+									</span>
+									<span class="amount">-${spending.point}P</span>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

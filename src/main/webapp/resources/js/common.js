@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 		// 로그인 모달 배경 클릭 시 모달 닫기
-		loginModal.addEventListener('click', function(event) {
-			if (!event.target.closest('.container')) {
+		loginModal.addEventListener('mousedown', function(event) {
+			if (event.target == loginModal) {
 				loginModal.classList.remove('show');
 			}
 		});

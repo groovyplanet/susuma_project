@@ -154,195 +154,42 @@
 						<div class="container">
 							<div class="modal-title">근무 가능 요일 및 시간</div>
 							<div class="work-hours-form">
+								<%
+								String[] days = {"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
+								for (int i = 0; i < days.length; i++) {
+									String num = String.valueOf(i + 1); // 1부터 시작하는 값
+									String day = days[i];
+								%>
 								<div class="week-area">
 									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_1" value="1">
-										<label for="work_hours_1">월요일</label>
+										<input type="checkbox" name="work-hours-week" id="work_hours_<%=num%>" value="<%=num%>">
+										<label for="work_hours_<%=num%>"><%=day%></label>
 									</div>
 									<div class="time-area">
 										<div class="time-select-area">
-											<select name="work_hours_1_s" disabled>
+											<select name="work_hours_<%=num%>_s" disabled>
 												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												for (int hour = 9; hour <= 21; hour++) {
+													String hourStr = String.format("%02d:00", hour);
+													out.println("<option value=\"" + hourStr + "\">" + hourStr + "</option>");
 												}
 												%>
 											</select>
 											<span>~</span>
-											<select name="work_hours_1_e" disabled>
+											<select name="work_hours_<%=num%>_e" disabled>
 												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
+												for (int hour = 9; hour <= 21; hour++) {
+													String hourStr = String.format("%02d:00", hour);
+													out.println("<option value=\"" + hourStr + "\">" + hourStr + "</option>");
 												}
 												%>
 											</select>
 										</div>
 									</div>
 								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_2" value="2">
-										<label for="work_hours_2">화요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_2_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_2_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_3" value="3">
-										<label for="work_hours_3">수요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_3_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_3_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_4" value="4">
-										<label for="work_hours_4">목요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_4_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_4_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_5" value="5">
-										<label for="work_hours_5">금요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_5_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_5_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_6" value="6">
-										<label for="work_hours_6">토요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_6_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_6_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="week-area">
-									<div class="check-area">
-										<input type="checkbox" name="work-hours-week" id="work_hours_7" value="7">
-										<label for="work_hours_7">일요일</label>
-									</div>
-									<div class="time-area">
-										<div class="time-select-area">
-											<select name="work_hours_7_s" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-											<span>~</span>
-											<select name="work_hours_7_e" disabled>
-												<%
-												for (int i = 9; i <= 21; i++) {
-													String hour = String.format("%02d:00", i);
-													out.println("<option value=\"" + hour + "\">" + hour + "</option>");
-												}
-												%>
-											</select>
-										</div>
-									</div>
-								</div>
+								<%
+								}
+								%>
 								<button type="button" class="btn-enter" id="btn-work-hours-enter">입력</button>
 							</div>
 							<button type="button" class="btn-close-modal">

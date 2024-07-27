@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.susuma.member.model.MemberDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -24,19 +27,25 @@
 						<div class="new-master-name">
 							<c:out value="${dto.name}" />
 						</div>
-						<div class="new-review-star">
-							★4.73
-							<span>(400)</span>
+						<div class="master-info">
+							<c:if test="${dto.reviewCount > 0}">
+								<p class="master-stars">
+									<i class="bi bi-star-fill gold"></i>
+									<strong>${dto.averageScore }</strong>
+									<span class="review-count">(${dto.reviewCount })</span>
+								</p>
+							</c:if>
+							<p>
+								<c:set var="addressParts" value="${fn:split(dto.address, ' ')}" />
+								<i class="bi bi-geo-alt"></i>${addressParts[0]}
+								${addressParts[1]} (${dto.maxDistance}km 이내 가능)
+							</p>
+							<p class="master-category">
+								<span>${dto.caRootName }
+									<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+							</p>
+							<p>${dto.shortDescription }</p>
 						</div>
-
-						<div class="new-map">
-							위치 :
-							<c:out value="${dto.address}" />
-						</div>
-						<div class="one-line-pr">
-							<c:out value="${dto.shortDescription}" />
-						</div>
-
 						<div class="reserve-button-block">
 							<a href="${pageContext.request.contextPath }/member/request.member?meNo=${dto.meNo}" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
 							<a class="new-btn new-reserve-contact" id="reserve-contact" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">문의 신청</a>

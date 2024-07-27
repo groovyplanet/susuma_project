@@ -1,9 +1,7 @@
 package com.susuma.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Base64;
 
 import com.susuma.member.service.MemberService;
 import com.susuma.member.service.MemberServiceImpl;
@@ -15,7 +13,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 
 @WebServlet("*.member")
 @MultipartConfig()
@@ -43,6 +40,7 @@ public class MemberController extends HttpServlet {
 		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
 		String path = request.getContextPath(); // path : '/Susuma'
 		String command = uri.substring(path.length()); // command : '/member/join.member'
+		System.out.println("command : " + command);
 
 		MemberService service = new MemberServiceImpl();
 
@@ -96,6 +94,10 @@ public class MemberController extends HttpServlet {
 			service.update(request, response); // 프로필 수정
 			break;
 
+		case "/member/changePwAjax.member":
+			service.changePwAjax(request, response); // 비밀번호 변경
+			break;
+
 		case "/member/findPw.member":
 			request.getRequestDispatcher("find_info.jsp").forward(request, response); // 비밀번호 찾기
 			break;
@@ -133,9 +135,12 @@ public class MemberController extends HttpServlet {
 			break;
 
 		case "/main.member":
-			// 메인페이지 - 기사님정보가져오기+리뷰
-			//request.getRequestDispatcher("main.jsp").forward(request, response);
+			// 메인페이지 - 기사님정보가져오기 + 리뷰
 			service.getMainMaster(request, response);
+			break;
+			
+		case "/member/point.member":
+			 service.getMemberPoints(request, response); // 포인트 정보 조회
 			break;
 
 		default:

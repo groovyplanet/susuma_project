@@ -33,6 +33,8 @@ public interface MemberService {
 
 	void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void changePwAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 
 	void getMemberById(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
@@ -42,4 +44,8 @@ public interface MemberService {
 	void reviewWrite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 
 	void getMainMaster(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+	
+	void getMemberPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+
 }

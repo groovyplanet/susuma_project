@@ -84,10 +84,17 @@
 				<c:forEach var="dto" items="${list }">
 					<div class="member-section">
 						<div class="profile-logoimg">
-							<img class="profile-logo-sm" src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="profile-logo-sm">
+							<c:choose>
+								<c:when test="${dto.profilePhotoImg == '' }">
+									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
+								</c:when>
+								<c:otherwise>
+									<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="infodetail">
-							<a href="review_view.jsp" style="text-decoration: none;">
+							<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }">
 								<div class="member-name">
 									<strong>마스터 성함 :</strong>
 									${dto.masterName }
@@ -100,7 +107,7 @@
 								<div class="review-type">
 									<strong>별점 :</strong>
 									<span id="starview" style="color: gold;">
-							
+
 										<c:forEach var="i" begin="1" end="5">
 											<c:choose>
 												<c:when test="${i <= dto.starScore}">

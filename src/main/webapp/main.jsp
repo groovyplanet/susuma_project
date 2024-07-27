@@ -23,10 +23,15 @@
 }
 
 .technician img {
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	border-radius: 50%;
-	margin-bottom: 10px;
+	object-fit: cover;
+	border: 1px solid #ccc;
+}
+
+.master-info {
+	line-height: 23px;
 }
 </style>
 </head>
@@ -77,17 +82,37 @@
 
 				<!-- [2] main-master -->
 				<div class="main-master-intro">
-					<h3>마법의 실력을가진 마스터님들</h3>
+					<h3>마법의 실력을 가진 마스터님들</h3>
 				</div>
 				<div class="main-master-kim">
 					<c:forEach var="dto" items="${list}">
 						<c:set var="addressParts" value="${fn:split(dto.address, ' ')}" />
-						<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/user/master_view.jsp">
-							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="홍길동">
+						<a class="technician" style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/member/masterView.member?meNo=${dto.meNo }">
+							<c:choose>
+								<c:when test="${dto.profilePhotoImg == '' }">
+									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+								</c:when>
+								<c:otherwise>
+									<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+								</c:otherwise>
+							</c:choose>
 							<h3>${dto.name }</h3>
-							<p>별점:★${dto.averageScore } (${dto.reviewCount })</p>
-							<p>지역: ${addressParts[0]} ${addressParts[1]} (${dto.maxDistance}km 이내 가능)</p>
-							<p>${dto.shortDescription }</p>
+							<div class="master-info">
+								<p class="master-stars">
+									<i class="bi bi-star-fill gold"></i>
+									<strong>${dto.averageScore }</strong>
+									<span class="review-count">(${dto.reviewCount })</span>
+								</p>
+								<p>
+									<i class="bi bi-geo-alt"></i>${addressParts[0]}
+									${addressParts[1]} (${dto.maxDistance}km 이내 가능)
+								</p>
+								<p class="master-category">
+									<span>${dto.caRootName }
+										<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+								</p>
+								<p>${dto.shortDescription }</p>
+							</div>
 						</a>
 					</c:forEach>
 
@@ -107,7 +132,14 @@
 						</c:forEach>
 						<a href="#" class="main-review-box">
 							<div class="main-review-head">
-								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="">
+								<c:choose>
+									<c:when test="${dto.profilePhotoImg == '' }">
+										<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile">
+									</c:when>
+									<c:otherwise>
+										<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile">
+									</c:otherwise>
+								</c:choose>
 								<div class="main-review-head-text">
 									<p>${dto.masterName }</p>
 									<!-- 	<span>코딩마스터</span> -->
@@ -116,28 +148,30 @@
 							<div class="main-review-foot">
 								<div class="main-review-score">
 									<ul>
-										<li><strong></strong>
-									<span id="starview" style="color: gold;">
+										<li>
+											<strong></strong>
+											<span id="starview" style="color: gold;">
 
-										<c:forEach var="i" begin="1" end="5">
-											<c:choose>
-												<c:when test="${i <= dto.starScore}">
-                ★
-            </c:when>
-												<c:otherwise>
-                ☆
-            </c:otherwise>
-											</c:choose>
-										</c:forEach>
+												<c:forEach var="i" begin="1" end="5">
+													<c:choose>
+														<c:when test="${i <= dto.starScore}">
+	                										★
+	            										</c:when>
+														<c:otherwise>
+											                ☆
+											            </c:otherwise>
+													</c:choose>
+												</c:forEach>
 
-									</span></li>
-										
+											</span>
+										</li>
+
 										${dto.starScore }
 									</ul>
 								</div>
 								<div class="main-review-foot-text">
 									<p>${dto.content }</p>
-									<div class="main-review-user-name">${maskedName}고객님의 후기</div>
+									<div class="main-review-user-name">${maskedName}고객님의후기</div>
 								</div>
 							</div>
 						</a>
@@ -147,7 +181,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 
 	<%@ include file="include/footer.jsp"%>
 

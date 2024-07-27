@@ -19,12 +19,25 @@
 		C.CA_NAME
 		, CR.CA_NO AS CA_ROOT_NO
 		, CR.CA_NAME AS CA_ROOT_NAME
+		,RESULT.AVERAGE_SCORE
+		,RESULT.REVIEW_COUNT
 		FROM
 		MEMBER M
 		LEFT JOIN CATEGORY C
 		ON C.CA_NO = M.CA_NO
 		LEFT JOIN CATEGORY CR
 		ON CR.CA_NO = C.ROOT_NO
+		LEFT JOIN (
+		SELECT MASTER_NO, ROUND( AVG(STAR_SCORE), 2) AS AVERAGE_SCORE, COUNT(STAR_SCORE) AS REVIEW_COUNT
+		FROM (
+		SELECT *
+		FROM REVIEW R
+		INNER JOIN REQUEST R2
+		ON R.REQ_NO = R2.REQ_NO
+		)
+		GROUP BY MASTER_NO
+		) RESULT
+		ON M.ME_NO = RESULT.MASTER_NO
 		WHERE M.TYPE = #{type}
 		<if test="joinApproval != 'all'">
 			AND M.JOIN_APPROVAL = #{joinApproval}
@@ -35,6 +48,9 @@
 		<if test="rootNo != 'all' and caNo != 'all'">
 			AND C.CA_NO = #{caNo}
 		</if>
+		<if test="subCate != null and subCate != ''">
+                AND C.CA_NO = #{subCate}
+        </if>
 		ORDER BY M.${sortField} ${sortOrder} NULLS LAST
 		) A
 		)
@@ -62,7 +78,7 @@
 		</if>
 	</select>
 
-	<!-- [2] 회원(me_no / email,pw) -->
+	<!-- [2] 회원 -->
 	<select id="selectMember" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL,
 		LATITUDE, LONGITUDE, PHONE_NUM, EMAIL_NOTIFICATION, PROFILE_PHOTO,
@@ -74,11 +90,24 @@
 		, CR.CA_NO AS CA_ROOT_NO
 		, CR.CA_NAME
 		AS CA_ROOT_NAME
+		,RESULT.AVERAGE_SCORE
+		,RESULT.REVIEW_COUNT
 		FROM MEMBER M
 		LEFT JOIN CATEGORY C
 		ON C.CA_NO = M.CA_NO
 		LEFT JOIN CATEGORY CR
 		ON CR.CA_NO = C.ROOT_NO
+		LEFT JOIN (
+		SELECT MASTER_NO, ROUND( AVG(STAR_SCORE), 2) AS AVERAGE_SCORE, COUNT(STAR_SCORE) AS REVIEW_COUNT
+		FROM (
+		SELECT *
+		FROM REVIEW R
+		INNER JOIN REQUEST R2
+		ON R.REQ_NO = R2.REQ_NO
+		)
+		GROUP BY MASTER_NO
+		) RESULT
+		ON M.ME_NO = RESULT.MASTER_NO
 		WHERE 1 = 1
 		<if test="meNo != null">
 			AND M.ME_NO = #{meNo}
@@ -198,23 +227,65 @@
 	<select id="selectMain" resultType="com.susuma.member.model.MemberDTO">
 		SELECT *
 		FROM (
-		SELECT M.ME_NO, M.NAME,M.ADDRESS,M.SHORT_DESCRIPTION,M.MAX_DISTANCE,
-		ROUND(AVG(RE.STAR_SCORE), 1) AS AVERAGE_SCORE,ROUND(COUNT(RE.STAR_SCORE)) AS REVIEW_COUNT
+		SELECT M.ME_NO,
+		M.NAME,
+		M.ADDRESS,
+		M.PROFILE_PHOTO,
+		M.SHORT_DESCRIPTION,
+		M.MAX_DISTANCE,
+		RESULT.AVERAGE_SCORE,
+		RESULT.REVIEW_COUNT,
+		CR.CA_NAME AS CA_ROOT_NAME,
+		C.CA_NAME
 		FROM MEMBER M
-		JOIN REQUEST REQ ON REQ.MASTER_NO = M.ME_NO
-		JOIN REVIEW RE ON RE.REQ_NO = REQ.REQ_NO
-		GROUP BY M.ME_NO, M.NAME,M.ADDRESS,M.SHORT_DESCRIPTION,M.MAX_DISTANCE
+		JOIN (
+		SELECT MASTER_NO, ROUND( AVG(STAR_SCORE), 2) AS AVERAGE_SCORE, COUNT(STAR_SCORE) AS REVIEW_COUNT
+		FROM (
+		SELECT *
+		FROM REVIEW R
+		INNER JOIN REQUEST R2
+		ON R.REQ_NO = R2.REQ_NO
+		)
+		GROUP BY MASTER_NO
+		) RESULT
+		ON M.ME_NO = RESULT.MASTER_NO
+		JOIN CATEGORY C
+		ON C.CA_NO = M.CA_NO
+		JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+
 		) WHERE ROWNUM &lt;= 3
 	</select>
-	
+
 	<select id="selectMainRe" resultType="com.susuma.member.model.MemberDTO">
-		SELECT RE.REQ_NO, MASTER_NO, MM.NAME AS MASTER_NAME ,MC.NAME AS CLIENT_NAME,RE.CONTENT,RE.STAR_SCORE
+		SELECT RE.REQ_NO, MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, RE.CONTENT, RE.STAR_SCORE
 		FROM REVIEW RE
 		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
 		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
-        JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
-        WHERE ROWNUM &lt;=3
-        ORDER BY RE.RE_NO DESC
+		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
+		WHERE ROWNUM &lt;=3
+		ORDER BY RE.RE_NO DESC
+	</select>
+
+	<!-- 회원의 포인트 잔액을 조회 -->
+	<select id="MemberPoints" parameterType="String" resultType="Integer">
+    SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
+</select>
+
+	<!-- 포인트 적립 내역 조회 -->
+	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT pc_no AS meNo, master_no AS clientNo, point, clear_time AS insertTime
+		FROM POINT_CLEAR
+		WHERE master_no = #{meNo}
+		ORDER BY clear_time DESC
+	</select>
+
+	<!-- 포인트 사용 내역 조회 -->
+	<select id="getPointSpendings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT req_no AS meNo, pay_amount AS point, paid_time AS insertTime
+		FROM REQUEST
+		WHERE client_no = #{meNo} AND pay_status = 'Y'
+		ORDER BY paid_time DESC
 	</select>
 
 </mapper>
