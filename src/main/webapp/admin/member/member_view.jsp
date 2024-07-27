@@ -123,11 +123,11 @@
 						<tr>
 							<th>근무가능 요일별 시간</th>
 							<td>
-								<div style="white-space: pre;">${dto.workHours}</div>
+								<div class="preserve-line-breaks">${dto.workHours}</div>
 							</td>
 							<th>수리 상세 내용</th>
 							<td>
-								<div style="white-space: pre;">${dto.description}</div>
+								<div class="preserve-line-breaks">${dto.description}</div>
 							</td>
 						</tr>
 					</c:if>

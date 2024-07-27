@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -35,31 +37,52 @@
 				<c:forEach var="dto" items="${list }">
 					<div class="reserve-schecdule">
 						<c:choose>
-							<c:when test="${dto.profilePhotoImg == '' }">
-								<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
+							<c:when test="${sessionScope.type eq 'user'}">
+								<!-- 의뢰인 -->
+								<c:choose>
+									<c:when test="${dto.masterProfilePhotoImg == '' }">
+										<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-photo">
+									</c:when>
+									<c:otherwise>
+										<img src="data:image/png;base64,${dto.masterProfilePhotoImg }" alt="Profile Picture" class="profile-photo">
+									</c:otherwise>
+								</c:choose>
+								<a href="${pageContext.request.contextPath }/member/view.request?reqNo=${dto.reqNo }" class="info">
+									<div class="repair_date">
+										<span>${dto.requestDate }</span>
+										<span>${dto.requestTime }</span>
+									</div>
+									<div class="master_name">
+										${dto.masterName } 수리기사님
+										<c:set var="addressParts" value="${fn:split(dto.masterAddress, ' ')}" />
+										<span class="address">
+											<i class="bi bi-geo-alt"></i>
+											<span>${addressParts[0]}</span>
+											<span>${addressParts[1]}</span>
+										</span>
+									</div>
+									<div class="repair_type">
+										<p class="master-category">
+											<span>${dto.caRootName }
+												<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+										</p>
+									</div>
+									<div class="explain">${dto.content }</div>
+								</a>
+								<c:choose>
+									<c:when test="${dto.payStatus == 'N'}">
+										<button type="button" class="btn approve pay-request" data-reqno="${dto.reqNo}">결제 요청</button>
+									</c:when>
+									<c:otherwise>
+										<button class="btn complete" disabled>결제 완료</button>
+									</c:otherwise>
+								</c:choose>
+								<!-- <button class="btn complete" id="complete">결제 완료</button> -->
 							</c:when>
 							<c:otherwise>
-								<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+								<!-- 수리기사 -->
 							</c:otherwise>
 						</c:choose>
-						<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }" class="info">
-							<div class="repair_date">${dto.requestDate }</div>
-							<div class="master_name">
-								${dto.masterName }
-								<span class="address"> ${dto.address } </span>
-							</div>
-							<div class="repair_type">[CSS 수리]</div>
-							<div class="explain">${dto.content }</div>
-						</a>
-						<c:choose>
-							<c:when test="${dto.payStatus == 'N'}">
-								<button type="button" class="btn approve pay-request" data-reqno="${dto.reqNo}">결제 요청</button>
-							</c:when>
-							<c:otherwise>
-								<button class="btn complete" disabled>결제 완료</button>
-							</c:otherwise>
-						</c:choose>
-						<!-- <button class="btn complete" id="complete">결제 완료</button> -->
 					</div>
 				</c:forEach>
 				<button class="repair-more">더보기</button>

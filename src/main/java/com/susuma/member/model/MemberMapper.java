@@ -27,9 +27,11 @@ public interface MemberMapper {
 	public ArrayList<MemberDTO> selectMain(); // 메인 마스터리스트
 
 	public ArrayList<MemberDTO> selectMainRe(); // 메인 리뷰리스트
-	
+
 	Integer MemberPoints(String meNo);
-    List<MemberDTO> getPointEarnings(String meNo);
-    List<MemberDTO> getPointSpendings(String meNo);
+
+	List<MemberDTO> getPointEarnings(String meNo);
+
+	List<MemberDTO> getPointSpendings(String meNo);
 
 }

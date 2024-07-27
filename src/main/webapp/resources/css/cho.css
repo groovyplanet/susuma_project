@@ -6,6 +6,8 @@
 .mt20 { margin-top: 20px; } 
 .mt25 { margin-top: 25px; } 
 .mt30 { margin-top: 30px; } 
+.preserve-line-breaks { white-space: pre-wrap; /* 줄바꿈 및 공백 문자 유지 */
+ word-wrap: break-word; /* 단어가 길 때 줄 바꿈 처리 */ } 
 
 /* snb 메뉴 없는 경우 */
 .main-section .container.main-only { justify-content: center; } 

@@ -31,7 +31,7 @@ public class MemberDTO {
 	private Timestamp insertTime; // "INSERT_TIME"
 	private Timestamp updateTime; // "UPDATE_TIME"
 
-	// MASTER_CATEGORY, CATEGORY 테이블
+	// CATEGORY 테이블
 	private String caNo; // "CA_NO"
 	private String caName; // "CA_NAME"
 	private String caRootNo; // "CA_ROOT_NO"

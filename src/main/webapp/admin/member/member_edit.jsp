@@ -189,7 +189,7 @@ function handleCategoryChange() {
 							<tr>
 								<th>사업자등록번호</th>
 								<td>
-									<input type="text" name="businessNumber" value="${dto.businessNumber}" placeholder="123-45-67890">
+									<input type="text" name="businessNumber" value="${dto.businessNumber}" placeholder="123-45-67890" required>
 								</td>
 								<th>수리기사 이동가능거리</th>
 								<td>
@@ -207,13 +207,26 @@ function handleCategoryChange() {
 								</td>
 							</tr>
 							<tr>
-								<th>근무가능 요일별 시간</th>
+								<th>근무가능 요일별 시간<br>(09시~21시)</th>
 								<td>
-									<textarea name="workHours" class="mh60">${dto.workHours}</textarea>
+									<c:choose>
+										<c:when test="${dto == null }"><!-- 신규 등록 시 기본값 설정 -->
+											<textarea name="workHours" class="mh160" required>월 09:00 ~ 21:00
+화 09:00 ~ 21:00
+수 09:00 ~ 21:00
+목 09:00 ~ 21:00
+금 09:00 ~ 21:00
+토 09:00 ~ 21:00
+일 09:00 ~ 21:00</textarea>
+										</c:when>
+										<c:otherwise>
+											<textarea name="workHours" class="mh160" required>${dto.workHours}</textarea>
+										</c:otherwise>
+									</c:choose>
 								</td>
 								<th>수리 상세 내용</th>
 								<td>
-									<textarea name="description" class="mh60">${dto.description}</textarea>
+									<textarea name="description" class="mh160">${dto.description}</textarea>
 								</td>
 							</tr>
 						</c:if>

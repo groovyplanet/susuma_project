@@ -151,7 +151,7 @@
 									<p class="info-title">예약자 주소</p>
 									<p id="modal-address"></p>
 									<p class="info-title">수리 신청 내용</p>
-									<p id="modal-description"></p>
+									<p id="modal-description" class="preserve-line-breaks"></p>
 								</div>
 								<div class="request-desc-area">
 									<p class="red">수리기사 승인 시 예약이 확정됩니다.</p>

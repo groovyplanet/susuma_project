@@ -365,13 +365,13 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request-list .btn.complete { border: 1px solid #DDD; background-color: #fff; color: #555; } 
 /* 프로필 이미지 스타일 */
 .request-list .profile-logo-sm { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; } 
-.request-list .reservation-setting .reserve-schecdule .info { padding: 10px; background-color: #f9f9f9; } 
 /* 예약 스케줄 스타일 */
-.request-list .reserve-schecdule { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); width: 80%; margin-top: 10px; } 
+.request-list .reserve-schecdule { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); width: 80%; margin-top: 10px; gap: 15px; } 
 .request-list .reserve-schecdule:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
 /* 예약 스케줄 정보 스타일 */
-.request-list .info { text-align: left; margin-right: 10px; flex-grow: 1; margin-left: 20px; width: 50%; } 
-.request-list .repair_date, .master_name, .repair_type, .explain { margin-bottom: 10px; } 
+.request-list .profile-photo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
+.request-list .info { text-align: left; flex-grow: 1; width: 50%; padding: 10px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 7px; } 
+.request-list .repair_date, .master_name, .repair_type, .explain { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
 .request-list .master_name { font-weight: bold; } 
 .request-list .address { margin-left: 5px; color: #666; } 
 .request-list #payModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; align-items: center; justify-content: center; } 

@@ -54,6 +54,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
+	 * alert창 띄우고 화면 이동
+	 */
+	private void alertRedirect(HttpServletResponse response, String message, String url) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('" + message + "');");
+		if (url.equals("back")) {
+			out.println("history.back();");
+		} else {
+			out.println("location.href='" + url + "';");
+		}
+		out.println("</script>");
+	}
+
+	/**
 	 * DTO 생성
 	 */
 	private MemberDTO createMemberDTO(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -99,22 +115,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		sql.close();
 		return result;
-	}
-
-	/**
-	 * alert창 띄우고 화면 이동
-	 */
-	private void alertRedirect(HttpServletResponse response, String message, String url) throws IOException {
-		response.setContentType("text/html; charset=UTF-8;");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('" + message + "');");
-		if (url.equals("back")) {
-			out.println("history.back();");
-		} else {
-			out.println("location.href='" + url + "';");
-		}
-		out.println("</script>");
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class MemberServiceImpl implements MemberService {
 		String caNo = request.getParameter("caNo");
 		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
 		String subCate = request.getParameter("subCate");
-		
+
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", "master");
 		params.put("joinApproval", "Y");
@@ -246,7 +246,7 @@ public class MemberServiceImpl implements MemberService {
 		params.put("caNo", caNo);
 		params.put("startRow", 1); // rownum 시작값
 		params.put("endRow", 999); // rownum 끝값
-		if(subCate!=null && !subCate.isEmpty()) {			
+		if (subCate != null && !subCate.isEmpty()) {
 			params.put("subCate", subCate);
 		}
 		// 카테고리 매개변수로 받아서 검색하는 기능 구현 필요
@@ -438,11 +438,16 @@ public class MemberServiceImpl implements MemberService {
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			// out.println("alert('정상적으로 로그인되었습니다.');"); // 임시 주석
-			out.println("var url = new URL(document.referrer);");
-			out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
-			out.println("location.href = url.toString();"); // 이전 페이지 보여주기
-			out.println("</script>");
+			if (dto.getType().equals("admin")) {
+				out.println("location.href = '" + request.getContextPath() + "/admin';");
+				out.println("</script>");
+			} else {
+				// out.println("alert('정상적으로 로그인되었습니다.');"); // 임시 주석
+				out.println("var url = new URL(document.referrer);");
+				out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
+				out.println("location.href = url.toString();"); // 이전 페이지 보여주기
+				out.println("</script>");
+			}
 
 		}
 
@@ -628,35 +633,34 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void getMemberPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		String meNo = (String) session.getAttribute("meNo");
-		
-		
-	    try (SqlSession sql = sqlSessionFactory.openSession()) {
-	        MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
 
-	        // 포인트 조회
-	        Integer points = memberMapper.MemberPoints(meNo);
-	     
-	        if (points == null) {
-	            points = 0; // 포인트가 없으면 기본값 설정
-	        }
+		try (SqlSession sql = sqlSessionFactory.openSession()) {
+			MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
 
-	        // 포인트 적립 내역 및 사용 내역 조회
-	        List<MemberDTO> earnings = memberMapper.getPointEarnings(meNo);
-	        List<MemberDTO> spendings = memberMapper.getPointSpendings(meNo);
+			// 포인트 조회
+			Integer points = memberMapper.MemberPoints(meNo);
 
-	        // 결과를 요청 속성에 설정
-	        request.setAttribute("points", points);
-	        request.setAttribute("earnings", earnings);
-	        request.setAttribute("spendings", spendings);
+			if (points == null) {
+				points = 0; // 포인트가 없으면 기본값 설정
+			}
 
-	        // 포워딩
-	        request.getRequestDispatcher("point.jsp").forward(request, response);
-	    } catch (Exception e) {
-	        e.printStackTrace(); // 예외 로그
-	        throw new ServletException("데이터베이스 오류", e);
-	    }
+			// 포인트 적립 내역 및 사용 내역 조회
+			List<MemberDTO> earnings = memberMapper.getPointEarnings(meNo);
+			List<MemberDTO> spendings = memberMapper.getPointSpendings(meNo);
+
+			// 결과를 요청 속성에 설정
+			request.setAttribute("points", points);
+			request.setAttribute("earnings", earnings);
+			request.setAttribute("spendings", spendings);
+
+			// 포워딩
+			request.getRequestDispatcher("point.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace(); // 예외 로그
+			throw new ServletException("데이터베이스 오류", e);
+		}
 	}
 }

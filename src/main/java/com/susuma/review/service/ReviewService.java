@@ -7,7 +7,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface ReviewService {
-	void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	void getListMaster(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	void submitReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	/* 관리자 */
+	void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void adminUpsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException; // view, edit은 request에서 처리
+
+	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	/* 사용자 */
+	void getReviewList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void upsertReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 }

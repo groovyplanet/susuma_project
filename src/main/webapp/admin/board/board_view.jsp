@@ -54,7 +54,7 @@
 					<tr>
 						<th>내용</th>
 						<td colspan="3">
-							<div style="white-space: pre;">${dto.content}</div>
+							<div class="preserve-line-breaks">${dto.content}</div>
 						</td>
 					</tr>
 					<tr>
@@ -71,7 +71,7 @@
 						<tr>
 							<th>답변</th>
 							<td colspan="3">
-								<div style="white-space: pre;">${dto.answer}</div>
+								<div class="preserve-line-breaks">${dto.answer}</div>
 							</td>
 						</tr>
 						<tr>

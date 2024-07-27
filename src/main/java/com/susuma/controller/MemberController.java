@@ -163,7 +163,7 @@ public class MemberController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String contextPath = request.getContextPath();
 		out.println("<script>");
-		out.println("alert('로그아웃 되었습니다.');");
+		//out.println("alert('로그아웃 되었습니다.');");
 		out.println("location.href = '" + contextPath + "/';");
 		out.println("</script>");
 	}

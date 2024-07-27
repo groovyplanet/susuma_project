@@ -39,7 +39,7 @@ function handleCategoryChange() {
 $(document).ready(function () {
 
 	/*
-	member/join.html
+	member/join.member
 	*/
 
 	// 탭 메뉴(의뢰인으로 가입 or 수리기사로 가입)
@@ -167,6 +167,7 @@ $(document).ready(function () {
 		if ($('input:checkbox[name=work-hours-week]:checked').length > 0) $("#work-hours-list").show();
 		else $("#work-hours-list").hide();
 
+		$("#btn-work_hours").removeClass("error");
 		$(".modal").removeClass("show"); // 창 닫기
 	})
 
@@ -215,6 +216,12 @@ $(document).ready(function () {
 		// 사업자등록번호
 		if ($("input[name=type]").val() == "master" && $("input[name=businessNumber]").parent().hasClass("error")) {
 			$("input[name=businessNumber]").focus();
+			return false;
+		}
+		// 근무 가능 요일 및 시간
+		if ($("input[name=type]").val() == "master" && $("input[name=workHours]").val() == '') {
+			$("#btn-work_hours").addClass("error");
+			$('html, body').scrollTop($("#btn-work_hours").parent().offset().top);
 			return false;
 		}
 
@@ -549,7 +556,6 @@ $(document).ready(function () {
 				return false;
 			}
 
-
 			// ajax로 db 저장 후 다시 돌아와서 모달창 보이기
 			console.log(formRequest.querySelector("textarea[name=content]").value);
 			const formData = new FormData(formRequest);
@@ -581,6 +587,7 @@ $(document).ready(function () {
 						$('#modal-description').html(description); // HTML 태그가 있는 경우 .html() 사용
 
 						document.getElementById('request-complete-modal').classList.add('show');
+						
 					}
 				})
 

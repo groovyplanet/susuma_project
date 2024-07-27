@@ -48,14 +48,14 @@
 					<div class="content-detail-box">
 						<div class="content-detail">
 							<div class="content-detail-my">
-								<p style="white-space: pre;">${dto.content }</p>
+								<p class="preserve-line-breaks">${dto.content }</p>
 							</div>
 						</div>
 						<div class="content-detail">
 							<c:if test="${dto.answer != null}">
 								<div class="content-detail-answer">
 									<div class="title">답변 내용</div>
-									<p style="white-space: pre;">${dto.answer }</p>
+									<p class="preserve-line-breaks">${dto.answer }</p>
 								</div>
 							</c:if>
 						</div>

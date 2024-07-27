@@ -103,7 +103,7 @@
 
 								<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
 								<div class="input-area">
-									<label>근무 가능 요일 및 시간</label>
+									<label class="required">근무 가능 요일 및 시간</label>
 									<button type="button" id="btn-work_hours" class="btn-form btn-work_hours" onclick="$('#work-hours-modal').addClass('show');">
 										시간 입력
 										<i class="bi bi-chevron-right"></i>
@@ -111,7 +111,7 @@
 									<input type="hidden" name="workHours" value="${dto.workHours}">
 									<div id="work-hours-list" class="work-hours-list">
 										<!-- 사용자가 모달에서 입력한 요일/시작시간/종료시간 표시 -->
-										<div style="white-space: pre-line;">${dto.workHours}</div>
+										<div class="preserve-line-breaks">${dto.workHours}</div>
 									</div>
 								</div>
 								<div class="input-area">

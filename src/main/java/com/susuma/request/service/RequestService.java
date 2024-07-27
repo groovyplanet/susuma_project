@@ -8,9 +8,23 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public interface RequestService {
 
-	void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	/* 관리자 */
+	void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
-	void getMemberRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
-	void updatePaymentStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void adminView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void adminEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void adminUpsert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	/* 사용자 */
+	void getRequestList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void getRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void upsertRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void updatePaymentStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

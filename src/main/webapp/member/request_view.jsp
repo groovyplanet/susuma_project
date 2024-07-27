@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 
 <%@ include file="../include/head.jsp"%>
 </head>
@@ -35,7 +37,6 @@
 			</div>
 		</div>
 	</div>
-
 	<section class="main-section">
 		<div class="container">
 			<%@ include file="../include/snb.jsp"%>
@@ -44,22 +45,24 @@
 					<div class="member-section">
 						<div class="profile-logoimg">
 							<c:choose>
-								<c:when test="${dto.profilePhotoImg == '' }">
+								<c:when test="${requestDTO.masterProfilePhotoImg == '' }">
 									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
 								</c:when>
 								<c:otherwise>
-									<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+									<img src="data:image/png;base64,${requestDTO.masterProfilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="infodetail">
 							<div class="member-name">
 								<strong>마스터님 성함 : </strong>
-								<span>${dto.masterName }</span>
+								<span>
+									<a href="masterView.member?meNo=${requestDTO.masterNo }">${requestDTO.masterName }</a>
+								</span>
 							</div>
 							<div class="member-map">
 								<strong>위치 : </strong>
-								${dto.address }
+								${requestDTO.masterAddress }
 							</div>
 							<div class="repair-type">
 								<strong>수리 희망 분야 :</strong>
@@ -75,13 +78,13 @@
 						<div id="map" style="width: 500px; height: 400px;"></div>
 					</div>
 
-					<form action="reviewForm.review" method="post" id="form-review">
-						<input type="hidden" name="reqNo" value="${dto.reqNo}">
+					<form action="editForm.review" method="post" id="form-review">
+						<input type="hidden" name="reqNo" value="${requestDTO.reqNo}">
 						<div class="review-box-content">
 
 							<div class="detail-content">수리 리뷰 상세</div>
 
-							<span style="margin-left: 50px;">${dto.content }</span>
+							<span style="margin-left: 50px;">${requestDTO.content }</span>
 
 							<div class="review-input">
 								<div class="review-rating">
@@ -188,8 +191,8 @@
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6e324617d728d10d01ca7e36c2a14bf1&libraries=services,clusterer&autoload=false"></script>
 	<script>
 		// 위도, 경도 변수 세팅 
-		var latitude = ${dto.latitude}; // 위도(가로선) -> 높을수록 y좌표 값이 커짐
-		var longitude = ${dto.longitude}; // 경도(세로선) -> 높을수록 x좌표 값이 커짐
+		var latitude = ${requestDTO.latitude}; // 위도(가로선) -> 높을수록 y좌표 값이 커짐
+		var longitude = ${requestDTO.longitude}; // 경도(세로선) -> 높을수록 x좌표 값이 커짐
 
 		kakao.maps
 				.load(function() {
