@@ -140,7 +140,8 @@
 .main-section .container .content .account-info .points-section { margin: 30px 20px 10px; } 
 .main-section .container .content .account-info .points-header { display: flex; align-items: center; } 
 .main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
-.main-section .container .content .account-info .btn-withdraw { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+.main-section .container .content .account-info .btn-withdraw,
+.main-section .container .content .account-info .btn-charge { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
 .main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
 .main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
 .main-section .container .content .account-info .tab-menu { display: flex; margin-bottom: 10px; } 
@@ -164,6 +165,19 @@
 #withdrawModal .btn-confirm:hover, 
 #withdrawModal .btn-cancel:hover { opacity: 0.8; } 
 /* 포인트 출금 모달 끝 */
+/*포인트 충전 모달 */
+#chargeModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; } 
+#chargeModal.show { display: flex !important; } 
+#chargeModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+#chargeModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+#chargeModal .modal-buttons { margin-top: 20px; } 
+#chargeModal .btn-confirm, 
+#chargeModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+#chargeModal .btn-cancel { background-color: #999; } 
+#chargeModal .btn-confirm:hover, 
+#chargeModal .btn-cancel:hover { opacity: 0.8; } 
+/* 포인트 충전모달 끝 */
+
 /* ====point page css end ==== */
 /*master-review_list css start */
 .main-section .container .review-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 

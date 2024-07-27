@@ -30,6 +30,8 @@
 		<mapper resource="mybatis/mapper/RequestMapper.xml" />
 		<mapper resource="mybatis/mapper/CategoryMapper.xml" />
 		<mapper resource="mybatis/mapper/ReviewMapper.xml" />
+		<mapper resource="mybatis/mapper/PointMapper.xml" />
+
 	</mappers>
 
 

@@ -48,8 +48,8 @@
 			AND C.CA_NO = #{caNo}
 		</if>
 		<if test="subCate != null and subCate != ''">
-                AND C.CA_NO = #{subCate}
-        </if>
+			AND C.CA_NO = #{subCate}
+		</if>
 		ORDER BY M.${sortField} ${sortOrder} NULLS LAST
 		) A
 		)
@@ -268,16 +268,16 @@
 
 	<!-- 회원의 포인트 잔액을 조회 -->
 	<select id="MemberPoints" parameterType="String" resultType="Integer">
-    SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
-</select>
+		SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
+	</select>
 
 	<!-- 포인트 적립 내역 조회 -->
-	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
-		SELECT pc_no AS meNo, master_no AS clientNo, point, clear_time AS insertTime
-		FROM POINT_CLEAR
-		WHERE master_no = #{meNo}
-		ORDER BY clear_time DESC
-	</select>
+	 <select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
+        SELECT pc_no, me_no, point, pc_time AS insertTime
+        FROM POINT_HISTORY
+        WHERE me_no = #{meNo} AND point > 0
+        ORDER BY pc_time DESC
+    </select>
 
 	<!-- 포인트 사용 내역 조회 -->
 	<select id="getPointSpendings" resultType="com.susuma.member.model.MemberDTO">
@@ -286,5 +286,17 @@
 		WHERE client_no = #{meNo} AND pay_status = 'Y'
 		ORDER BY paid_time DESC
 	</select>
+
+	<update id="updateMemberPoints">
+		UPDATE MEMBER SET point = #{point} WHERE me_no = #{meNo}
+	</update>
+
+	<insert id="addSpendingHistory">
+		INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, -#{point}, SYSDATE)
+	</insert>
+
+	<insert id="addEarningHistory">
+		INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, #{point}, SYSDATE)
+	</insert>
 
 </mapper>
