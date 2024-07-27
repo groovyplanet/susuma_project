@@ -40,6 +40,7 @@ public class MemberController extends HttpServlet {
 		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
 		String path = request.getContextPath(); // path : '/Susuma'
 		String command = uri.substring(path.length()); // command : '/member/join.member'
+		System.out.println("command : " + command);
 
 		MemberService service = new MemberServiceImpl();
 
@@ -93,6 +94,10 @@ public class MemberController extends HttpServlet {
 			service.update(request, response); // 프로필 수정
 			break;
 
+		case "/member/changePwAjax.member":
+			service.changePwAjax(request, response); // 비밀번호 변경
+			break;
+
 		case "/member/findPw.member":
 			request.getRequestDispatcher("find_info.jsp").forward(request, response); // 비밀번호 찾기
 			break;
@@ -134,9 +139,9 @@ public class MemberController extends HttpServlet {
 			// request.getRequestDispatcher("main.jsp").forward(request, response);
 			service.getMainMaster(request, response);
 			break;
-			
+
 		case "/member/point.member":
-			 service.getMemberPoints(request, response); // 포인트 정보 조회
+			service.getMemberPoints(request, response); // 포인트 정보 조회
 			break;
 
 		default:
@@ -159,7 +164,7 @@ public class MemberController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String contextPath = request.getContextPath();
 		out.println("<script>");
-		//out.println("alert('로그아웃 되었습니다.');");
+		// out.println("alert('로그아웃 되었습니다.');");
 		out.println("location.href = '" + contextPath + "/';");
 		out.println("</script>");
 	}

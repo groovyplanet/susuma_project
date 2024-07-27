@@ -21,6 +21,7 @@ public interface RequestService {
 
 	/* 사용자 */
 	void getRequestList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void getRequestListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void getRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 

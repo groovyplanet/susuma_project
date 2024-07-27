@@ -319,7 +319,7 @@ $(document).ready(function () {
 			}
 		});
 
-		// 수리기사 근무일시 파싱 후 출력
+		// 수리기사 근무일시 파싱 후 출력 & 달력 disabled 제어
 		var masterScheduleStr = $("input[name=workHours]").val().replace(/[\r\n]+/g, ''); // 개행문자 제거 -> "월 09:00 ~ 22:00화 10:00 ~ 20:00"
 		var masterScheduleData = parseSchedule(masterScheduleStr); // [{ day: '월', startHour: 9, endHour: 22 }, { day: '화', startHour: 10, endHour: 20 }]
 		var scheduleList = document.getElementById('master-work-hours-list');
@@ -388,7 +388,7 @@ $(document).ready(function () {
 		/* loadDate() : 선택한 날짜 값 넣어주기 */
 		function loadDate(date, dayIn) {
 			let dateStr = document.querySelector('.cal-year').textContent + ". " + document.querySelector('.cal-month').textContent + ". " + date + "(" + init.dayList[dayIn] + ")";
-			//2024. 07. 31(월)
+			//2024. 7. 31(월)
 			document.querySelector("input[name='requestDate']").value = dateStr;
 		}
 
@@ -422,13 +422,18 @@ $(document).ready(function () {
 					} else {
 						let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
 						trtd += '<td class="day';
-						let addClassName = "";
+						let todayFlag = false;
+						let disabledFlag = false;
 						// 오늘 날짜인 경우 today 클래스 추가
-						if (markToday && markToday === countDay + 1) addClassName += " today";
+						if (markToday && markToday === countDay + 1) todayFlag = true;
 						// 지나간 날짜인 경우 disabled 클래스 추가(오늘 날짜는 포함하기 위해 1일 더해줌)
-						if (new Date(fullDate).getTime() + 24 * 60 * 60 * 1000 < init.today.getTime()) addClassName += " disabled";
+						if (new Date(fullDate).getTime() + 24 * 60 * 60 * 1000 < init.today.getTime()) disabledFlag = true;
 						// 수리기사 근무 불가 요일일 경우 disabled 클래스 추가 (요일이 수리기사 근무 가능 요일 데이터에 없을 경우)
-						if (!masterScheduleData.some(item => item.day == init.dayList[j])) addClassName += " disabled";
+						if (!masterScheduleData.some(item => item.day == init.dayList[j])) disabledFlag = true;
+
+						var addClassName = "";
+						if (todayFlag) addClassName += " today";
+						if (disabledFlag) addClassName += " disabled";
 						trtd += addClassName + '"'; // class="" 닫기
 						trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}"><span>`;
 					}
@@ -462,7 +467,7 @@ $(document).ready(function () {
 			$todoList.appendChild(createLi(id, val, date));
 		}
 
-		/* createLiElements() */
+		/* createLiElements() : 날짜 클릭 시 수리기사가 지정한 근무 시간만큼 li 생성해서 추가 */
 		function createLiElements(startHour, endHour) {
 			let ul = document.querySelector('.time-list');
 			ul.innerHTML = '';
@@ -472,6 +477,14 @@ $(document).ready(function () {
 				let button = document.createElement('button');
 				button.textContent = `${init.addZero(hour)}:00`;
 				button.classList.add('btn-select-time');
+
+				// 기 예약일시인 경우 disabled 클래스 추가
+				var requestDateTimeStr = $("input[name=requestDateTime]").val(); // 기 예약일시 -> "2024. 7. 29(월) 12:00, 2024. 7. 30(화) 17:00"
+				var requestDateStr = $("input[name=requestDate]").val() + ` ${init.addZero(hour)}:00`; // 선택한 예약일시 -> "2024. 7. 29(월) 12:00"
+				if (requestDateTimeStr.includes(requestDateStr)) { // 해당 일시가 예약일시에 포함된다면 선택 불가
+					button.classList.add('disabled');
+				}
+
 				button.type = "button";
 				li.appendChild(button);
 				ul.appendChild(li);
@@ -512,6 +525,10 @@ $(document).ready(function () {
 		/* 시간 클릭 시 */
 		document.querySelector('#time-list').addEventListener('click', (e) => {
 			if (e.target.tagName != "BUTTON") return false;
+			if (e.target.classList.hasClass == "disabled") {
+				console.log("disabled 버튼입니다.");
+				return false;
+			}
 			let btn = e.target;
 
 			if (!btn.classList.contains('selected')) {
@@ -586,8 +603,10 @@ $(document).ready(function () {
 						$('#modal-address').text(address);
 						$('#modal-description').html(description); // HTML 태그가 있는 경우 .html() 사용
 
-						document.getElementById('request-complete-modal').classList.add('show');
-						
+						document.getElementById('request-complete-modal').style.display = 'flex'; // 요소 표시
+						setTimeout(function () {
+							document.getElementById('request-complete-modal').classList.add('show'); // 애니메이션 시작
+						}, 100); // 약간의 지연 추가
 					}
 				})
 

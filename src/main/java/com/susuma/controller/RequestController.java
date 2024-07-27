@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.susuma.request.service.RequestService;
 import com.susuma.request.service.RequestServiceImpl;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -84,6 +85,10 @@ public class RequestController extends HttpServlet {
 
 		case "/member/payAjax.request":
 			service.updatePaymentStatusAjax(request, response);
+			break;
+
+		case "/member/getRequestsAjax.request":
+			service.getRequestListAjax(request, response);
 			break;
 
 		default:
