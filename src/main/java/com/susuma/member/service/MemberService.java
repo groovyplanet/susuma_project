@@ -44,8 +44,11 @@ public interface MemberService {
 	void reviewWrite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 
 	void getMainMaster(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
-	
+
 	void getMemberPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

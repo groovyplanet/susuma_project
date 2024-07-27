@@ -31,5 +31,7 @@ public interface MemberMapper {
 	Integer MemberPoints(String meNo);
     List<MemberDTO> getPointEarnings(String meNo);
     List<MemberDTO> getPointSpendings(String meNo);
+    
+    
 
 }

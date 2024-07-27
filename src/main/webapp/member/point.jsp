@@ -7,6 +7,7 @@
 	<%@ include file="../include/header.jsp"%>
 
 	<section class="main-section">
+	<!-- 출금 모달 -->
 		<div id="withdrawModal" class="modal">
 			<div class="modal-content">
 				<p>전체 출금을 진행하시겠습니까?</p>
@@ -16,6 +17,18 @@
 				</div>
 			</div>
 		</div>
+		 <!-- 충전 모달 -->
+		  <div id="chargeModal" class="modal">
+        <div class="modal-content">
+            <p>충전할 금액을 입력하세요</p>
+            <input type="number" id="chargeAmount" min="0">
+            <div class="modal-buttons">
+                <button class="btn-confirm" id="confirmCharge">충전</button>
+                <button class="btn-cancel" id="cancelCharge">취소</button>
+            </div>
+        </div>
+    </div>
+		
 		<div class="container">
 			<%@ include file="../include/snb.jsp"%>
 			<div class="content">
@@ -24,8 +37,9 @@
 						<div class="points-header">
 							<span class="points-label">보유 포인트</span>
 						</div>
-						<div class="points-value">${points} P</div>
+						<div class="points-value">${points}P</div>
 						<button class="btn-withdraw" id="withdrawButton">전체출금</button>
+						<button class="btn-charge" id="chargeButton">충전하기</button>
 					</div>
 					<div class="transaction-history">
 						<div class="tab-menu">
@@ -58,41 +72,73 @@
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
-		$(document).ready(function() {
+	 $(document).ready(function() {
+         $("#tab-add, #tab-pop").click(function() {
+             if (!$(this).hasClass("active")) {
+                 $(".item").toggle();
+                 $(".tab").toggleClass("active");
+             }
+         });
 
-			$("#tab-add, #tab-pop").click(function() {
-				if (!$(this).hasClass("active")) {
-					$(".item").toggle();
-					$(".tab").toggleClass("active");
-				}
-			})
+         // 출금 모달
+         document.getElementById('withdrawButton').addEventListener('click', function() {
+             document.getElementById('withdrawModal').classList.add('show');
+         });
 
-		});
+         document.querySelector('#withdrawModal .btn-cancel').addEventListener('click', function() {
+             document.getElementById('withdrawModal').classList.remove('show');
+         });
 
-		document.getElementById('withdrawButton').addEventListener(
-				'click',
-				function() {
-					document.getElementById('withdrawModal').classList
-							.add('show');
-				});
+         document.querySelector('#withdrawModal .btn-confirm').addEventListener('click', function() {
+             $.ajax({
+                 url: 'withdrawPoints', // 요청을 처리할 URL
+                 type: 'POST',
+                 data: { points: 1000 }, // 출금할 포인트 (여기서는 예시로 1000을 사용)
+                 success: function(response) {
+                     if (response.status === 'success') {
+                         alert(response.message);
+                         location.reload(); // 페이지를 새로고침하여 포인트를 업데이트합니다.
+                     }
+                 },
+                 error: function() {
+                     alert('출금에 실패했습니다.');
+                 }
+             });
+             document.getElementById('withdrawModal').classList.remove('show');
+         });
 
-		document.querySelector('#withdrawModal .btn-cancel').addEventListener(
-				'click',
-				function() {
-					document.getElementById('withdrawModal').classList
-							.remove('show');
-				});
+         // 충전 모달
+         document.getElementById('chargeButton').addEventListener('click', function() {
+             document.getElementById('chargeModal').classList.add('show');
+         });
 
-		document.querySelector('#withdrawModal .btn-confirm').addEventListener(
-				'click',
-				function() {
-					// Add your withdraw logic here
-					alert('전체 출금이 진행되었습니다.');
-					document.getElementById('withdrawModal').classList
-							.remove('show');
-				});
-	</script>
+         document.querySelector('#chargeModal .btn-cancel').addEventListener('click', function() {
+             document.getElementById('chargeModal').classList.remove('show');
+         });
 
+         document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
+             const amount = document.getElementById('chargeAmount').value;
+             $.ajax({
+                 url: 'chargePoints', // 요청을 처리할 URL
+                 type: 'POST',
+                 data: { points: amount },
+                 success: function(response) {
+                     if (response.status === 'success') {
+                         alert(response.message);
+                         location.reload(); // 페이지를 새로고침하여 포인트를 업데이트합니다.
+                     }
+                 },
+                 error: function() {
+                     alert('충전에 실패했습니다.');
+                 }
+             });
+             document.getElementById('chargeModal').classList.remove('show');
+         });
+     });
+ </script>
+	<style>
+	
+
+	</style>
 </body>
-
 </html>

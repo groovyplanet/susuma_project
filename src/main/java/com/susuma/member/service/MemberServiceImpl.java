@@ -15,7 +15,7 @@ import com.susuma.category.model.CategoryDTO;
 import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
 import com.susuma.member.model.MemberMapper;
-
+import com.susuma.point.model.PointMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
@@ -659,4 +659,33 @@ public class MemberServiceImpl implements MemberService {
 	        throw new ServletException("데이터베이스 오류", e);
 	    }
 	}
-}
+	
+	 @Override
+	    public void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	        String meNo = (String) request.getSession().getAttribute("meNo");
+	        int pointsToWithdraw = Integer.parseInt(request.getParameter("points"));
+
+	        try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+	            PointMapper pointMapper = sql.getMapper(PointMapper.class);
+	            pointMapper.updateMemberPoints(meNo, -pointsToWithdraw);
+	            pointMapper.addSpendingHistory(meNo, pointsToWithdraw);
+	            response.setContentType("application/json");
+	            response.getWriter().write("{\"status\":\"success\",\"message\":\"포인트가 차감되었습니다.\"}");
+	        }
+	    }
+
+	    // 포인트 충전
+	    @Override
+	    public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	        String meNo = (String) request.getSession().getAttribute("meNo");
+	        int pointsToCharge = Integer.parseInt(request.getParameter("points"));
+
+	        try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+	            PointMapper pointMapper = sql.getMapper(PointMapper.class);
+	            pointMapper.updateMemberPoints(meNo, pointsToCharge);
+	            pointMapper.addEarningHistory(meNo, pointsToCharge);
+	            response.setContentType("application/json");
+	            response.getWriter().write("{\"status\":\"success\",\"message\":\"포인트가 충전되었습니다.\"}");
+	        }
+	    }
+	}
