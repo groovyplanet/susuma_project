@@ -22,9 +22,16 @@
 	<select id="getPointSpendings" parameterType="String" resultType="com.susuma.point.model.PointDTO">
 		SELECT pc_no, me_no, point, pc_time AS insertTime
 		FROM POINT_HISTORY
-		WHERE me_no = #{meNo}
+		WHERE me_no = #{meNo} AND point &lt; 0
 		ORDER BY pc_time DESC
 	</select>
+	
+	<select id="getWithdrawalHistory" parameterType="String" resultType="com.susuma.point.model.PointDTO">
+    SELECT pc_no, me_no, point, pc_time AS insertTime
+    FROM POINT_HISTORY
+    WHERE me_no = #{meNo} AND point &lt; 0
+    ORDER BY pc_time DESC
+</select>
 
 	<!-- 회원 포인트 업데이트 -->
 	<update id="updateMemberPoints">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/head.jsp"%>
 </head>
 
@@ -7,7 +8,7 @@
 	<%@ include file="../include/header.jsp"%>
 
 	<section class="main-section">
-	<!-- 출금 모달 -->
+		<!-- 출금 모달 -->
 		<div id="withdrawModal" class="modal">
 			<div class="modal-content">
 				<p>전체 출금을 진행하시겠습니까?</p>
@@ -17,18 +18,18 @@
 				</div>
 			</div>
 		</div>
-		 <!-- 충전 모달 -->
-		  <div id="chargeModal" class="modal">
-        <div class="modal-content">
-            <p>충전할 금액을 입력하세요</p>
-            <input type="number" id="chargeAmount" min="0">
-            <div class="modal-buttons">
-                <button class="btn-confirm" id="confirmCharge">충전</button>
-                <button class="btn-cancel" id="cancelCharge">취소</button>
-            </div>
-        </div>
-    </div>
-		
+		<!-- 충전 모달 -->
+		<div id="chargeModal" class="modal">
+			<div class="modal-content">
+				<p>충전할 금액을 입력하세요</p>
+				<input type="number" id="chargeAmount" min="0">
+				<div class="modal-buttons">
+					<button class="btn-confirm" id="confirmCharge">충전</button>
+					<button class="btn-cancel" id="cancelCharge">취소</button>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<%@ include file="../include/snb.jsp"%>
 			<div class="content">
@@ -50,7 +51,7 @@
 							<c:forEach var="earning" items="${earnings}">
 								<div class="transaction-item item">
 									<span class="date">
-										<fmt:formatDate value="${earning.insertTime}" pattern="yy.MM.dd" />
+										<fmt:formatDate value="${earning.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
 									<span class="amount">${earning.point}P</span>
 								</div>
@@ -58,9 +59,17 @@
 							<c:forEach var="spending" items="${spendings}">
 								<div class="transaction-pop item" style="display: none;">
 									<span class="date">
-										<fmt:formatDate value="${spending.insertTime}" pattern="yy.MM.dd" />
+										<fmt:formatDate value="${spending.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
 									<span class="amount">-${spending.point}P</span>
+								</div>
+							</c:forEach>
+							<c:forEach var="withdrawal" items="${withdrawals}">
+								<div class="transaction-pop item" style="display: none;">
+									<span class="date">
+										<fmt:formatDate value="${withdrawal.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+									</span>
+									<span class="amount">${withdrawal.point}P</span>
 								</div>
 							</c:forEach>
 						</div>
@@ -167,8 +176,6 @@
 
 
 	<style>
-	
-
-	</style>
+</style>
 </body>
 </html>
