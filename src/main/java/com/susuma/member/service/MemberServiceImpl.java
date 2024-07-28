@@ -669,7 +669,7 @@ public class MemberServiceImpl implements MemberService {
 	public void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    HttpSession session = request.getSession();
 	    String meNo = (String) session.getAttribute("meNo");
-	    String pointsParam = request.getParameter("point");
+	    String pointsParam = request.getParameter("points");
 
 	    System.out.println("Session meNo: " + meNo);
 	    System.out.println("Request pointsParam: " + pointsParam);
@@ -678,7 +678,7 @@ public class MemberServiceImpl implements MemberService {
 	    if (meNo == null || pointsParam == null) {
 	        response.setContentType("application/json");
 	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid request.\"}");
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid request. Missing session or point parameter.\"}");
 	        return;
 	    }
 
@@ -723,6 +723,9 @@ public class MemberServiceImpl implements MemberService {
 	            return;
 	        }
 
+	        // 현재 포인트에서 출금할 포인트를 뺀 값을 계산
+	        int updatedPoints = currentPoints - pointsToWithdraw;
+
 	        // PointDTO 객체 생성
 	        PointDTO pointDTO = new PointDTO();
 	        pointDTO.setMeNo(meNo);
@@ -730,7 +733,7 @@ public class MemberServiceImpl implements MemberService {
 	        pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
 
 	        // 포인트 업데이트 및 내역 추가
-	        pointMapper.updateMemberPoints(meNo, -pointsToWithdraw); // MEMBER 테이블의 포인트 업데이트
+	        pointMapper.updateMemberPoints(meNo, updatedPoints); // MEMBER 테이블의 포인트 업데이트
 	        pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
 
 	        // 성공 응답
@@ -743,8 +746,6 @@ public class MemberServiceImpl implements MemberService {
 	        response.getWriter().write("{\"status\":\"error\",\"message\":\"출금에 실패했습니다.\"}");
 	    }
 	}
-
-
 	@Override
 	public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String meNo = (String) request.getSession().getAttribute("meNo");

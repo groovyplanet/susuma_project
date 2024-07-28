@@ -33,8 +33,8 @@
 
 	<!-- 포인트 사용 내역 추가 -->
 	<insert id="addSpendingHistory">
-		INSERT INTO POINT_HISTORY (me_no, point, pc_time)
-		VALUES (#{meNo}, #{point}, #{insertTime})
+		INSERT INTO POINT_HISTORY (pc_no, me_no, point, pc_time)
+		VALUES (point_history_seq.NEXTVAL, #{meNo}, #{point}, SYSDATE)
 	</insert>
 
 	<!-- 포인트 적립 내역 추가 -->
