@@ -47,8 +47,16 @@ $(document).ready(function () {
 		if (!$(this).hasClass("active")) {
 			$(".tab-btn").toggleClass("active");
 			$("#master-info-area").toggle();
-			// 사업자등록번호 required 속성 토글
+
+			// 수리기사는 모든 정보 필수 입력
+			$("#address-label").toggleClass('required');
+			$("#phoneNum-label").toggleClass('required');
+			$("#phoneNum").prop('required', !$("#phoneNum").prop('required'));
 			$("#businessNumber").prop('required', !$("#businessNumber").prop('required'));
+			$("#category").prop('required', !$("#category").prop('required'));
+			$("#sub-category").prop('required', !$("#sub-category").prop('required'));
+			$("#shortDescription").prop('required', !$("#shortDescription").prop('required'));
+
 			// 폼 정보 리셋
 			//$("#form-join")[0].reset(); 
 			//$(".input-area").removeClass("error").removeClass("error-re");
@@ -193,6 +201,14 @@ $(document).ready(function () {
 	// 가입하기/프로필 수정 버튼 클릭 시
 	$('#form-join, #form-profile-edit').on('submit', function (event) {
 		event.preventDefault(); // 기본 폼 제출 막기
+
+		if ($("input[name='type'][type='hidden']").length == 1) { // 회원정보 수정
+			var type = $("input[name='type'][type='hidden']").val();
+		} else {
+			var type = $("input[name='type']:checked").val(); // 회원가입
+		}
+		console.log("type : " + type);
+
 		// 이메일
 		if ($("input[name=email]").parent().hasClass("error")) {
 			$("input[name=email]").focus();
@@ -213,13 +229,21 @@ $(document).ready(function () {
 			$("input[name=phoneNum]").focus();
 			return false;
 		}
+
+		//주소
+		if (type == "master" && $("input[name='address']").val() == "") {
+			$("#btn-zipcode").addClass("error");
+			$('html, body').scrollTop($("#address-label").offset().top);
+			return false;
+		}
+
 		// 사업자등록번호
-		if ($("input[name=type]").val() == "master" && $("input[name=businessNumber]").parent().hasClass("error")) {
+		if (type == "master" && $("input[name=businessNumber]").parent().hasClass("error")) {
 			$("input[name=businessNumber]").focus();
 			return false;
 		}
 		// 근무 가능 요일 및 시간
-		if ($("input[name=type]").val() == "master" && $("input[name=workHours]").val() == '') {
+		if (type == "master" && $("input[name=workHours]").val() == '') {
 			$("#btn-work_hours").addClass("error");
 			$('html, body').scrollTop($("#btn-work_hours").parent().offset().top);
 			return false;
@@ -299,7 +323,6 @@ $(document).ready(function () {
 	/*
 	user/request.member 수리 예약
 	*/
-
 	var requestArea = document.querySelector(".main-area.request");
 	if (requestArea) {
 

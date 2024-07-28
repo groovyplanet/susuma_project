@@ -33,8 +33,11 @@
 					<%-- 현재날짜와 수리예약일 비교 (ex.2024. 9. 13(금) 19:00) --%>
 					<jsp:useBean id="now" class="java.util.Date" />
 					<fmt:formatDate value="${now}" pattern="yyyy. M. d" var="nowDate" />
+					<fmt:formatDate value="${now}" pattern="HH:00" var="nowTime" />
 					<fmt:parseDate value="${fn:substringBefore(dto.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
 					<fmt:formatDate value="${requestDateParse}" pattern="yyyy. M. d" var="requestDateFmt" />
+					<fmt:parseDate value="${dto.requestTime }" pattern="HH:00" var="requestTimeParse" />
+					<fmt:formatDate value="${requestTimeParse}" pattern="HH:00" var="requestTimeFmt" />
 					<div class="request-summary">
 						<c:choose>
 							<%-- 의뢰인 --%>
@@ -78,7 +81,7 @@
 									</c:when>
 									<c:when test="${dto.status eq 'approved'}">
 										<c:choose>
-											<c:when test="${requestDateFmt >= nowDate}">
+											<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 												<!-- 예약일이 미래 -->
 												<button type="button" class="btn">예약 완료</button>
 											</c:when>
@@ -134,7 +137,7 @@
 									</c:when>
 									<c:when test="${dto.status eq 'approved'}">
 										<c:choose>
-											<c:when test="${requestDateFmt >= nowDate}">
+											<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 												<!-- 예약일이 미래 -->
 												<button type="button" class="btn">예약 완료</button>
 											</c:when>

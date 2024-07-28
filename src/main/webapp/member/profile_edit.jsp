@@ -49,12 +49,12 @@
 							<input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required value="${dto.name}">
 						</div>
 						<div class="input-area">
-							<label for="phoneNum">연락처</label>
-							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13" value="${dto.phoneNum}">
+							<label for="phoneNum" id="phoneNum-label" class="${dto.type=='master' ? 'required' : ''}">연락처</label>
+							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13" value="${dto.phoneNum}" ${dto.type=='master' ? 'required' : ''}>
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
-							<label for="address">주소</label>
+							<label for="address" id="address-label" class="${dto.type=='master' ? 'required' : ''}">주소</label>
 							<input type="hidden" name="address" value="${dto.address}">
 							<input type="hidden" name="latitude" value="${dto.latitude}">
 							<input type="hidden" name="longitude" value="${dto.longitude}">
@@ -75,7 +75,7 @@
 							<div id="master-info-area">
 								<div class="input-area">
 									<label for="businessNumber" class="required">사업자등록번호</label>
-									<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="businessNumber" id="businessNumber" maxlength="12" value="${dto.businessNumber}">
+									<input type="text" class="input-field" placeholder="사업자등록번호를 입력해주세요." autocomplete="no" name="businessNumber" id="businessNumber" maxlength="12" value="${dto.businessNumber}" required>
 									<p class="caption-error">올바른 형식이 아닙니다.</p>
 								</div>
 								<!-- 수리 분야(동적 추가 및 삭제) -->
@@ -85,13 +85,13 @@
 									</div>
 									<div id="category-select-area-wrap">
 										<div class="category-select-area">
-											<select id="category" onchange="handleCategoryChange()" class="select-category">
+											<select id="category" onchange="handleCategoryChange()" class="select-category" required>
 												<option value="">선택</option>
 												<c:forEach var="categoryDto" items="${CategoryMainList}">
 													<option value="${categoryDto.caNo }" ${dto.caRootNo == categoryDto.caNo ? 'selected' : ''}>${categoryDto.caName }</option>
 												</c:forEach>
 											</select>
-											<select name="caNo" id="sub-category" class="select-category">
+											<select name="caNo" id="sub-category" class="select-category" required>
 												<option value="">선택</option>
 												<c:forEach var="categorySubDto" items="${CategorySubList}">
 													<option value="${categorySubDto.caNo }" ${dto.caNo == categorySubDto.caNo ? 'selected' : ''}>${categorySubDto.caName }</option>
@@ -100,7 +100,6 @@
 										</div>
 									</div>
 								</div>
-
 								<!-- 근무 가능 요일 및 시간(모달창에서 요일 선택 후 시간 입력) -->
 								<div class="input-area">
 									<label class="required">근무 가능 요일 및 시간</label>
@@ -115,7 +114,7 @@
 									</div>
 								</div>
 								<div class="input-area">
-									<label for="distanc-5">이동 가능 거리</label>
+									<label for="distanc-5" class="required">이동 가능 거리</label>
 									<div class="distance-radio-area">
 										<input type="radio" name="maxDistance" value="5" id="distance-5" ${dto.maxDistance eq '5' ? 'checked' : ''}>
 										<input type="radio" name="maxDistance" value="10" id="distance-10" ${dto.maxDistance eq '10' ? 'checked' : ''}>
@@ -130,8 +129,8 @@
 									</div>
 								</div>
 								<div class="input-area">
-									<label for="shortDescription">한 줄 소개</label>
-									<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription" value="${dto.shortDescription}">
+									<label for="shortDescription" class="required">한 줄 소개</label>
+									<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription" value="${dto.shortDescription}" required>
 								</div>
 								<div class="input-area">
 									<label for="description">수리 상세 내용</label>
@@ -291,6 +290,7 @@
 
                     $("input[name=address]").val(addr); // 주소 값 넣기
                     $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>'); // 주소 + 우편번호 보여주기
+                    $("#btn-zipcode").removeClass("error");
 
                     $("input[name=addressDetail]").focus(); // 상세주소 포커스
                 }

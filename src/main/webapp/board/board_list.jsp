@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 										</div>
 									</div>
 									<div class="post-content">
-										<span>${dto.content }</span>
+										<span class="inner">${dto.content }</span>
 									</div>
 								</c:when>
 								<c:when test="${type eq 'ask'}">

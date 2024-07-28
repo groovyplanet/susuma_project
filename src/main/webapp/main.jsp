@@ -4,36 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@ include file="include/head.jsp"%>
-<style>
-.technician {
-	border: 1px solid #ddd;
-	margin: 10px;
-	padding: 20px;
-	width: 300px;
-	text-align: center;
-	transition: transform 0.3s ease-in-out;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	background-color: #fff;
-}
-
-.technician:hover {
-	transform: translateY(-5px);
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.technician img {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	object-fit: cover;
-	border: 1px solid #ccc;
-}
-
-.master-info {
-	line-height: 23px;
-}
-</style>
 </head>
 
 <body>
@@ -107,9 +77,11 @@
 									<i class="bi bi-geo-alt"></i>${addressParts[0]}
 									${addressParts[1]} (${dto.maxDistance}km 이내 가능)
 								</p>
-								<p class="master-category">
-									<span>${dto.caRootName }
-										<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+								<p>
+									<span class="master-category">
+										<span>${dto.caRootName }
+											<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+									</span>
 								</p>
 								<p>${dto.shortDescription }</p>
 							</div>

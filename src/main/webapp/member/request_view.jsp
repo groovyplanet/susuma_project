@@ -16,8 +16,11 @@
 				<%-- 현재날짜와 수리예약일 비교 (ex.2024. 9. 13(금) 19:00) --%>
 				<jsp:useBean id="now" class="java.util.Date" />
 				<fmt:formatDate value="${now}" pattern="yyyy. M. d" var="nowDate" />
-				<fmt:parseDate value="${fn:substringBefore(requestDTO.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
+				<fmt:formatDate value="${now}" pattern="HH:00" var="nowTime" />
+				<fmt:parseDate value="${fn:substringBefore(dto.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
 				<fmt:formatDate value="${requestDateParse}" pattern="yyyy. M. d" var="requestDateFmt" />
+				<fmt:parseDate value="${dto.requestTime }" pattern="HH:00" var="requestTimeParse" />
+				<fmt:formatDate value="${requestTimeParse}" pattern="HH:00" var="requestTimeFmt" />
 				<div class="info-reserve">
 					<c:choose>
 						<%-- 의뢰인 --%>
@@ -62,7 +65,7 @@
 										</c:when>
 										<c:when test="${requestDTO.status eq 'approved'}">
 											<c:choose>
-												<c:when test="${requestDateFmt >= nowDate}">
+												<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 													<!-- 예약일이 미래 -->
 													<button type="button" class="btn">예약 완료</button>
 												</c:when>
@@ -84,13 +87,18 @@
 									</c:choose>
 								</div>
 							</div>
-							<div class="content-wrap">
-								<div class="title">수리 요청 내용</div>
-								<div class="content">${requestDTO.content }</div>
-							</div>
+							<c:if test="${requestDTO.status eq 'approved' or requestDTO.status eq 'paywait' or requestDTO.status eq 'paid'}">
+								<div class="content-wrap">
+									<div class="title">수리기사 연락처</div>
+									<div class="content-pay">
+										<i class="bi bi-telephone"></i>
+										${requestDTO.masterPhoneNum }
+									</div>
+								</div>
+							</c:if>
 							<c:if test="${requestDTO.status eq 'paid'}">
 								<div class="content-wrap">
-									<div class="title">결제 내역</div>
+									<div class="title">결제 정보</div>
 									<div class="content-pay">
 										<i class="bi bi-clock-history"></i>
 										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
@@ -101,6 +109,12 @@
 										결제
 									</div>
 								</div>
+							</c:if>
+							<div class="content-wrap">
+								<div class="title">수리 요청 내용</div>
+								<div class="content">${requestDTO.content }</div>
+							</div>
+							<c:if test="${requestDTO.status eq 'paid'}">
 								<c:choose>
 									<c:when test="${reviewDTO != null }">
 										<div class="content-wrap">
@@ -148,7 +162,7 @@
 														<input type="hidden" id="starScore" name="starScore" value="0">
 														<!-- 별점 hidden 필드 추가 -->
 														<div class="review-content">
-															<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요."></textarea>
+															<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요." required></textarea>
 														</div>
 														<!-- <div class="file-attachment">
 														파일 첨부
@@ -207,7 +221,7 @@
 										</c:when>
 										<c:when test="${requestDTO.status eq 'approved'}">
 											<c:choose>
-												<c:when test="${requestDateFmt >= nowDate}">
+												<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 													<!-- 예약일이 미래 -->
 													<button type="button" class="btn">예약 완료</button>
 												</c:when>
@@ -232,6 +246,27 @@
 							<div class="location-area" style="display: flex; justify-content: space-around; margin-top: 15px;">
 								<div id="map" style="width: 700px; height: 400px;"></div>
 							</div>
+							<div class="content-wrap">
+								<div class="title">의뢰인 연락처</div>
+								<div class="content-pay">
+									<i class="bi bi-telephone"></i>
+									${requestDTO.masterPhoneNum }
+								</div>
+							</div>
+							<c:if test="${requestDTO.status eq 'paid'}">
+								<div class="content-wrap">
+									<div class="title">결제 정보</div>
+									<div class="content-pay">
+										<i class="bi bi-clock-history"></i>
+										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<strong>
+											<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
+											원
+										</strong>
+										결제
+									</div>
+								</div>
+							</c:if>
 							<div class="content-wrap">
 								<div class="title">수리 요청 내용</div>
 								<div class="content">${requestDTO.content }</div>

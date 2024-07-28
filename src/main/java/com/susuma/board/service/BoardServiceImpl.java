@@ -262,6 +262,7 @@ public class BoardServiceImpl implements BoardService {
 
 		HttpSession session = request.getSession();
 		String meNoStr = (String) session.getAttribute("meNo");
+		String type = (String) session.getAttribute("type");
 		String boNo = request.getParameter("boNo");
 		int meNo = 0;
 		if (meNoStr != null) {
@@ -278,7 +279,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardDTO dto = board.askView(boNo);
 		sql.close();
 
-		if (meNo == dto.getMeNo()) {
+		if (meNo == dto.getMeNo() || type.equals("admin")) {
 			request.setAttribute("dto", dto);
 			request.setAttribute("type", dto.getType());
 			request.getRequestDispatcher("ask_view.jsp").forward(request, response);

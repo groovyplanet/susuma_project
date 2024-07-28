@@ -18,10 +18,9 @@
 		}
 
 		// AJAX 요청을 통해 하위 카테고리 가져오기
-		fetch("getCategory.ajax?rootNo=" + selectedCategory).then(
-				function(response) {
-					return response.json();
-				}).then(function(data) {
+		fetch("getCategory.ajax?rootNo=" + selectedCategory).then(function(response) {
+			return response.json();
+		}).then(function(data) {
 			subCategorySelect.innerHTML = '<option value="">선택</option>';
 			data.forEach(function(subCategory) {
 				const option = document.createElement('option');
@@ -112,9 +111,11 @@
 								<i class="bi bi-geo-alt"></i>${addressParts[0]}
 								${addressParts[1]} (${dto.maxDistance}km 이내 가능)
 							</p>
-							<p class="master-category">
-								<span>${dto.caRootName }
-									<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+							<p>
+								<span class="master-category">
+									<span>${dto.caRootName }
+										<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+								</span>
 							</p>
 							<p>${dto.shortDescription }</p>
 						</div>

@@ -48,14 +48,13 @@ header .logo_wrap a { display: inline-flex; }
 header .logo_wrap a:hover + p.arrow_box { opacity: 1; } 
 header .logo_wrap a img { width: 130px; } 
 header .btn_wrap { width: 263px; display: flex; justify-content: flex-end; gap: 15px; } 
-header .btn_wrap li { } 
 header .btn_wrap li a { display: inline-flex; align-items: center; gap: 2px; height: 38px; padding: 0 8px 0 13px; border-radius: 7px; color: #555; font-size: 15px; font-weight: 600; letter-spacing: -0.2px; transition: 0.4s; } 
 header .btn_wrap li a:hover { background-color: #ddd; } 
 /* container */
 .container { display: flex; padding: 0 40px 20px; gap: 20px; min-height: calc(100% - 80px); } 
-.container .snb { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px 15px; width: 170px; flex-shrink: 0; gap: 10px; } 
-.container .snb li { text-align: center; } 
-.container .snb li a { display: block; font-size: 15px; font-weight: 400; padding: 9px 0; border-radius: 7px; transition: 0.2s; } 
+.container .snb { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px 15px; width: 170px; flex-shrink: 0; gap: 13px; } 
+.container .snb li { text-align: center; font-size: 14px; color: #777; font-weight: 500; } 
+.container .snb li a { display: block; font-size: 15px; font-weight: 500; padding: 9px 0; border-radius: 7px; transition: 0.2s; background-color: #f6f6f6; color: #666; } 
 .container .snb li a.active { background-color: #ff6b6b; color: white; font-weight: 500; } 
 .container .snb li a:not(.active):hover { background-color: #ff6b6b1c; color: #ff6b6b; font-weight: 500; } 
 /* content_wrap */
@@ -104,7 +103,7 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .table_wrap table.view.write tr td { padding: 14px 20px; } 
 .container .content_wrap .table_wrap table.view.write input,
 .container .content_wrap .table_wrap table.view.write textarea { width: 100%; border: 1px solid #ccc; padding: 6px 8px; } 
-.container .content_wrap .table_wrap table.view.write textarea { min-height: 200px; resize: vertical; } 
+.container .content_wrap .table_wrap table.view.write textarea { min-height: 500px; resize: vertical; } 
 .container .content_wrap .table_wrap table.view.write .img_wrap { display: flex; align-items: center; gap: 10px; } 
 .container .content_wrap .table_wrap table.view.write .img_wrap input[type="file"] { width: auto; border: none; cursor: pointer; } 
 .container .content_wrap .table_wrap table.view.write .radio_wrap { display: flex; gap: 5px; padding-left: 5px; } 

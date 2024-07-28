@@ -2,10 +2,34 @@
 <!-- snb -->
 <ul class="snb">
 	<li>
+		<span>
+			<i class="bi bi-people-fill"></i>
+			회원
+		</span>
+	</li>
+	<li>
 		<a href="${pageContext.request.contextPath }/admin/member/list.member?type=user" class="${type=='user'?'active':'' }">의뢰인</a>
 	</li>
 	<li>
 		<a href="${pageContext.request.contextPath }/admin/member/list.member?type=master" class="${type=='master'?'active':'' }">수리기사</a>
+	</li>
+	<!-- <li>
+		<span>
+			<i class="bi bi-tools"></i>
+			수리
+		</span>
+	</li>
+	<li>
+		<a href="${pageContext.request.contextPath }/admin/member/list.requesta" class="${type=='request'?'active':'' }">예약 내역</a>
+	</li>
+	<li>
+		<a href="${pageContext.request.contextPath }/admin/member/list.reviewa" class="${type=='review'?'active':'' }">후기 내역</a>
+	</li> -->
+	<li>
+		<span>
+			<i class="bi bi-clipboard-check"></i>
+			게시판
+		</span>
 	</li>
 	<li>
 		<a href="${pageContext.request.contextPath }/admin/board/list.board?type=notice" class="${type=='notice'?'active':'' }">공지사항</a>
