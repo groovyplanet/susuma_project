@@ -92,26 +92,26 @@
 		,RESULT.AVERAGE_SCORE
 		,RESULT.REVIEW_COUNT
 		,(SELECT LISTAGG(REQUEST_DATE || ' ' || REQUEST_TIME, ',') WITHIN GROUP (ORDER BY REQUEST_DATE, REQUEST_TIME)
-	        FROM REQUEST
-	        WHERE MASTER_NO = ME_NO AND STATUS != 'cancel'
-    	 ) AS REQUEST_DATETIME
-		FROM 
-		    MEMBER M
-		    LEFT JOIN CATEGORY C ON C.CA_NO = M.CA_NO
-		    LEFT JOIN CATEGORY CR ON CR.CA_NO = C.ROOT_NO
-		    LEFT JOIN (
-		        SELECT 
-		            MASTER_NO, 
-		            ROUND(AVG(STAR_SCORE), 2) AS AVERAGE_SCORE, 
-		            COUNT(STAR_SCORE) AS REVIEW_COUNT
-		        FROM (
-		            SELECT *
-		            FROM REVIEW R
-		            INNER JOIN REQUEST R2 ON R.REQ_NO = R2.REQ_NO
-		        )
-		        GROUP BY MASTER_NO
-		    ) RESULT ON M.ME_NO = RESULT.MASTER_NO
-		WHERE  1 = 1
+		FROM REQUEST
+		WHERE MASTER_NO = ME_NO AND STATUS != 'cancel'
+		) AS REQUEST_DATETIME
+		FROM
+		MEMBER M
+		LEFT JOIN CATEGORY C ON C.CA_NO = M.CA_NO
+		LEFT JOIN CATEGORY CR ON CR.CA_NO = C.ROOT_NO
+		LEFT JOIN (
+		SELECT
+		MASTER_NO,
+		ROUND(AVG(STAR_SCORE), 2) AS AVERAGE_SCORE,
+		COUNT(STAR_SCORE) AS REVIEW_COUNT
+		FROM (
+		SELECT *
+		FROM REVIEW R
+		INNER JOIN REQUEST R2 ON R.REQ_NO = R2.REQ_NO
+		)
+		GROUP BY MASTER_NO
+		) RESULT ON M.ME_NO = RESULT.MASTER_NO
+		WHERE 1 = 1
 		<if test="meNo != null">
 			AND M.ME_NO = #{meNo}
 		</if>
@@ -276,12 +276,12 @@
 	</select>
 
 	<!-- 포인트 적립 내역 조회 -->
-	 <select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
-        SELECT pc_no, me_no, point, pc_time AS insertTime
-        FROM POINT_HISTORY
-        WHERE me_no = #{meNo} AND point > 0
-        ORDER BY pc_time DESC
-    </select>
+	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT pc_no, me_no, point, pc_time AS insertTime
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point > 0
+		ORDER BY pc_time DESC
+	</select>
 
 	<!-- 포인트 사용 내역 조회 -->
 	<select id="getPointSpendings" resultType="com.susuma.member.model.MemberDTO">
@@ -296,8 +296,11 @@
 	</update>
 
 	<insert id="addSpendingHistory">
-		INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, -#{point}, SYSDATE)
+		INSERT INTO POINT_HISTORY (pc_no, me_no, point, pc_time)
+		VALUES (point_history_seq.NEXTVAL, #{meNo}, #{point}, SYSDATE)
 	</insert>
+
+
 
 	<insert id="addEarningHistory">
 		INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, #{point}, SYSDATE)

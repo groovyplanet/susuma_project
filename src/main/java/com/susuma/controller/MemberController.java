@@ -151,13 +151,6 @@ public class MemberController extends HttpServlet {
 			service.chargePoints(request, response);
 			break;
 		
-		case "/member/withdrawPoints.member":
-			service.withdrawPoints(request, response);
-			break;
-			
-		case "/member/chargePoints.member":
-			service.chargePoints(request, response);
-			break;
 
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);

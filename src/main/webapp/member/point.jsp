@@ -91,7 +91,7 @@
 	        document.getElementById('withdrawModal').classList.remove('show');
 	    });
 
-	    // 출금 모달에서 확인 버튼 클릭 시
+	 // 출금 모달에서 확인 버튼 클릭 시
 	    document.querySelector('#withdrawModal .btn-confirm').addEventListener('click', function() {
 	        fetch('/Susuma/member/withdrawPoints.member', { // 절대 경로 사용
 	            method: 'POST',
@@ -117,6 +117,7 @@
 	        // 모달 닫기
 	        document.getElementById('withdrawModal').classList.remove('show');
 	    });
+	 
 
 	    // 충전 모달 열기
 	    document.getElementById('chargeButton').addEventListener('click', function() {
