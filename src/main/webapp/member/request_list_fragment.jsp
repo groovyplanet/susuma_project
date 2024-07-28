@@ -42,7 +42,9 @@
 												<i class="bi bi-chevron-right"></i>${dto.caName }</span>
 										</p>
 									</div>
-									<div class="explain">${dto.content }</div>
+									<div class="explain">
+										<c:out value="${fn:substring(dto.content, 0, 55)}" />
+									</div>
 								</a>
 								<c:choose>
 									<c:when test="${dto.status eq 'requested'}">
@@ -96,7 +98,9 @@
 											<span>${dto.clientAddressDetail }</span>
 										</span>
 									</div>
-									<div class="explain">${dto.content }</div>
+									<div class="explain">
+										<c:out value="${fn:substring(dto.content, 0, 55)}" />
+									</div>
 								</a>
 								<c:choose>
 									<c:when test="${dto.status eq 'requested'}">

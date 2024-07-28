@@ -59,6 +59,10 @@ public class ReviewController extends HttpServlet {
 			service.getReviewList(request, response);
 			break;
 
+		case "/member/getReviewsAjax.review":
+			service.getReviewListAjax(request, response);
+			break;
+
 		case "/member/edit.review":
 			// service.edit(request, response);
 			break;

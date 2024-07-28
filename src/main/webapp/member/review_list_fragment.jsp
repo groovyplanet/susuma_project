@@ -2,19 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ include file="../include/head.jsp"%>
-</head>
-
-<body class="request request-list review-list">
-	<%@ include file="../include/header.jsp"%>
-
-	<section class="main-section">
-		<div class="container">
-			<%@ include file="../include/snb.jsp"%>
-			<div class="content">
-				<h4 style="border-bottom: 1px solid black;">후기 내역</h4>
 				<c:forEach var="dto" items="${list }">
 					<div class="member-section">
 						<c:choose>
@@ -115,34 +103,3 @@
 						</c:choose>
 					</div>
 				</c:forEach>
-				<button id="btn-more" class="btn-request-summary-more" style="${totalRecords > recordsPerPage ? '' : 'display:none'}">더보기</button>
-			</div>
-		</div>
-	</section>
-
-	<%@ include file="../include/footer.jsp"%>
-	<script>
-		let currentPage = 1;
-		const endPage = ${endPage};
-
-		$('#btn-more').on('click', function() {
-			loadMoreRequests(currentPage + 1);
-		});
-		
-		function loadMoreRequests(page) {
-		    fetch('getReviewsAjax.review?page=' + page)
-	        .then(response => response.text())
-	        .then(html => {
-	            $('#btn-more').before(html);
-				currentPage = page;
-				if (currentPage >= endPage) {
-					$('#btn-more').hide();
-				}
-	        })
-	        .catch(error => console.error('Error fetching requests:', error));
-		}
-	</script>
-
-</body>
-
-</html>

@@ -71,6 +71,10 @@ public class RequestController extends HttpServlet {
 			service.getRequestList(request, response);
 			break;
 
+		case "/member/getRequestsAjax.request":
+			service.getRequestListAjax(request, response);
+			break;
+
 		case "/member/view.request":
 			service.getRequest(request, response);
 			break;
@@ -93,10 +97,6 @@ public class RequestController extends HttpServlet {
 
 		case "/member/payRequestAjax.request":
 			service.updateStatusAjax(request, response); // 결제 요청 (수리기사)
-			break;
-
-		case "/member/getRequestsAjax.request":
-			service.getRequestListAjax(request, response);
 			break;
 
 		default:

@@ -80,7 +80,7 @@
 							        -
 							    </c:when>
 									<c:otherwise>
-										<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
 									</c:otherwise>
 								</c:choose>
 							</td>

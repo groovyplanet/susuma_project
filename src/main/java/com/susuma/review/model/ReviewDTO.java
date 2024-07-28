@@ -18,6 +18,7 @@ public class ReviewDTO {
 	private String clientName;
 	private String masterAddress;
 	private String clientAddress;
+	private String clientAddressDetail;
 	private byte[] masterProfilePhoto;
 	private byte[] clientProfilePhoto;
 
@@ -184,7 +185,7 @@ public class ReviewDTO {
 		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
 			return "";
 		}
-		return Base64.getEncoder().encodeToString(masterProfilePhoto);
+		return Base64.getEncoder().encodeToString(clientProfilePhoto);
 	}
 
 	public String getRequestDate() {
@@ -233,6 +234,14 @@ public class ReviewDTO {
 
 	public void setCaRootName(String caRootName) {
 		this.caRootName = caRootName;
+	}
+
+	public String getClientAddressDetail() {
+		return clientAddressDetail;
+	}
+
+	public void setClientAddressDetail(String clientAddressDetail) {
+		this.clientAddressDetail = clientAddressDetail;
 	}
 
 }

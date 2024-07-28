@@ -97,11 +97,11 @@
 .main-section .container .repair-setting .repair-set-title { border-bottom: 1px solid black; padding: 5px; } 
 /* ===reserve manage list page css end === */
 /* ========repair view page css start ===== */
-.main-section .container .repair-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
-.main-section .container .repair-detail .info-reserve .member-section { font-size: 15px; text-align: left; margin-top: 40px; margin-left: 20px; display: flex; align-items: center; } 
-.main-section .container .repair-detail .info-reserve .member-section .infodetail { height: 100%; } 
+.main-section .container .repair-detail { margin: 30px 30px 20px; padding-top: 30px; padding-bottom: 40px; background-color: #f8f8f8; border-radius: 18px; width: 80%; } 
+.main-section .container .repair-detail .info-reserve .member-section { font-size: 15px; display: flex; align-items: center; padding: 10px 70px; gap: 15px; } 
+.main-section .container .repair-detail .info-reserve .member-section .infodetail { display: flex; flex-direction: column; gap: 5px; } 
 .main-section .container .repair-detail .info-reserve .member-section .repair-status,
-.main-section .container .repair-detail .detail-content { margin-left: auto; margin-right: 50px; } 
+.main-section .container .repair-detail .detail-content { margin-left: auto; } 
 .main-section .container .repair-detail .repair-more-content .detail-content .edit { background-color: white; border: 0.5px solid #999; margin-right: 20px; } 
 .main-section .container .repair-detail .repair-more-content .detail-content .save,
 .main-section .container .repair-detail .repair-more-content .detail-content .cancel { background-color: white; border: 0.5px solid #999; margin-right: 10px; } 
@@ -111,20 +111,6 @@
 #edit-form .btn { width: 50px; height: 40px; text-align: center; } 
 #repair-details-input { width: 90%; margin-right: 20px; height: 100px; padding: 10px; box-sizing: border-box; margin-left: 10px; } 
 .main-section .container .repair-detail .review-box-content .review-input { display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f0f0f0; border-radius: 10px; margin: 20px; } 
-.main-section .container .repair-detail .review-box-content .review-input .review-rating,
-.main-section .container .repair-detail .review-box-content .review-input .review-title,
-.main-section .container .repair-detail .review-box-content .review-input .review-content,
-.main-section .container .repair-detail .review-box-content .review-input .file-attachment,
-.main-section .container .repair-detail .review-box-content .review-input .action-buttons { margin: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; } 
-.main-section .container .repair-detail .review-box-content .review-input .stars { font-size: 24px; color: gold; } 
-.main-section .container .repair-detail .review-box-content .review-input input,
-.main-section .container .repair-detail .review-box-content .review-input textarea { width: 80%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; } 
-.main-section .container .repair-detail .review-box-content .review-input .file-attachment .btn { margin: 10px 0; } 
-.main-section .container .repair-detail .review-box-content .review-input .file-attachment .file-list { width: 80%; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 50px; } 
-.main-section .container .repair-detail .review-box-content .review-input .file-attachment .file-item { background-color: #ddd; padding: 5px 10px; border-radius: 5px; } 
-.main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn { margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; } 
-.main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; } 
-.main-section .container .repair-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
 #payButton { background-color: #ff6b6b; color: white; border: none; cursor: pointer; } 
 #payButton:hover { cursor: pointer; } 
 /* ========repair view page css end ===== */
@@ -201,23 +187,9 @@
 .main-section .container .review-detail .review-more-content .detail-content,
 .main-section .container .review-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top: 3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; } 
 .main-section .container .review-detail .review-box-content .review-input { display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f0f0f0; border-radius: 10px; margin: 20px; } 
-.main-section .container .review-detail .review-box-content .review-input .review-rating,
-.main-section .container .review-detail .review-box-content .review-input .review-title,
-.main-section .container .review-detail .review-box-content .review-input .review-content,
-.main-section .container .review-detail .review-box-content .review-input .file-attachment,
-.main-section .container .review-detail .review-box-content .review-input .action-buttons { margin: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; } 
-.main-section .container .review-detail .review-box-content .review-input .stars { font-size: 24px; color: gold; } 
-.main-section .container .review-detail .review-box-content .review-input input,
-.main-section .container .review-detail .review-box-content .review-input textarea { width: 80%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; } 
-.main-section .container .review-detail .review-box-content .review-input .file-attachment .btn { margin: 10px 0; } 
-.main-section .container .review-detail .review-box-content .review-input .file-attachment .file-list { width: 80%; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 50px; } 
-.main-section .container .review-detail .review-box-content .review-input .file-attachment .file-item { background-color: #ddd; padding: 5px 10px; border-radius: 5px; } 
-.main-section .container .review-detail .review-box-content .review-input .action-buttons .btn { margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; } 
-.main-section .container .review-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; } 
-.main-section .container .review-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; } 
 /* == review_view master ver end == */
 /* == review_view user ver start == */
-.main-section .container .profile-logo-sm { width: 50px; margin-right: 20px; height: 50px; margin-left: 50px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container .profile-logo-sm { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container .user-review-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
 .main-section .container .user-review-detail .info-review .member-section { font-size: 15px; text-align: left; margin-top: 10px; margin-left: 20px; display: flex; } 
 .main-section .container .user-review-detail .info-review .member-section .info-review { height: 100%; } 
@@ -228,20 +200,6 @@
 .main-section .container .user-review-detail .review-more-content .detail-content,
 .main-section .container .user-review-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top: 3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; } 
 .main-section .container .user-review-detail .review-box-content .review-input { display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f0f0f0; border-radius: 10px; margin: 20px; } 
-.main-section .container .user-review-detail .review-box-content .review-input .review-rating,
-.main-section .container .user-review-detail .review-box-content .review-input .review-title,
-.main-section .container .user-review-detail .review-box-content .review-input .review-content,
-.main-section .container .user-review-detail .review-box-content .review-input .file-attachment { margin: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; } 
-.main-section .container .user-review-detail .review-box-content .review-input .stars { font-size: 24px; color: gold; } 
-.main-section .container .user-review-detail .review-box-content .review-input input,
-.main-section .container .user-review-detail .review-box-content .review-input textarea { width: 80%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; } 
-.main-section .container .user-review-detail .review-box-content .review-input .file-attachment input[type="file"] { margin: 10px 0; } 
-.main-section .container .user-review-detail .review-box-content .review-input .file-attachment .file-list { width: 80%; display: flex; flex-wrap: wrap; gap: 10px; } 
-.main-section .container .user-review-detail .review-box-content .review-input .file-attachment .file-item { background-color: #ddd; padding: 5px 10px; border-radius: 5px; } 
-.main-section .container .user-review-detail .review-box-content .review-input .action-buttons { display: flex; gap: 10px; margin-top: 10px; } 
-.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn { margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; } 
-.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.cancel { background-color: #ff6b6b; color: white; border:none; } 
-.main-section .container .user-review-detail .review-box-content .review-input .action-buttons .btn.save { background-color: #f49d00; color: white; border:none; } 
 /* == review_view user ver end== */
 /* ask */
 .main-section .container .content .edit-form { padding: 20px; padding-top: 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; flex-direction: column; } 
@@ -384,12 +342,13 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request-list .btn-request-summary-more:hover { transform: translateY(-2px); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); } 
 
 /* 예약 스케줄 정보 스타일 */
-.request-list .profile-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
-.request-list .info { text-align: left; flex-grow: 1; width: 50%; padding: 10px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 7px; } 
-.request-list .repair_date, .master_name, .repair_type, .explain { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #333; } 
-.request-list .explain { font-size: 13px; } 
-.request-list .master_name { font-weight: 600; } 
-.request-list .address { margin-left: 5px; color: #666; font-weight: 400; font-size: 13px; } 
+.request .profile-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
+.request .info { text-align: left; flex-grow: 1; width: 50%; padding: 10px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 7px; } 
+.request .repair_date, .master_name, .repair_type, .explain { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #333; } 
+.request .explain span { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
+.request .explain { font-size: 13px; } 
+.request .master_name { font-weight: 600; } 
+.request .address { margin-left: 5px; color: #666; font-weight: 400; font-size: 13px; } 
 .request-list #payModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; align-items: center; justify-content: center; } 
 .request-list #payModal.show { display: flex !important; } 
 .request-list #payModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
@@ -412,10 +371,28 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
  -webkit-appearance: none; margin: 0; } 
 
 /* 예약 상세 */
-.request-view .stars { display: flex; cursor: pointer; } 
-.request-view .star { font-size: 4rem; color: lightgray; } 
+.request-view .stars { display: flex; cursor: pointer; gap: 7px; } 
+.request-view .star { font-size: 3.5rem; color: lightgray; } 
 .request-view .star.checked { color: gold; } 
 .request-view .hidden-input { display: none; } 
+.request-view .star-score { padding: 0 70px; color: gold; margin-bottom: 5px; } 
+.request-view .content-wrap .title { text-align: left; margin-top: 35px; border-top: 3px solid white; padding: 35px 70px 10px; font-size: 17px; font-weight: 600; } 
+.request-view .content-wrap .content { white-space: pre-wrap; word-wrap: break-word; padding: 0 70px; } 
+.request-view .content-wrap .content-pay { padding: 0 70px; } 
+.request-view .review-input { padding: 30px 70px 10px; } 
+.request-view .review-input .review-rating,
+.request-view .review-input .review-title,
+.request-view .review-input .review-content,
+.request-view .review-input .file-attachment,
+.request-view .review-input .action-buttons { margin: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; } 
+.request-view .review-input .action-buttons { margin-top: 20px; } 
+.request-view .review-input .stars { font-size: 24px; color: gold; } 
+.request-view .review-input textarea { width: 100%; height: 200px; padding: 20px; resize: vertical; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; } 
+.request-view .review-input .file-attachment .btn { margin: 10px 0; } 
+.request-view .review-input .file-attachment .file-list { width: 80%; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 50px; } 
+.request-view .review-input .file-attachment .file-item { background-color: #ddd; padding: 5px 10px; border-radius: 5px; } 
+.request-view .review-input .action-buttons .btn { padding: 5px 20px; cursor: pointer; font-size: 15px; } 
+.request-view .review-input .action-buttons .btn:hover { background-color: #ff6b6b1c; font-weight: 600; } 
 
 /* 후기 내역 */
 .review-list .main-section .container .content { display: flex; flex-direction: column; align-items: center; width: 1500px; padding: 30px 50px; margin-top: 40px; } 

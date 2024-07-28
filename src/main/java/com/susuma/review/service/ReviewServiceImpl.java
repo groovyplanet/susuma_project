@@ -13,6 +13,7 @@ import com.susuma.review.model.ReviewDTO;
 import com.susuma.review.model.ReviewMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,7 +22,6 @@ import jakarta.servlet.http.HttpSession;
 public class ReviewServiceImpl implements ReviewService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
-	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
 	/**
 	 * alert창 띄우고 화면 이동
@@ -104,6 +104,10 @@ public class ReviewServiceImpl implements ReviewService {
 		} else if ("user".equals(type)) {
 			clientNo = meNo;
 		}
+		int recordsPerPage = 2; // 한 페이지당 보여줄 레코드 수
+		if ("adming".equals(type)) {
+			recordsPerPage = 10;
+		}
 
 		String sortField = request.getParameter("sortField");
 		sortField = (sortField == null || sortField.isEmpty()) ? "RE.insert_time" : sortField;
@@ -138,20 +142,20 @@ public class ReviewServiceImpl implements ReviewService {
 		params.put("totalRecords", totalRecords); // 총 레코드 수
 		params.put("startPage", startPage); // 표시할 시작 페이지
 		params.put("endPage", endPage); // 표시할 마지막 페이지
+		params.put("recordsPerPage", recordsPerPage);
 		sql.close();
 
-		/* [3] 화면이동 */
 		request.setAttribute("list", reviewList);
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			request.setAttribute(entry.getKey(), entry.getValue());
 		}
-		request.getRequestDispatcher("review_list.jsp").forward(request, response); // 요청 포워드
 	}
 
 	@Override
 	public void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		getList(request, response); // 관리자, 사용자 공통
+		request.getRequestDispatcher("review_list.jsp").forward(request, response); // 요청 포워드
 
 	}
 
@@ -190,6 +194,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public void getReviewList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		getList(request, response); // 관리자, 사용자 공통
+		request.getRequestDispatcher("review_list.jsp").forward(request, response); // 요청 포워드
 	}
 
 	@Override
@@ -203,5 +208,15 @@ public class ReviewServiceImpl implements ReviewService {
 			alertRedirect(response, "정상적으로 " + (isUpdate ? "수정" : "등록") + "되었습니다.", "view.request?reqNo=" + reviewDTO.getReqNo());
 		}
 
+	}
+
+	@Override
+	public void getReviewListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		getList(request, response); // 관리자, 사용자 공통
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("review_list_fragment.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 }
