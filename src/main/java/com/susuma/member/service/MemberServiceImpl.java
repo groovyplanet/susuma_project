@@ -749,23 +749,49 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String meNo = (String) request.getSession().getAttribute("meNo");
-	    int pointsToCharge = Integer.parseInt(request.getParameter("point"));
+	    String pointsParam = request.getParameter("points");
 
-	    // PointDTO 객체 생성
-	    PointDTO pointDTO = new PointDTO();
-	    pointDTO.setMeNo(meNo);
-	    pointDTO.setPoint(pointsToCharge);
-	    pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
+	    if (pointsParam == null) {
+	        response.setContentType("application/json");
+	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	        return;
+	    }
+
+	    int pointsToCharge;
+	    try {
+	        pointsToCharge = Integer.parseInt(pointsParam);
+	    } catch (NumberFormatException e) {
+	        response.setContentType("application/json");
+	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	        return;
+	    }
 
 	    try (SqlSession sql = sqlSessionFactory.openSession(true)) {
 	        PointMapper pointMapper = sql.getMapper(PointMapper.class);
+
+	        // 현재 사용자의 포인트 조회
+	        Integer currentPoints = pointMapper.MemberPoints(meNo);
+	        if (currentPoints == null) {
+	            currentPoints = 0;
+	        }
+
+	        // 현재 포인트에 충전할 포인트를 더한 값을 계산
+	        int updatedPoints = currentPoints + pointsToCharge;
+
 	        // 포인트 업데이트
-	        pointMapper.updateMemberPoints(meNo, pointsToCharge);
+	        PointDTO pointDTO = new PointDTO();
+	        pointDTO.setMeNo(meNo);
+	        pointDTO.setPoint(updatedPoints);
+	        pointMapper.updateMemberPoints(meNo, updatedPoints); 
+
 	        // 포인트 충전 내역 추가
+	        pointDTO.setPoint(pointsToCharge); // 충전 금액으로 설정
+	        pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
 	        pointMapper.addEarningHistory(pointDTO);
+
 	        response.setContentType("application/json");
-	        
-	        // 응답 JSON 생성
 	        PrintWriter out = response.getWriter();
 	        out.print("{\"status\":\"success\",\"message\":\"충전이 완료되었습니다.\"}");
 	        out.flush();
