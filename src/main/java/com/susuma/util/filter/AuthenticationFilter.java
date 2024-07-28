@@ -53,13 +53,13 @@ public class AuthenticationFilter implements Filter {
 			case "/member/exit.member": // 회원 탈퇴
 			case "/member/memberRequest.member": // 수리 예약
 			case "/member/reviewForm.member": // 예약내역 리뷰 작성
+			case "/member/request.member": // 수리 예약
 			case "/board/askWrite.board": // 1:1 문의 작성
 			case "/board/askView.board": // 1:1 문의 상세
 			case "/board/askModify.board": // 1:1 문의 수정
 			case "/member/list.review": // 리뷰 리스트 페이지
-			case "/member/list.request": // 예약 신청 페이지
-			case "/member/requestView.request": // 예약 내역 보기
-			case "/member/request.member": // 수리 예약
+			case "/member/list.request": // 예약 내역
+			case "/member/view.request": // 예약 상세
 
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");

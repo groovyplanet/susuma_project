@@ -6,7 +6,7 @@
 <%@ include file="../include/head.jsp"%>
 </head>
 
-<body class="request-list">
+<body class="request request-list">
 	<%@ include file="../include/header.jsp"%>
 	<section class="main-section">
 		<div class="container">
@@ -159,7 +159,7 @@
 		</div>
 	</section>
 	<!-- modal -->
-	<div id="request-list-approve-modal" class="modal request-list">
+	<div id="request-list-approve-modal" class="modal request">
 		<div class="container">
 			<div class="modal-title">예약 승인</div>
 			<div class="pay-content">
@@ -171,7 +171,7 @@
 			</button>
 		</div>
 	</div>
-	<div id="request-list-pay-request-modal" class="modal request-list">
+	<div id="request-list-pay-request-modal" class="modal request">
 		<div class="container">
 			<div class="modal-title">결제 요청</div>
 			<div class="pay-content">
@@ -184,7 +184,7 @@
 			</button>
 		</div>
 	</div>
-	<div id="request-list-pay-modal" class="modal request-list">
+	<div id="request-list-pay-modal" class="modal request">
 		<div class="container">
 			<div class="modal-title">수리 금액 결제</div>
 			<div class="pay-content">
@@ -247,7 +247,7 @@
 			var button = $(this);
 			var reqNo = button.data('reqno');
 
-			$('#request-list-approve-modal').attr('class', ' modal request-list show');
+			$('#request-list-approve-modal').attr('class', ' modal request show');
 			$('#request-list-approve-modal .btn-enter').data('reqNo', reqNo);
 
 		})
@@ -285,7 +285,7 @@
 			var reqNo = button.data('reqno');
 			$('#paymoney').val("");
 
-			$('#request-list-pay-request-modal').attr('class', ' modal request-list show');
+			$('#request-list-pay-request-modal').attr('class', ' modal request show');
 			$('#request-list-pay-request-modal .btn-enter').data('reqNo', reqNo);
 
 		})
@@ -327,7 +327,7 @@
 			var amountNumber = parseInt(payAmount, 10);
 			var formattedAmount = amountNumber.toLocaleString('en-US') + '원';
 			$('#amount').text(formattedAmount);
-			$('#request-list-pay-modal').attr('class', ' modal request-list show');
+			$('#request-list-pay-modal').attr('class', ' modal request show');
 			$('#request-list-pay-modal .btn-enter').data('reqNo', reqNo);
 
 		})

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ include file="../include/head.jsp"%>
 <style>
@@ -86,18 +86,18 @@
 					<div class="member-section">
 						<div class="profile-logoimg">
 							<c:choose>
-								<c:when test="${dto.profilePhotoImg == '' }">
+								<c:when test="${dto.masterProfilePhotoImg == '' }">
 									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
 								</c:when>
 								<c:otherwise>
-									<img src="data:image/png;base64,${dto.profilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
+									<img src="data:image/png;base64,${dto.masterProfilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="infodetail">
 							<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }">
 								<div class="member-name">
-								<c:choose>
+									<c:choose>
 										<c:when test="${not empty dto.masterName}">
 											<strong>마스터 성함 :</strong>
 											${dto.masterName}

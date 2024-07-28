@@ -54,8 +54,8 @@
 		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
 		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
 		WHERE 1 = 1
-		<if test="ReqNo != null">
-			AND RE.REQ_NO = #{ReqNo}
+		<if test="reqNo != null">
+			AND RE.REQ_NO = #{reqNo}
 		</if>
 	</select>
 
@@ -63,7 +63,6 @@
 	<insert id="insertReview" parameterType="com.susuma.review.model.ReviewDTO">
 		INSERT INTO REVIEW (RE_NO, REQ_NO, CONTENT, STAR_SCORE)
 		VALUES (review_seq.NEXTVAL, #{reqNo}, #{content}, #{starScore})
-		)
 	</insert>
 
 	<!-- [4] 리뷰 수정 -->

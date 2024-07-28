@@ -10,7 +10,7 @@
 			<a href="${pageContext.request.contextPath }/member/edit.member" class="${pageContext.request.servletPath == '/member/profile_edit.jsp' ? 'active' : ''}">회원정보 수정</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath }/member/list.request" class="${pageContext.request.servletPath == '/member/request_list.jsp' ? 'active' : ''}">예약 내역</a>
+			<a href="${pageContext.request.contextPath }/member/list.request" class="${pageContext.request.servletPath == '/member/request_list.jsp' or pageContext.request.servletPath == '/member/request_view.jsp' ? 'active' : ''}">예약 내역</a>
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath }/member/list.review" class="${pageContext.request.servletPath == '/member/review_list.jsp' ? 'active' : ''}">후기 내역</a>
@@ -18,7 +18,7 @@
 		<li>
 			<a href="${pageContext.request.contextPath }/member/message_list.jsp" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">문의 내역</a>
 		</li>
-	
+
 		<li>
 			<a href="${pageContext.request.contextPath }/member/point.member" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>
 		</li>
