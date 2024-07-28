@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface MemberService {
+
+	/* 관리자 */
 	void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
@@ -23,6 +25,7 @@ public interface MemberService {
 
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	/* 사용자 */
 	void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;

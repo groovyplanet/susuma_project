@@ -53,64 +53,73 @@ if (arr != null) {
 				<c:otherwise>
 					<!-- 로그인 상태 -->
 
-					<li class="li-icon alarm">
-						<!-- 알림 아이콘 -->
-						<div class="icon-area">
-							<button id="btn-alarm-list">
-								<img src="${pageContext.request.contextPath }/resources/img/alarm.png" alt="알림">
-								<span class="new-mark">1</span>
-							</button>
-						</div>
-						<div id="alram-list" class="alram-list">
-							<!-- 알림 목록 -->
-							<a href="${pageContext.request.contextPath }/user/reserve_view.jsp" class="alram-item">
-								<div class="datetime">2024.07.12 10:41</div>
-								<div class="message">홍길동 기사님이 수리 예약을 확정했어요.</div>
-								<!-- (의뢰인)수리 예약 승인 -->
-							</a>
-							<a href="${pageContext.request.contextPath }/master/reserve_manage_view.jsp" class="alram-item">
-								<div class="datetime">2024.07.12 10:41</div>
-								<div class="message">홍길동님이 수리 예약을 신청했어요.</div>
-								<!-- (수리기사)수리 예약 접수 -->
-							</a>
-							<a href="${pageContext.request.contextPath }/master/review_view.jsp" class="alram-item">
-								<div class="datetime">2024.07.12 10:41</div>
-								<div class="message">홍길동님이 후기를 작성했어요.</div>
-								<!-- (수리기사)후기 등록 -->
-							</a>
-							<a href="${pageContext.request.contextPath }/board/ask_view.jsp" class="alram-item">
-								<div class="datetime">2024.07.12 10:41</div>
-								<div class="message">'예약 신청 어떻게 하나요?'에 답변이 등록됐어요.</div>
-								<!-- 1:1 문의 -->
-							</a>
-						</div>
-					</li>
-					<li class="li-icon chat">
-						<!-- 채팅 아이콘 -->
-						<div class="icon-area">
-							<a href="${pageContext.request.contextPath }/user/message_list.jsp">
-								<img src="${pageContext.request.contextPath }/resources/img/message.png" alt="채팅">
-								<span class="new-mark">2</span>
-							</a>
-						</div>
-					</li>
+					<c:if test="${sessionScope.type ne 'admin' }">
+						<li class="li-icon alarm">
+							<!-- 알림 아이콘 -->
+							<div class="icon-area">
+								<button id="btn-alarm-list">
+									<img src="${pageContext.request.contextPath }/resources/img/alarm.png" alt="알림">
+									<span class="new-mark">1</span>
+								</button>
+							</div>
+							<div id="alram-list" class="alram-list">
+								<!-- 알림 목록 -->
+								<a href="${pageContext.request.contextPath }/user/reserve_view.jsp" class="alram-item">
+									<div class="datetime">2024.07.12 10:41</div>
+									<div class="message">홍길동 기사님이 수리 예약을 확정했어요.</div>
+									<!-- (의뢰인)수리 예약 승인 -->
+								</a>
+								<a href="${pageContext.request.contextPath }/master/reserve_manage_view.jsp" class="alram-item">
+									<div class="datetime">2024.07.12 10:41</div>
+									<div class="message">홍길동님이 수리 예약을 신청했어요.</div>
+									<!-- (수리기사)수리 예약 접수 -->
+								</a>
+								<a href="${pageContext.request.contextPath }/master/review_view.jsp" class="alram-item">
+									<div class="datetime">2024.07.12 10:41</div>
+									<div class="message">홍길동님이 후기를 작성했어요.</div>
+									<!-- (수리기사)후기 등록 -->
+								</a>
+								<a href="${pageContext.request.contextPath }/board/ask_view.jsp" class="alram-item">
+									<div class="datetime">2024.07.12 10:41</div>
+									<div class="message">'예약 신청 어떻게 하나요?'에 답변이 등록됐어요.</div>
+									<!-- 1:1 문의 -->
+								</a>
+							</div>
+						</li>
+						<li class="li-icon chat">
+							<!-- 채팅 아이콘 -->
+							<div class="icon-area">
+								<a href="${pageContext.request.contextPath }/user/message_list.jsp">
+									<img src="${pageContext.request.contextPath }/resources/img/message.png" alt="채팅">
+									<span class="new-mark">2</span>
+								</a>
+							</div>
+						</li>
+					</c:if>
 					<li>
-						<a href="${pageContext.request.contextPath }/member/logout.member" class="btn">${sessionScope.type eq 'user'?'의뢰인' : '수리기사'} ${sessionScope.name}님 로그아웃</a>
+						<a href="${pageContext.request.contextPath }/member/logout.member" class="btn">${sessionScope.type eq 'user' ? '의뢰인' : sessionScope.type eq 'master' ? '수리기사' : ''} ${sessionScope.name}님 로그아웃</a>
 					</li>
-					<li>
-						<a href="${pageContext.request.contextPath }/member/edit.member" class="btn btn-join">
-							마이페이지
-							<i class="bi bi-chevron-right"></i>
-						</a>
-					</li>
+					<c:choose>
+						<c:when test="${sessionScope.type eq 'admin' }">
+							<li>
+								<a href="${pageContext.request.contextPath }/index.html" class="btn btn-temp"> html </a>
+							</li>
+
+							<li>
+								<a href="${pageContext.request.contextPath }/admin/" class="btn btn-temp"> 관리자 </a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href="${pageContext.request.contextPath }/member/edit.member" class="btn btn-join">
+									마이페이지
+									<i class="bi bi-chevron-right"></i>
+								</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
-			<li>
-				<a href="${pageContext.request.contextPath }/index.html" class="btn btn-temp"> html </a>
-			</li>
-			<li>
-				<a href="${pageContext.request.contextPath }/admin/" class="btn btn-temp"> 관리자 </a>
-			</li>
 		</ul>
 
 	</div>

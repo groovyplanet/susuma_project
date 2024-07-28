@@ -7,44 +7,48 @@ public class ReviewDTO {
 
 	private String reNo; // reNo는 자동 생성
 	private String reqNo; // reqNo를 int 타입으로 선언
-	private String masterNo;
-	private String clientNo;
 	private String content;
 	private String starScore;
 	private Timestamp insertTime;
 	private Timestamp updateTime;
+
+	private String masterNo;
+	private String clientNo;
 	private String masterName;
 	private String clientName;
-
-	// 후기 내역 DTO 추가
-	private String address;
-	private byte[] profilePhoto; // "PROFILE_PHOTO"
+	private String masterAddress;
+	private String clientAddress;
+	private byte[] masterProfilePhoto;
+	private byte[] clientProfilePhoto;
 
 	public ReviewDTO() {
 		super();
 	}
 
-	public ReviewDTO(String reNo, String reqNo, String masterNo, String clientNo, String content, String starScore, Timestamp insertTime, Timestamp updateTime, String masterName, String address) {
+	// upsert 시 사용
+	public ReviewDTO(String reNo, String reqNo, String content, String starScore) {
+		this.reNo = reNo;
+		this.reqNo = reqNo;
+		this.content = content;
+		this.starScore = starScore;
+	}
+
+	public ReviewDTO(String reNo, String reqNo, String content, String starScore, Timestamp insertTime, Timestamp updateTime, String masterNo, String clientNo, String masterName, String clientName, String masterAddress, String clientAddress, byte[] masterProfilePhoto, byte[] clientProfilePhoto) {
 		super();
 		this.reNo = reNo;
 		this.reqNo = reqNo;
-		this.masterNo = masterNo;
-		this.clientNo = clientNo;
 		this.content = content;
 		this.starScore = starScore;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
+		this.masterNo = masterNo;
+		this.clientNo = clientNo;
 		this.masterName = masterName;
-		this.address = address;
-	}
-	
-
-	public String getClientName() {
-		return clientName;
-	}
-
-	public void setClientName(String clientName) {
 		this.clientName = clientName;
+		this.masterAddress = masterAddress;
+		this.clientAddress = clientAddress;
+		this.masterProfilePhoto = masterProfilePhoto;
+		this.clientProfilePhoto = clientProfilePhoto;
 	}
 
 	public String getReNo() {
@@ -61,22 +65,6 @@ public class ReviewDTO {
 
 	public void setReqNo(String reqNo) {
 		this.reqNo = reqNo;
-	}
-
-	public String getMasterNo() {
-		return masterNo;
-	}
-
-	public void setMasterNo(String masterNo) {
-		this.masterNo = masterNo;
-	}
-
-	public String getClientNo() {
-		return clientNo;
-	}
-
-	public void setClientNo(String clientNo) {
-		this.clientNo = clientNo;
 	}
 
 	public String getContent() {
@@ -111,6 +99,22 @@ public class ReviewDTO {
 		this.updateTime = updateTime;
 	}
 
+	public String getMasterNo() {
+		return masterNo;
+	}
+
+	public void setMasterNo(String masterNo) {
+		this.masterNo = masterNo;
+	}
+
+	public String getClientNo() {
+		return clientNo;
+	}
+
+	public void setClientNo(String clientNo) {
+		this.clientNo = clientNo;
+	}
+
 	public String getMasterName() {
 		return masterName;
 	}
@@ -119,27 +123,58 @@ public class ReviewDTO {
 		this.masterName = masterName;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getClientName() {
+		return clientName;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
 
-	public byte[] getProfilePhoto() {
-		return profilePhoto;
+	public String getMasterAddress() {
+		return masterAddress;
 	}
 
-	public String getProfilePhotoImg() {
-		if (profilePhoto == null || profilePhoto.equals("")) {
+	public void setMasterAddress(String masterAddress) {
+		this.masterAddress = masterAddress;
+	}
+
+	public String getClientAddress() {
+		return clientAddress;
+	}
+
+	public void setClientAddress(String clientAddress) {
+		this.clientAddress = clientAddress;
+	}
+
+	public byte[] getMasterProfilePhoto() {
+		return masterProfilePhoto;
+	}
+
+	public void setMasterProfilePhoto(byte[] masterProfilePhoto) {
+		this.masterProfilePhoto = masterProfilePhoto;
+	}
+
+	public byte[] getClientProfilePhoto() {
+		return clientProfilePhoto;
+	}
+
+	public void setClientProfilePhoto(byte[] clientProfilePhoto) {
+		this.clientProfilePhoto = clientProfilePhoto;
+	}
+
+	public String getmasterProfilePhotoImg() {
+		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
 			return "";
 		}
-		return Base64.getEncoder().encodeToString(profilePhoto);
+		return Base64.getEncoder().encodeToString(masterProfilePhoto);
 	}
 
-	public void setProfilePhoto(byte[] profilePhoto) {
-		this.profilePhoto = profilePhoto;
+	public String getClientProfilePhotoImg() {
+		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(masterProfilePhoto);
 	}
 
 }

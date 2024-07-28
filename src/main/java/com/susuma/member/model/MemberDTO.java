@@ -31,7 +31,7 @@ public class MemberDTO {
 	private Timestamp insertTime; // "INSERT_TIME"
 	private Timestamp updateTime; // "UPDATE_TIME"
 
-	// MASTER_CATEGORY, CATEGORY 테이블
+	// CATEGORY 테이블
 	private String caNo; // "CA_NO"
 	private String caName; // "CA_NAME"
 	private String caRootNo; // "CA_ROOT_NO"
@@ -39,7 +39,7 @@ public class MemberDTO {
 
 	private String rn; // 페이징 처리
 
-	// 메인 리뷰화면
+	// 수리기사 추가 정보(JOIN)
 	private String averageScore; // 별점 평균
 	private String reviewCount; // 별점 갯수
 	private String masterName; // 마스터 이름
@@ -47,6 +47,7 @@ public class MemberDTO {
 	private String reNo; // 리뷰 번호
 	private String content; // 리뷰내역
 	private String starScore; // 별점
+	private String requestDateTime; // 예약되어있는 날짜 및 시간
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -111,61 +112,6 @@ public class MemberDTO {
 		this.rn = rn;
 	}
 
-	public String getReNo() {
-		return reNo;
-	}
-
-	public void setReNo(String reNo) {
-		this.reNo = reNo;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getStarScore() {
-		return starScore;
-	}
-
-	public void setStarScore(String starScore) {
-		this.starScore = starScore;
-	}
-
-	public String getMasterName() {
-		return masterName;
-	}
-
-	public void setMasterName(String masterName) {
-		this.masterName = masterName;
-	}
-
-	public String getClientName() {
-		return clientName;
-	}
-
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
-	}
-
-	public String getAverageScore() {
-		return averageScore;
-	}
-
-	public void setAverageScore(String averageScore) {
-		this.averageScore = averageScore;
-	}
-
-	public String getReviewCount() {
-		return reviewCount;
-	}
-
-	public void setReviewCount(String reviewCount) {
-		this.reviewCount = reviewCount;
-	}
 
 	public String getMeNo() {
 		return meNo;
@@ -173,6 +119,14 @@ public class MemberDTO {
 
 	public void setMeNo(String meNo) {
 		this.meNo = meNo;
+	}
+
+	public String getClientNo() {
+		return clientNo;
+	}
+
+	public void setClientNo(String clientNo) {
+		this.clientNo = clientNo;
 	}
 
 	public String getType() {
@@ -259,13 +213,6 @@ public class MemberDTO {
 		return profilePhoto;
 	}
 
-	public String getProfilePhotoImg() {
-		if (profilePhoto == null || profilePhoto.equals("")) {
-			return "";
-		}
-		return Base64.getEncoder().encodeToString(profilePhoto);
-	}
-
 	public void setProfilePhoto(byte[] profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
@@ -326,11 +273,11 @@ public class MemberDTO {
 		this.workHours = workHours;
 	}
 
-	public String getpoint() {
+	public String getPoint() {
 		return point;
 	}
 
-	public void setpoint(String point) {
+	public void setPoint(String point) {
 		this.point = point;
 	}
 
@@ -374,35 +321,100 @@ public class MemberDTO {
 		this.caName = caName;
 	}
 
-	public String getCaRootName() {
-		return caRootName;
+	public String getCaRootNo() {
+		return caRootNo;
 	}
 
 	public void setCaRootNo(String caRootNo) {
 		this.caRootNo = caRootNo;
 	}
 
-	public String getCaRootNo() {
-		return caRootNo;
+	public String getCaRootName() {
+		return caRootName;
 	}
 
 	public void setCaRootName(String caRootName) {
 		this.caRootName = caRootName;
 	}
 
-	public String getrn() {
+	public String getRn() {
 		return rn;
 	}
 
-	public void setrn(String rn) {
+	public void setRn(String rn) {
 		this.rn = rn;
 	}
 
-	public String getClientNo() {
-		return clientNo;
+	public String getAverageScore() {
+		return averageScore;
 	}
 
-	public void setClientNo(String clientNo) {
-		this.clientNo = clientNo;
+	public void setAverageScore(String averageScore) {
+		this.averageScore = averageScore;
 	}
+
+	public String getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public String getReNo() {
+		return reNo;
+	}
+
+	public void setReNo(String reNo) {
+		this.reNo = reNo;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getStarScore() {
+		return starScore;
+	}
+
+	public void setStarScore(String starScore) {
+		this.starScore = starScore;
+	}
+
+	public String getRequestDateTime() {
+		return requestDateTime;
+	}
+
+	public void setRequestDateTime(String requestDateTime) {
+		this.requestDateTime = requestDateTime;
+	}
+
+	public String getProfilePhotoImg() {
+		if (profilePhoto == null || profilePhoto.equals("")) {
+			return "";
+		}
+		return Base64.getEncoder().encodeToString(profilePhoto);
+	}
+
+
 }

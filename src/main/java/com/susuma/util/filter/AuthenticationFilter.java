@@ -32,13 +32,17 @@ public class AuthenticationFilter implements Filter {
 
 		// 관리자 페이지 접근 제어
 		if (command.startsWith("/admin")) {
-			/*
-			 * if (meNo == null || !meNo.equals("1")) {
-			 * response.setContentType("text/html; charset=UTF-8;"); PrintWriter out =
-			 * response.getWriter(); out.println("<script>");
-			 * out.println("alert('관리자만 접근 가능한 페이지입니다.');"); out.println("location.href='" +
-			 * request.getContextPath() + "/';"); out.println("</script>"); return; }
-			 */
+
+			if (meNo == null || !type.equals("admin")) {
+				response.setContentType("text/html; charset=UTF-8;");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('관리자만 접근 가능한 페이지입니다.');");
+				out.println("location.href='" + request.getContextPath() + "/';");
+				out.println("</script>");
+				return;
+			}
+
 		} else {
 
 			// 로그인 시 접근 가능
@@ -52,11 +56,11 @@ public class AuthenticationFilter implements Filter {
 			case "/board/askWrite.board": // 1:1 문의 작성
 			case "/board/askView.board": // 1:1 문의 상세
 			case "/board/askModify.board": // 1:1 문의 수정
-			case "/member/list.review" : //리뷰 리스트 페이지
-			case "/member/list.request" : //예약 신청 페이지
-			case "/member/requestView.request" : //예약 내역 보기
-			
-				
+			case "/member/list.review": // 리뷰 리스트 페이지
+			case "/member/list.request": // 예약 신청 페이지
+			case "/member/requestView.request": // 예약 내역 보기
+			case "/member/request.member": // 수리 예약
+
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();
@@ -66,13 +70,12 @@ public class AuthenticationFilter implements Filter {
 					out.println("</script>");
 					return; // 컨트롤러 실행 x
 				}
-			
 
 			}
 
 			// 의뢰인만 접근 가능
 			switch (command) {
-			case "/member/memberRequest.member": // 수리 예약
+			case "/member/request.member": // 수리 예약
 				if (!type.equals("user")) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();

@@ -2,10 +2,10 @@ package com.susuma.controller;
 
 import java.io.IOException;
 
-import com.susuma.board.service.BoardService;
 import com.susuma.request.service.RequestService;
 import com.susuma.request.service.RequestServiceImpl;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,30 +37,63 @@ public class RequestController extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 
-		String uri = request.getRequestURI(); // ip, port번호 제외된 주소
-		String path = request.getContextPath(); // 프로젝트 식별 이름
-		String command = uri.substring(path.length());
+		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
+		String path = request.getContextPath(); // path : '/Susuma'
+		String command = uri.substring(path.length()); // command : '/member/join.member'
+		System.out.println("command : " + command);
 
-		RequestService service = new RequestServiceImpl(); 
+		RequestService service = new RequestServiceImpl();
 
-		System.out.println(command);
-		if (command.equals("/member/list.request")) {
+		switch (command) {
 
-			service = new RequestServiceImpl();
-			service.getList(request, response);
+		case "/admin/member/list.request":
 
-		} else if (command.equals("/member/requestView.request")) {
-			// 멤버 예약 내역 보기
-			service = new RequestServiceImpl();
-			service.getMemberRequest(request, response);
+			service.adminList(request, response); // 관리자 - 목록
+			break;
 
-		} else if (command.equals("/member/payAjax.request")) {
-			service = new RequestServiceImpl();
-            service.updatePaymentStatus(request, response);
-		}else {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND, "Not Found");
-                
-            }
-        }
+		case "/admin/member/view.request":
+			service.adminView(request, response); // 관리자 - 상세
+			break;
+
+		case "/admin/member/edit.request":
+			service.adminEdit(request, response); // 관리자 - 수정 화면
+			break;
+
+		case "/admin/member/editForm.request":
+			service.adminUpsert(request, response); // 관리자 - 수정
+			break;
+
+		case "/admin/member/delete.request":
+			service.adminDelete(request, response); // 관리자 - 삭제
+			break;
+
+		case "/member/list.request":
+			service.getRequestList(request, response);
+			break;
+
+		case "/member/view.request":
+			service.getRequest(request, response);
+			break;
+
+		case "/member/edit.request":
+			// service.edit(request, response);
+			break;
+
+		case "/member/editForm.request":
+			service.upsertRequest(request, response);
+			break;
+
+		case "/member/payAjax.request":
+			service.updatePaymentStatusAjax(request, response);
+			break;
+
+		case "/member/getRequestsAjax.request":
+			service.getRequestListAjax(request, response);
+			break;
+
+		default:
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			break;
+		}
+	}
 }
-    

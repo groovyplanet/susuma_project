@@ -1,22 +1,20 @@
 package com.susuma.request.model;
 
 import java.util.ArrayList;
-
-import com.susuma.member.model.MemberDTO;
+import java.util.Map;
 
 public interface RequestMapper {
 
-	public ArrayList<RequestDTO> getList();
-	
-	ArrayList<RequestDTO> getListByMember(String clientNo); // 추가된 메서드
+	public ArrayList<RequestDTO> selectRequests(Map<String, Object> params); // [1] 수리 요청 목록
 
-	ArrayList<RequestDTO> getListByMaster(String masterNo);
-	
-	public int insertRequest(RequestDTO dto);
+	public int countRequests(Map<String, Object> params); // [1-2] 수리 요청 목록 수(페이징 처리)
 
-	public RequestDTO getRequestByNo(String reqNo);
-	
-	RequestDTO selectRequest(String reqNo);
-	
-	 boolean updatePaymentStatus(RequestDTO dto);
+	public RequestDTO selectRequest(Map<String, Object> params); // [2] 수리 요청 1건
+
+	public int insertRequest(RequestDTO dto); // [3] 수리 요청 등록
+
+	public int updateRequest(RequestDTO dto); // [4] 수리 요청 수정
+
+	public void deleteRequest(String reNo); // [5] 수리 요청 삭제
+
 }

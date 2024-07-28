@@ -9,7 +9,7 @@
 	</div>
 	<ul class="btn_wrap">
 		<li>
-			<a href="#" class="btn">
+			<a href="${pageContext.request.contextPath }/member/logout.member" class="btn">
 				관리자 로그아웃
 				<i class="bi bi-chevron-right"></i>
 			</a>
