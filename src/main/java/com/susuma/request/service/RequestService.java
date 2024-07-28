@@ -21,11 +21,12 @@ public interface RequestService {
 
 	/* 사용자 */
 	void getRequestList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void getRequestListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void getRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void upsertRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
-	void updatePaymentStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	void updateStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

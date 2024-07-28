@@ -25,7 +25,6 @@ import jakarta.servlet.http.HttpSession;
 public class RequestServiceImpl implements RequestService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
-	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
 	/**
 	 * alert창 띄우고 화면 이동
@@ -54,9 +53,10 @@ public class RequestServiceImpl implements RequestService {
 		String content = request.getParameter("content");
 		String requestDate = request.getParameter("requestDate");
 		String requestTime = request.getParameter("requestTime");
-		String payStatus = request.getParameter("payStatus");
+		String status = request.getParameter("status");
+		String payAmount = request.getParameter("payAmount");
 		String cancelReason = request.getParameter("cancelReason");
-		return new RequestDTO(reqNo, masterNo, clientNo, content, requestDate, requestTime, payStatus, cancelReason);
+		return new RequestDTO(reqNo, masterNo, clientNo, content, requestDate, requestTime, status, payAmount, cancelReason);
 	}
 
 	/**
@@ -112,7 +112,13 @@ public class RequestServiceImpl implements RequestService {
 		} else if ("user".equals(type)) {
 			clientNo = meNo;
 		}
+		int recordsPerPage = 2; // 한 페이지당 보여줄 레코드 수
+		if ("adming".equals(type)) {
+			recordsPerPage = 10;
+		}
 
+		String status = request.getParameter("status");
+		status = (status == null || status.isEmpty()) ? "all" : status;
 		String sortField = request.getParameter("sortField");
 		sortField = (sortField == null || sortField.isEmpty()) ? "R.insert_time" : sortField;
 		String sortOrder = request.getParameter("sortOrder");
@@ -124,6 +130,7 @@ public class RequestServiceImpl implements RequestService {
 		Map<String, Object> params = new HashMap<>();
 		params.put("clientNo", clientNo);
 		params.put("masterNo", masterNo);
+		params.put("status", status);
 		params.put("sortField", sortField);
 		params.put("sortOrder", sortOrder);
 		params.put("startRow", startRow); // rownum 시작값
@@ -133,6 +140,7 @@ public class RequestServiceImpl implements RequestService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
 		ArrayList<RequestDTO> requestList = requestMapper.selectRequests(params);
+		RequestDTO cntDTO = requestMapper.selectRequestCnts(params);
 
 		// 페이징
 		int totalRecords = requestMapper.countRequests(params);
@@ -146,20 +154,21 @@ public class RequestServiceImpl implements RequestService {
 		params.put("totalRecords", totalRecords); // 총 레코드 수
 		params.put("startPage", startPage); // 표시할 시작 페이지
 		params.put("endPage", endPage); // 표시할 마지막 페이지
+		params.put("recordsPerPage", recordsPerPage); // 표시할 마지막 페이지
 		sql.close();
 
-		/* [3] 화면이동 */
 		request.setAttribute("list", requestList);
+		request.setAttribute("cntDTO", cntDTO);
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			request.setAttribute(entry.getKey(), entry.getValue());
 		}
-		request.getRequestDispatcher("request_list.jsp").forward(request, response); // 요청 포워드
 	}
 
 	@Override
 	public void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		getList(request, response); // 관리자, 사용자 공통
+		request.getRequestDispatcher("request_list.jsp").forward(request, response); // 요청 포워드
 
 	}
 
@@ -218,6 +227,7 @@ public class RequestServiceImpl implements RequestService {
 	public void getRequestList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		getList(request, response); // 관리자, 사용자 공통
+		request.getRequestDispatcher("request_list.jsp").forward(request, response); // 요청 포워드
 	}
 
 	@Override
@@ -243,7 +253,7 @@ public class RequestServiceImpl implements RequestService {
 		}
 	}
 
-	public void updatePaymentStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void updateStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		RequestDTO requestDTO = createRequestDTO(request, response); // 별도 함수로 처리
 		boolean isUpdate = true;
@@ -262,66 +272,12 @@ public class RequestServiceImpl implements RequestService {
 
 	@Override
 	public void getRequestListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 
+		getList(request, response); // 관리자, 사용자 공통
 
-		/* [1] 매개변수 */
-		String clientNo = request.getParameter("clientNo");
-		String masterNo = request.getParameter("masterNo");
-
-		HttpSession session = request.getSession();
-		String meNo = (String) session.getAttribute("meNo");
-		String type = (String) session.getAttribute("type");
-		if ("master".equals(type)) {
-			masterNo = meNo;
-		} else if ("user".equals(type)) {
-			clientNo = meNo;
-		}
-
-		String sortField = request.getParameter("sortField");
-		sortField = (sortField == null || sortField.isEmpty()) ? "R.insert_time" : sortField;
-		String sortOrder = request.getParameter("sortOrder");
-		sortOrder = (sortOrder == null || sortOrder.isEmpty()) ? "DESC" : sortOrder;
-		int currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
-		int startRow = (currentPage - 1) * recordsPerPage + 1;
-		int endRow = startRow + recordsPerPage - 1;
-
-		Map<String, Object> params = new HashMap<>();
-		params.put("clientNo", clientNo);
-		params.put("masterNo", masterNo);
-		params.put("sortField", sortField);
-		params.put("sortOrder", sortOrder);
-		params.put("startRow", startRow); // rownum 시작값
-		params.put("endRow", endRow); // rownum 끝값
-
-		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
-		RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
-		ArrayList<RequestDTO> requestList = requestMapper.selectRequests(params);
-
-		// 페이징
-		int totalRecords = requestMapper.countRequests(params);
-		int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
-		int startPage = Math.max(currentPage - 2, 1);
-		int endPage = Math.min(currentPage + 2, totalPages);
-		endPage = (currentPage == 1 || currentPage == 2) ? Math.min(endPage + 3 - currentPage, totalPages) : endPage;
-		startPage = (currentPage == totalPages || currentPage == totalPages - 1) ? Math.max(startPage - 2 + totalPages - currentPage, 1) : startPage;
-		params.put("currentPage", currentPage); // 현재 페이지
-		params.put("totalPages", totalPages); // 총 페이지 수
-		params.put("totalRecords", totalRecords); // 총 레코드 수
-		params.put("startPage", startPage); // 표시할 시작 페이지
-		params.put("endPage", endPage); // 표시할 마지막 페이지
-		sql.close();
-
-		/* [3] 화면이동 */
-		request.setAttribute("list", requestList);
-		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			request.setAttribute(entry.getKey(), entry.getValue());
-		}
-
-		// AJAX 요청을 처리하는 서블릿에서 RequestDispatcher를 사용하여 JSP 파일로 포워딩하면, 
-		// 서블릿은 JSP 파일의 내용(HTML, JSP 코드 등)을 클라이언트에 응답으로 전달합니다. 
-		// 이 HTML 내용이 AJAX 요청의 응답으로 사용됩니다. 
+		// AJAX 요청을 처리하는 서블릿에서 RequestDispatcher를 사용하여 JSP 파일로 포워딩하면,
+		// 서블릿은 JSP 파일의 내용(HTML, JSP 코드 등)을 클라이언트에 응답으로 전달합니다.
+		// 이 HTML 내용이 AJAX 요청의 응답으로 사용됩니다.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("request_list_fragment.jsp");
 		dispatcher.forward(request, response);
 	}

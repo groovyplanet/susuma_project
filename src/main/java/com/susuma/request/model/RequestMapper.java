@@ -9,6 +9,8 @@ public interface RequestMapper {
 
 	public int countRequests(Map<String, Object> params); // [1-2] 수리 요청 목록 수(페이징 처리)
 
+	public RequestDTO selectRequestCnts(Map<String, Object> params); // [1-3] 수리 상태별 개수
+
 	public RequestDTO selectRequest(Map<String, Object> params); // [2] 수리 요청 1건
 
 	public int insertRequest(RequestDTO dto); // [3] 수리 요청 등록

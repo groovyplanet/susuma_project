@@ -468,7 +468,7 @@ $(document).ready(function () {
 		}
 
 		/* createLiElements() : 날짜 클릭 시 수리기사가 지정한 근무 시간만큼 li 생성해서 추가 */
-		function createLiElements(startHour, endHour) {
+		function createLiElements(startHour, endHour, todayFlag) {
 			let ul = document.querySelector('.time-list');
 			ul.innerHTML = '';
 
@@ -483,6 +483,16 @@ $(document).ready(function () {
 				var requestDateStr = $("input[name=requestDate]").val() + ` ${init.addZero(hour)}:00`; // 선택한 예약일시 -> "2024. 7. 29(월) 12:00"
 				if (requestDateTimeStr.includes(requestDateStr)) { // 해당 일시가 예약일시에 포함된다면 선택 불가
 					button.classList.add('disabled');
+				}
+
+				// 오늘 날짜인 경우 현재 시간 이전의 시간에는 disabled 클래스 추가
+				if (todayFlag) {
+					let now = new Date();
+					let today = now.toISOString().split('T')[0]; // "YYYY-MM-DD" 형식의 오늘 날짜
+					let currentHour = now.getHours();
+					if (hour <= currentHour) {
+						button.classList.add('disabled');
+					}
 				}
 
 				button.type = "button";
@@ -511,7 +521,7 @@ $(document).ready(function () {
 				let index = masterScheduleData.findIndex((schedule) => schedule.day === day);
 				let startHour = masterScheduleData[index].startHour;
 				let endHour = masterScheduleData[index].endHour;
-				createLiElements(startHour, endHour);
+				createLiElements(startHour, endHour, classList.contains('today'));
 				if (!document.querySelector('.time-list-wrap').classList.contains("show")) {
 					document.querySelector('.time-list-wrap').classList.add("show");
 					document.querySelector("#calendar-wrap").classList.remove("error");
