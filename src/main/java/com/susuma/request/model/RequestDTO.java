@@ -31,6 +31,7 @@ public class RequestDTO {
 	private String clientName;
 	private String masterAddress;
 	private String clientAddress;
+	private String clientAddressDetail;
 	private byte[] masterProfilePhoto;
 	private byte[] clientProfilePhoto;
 
@@ -40,12 +41,20 @@ public class RequestDTO {
 	private String caRootNo; // "CA_ROOT_NO"
 	private String caRootName; // "CA_ROOT_NAME"
 
+	// 예약내역에서 상태 별 개수 확인
+	private String allCnt;
+	private String requestedCnt;
+	private String approvedCnt;
+	private String paywaitCnt;
+	private String paidCnt;
+	private String cancelCnt;
+
 	public RequestDTO() {
 
 	}
 
 	// upsert 시 사용
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String payStatus, String cancelReason) {
+	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String payAmount, String cancelReason) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -53,7 +62,8 @@ public class RequestDTO {
 		this.content = content;
 		this.requestDate = requestDate;
 		this.requestTime = requestTime;
-		this.payStatus = payStatus;
+		this.status = status;
+		this.payAmount = payAmount;
 		this.cancelReason = cancelReason;
 	}
 
@@ -324,7 +334,7 @@ public class RequestDTO {
 		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
 			return "";
 		}
-		return Base64.getEncoder().encodeToString(masterProfilePhoto);
+		return Base64.getEncoder().encodeToString(clientProfilePhoto);
 	}
 
 	public String getCaNo() {
@@ -357,6 +367,62 @@ public class RequestDTO {
 
 	public void setCaRootName(String caRootName) {
 		this.caRootName = caRootName;
+	}
+
+	public String getClientAddressDetail() {
+		return clientAddressDetail;
+	}
+
+	public void setClientAddressDetail(String clientAddressDetail) {
+		this.clientAddressDetail = clientAddressDetail;
+	}
+
+	public String getAllCnt() {
+		return allCnt;
+	}
+
+	public void setAllCnt(String allCnt) {
+		this.allCnt = allCnt;
+	}
+
+	public String getRequestedCnt() {
+		return requestedCnt;
+	}
+
+	public void setRequestedCnt(String requestedCnt) {
+		this.requestedCnt = requestedCnt;
+	}
+
+	public String getApprovedCnt() {
+		return approvedCnt;
+	}
+
+	public void setApprovedCnt(String approvedCnt) {
+		this.approvedCnt = approvedCnt;
+	}
+
+	public String getPaywaitCnt() {
+		return paywaitCnt;
+	}
+
+	public void setPaywaitCnt(String paywaitCnt) {
+		this.paywaitCnt = paywaitCnt;
+	}
+
+	public String getPaidCnt() {
+		return paidCnt;
+	}
+
+	public void setPaidCnt(String paidCnt) {
+		this.paidCnt = paidCnt;
+	}
+
+	public String getCancelCnt() {
+		return cancelCnt;
+	}
+
+	public void setCancelCnt(String cancelCnt) {
+		this.cancelCnt = cancelCnt;
 	}
 
 }

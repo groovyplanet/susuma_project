@@ -117,18 +117,25 @@
 						</div>
 						<div class="input-area">
 							<label for="address" class="required">주소</label>
-							<input type="hidden" name="address">
-							<input type="hidden" name="latitude">
-							<input type="hidden" name="longitude">
+							<input type="hidden" name="address" value="${myDTO.address}">
+							<input type="hidden" name="latitude" value="${myDTO.latitude}">
+							<input type="hidden" name="longitude" value="${myDTO.longitude}">
 							<button type="button" id="btn-zipcode" class="btn-form btn-zipcode" onclick="execDaumPostcode()">
-								주소 입력
-								<i class="bi bi-chevron-right"></i>
+								<c:choose>
+									<c:when test="${myDTO.address == null or myDTO.address eq '' }">
+										주소 검색
+										<i class="bi bi-search"></i>
+									</c:when>
+									<c:otherwise>
+										<p style="text-align: left;">${myDTO.address}</p>
+									</c:otherwise>
+								</c:choose>
 							</button>
-							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail">
+							<input type="text" class="input-field" placeholder="상세주소를 입력해주세요." autocomplete="no" name="addressDetail" value="${myDTO.addressDetail}">
 						</div>
 						<div class="input-area">
 							<label for="phoneNum" class="required">연락처</label>
-							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13" required>
+							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13" value="${myDTO.phoneNum}">
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
@@ -160,9 +167,6 @@
 								</div>
 							</div>
 							<a href="list.request" class="btn-enter">확인</a>
-							<button type="button" class="btn-close-modal">
-								<img src="${pageContext.request.contextPath }/resources/img/iconClose.png" alt="닫기 버튼">
-							</button>
 						</div>
 					</div>
 					<!-- //modal -->

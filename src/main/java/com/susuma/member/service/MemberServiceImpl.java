@@ -599,11 +599,22 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void getMemberDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		// 회원 정보 가져오기
+		// 회원 정보 가져오기(수리기사)
 		getMember(request, response);
+		
+		// 의뢰인 회원 정보 가져오기(주소, 연락처)
+		HttpSession session = request.getSession();
+		String meNo = (String) session.getAttribute("meNo");
+		Map<String, Object> params = new HashMap<>();
+		params.put("meNo", meNo);
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member = sql.getMapper(MemberMapper.class);
+		MemberDTO myDTO = Member.selectMember(params);
+		sql.close();
 
 		// 포워딩
 		request.setAttribute("gnb", "request");
+		request.setAttribute("myDTO", myDTO);
 		request.getRequestDispatcher("request.jsp").forward(request, response);
 
 	}

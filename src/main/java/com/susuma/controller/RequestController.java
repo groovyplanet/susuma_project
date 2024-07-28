@@ -84,7 +84,15 @@ public class RequestController extends HttpServlet {
 			break;
 
 		case "/member/payAjax.request":
-			service.updatePaymentStatusAjax(request, response);
+			service.updateStatusAjax(request, response); // 결제 (의뢰인)
+			break;
+
+		case "/member/approveAjax.request":
+			service.updateStatusAjax(request, response); // 예약 승인 (수리기사)
+			break;
+
+		case "/member/payRequestAjax.request":
+			service.updateStatusAjax(request, response); // 결제 요청 (수리기사)
 			break;
 
 		case "/member/getRequestsAjax.request":

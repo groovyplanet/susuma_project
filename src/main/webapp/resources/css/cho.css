@@ -204,11 +204,19 @@
 .modal.request .container .request-content .request-info-area p.info-title { font-size: 16px; font-weight: 500; } 
 .modal.request .container .request-content .request-desc-area { margin-top: 10px; } 
 
-/* 예약 내역 모달 */
+/* 예약 내역 */
+.request-list .container .search-wrap { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
+.request-list .container .search-wrap input[type="radio"] { display: none; } 
+.request-list .container .search-wrap label { background-color: #f8f9fa; border: 1px solid #ced4da; border-radius: 5px; padding: 10px 15px; margin: 0 5px; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; } 
+.request-list .container .search-wrap input[type="radio"]:checked+label { background-color: #F49D00; color: white; border-color: #F49D00; } 
+.request-list .container .search-wrap label:hover { background-color: #e9ecef; } 
 .modal.request-list .container { display: block; width: auto; height: auto; } 
 .modal.request-list .container .modal-title { font-size: 20px; font-weight: 600; text-align: center; } 
 .modal.request-list .container .pay-content { margin: 30px 0 15px; font-size: 13px; width: 380px; text-align: left; } 
 .modal.request-list .container .pay-content p { font-size: 15px; margin-top: 7px; } 
+.modal.request-list .container .pay-content .input-money { width: 100%; border: 1px solid #bbb; padding: 8px 8px; border-radius: 4px; margin-top: 11px; color: #666; font-weight: 500; font-size: 15px; } 
+
+
 
 /* pagination */
 .main-section .pagination { display: flex; justify-content: center; padding: 40px 0; } 
