@@ -88,19 +88,19 @@
 								<div class="title">수리 요청 내용</div>
 								<div class="content">${requestDTO.content }</div>
 							</div>
-							<div class="content-wrap">
-								<div class="title">결제 내역</div>
-								<div class="content-pay">
-									<i class="bi bi-clock-history"></i>
-									<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
-									<strong>
-										<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
-										원
-									</strong>
-									결제
-								</div>
-							</div>
 							<c:if test="${requestDTO.status eq 'paid'}">
+								<div class="content-wrap">
+									<div class="title">결제 내역</div>
+									<div class="content-pay">
+										<i class="bi bi-clock-history"></i>
+										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<strong>
+											<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
+											원
+										</strong>
+										결제
+									</div>
+								</div>
 								<c:choose>
 									<c:when test="${reviewDTO != null }">
 										<div class="content-wrap">
