@@ -21,6 +21,16 @@ public class ReviewDTO {
 	private byte[] masterProfilePhoto;
 	private byte[] clientProfilePhoto;
 
+	// REQUEST
+	private String requestDate;
+	private String requestTime;
+
+	// CATEGORY 테이블
+	private String caNo; // "CA_NO"
+	private String caName; // "CA_NAME"
+	private String caRootNo; // "CA_ROOT_NO"
+	private String caRootName; // "CA_ROOT_NAME"
+
 	public ReviewDTO() {
 		super();
 	}
@@ -175,6 +185,54 @@ public class ReviewDTO {
 			return "";
 		}
 		return Base64.getEncoder().encodeToString(masterProfilePhoto);
+	}
+
+	public String getRequestDate() {
+		return requestDate;
+	}
+
+	public void setRequestDate(String requestDate) {
+		this.requestDate = requestDate;
+	}
+
+	public String getRequestTime() {
+		return requestTime;
+	}
+
+	public void setRequestTime(String requestTime) {
+		this.requestTime = requestTime;
+	}
+
+	public String getCaNo() {
+		return caNo;
+	}
+
+	public void setCaNo(String caNo) {
+		this.caNo = caNo;
+	}
+
+	public String getCaName() {
+		return caName;
+	}
+
+	public void setCaName(String caName) {
+		this.caName = caName;
+	}
+
+	public String getCaRootNo() {
+		return caRootNo;
+	}
+
+	public void setCaRootNo(String caRootNo) {
+		this.caRootNo = caRootNo;
+	}
+
+	public String getCaRootName() {
+		return caRootName;
+	}
+
+	public void setCaRootName(String caRootName) {
+		this.caRootName = caRootName;
 	}
 
 }

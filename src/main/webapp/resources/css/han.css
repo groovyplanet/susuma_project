@@ -412,7 +412,19 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
  -webkit-appearance: none; margin: 0; } 
 
 /* 예약 상세 */
- .request-view .stars {display: flex;cursor: pointer; } 
-.request-view .star {font-size: 4rem;color: lightgray; } 
-.request-view .star.checked {color: gold; } 
-.request-view .hidden-input {display: none; } 
+.request-view .stars { display: flex; cursor: pointer; } 
+.request-view .star { font-size: 4rem; color: lightgray; } 
+.request-view .star.checked { color: gold; } 
+.request-view .hidden-input { display: none; } 
+
+/* 후기 내역 */
+.review-list .main-section .container .content { display: flex; flex-direction: column; align-items: center; width: 1500px; padding: 30px 50px; margin-top: 40px; } 
+.review-list .member-section { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px 30px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); width: 80%; margin-top: 10px; gap: 10px; } 
+.review-list .member-section .star-score { color: gold; margin-right: 4px; } 
+.review-list .profile-logoimg { flex-shrink: 0; margin-right: 20px; } 
+.review-list .profile-logo-sm { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ddd; } 
+.review-list .infodetail { flex-grow: 1; } 
+.review-list .infodetail strong { display: inline-block; width: 120px; font-weight: 600; color: #333; } 
+.review-list .infodetail span { font-size: 16px; color: #555; } 
+.review-list .review-status { margin-left: 20px; } 
+.review-list .btn.request { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; line-height: 32px; } 
