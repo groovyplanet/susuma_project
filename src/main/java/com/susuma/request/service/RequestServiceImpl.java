@@ -156,7 +156,7 @@ public class RequestServiceImpl implements RequestService {
 		params.put("totalRecords", totalRecords); // 총 레코드 수
 		params.put("startPage", startPage); // 표시할 시작 페이지
 		params.put("endPage", endPage); // 표시할 마지막 페이지
-		params.put("recordsPerPage", recordsPerPage); // 표시할 마지막 페이지
+		params.put("recordsPerPage", recordsPerPage);
 		sql.close();
 
 		request.setAttribute("list", requestList);

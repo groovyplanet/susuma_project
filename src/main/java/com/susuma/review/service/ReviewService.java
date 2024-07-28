@@ -18,6 +18,8 @@ public interface ReviewService {
 	/* 사용자 */
 	void getReviewList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
+	void getReviewListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void upsertReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

@@ -34,60 +34,123 @@
 									</c:choose>
 								</div>
 								<div class="infodetail">
-									<div class="member-name">
-										<strong>마스터님 성함 : </strong>
+									<div class="repair_date">
 										<span>
-											<a href="masterView.member?meNo=${requestDTO.masterNo }">${requestDTO.masterName }</a>
+											<i class="bi bi-calendar-check" style="margin-right: 4px;"></i>${requestDTO.requestDate }</span>
+										<span>${requestDTO.requestTime }</span>
+									</div>
+									<div class="master_name">
+										${requestDTO.masterName } 수리기사님
+										<c:set var="addressParts" value="${fn:split(requestDTO.masterAddress, ' ')}" />
+										<span class="address">
+											<i class="bi bi-geo-alt"></i>
+											<span>${addressParts[0]}</span>
+											<span>${addressParts[1]}</span>
 										</span>
 									</div>
-									<div class="member-map">
-										<strong>위치 : </strong>
-										${requestDTO.masterAddress }
-									</div>
-									<div class="repair-type">
-										<strong>수리 희망 분야 :</strong>
-										[CSS / 백엔드]
+									<div class="repair_type">
+										<p class="master-category">
+											<span>${requestDTO.caRootName }
+												<i class="bi bi-chevron-right"></i>${requestDTO.caName }</span>
+										</p>
 									</div>
 								</div>
 								<div class="repair-status">
-									<button class="btn request" id="payButton">결제요청</button>
-									<button class="btn completerequest" style="display: none;">수리완료</button>
+									<c:choose>
+										<c:when test="${requestDTO.status eq 'requested'}">
+											<button type="button" class="btn">예약 승인 대기</button>
+										</c:when>
+										<c:when test="${requestDTO.status eq 'approved'}">
+											<c:choose>
+												<c:when test="${requestDateFmt >= nowDate}">
+													<!-- 예약일이 미래 -->
+													<button type="button" class="btn">예약 완료</button>
+												</c:when>
+												<c:otherwise>
+													<!-- 예약일이 과거 -->
+													<button type="button" class="btn complete">수리 완료</button>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${requestDTO.status eq 'paywait'}">
+											<button type="button" class="btn submit pay" data-reqno="${requestDTO.reqNo}" data-payamount='${requestDTO.payAmount}'>결제하기</button>
+										</c:when>
+										<c:when test="${requestDTO.status eq 'paid'}">
+											<button type="button" class="btn complete">결제 완료</button>
+										</c:when>
+										<c:when test="${requestDTO.status eq 'cancel'}">
+											<button type="button" class="btn complete">예약 취소</button>
+										</c:when>
+									</c:choose>
 								</div>
 							</div>
-							<div class="review-box-content">
-								<div class="detail-content">수리 요청 내용</div>
-								<div class="preserve-line-breaks" style="padding: 0 30px;">${requestDTO.content }</div>
+							<div class="content-wrap">
+								<div class="title">수리 요청 내용</div>
+								<div class="content">${requestDTO.content }</div>
 							</div>
-							<c:choose>
-								<c:when test="${reviewDTO != null }">
-									<div class="review-box-content">
-										<div class="detail-content">리뷰 내용</div>
-										<div style="padding: 0 30px;">${reviewDTO.starScore }</div>
-										<div class="preserve-line-breaks" style="padding: 0 30px;">${reviewDTO.content }</div>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<form action="editForm.review" method="post" id="form-review">
-										<input type="hidden" name="reqNo" value="${requestDTO.reqNo}">
-										<div class="review-box-content">
-											<div class="detail-content">리뷰 작성</div>
-											<div class="review-input">
-												<div class="review-rating">
-													서비스는 어떠셨나요?
-													<div class="stars">
-														<span class="star" data-value="1">★</span>
-														<span class="star" data-value="2">★</span>
-														<span class="star" data-value="3">★</span>
-														<span class="star" data-value="4">★</span>
-														<span class="star" data-value="5">★</span>
-													</div>
-													<input type="hidden" id="starScore" name="starScore" value="0">
-													<!-- 별점 hidden 필드 추가 -->
-													<div class="review-content">
-														<label for="content">내용 :</label>
-														<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요."></textarea>
-													</div>
-													<!-- <div class="file-attachment">
+							<div class="content-wrap">
+								<div class="title">결제 내역</div>
+								<div class="content-pay">
+									<i class="bi bi-clock-history"></i>
+									<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+									<strong>
+										<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
+										원
+									</strong>
+									결제
+								</div>
+							</div>
+							<c:if test="${requestDTO.status eq 'paid'}">
+								<c:choose>
+									<c:when test="${reviewDTO != null }">
+										<div class="content-wrap">
+											<div class="title">리뷰 내용</div>
+											<div class="star-score">
+												<c:forEach var="i" begin="1" end="5">
+													<c:choose>
+														<c:when test="${i <= reviewDTO.starScore}">
+															<i class="bi bi-star-fill"></i>
+														</c:when>
+														<c:otherwise>
+															<i class="bi bi-star"></i>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</div>
+											<div class="content">${reviewDTO.content }</div>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<form action="editForm.review" method="post" id="form-review">
+											<input type="hidden" name="reqNo" value="${requestDTO.reqNo}">
+											<div class="content-wrap">
+												<div class="title">리뷰 작성</div>
+												<div class="review-input">
+													<div class="review-rating">
+														서비스는 어떠셨나요?
+														<div class="stars">
+															<span class="star" data-value="1">
+																<i class="bi bi-star-fill"></i>
+															</span>
+															<span class="star" data-value="2">
+																<i class="bi bi-star-fill"></i>
+															</span>
+															<span class="star" data-value="3">
+																<i class="bi bi-star-fill"></i>
+															</span>
+															<span class="star" data-value="4">
+																<i class="bi bi-star-fill"></i>
+															</span>
+															<span class="star" data-value="5">
+																<i class="bi bi-star-fill"></i>
+															</span>
+														</div>
+														<input type="hidden" id="starScore" name="starScore" value="0">
+														<!-- 별점 hidden 필드 추가 -->
+														<div class="review-content">
+															<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요."></textarea>
+														</div>
+														<!-- <div class="file-attachment">
 														파일 첨부
 														<input type="file" id="file-upload" name="files" multiple>
 														<div class="file-list" id="file-list">
@@ -97,15 +160,16 @@
 															<span class="file-item">수리사진04.png</span>
 														</div>
 													</div> -->
-													<div class="action-buttons">
-														<button type="submit" class="btn save" onclick="saveReview()">저장</button>
+														<div class="action-buttons">
+															<button type="submit" class="btn save" onclick="saveReview()">리뷰 등록</button>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									</form>
-								</c:otherwise>
-							</c:choose>
+										</form>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
 						</c:when>
 						<%-- 수리기사 --%>
 						<c:otherwise>
@@ -168,14 +232,26 @@
 							<div class="location-area" style="display: flex; justify-content: space-around; margin-top: 15px;">
 								<div id="map" style="width: 700px; height: 400px;"></div>
 							</div>
-							<div class="review-box-content">
-								<div class="detail-content">수리 요청 내용</div>
-								<div class="preserve-line-breaks" style="padding: 0 30px;">${requestDTO.content }</div>
+							<div class="content-wrap">
+								<div class="title">수리 요청 내용</div>
+								<div class="content">${requestDTO.content }</div>
 							</div>
-							<c:if test="${reviewDTO != null }">
-								<div class="review-box-content">
-									<div class="detail-content">리뷰 내용</div>
-									<div class="preserve-line-breaks" style="padding: 0 30px;">${reviewDTO.content }</div>
+							<c:if test="${requestDTO.status eq 'paid' and reviewDTO != null }">
+								<div class="content-wrap">
+									<div class="title">리뷰 내용</div>
+									<div class="star-score">
+										<c:forEach var="i" begin="1" end="5">
+											<c:choose>
+												<c:when test="${i <= reviewDTO.starScore}">
+													<i class="bi bi-star-fill"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="bi bi-star"></i>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
+									<div class="content">${reviewDTO.content }</div>
 								</div>
 							</c:if>
 						</c:otherwise>
