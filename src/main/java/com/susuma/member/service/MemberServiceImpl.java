@@ -641,6 +641,7 @@ public class MemberServiceImpl implements MemberService {
 
 		try (SqlSession sql = sqlSessionFactory.openSession()) {
 			MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
+			PointMapper pointMapper = sql.getMapper(PointMapper.class);
 
 			// 포인트 조회
 			Integer points = memberMapper.MemberPoints(meNo);
@@ -652,11 +653,15 @@ public class MemberServiceImpl implements MemberService {
 			// 포인트 적립 내역 및 사용 내역 조회
 			List<MemberDTO> earnings = memberMapper.getPointEarnings(meNo);
 			List<MemberDTO> spendings = memberMapper.getPointSpendings(meNo);
+			List<PointDTO> withdrawals = pointMapper.getWithdrawalHistory(meNo);
+			
+			
 
 			// 결과를 요청 속성에 설정
 			request.setAttribute("points", points);
 			request.setAttribute("earnings", earnings);
 			request.setAttribute("spendings", spendings);
+			request.setAttribute("withdrawals", withdrawals);
 
 			// 포워딩
 			request.getRequestDispatcher("point.jsp").forward(request, response);
@@ -736,6 +741,7 @@ public class MemberServiceImpl implements MemberService {
 	        pointMapper.updateMemberPoints(meNo, updatedPoints); // MEMBER 테이블의 포인트 업데이트
 	        pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
 
+	        
 	        // 성공 응답
 	        response.setContentType("application/json");
 	        response.getWriter().write("{\"status\":\"success\",\"message\":\"출금이 완료되었습니다.\"}");

@@ -137,7 +137,7 @@
 .main-section .container .content .account-info .bank-info { display: flex; align-items: center; margin-bottom: 5px; } 
 .main-section .container .content .account-info .btn-edit { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; } 
 .main-section .container .content .account-info .account-number { font-size: 16px; color: #555; } 
-.main-section .container .content .account-info .points-section { margin: 30px 20px 10px; } 
+.main-section .container .content .account-info .points-section { margin: 30px 50px 10px; } 
 .main-section .container .content .account-info .points-header { display: flex; align-items: center; } 
 .main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
 .main-section .container .content .account-info .btn-withdraw,
