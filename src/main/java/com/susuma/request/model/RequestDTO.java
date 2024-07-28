@@ -32,6 +32,8 @@ public class RequestDTO {
 	private String masterAddress;
 	private String clientAddress;
 	private String clientAddressDetail;
+	private String masterPhoneNum;
+	private String clientPhoneNum;
 	private byte[] masterProfilePhoto;
 	private byte[] clientProfilePhoto;
 
@@ -424,5 +426,23 @@ public class RequestDTO {
 	public void setCancelCnt(String cancelCnt) {
 		this.cancelCnt = cancelCnt;
 	}
+
+	public String getMasterPhoneNum() {
+		return masterPhoneNum;
+	}
+
+	public void setMasterPhoneNum(String masterPhoneNum) {
+		this.masterPhoneNum = masterPhoneNum;
+	}
+
+	public String getClientPhoneNum() {
+		return clientPhoneNum;
+	}
+
+	public void setClientPhoneNum(String clientPhoneNum) {
+		this.clientPhoneNum = clientPhoneNum;
+	}
+	
+	
 
 }
