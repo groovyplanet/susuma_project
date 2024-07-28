@@ -9,11 +9,10 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.susuma.member.model.MemberDTO;
-import com.susuma.member.model.MemberMapper;
-import com.susuma.request.model.RequestDTO;
 import com.susuma.request.model.RequestDTO;
 import com.susuma.request.model.RequestMapper;
+import com.susuma.review.model.ReviewDTO;
+import com.susuma.review.model.ReviewMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.RequestDispatcher;
@@ -89,10 +88,13 @@ public class RequestServiceImpl implements RequestService {
 		SqlSession sql = sqlSessionFactory.openSession();
 		RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
 		RequestDTO requestDTO = requestMapper.selectRequest(params);
+		ReviewMapper reviewMapper = sql.getMapper(ReviewMapper.class);
+		ReviewDTO reviewDTO = reviewMapper.selectReview(params);
 		sql.close();
 
 		/* [3] 요청에 데이터 설정 */
 		request.setAttribute("requestDTO", requestDTO);
+		request.setAttribute("reviewDTO", reviewDTO);
 	}
 
 	/**
@@ -175,7 +177,7 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void adminView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 리뷰 정보 가져오기
+		// 수리 요청 정보 가져오기
 		getRequestDTO(request, response);
 
 		// 포워딩
@@ -185,7 +187,7 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void adminEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 리뷰 정보 가져오기
+		// 수리 요청 정보 가져오기
 		getRequestDTO(request, response);
 
 		// 포워딩
@@ -233,7 +235,7 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void getRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		// 리뷰 정보 가져오기
+		// 수리 요청 정보 + 리뷰 가져오기
 		getRequestDTO(request, response);
 
 		// 포워딩
