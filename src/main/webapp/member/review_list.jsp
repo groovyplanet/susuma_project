@@ -1,80 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ include file="../include/head.jsp"%>
-<style>
-.main-section .container .content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 1500px;
-	padding: 30px 50px;
-	margin-top: 40px;
-}
-
-.member-section {
-	display: flex;
-	align-items: center;
-	background-color: #f9f9f9;
-	border: 1px solid #e0e0e0;
-	border-radius: 10px;
-	padding: 20px;
-	margin-bottom: 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	width: 80%;
-	margin-top: 10px;
-}
-
-.profile-logoimg {
-	flex-shrink: 0;
-	margin-right: 20px;
-}
-
-.profile-logo-sm {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	border: 2px solid #ddd;
-}
-
-.infodetail {
-	flex-grow: 1;
-}
-
-.infodetail strong {
-	display: inline-block;
-	width: 120px;
-	font-weight: 600;
-	color: #333;
-}
-
-.infodetail span {
-	font-size: 16px;
-	color: #555;
-}
-
-.review-status {
-	margin-left: 20px;
-}
-
-.btn.request {
-	display: inline-block;
-	height: 34px;
-	padding: 0 20px;
-	border: 1px solid #DDD;
-	border-radius: 13px;
-	background-color: #fff;
-	color: #555;
-	font-size: 12px;
-	font-weight: 500;
-	letter-spacing: -0.5px;
-	line-height: 32px;
-}
-</style>
-
 </head>
 
-<body>
+<body class="request request-list review-list">
 	<%@ include file="../include/header.jsp"%>
 
 	<section class="main-section">
@@ -84,57 +17,98 @@
 				<h4 style="border-bottom: 1px solid black;">후기 내역</h4>
 				<c:forEach var="dto" items="${list }">
 					<div class="member-section">
-						<div class="profile-logoimg">
-							<c:choose>
-								<c:when test="${dto.masterProfilePhotoImg == '' }">
-									<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-logo-sm">
-								</c:when>
-								<c:otherwise>
-									<img src="data:image/png;base64,${dto.masterProfilePhotoImg }" alt="Profile Picture" class="profile-logo-sm">
-								</c:otherwise>
-							</c:choose>
-						</div>
-						<div class="infodetail">
-							<a href="${pageContext.request.contextPath }/member/requestView.request?reqNo=${dto.reqNo }">
-								<div class="member-name">
-									<c:choose>
-										<c:when test="${not empty dto.masterName}">
-											<strong>마스터 성함 :</strong>
-											${dto.masterName}
-										</c:when>
-										<c:when test="${not empty dto.clientName}">
-											<strong>고객 성함 :</strong>
-											${dto.clientName}
-										</c:when>
-									</c:choose>
-									<span></span>
-								</div>
-								<div class="member-map">
-									<strong>위치 :</strong>
-									${dto.address }
-								</div>
-								<div class="review-type">
-									<strong>별점 :</strong>
-									<span id="starview" style="color: gold;">
-
-										<c:forEach var="i" begin="1" end="5">
-											<c:choose>
-												<c:when test="${i <= dto.starScore}">
-                ★
-            </c:when>
-												<c:otherwise>
-                ☆
-            </c:otherwise>
-											</c:choose>
-										</c:forEach>
-
-									</span>
-								</div>
-							</a>
-						</div>
-						<div class="review-status">
-							<button class="btn request">수리완료</button>
-						</div>
+						<c:choose>
+							<%-- 의뢰인 --%>
+							<c:when test="${sessionScope.type eq 'user'}">
+								<c:choose>
+									<c:when test="${dto.masterProfilePhotoImg == '' }">
+										<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-photo">
+									</c:when>
+									<c:otherwise>
+										<img src="data:image/png;base64,${dto.masterProfilePhotoImg }" alt="Profile Picture" class="profile-photo">
+									</c:otherwise>
+								</c:choose>
+								<a href="${pageContext.request.contextPath }/member/view.request?reqNo=${dto.reqNo }" class="info">
+									<div class="repair_date">
+										<span>
+											<i class="bi bi-calendar-check" style="margin-right: 4px;"></i>${dto.requestDate }</span>
+										<span>${dto.requestTime }</span>
+									</div>
+									<div class="master_name">
+										${dto.masterName } 수리기사님
+										<c:set var="addressParts" value="${fn:split(dto.masterAddress, ' ')}" />
+										<span class="address">
+											<i class="bi bi-geo-alt"></i>
+											<span>${addressParts[0]}</span>
+											<span>${addressParts[1]}</span>
+										</span>
+									</div>
+									<div class="repair_type">
+										<p class="master-category">
+											<span>${dto.caRootName }
+												<i class="bi bi-chevron-right"></i>${dto.caName }</span>
+										</p>
+									</div>
+									<div class="explain">
+										<span id="starview" class="star-score">
+											<c:forEach var="i" begin="1" end="5">
+												<c:choose>
+													<c:when test="${i <= dto.starScore}">
+														<i class="bi bi-star-fill"></i>
+													</c:when>
+													<c:otherwise>
+														<i class="bi bi-star"></i>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</span>
+										<span>${dto.content }</span>
+									</div>
+								</a>
+							</c:when>
+							<%-- 수리기사 --%>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${dto.clientProfilePhotoImg == '' }">
+										<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Picture" class="profile-photo">
+									</c:when>
+									<c:otherwise>
+										<img src="data:image/png;base64,${dto.clientProfilePhotoImg }" alt="Profile Picture" class="profile-photo">
+									</c:otherwise>
+								</c:choose>
+								<a href="${pageContext.request.contextPath }/member/view.request?reqNo=${dto.reqNo }" class="info">
+									<div class="repair_date">
+										<span>
+											<i class="bi bi-calendar-check" style="margin-right: 4px;"></i>${dto.requestDate }</span>
+										<span>${dto.requestTime }</span>
+									</div>
+									<div class="master_name">
+										${dto.clientName } 의뢰인
+										<span class="address">
+											<i class="bi bi-geo-alt"></i>
+											<span>${dto.clientAddress }</span>
+											<span> </span>
+											<span>${dto.clientAddressDetail }</span>
+										</span>
+									</div>
+									<div class="explain">
+										<span id="starview" class="star-score">
+											<c:forEach var="i" begin="1" end="5">
+												<c:choose>
+													<c:when test="${i <= dto.starScore}">
+														<i class="bi bi-star-fill"></i>
+													</c:when>
+													<c:otherwise>
+														<i class="bi bi-star"></i>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</span>
+										<span>${dto.content }</span>
+									</div>
+								</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</c:forEach>
 				<button class="review-more">더보기</button>
