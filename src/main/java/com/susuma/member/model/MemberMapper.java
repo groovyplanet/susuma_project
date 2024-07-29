@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.susuma.request.model.RequestDTO;
-
 public interface MemberMapper {
 
 	public ArrayList<MemberDTO> selectMembers(Map<String, Object> params); // [1] 회원 목록
@@ -30,20 +28,17 @@ public interface MemberMapper {
 
 	public ArrayList<MemberDTO> selectMainRe(); // 메인 리뷰리스트
 
-	Integer MemberPoints(String meNo);
+	public Integer MemberPoints(String meNo);
 
-	List<MemberDTO> getPointEarnings(String meNo);
+	public void updateMemberPoints(Map<String, Object> params);
 
-	List<MemberDTO> getPointSpendings(String meNo);
+	public List<MemberDTO> getPointEarnings(String meNo);
 
-	List<MemberDTO> getMinus(String meNo);
+	public List<MemberDTO> getPointSpendings(String meNo);
 
-	public static void updateMemberPoints(RequestDTO requestDTO) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public MemberDTO selectLaLo(String meNo); //거리별검색 경도,위도
-	
+	public List<MemberDTO> getMinus(String meNo);
+
+	public MemberDTO selectLaLo(String meNo); // 거리별검색 경도,위도
+
 	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
 }

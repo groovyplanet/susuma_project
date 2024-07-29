@@ -57,9 +57,9 @@
 										<fmt:formatDate value="${plus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
 									<span class="amount">
-										<fmt:formatNumber value="${plus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
+										<fmt:formatNumber value="${plus.point<0 ? -1 * plus.point : plus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
 										P
-										<span class="status">충전 완료</span>
+										<span class="spstatus">${plus.point<0 ? '정산 완료' : '충전 완료' }</span>
 									</span>
 
 								</div>
@@ -77,8 +77,6 @@
 									</span>
 								</div>
 							</c:forEach>
-						
-							
 						</div>
 					</div>
 				</div>
