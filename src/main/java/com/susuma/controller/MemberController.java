@@ -111,7 +111,7 @@ public class MemberController extends HttpServlet {
 			break;
 
 		case "/member/masterList.member":
-			service.getMasterList(request, response); // 수리 예약(수리기사 목록)
+			//service.getMasterList(request, response); // 수리 예약(수리기사 목록)
 			break;
 
 		case "/member/logout.member":
