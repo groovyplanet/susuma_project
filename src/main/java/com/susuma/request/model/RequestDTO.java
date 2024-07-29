@@ -27,6 +27,7 @@ public class RequestDTO {
 	private Double longitude; // "LONGITUDE"
 	private String phoneNum; // "PHONE_NUM"
 
+	// MEMBER
 	private String masterName;
 	private String clientName;
 	private String masterAddress;
@@ -50,6 +51,14 @@ public class RequestDTO {
 	private String paywaitCnt;
 	private String paidCnt;
 	private String cancelCnt;
+
+	// REVIEW
+	private String reviewCnt;
+	private String reviewContent;
+	private String starScore;
+
+	// 페이징
+	private String rn;
 
 	public RequestDTO() {
 
@@ -442,7 +451,37 @@ public class RequestDTO {
 	public void setClientPhoneNum(String clientPhoneNum) {
 		this.clientPhoneNum = clientPhoneNum;
 	}
-	
-	
+
+	public String getReviewCnt() {
+		return reviewCnt;
+	}
+
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
+
+	public String getReviewContent() {
+		return reviewContent;
+	}
+
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
+	}
+
+	public String getStarScore() {
+		return starScore;
+	}
+
+	public void setStarScore(String starScore) {
+		this.starScore = starScore;
+	}
+
+	public String getRn() {
+		return rn;
+	}
+
+	public void setRn(String rn) {
+		this.rn = rn;
+	}
 
 }

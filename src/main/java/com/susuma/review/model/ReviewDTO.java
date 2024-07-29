@@ -14,6 +14,8 @@ public class ReviewDTO {
 
 	private String masterNo;
 	private String clientNo;
+
+	// MEMBER
 	private String masterName;
 	private String clientName;
 	private String masterAddress;

@@ -126,7 +126,20 @@
 .main-section .container .content .account-info .points-header { display: flex; align-items: center; } 
 .main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
 .main-section .container .content .account-info .btn-withdraw,
-.main-section .container .content .account-info .btn-charge { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+.main-section .container .content .account-info .btn-charge,
+.main-section .container .content .account-info .btn-attendance { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+
+#participateButton {
+    background-color: #f49d00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
 .main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
 .main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
 .main-section .container .content .account-info .tab-menu { display: flex; margin-bottom: 10px; } 
@@ -137,7 +150,16 @@
 .main-section .container .content .account-info .transaction-pop { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
 .main-section .container .content .account-info .date { color: #999; } 
 .main-section .container .content .account-info .description { flex: 1; text-align: center; } 
-.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold; text-align: center; z-index: 1000; } 
+.main-section .container .content .account-info .amount { color: #4cc764; font-weight: bold; text-align: center;  } 
+.main-section .container .content .account-info .amount .status { color: #4cc764; text-align: center; margin-left : 10px; background-color: #E7F8F1; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+
+
+.main-section .container .content .account-info .wdamount { color: #ff6b6b; font-weight: bold; text-align: center;  } 
+.main-section .container .content .account-info .wdamount .wdstatus { color: #ff6b6b; text-align: center; margin-left : 10px; background-color: #FFEAE8; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+.main-section .container .content .account-info .spamount { color: #ff6b6b; font-weight: bold; text-align: center; } 
+.main-section .container .content .account-info .spamount .spstatus { color: #ff6b6b; text-align: center; margin-left : 10px; background-color: #FFEAE8; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+
+
 /* point.html modal css */
 #withdrawModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; } 
 #withdrawModal.show { display: flex !important; } 
@@ -161,6 +183,8 @@
 #chargeModal .btn-cancel { background-color: #999; } 
 #chargeModal .btn-confirm:hover, 
 #chargeModal .btn-cancel:hover { opacity: 0.8; } 
+#chargeAmount { width: 100%; border: 1px solid #bbb; padding: 8px 8px; border-radius: 4px; margin-top: 11px; color: #666; font-weight: 500; font-size: 15px; } 
+#Ppointalpha { font-weight: 500; font-size: 15px; color:#f49d00; } 
 /* 포인트 충전모달 끝 */
 
 /* ====point page css end ==== */
@@ -260,8 +284,9 @@
 .main-section .container .review-list-master .review-list { display: flex; flex-direction: column; } 
 .main-section .container .review-list-master .pic-list-view { display: flex; padding: 10px; border-bottom: 1px solid #f0f0f0; } 
 .main-section .container .review-list-master .pic-list-view li { margin-right: 20px; } 
-.main-section .container .review-list-master .pic-review-view { padding-top: 10px; } 
-.main-section .container .review-list-master .pic-review-view .sizetype-view { display: flex; flex-direction: column; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
+.main-section .container .review-list-master .pic-review-view { padding-top: 10px; display: flex; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view { display: flex; flex-direction: column; padding: 10px 0; border-bottom: 1px solid #f0f0f0;margin-right: 20px; width:200px;} 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap{ display: flex; justify-content: space-between; flex-direction:column;}
 .main-section .container .content.master-view { padding: 0 50px; } 
 .main-section .container .review-list-master .review-list .pic-review-view .member-review-pic img { width: 110px; height: 110px; border-radius: 15px; } 
 .main-section .container .review-list-master .review-list .pic-review-view .starreview { color: gold; } 
@@ -334,6 +359,7 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request .btn { background-color: white; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; cursor: default; } 
 .request .btn.submit { background-color: #ff6b6b; color: white; cursor: pointer; } 
 .request .btn.complete { border: 1px solid #DDD; background-color: #fff; color: #555; } 
+.request .btn.link { cursor: pointer } 
 /* 프로필 이미지 스타일 */
 .request-list .profile-logo-sm { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; } 
 /* 예약 스케줄 스타일 */
@@ -370,6 +396,7 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request-view input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
  {
  -webkit-appearance: none; margin: 0; } 
+ 
 
 /* 예약 상세 */
 .request-view .stars { display: flex; cursor: pointer; gap: 7px; } 

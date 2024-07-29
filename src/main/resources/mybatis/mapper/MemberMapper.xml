@@ -6,55 +6,48 @@
 	<!-- [1] 회원 목록 -->
 	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT *
-		FROM (
-		SELECT A.*, ROWNUM AS RN
-		FROM (
-		SELECT ME_NO, TYPE, EMAIL,
-		PW, NAME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM,
-		EMAIL_NOTIFICATION, PROFILE_PHOTO, JOIN_APPROVAL, JOIN_APPROVAL_TIME,
-		BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE, DESCRIPTION,
-		WORK_HOURS, POINT, STATUS, M.INSERT_TIME, M.UPDATE_TIME
-		, C.CA_NO
-		, C.CA_NAME
-		, CR.CA_NO AS CA_ROOT_NO
-		, CR.CA_NAME AS CA_ROOT_NAME
-		,RESULT.AVERAGE_SCORE
-		,RESULT.REVIEW_COUNT
-		FROM
-		MEMBER M
-		LEFT JOIN CATEGORY C
-		ON C.CA_NO = M.CA_NO
-		LEFT JOIN CATEGORY CR
-		ON CR.CA_NO = C.ROOT_NO
-		LEFT JOIN (
-		SELECT MASTER_NO, ROUND( AVG(STAR_SCORE), 2) AS AVERAGE_SCORE, COUNT(STAR_SCORE) AS REVIEW_COUNT
-		FROM (
-		SELECT *
-		FROM REVIEW R
-		INNER JOIN REQUEST R2
-		ON R.REQ_NO = R2.REQ_NO
-		)
-		GROUP BY MASTER_NO
-		) RESULT
-		ON M.ME_NO = RESULT.MASTER_NO
-		WHERE M.TYPE = #{type}
-		<if test="joinApproval != 'all'">
-			AND M.JOIN_APPROVAL = #{joinApproval}
-		</if>
-		<if test="rootNo != 'all'">
-			AND CR.CA_NO = #{rootNo}
-		</if>
-		<if test="rootNo != 'all' and caNo != 'all'">
-			AND C.CA_NO = #{caNo}
-		</if>
-		<if test="subCate != null and subCate != ''">
-			AND C.CA_NO = #{subCate}
-		</if>
-		ORDER BY M.${sortField} ${sortOrder} NULLS LAST
-		) A
-		)
-		WHERE RN BETWEEN
-		#{startRow} and #{endRow}
+    FROM (
+        SELECT A.*, ROWNUM AS RN
+        FROM (
+            SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM,
+                   EMAIL_NOTIFICATION, PROFILE_PHOTO, JOIN_APPROVAL, JOIN_APPROVAL_TIME,
+                   BUSINESS_NUMBER, SHORT_DESCRIPTION, MAX_DISTANCE, DESCRIPTION,
+                   WORK_HOURS, POINT, STATUS, M.INSERT_TIME, M.UPDATE_TIME,
+                   C.CA_NO, C.CA_NAME, CR.CA_NO AS CA_ROOT_NO, CR.CA_NAME AS CA_ROOT_NAME,
+                   RESULT.AVERAGE_SCORE, RESULT.REVIEW_COUNT,
+                   (6371 * acos(cos(RADIANS(#{latitude})) * cos(RADIANS(M.LATITUDE)) * cos(RADIANS(M.LONGITUDE) - RADIANS(#{longitude})) + sin(RADIANS(#{latitude})) * sin(RADIANS(M.LATITUDE)))) AS DISTANCE
+            FROM MEMBER M
+            LEFT JOIN CATEGORY C ON C.CA_NO = M.CA_NO
+            LEFT JOIN CATEGORY CR ON CR.CA_NO = C.ROOT_NO
+            LEFT JOIN (
+                SELECT MASTER_NO, ROUND(AVG(STAR_SCORE), 2) AS AVERAGE_SCORE, COUNT(STAR_SCORE) AS REVIEW_COUNT
+                FROM (
+                    SELECT *
+                    FROM REVIEW R
+                    INNER JOIN REQUEST R2 ON R.REQ_NO = R2.REQ_NO
+                )
+                GROUP BY MASTER_NO
+            ) RESULT ON M.ME_NO = RESULT.MASTER_NO
+            WHERE M.TYPE = #{type}
+            <if test="joinApproval != 'all'">
+                AND M.JOIN_APPROVAL = #{joinApproval}
+            </if>
+            <if test="rootNo != 'all'">
+                AND CR.CA_NO = #{rootNo}
+            </if>
+            <if test="rootNo != 'all' and caNo != 'all'">
+                AND C.CA_NO = #{caNo}
+            </if>
+            <if test="subCate != null and subCate != ''">
+                AND C.CA_NO = #{subCate}
+            </if>
+            <if test="maxDistance != null and maxDistance != ''">
+                AND (6371 * acos(cos(RADIANS(#{latitude})) * cos(RADIANS(M.LATITUDE)) * cos(RADIANS(M.LONGITUDE) - RADIANS(#{longitude})) + sin(RADIANS(#{latitude})) * sin(RADIANS(M.LATITUDE)))) &lt;= #{maxDistance}
+            </if>
+            ORDER BY M.${sortField} ${sortOrder} NULLS LAST
+        ) A
+    )
+    WHERE RN BETWEEN #{startRow} and #{endRow}
 	</select>
 
 	<!-- [1-2] 회원 목록 수(페이징 처리) -->
@@ -261,7 +254,7 @@
 	</select>
 
 	<select id="selectMainRe" resultType="com.susuma.member.model.MemberDTO">
-		SELECT RE.REQ_NO, MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, RE.CONTENT, RE.STAR_SCORE
+		SELECT RE.REQ_NO, MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, RE.CONTENT, RE.STAR_SCORE ,RE.INSERT_TIME
 		FROM REVIEW RE
 		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
 		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
@@ -269,18 +262,21 @@
 		WHERE ROWNUM &lt;=3
 		ORDER BY RE.RE_NO DESC
 	</select>
+	<select id="selectMasterre" resultType="com.susuma.member.model.MemberDTO">
+		SELECT RE.REQ_NO, MASTER_NO, MM.NAME AS MASTER_NAME, MC.PROFILE_PHOTO, MC.NAME AS CLIENT_NAME, RE.CONTENT, RE.STAR_SCORE ,RE.INSERT_TIME
+		FROM REVIEW RE
+		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
+		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
+		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
+		WHERE MM.ME_NO = #{meNo}
+		ORDER BY RE.RE_NO DESC
+	</select>
+
+	
 
 	<!-- 회원의 포인트 잔액을 조회 -->
 	<select id="MemberPoints" parameterType="String" resultType="Integer">
 		SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
-	</select>
-
-	<!-- 포인트 적립 내역 조회 -->
-	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
-		SELECT pc_no, me_no, point, pc_time AS insertTime
-		FROM POINT_HISTORY
-		WHERE me_no = #{meNo} AND point > 0
-		ORDER BY pc_time DESC
 	</select>
 
 	<!-- 포인트 사용 내역 조회 -->
@@ -289,6 +285,36 @@
 		FROM REQUEST
 		WHERE client_no = #{meNo} AND pay_status = 'Y'
 		ORDER BY paid_time DESC
+	</select>
+
+	<!-- 마이페이지 포인트 적립 내역(의뢰인은 point_history, 수리기사는 request까지) ★ -->
+	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT point, pc_time as insert_time
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point > 0
+        
+        UNION ALL
+        
+        SELECT -pay_amount as point, paid_time as insert_time
+        FROM REQUEST
+        WHERE master_no = #{meNo} AND pay_status = 'Y'
+		
+		ORDER BY insert_time DESC
+	</select>
+	
+	<!-- 마이페이지 포인트 사용 내역(수리기사는 point_history, 의뢰인은 request까지) ★ -->
+	<select id="getMinus" resultType="com.susuma.member.model.MemberDTO">
+		SELECT point, pc_time as insert_time
+        FROM POINT_HISTORY
+        WHERE me_no = #{meNo} AND point &lt; 0
+        
+        UNION ALL
+        
+        SELECT pay_amount as point, paid_time as insert_time
+        FROM REQUEST
+        WHERE client_no = #{meNo} AND pay_status = 'Y'
+        
+        ORDER BY insert_time DESC
 	</select>
 
 	<update id="updateMemberPoints">
@@ -310,5 +336,11 @@
 		UPDATE MEMBER SET PW = #{pw} WHERE EMAIL=#{email}
 	</update>
 
+	<!-- 경도위도 -->
+	<select id="selectLaLo" resultType="com.susuma.member.model.MemberDTO">
+		SELECT LATITUDE,LONGITUDE
+		FROM MEMBER
+		WHERE ME_NO = #{meNo}
+	</select>
 
 </mapper>

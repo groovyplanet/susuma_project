@@ -3,6 +3,44 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/head.jsp"%>
 </head>
+<style>
+/* 모달 스타일 */
+#eventModal {
+	display: none; /* 숨김 처리 */
+	position: fixed;
+	z-index: 1000; /* 페이지 내용 위에 표시 */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	opacity: 1;
+}
+
+#eventModal .modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 600px; /* 최대 너비 설정 */
+}
+
+#eventModal .close-button {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#eventModal .close-button:hover, #eventModal .close-button:focus {
+	color: black;
+	text-decoration: none;
+}
+</style>
+
 
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -22,10 +60,11 @@
 		<div id="chargeModal" class="modal">
 			<div class="modal-content">
 				<p>충전할 금액을 입력하세요</p>
-				<input type="number" id="chargeAmount" min="0">
+				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요">
 				<div class="modal-buttons">
 					<button class="btn-confirm" id="confirmCharge">충전</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
+
 				</div>
 			</div>
 		</div>
@@ -38,9 +77,13 @@
 						<div class="points-header">
 							<span class="points-label">보유 포인트</span>
 						</div>
-						<div class="points-value">${points}P</div>
+						<div class="points-value">
+							<fmt:formatNumber value="${points}" type="number" groupingUsed="true" maxFractionDigits="0" />
+							P
+						</div>
 						<button class="btn-withdraw" id="withdrawButton">전체출금</button>
 						<button class="btn-charge" id="chargeButton">충전하기</button>
+						<button class="btn-attendance" id="attendance">출석체크</button>
 					</div>
 					<div class="transaction-history">
 						<div class="tab-menu">
@@ -48,39 +91,102 @@
 							<button id="tab-pop" class="tab">사용 내역</button>
 						</div>
 						<div class="transaction-list">
-							<c:forEach var="earning" items="${earnings}">
+							<c:forEach var="plus" items="${plus}">
 								<div class="transaction-item item">
 									<span class="date">
-										<fmt:formatDate value="${earning.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+										<fmt:formatDate value="${plus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
-									<span class="amount">${earning.point}P</span>
+									<span class="amount">
+										<fmt:formatNumber value="${plus.point<0 ? -1 * plus.point : plus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
+										P
+										<span class="status">${plus.point<0 ? '정산 완료' : '충전 완료' }</span>
+									</span>
+
 								</div>
 							</c:forEach>
-							<c:forEach var="spending" items="${spendings}">
+							<c:forEach var="minus" items="${minus}">
 								<div class="transaction-pop item" style="display: none;">
 									<span class="date">
-										<fmt:formatDate value="${spending.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+										<fmt:formatDate value="${minus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
-									<span class="amount">-${spending.point}P</span>
+									<span class="spamount">
+										${minus.point<0 ? '' : '-' }
+										<fmt:formatNumber value="${minus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
+										P
+										<span class="spstatus">${minus.point<0 ? '출금 완료' : '결제 완료' }</span>
+									</span>
 								</div>
 							</c:forEach>
-							<c:forEach var="withdrawal" items="${withdrawals}">
-								<div class="transaction-pop item" style="display: none;">
-									<span class="date">
-										<fmt:formatDate value="${withdrawal.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
-									</span>
-									<span class="amount">${withdrawal.point}P</span>
-								</div>
-							</c:forEach>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<div id="eventModal" class="modal">
+		<div class="modal-content">
+			<span class="close-button">&times;</span>
+			<h2>SUSUMA OPEN EVENT</h2>
+			<p>아래 버튼을 클릭하면 랜덤으로 포인트가 적립됩니다.</p> 
+			<p>하루에 한 번만 참여 가능합니다.<p>
+			<button id="participateButton">참여하기</button>
+		</div>
+	</div>
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
+
+	/*
+	$(document).ready(function () {
+	    $('.amount').each(function () {
+	        var input = $(this).text();
+	        var numericValue = input.replace(/[^\d]/g, '');
+	        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+	        $(this).html(formattedValue + ' <span class="status">' + $(this).find('.status').text() + '</span>');
+	    });
+	    $('.spamount').each(function () {
+	        // .status 클래스를 제외한 .amount의 텍스트만 처리
+	        var amountText = $(this).clone().children('.spstatus').remove().end().text();
+	        var numericValue = '-' + amountText.replace(/[^\d]/g, '');
+	        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+	
+	        // .status 클래스를 다시 추가하여 상태 메시지와 함께 포맷된 값으로 텍스트 설정
+	        $(this).html(formattedValue + ' <span class="spstatus">' + $(this).find('.spstatus').text() + '</span>');
+	    });
+	
+	
+	
+	    $('.wdamount').each(function () {
+
+	        // .status 클래스를 제외한 .amount의 텍스트만 처리
+	        var amountText = $(this).clone().children('.wdstatus').remove().end().text();
+	        var numericValue = '-' + amountText.replace(/[^\d]/g, '');
+	        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+
+	        // .status 클래스를 다시 추가하여 상태 메시지와 함께 포맷된 값으로 텍스트 설정
+	        $(this).html(formattedValue + ' <span class="wdstatus">' + $(this).find('.wdstatus').text() + '</span>');
+	    });
+	
+	    // .points-value 클래스에 대해 포맷 적용
+	    $('.points-value').each(function () {
+	        var input = $(this).text();
+	        var numericValue = '+' + input.replace(/[^\d]/g, '');
+	        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+	        $(this).text(formattedValue);
+	    });
+	});
+	*/
+
+	
+	$('#chargeAmount').on('input', function() { // 금액 입력 시 ',원' 추가
+		var input = $(this).val();
+		var numericValue = input.replace(/[^\d]/g, '');
+		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' P';
+		$(this).val(formattedValue);
+	});
+	
+	
 	$(document).ready(function() {
 	    // 탭 전환 처리
 	    $("#tab-add, #tab-pop").click(function() {
@@ -140,7 +246,8 @@
 
 	    // 충전 모달에서 확인 버튼 클릭 시
 	    document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
-	        const amount = document.getElementById('chargeAmount').value;
+	    
+	        const amount = $('#chargeAmount').val().replace(/[^\d]/g, '');
 	        
 	        if (amount <= 0) {
 	            alert('충전 금액은 0보다 커야 합니다.');
@@ -153,6 +260,7 @@
 	                'Content-Type': 'application/x-www-form-urlencoded',
 	            },
 	            body: new URLSearchParams({ points: amount }), // 충전할 포인트
+	            
 	        })
 	        .then(response => response.json()) // 응답을 JSON으로 파싱
 	        .then(data => {
@@ -172,10 +280,32 @@
 	        document.getElementById('chargeModal').classList.remove('show');
 	    });
 	});
+	 // 출석체크 버튼 클릭 시 이벤트 처리
+    document.getElementById('attendance').addEventListener('click', function() {
+        document.getElementById('eventModal').style.display = 'block';
+    });
+
+    // 모달 닫기 버튼 클릭 시 이벤트 처리
+    document.querySelector('#eventModal .close-button').addEventListener('click', function() {
+        document.getElementById('eventModal').style.display = 'none';
+    });
+
+    // 출석체크 버튼 클릭 시 이벤트 처리
+    document.getElementById('participateButton').addEventListener('click', function() {
+        // AJAX 호출 예시:
+        // fetch('/your-endpoint', { method: 'POST' }).then(response => response.json()).then(data => { ... });
+
+        // 이벤트 참여 후 쿠키 설정
+        setCookie("eventParticipated", "true", 1);
+        document.getElementById('eventModal').style.display = 'none';
+    });
+
+	
+	
+	
+	
 	</script>
 
 
-	<style>
-</style>
 </body>
 </html>

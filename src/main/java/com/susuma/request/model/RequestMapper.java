@@ -19,4 +19,6 @@ public interface RequestMapper {
 
 	public void deleteRequest(String reNo); // [5] 수리 요청 삭제
 
+	public void updateRequestStatus(RequestDTO requestDTO);
+
 }

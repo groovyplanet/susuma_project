@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@ include file="include/head.jsp"%>
+
 </head>
 
 <body>
@@ -150,13 +151,16 @@
 					</c:forEach>
 				</div>
 				<!-- //main-review -->
+				
 			</div>
 		</div>
 	</section>
-
+	
 
 	<%@ include file="include/footer.jsp"%>
 
-</body>
 
+</body>
 </html>
+
+

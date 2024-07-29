@@ -18,6 +18,9 @@
 		<li>
 			<a href="${pageContext.request.contextPath }/member/message_list.jsp" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">문의 내역</a>
 		</li>
+		<li>
+			<a href="${pageContext.request.contextPath }/board/list.board?type=ask" class="${type=='ask'?'active':'' }">1:1 문의</a>
+		</li>
 
 		<li>
 			<a href="${pageContext.request.contextPath }/member/point.member" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>

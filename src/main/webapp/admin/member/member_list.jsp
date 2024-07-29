@@ -100,12 +100,18 @@
 				<table class="list" id="member_list">
 					<thead>
 						<tr>
-							<th class="wp4">번호${sortStr}</th>
+							<th class="wp4">번호</th>
 							<th class="wp4">프로필</th>
-							<th class="wp7">
+							<th class="${type == 'master' ? 'wp5' : 'wp7' }">
 								<button class="btn_sort" onclick="sort('name', '${sortField != 'name' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									이름
 									<i class="bi bi-caret-${sortField != 'name' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th class="${type == 'master' ? 'wp5' : 'wp7' }">
+								<button class="btn_sort" onclick="sort('point', '${sortField != 'point' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									포인트
+									<i class="bi bi-caret-${sortField != 'point' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
 							<th>
@@ -118,13 +124,13 @@
 								<th>별점</th>
 								<th class="wp17">수리 분야</th>
 							</c:if>
-							<th class="${type == 'master' ? 'wp15' : 'wp17' }">
+							<th class="${type == 'master' ? 'wp15' : 'wp25' }">
 								<button class="btn_sort" onclick="sort('address', '${sortField != 'address' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									주소
 									<i class="bi bi-caret-${sortField != 'address' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="${type == 'master' ? 'wp8' : 'wp12' }">
+							<th class="${type == 'master' ? 'wp9' : 'wp12' }">
 								<button class="btn_sort" onclick="sort('phone_num', '${sortField != 'phone_num' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									연락처
 									<i class="bi bi-caret-${sortField != 'phone_num' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
@@ -161,7 +167,14 @@
 									</c:choose>
 								</td>
 								<td>${dto.name}</td>
-								<td>${dto.email}</td>
+								<td>
+									<fmt:formatNumber value="${dto.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
+									P
+								</td>
+								<td>
+									<i class="bi bi-envelope"></i>
+									${dto.email}
+								</td>
 								<c:if test="${type == 'master' }">
 									<td>
 										<c:choose>
@@ -183,8 +196,15 @@
 											<i class="bi bi-chevron-right"></i>${dto.caName}</span>
 									</td>
 								</c:if>
-								<td>${empty dto.address ? '-' : dto.address}<span> </span>${empty dto.addressDetail ? '' : dto.addressDetail}</td>
-								<td>${dto.phoneNum}</td>
+								<td>
+									<i class="bi bi-geo-alt"></i>
+									${empty dto.address ? '-' : dto.address}
+									<span></span>${empty dto.addressDetail ? '' : dto.addressDetail}
+								</td>
+								<td>
+									<i class="bi bi-telephone"></i>
+									${dto.phoneNum}
+								</td>
 								<c:if test="${type == 'user' }">
 									<td>
 										<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />

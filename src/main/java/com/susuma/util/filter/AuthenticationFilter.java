@@ -54,6 +54,7 @@ public class AuthenticationFilter implements Filter {
 			case "/member/memberRequest.member": // 수리 예약
 			case "/member/reviewForm.member": // 예약내역 리뷰 작성
 			case "/member/request.member": // 수리 예약
+			case "/member/point.member": // 포인트
 			case "/board/askWrite.board": // 1:1 문의 작성
 			case "/board/askView.board": // 1:1 문의 상세
 			case "/board/askModify.board": // 1:1 문의 수정
