@@ -8,8 +8,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -22,7 +31,6 @@ import com.susuma.point.model.PointMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,6 +41,74 @@ public class MemberServiceImpl implements MemberService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
+
+	/**
+	 * 임시 비밀번호 발급 메일 발송
+	 */
+	private void sendMail(String email, String tmpPassword) {
+
+		/* SMTP 서버 설정 */
+		String port = "587"; // ssl
+		String host = "smtp.naver.com";
+		String username = "wonpic26@naver.com"; // 예원 임시 이메일
+		String password = "tntnak12"; // 예원 임시 비밀번호
+
+		Properties props = new Properties();
+		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true"); // TLS 사용 설정
+		props.put("mail.smtp.ssl.protocols", "TLSv1.2"); // TLS 버전 설정
+
+		Session session = Session.getInstance(props, new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+
+		/* 메일 발송 */
+		String recieveMail = "chojo1031@naver.com"; // 받는 사람(임시)
+		// String recieveMail = email; // 임시 주석
+
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recieveMail));
+			message.setSubject("[수수마] 비밀번호 재설정 안내");
+			message.setText("안녕하세요.\n\n회원님의 임시 비밀번호는 다음과 같습니다: " + tmpPassword + "\n\n이 임시 비밀번호로 로그인 후 비밀번호를 변경해주시기 바랍니다.");
+
+			Transport.send(message);
+			System.out.println("이메일 전송 완료");
+
+		} catch (MessagingException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 임시 비밀번호 생성
+	 */
+	private String createPw() {
+		String tmpCode = "";
+		Random rnd = new Random();
+		for (int i = 0; i < 8; i++) {
+			int sel1 = (int) (Math.random() * 3); // 0:숫자 / 1,2:영어
+
+			if (sel1 == 0) {
+				int num = (int) (Math.random() * 10); // 0~9
+				tmpCode += num;
+			} else {
+				char ch = (char) (Math.random() * 26 + 65); // A~Z
+				int sel2 = (int) (Math.random() * 2); // 0:소문자 / 1:대문자
+				if (sel2 == 0) {
+					ch = (char) (ch + ('a' - 'A')); // 대문자로 변경
+				}
+				tmpCode += ch;
+			}
+		}
+		return tmpCode;
+	}
 
 	/**
 	 * 파일 데이터를 수신해서 바이트 배열 형태로 반환(경로 지정 x 파일 시스템에 저장 x) 추후 데이터베이스의 BLOB (Binary
@@ -235,42 +311,42 @@ public class MemberServiceImpl implements MemberService {
 
 		/* [1] 매개변수 */
 
-	    String rootNo = request.getParameter("rootNo");
-	    rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
-	    String caNo = request.getParameter("caNo");
-	    caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
-	    String subCate = request.getParameter("subCate");
-	    String maxDistance = request.getParameter("max_distance");
-	    
-	    HttpSession session = request.getSession();
-	    String meNo = (String)session.getAttribute("meNo");
-	    
-	    SqlSession sql2 = sqlSessionFactory.openSession();
-	    MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
-	    MemberDTO user = Member2.selectLaLo(meNo);
-	    sql2.close();
-	    double userLatitude  = user.getLatitude();
-	    
-	    double userLongitude = user.getLongitude();
-	    
-	    Map<String, Object> params = new HashMap<>();
-	    params.put("type", "master");
-	    params.put("joinApproval", "Y");
-	    params.put("sortField", "insert_time");
-	    params.put("sortOrder", "DESC");
-	    params.put("rootNo", rootNo);
-	    params.put("caNo", caNo);
-	    params.put("startRow", 1); // rownum 시작값
-	    params.put("endRow", 999); // rownum 끝값
-	    params.put("latitude", userLatitude);
-	    params.put("longitude", userLongitude);
-	    
-	    if (subCate != null && !subCate.isEmpty()) {
-	        params.put("subCate", subCate);
-	    }
-	    if (maxDistance != null && !maxDistance.isEmpty()) {
-	        params.put("maxDistance", maxDistance);
-	    }
+		String rootNo = request.getParameter("rootNo");
+		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
+		String caNo = request.getParameter("caNo");
+		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
+		String subCate = request.getParameter("subCate");
+		String maxDistance = request.getParameter("max_distance");
+
+		HttpSession session = request.getSession();
+		String meNo = (String) session.getAttribute("meNo");
+
+		SqlSession sql2 = sqlSessionFactory.openSession();
+		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
+		MemberDTO user = Member2.selectLaLo(meNo);
+		sql2.close();
+		double userLatitude = user.getLatitude();
+
+		double userLongitude = user.getLongitude();
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("type", "master");
+		params.put("joinApproval", "Y");
+		params.put("sortField", "insert_time");
+		params.put("sortOrder", "DESC");
+		params.put("rootNo", rootNo);
+		params.put("caNo", caNo);
+		params.put("startRow", 1); // rownum 시작값
+		params.put("endRow", 999); // rownum 끝값
+		params.put("latitude", userLatitude);
+		params.put("longitude", userLongitude);
+
+		if (subCate != null && !subCate.isEmpty()) {
+			params.put("subCate", subCate);
+		}
+		if (maxDistance != null && !maxDistance.isEmpty()) {
+			params.put("maxDistance", maxDistance);
+		}
 
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
@@ -787,57 +863,47 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	
 	@Override
 	public void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
-		// 인증번호 8자리 생성
-		String cNumber = "";
-		Random rnd = new Random();
-		for (int i = 0; i < 8; i++) {
-			int sel1 = (int) (Math.random() * 3); // 0:숫자 / 1,2:영어
 
-			if (sel1 == 0) {
-				int num = (int) (Math.random() * 10); // 0~9
-				cNumber += num;
-			} else {
-				char ch = (char) (Math.random() * 26 + 65); // A~Z
-				int sel2 = (int) (Math.random() * 2); // 0:소문자 / 1:대문자
-				if (sel2 == 0) {
-					ch = (char) (ch + ('a' - 'A')); // 대문자로 변경
-				}
-				cNumber += ch;
-			}
-		}
-		
+		/* [1] 임시 비밀번호 8자리 생성 */
+		final String tmpPassword = createPw();
+
+		/* [2] DB 업데이트 */
+		String email = request.getParameter("email");
 		MemberDTO dto = new MemberDTO();
 		dto.setEmail(email);
-		dto.setPw(cNumber);
-		
+		dto.setPw(tmpPassword);
+
 		SqlSession sql = sqlSessionFactory.openSession(true);
 		MemberMapper member = sql.getMapper(MemberMapper.class);
-		int result = member.updatePw(dto);
+		int result = 1; // member.updatePw(dto); // 임시 주석
 		sql.close();
-		
-		if (result == 1) { // 등록 성공
+
+		if (result == 1) {
+
+			/* [3] 메일 발송(비동기) */
+			new Thread(() -> sendMail(email, tmpPassword)).start();
+
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('임시비밀번호 발급되었습니다. "+ cNumber + "');");
-			out.println("location.href='/Susuma/main.member';");
+			out.println("alert('귀하의 이메일로 임시 비밀번호를 발급해드렸습니다.\\n로그인 후 비밀번호를 변경해주세요.');");
+			out.println("location.href='/Susuma/';");
 			out.println("</script>");
-		}else {
+
+		} else {
+
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('이메일을 확인해주세요. ');");
 			out.println("location.href='/Susuma/member/findPw.member';");
 			out.println("</script>");
+
 		}
-		
-		
+
 	}
-	
 
 	@Override
 	public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -899,33 +965,33 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void attendancepoint(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    String meNo = (String) request.getSession().getAttribute("meNo");
-	    
-	    try (SqlSession sql = sqlSessionFactory.openSession(true)) {
-	        
-	        PointMapper pointMapper = sql.getMapper(PointMapper.class);
-	        Integer currentPoints = pointMapper.MemberPoints(meNo); // 내 현재 포인트 
-	        
-	        int attendpoint = (int) (1+Math.random() * 100); // 출석 시 랜덤포인트
-	        int updatedPoints = currentPoints + attendpoint; // 현재 포인트에 충전할 포인트를 더한 값
+		String meNo = (String) request.getSession().getAttribute("meNo");
 
-	        // 포인트 업데이트
-	        PointDTO pointDTO = new PointDTO();
-	        pointDTO.setMeNo(meNo);
-	        pointDTO.setPoint(updatedPoints);
-	        pointMapper.updateMemberPoints(meNo, updatedPoints);
-	        response.setContentType("application/json");
-	        PrintWriter out = response.getWriter();
-	        out.print("{\"status\":\"success\",\"message\":\"이벤트 포인트 당첨 ! 어서 출석체크 포인트를 확인해보세요 !\"}");
-	        out.flush();
-	        
-	    } catch (Exception e) {
-	        response.setContentType("application/json");
-	        PrintWriter out = response.getWriter();
-	        out.print("{\"status\":\"error\",\"message\":\"서버 오류 발생\"}");
-	        out.flush();
-	        e.printStackTrace();
-	    }
+		try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+
+			PointMapper pointMapper = sql.getMapper(PointMapper.class);
+			Integer currentPoints = pointMapper.MemberPoints(meNo); // 내 현재 포인트
+
+			int attendpoint = (int) (1 + Math.random() * 100); // 출석 시 랜덤포인트
+			int updatedPoints = currentPoints + attendpoint; // 현재 포인트에 충전할 포인트를 더한 값
+
+			// 포인트 업데이트
+			PointDTO pointDTO = new PointDTO();
+			pointDTO.setMeNo(meNo);
+			pointDTO.setPoint(updatedPoints);
+			pointMapper.updateMemberPoints(meNo, updatedPoints);
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.print("{\"status\":\"success\",\"message\":\"이벤트 포인트 당첨 ! 어서 출석체크 포인트를 확인해보세요 !\"}");
+			out.flush();
+
+		} catch (Exception e) {
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.print("{\"status\":\"error\",\"message\":\"서버 오류 발생\"}");
+			out.flush();
+			e.printStackTrace();
+		}
 	}
 	
 	
