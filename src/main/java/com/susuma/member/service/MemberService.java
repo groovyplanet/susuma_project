@@ -54,6 +54,7 @@ public interface MemberService {
 
 	void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
+	void attendancepoint(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
 
 }

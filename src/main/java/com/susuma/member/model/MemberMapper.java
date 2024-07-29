@@ -46,4 +46,7 @@ public interface MemberMapper {
 	}
 
 	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
+	
+	
+	
 }

@@ -150,6 +150,10 @@ public class MemberController extends HttpServlet {
 		case "/member/chargePoints.member":
 			service.chargePoints(request, response);
 			break;
+			
+		case "/member/attendanceAjax.member":
+			service.attendancepoint(request, response);
+			break;
 		
 
 		default:
