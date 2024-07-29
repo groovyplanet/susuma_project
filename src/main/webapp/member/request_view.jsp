@@ -344,6 +344,7 @@
 	<%@ include file="../include/footer.jsp"%>
 
 	<script>
+
 	$('#paymoney').on('input', function() { // 금액 입력 시 ',원' 추가
 		var input = $(this).val();
 		var numericValue = input.replace(/[^\d]/g, '');
@@ -445,21 +446,23 @@
 	$('#request-pay-modal .btn-enter').on('click', function(event) {
 		event.preventDefault();
 		var reqNo = $(this).data('reqNo');
-
+		
 		$.ajax({
 			url : 'payAjax.request',
 			type : 'POST',
 			data : {
 				reqNo : reqNo,
-				status : 'paid'
+				status : 'paid',
+				payAmount : $('#amount').text().replace(/[^\d]/g, '')
 			},
 			success : function(data) {
 				if ($.trim(data) === 'Success') {
-					$('button[data-reqno="' + reqNo + '"]').text('결제 완료').removeClass('submit pay').addClass('complete');
+					$('button[data-reqno="' + reqNo + '"]').replaceWith("<a href='view.request?reqNo="+reqNo+"' class='btn link'>후기 작성</a>");
 					$('#request-pay-modal').removeClass('show');
 					alert('결제가 완료되었습니다.');
 				} else {
-					alert('결제 처리 실패');
+					alert($.trim(data));
+					$('#request-pay-modal').removeClass('show');
 				}
 			},
 			error : function(xhr, status, error) {
@@ -467,8 +470,6 @@
 			}
 		});
 	});
-	
-	
 	
 	 // 별점 선택 기능
     document.querySelectorAll('.star').forEach(star => {
