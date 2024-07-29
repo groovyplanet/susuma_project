@@ -38,7 +38,7 @@
 
 	<section class="main-section">
 		<div class="container filter">
-			<div class="main-area">
+			<div class="main-area request-list">
 				<form id="filter-form" action="masterList.member" method="GET">
 					<div class="filter">
 						<label for="category">상위 카테고리</label>
@@ -129,6 +129,7 @@
 						</div>
 					</a>
 				</c:forEach>
+				<button id="btn-more" class="btn-request-summary-more" style="${totalRecords > recordsPerPage ? '' : 'display:none'}">더보기</button>
 
 			</div>
 		</div>
@@ -141,6 +142,35 @@
 		function applyFilters() {
 			const form = document.getElementById('filter-form');
 			form.submit();
+		}
+		let currentPage = 1;
+		const endPage = ${endPage};
+
+		$('#btn-more').on('click', function() {
+			loadMoreRequests(currentPage + 1);
+		});
+		
+		function loadMoreRequests(page) {
+			
+			 // 폼 데이터 가져오기
+		    const form = document.getElementById('filter-form');
+		    const formData = new FormData(form);
+		    
+		    // 폼 데이터와 추가 파라미터를 URL 파라미터 문자열로 변환
+		    const params = new URLSearchParams(formData);
+		    params.append('page', page);
+		    
+		    // Fetch API로 요청 보내기
+		    fetch("getMasterListAjax.member?"+params.toString())
+	        .then(response => response.text())
+	        .then(html => {
+	            $('#btn-more').before(html);
+	            currentPage = page;
+	            if (currentPage >= endPage) {
+	                $('#btn-more').hide();
+	            }
+	        })
+	        .catch(error => console.error('Error:', error));
 		}
 	</script>
 

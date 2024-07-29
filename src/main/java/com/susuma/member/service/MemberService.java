@@ -11,8 +11,6 @@ public interface MemberService {
 	/* 관리자 */
 	void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
-	void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-
 	void adminView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void adminWrite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
@@ -26,6 +24,10 @@ public interface MemberService {
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	/* 사용자 */
+	void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void getMasterListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 	void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
@@ -55,9 +57,7 @@ public interface MemberService {
 	void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void attendancepoint(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
-	void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
 
+	void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

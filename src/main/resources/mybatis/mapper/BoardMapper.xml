@@ -29,6 +29,9 @@
 		<if test='answerCheck != NULL and answerCheck.equals("no")'>
 			AND B.ANSWER IS NULL
 		</if>
+		<if test="title != null and title != ''">
+	        AND title LIKE '%' || #{title} || '%'
+	    </if>
 		ORDER BY B.${sortField} ${sortOrder} NULLS LAST
 		) A
 		)
@@ -56,6 +59,9 @@
 		<if test="answerCheck != NULL and answerCheck.equals('no')">
 			AND B.ANSWER IS NULL
 		</if>
+		<if test="title != null and title != ''">
+	        AND title LIKE '%' || #{title} || '%'
+	    </if>
 	</select>
 
 	<!-- [2] 게시물 -->
