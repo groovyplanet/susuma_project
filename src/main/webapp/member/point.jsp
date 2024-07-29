@@ -2,6 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/head.jsp"%>
+<!-- 포트원 결제 -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<!-- 포트원 결제 -->
+
 </head>
 <style>
 /* 모달 스타일 */
@@ -39,10 +47,11 @@
 	color: black;
 	text-decoration: none;
 }
+
 .disabled {
-            pointer-events: none; /* 클릭을 비활성화 */
-            opacity: 0.5; /* 비활성화된 버튼 스타일 */
-        }
+	pointer-events: none; /* 클릭을 비활성화 */
+	opacity: 0.5; /* 비활성화된 버튼 스타일 */
+}
 </style>
 
 
@@ -66,6 +75,9 @@
 				<p>충전할 금액을 입력하세요</p>
 				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요">
 				<div class="modal-buttons">
+					<img src="../resources/img/kakaobear.png" style="width: 50px; height: 40px; cursor: pointer;" id="kakaoPay">
+					<img src="../resources/img/tosspay.png" style="width: 40px; height: 40px; cursor: pointer;" id="tossPay">
+					<img src="../resources/img/kg.png" style="width: 40px; height: 40px; cursor: pointer;" id="requestPay">
 					<button class="btn-confirm" id="confirmCharge">충전</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
 
@@ -132,13 +144,15 @@
 		<div class="modal-content">
 			<span class="close-button">&times;</span>
 			<h2>SUSUMA OPEN EVENT</h2>
-			<p>아래 버튼을 클릭하면 랜덤으로 포인트가 적립됩니다.</p> 
-			<p>하루에 한 번만 참여 가능합니다.<p>
-			<button id="participateButton">참여하기</button>
+			<p>아래 버튼을 클릭하면 랜덤으로 포인트가 적립됩니다.</p>
+			<p>하루에 한 번만 참여 가능합니다.
+			<p>
+				<button id="participateButton">참여하기</button>
 		</div>
 	</div>
 
 	<%@ include file="../include/footer.jsp"%>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script>
 
 	/*
@@ -356,8 +370,8 @@
            checkCookieAndDisableButton();
        });
 
-       
-	
+    
+     
 	</script>
 
 
