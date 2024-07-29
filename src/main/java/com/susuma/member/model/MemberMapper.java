@@ -33,6 +33,8 @@ public interface MemberMapper {
 	List<MemberDTO> getPointEarnings(String meNo);
 
 	List<MemberDTO> getPointSpendings(String meNo);
+
+	List<MemberDTO> getMinus(String meNo);
 	
 	
 }

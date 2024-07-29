@@ -46,24 +46,23 @@ public class RequestController extends HttpServlet {
 
 		switch (command) {
 
-		case "/admin/member/list.request":
-
+		case "/admin/request/list.request":
 			service.adminList(request, response); // 관리자 - 목록
 			break;
 
-		case "/admin/member/view.request":
+		case "/admin/request/view.request":
 			service.adminView(request, response); // 관리자 - 상세
 			break;
 
-		case "/admin/member/edit.request":
+		case "/admin/request/edit.request":
 			service.adminEdit(request, response); // 관리자 - 수정 화면
 			break;
 
-		case "/admin/member/editForm.request":
+		case "/admin/request/editForm.request":
 			service.adminUpsert(request, response); // 관리자 - 수정
 			break;
 
-		case "/admin/member/delete.request":
+		case "/admin/request/delete.request":
 			service.adminDelete(request, response); // 관리자 - 삭제
 			break;
 

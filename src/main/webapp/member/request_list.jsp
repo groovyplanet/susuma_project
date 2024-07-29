@@ -33,8 +33,11 @@
 					<%-- 현재날짜와 수리예약일 비교 (ex.2024. 9. 13(금) 19:00) --%>
 					<jsp:useBean id="now" class="java.util.Date" />
 					<fmt:formatDate value="${now}" pattern="yyyy. M. d" var="nowDate" />
+					<fmt:formatDate value="${now}" pattern="HH:00" var="nowTime" />
 					<fmt:parseDate value="${fn:substringBefore(dto.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
 					<fmt:formatDate value="${requestDateParse}" pattern="yyyy. M. d" var="requestDateFmt" />
+					<fmt:parseDate value="${dto.requestTime }" pattern="HH:00" var="requestTimeParse" />
+					<fmt:formatDate value="${requestTimeParse}" pattern="HH:00" var="requestTimeFmt" />
 					<div class="request-summary">
 						<c:choose>
 							<%-- 의뢰인 --%>
@@ -78,13 +81,13 @@
 									</c:when>
 									<c:when test="${dto.status eq 'approved'}">
 										<c:choose>
-											<c:when test="${requestDateFmt >= nowDate}">
+											<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 												<!-- 예약일이 미래 -->
 												<button type="button" class="btn">예약 완료</button>
 											</c:when>
 											<c:otherwise>
 												<!-- 예약일이 과거 -->
-												<button type="button" class="btn complete">수리 완료</button>
+												<button type="button" class="btn">수리 중</button>
 											</c:otherwise>
 										</c:choose>
 									</c:when>
@@ -92,7 +95,14 @@
 										<button type="button" class="btn submit pay" data-reqno="${dto.reqNo}" data-payamount='${dto.payAmount}'>결제하기</button>
 									</c:when>
 									<c:when test="${dto.status eq 'paid'}">
-										<button type="button" class="btn complete">결제 완료</button>
+										<c:choose>
+											<c:when test="${dto.reviewCnt == 0}">
+												<a href="view.request?reqNo=${dto.reqNo }" class="btn link">후기 작성</a>
+											</c:when>
+											<c:otherwise>
+												<button type="button" class="btn complete">결제 완료</button>
+											</c:otherwise>
+										</c:choose>
 									</c:when>
 									<c:when test="${dto.status eq 'cancel'}">
 										<button type="button" class="btn complete">예약 취소</button>
@@ -134,7 +144,7 @@
 									</c:when>
 									<c:when test="${dto.status eq 'approved'}">
 										<c:choose>
-											<c:when test="${requestDateFmt >= nowDate}">
+											<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 												<!-- 예약일이 미래 -->
 												<button type="button" class="btn">예약 완료</button>
 											</c:when>
@@ -194,7 +204,7 @@
 			<div class="pay-content">
 				<p>
 					결제 하실 금액은
-					<strong id="amount"> 10,000원 </strong>
+					<strong id="amount"> 10,000P </strong>
 					입니다.
 				</p>
 			</div>
@@ -242,7 +252,7 @@
 		$('#paymoney').on('input', function() { // 금액 입력 시 ',원' 추가
 			var input = $(this).val();
 			var numericValue = input.replace(/[^\d]/g, '');
-			var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+			var formattedValue = new Intl.NumberFormat().format(numericValue) + ' P';
 			$(this).val(formattedValue);
 		});
 
@@ -329,7 +339,7 @@
 			// 금액 모달창에 띄우기
 			var payAmount = button.data('payamount'); // 소문자로만 가져올 수 있음
 			var amountNumber = parseInt(payAmount, 10);
-			var formattedAmount = amountNumber.toLocaleString('en-US') + '원';
+			var formattedAmount = amountNumber.toLocaleString('en-US') + 'P';
 			$('#amount').text(formattedAmount);
 			$('#request-list-pay-modal').attr('class', ' modal request show');
 			$('#request-list-pay-modal .btn-enter').data('reqNo', reqNo);
@@ -350,7 +360,8 @@
 				},
 				success : function(data) {
 					if ($.trim(data) === 'Success') {
-						$('button[data-reqno="' + reqNo + '"]').text('결제 완료').removeClass('submit pay').addClass('complete');
+						//$('button[data-reqno="' + reqNo + '"]').text('결제 완료').removeClass('submit pay').addClass('complete');
+						$('button[data-reqno="' + reqNo + '"]').replaceWith("<a href='view.request?reqNo="+reqNo+"' class='btn link'>후기 작성</a>");
 						$('#request-list-pay-modal').removeClass('show');
 						alert('결제가 완료되었습니다.');
 					} else {

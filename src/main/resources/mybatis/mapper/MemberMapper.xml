@@ -290,6 +290,20 @@
 		WHERE client_no = #{meNo} AND pay_status = 'Y'
 		ORDER BY paid_time DESC
 	</select>
+	
+	<select id="getMinus" resultType="com.susuma.member.model.MemberDTO">
+		SELECT point, pc_time as insert_time
+        FROM POINT_HISTORY
+        WHERE me_no = 33 AND point &lt; 0
+        
+        UNION ALL
+        
+        SELECT pay_amount as point, paid_time as insert_time
+        FROM REQUEST
+        WHERE client_no = 33 AND pay_status = 'Y'
+        
+        ORDER BY insert_time DESC
+	</select>
 
 	<update id="updateMemberPoints">
 		UPDATE MEMBER SET point = #{point} WHERE me_no = #{meNo}

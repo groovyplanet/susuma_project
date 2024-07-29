@@ -37,8 +37,6 @@ public class MemberDTO {
 	private String caRootNo; // "CA_ROOT_NO"
 	private String caRootName; // "CA_ROOT_NAME"
 
-	private String rn; // 페이징 처리
-
 	// 수리기사 추가 정보(JOIN)
 	private String averageScore; // 별점 평균
 	private String reviewCount; // 별점 갯수
@@ -48,6 +46,9 @@ public class MemberDTO {
 	private String content; // 리뷰내역
 	private String starScore; // 별점
 	private String requestDateTime; // 예약되어있는 날짜 및 시간
+
+	// 페이징
+	private String rn;
 
 	// 기본 생성자 : MyBatis에서 DTO (Data Transfer Object) 클래스 사용할 때 필수
 	public MemberDTO() {
@@ -111,7 +112,6 @@ public class MemberDTO {
 		this.caRootName = caRootName;
 		this.rn = rn;
 	}
-
 
 	public String getMeNo() {
 		return meNo;
@@ -415,6 +415,5 @@ public class MemberDTO {
 		}
 		return Base64.getEncoder().encodeToString(profilePhoto);
 	}
-
 
 }

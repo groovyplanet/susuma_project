@@ -50,8 +50,6 @@
 							<div class="content-detail-my">
 								<p class="preserve-line-breaks">${dto.content }</p>
 							</div>
-						</div>
-						<div class="content-detail">
 							<c:if test="${dto.answer != null}">
 								<div class="content-detail-answer">
 									<div class="title">답변 내용</div>
@@ -62,10 +60,7 @@
 					</div>
 
 					<div class="content-move-list">
-
-
 						<a href="${pageContext.request.contextPath }/board/list.board?type=ask" class="wpqkf">목록보기</a>
-
 					</div>
 				</div>
 			</div>

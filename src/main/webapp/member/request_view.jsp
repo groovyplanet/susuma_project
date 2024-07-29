@@ -16,8 +16,11 @@
 				<%-- 현재날짜와 수리예약일 비교 (ex.2024. 9. 13(금) 19:00) --%>
 				<jsp:useBean id="now" class="java.util.Date" />
 				<fmt:formatDate value="${now}" pattern="yyyy. M. d" var="nowDate" />
-				<fmt:parseDate value="${fn:substringBefore(requestDTO.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
+				<fmt:formatDate value="${now}" pattern="HH:00" var="nowTime" />
+				<fmt:parseDate value="${fn:substringBefore(dto.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
 				<fmt:formatDate value="${requestDateParse}" pattern="yyyy. M. d" var="requestDateFmt" />
+				<fmt:parseDate value="${dto.requestTime }" pattern="HH:00" var="requestTimeParse" />
+				<fmt:formatDate value="${requestTimeParse}" pattern="HH:00" var="requestTimeFmt" />
 				<div class="info-reserve">
 					<c:choose>
 						<%-- 의뢰인 --%>
@@ -62,13 +65,13 @@
 										</c:when>
 										<c:when test="${requestDTO.status eq 'approved'}">
 											<c:choose>
-												<c:when test="${requestDateFmt >= nowDate}">
+												<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 													<!-- 예약일이 미래 -->
 													<button type="button" class="btn">예약 완료</button>
 												</c:when>
 												<c:otherwise>
 													<!-- 예약일이 과거 -->
-													<button type="button" class="btn complete">수리 완료</button>
+													<button type="button" class="btn">수리 중</button>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
@@ -84,21 +87,32 @@
 									</c:choose>
 								</div>
 							</div>
+							<c:if test="${requestDTO.status eq 'approved' or requestDTO.status eq 'paywait' or requestDTO.status eq 'paid'}">
+								<div class="content-wrap">
+									<div class="title">수리기사 연락처</div>
+									<div class="content-pay">
+										<i class="bi bi-telephone"></i>
+										${requestDTO.masterPhoneNum }
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${requestDTO.status eq 'paid'}">
+								<div class="content-wrap">
+									<div class="title">결제 정보</div>
+									<div class="content-pay">
+										<i class="bi bi-clock-history"></i>
+										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<strong>
+											<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
+											P
+										</strong>
+										결제
+									</div>
+								</div>
+							</c:if>
 							<div class="content-wrap">
 								<div class="title">수리 요청 내용</div>
 								<div class="content">${requestDTO.content }</div>
-							</div>
-							<div class="content-wrap">
-								<div class="title">결제 내역</div>
-								<div class="content-pay">
-									<i class="bi bi-clock-history"></i>
-									<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
-									<strong>
-										<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
-										원
-									</strong>
-									결제
-								</div>
 							</div>
 							<c:if test="${requestDTO.status eq 'paid'}">
 								<c:choose>
@@ -148,7 +162,7 @@
 														<input type="hidden" id="starScore" name="starScore" value="0">
 														<!-- 별점 hidden 필드 추가 -->
 														<div class="review-content">
-															<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요."></textarea>
+															<textarea id="content" name="content" placeholder="후기 내용을 입력해 주세요." required></textarea>
 														</div>
 														<!-- <div class="file-attachment">
 														파일 첨부
@@ -207,7 +221,7 @@
 										</c:when>
 										<c:when test="${requestDTO.status eq 'approved'}">
 											<c:choose>
-												<c:when test="${requestDateFmt >= nowDate}">
+												<c:when test="${requestDateFmt > nowDate or (requestDateFmt == nowDate and requestTimeFmt > nowTime)}">
 													<!-- 예약일이 미래 -->
 													<button type="button" class="btn">예약 완료</button>
 												</c:when>
@@ -232,6 +246,27 @@
 							<div class="location-area" style="display: flex; justify-content: space-around; margin-top: 15px;">
 								<div id="map" style="width: 700px; height: 400px;"></div>
 							</div>
+							<div class="content-wrap">
+								<div class="title">의뢰인 연락처</div>
+								<div class="content-pay">
+									<i class="bi bi-telephone"></i>
+									${requestDTO.masterPhoneNum }
+								</div>
+							</div>
+							<c:if test="${requestDTO.status eq 'paid'}">
+								<div class="content-wrap">
+									<div class="title">결제 정보</div>
+									<div class="content-pay">
+										<i class="bi bi-clock-history"></i>
+										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<strong>
+											<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
+											P
+										</strong>
+										결제
+									</div>
+								</div>
+							</c:if>
 							<div class="content-wrap">
 								<div class="title">수리 요청 내용</div>
 								<div class="content">${requestDTO.content }</div>
@@ -294,7 +329,7 @@
 			<div class="pay-content">
 				<p>
 					결제 하실 금액은
-					<strong id="amount"> 10,000원 </strong>
+					<strong id="amount"> 10,000P </strong>
 					입니다.
 				</p>
 			</div>
@@ -312,7 +347,7 @@
 	$('#paymoney').on('input', function() { // 금액 입력 시 ',원' 추가
 		var input = $(this).val();
 		var numericValue = input.replace(/[^\d]/g, '');
-		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' P';
 		$(this).val(formattedValue);
 	});
 
@@ -399,7 +434,7 @@
 		// 금액 모달창에 띄우기
 		var payAmount = button.data('payamount'); // 소문자로만 가져올 수 있음
 		var amountNumber = parseInt(payAmount, 10);
-		var formattedAmount = amountNumber.toLocaleString('en-US') + '원';
+		var formattedAmount = amountNumber.toLocaleString('en-US') + 'P';
 		$('#amount').text(formattedAmount);
 		$('#request-pay-modal').attr('class', ' modal request show');
 		$('#request-pay-modal .btn-enter').data('reqNo', reqNo);

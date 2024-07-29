@@ -289,9 +289,10 @@
 .main-section .container.filter .filter select:focus, .search-filter input:focus, .search-filter select:focus { border: 1px solid #F49D00; } 
 .main-section .container.filter .search-filters button { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
 .main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
-.main-section .container.filter .technician { border: 1px solid #ddd; margin: 10px; padding: 20px; width: 300px; text-align: center; transition: transform 0.3s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; background-color: #fff; } 
-.main-section .container.filter .technician:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
-.main-section .container.filter .technician img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .technician { border: 1px solid #ddd; margin: 10px; padding: 20px; width: 300px; text-align: center; transition: transform 0.3s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; background-color: #fff; } 
+.main-section .technician:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
+.main-section .technician img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .technician .master-info { display: flex; flex-direction: column; gap: 5px; } 
 .main-section .container.filter .search-filters { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
 .main-section .container.filter .search-filter { margin: 0 10px; } 
 .main-section .container.filter .search-filter label { margin-right: 10px; font-weight: bold; color: #333; } 
@@ -344,6 +345,7 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request .btn { background-color: white; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; cursor: default; } 
 .request .btn.submit { background-color: #ff6b6b; color: white; cursor: pointer; } 
 .request .btn.complete { border: 1px solid #DDD; background-color: #fff; color: #555; } 
+.request .btn.link { cursor: pointer } 
 /* 프로필 이미지 스타일 */
 .request-list .profile-logo-sm { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; } 
 /* 예약 스케줄 스타일 */

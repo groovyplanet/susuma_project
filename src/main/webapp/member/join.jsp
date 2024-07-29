@@ -45,12 +45,12 @@
 							<input type="text" class="input-field " placeholder="이름을 입력해주세요." autocomplete="no" name="name" id="name" required>
 						</div>
 						<div class="input-area">
-							<label for="phoneNum">연락처</label>
+							<label for="phoneNum" id="phoneNum-label" class="">연락처</label>
 							<input type="text" class="input-field" placeholder="연락처를 입력해주세요." autocomplete="no" name="phoneNum" id="phoneNum" maxlength="13">
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
-							<label for="address">주소</label>
+							<label for="address" id="address-label" class="">주소</label>
 							<input type="hidden" name="address">
 							<input type="hidden" name="latitude" value="0.0">
 							<!-- 위도 -->
@@ -103,7 +103,7 @@
 								</div>
 							</div>
 							<div class="input-area">
-								<label for="maxDistance">이동 가능 거리</label>
+								<label for="maxDistance" class="required">이동 가능 거리</label>
 								<div class="distance-radio-area">
 									<input type="radio" name="maxDistance" value="5" id="distanc-5" checked>
 									<input type="radio" name="maxDistance" value="10" id="distanc-10">
@@ -118,7 +118,7 @@
 								</div>
 							</div>
 							<div class="input-area">
-								<label for="shortDescription">한 줄 소개</label>
+								<label for="shortDescription" class="required">한 줄 소개</label>
 								<input type="text" class="input-field" placeholder="고객에게 보여질 한 줄 소개 멘트를 입력해주세요." autocomplete="no" name="shortDescription" id="shortDescription">
 							</div>
 						</div>
@@ -334,6 +334,7 @@
 
                     $("input[name=address]").val(addr); // 주소 값 넣기
                     $("#btn-zipcode").html('<p style="text-align: left;">' + addr + " [" + zipcode + "]" + '</p>'); // 주소 + 우편번호 보여주기
+                    $("#btn-zipcode").removeClass("error");
 
                     $("input[name=addressDetail]").focus(); // 상세주소 포커스
                 }

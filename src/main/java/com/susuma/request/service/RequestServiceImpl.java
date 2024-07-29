@@ -115,7 +115,7 @@ public class RequestServiceImpl implements RequestService {
 			clientNo = meNo;
 		}
 		int recordsPerPage = 2; // 한 페이지당 보여줄 레코드 수
-		if ("adming".equals(type)) {
+		if ("admin".equals(type)) {
 			recordsPerPage = 10;
 		}
 
@@ -170,8 +170,9 @@ public class RequestServiceImpl implements RequestService {
 	public void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		getList(request, response); // 관리자, 사용자 공통
-		request.getRequestDispatcher("request_list.jsp").forward(request, response); // 요청 포워드
 
+		request.setAttribute("type", "request");
+		request.getRequestDispatcher("request_list.jsp").forward(request, response); // 요청 포워드
 	}
 
 	@Override
@@ -181,18 +182,21 @@ public class RequestServiceImpl implements RequestService {
 		getRequestDTO(request, response);
 
 		// 포워딩
+		request.setAttribute("type", "request");
 		request.getRequestDispatcher("request_view.jsp").forward(request, response);
 	}
 
 	@Override
 	public void adminEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setAttribute("type", "request");
+		
 		// 수리 요청 정보 가져오기
 		getRequestDTO(request, response);
 
 		// 포워딩
+		request.setAttribute("type", "request");
 		request.getRequestDispatcher("request_edit.jsp").forward(request, response);
-
 	}
 
 	@Override

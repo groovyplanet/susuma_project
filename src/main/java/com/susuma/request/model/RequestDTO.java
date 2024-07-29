@@ -27,11 +27,14 @@ public class RequestDTO {
 	private Double longitude; // "LONGITUDE"
 	private String phoneNum; // "PHONE_NUM"
 
+	// MEMBER
 	private String masterName;
 	private String clientName;
 	private String masterAddress;
 	private String clientAddress;
 	private String clientAddressDetail;
+	private String masterPhoneNum;
+	private String clientPhoneNum;
 	private byte[] masterProfilePhoto;
 	private byte[] clientProfilePhoto;
 
@@ -48,6 +51,12 @@ public class RequestDTO {
 	private String paywaitCnt;
 	private String paidCnt;
 	private String cancelCnt;
+
+	// REVIEW
+	private String reviewCnt;
+	
+	// 페이징
+	private String rn;
 
 	public RequestDTO() {
 
@@ -423,6 +432,38 @@ public class RequestDTO {
 
 	public void setCancelCnt(String cancelCnt) {
 		this.cancelCnt = cancelCnt;
+	}
+
+	public String getMasterPhoneNum() {
+		return masterPhoneNum;
+	}
+
+	public void setMasterPhoneNum(String masterPhoneNum) {
+		this.masterPhoneNum = masterPhoneNum;
+	}
+
+	public String getClientPhoneNum() {
+		return clientPhoneNum;
+	}
+
+	public void setClientPhoneNum(String clientPhoneNum) {
+		this.clientPhoneNum = clientPhoneNum;
+	}
+
+	public String getReviewCnt() {
+		return reviewCnt;
+	}
+
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
+
+	public String getRn() {
+		return rn;
+	}
+
+	public void setRn(String rn) {
+		this.rn = rn;
 	}
 
 }
