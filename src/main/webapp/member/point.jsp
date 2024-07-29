@@ -3,7 +3,43 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/head.jsp"%>
 </head>
+<style>
+/* 모달 스타일 */
+#eventModal {
+	display: none; /* 숨김 처리 */
+	position: fixed;
+	z-index: 1000; /* 페이지 내용 위에 표시 */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	opacity: 1;
+}
 
+#eventModal .modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 600px; /* 최대 너비 설정 */
+}
+
+#eventModal .close-button {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#eventModal .close-button:hover, #eventModal .close-button:focus {
+	color: black;
+	text-decoration: none;
+}
+</style>
 
 
 <body>
@@ -41,9 +77,13 @@
 						<div class="points-header">
 							<span class="points-label">보유 포인트</span>
 						</div>
-						<div class="points-value"><fmt:formatNumber value="${points}" type="number" groupingUsed="true" maxFractionDigits="0" />P</div>
+						<div class="points-value">
+							<fmt:formatNumber value="${points}" type="number" groupingUsed="true" maxFractionDigits="0" />
+							P
+						</div>
 						<button class="btn-withdraw" id="withdrawButton">전체출금</button>
 						<button class="btn-charge" id="chargeButton">충전하기</button>
+						<button class="btn-attendance" id="attendance">출석체크</button>
 					</div>
 					<div class="transaction-history">
 						<div class="tab-menu">
@@ -77,12 +117,22 @@
 									</span>
 								</div>
 							</c:forEach>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<div id="eventModal" class="modal">
+		<div class="modal-content">
+			<span class="close-button">&times;</span>
+			<h2>SUSUMA OPEN EVENT</h2>
+			<p>아래 버튼을 클릭하면 랜덤으로 포인트가 적립됩니다.</p> 
+			<p>하루에 한 번만 참여 가능합니다.<p>
+			<button id="participateButton">참여하기</button>
+		</div>
+	</div>
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
@@ -230,7 +280,26 @@
 	        document.getElementById('chargeModal').classList.remove('show');
 	    });
 	});
-	
+	 // 출석체크 버튼 클릭 시 이벤트 처리
+    document.getElementById('attendance').addEventListener('click', function() {
+        document.getElementById('eventModal').style.display = 'block';
+    });
+
+    // 모달 닫기 버튼 클릭 시 이벤트 처리
+    document.querySelector('#eventModal .close-button').addEventListener('click', function() {
+        document.getElementById('eventModal').style.display = 'none';
+    });
+
+    // 출석체크 버튼 클릭 시 이벤트 처리
+    document.getElementById('participateButton').addEventListener('click', function() {
+        // AJAX 호출 예시:
+        // fetch('/your-endpoint', { method: 'POST' }).then(response => response.json()).then(data => { ... });
+
+        // 이벤트 참여 후 쿠키 설정
+        setCookie("eventParticipated", "true", 1);
+        document.getElementById('eventModal').style.display = 'none';
+    });
+
 	
 	
 	

@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.susuma.member.model.MemberMapper;
+
 import com.susuma.point.model.PointDTO;
+
 import com.susuma.point.model.PointMapper;
 import com.susuma.request.model.RequestDTO;
 import com.susuma.request.model.RequestMapper;
@@ -332,6 +334,40 @@ public class RequestServiceImpl implements RequestService {
 			//pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
 
 			sql.close();
+
+		}
+
+		if (requestDTO.getStatus().equals("paid")) {
+
+			// 멤버 ID와 결제 금액을 가져옴
+			String meNo = (String) request.getSession().getAttribute("meNo");
+			System.out.println(request.getParameter("payAmount"));
+			int payAmount = request.getParameter("payAmount") == null ? 0 : Integer.parseInt(request.getParameter("payAmount"));
+			
+			// 결과를 저장할 변수
+			String resultMessage = "Failure";
+
+			// 포인트 조회
+			try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+				PointMapper pointMapper = sql.getMapper(PointMapper.class);
+				RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
+				Integer currentPoints = pointMapper.MemberPoints(meNo);
+
+				// 포인트 부족 시 예외 처리
+				if (currentPoints == null || currentPoints < payAmount) {
+					resultMessage = "잔액이 부족합니다.";
+				} else {
+
+					// 결제 상태 업데이트
+					// 포인트 차감
+					MemberMapper.updateMemberPoints(requestDTO);
+				}
+
+				requestMapper.updateRequest(requestDTO);
+
+				// 성공 메시지
+				resultMessage = "Success";
+			}
 
 		}
 

@@ -350,6 +350,8 @@
 		$('#request-list-pay-modal .btn-enter').on('click', function(event) {
 			event.preventDefault();
 			var reqNo = $(this).data('reqNo');
+
+
 			
 			$.ajax({
 				url : 'payAjax.request',
@@ -357,7 +359,9 @@
 				data : {
 					reqNo : reqNo,
 					status : 'paid',
+
 					payAmount : $('#amount').text().replace(/[^\d]/g, '')
+
 					
 				},
 				success : function(data) {

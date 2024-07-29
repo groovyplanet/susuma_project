@@ -126,7 +126,20 @@
 .main-section .container .content .account-info .points-header { display: flex; align-items: center; } 
 .main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
 .main-section .container .content .account-info .btn-withdraw,
-.main-section .container .content .account-info .btn-charge { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+.main-section .container .content .account-info .btn-charge,
+.main-section .container .content .account-info .btn-attendance { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+
+#participateButton {
+    background-color: #f49d00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
 .main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
 .main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
 .main-section .container .content .account-info .tab-menu { display: flex; margin-bottom: 10px; } 
