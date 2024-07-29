@@ -6,7 +6,7 @@
 	<!-- [1] 회원 목록 -->
 	<select id="selectMembers" parameterType="map" resultType="com.susuma.member.model.MemberDTO">
 		SELECT *
-    FROM (
+   		FROM (
         SELECT A.*, ROWNUM AS RN
         FROM (
             SELECT ME_NO, TYPE, EMAIL, PW, NAME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM,
@@ -38,13 +38,15 @@
             <if test="rootNo != 'all' and caNo != 'all'">
                 AND C.CA_NO = #{caNo}
             </if>
-            <if test="subCate != null and subCate != ''">
-                AND C.CA_NO = #{subCate}
-            </if>
             <if test="maxDistance != null and maxDistance != ''">
                 AND (6371 * acos(cos(RADIANS(#{latitude})) * cos(RADIANS(M.LATITUDE)) * cos(RADIANS(M.LONGITUDE) - RADIANS(#{longitude})) + sin(RADIANS(#{latitude})) * sin(RADIANS(M.LATITUDE)))) &lt;= #{maxDistance}
             </if>
-            ORDER BY M.${sortField} ${sortOrder} NULLS LAST
+            <if test='sortField != "AVERAGE_SCORE"'>
+            	ORDER BY M.${sortField} ${sortOrder} NULLS LAST
+            </if>
+            <if test='sortField == "AVERAGE_SCORE"'>
+            	ORDER BY RESULT.AVERAGE_SCORE ${sortOrder} NULLS LAST
+            </if>
         ) A
     )
     WHERE RN BETWEEN #{startRow} and #{endRow}
@@ -68,6 +70,9 @@
 		<if test="rootNo != 'all' and caNo != 'all'">
 			AND C.CA_NO = #{caNo}
 		</if>
+         <if test="maxDistance != null and maxDistance != ''">
+             AND (6371 * acos(cos(RADIANS(#{latitude})) * cos(RADIANS(M.LATITUDE)) * cos(RADIANS(M.LONGITUDE) - RADIANS(#{longitude})) + sin(RADIANS(#{latitude})) * sin(RADIANS(M.LATITUDE)))) &lt;= #{maxDistance}
+         </if>
 	</select>
 
 	<!-- [2] 회원 -->

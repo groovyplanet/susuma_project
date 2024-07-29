@@ -78,6 +78,7 @@ public class AuthenticationFilter implements Filter {
 			// 의뢰인만 접근 가능
 			switch (command) {
 			case "/member/request.member": // 수리 예약
+			case "/member/masterList.member":// 수리예약화면 
 				if (!type.equals("user")) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();
