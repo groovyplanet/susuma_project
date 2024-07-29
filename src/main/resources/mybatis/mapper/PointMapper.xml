@@ -48,6 +48,8 @@
 		INSERT INTO POINT_HISTORY (pc_no, me_no, point, pc_time)
 		VALUES (point_history_seq.NEXTVAL, #{meNo}, #{point}, SYSDATE)
 	</insert>
+	
+	
 
 
 </mapper>

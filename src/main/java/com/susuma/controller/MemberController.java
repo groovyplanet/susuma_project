@@ -155,6 +155,12 @@ public class MemberController extends HttpServlet {
 			service.chargePoints(request, response);
 			break;
 
+			
+		case "/member/attendanceAjax.member":
+			service.attendancepoint(request, response);
+			break;
+
+
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			break;

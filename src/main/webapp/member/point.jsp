@@ -39,6 +39,10 @@
 	color: black;
 	text-decoration: none;
 }
+.disabled {
+            pointer-events: none; /* 클릭을 비활성화 */
+            opacity: 0.5; /* 비활성화된 버튼 스타일 */
+        }
 </style>
 
 
@@ -280,28 +284,78 @@
 	        document.getElementById('chargeModal').classList.remove('show');
 	    });
 	});
-	 // 출석체크 버튼 클릭 시 이벤트 처리
-    document.getElementById('attendance').addEventListener('click', function() {
-        document.getElementById('eventModal').style.display = 'block';
-    });
+	   
+       $(document).ready(function() {
+           // 출석체크 버튼 클릭 시 모달 열기
+           document.getElementById('attendance').addEventListener('click', function() {
+               document.getElementById('eventModal').style.display = 'block';
+           });
 
-    // 모달 닫기 버튼 클릭 시 이벤트 처리
-    document.querySelector('#eventModal .close-button').addEventListener('click', function() {
-        document.getElementById('eventModal').style.display = 'none';
-    });
+           // 모달 닫기 버튼 클릭 시 모달 닫기
+           document.querySelector('#eventModal .close-button').addEventListener('click', function() {
+               document.getElementById('eventModal').style.display = 'none';
+           });
 
-    // 출석체크 버튼 클릭 시 이벤트 처리
-    document.getElementById('participateButton').addEventListener('click', function() {
-        // AJAX 호출 예시:
-        // fetch('/your-endpoint', { method: 'POST' }).then(response => response.json()).then(data => { ... });
+           document.getElementById('participateButton').addEventListener('click', function() {
+               // 쿠키를 설정
+               setCookie("eventParticipated", "true", 1);
 
-        // 이벤트 참여 후 쿠키 설정
-        setCookie("eventParticipated", "true", 1);
-        document.getElementById('eventModal').style.display = 'none';
-    });
+               // AJAX 요청
+               $.ajax({
+                   url: 'attendanceAjax.member',
+                   type: 'POST',
+                   success: function(data) {
+                       console.log(data);
+                       alert(data.message); // 서버로부터 받은 메시지 표시
+                   },
+                   error: function(xhr, status, error) {
+                       console.error('서버 오류: ' + xhr.status);
+                   }
+               });
 
-	
-	
+               // 모달 닫기
+               document.getElementById('eventModal').style.display = 'none';
+           });
+       });
+
+
+       // 쿠키 설정 함수
+       function setCookie(name, value, days) {
+           var expires = "";
+           if (days) {
+               var date = new Date();
+               date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+               expires = "; expires=" + date.toUTCString();
+           }
+           document.cookie = name + "=" + (value || "") + expires + "; path=/";
+       }
+
+       // 쿠키 가져오기 함수
+       function getCookie(name) {
+           var nameEQ = name + "=";
+           var ca = document.cookie.split(';');
+           for (var i = 0; i < ca.length; i++) {
+               var c = ca[i];
+               while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+               if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+           }
+           return null;
+       }
+    // 쿠키를 확인하고 버튼 상태 설정
+       function checkCookieAndDisableButton() {
+           var eventParticipated = getCookie("eventParticipated");
+           var participateButton = document.getElementById('participateButton');
+
+           if (eventParticipated) {
+               participateButton.classList.add('disabled'); // 버튼 비활성화
+           }
+       }
+
+       // 페이지 로드 시 쿠키를 체크하여 버튼 상태 설정
+       document.addEventListener('DOMContentLoaded', function() {
+           checkCookieAndDisableButton();
+       });
+
 	
 	
 	</script>
