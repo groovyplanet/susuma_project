@@ -13,7 +13,7 @@
 	<li>
 		<a href="${pageContext.request.contextPath }/admin/member/list.member?type=master" class="${type=='master'?'active':'' }">수리기사</a>
 	</li>
-	<li>
+	<li style="margin-top: 10px;">
 		<span>
 			<i class="bi bi-tools"></i>
 			수리
@@ -22,7 +22,7 @@
 	<li>
 		<a href="${pageContext.request.contextPath }/admin/request/list.request" class="${type=='request'?'active':'' }">예약 및 후기</a>
 	</li>
-	<li>
+	<li style="margin-top: 10px;">
 		<span>
 			<i class="bi bi-clipboard-check"></i>
 			게시판

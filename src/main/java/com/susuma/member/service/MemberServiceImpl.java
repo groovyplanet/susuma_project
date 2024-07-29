@@ -19,6 +19,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -310,13 +311,12 @@ public class MemberServiceImpl implements MemberService {
 	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
-
 		String rootNo = request.getParameter("rootNo");
 		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
 		String caNo = request.getParameter("caNo");
 		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
-		String subCate = request.getParameter("subCate");
-		String maxDistance = request.getParameter("max_distance");
+		String maxDistance = request.getParameter("maxDistance");
+		String starOrder = request.getParameter("starOrder");
 
 		HttpSession session = request.getSession();
 		String meNo = (String) session.getAttribute("meNo");
@@ -325,25 +325,30 @@ public class MemberServiceImpl implements MemberService {
 		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
 		MemberDTO user = Member2.selectLaLo(meNo);
 		sql2.close();
-		double userLatitude = user.getLatitude();
 
+		double userLatitude = user.getLatitude();
 		double userLongitude = user.getLongitude();
+
+		String sortField = "insert_time";
+		String sortOrder = "DESC";
+		if (starOrder != null && !starOrder.isEmpty()) {
+			sortField = "AVERAGE_SCORE";
+			sortOrder = starOrder;
+		}
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("type", "master");
 		params.put("joinApproval", "Y");
-		params.put("sortField", "insert_time");
-		params.put("sortOrder", "DESC");
+		params.put("sortField", sortField);
+		params.put("sortOrder", sortOrder);
 		params.put("rootNo", rootNo);
 		params.put("caNo", caNo);
 		params.put("startRow", 1); // rownum 시작값
 		params.put("endRow", 999); // rownum 끝값
 		params.put("latitude", userLatitude);
 		params.put("longitude", userLongitude);
+		params.put("starOrder", starOrder);
 
-		if (subCate != null && !subCate.isEmpty()) {
-			params.put("subCate", subCate);
-		}
 		if (maxDistance != null && !maxDistance.isEmpty()) {
 			params.put("maxDistance", maxDistance);
 		}
@@ -356,10 +361,16 @@ public class MemberServiceImpl implements MemberService {
 
 		// 카테고리
 		getCategoryMain(request, response);
+		if (!rootNo.equals("all")) {
+			getCategorySub(request, response, rootNo);
+		}
 
 		/* [3] 화면이동 */
 		request.setAttribute("gnb", "request");
 		request.setAttribute("memberList", memberList);
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			request.setAttribute(entry.getKey(), entry.getValue());
+		}
 		request.getRequestDispatcher("master_list.jsp").forward(request, response);
 
 	}
@@ -993,7 +1004,5 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 }
