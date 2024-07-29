@@ -100,7 +100,7 @@
 .modal.terms .container .terms-content { font-size: 16px; margin-top: 18px; font-size: 13px; width: 600px; height: 500px; overflow-y: auto; text-align: left; } 
 
 /* 비밀번호 찾기 */
-.main-section .container.main-only .main-area.find-info { width: 500px; margin:40px 0; } 
+.main-section .container.main-only .main-area.find-info { width: 500px; margin: 160px 0; } 
 .main-section .container.main-only .main-area.find-info .find-info-form { width: 500px; margin:40px 0; } 
 .main-section .container.main-only .main-area.find-info .find-info-form .title-sub { font-size: 16px; font-weight: 500; margin-left: 2px; margin-bottom: 5px; } 
 .main-section .container.main-only .main-area.find-info .find-info-form .title-sub2 { font-size: 14px; color: #777; margin-top: 5px; margin-left: 2px; } 
