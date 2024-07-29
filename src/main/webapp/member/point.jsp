@@ -74,11 +74,11 @@
 			<div class="modal-content">
 				<p>충전할 금액을 입력하세요</p>
 				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요">
+				<input type="hidden" id="chargeAmountInput" value="<%= request.getAttribute("chargeAmountInput") %>">
 				<div class="modal-buttons">
 					<img src="../resources/img/kakaobear.png" style="width: 50px; height: 40px; cursor: pointer;" id="kakaoPay">
 					<img src="../resources/img/tosspay.png" style="width: 40px; height: 40px; cursor: pointer;" id="tossPay">
-					<img src="../resources/img/kg.png" style="width: 40px; height: 40px; cursor: pointer;" id="requestPay">
-					<button class="btn-confirm" id="confirmCharge">충전</button>
+					<button class="btn-confirm" id="confirmCharge">카드결제</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
 
 				</div>
@@ -263,7 +263,7 @@
 	    });
 
 	    // 충전 모달에서 확인 버튼 클릭 시
-	    document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
+	  /*  document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
 	    
 	        const amount = $('#chargeAmount').val().replace(/[^\d]/g, '');
 	        
@@ -296,9 +296,13 @@
 
 	        // 모달 닫기
 	        document.getElementById('chargeModal').classList.remove('show');
-	    });
-	});
+	    }); */
+	    
 	   
+
+	});
+	
+
        $(document).ready(function() {
            // 출석체크 버튼 클릭 시 모달 열기
            document.getElementById('attendance').addEventListener('click', function() {
