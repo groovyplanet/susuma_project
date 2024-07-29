@@ -81,10 +81,10 @@
 					<button class="btn-confirm" id="confirmCharge">카드결제</button>
 					<button id="pay">결제</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
-
 				</div>
 			</div>
 		</div>
+		
 
 		<div class="container">
 			<%@ include file="../include/snb.jsp"%>
