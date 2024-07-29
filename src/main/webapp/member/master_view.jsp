@@ -2,6 +2,8 @@
 <%@ page import="com.susuma.member.model.MemberDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 <%@ include file="../include/head.jsp"%>
 </head>
@@ -73,15 +75,48 @@
 						</div>
 						<div class="review-list">
 							<div class="pic-review-view item">
-								
-								<span class="sizetype-view">
-									<span class="date">24.07.09</span>
-									<span class="starreview">★★★★★</span>
-									<span class="nickname">김모씨</span>
-									<span class="review-oneline">기사님이 깨끗하고 집안이 멋져요</span>
-								</span>
-								
+								<c:forEach var="dto" items="${list2}">
+									<c:set var="firstChar" value="${fn:substring(dto.clientName, 0, 1)}" />
+									<c:set var="maskedName" value="${firstChar}" />
+									<c:forEach var="i" begin="1" end="${fn:length(dto.clientName) - 1}">
+										<c:set var="maskedName" value="${maskedName}*" />
+									</c:forEach>
+									<span class="sizetpye-view-wrap">
+									<span class="sizetype-view">
+									
+										<span class="date">
+										
+										<fmt:formatDate value="${dto.insertTime}" pattern="yy년 MM월 dd일" />
+										</span>
+										<div class="main-review-score">
+									<ul>
+										<li>
+											<strong></strong>
+											<span id="starview" style="color: gold;">
 
+												<c:forEach var="i" begin="1" end="5">
+													<c:choose>
+														<c:when test="${i <= dto.starScore}">
+	                										★
+	            										</c:when>
+														<c:otherwise>
+											                ☆
+											            </c:otherwise>
+													</c:choose>
+												</c:forEach>
+
+											</span>
+										</li>
+
+										
+									</ul>
+								</div>
+										<span class="review-oneline">${dto.content }</span>
+									</span>
+										<span class="nickname">${maskedName }고객님의 후기</span>
+									</span>
+
+								</c:forEach>
 							</div>
 						</div>
 					</div>
