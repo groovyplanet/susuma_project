@@ -45,8 +45,10 @@ public interface MemberMapper {
 	public static void updateMemberPoints(RequestDTO requestDTO) {
 	}
 
+	List<MemberDTO> getPointSpendings(String meNo);
+	
+	public int updatePw(MemberDTO dto); //비밀번호 찾기
+
 	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
-	
-	
-	
+
 }

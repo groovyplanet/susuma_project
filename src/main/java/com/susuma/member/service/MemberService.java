@@ -53,8 +53,10 @@ public interface MemberService {
 	void withdrawPoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	
+
 	void attendancepoint(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
+	void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 
 }

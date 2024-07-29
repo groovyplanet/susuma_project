@@ -101,13 +101,17 @@ public class MemberController extends HttpServlet {
 		case "/member/findPw.member":
 			request.getRequestDispatcher("find_info.jsp").forward(request, response); // 비밀번호 찾기
 			break;
+			
+		case "/member/findPwForm.member":
+			service.findPwForm(request, response);
+			break;
 
 		case "/member/mypage.member":
 			request.getRequestDispatcher("mypage.jsp").forward(request, response); // 마이페이지
 			break;
 
 		case "/member/masterList.member":
-			service.getMasterList(request, response); // 수리 예약(수리기사 목록)
+			//service.getMasterList(request, response); // 수리 예약(수리기사 목록)
 			break;
 
 		case "/member/logout.member":
@@ -150,11 +154,12 @@ public class MemberController extends HttpServlet {
 		case "/member/chargePoints.member":
 			service.chargePoints(request, response);
 			break;
+
 			
 		case "/member/attendanceAjax.member":
 			service.attendancepoint(request, response);
 			break;
-		
+
 
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
