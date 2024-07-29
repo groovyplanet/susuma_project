@@ -42,16 +42,8 @@ public interface MemberMapper {
 
 	public MemberDTO selectLaLo(String meNo); // 거리별검색 경도,위도
 
-
-	List<MemberDTO> getMinus(String meNo);
-
 	public static void updateMemberPoints(RequestDTO requestDTO) {
-		// TODO Auto-generated method stub
-		
 	}
-	
-	public MemberDTO selectLaLo(String meNo); //거리별검색 경도,위도
-	
 
 	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
 }
