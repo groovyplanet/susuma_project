@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	<section class="main-section">
 		<div class="container">
-			<%@ include file="../include/snb_board.jsp"%>
+			<%@ include file="../include/snb.jsp"%>
 			<div class="content-wrap">
 				<div class="content-list">
 					<c:forEach var="dto" items="${list }">
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 										<span class="inner">${dto.content }</span>
 									</div>
 								</c:when>
-								<c:when test="${type eq 'ask'}">
+								<c:when test="${type eq 'ask' or type eq 'myask'}">
 									<div class="content-mix">
 										<div class="content-status-wait">
 											<c:choose>
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							</c:choose>
 						</div>
 					</c:forEach>
-					<c:if test="${type eq 'ask'}">
+					<c:if test="${type eq 'ask' or type eq 'myask'}">
 						<div class="content-p-box" style="margin-bottom: 0">
 							<div class="content-ask">
 								<a href="${pageContext.request.contextPath }/board/askWrite.board">문의하기</a>

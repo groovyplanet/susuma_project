@@ -8,7 +8,7 @@
 
 	<section class="main-section">
 		<div class="container">
-			<%@ include file="../include/snb_board.jsp"%>
+			<%@ include file="../include/snb.jsp"%>
 			<div class="content">
 				<div class="edit-form">
 					<div class="widget-location">
@@ -19,6 +19,7 @@
 					<div id="qna-write" class="section">
 						<form name="form-qna-write" method="post" action="${pageContext.request.contextPath }/board/askRegistForm.board" class="form-horizontal">
 							<input type="hidden" name="boNo" value="${dto.boNo }">
+							<input type="hidden" name="type" value="${type }">
 							<div class="panel-default">
 								<div class="panel-heading"></div>
 								<div class="panel-body">

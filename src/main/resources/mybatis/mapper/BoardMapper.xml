@@ -5,26 +5,34 @@
 
 	<!-- [1] 게시물 목록 -->
 	<select id="selectBoards" parameterType="map" resultType="com.susuma.board.model.BoardDTO">
-	    SELECT *
-	    FROM (
-	        SELECT A.*, ROWNUM AS RN
-	        FROM (
-	            SELECT B.BO_NO, B.ME_NO, B.TYPE, B.TITLE, B.CONTENT, B.INSERT_TIME, B.UPDATE_TIME, B.ANSWER, B.ANSWER_INSERT_TIME, B.ANSWER_UPDATE_TIME
-						, M.NAME
-				FROM BOARD B
-				JOIN MEMBER M
-				ON M.ME_NO = B.ME_NO
+		SELECT *
+		FROM (
+		SELECT A.*, ROWNUM AS RN
+		FROM (
+		SELECT B.BO_NO, B.ME_NO, B.TYPE, B.TITLE, B.CONTENT, B.INSERT_TIME, B.UPDATE_TIME, B.ANSWER, B.ANSWER_INSERT_TIME, B.ANSWER_UPDATE_TIME
+		, M.NAME
+		FROM BOARD B
+		JOIN MEMBER M
+		ON M.ME_NO = B.ME_NO
+		<choose>
+			<when test=' type.equals("myask") '>
+				WHERE B.TYPE = 'ask'
+				AND B.ME_NO = #{meNo}
+			</when>
+			<otherwise>
 				WHERE B.TYPE = #{type}
-				<if test="answerCheck != NULL and answerCheck.equals('yes')">
-					AND B.ANSWER IS NOT NULL
-				</if>
-				<if test="answerCheck != NULL and answerCheck.equals('no')">
-					AND B.ANSWER IS NULL
-				</if>
-				ORDER BY B.${sortField} ${sortOrder} NULLS LAST
-	        ) A
-	    )
-	    WHERE RN BETWEEN #{startRow} and #{endRow}
+			</otherwise>
+		</choose>
+		<if test='answerCheck != NULL and answerCheck.equals("yes")'>
+			AND B.ANSWER IS NOT NULL
+		</if>
+		<if test='answerCheck != NULL and answerCheck.equals("no")'>
+			AND B.ANSWER IS NULL
+		</if>
+		ORDER BY B.${sortField} ${sortOrder} NULLS LAST
+		) A
+		)
+		WHERE RN BETWEEN #{startRow} and #{endRow}
 	</select>
 
 	<!-- [1-2] 게시물 목록 수(페이징 처리) -->
@@ -33,7 +41,15 @@
 		FROM BOARD B
 		JOIN MEMBER M
 		ON M.ME_NO = B.ME_NO
-		WHERE B.TYPE = #{type}
+		<choose>
+			<when test=' type.equals("myask") '>
+				WHERE B.TYPE = 'ask'
+				AND B.ME_NO = #{meNo}
+			</when>
+			<otherwise>
+				WHERE B.TYPE = #{type}
+			</otherwise>
+		</choose>
 		<if test="answerCheck != NULL and answerCheck.equals('yes')">
 			AND B.ANSWER IS NOT NULL
 		</if>
@@ -64,56 +80,56 @@
 		DELETE FROM BOARD
 		WHERE BO_NO = #{boNo}
 	</delete>
-	
+
 	<!-- [6] 1:1문의 등록 -->
 	<insert id="askWrite" parameterType="com.susuma.board.model.BoardDTO">
 		INSERT INTO BOARD(BO_NO, ME_NO, TITLE, CONTENT, TYPE)
 		VALUES(BOARD_SEQ.NEXTVAL, #{meNo}, #{title}, #{content}, #{type})
 	</insert>
-	
+
 	<!-- [7] 1:1문의 -->
 	<select id="askView" resultType="com.susuma.board.model.BoardDTO">
 		SELECT * FROM BOARD WHERE BO_NO = #{boNo}
 	</select>
-	
+
 	<!-- [8] 이전글 다음글 -->
 	<select id="getPreNext" resultType="com.susuma.board.model.BoardDTO">
-		select * from(SELECT 
+		select * from(SELECT
 		BO_NO,
-         LEAD(BO_NO,1,9999) OVER(ORDER BY BO_NO) AS next,
-         LAG(BO_NO,1,9999) OVER(ORDER BY BO_NO) AS last,
-         TITLE,
-         LEAD(TITLE,1,9999) OVER(ORDER BY BO_NO) AS nexttitle,
-         LAG(TITLE,1,9999) OVER(ORDER BY BO_NO) AS lasttitle
-         
+		LEAD(BO_NO,1,9999) OVER(ORDER BY BO_NO) AS next,
+		LAG(BO_NO,1,9999) OVER(ORDER BY BO_NO) AS last,
+		TITLE,
+		LEAD(TITLE,1,9999) OVER(ORDER BY BO_NO) AS nexttitle,
+		LAG(TITLE,1,9999) OVER(ORDER BY BO_NO) AS lasttitle
+
 		FROM BOARD
 		WHERE TYPE = 'notice'
-        order by BO_NO DESC) 
-        WHERE BO_NO = #{boNo}
-        
+		order by BO_NO DESC)
+		WHERE BO_NO = #{boNo}
+
 	</select>
 	<!-- [9] 1:1답변 등록 -->
 	<update id="insertReply" parameterType="com.susuma.board.model.BoardDTO">
-		UPDATE BOARD 
-    SET 
-        ANSWER = #{answer}, 
-        ANSWER_INSERT_TIME = CASE 
-                                WHEN ANSWER_INSERT_TIME IS NULL THEN SYSDATE 
-                                ELSE ANSWER_INSERT_TIME 
-                             END,
-        ANSWER_UPDATE_TIME = CASE 
-                                WHEN ANSWER_INSERT_TIME IS NOT NULL THEN SYSDATE 
-                                ELSE ANSWER_UPDATE_TIME 
-                             END
-    WHERE BO_NO = #{boNo}
+		UPDATE BOARD
+		SET
+		ANSWER = #{answer},
+		ANSWER_INSERT_TIME = CASE
+		WHEN ANSWER_INSERT_TIME IS NULL THEN SYSDATE
+		ELSE ANSWER_INSERT_TIME
+		END,
+		ANSWER_UPDATE_TIME = CASE
+		WHEN ANSWER_INSERT_TIME IS NOT NULL THEN SYSDATE
+		ELSE ANSWER_UPDATE_TIME
+		END
+		WHERE BO_NO = #{boNo}
 	</update>
-	
+
 	<!-- [10] 1:1문의 삭제 -->
 	<delete id="askDelete" parameterType="string">
 		DELETE FROM BOARD
 		WHERE BO_NO = #{boNo}
 	</delete>
-	
-	
-	
+
+
+
 </mapper>

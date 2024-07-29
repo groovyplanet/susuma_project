@@ -10,7 +10,7 @@
 
 	<section class="main-section">
 		<div class="container">
-			<%@ include file="../include/snb_board.jsp"%>
+			<%@ include file="../include/snb.jsp"%>
 			<div class="content content-ask-kim">
 				<div class="content-case">
 

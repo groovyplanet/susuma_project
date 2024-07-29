@@ -29,6 +29,8 @@ public class BoardServiceImpl implements BoardService {
 	public void getList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
+		HttpSession session = request.getSession();
+		String meNo = (String) session.getAttribute("meNo"); // myask 인 경우 사용
 		String type = request.getParameter("type");
 		type = (type == null || type.isEmpty()) ? "notice" : type; // 기본 : notice
 		String answerCheck = request.getParameter("answerCheck");
@@ -42,6 +44,7 @@ public class BoardServiceImpl implements BoardService {
 		int endRow = startRow + recordsPerPage - 1;
 
 		Map<String, Object> params = new HashMap<>();
+		params.put("meNo", meNo);
 		params.put("type", type);
 		params.put("answerCheck", answerCheck);
 		params.put("sortField", sortField);
