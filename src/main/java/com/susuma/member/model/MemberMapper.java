@@ -30,11 +30,18 @@ public interface MemberMapper {
 
 	public ArrayList<MemberDTO> selectMainRe(); // 메인 리뷰리스트
 
-	Integer MemberPoints(String meNo);
+	public Integer MemberPoints(String meNo);
 
-	List<MemberDTO> getPointEarnings(String meNo);
+	public void updateMemberPoints(Map<String, Object> params);
 
-	List<MemberDTO> getPointSpendings(String meNo);
+	public List<MemberDTO> getPointEarnings(String meNo);
+
+	public List<MemberDTO> getPointSpendings(String meNo);
+
+	public List<MemberDTO> getMinus(String meNo);
+
+	public MemberDTO selectLaLo(String meNo); // 거리별검색 경도,위도
+
 
 	List<MemberDTO> getMinus(String meNo);
 
@@ -45,5 +52,6 @@ public interface MemberMapper {
 	
 	public MemberDTO selectLaLo(String meNo); //거리별검색 경도,위도
 	
+
 	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
 }

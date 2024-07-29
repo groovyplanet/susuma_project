@@ -2,6 +2,7 @@ package com.susuma.request.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.susuma.member.model.MemberMapper;
+
+import com.susuma.point.model.PointDTO;
+
 import com.susuma.point.model.PointMapper;
 import com.susuma.request.model.RequestDTO;
 import com.susuma.request.model.RequestMapper;
@@ -283,6 +287,55 @@ public class RequestServiceImpl implements RequestService {
 		RequestDTO requestDTO = createRequestDTO(request, response);
 		boolean isUpdate = true;
 		int result = requestUpsert(requestDTO, isUpdate);
+		String resultMessage = "Success";
+
+		// 결제할 경우 [1]의뢰인 point 차감, [2]수리기사 point 적립, [3]수리기사 point_history
+		if (requestDTO.getStatus().equals("paid")) {
+
+			int payAmount = request.getParameter("payAmount") == null ? 0 : Integer.parseInt(request.getParameter("payAmount"));
+
+			SqlSession sql = sqlSessionFactory.openSession(true);
+			PointMapper pointMapper = sql.getMapper(PointMapper.class);
+			MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
+			RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
+
+			String reqNo = request.getParameter("reqNo");
+			Map<String, Object> params = new HashMap<>();
+			params.put("reqNo", reqNo);
+			RequestDTO requestDTO2 = requestMapper.selectRequest(params);
+			String meNo = requestDTO2.getClientNo();
+			Integer currentPoints = pointMapper.MemberPoints(meNo);
+			if (currentPoints == null)
+				currentPoints = 0;
+			if (currentPoints < payAmount) {
+				resultMessage = "잔액이 부족합니다.";
+			} else {
+
+				// [1]의뢰인 point 차감
+				Map<String, Object> params2 = new HashMap<>();
+				params2.put("meNo", meNo);
+				params2.put("point", currentPoints - payAmount);
+				memberMapper.updateMemberPoints(params2);
+
+				// [2]수리기사 point 적립
+				String masterNo = requestDTO2.getMasterNo();
+				int currentMasterPoints = pointMapper.MemberPoints(masterNo);
+				Map<String, Object> params3 = new HashMap<>();
+				params3.put("meNo", masterNo);
+				params3.put("point", currentMasterPoints + payAmount);
+				memberMapper.updateMemberPoints(params3);
+			}
+
+			// [3]의뢰인 point_history
+			//PointDTO pointDTO = new PointDTO();
+			//pointDTO.setMeNo(meNo);
+			//pointDTO.setPoint(-payAmount); // 출금이므로 음수로 설정
+			//pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
+			//pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
+
+			sql.close();
+
+		}
 
 		if (requestDTO.getStatus().equals("paid")) {
 
@@ -321,11 +374,7 @@ public class RequestServiceImpl implements RequestService {
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		try (PrintWriter out = response.getWriter()) {
-			if (result == 1) {
-				out.write("Success");
-			} else {
-				out.write("Failure");
-			}
+			out.write(resultMessage);
 		}
 	}
 

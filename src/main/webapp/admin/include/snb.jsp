@@ -20,10 +20,7 @@
 		</span>
 	</li>
 	<li>
-		<a href="${pageContext.request.contextPath }/admin/request/list.request" class="${type=='request'?'active':'' }">예약</a>
-	</li>
-	<li>
-		<a href="${pageContext.request.contextPath }/admin/review/list.review" class="${type=='review'?'active':'' }">후기</a>
+		<a href="${pageContext.request.contextPath }/admin/request/list.request" class="${type=='request'?'active':'' }">예약 및 후기</a>
 	</li>
 	<li>
 		<span>

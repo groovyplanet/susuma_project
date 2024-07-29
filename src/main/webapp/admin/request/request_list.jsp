@@ -4,6 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@ include file="../include/head.jsp"%>
+<style>
+.container .content_wrap .table_wrap table.list tbody tr {
+	cursor: default;
+}
+</style>
 </head>
 
 <body>
@@ -62,40 +67,46 @@
 				<table class="list" id="request_list">
 					<thead>
 						<tr>
-							<th class="wp6">번호</th>
-							<th class="wp8">
+							<th class="wp5">번호</th>
+							<th class="wp7">
 								<button class="btn_sort" onclick="sort('MM.NAME', '${sortField != 'MM.NAME' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									의뢰인
 									<i class="bi bi-caret-${sortField != 'MM.NAME' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp8">
+							<th class="wp7">
 								<button class="btn_sort" onclick="sort('MC.NAME', '${sortField != 'MC.NAME' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									수리기사
 									<i class="bi bi-caret-${sortField != 'MC.NAME' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp17">수리 분야</th>
-							<th class="wp12">
+							<th class="wp15">수리 분야</th>
+							<th class="wp11">
 								<button class="btn_sort" onclick="sort('R.REQUEST_DATE', '${sortField != 'R.REQUEST_DATE' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									예약일시
 									<i class="bi bi-caret-${sortField != 'R.REQUEST_DATE' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="">
+							<th class="wp8">
 								<button class="btn_sort" onclick="sort('R.STATUS', '${sortField != 'R.STATUS' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									예약상태
 									<i class="bi bi-caret-${sortField != 'R.STATUS' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp11">수리요청내용</th>
-							<th class="wp8">
+							<th>수리요청내용</th>
+							<th class="wp7">
 								<button class="btn_sort" onclick="sort('R.PAY_AMOUNT', '${sortField != 'R.PAY_AMOUNT' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									수리금액
 									<i class="bi bi-caret-${sortField != 'R.PAY_AMOUNT' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp15">
+							<th class="wp8">
+								<button class="btn_sort" onclick="sort('RE.STAR_SCORE', '${sortField != 'RE.STAR_SCORE' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
+									후기
+									<i class="bi bi-caret-${sortField != 'RE.STAR_SCORE' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
+								</button>
+							</th>
+							<th class="wp13">
 								<button class="btn_sort" onclick="sort('R.INSERT_TIME', '${sortField != 'R.INSERT_TIME' ? 'DESC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									요청일시
 									<i class="bi bi-caret-${sortField != 'R.INSERT_TIME' ? 'down' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
@@ -138,7 +149,10 @@
 										${dto.caRootName}
 										<i class="bi bi-chevron-right"></i>${dto.caName}</span>
 								</td>
-								<td>${dto.requestDate}<span> </span>${dto.requestTime}</td>
+								<td>
+									<i class="bi bi-clock"></i>
+									${dto.requestDate}
+									<span></span>${dto.requestTime}</td>
 								<td>
 									<c:choose>
 										<c:when test="${dto.status == 'requested'}">
@@ -154,12 +168,14 @@
 											<span class="request-status orange">결제 완료</span>
 										</c:when>
 										<c:when test="${dto.status == 'cancel'}">
-											<span class="request-status">취소</span>
+											<span class="request-status gray">취소</span>
 										</c:when>
 									</c:choose>
 								</td>
 								<td>
-									<c:out value="${fn:substring(dto.content, 0, 20)}" />
+									<span class="ellipsis">
+										<c:out value="${fn:substring(dto.content, 0, 30)}" />
+									</span>
 								</td>
 								<td>
 									<c:choose>
@@ -167,6 +183,27 @@
 											<fmt:formatNumber value="${dto.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />원
 										</c:when>
 										<c:otherwise>-</c:otherwise>
+									</c:choose>
+								</td>
+								<td>
+									<c:choose>
+										<c:when test="${dto.reviewCnt>0 }">
+											<span class="star-score">
+												<c:forEach var="i" begin="1" end="5">
+													<c:choose>
+														<c:when test="${i <= dto.starScore}">
+															<i class="bi bi-star-fill"></i>
+														</c:when>
+														<c:otherwise>
+															<i class="bi bi-star"></i>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</span>
+										</c:when>
+										<c:otherwise>
+										-
+										</c:otherwise>
 									</c:choose>
 								</td>
 								<td>

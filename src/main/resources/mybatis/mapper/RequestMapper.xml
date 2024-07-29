@@ -19,6 +19,8 @@
 		, CR.CA_NO AS CA_ROOT_NO
 		, CR.CA_NAME AS CA_ROOT_NAME
 		, (SELECT COUNT(*) FROM REVIEW WHERE REQ_NO = R.REQ_NO) reviewCnt
+		, RE.CONTENT AS REVIEW_CONTENT
+		, RE.STAR_SCORE
 		FROM REQUEST R
 		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
 		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
@@ -26,6 +28,8 @@
 		ON C.CA_NO = MM.CA_NO
 		LEFT JOIN CATEGORY CR
 		ON CR.CA_NO = C.ROOT_NO
+		LEFT JOIN REVIEW RE
+		ON RE.REQ_NO = R.REQ_NO
 		WHERE 1 = 1
 		<if test="clientNo != null">
 			AND MC.ME_NO = #{clientNo}
@@ -36,7 +40,12 @@
 		<if test="status != null and status != 'all'">
 			AND R.STATUS = #{status}
 		</if>
-		ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		<if test="sortField == 'R.REQUEST_DATE'">
+			ORDER BY R.REQUEST_DATE ${sortOrder}, R.REQUEST_TIME ${sortOrder} NULLS LAST
+		</if>
+		<if test="sortField != 'R.REQUEST_DATE'">
+			ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		</if>
 		) A
 		)
 		WHERE RN BETWEEN
