@@ -233,39 +233,55 @@ public class MemberServiceImpl implements MemberService {
 	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
-		String rootNo = request.getParameter("rootNo");
-		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
-		String caNo = request.getParameter("caNo");
-		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
-		String subCate = request.getParameter("subCate");
+	    String rootNo = request.getParameter("rootNo");
+	    rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
+	    String caNo = request.getParameter("caNo");
+	    caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
+	    String subCate = request.getParameter("subCate");
+	    String maxDistance = request.getParameter("max_distance");
+	    
+	    HttpSession session = request.getSession();
+	    String meNo = (String)session.getAttribute("meNo");
+	    
+	    SqlSession sql2 = sqlSessionFactory.openSession();
+	    MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
+	    MemberDTO user = Member2.selectLaLo(meNo);
+	    sql2.close();
+	    double userLatitude  = user.getLatitude();
+	    double userLongitude = user.getLongitude();
+	    
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("type", "master");
+	    params.put("joinApproval", "Y");
+	    params.put("sortField", "insert_time");
+	    params.put("sortOrder", "DESC");
+	    params.put("rootNo", rootNo);
+	    params.put("caNo", caNo);
+	    params.put("startRow", 1); // rownum 시작값
+	    params.put("endRow", 999); // rownum 끝값
+	    params.put("latitude", userLatitude);
+	    params.put("longitude", userLongitude);
+	    
+	    if (subCate != null && !subCate.isEmpty()) {
+	        params.put("subCate", subCate);
+	    }
+	    if (maxDistance != null && !maxDistance.isEmpty()) {
+	        params.put("maxDistance", maxDistance);
+	    }
 
-		Map<String, Object> params = new HashMap<>();
-		params.put("type", "master");
-		params.put("joinApproval", "Y");
-		params.put("sortField", "insert_time");
-		params.put("sortOrder", "DESC");
-		params.put("rootNo", rootNo);
-		params.put("caNo", caNo);
-		params.put("startRow", 1); // rownum 시작값
-		params.put("endRow", 999); // rownum 끝값
-		if (subCate != null && !subCate.isEmpty()) {
-			params.put("subCate", subCate);
-		}
-		// 카테고리 매개변수로 받아서 검색하는 기능 구현 필요
+	    /* [2] Mapper */
+	    SqlSession sql = sqlSessionFactory.openSession();
+	    MemberMapper Member = sql.getMapper(MemberMapper.class);
+	    ArrayList<MemberDTO> memberList = Member.selectMembers(params);
+	    sql.close();
 
-		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
-		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		ArrayList<MemberDTO> memberList = Member.selectMembers(params);
-		sql.close();
+	    // 카테고리
+	    getCategoryMain(request, response);
 
-		// 카테고리
-		getCategoryMain(request, response);
-
-		/* [3] 화면이동 */
-		request.setAttribute("gnb", "request");
-		request.setAttribute("memberList", memberList);
-		request.getRequestDispatcher("master_list.jsp").forward(request, response);
+	    /* [3] 화면이동 */
+	    request.setAttribute("gnb", "request");
+	    request.setAttribute("memberList", memberList);
+	    request.getRequestDispatcher("master_list.jsp").forward(request, response);
 
 	}
 
@@ -589,9 +605,16 @@ public class MemberServiceImpl implements MemberService {
 
 		// 회원 정보 가져오기
 		getMember(request, response);
+		String meNo = request.getParameter("meNo");
+		
+		SqlSession sql2 = sqlSessionFactory.openSession();
+		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
+		ArrayList<MemberDTO> list2 = Member2.selectMasterre(meNo);
+		sql2.close();
 
 		// 포워딩
 		request.setAttribute("gnb", "request");
+		request.setAttribute("list2", list2);
 		request.getRequestDispatcher("master_view.jsp").forward(request, response);
 
 	}
