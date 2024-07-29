@@ -46,7 +46,6 @@ public class MemberController extends HttpServlet {
 
 		switch (command) {
 		case "/admin/member/list.member":
-
 			service.adminList(request, response); // 관리자 - 회원 목록
 			break;
 
@@ -114,6 +113,10 @@ public class MemberController extends HttpServlet {
 			service.getMasterList(request, response); // 수리 예약(수리기사 목록)
 			break;
 
+		case "/member/getMasterListAjax.member":
+			service.getMasterListAjax(request, response);
+			break;
+			
 		case "/member/logout.member":
 			logout(request, response); // 사용자 로그아웃
 			break;

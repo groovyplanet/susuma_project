@@ -14,17 +14,17 @@
 			<div class="title_wrap">
 				<span>${type=='notice'?'공지사항':type=='faq'?'FAQ':'1:1 문의' } 목록</span>
 				<c:choose>
-				<c:when test="${type=='notice'||type=='faq' }">
-				<div class="btn_wrap">
-					<a href="write.board?type=${type }" class="btn">
-						<i class="bi bi-pencil-square"></i>
-						작성
-					</a>
-				</div>
-				</c:when>
-				<c:otherwise>
-				</c:otherwise>
-				
+					<c:when test="${type=='notice'||type=='faq' }">
+						<div class="btn_wrap">
+							<a href="write.board?type=${type }" class="btn">
+								<i class="bi bi-pencil-square"></i>
+								작성
+							</a>
+						</div>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+
 				</c:choose>
 			</div>
 			<form name="searchForm" action="list.board" method="get">
@@ -58,6 +58,12 @@
 								</td>
 							</tr>
 						</table>
+					</div>
+				</c:if>
+				<c:if test="${type != 'ask' }">
+					<div class="search_wrap keyword">
+						<i class="bi bi-search"></i>
+						<input type="text" name="title" value="${title }" placeholder="제목 검색">
 					</div>
 				</c:if>
 			</form>
@@ -111,14 +117,35 @@
 									<fmt:formatDate value="${dto.insertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 								</td>
 								<td>
-									<fmt:formatDate value="${dto.updateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+									<c:choose>
+										<c:when test="${empty dto.updateTime}">
+									        -
+									    </c:when>
+										<c:otherwise>
+											<fmt:formatDate value="${dto.updateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										</c:otherwise>
+									</c:choose>
 								</td>
 								<c:if test="${type == 'ask' }">
 									<td>
-										<fmt:formatDate value="${dto.answerInsertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<c:choose>
+											<c:when test="${empty dto.answerInsertTime}">
+										        -
+										    </c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${dto.answerInsertTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+											</c:otherwise>
+										</c:choose>
 									</td>
 									<td>
-										<fmt:formatDate value="${dto.answerUpdateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+										<c:choose>
+											<c:when test="${empty dto.answerUpdateTime}">
+										        -
+										    </c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${dto.answerUpdateTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+											</c:otherwise>
+										</c:choose>
 									</td>
 								</c:if>
 							</tr>

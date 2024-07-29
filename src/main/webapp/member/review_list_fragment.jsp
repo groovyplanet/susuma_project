@@ -50,9 +50,9 @@
 												</c:choose>
 											</c:forEach>
 										</span>
-										<span>
+										<p>
 											<c:out value="${fn:substring(dto.content, 0, 45)}" />
-										</span>
+										</p>
 									</div>
 								</a>
 							</c:when>
@@ -94,9 +94,9 @@
 												</c:choose>
 											</c:forEach>
 										</span>
-										<span>
+										<a>
 											<c:out value="${fn:substring(dto.content, 0, 45)}" />
-										</span>
+										</a>
 									</div>
 								</a>
 							</c:otherwise>

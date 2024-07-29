@@ -105,7 +105,7 @@ public class ReviewServiceImpl implements ReviewService {
 			clientNo = meNo;
 		}
 		int recordsPerPage = 2; // 한 페이지당 보여줄 레코드 수
-		if ("adming".equals(type)) {
+		if ("admin".equals(type)) {
 			recordsPerPage = 10;
 		}
 

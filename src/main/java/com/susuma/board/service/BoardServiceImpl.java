@@ -35,6 +35,7 @@ public class BoardServiceImpl implements BoardService {
 		type = (type == null || type.isEmpty()) ? "notice" : type; // 기본 : notice
 		String answerCheck = request.getParameter("answerCheck");
 		answerCheck = (answerCheck == null || answerCheck.isEmpty()) ? "all" : answerCheck; // 기본 : 답변 완료 여부 전체(승인/미승인)
+		String title = request.getParameter("title");
 		String sortField = request.getParameter("sortField");
 		sortField = (sortField == null || sortField.isEmpty()) ? "insert_time" : sortField;
 		String sortOrder = request.getParameter("sortOrder");
@@ -47,6 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		params.put("meNo", meNo);
 		params.put("type", type);
 		params.put("answerCheck", answerCheck);
+		params.put("title", title);
 		params.put("sortField", sortField);
 		params.put("sortOrder", sortOrder);
 		params.put("startRow", startRow); // rownum 시작값

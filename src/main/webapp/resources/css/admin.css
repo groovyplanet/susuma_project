@@ -65,6 +65,8 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .title_wrap .btn_wrap .btn.black:hover { background-color: #f7f7f7; } 
 /* search_wrap */
 .container .content_wrap .search_wrap { margin-top: 20px; border: 1px solid #ddd; padding: 20px 0; } 
+.container .content_wrap .search_wrap.keyword { padding: 3px 3px 3px 14px; display: inline-block; border-radius: 5px; color: #777; border: 1px solid #ccc; } 
+.container .content_wrap .search_wrap.keyword input { border: none; margin-left: 0px; padding: 8px 10px; outline: none; width: 250px; } 
 .container .content_wrap .search_wrap table.search { width: 100%; } 
 .container .content_wrap .search_wrap table.search tbody { display: flex; flex-direction: column; gap: 10px; } 
 .container .content_wrap .search_wrap table.search tr { font-size: 14px; color: #333; display: flex; align-items: center; } 

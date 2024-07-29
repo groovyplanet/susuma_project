@@ -31,6 +31,7 @@ import com.susuma.point.model.PointDTO;
 import com.susuma.point.model.PointMapper;
 import com.susuma.util.mybatis.MybatisUtil;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +42,6 @@ import jakarta.servlet.http.Part;
 public class MemberServiceImpl implements MemberService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
-	public final int recordsPerPage = 10; // 한 페이지당 보여줄 레코드 수
 
 	/**
 	 * 임시 비밀번호 발급 메일 발송
@@ -246,6 +246,7 @@ public class MemberServiceImpl implements MemberService {
 	public void adminList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
+		int recordsPerPage = 10;
 		String type = request.getParameter("type");
 		type = (type == null || type.isEmpty()) ? "user" : type; // 기본 : 회원 구분 user
 		String joinApproval = request.getParameter("joinApproval");
@@ -307,24 +308,26 @@ public class MemberServiceImpl implements MemberService {
 		request.getRequestDispatcher("member_list.jsp").forward(request, response); // 요청 포워드
 	}
 
-	@Override
-	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void getMasterListCommon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/* [1] 매개변수 */
+		int recordsPerPage = 3;
 		String rootNo = request.getParameter("rootNo");
 		rootNo = (rootNo == null || rootNo.isEmpty()) ? "all" : rootNo;
 		String caNo = request.getParameter("caNo");
 		caNo = (caNo == null || caNo.isEmpty()) ? "all" : caNo;
 		String maxDistance = request.getParameter("maxDistance");
 		String starOrder = request.getParameter("starOrder");
+		int currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+		int startRow = (currentPage - 1) * recordsPerPage + 1;
+		int endRow = startRow + recordsPerPage - 1;
 
 		HttpSession session = request.getSession();
 		String meNo = (String) session.getAttribute("meNo");
 
-		SqlSession sql2 = sqlSessionFactory.openSession();
-		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
+		SqlSession sql = sqlSessionFactory.openSession();
+		MemberMapper Member2 = sql.getMapper(MemberMapper.class);
 		MemberDTO user = Member2.selectLaLo(meNo);
-		sql2.close();
 
 		double userLatitude = user.getLatitude();
 		double userLongitude = user.getLongitude();
@@ -343,8 +346,9 @@ public class MemberServiceImpl implements MemberService {
 		params.put("sortOrder", sortOrder);
 		params.put("rootNo", rootNo);
 		params.put("caNo", caNo);
-		params.put("startRow", 1); // rownum 시작값
-		params.put("endRow", 999); // rownum 끝값
+		params.put("startRow", startRow); // rownum 시작값
+		params.put("endRow", endRow); // rownum 끝값
+		params.put("recordsPerPage", recordsPerPage);
 		params.put("latitude", userLatitude);
 		params.put("longitude", userLongitude);
 		params.put("starOrder", starOrder);
@@ -354,9 +358,21 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		/* [2] Mapper */
-		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
 		ArrayList<MemberDTO> memberList = Member.selectMembers(params);
+		
+		// 페이징
+		int totalRecords = Member.countMembers(params); // 해당되는 회원 수 (페이징)
+		int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
+		int startPage = Math.max(currentPage - 2, 1);
+		int endPage = Math.min(currentPage + 2, totalPages);
+		endPage = (currentPage == 1 || currentPage == 2) ? Math.min(endPage + 3 - currentPage, totalPages) : endPage;
+		startPage = (currentPage == totalPages || currentPage == totalPages - 1) ? Math.max(startPage - 2 + totalPages - currentPage, 1) : startPage;
+		params.put("currentPage", currentPage); // 현재 페이지
+		params.put("totalPages", totalPages); // 총 페이지 수
+		params.put("totalRecords", totalRecords); // 총 레코드 수
+		params.put("startPage", startPage); // 표시할 시작 페이지
+		params.put("endPage", endPage); // 표시할 마지막 페이지
 		sql.close();
 
 		// 카테고리
@@ -371,8 +387,23 @@ public class MemberServiceImpl implements MemberService {
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			request.setAttribute(entry.getKey(), entry.getValue());
 		}
-		request.getRequestDispatcher("master_list.jsp").forward(request, response);
 
+	}
+
+	@Override
+	public void getMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		getMasterListCommon(request, response);
+		request.getRequestDispatcher("master_list.jsp").forward(request, response); // 요청 포워드
+	}
+
+	@Override
+	public void getMasterListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		getMasterListCommon(request, response);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("master_list_fragment.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	@Override

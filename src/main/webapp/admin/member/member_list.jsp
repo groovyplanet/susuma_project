@@ -216,7 +216,14 @@
 									</td>
 									<td>
 										<c:if test="${dto.joinApproval=='Y' }">
-											<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+											<c:choose>
+												<c:when test="${empty dto.joinApprovalTime}">
+											        -
+											    </c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${dto.joinApprovalTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
+												</c:otherwise>
+											</c:choose>
 										</c:if>
 										<c:if test="${dto.joinApproval=='N' }">
 											<a href="approve.member?meNo=${dto.meNo }&type=${dto.type}" class="btn" onclick="return confirm('가입을 승인하시겠습니까?')">승인</a>
