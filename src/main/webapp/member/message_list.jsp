@@ -12,7 +12,7 @@
 			<div class="content">
 				<h4 style="border-bottom: 1px solid #eee; display: flex; justify-content: center; padding: 20px;">문의 내역</h4>
 				<div class="chatlist">
-					<div class="chatroom">
+					<a class="chatroom" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">
 						<div class="chatroom-profile">
 							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Image">
 						</div>
@@ -27,8 +27,8 @@
 							<div class="last-message">안녕하세요!</div>
 						</div>
 						<div class="chatroom-time">10:00 AM</div>
-					</div>
-					<div class="chatroom">
+					</a>
+					<a class="chatroom" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">
 						<div class="chatroom-profile">
 							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Image">
 						</div>
@@ -42,22 +42,7 @@
 							<div class="last-message">반갑습니다!</div>
 						</div>
 						<div class="chatroom-time">2024.07.16</div>
-					</div>
-					<div class="chatroom">
-						<div class="chatroom-profile">
-							<img src="${pageContext.request.contextPath }/resources/img/iconProfileDefault.png" alt="Profile Image">
-						</div>
-						<div class="chatroom-info">
-							<div class="chatroom-name">
-								<span id="mastername">
-									<strong>박서희</strong>
-								</span>
-								마스터님
-							</div>
-							<div class="last-message">저 오늘은 포리 밥 줘야해서..</div>
-						</div>
-						<div class="chatroom-time">2024.07.15</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</div>

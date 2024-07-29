@@ -45,6 +45,7 @@ public class MemberController extends HttpServlet {
 		MemberService service = new MemberServiceImpl();
 
 		switch (command) {
+		
 		case "/admin/member/list.member":
 			service.adminList(request, response); // 관리자 - 회원 목록
 			break;

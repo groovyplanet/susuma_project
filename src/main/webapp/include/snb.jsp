@@ -33,7 +33,7 @@
 					<a href="${pageContext.request.contextPath }/member/list.review" class="${pageContext.request.servletPath == '/member/review_list.jsp' ? 'active' : ''}">후기 내역</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/member/message_list.jsp" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">채팅 목록</a>
+					<a href="${pageContext.request.contextPath }/member/list.message" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">채팅 목록</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/board/list.board?type=myask" class="${type=='myask'?'active':'' }">나의 1:1 문의 내역</a>
