@@ -41,7 +41,7 @@
 						<div class="points-header">
 							<span class="points-label">보유 포인트</span>
 						</div>
-						<div class="points-value">${points}P</div>
+						<div class="points-value"><fmt:formatNumber value="${points}" type="number" groupingUsed="true" maxFractionDigits="0" />P</div>
 						<button class="btn-withdraw" id="withdrawButton">전체출금</button>
 						<button class="btn-charge" id="chargeButton">충전하기</button>
 					</div>
@@ -61,6 +61,7 @@
 										P
 										<span class="status">충전 완료</span>
 									</span>
+
 								</div>
 							</c:forEach>
 							<c:forEach var="minus" items="${minus}">
@@ -72,10 +73,12 @@
 										${minus.point<0 ? '' : '-' }
 										<fmt:formatNumber value="${minus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
 										P
-										<span class="spstatus">${minus.point<0 ? '결제 완료' : '출금 완료' }</span>
+										<span class="spstatus">${minus.point<0 ? '출금 완료' : '결제 완료' }</span>
 									</span>
 								</div>
 							</c:forEach>
+						
+							
 						</div>
 					</div>
 				</div>
@@ -85,6 +88,7 @@
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
+
 	/*
 	$(document).ready(function () {
 	    $('.amount').each(function () {
@@ -106,11 +110,12 @@
 	
 	
 	    $('.wdamount').each(function () {
+
 	        // .status 클래스를 제외한 .amount의 텍스트만 처리
 	        var amountText = $(this).clone().children('.wdstatus').remove().end().text();
 	        var numericValue = '-' + amountText.replace(/[^\d]/g, '');
 	        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
-	
+
 	        // .status 클래스를 다시 추가하여 상태 메시지와 함께 포맷된 값으로 텍스트 설정
 	        $(this).html(formattedValue + ' <span class="wdstatus">' + $(this).find('.wdstatus').text() + '</span>');
 	    });
@@ -124,11 +129,12 @@
 	    });
 	});
 	*/
+
 	
 	$('#chargeAmount').on('input', function() { // 금액 입력 시 ',원' 추가
 		var input = $(this).val();
 		var numericValue = input.replace(/[^\d]/g, '');
-		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' P';
 		$(this).val(formattedValue);
 	});
 	
