@@ -257,7 +257,7 @@ $(document).ready(function () {
 	/*
 	member/find_info.html 비밀번호 찾기
 	*/
-	var formFindInfo = document.getElementById('form-find-info');
+/*	var formFindInfo = document.getElementById('form-find-info');
 	if (formFindInfo) { // Vanilla JavaScript를 사용할 때는 요소의 존재 여부를 반드시 확인하고 이벤트 바인딩(null 값에 이벤트 리스너를 등록하려고 시도하기 때문에 오류 발생)
 		// 임시 비밀번호 발급 버튼 클릭 시
 		formFindInfo.addEventListener('submit', function (event) {
@@ -277,11 +277,11 @@ $(document).ready(function () {
 			// this.submit();
 		});
 	} //if (formFindInfo)
-
+*/
 	/*
 	member/edit.member 회원정보 수정 비밀번호 변경
 	*/
-
+/*
 	var formPwChange = document.getElementById('form-pw-change');
 	if (formPwChange) {
 		formPwChange.addEventListener('submit', function (event) {
@@ -319,7 +319,7 @@ $(document).ready(function () {
 				})
 		})
 	} //if (formPwChange)
-
+*/
 	/*
 	user/request.member 수리 예약
 	*/

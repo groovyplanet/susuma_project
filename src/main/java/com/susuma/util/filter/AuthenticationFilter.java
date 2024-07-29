@@ -48,7 +48,7 @@ public class AuthenticationFilter implements Filter {
 			// 로그인 시 접근 가능
 			switch (command) {
 			case "/member/edit.member": // 프로필 수정
-			case "/member/findPw.member": // 비밀번호 찾기
+			//case "/member/findPw.member": // 비밀번호 찾기
 			case "/member/mypage.member": // 마이페이지
 			case "/member/exit.member": // 회원 탈퇴
 			case "/member/memberRequest.member": // 수리 예약
