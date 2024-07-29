@@ -127,33 +127,33 @@ document.addEventListener("DOMContentLoaded", function () {
 					<ul>
 						<c:if test="${startPage > 1}">
 							<li>
-								<a href="?type=${type}&page=1" style="margin-right: -10px;">
+								<a href="?type=${type}&page=1&type=${type}" style="margin-right: -10px;">
 									<i class="bi bi-chevron-double-left"></i>
 								</a>
 							</li>
 						</c:if>
 						<c:if test="${currentPage > 1}">
 							<li>
-								<a href="?type=${type}&page=${currentPage - 1}">
+								<a href="?type=${type}&page=${currentPage - 1}&type=${type}">
 									<i class="bi bi-chevron-left"></i>
 								</a>
 							</li>
 						</c:if>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
 							<li>
-								<a href="?type=${type}&page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+								<a href="?type=${type}&page=${i}&type=${type}" class="${i == currentPage ? 'active' : ''}">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${currentPage < totalPages}">
 							<li>
-								<a href="?type=${type}&page=${currentPage + 1}">
+								<a href="?type=${type}&page=${currentPage + 1}&type=${type}">
 									<i class="bi bi-chevron-right"></i>
 								</a>
 							</li>
 						</c:if>
 						<c:if test="${endPage < totalPages}">
 							<li>
-								<a href="?type=${type}&page=${totalPages}" style="margin-left: -10px;">
+								<a href="?type=${type}&page=${totalPages}&type=${type}" style="margin-left: -10px;">
 									<i class="bi bi-chevron-double-right"></i>
 								</a>
 							</li>

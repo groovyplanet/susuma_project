@@ -36,8 +36,6 @@ public interface MemberMapper {
 
 	public List<MemberDTO> getPointEarnings(String meNo);
 
-	public List<MemberDTO> getPointSpendings(String meNo);
-
 	public List<MemberDTO> getMinus(String meNo);
 
 	public MemberDTO selectLaLo(String meNo); // 거리별검색 경도,위도
@@ -46,8 +44,8 @@ public interface MemberMapper {
 	}
 
 	List<MemberDTO> getPointSpendings(String meNo);
-	
-	public int updatePw(MemberDTO dto); //비밀번호 찾기
+
+	public int updatePw(MemberDTO dto); // 비밀번호 찾기
 
 	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
 
