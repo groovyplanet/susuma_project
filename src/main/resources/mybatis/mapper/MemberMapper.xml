@@ -279,14 +279,6 @@
 		SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
 	</select>
 
-	<!-- 포인트 적립 내역 조회 -->
-	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
-		SELECT pc_no, me_no, point, pc_time AS insertTime
-		FROM POINT_HISTORY
-		WHERE me_no = #{meNo} AND point > 0
-		ORDER BY pc_time DESC
-	</select>
-
 	<!-- 포인트 사용 내역 조회 -->
 	<select id="getPointSpendings" resultType="com.susuma.member.model.MemberDTO">
 		SELECT req_no AS meNo, pay_amount AS point, paid_time AS insertTime
@@ -294,7 +286,23 @@
 		WHERE client_no = #{meNo} AND pay_status = 'Y'
 		ORDER BY paid_time DESC
 	</select>
+
+	<!-- 마이페이지 포인트 적립 내역(의뢰인은 point_history, 수리기사는 request까지) ★ -->
+	<select id="getPointEarnings" resultType="com.susuma.member.model.MemberDTO">
+		SELECT point, pc_time as insert_time
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point > 0
+        
+        UNION ALL
+        
+        SELECT -pay_amount as point, paid_time as insert_time
+        FROM REQUEST
+        WHERE master_no = #{meNo} AND pay_status = 'Y'
+		
+		ORDER BY insert_time DESC
+	</select>
 	
+	<!-- 마이페이지 포인트 사용 내역(수리기사는 point_history, 의뢰인은 request까지) ★ -->
 	<select id="getMinus" resultType="com.susuma.member.model.MemberDTO">
 		SELECT point, pc_time as insert_time
         FROM POINT_HISTORY
