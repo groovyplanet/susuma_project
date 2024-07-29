@@ -4,11 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@ include file="../include/head.jsp"%>
-<style>
-.container .content_wrap .table_wrap table.list tbody tr {
-	cursor: default;
-}
-</style>
 </head>
 
 <body>
