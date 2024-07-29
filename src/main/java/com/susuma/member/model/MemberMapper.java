@@ -34,5 +34,6 @@ public interface MemberMapper {
 
 	List<MemberDTO> getPointSpendings(String meNo);
 	
+	public int updatePw(MemberDTO dto); //비밀번호 찾기
 	
 }

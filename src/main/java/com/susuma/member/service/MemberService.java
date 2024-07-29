@@ -54,6 +54,6 @@ public interface MemberService {
 
 	void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
-	
+	void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

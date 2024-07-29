@@ -305,5 +305,10 @@
 	<insert id="addEarningHistory">
 		INSERT INTO POINT_HISTORY (me_no, point, pc_time) VALUES (#{meNo}, #{point}, SYSDATE)
 	</insert>
+	
+	<update id="updatePw" parameterType="com.susuma.member.model.MemberDTO">
+		UPDATE MEMBER SET PW = #{pw} WHERE EMAIL=#{email}
+	</update>
+
 
 </mapper>

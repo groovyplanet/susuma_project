@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -763,6 +764,57 @@ public class MemberServiceImpl implements MemberService {
 	        response.getWriter().write("{\"status\":\"error\",\"message\":\"출금에 실패했습니다.\"}");
 	    }
 	}
+	
+	@Override
+	public void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("email");
+		// 인증번호 8자리 생성
+		String cNumber = "";
+		Random rnd = new Random();
+		for (int i = 0; i < 8; i++) {
+			int sel1 = (int) (Math.random() * 3); // 0:숫자 / 1,2:영어
+
+			if (sel1 == 0) {
+				int num = (int) (Math.random() * 10); // 0~9
+				cNumber += num;
+			} else {
+				char ch = (char) (Math.random() * 26 + 65); // A~Z
+				int sel2 = (int) (Math.random() * 2); // 0:소문자 / 1:대문자
+				if (sel2 == 0) {
+					ch = (char) (ch + ('a' - 'A')); // 대문자로 변경
+				}
+				cNumber += ch;
+			}
+		}
+		
+		MemberDTO dto = new MemberDTO();
+		dto.setEmail(email);
+		dto.setPw(cNumber);
+		
+		SqlSession sql = sqlSessionFactory.openSession(true);
+		MemberMapper member = sql.getMapper(MemberMapper.class);
+		int result = member.updatePw(dto);
+		sql.close();
+		
+		if (result == 1) { // 등록 성공
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('임시비밀번호 발급되었습니다. "+ cNumber + "');");
+			out.println("location.href='/Susuma/main.member';");
+			out.println("</script>");
+		}else {
+			response.setContentType("text/html; charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('이메일을 확인해주세요. ');");
+			out.println("location.href='/Susuma/member/findPw.member';");
+			out.println("</script>");
+		}
+		
+		
+	}
+	
 	@Override
 	public void chargePoints(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String meNo = (String) request.getSession().getAttribute("meNo");
