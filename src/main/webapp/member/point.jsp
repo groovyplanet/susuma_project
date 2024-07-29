@@ -79,6 +79,7 @@
 					<img src="../resources/img/kakaobear.png" style="width: 50px; height: 40px; cursor: pointer;" id="kakaoPay">
 					<img src="../resources/img/tosspay.png" style="width: 40px; height: 40px; cursor: pointer;" id="tossPay">
 					<button class="btn-confirm" id="confirmCharge">카드결제</button>
+					<button id="pay">결제</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
 
 				</div>
