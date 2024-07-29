@@ -9,6 +9,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.susuma.member.model.MemberMapper;
+import com.susuma.point.model.PointMapper;
 import com.susuma.request.model.RequestDTO;
 import com.susuma.request.model.RequestMapper;
 import com.susuma.review.model.ReviewDTO;
@@ -190,7 +192,7 @@ public class RequestServiceImpl implements RequestService {
 	public void adminEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setAttribute("type", "request");
-		
+
 		// 수리 요청 정보 가져오기
 		getRequestDTO(request, response);
 
@@ -259,11 +261,62 @@ public class RequestServiceImpl implements RequestService {
 		}
 	}
 
-	public void updateStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//	public void updateStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//		RequestDTO requestDTO = createRequestDTO(request, response); // 별도 함수로 처리
+//		boolean isUpdate = true;
+//		int result = requestUpsert(requestDTO, isUpdate);
+//
+//		response.setContentType("text/plain");
+//		response.setCharacterEncoding("UTF-8");
+//		try (PrintWriter out = response.getWriter()) {
+//			if (result == 1) {
+//				out.write("Success");
+//			} else {
+//				out.write("Failure");
+//			}
+//		}
+//	}
 
-		RequestDTO requestDTO = createRequestDTO(request, response); // 별도 함수로 처리
+	public void updateStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// RequestDTO 생성
+		RequestDTO requestDTO = createRequestDTO(request, response);
 		boolean isUpdate = true;
 		int result = requestUpsert(requestDTO, isUpdate);
+
+		if (requestDTO.getStatus().equals("paid")) {
+
+			// 멤버 ID와 결제 금액을 가져옴
+			String meNo = (String) request.getSession().getAttribute("meNo");
+			System.out.println(request.getParameter("payAmount"));
+			int payAmount = request.getParameter("payAmount") == null ? 0 : Integer.parseInt(request.getParameter("payAmount"));
+			
+			// 결과를 저장할 변수
+			String resultMessage = "Failure";
+
+			// 포인트 조회
+			try (SqlSession sql = sqlSessionFactory.openSession(true)) {
+				PointMapper pointMapper = sql.getMapper(PointMapper.class);
+				RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
+				Integer currentPoints = pointMapper.MemberPoints(meNo);
+
+				// 포인트 부족 시 예외 처리
+				if (currentPoints == null || currentPoints < payAmount) {
+					resultMessage = "잔액이 부족합니다.";
+				} else {
+
+					// 결제 상태 업데이트
+					// 포인트 차감
+					MemberMapper.updateMemberPoints(requestDTO);
+				}
+
+				requestMapper.updateRequest(requestDTO);
+
+				// 성공 메시지
+				resultMessage = "Success";
+			}
+
+		}
 
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");

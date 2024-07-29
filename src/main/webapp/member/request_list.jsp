@@ -350,13 +350,17 @@
 		$('#request-list-pay-modal .btn-enter').on('click', function(event) {
 			event.preventDefault();
 			var reqNo = $(this).data('reqNo');
-
+			console.log($('#amount').val().replace(/[^\d]/g, ''));
+			return false;
+			
 			$.ajax({
 				url : 'payAjax.request',
 				type : 'POST',
 				data : {
 					reqNo : reqNo,
-					status : 'paid'
+					status : 'paid',
+					payAmount : $('#amount').val().replace(/[^\d]/g, '')
+					
 				},
 				success : function(data) {
 					if ($.trim(data) === 'Success') {

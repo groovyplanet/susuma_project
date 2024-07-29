@@ -734,7 +734,7 @@ public class MemberServiceImpl implements MemberService {
 	        } catch (NumberFormatException e) {
 	            response.setContentType("application/json");
 	            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	            response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	            response.getWriter().write("{\"status\":\"error\",\"message\":\"포인트 잔액이 존재하지 않습니다.\"}");
 	            return;
 	        }
 
@@ -742,7 +742,7 @@ public class MemberServiceImpl implements MemberService {
 	        if (pointsToWithdraw <= 0) {
 	            response.setContentType("application/json");
 	            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	            response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	            response.getWriter().write("{\"status\":\"error\",\"message\":\"포인트 잔액이 존재하지 않습니다.\"}");
 	            return;
 	        }
 
@@ -754,7 +754,7 @@ public class MemberServiceImpl implements MemberService {
 	        if (pointsToWithdraw > currentPoints) {
 	            response.setContentType("application/json");
 	            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	            response.getWriter().write("{\"status\":\"error\",\"message\":\"Insufficient points.\"}");
+	            response.getWriter().write("{\"status\":\"error\",\"message\":\"포인트 잔액이 충분하지 않습니다.\"}");
 	            return;
 	        }
 
@@ -790,7 +790,7 @@ public class MemberServiceImpl implements MemberService {
 	    if (pointsParam == null) {
 	        response.setContentType("application/json");
 	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"충전 금액을 입력해주세요.\"}");
 	        return;
 	    }
 
@@ -800,7 +800,7 @@ public class MemberServiceImpl implements MemberService {
 	    } catch (NumberFormatException e) {
 	        response.setContentType("application/json");
 	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	        response.getWriter().write("{\"status\":\"error\",\"message\":\"Invalid point value.\"}");
+	        response.getWriter().write("{\"status\":\"error\",\"message\":\"충전에 실패했습니다.\"}");
 	        return;
 	    }
 

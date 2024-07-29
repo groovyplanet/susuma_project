@@ -146,6 +146,14 @@
 		REQ_NO = #{reqNo}
 	</update>
 
+	<!-- 포인트 차감 쿼리 -->
+	<update id="updateMemberPoints" parameterType="com.susuma.request.model.RequestDTO">
+		UPDATE MEMBER
+		SET POINT = POINT - #{payAmount}
+		WHERE ME_NO = #{meNo}
+	</update>
+
+
 	<!-- [5] 수리 요청 삭제 -->
 	<delete id="deleteRequest" parameterType="string">
 		DELETE FROM REQUEST
