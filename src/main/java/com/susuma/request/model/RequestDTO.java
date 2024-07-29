@@ -54,7 +54,9 @@ public class RequestDTO {
 
 	// REVIEW
 	private String reviewCnt;
-	
+	private String reviewContent;
+	private String starScore;
+
 	// 페이징
 	private String rn;
 
@@ -456,6 +458,22 @@ public class RequestDTO {
 
 	public void setReviewCnt(String reviewCnt) {
 		this.reviewCnt = reviewCnt;
+	}
+
+	public String getReviewContent() {
+		return reviewContent;
+	}
+
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
+	}
+
+	public String getStarScore() {
+		return starScore;
+	}
+
+	public void setStarScore(String starScore) {
+		this.starScore = starScore;
 	}
 
 	public String getRn() {
