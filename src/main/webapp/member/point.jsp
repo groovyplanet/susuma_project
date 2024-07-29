@@ -4,6 +4,8 @@
 <%@ include file="../include/head.jsp"%>
 </head>
 
+
+
 <body>
 	<%@ include file="../include/header.jsp"%>
 
@@ -22,10 +24,11 @@
 		<div id="chargeModal" class="modal">
 			<div class="modal-content">
 				<p>충전할 금액을 입력하세요</p>
-				<input type="number" id="chargeAmount" min="0">
+				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요">
 				<div class="modal-buttons">
 					<button class="btn-confirm" id="confirmCharge">충전</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
+
 				</div>
 			</div>
 		</div>
@@ -53,25 +56,30 @@
 									<span class="date">
 										<fmt:formatDate value="${earning.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
-									<span class="amount">${earning.point}P</span>
+									<span class="amount">${earning.point}P<span class="status">충전 완료</span></span>
+									
 								</div>
 							</c:forEach>
+					
 							<c:forEach var="spending" items="${spendings}">
 								<div class="transaction-pop item" style="display: none;">
 									<span class="date">
 										<fmt:formatDate value="${spending.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
-									<span class="amount">-${spending.point}P</span>
+									<span class="spamount">- ${spending.point}P<span class="spstatus">결제 완료</span></span>
 								</div>
+								
 							</c:forEach>
 							<c:forEach var="withdrawal" items="${withdrawals}">
 								<div class="transaction-pop item" style="display: none;">
 									<span class="date">
 										<fmt:formatDate value="${withdrawal.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
-									<span class="amount">${withdrawal.point}P</span>
+									<span class="wdamount">- ${withdrawal.point} <span class="wdstatus">출금 완료</span></span>
 								</div>
 							</c:forEach>
+						
+							
 						</div>
 					</div>
 				</div>
@@ -81,6 +89,55 @@
 
 	<%@ include file="../include/footer.jsp"%>
 	<script>
+	
+	$(document).ready(function() {
+		 $('.amount').each(function() {
+		        var input = $(this).text();
+		        var numericValue = input.replace(/[^\d]/g, '');
+		        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		        $(this).html(formattedValue + ' <span class="status">' + $(this).find('.status').text() + '</span>');
+	});
+		 $('.spamount').each(function() {
+		        // .status 클래스를 제외한 .amount의 텍스트만 처리
+		        var amountText = $(this).clone().children('.spstatus').remove().end().text();
+		        var numericValue = '-' + amountText.replace(/[^\d]/g, '');
+		        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		        
+		        // .status 클래스를 다시 추가하여 상태 메시지와 함께 포맷된 값으로 텍스트 설정
+		        $(this).html(formattedValue + ' <span class="spstatus">' + $(this).find('.spstatus').text() + '</span>');
+		    });
+		 
+		 
+		 
+		$('.wdamount').each(function() {
+	        // .status 클래스를 제외한 .amount의 텍스트만 처리
+	        var amountText = $(this).clone().children('.wdstatus').remove().end().text();
+	        var numericValue = '-' + amountText.replace(/[^\d]/g, '');
+	        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+	        
+	        // .status 클래스를 다시 추가하여 상태 메시지와 함께 포맷된 값으로 텍스트 설정
+	        $(this).html(formattedValue + ' <span class="wdstatus">' + $(this).find('.wdstatus').text() + '</span>');
+	    });
+		    
+		    // .points-value 클래스에 대해 포맷 적용
+		    $('.points-value').each(function() {
+		        var input = $(this).text();
+		        var numericValue = '+' + input.replace(/[^\d]/g, '');
+		        var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		        $(this).text(formattedValue);
+	});
+	});
+	
+
+	
+	$('#chargeAmount').on('input', function() { // 금액 입력 시 ',원' 추가
+		var input = $(this).val();
+		var numericValue = input.replace(/[^\d]/g, '');
+		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		$(this).val(formattedValue);
+	});
+	
+	
 	$(document).ready(function() {
 	    // 탭 전환 처리
 	    $("#tab-add, #tab-pop").click(function() {
@@ -140,7 +197,8 @@
 
 	    // 충전 모달에서 확인 버튼 클릭 시
 	    document.querySelector('#chargeModal .btn-confirm').addEventListener('click', function() {
-	        const amount = document.getElementById('chargeAmount').value;
+	    
+	        const amount = $('#chargeAmount').val().replace(/[^\d]/g, '');
 	        
 	        if (amount <= 0) {
 	            alert('충전 금액은 0보다 커야 합니다.');
@@ -153,6 +211,7 @@
 	                'Content-Type': 'application/x-www-form-urlencoded',
 	            },
 	            body: new URLSearchParams({ points: amount }), // 충전할 포인트
+	            
 	        })
 	        .then(response => response.json()) // 응답을 JSON으로 파싱
 	        .then(data => {
@@ -172,10 +231,13 @@
 	        document.getElementById('chargeModal').classList.remove('show');
 	    });
 	});
+	
+	
+	
+	
+	
 	</script>
 
 
-	<style>
-</style>
 </body>
 </html>

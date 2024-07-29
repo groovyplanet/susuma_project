@@ -137,7 +137,16 @@
 .main-section .container .content .account-info .transaction-pop { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
 .main-section .container .content .account-info .date { color: #999; } 
 .main-section .container .content .account-info .description { flex: 1; text-align: center; } 
-.main-section .container .content .account-info .amount { color: #F49D00; font-weight: bold; text-align: center; z-index: 1000; } 
+.main-section .container .content .account-info .amount { color: #4cc764; font-weight: bold; text-align: center; z-index: 1000; } 
+.main-section .container .content .account-info .amount .status { color: #4cc764; text-align: center; margin-left : 10px; background-color: #E7F8F1; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+
+
+.main-section .container .content .account-info .wdamount { color: #ff6b6b; font-weight: bold; text-align: center; z-index: 1000; } 
+.main-section .container .content .account-info .wdamount .wdstatus { color: #ff6b6b; text-align: center; margin-left : 10px; background-color: #FFEAE8; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+.main-section .container .content .account-info .spamount { color: #ff6b6b; font-weight: bold; text-align: center; z-index: 1000; } 
+.main-section .container .content .account-info .spamount .spstatus { color: #ff6b6b; text-align: center; margin-left : 10px; background-color: #FFEAE8; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+
+
 /* point.html modal css */
 #withdrawModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; } 
 #withdrawModal.show { display: flex !important; } 
@@ -161,6 +170,8 @@
 #chargeModal .btn-cancel { background-color: #999; } 
 #chargeModal .btn-confirm:hover, 
 #chargeModal .btn-cancel:hover { opacity: 0.8; } 
+#chargeAmount { width: 100%; border: 1px solid #bbb; padding: 8px 8px; border-radius: 4px; margin-top: 11px; color: #666; font-weight: 500; font-size: 15px; } 
+#Ppointalpha { font-weight: 500; font-size: 15px; color:#f49d00; } 
 /* 포인트 충전모달 끝 */
 
 /* ====point page css end ==== */
@@ -369,6 +380,7 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request-view input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
  {
  -webkit-appearance: none; margin: 0; } 
+ 
 
 /* 예약 상세 */
 .request-view .stars { display: flex; cursor: pointer; gap: 7px; } 
