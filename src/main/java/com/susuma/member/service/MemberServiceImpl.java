@@ -993,4 +993,7 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 }

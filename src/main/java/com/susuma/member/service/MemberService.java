@@ -57,6 +57,7 @@ public interface MemberService {
 	void attendancepoint(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
 	void findPwForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
 
 
 }

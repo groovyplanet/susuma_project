@@ -14,6 +14,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/user/Downloads/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/user/git/susuma_project/src/main/webapp/WEB-INF/lib/activation-1.1.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>

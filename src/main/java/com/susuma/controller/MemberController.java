@@ -159,13 +159,15 @@ public class MemberController extends HttpServlet {
 		case "/member/attendanceAjax.member":
 			service.attendancepoint(request, response);
 			break;
-
+			
 
 		default:
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			break;
 		}
 	}
+	
+
 
 	/**
 	 * 사용자의 세션을 종료하고 로그아웃 후 메인 페이지로 리다이렉트하는 메서드
