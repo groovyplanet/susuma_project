@@ -52,6 +52,15 @@
 	pointer-events: none; /* 클릭을 비활성화 */
 	opacity: 0.5; /* 비활성화된 버튼 스타일 */
 }
+
+.modal-buttons img {
+    width: 45%; /* 너비를 부모 요소의 45%로 설정하여 2개가 한 줄에 배치되도록 함 */
+    height: auto; /* 높이는 자동 조정 */
+    cursor: pointer; /* 클릭 가능하도록 커서 설정 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 너비와 높이를 설정 */
+    margin-bottom : 20px;
+}
+
 </style>
 
 
@@ -76,10 +85,11 @@
 				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요">
 				<input type="hidden" id="chargeAmountInput" value="<%= request.getAttribute("chargeAmountInput") %>">
 				<div class="modal-buttons">
-					<img src="../resources/img/kakaobear.png" style="width: 50px; height: 40px; cursor: pointer;" id="kakaoPay">
-					<img src="../resources/img/tosspay.png" style="width: 40px; height: 40px; cursor: pointer;" id="tossPay">
+					<img src="../resources/img/kakaopay.jpg" style="width: 150px; height: 70px; cursor: pointer;" id="kakaoPay">
+					<img src="../resources/img/Toss_Logo_Primary.png" style="width: 150px; height: 75px; cursor: pointer;" id="tossPay">
+					<img src="../resources/img/naver.png" style="width: 100px; height: 30px; cursor: pointer;" id="naver">
+					<img src="../resources/img/danal.png" style="width: 150px; height: 70px; cursor: pointer; margin-left: 50px;" id="danal"><br>
 					<button class="btn-confirm" id="confirmCharge">카드결제</button>
-					<button id="pay">결제</button>
 					<button class="btn-cancel" id="cancelCharge">취소</button>
 				</div>
 			</div>
