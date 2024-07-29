@@ -73,17 +73,14 @@
 						</div>
 						<div class="review-list">
 							<div class="pic-review-view item">
-								<div class="member-review-pic">
-									<img src="${pageContext.request.contextPath }/resources/img/example1.jpeg" alt="">
-									<img src="${pageContext.request.contextPath }/resources/img/example2.jpg" alt="">
-									<img src="${pageContext.request.contextPath }/resources/img/example3.jpg" alt="">
-								</div>
+								
 								<span class="sizetype-view">
 									<span class="date">24.07.09</span>
 									<span class="starreview">★★★★★</span>
 									<span class="nickname">김모씨</span>
 									<span class="review-oneline">기사님이 깨끗하고 집안이 멋져요</span>
 								</span>
+								
 
 							</div>
 						</div>

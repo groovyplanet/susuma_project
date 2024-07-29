@@ -36,5 +36,7 @@ public interface MemberMapper {
 
 	List<MemberDTO> getMinus(String meNo);
 	
+	public MemberDTO selectLaLo(String meNo); //거리별검색 경도,위도
 	
+	public ArrayList<MemberDTO> selectMasterre(String meNo); // 메인 리뷰리스트
 }
