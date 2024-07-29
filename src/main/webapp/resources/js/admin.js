@@ -30,24 +30,32 @@ if (radios.length > 0) {
 }
 
 /*
-member_list.jsp 회원 목록
+list.member
 */
 var member_list = document.getElementById('member_list');
 if (member_list) {
-	// 사용자(행) 클릭 시 상세 화면으로 이동
 	member_list.onclick = function(e) {
 		if (e.target.tagName != "TD") return;
 		location.href = "view.member?meNo=" + e.target.closest("tr").dataset.meno;
 	}
 }
 /*
-board_list.jsp 게시판 목록
+list.board
 */
 var board_list = document.getElementById('board_list');
 if (board_list) {
-	// 게시물(행) 클릭 시 상세 화면으로 이동
 	board_list.onclick = function(e) {
 		if (e.target.tagName != "TD") return;
 		location.href = "view.board?boNo=" + e.target.closest("tr").dataset.bono;
+	}
+}
+/*
+list.request
+*/
+var request_list = document.getElementById('request_list');
+if (request_list) {
+	request_list.onclick = function(e) {
+		if (e.target.tagName != "TD") return;
+		//location.href = "view.request?reqNo=" + e.target.closest("tr").dataset.reqno;
 	}
 }

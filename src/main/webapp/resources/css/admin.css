@@ -37,6 +37,11 @@ td, th { padding: 0; }
 .mh140 { min-height: 140px !important; } 
 .mh160 { min-height: 160px !important; } 
 .master-category { color: #2257df; background-color: #eff4ff; font-size: 12px; padding: 0px 8px; border-radius: 5px; display: inline-flex; line-height: 25px; } 
+.request-status { color: #555; background-color: #eee; font-size: 12px; padding: 0px 8px; border-radius: 5px; display: inline-flex; line-height: 25px; } 
+.request-status.red { background-color: #f7566114; color: #F75661; } 
+.request-status.green { background-color: #27b18914; color: #27B189; } 
+.request-status.purple { background-color: #bd2df512; color: #BD2DF5; } 
+.request-status.orange { background-color: #f6a6381a; color: #ff9400; } 
 .preserve-line-breaks { white-space: pre-wrap; /* 줄바꿈 및 공백 문자 유지 */
  word-wrap: break-word; /* 단어가 길 때 줄 바꿈 처리 */ } 
 /* header */

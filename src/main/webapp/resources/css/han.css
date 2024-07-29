@@ -345,6 +345,7 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request .btn { background-color: white; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; cursor: default; } 
 .request .btn.submit { background-color: #ff6b6b; color: white; cursor: pointer; } 
 .request .btn.complete { border: 1px solid #DDD; background-color: #fff; color: #555; } 
+.request .btn.link { cursor: pointer } 
 /* 프로필 이미지 스타일 */
 .request-list .profile-logo-sm { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; } 
 /* 예약 스케줄 스타일 */
