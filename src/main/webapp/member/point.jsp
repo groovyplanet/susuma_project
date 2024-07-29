@@ -280,27 +280,53 @@
 	        document.getElementById('chargeModal').classList.remove('show');
 	    });
 	});
-	 // 출석체크 버튼 클릭 시 이벤트 처리
-    document.getElementById('attendance').addEventListener('click', function() {
-        document.getElementById('eventModal').style.display = 'block';
-    });
+	   
+       $(document).ready(function() {
+           // 출석체크 버튼 클릭 시 모달 열기
+           document.getElementById('attendance').addEventListener('click', function() {
+               document.getElementById('eventModal').style.display = 'block';
+           });
 
-    // 모달 닫기 버튼 클릭 시 이벤트 처리
-    document.querySelector('#eventModal .close-button').addEventListener('click', function() {
-        document.getElementById('eventModal').style.display = 'none';
-    });
+           // 모달 닫기 버튼 클릭 시 모달 닫기
+           document.querySelector('#eventModal .close-button').addEventListener('click', function() {
+               document.getElementById('eventModal').style.display = 'none';
+           });
 
-    // 출석체크 버튼 클릭 시 이벤트 처리
-    document.getElementById('participateButton').addEventListener('click', function() {
-        // AJAX 호출 예시:
-        // fetch('/your-endpoint', { method: 'POST' }).then(response => response.json()).then(data => { ... });
+           // 참여하기 버튼 클릭 시
+           document.getElementById('participateButton').addEventListener('click', function() {
+               // 쿠키를 설정
+               setCookie("eventParticipated", "true", 1);
 
-        // 이벤트 참여 후 쿠키 설정
-        setCookie("eventParticipated", "true", 1);
-        document.getElementById('eventModal').style.display = 'none';
-    });
+               // 이벤트 참여를 서버에 전송하는 AJAX 호출을 추가할 수 있습니다.
+               // 예: fetch('/your-endpoint', { method: 'POST' }).then(response => response.json()).then(data => { ... });
 
-	
+               // 모달 닫기
+               document.getElementById('eventModal').style.display = 'none';
+           });
+       });
+
+       // 쿠키 설정 함수
+       function setCookie(name, value, days) {
+           var expires = "";
+           if (days) {
+               var date = new Date();
+               date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+               expires = "; expires=" + date.toUTCString();
+           }
+           document.cookie = name + "=" + (value || "") + expires + "; path=/";
+       }
+
+       // 쿠키 가져오기 함수
+       function getCookie(name) {
+           var nameEQ = name + "=";
+           var ca = document.cookie.split(';');
+           for (var i = 0; i < ca.length; i++) {
+               var c = ca[i];
+               while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+               if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+           }
+           return null;
+       }
 	
 	
 	
