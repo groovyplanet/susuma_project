@@ -71,7 +71,7 @@
 												</c:when>
 												<c:otherwise>
 													<!-- 예약일이 과거 -->
-													<button type="button" class="btn complete">수리 완료</button>
+													<button type="button" class="btn">수리 중</button>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
@@ -104,7 +104,7 @@
 										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 										<strong>
 											<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
-											원
+											P
 										</strong>
 										결제
 									</div>
@@ -261,7 +261,7 @@
 										<fmt:formatDate value="${requestDTO.paidTime}" pattern="yyyy년 MM월 dd일 HH시 mm분" />
 										<strong>
 											<fmt:formatNumber value="${requestDTO.payAmount}" type="number" groupingUsed="true" maxFractionDigits="0" />
-											원
+											P
 										</strong>
 										결제
 									</div>
@@ -329,7 +329,7 @@
 			<div class="pay-content">
 				<p>
 					결제 하실 금액은
-					<strong id="amount"> 10,000원 </strong>
+					<strong id="amount"> 10,000P </strong>
 					입니다.
 				</p>
 			</div>
@@ -347,7 +347,7 @@
 	$('#paymoney').on('input', function() { // 금액 입력 시 ',원' 추가
 		var input = $(this).val();
 		var numericValue = input.replace(/[^\d]/g, '');
-		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' 원';
+		var formattedValue = new Intl.NumberFormat().format(numericValue) + ' P';
 		$(this).val(formattedValue);
 	});
 
@@ -434,7 +434,7 @@
 		// 금액 모달창에 띄우기
 		var payAmount = button.data('payamount'); // 소문자로만 가져올 수 있음
 		var amountNumber = parseInt(payAmount, 10);
-		var formattedAmount = amountNumber.toLocaleString('en-US') + '원';
+		var formattedAmount = amountNumber.toLocaleString('en-US') + 'P';
 		$('#amount').text(formattedAmount);
 		$('#request-pay-modal').attr('class', ' modal request show');
 		$('#request-pay-modal .btn-enter').data('reqNo', reqNo);

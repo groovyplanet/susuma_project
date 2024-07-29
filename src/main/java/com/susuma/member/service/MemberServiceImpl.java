@@ -662,17 +662,13 @@ public class MemberServiceImpl implements MemberService {
 			}
 
 			// 포인트 적립 내역 및 사용 내역 조회
-			List<MemberDTO> earnings = memberMapper.getPointEarnings(meNo);
-			List<MemberDTO> spendings = memberMapper.getPointSpendings(meNo);
-			List<PointDTO> withdrawals = pointMapper.getWithdrawalHistory(meNo);
+			List<MemberDTO> plus = memberMapper.getPointEarnings(meNo);
+			List<MemberDTO> minus = memberMapper.getMinus(meNo);
 			
-			
-
 			// 결과를 요청 속성에 설정
 			request.setAttribute("points", points);
-			request.setAttribute("earnings", earnings);
-			request.setAttribute("spendings", spendings);
-			request.setAttribute("withdrawals", withdrawals);
+			request.setAttribute("plus", plus);
+			request.setAttribute("minus", minus);
 
 			// 포워딩
 			request.getRequestDispatcher("point.jsp").forward(request, response);

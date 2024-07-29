@@ -100,7 +100,7 @@
 				<table class="list" id="member_list">
 					<thead>
 						<tr>
-							<th class="wp4">번호${sortStr}</th>
+							<th class="wp4">번호</th>
 							<th class="wp4">프로필</th>
 							<th class="wp7">
 								<button class="btn_sort" onclick="sort('name', '${sortField != 'name' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">

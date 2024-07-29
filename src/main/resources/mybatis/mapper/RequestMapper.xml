@@ -18,6 +18,7 @@
 		, C.CA_NAME
 		, CR.CA_NO AS CA_ROOT_NO
 		, CR.CA_NAME AS CA_ROOT_NAME
+		, (SELECT COUNT(*) FROM REVIEW WHERE REQ_NO = R.REQ_NO) reviewCnt
 		FROM REQUEST R
 		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
 		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
@@ -62,54 +63,13 @@
 
 	<!-- [1-3] 수리 상태별 개수 -->
 	<select id="selectRequestCnts" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
-		SELECT (SELECT COUNT(*) FROM REQUEST WHERE 1 = 1
-		<if test="clientNo != null">
-			AND CLIENT_NO = #{clientNo}
-		</if>
-		<if test="masterNo != null">
-			AND MASTER_NO = #{masterNo}
-		</if>
-		) allCnt
-		, (SELECT COUNT(*) FROM REQUEST WHERE 1 = 1
-		<if test="clientNo != null">
-			AND CLIENT_NO = #{clientNo}
-		</if>
-		<if test="masterNo != null">
-			AND MASTER_NO = #{masterNo}
-		</if>
-		AND STATUS='requested') requestedCnt
-		, (SELECT COUNT(*) FROM REQUEST WHERE 1 = 1
-		<if test="clientNo != null">
-			AND CLIENT_NO = #{clientNo}
-		</if>
-		<if test="masterNo != null">
-			AND MASTER_NO = #{masterNo}
-		</if>
-		AND STATUS='approved') approvedCnt
-		, (SELECT COUNT(*) FROM REQUEST WHERE 1 = 1
-		<if test="clientNo != null">
-			AND CLIENT_NO = #{clientNo}
-		</if>
-		<if test="masterNo != null">
-			AND MASTER_NO = #{masterNo}
-		</if>
-		AND STATUS='paywait') paywaitCnt
-		, (SELECT COUNT(*) FROM REQUEST WHERE 1 = 1
-		<if test="clientNo != null">
-			AND CLIENT_NO = #{clientNo}
-		</if>
-		<if test="masterNo != null">
-			AND MASTER_NO = #{masterNo}
-		</if>
-		AND STATUS='paid') paidCnt
-		, (SELECT COUNT(*) FROM REQUEST WHERE 1 = 1
-		<if test="clientNo != null">
-			AND CLIENT_NO = #{clientNo}
-		</if>
-		<if test="masterNo != null">
-			AND MASTER_NO = #{masterNo}
-		</if>
-		AND STATUS='cancel') cancelCnt
+		SELECT
+		COUNT(*) AS allCnt,
+		COUNT(CASE WHEN R.STATUS = 'requested' THEN 1 END) AS requestedCnt,
+		COUNT(CASE WHEN R.STATUS = 'approved' THEN 1 END) AS approvedCnt,
+		COUNT(CASE WHEN R.STATUS = 'paywait' THEN 1 END) AS paywaitCnt,
+		COUNT(CASE WHEN R.STATUS = 'paid' THEN 1 END) AS paidCnt,
+		COUNT(CASE WHEN R.STATUS = 'cancel' THEN 1 END) AS cancelCnt
 		FROM REQUEST R
 		WHERE 1 = 1
 		<if test="clientNo != null">
@@ -117,13 +77,6 @@
 		</if>
 		<if test="masterNo != null">
 			AND MASTER_NO = #{masterNo}
-		</if>
-        GROUP BY 
-		<if test="clientNo != null">
-			CLIENT_NO
-		</if>
-		<if test="masterNo != null">
-			MASTER_NO
 		</if>
 	</select>
 
