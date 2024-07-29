@@ -68,13 +68,13 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .search_wrap table.search { width: 100%; } 
 .container .content_wrap .search_wrap table.search tbody { display: flex; flex-direction: column; gap: 10px; } 
 .container .content_wrap .search_wrap table.search tr { font-size: 14px; color: #333; display: flex; align-items: center; } 
-.container .content_wrap .search_wrap table.search tr th { padding: 0 10px 0 25px; font-weight: 500; width: 160px; text-align: left; } 
+.container .content_wrap .search_wrap table.search tr th { padding: 0 10px 0 25px; font-weight: 500; width: 145px; text-align: left; } 
 .container .content_wrap .search_wrap table.search tr td { font-weight: 500; display: flex; align-items: center; } 
 .container .content_wrap .search_wrap table.search tr td .check_list { display: inline-flex; gap: 5px; } 
 .container .content_wrap .search_wrap table.search tr td .check_list li { display: inline-flex; align-items: center; gap: 0px; border-radius:6px; padding:2px 1px 2px 7px; transition: 0.2s; } 
 .container .content_wrap .search_wrap table.search tr td .check_list li label { cursor: pointer; padding: 0 10px; font-weight: 400; } 
 .container .content_wrap .search_wrap table.search tr td .check_list li input[type="radio"] { display: none; } 
-.container .content_wrap .search_wrap table.search tr td .check_list li label { cursor: pointer; color: #555; background-color: #eee; font-size: 12px; padding: 0px 8px; border-radius: 5px; display: inline-flex; line-height: 25px; transition: background-color 0.3s ease, color 0.3s ease; } 
+.container .content_wrap .search_wrap table.search tr td .check_list li label { cursor: pointer; color: #555; background-color: #eee; font-size: 12px; padding: 7px 14px; border-radius: 5px; display: inline-flex; transition: background-color 0.2s ease, color 0.2s ease; } 
 .container .content_wrap .search_wrap table.search tr td .check_list li input[type="radio"]:checked+label { color: white; background-color: #444; } 
 .container .content_wrap .search_wrap table.search tr td .check_list li label:hover { color: white; background-color: #444; } 
 

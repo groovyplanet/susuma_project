@@ -42,48 +42,56 @@
 				<form id="filter-form" action="masterList.member" method="GET">
 					<div class="filter">
 						<label for="category">상위 카테고리</label>
-						<select id="category" onchange="handleCategoryChange()">
+						<select name="rootNo" id="category" onchange="handleCategoryChange()">
 							<option value="">선택</option>
-							<c:forEach var="dtox" items="${CategoryMainList}">
-								<option value="${dtox.caNo }">${dtox.caName }</option>
+							<c:forEach var="categoryDto" items="${CategoryMainList}">
+								<option value="${categoryDto.caNo }" ${rootNo == categoryDto.caNo ? 'selected' : ''}>${categoryDto.caName }</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="filter" id="sub-category-filter">
 						<label for="sub-category">하위 카테고리</label>
-						<select id="sub-category" name="subCate">
+						<select name="caNo" id="sub-category" class="select-category">
 							<option value="">선택</option>
+							<c:forEach var="categorySubDto" items="${CategorySubList}">
+								<option value="${categorySubDto.caNo }" ${caNo == categorySubDto.caNo ? 'selected' : ''}>${categorySubDto.caName }</option>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="search-filters">
 						<div class="search-filter">
-							<label for="distance">가까운 거리 필터</label>
+							<label for="distance">거리순</label>
 						</div>
 						<div class="distance-radio-area">
-							<input type="radio" name="max_distance" value="5" id="distance-5" checked onchange="handleRadioChange(event)">
+							<input type="radio" name="maxDistance" value="5" id="distance-5" onchange="handleRadioChange(event)" ${maxDistance == 5 ? 'checked' : ''}>
 							<label for="distance-5" class="distance-radio selected">5km 이내</label>
 
-							<input type="radio" name="max_distance" value="10" id="distance-10" onchange="handleRadioChange(event)">
+							<input type="radio" name="maxDistance" value="10" id="distance-10" onchange="handleRadioChange(event)" ${maxDistance == 10 ? 'checked' : ''}>
 							<label for="distance-10" class="distance-radio">10km 이내</label>
 
-							<input type="radio" name="max_distance" value="20" id="distance-20" onchange="handleRadioChange(event)">
+							<input type="radio" name="maxDistance" value="20" id="distance-20" onchange="handleRadioChange(event)" ${maxDistance == 20 ? 'checked' : ''}>
 							<label for="distance-20" class="distance-radio">20km 이내</label>
 
-							<input type="radio" name="max_distance" value="50" id="distance-50" onchange="handleRadioChange(event)">
+							<input type="radio" name="maxDistance" value="50" id="distance-50" onchange="handleRadioChange(event)" ${maxDistance == 50 ? 'checked' : ''}>
 							<label for="distance-50" class="distance-radio">50km 이내</label>
 
-							<input type="radio" name="max_distance" value="100" id="distance-100" onchange="handleRadioChange(event)">
+							<input type="radio" name="maxDistance" value="100" id="distance-100" onchange="handleRadioChange(event)" ${maxDistance == 100 ? 'checked' : ''}>
 							<label for="distance-100" class="distance-radio">100km 이내</label>
 						</div>
-
 						<div class="search-filter">
 							<label for="rating-filter">별점순</label>
-							<select id="rating-filter">
-								<option value="desc">높은 순</option>
-								<option value="asc">낮은 순</option>
-							</select>
 						</div>
-						<button type="button" onclick="applyFilters()">검색</button>
+						<div class="distance-radio-area">
+							<input type="radio" name="starOrder" value="desc" id="desc" ${starOrder eq 'desc' ? 'checked' : ''}>
+							<label for="desc" class="distance-radio">높은순</label>
+
+							<input type="radio" name="starOrder" value="asc" id="asc" ${starOrder eq 'asc' ? 'checked' : ''}>
+							<label for="asc" class="distance-radio">낮은순</label>
+						</div>
+						<button type="button" onclick="applyFilters()">
+							<i class="bi bi-search"></i>
+							검색
+						</button>
 					</div>
 				</form>
 
