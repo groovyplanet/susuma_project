@@ -248,6 +248,7 @@ public class MemberServiceImpl implements MemberService {
 	    MemberDTO user = Member2.selectLaLo(meNo);
 	    sql2.close();
 	    double userLatitude  = user.getLatitude();
+	    
 	    double userLongitude = user.getLongitude();
 	    
 	    Map<String, Object> params = new HashMap<>();

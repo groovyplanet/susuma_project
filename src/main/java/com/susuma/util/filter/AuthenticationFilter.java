@@ -61,7 +61,8 @@ public class AuthenticationFilter implements Filter {
 			case "/member/list.review": // 리뷰 리스트 페이지
 			case "/member/list.request": // 예약 내역
 			case "/member/view.request": // 예약 상세
-
+			case "/member/masterList.member":// 수리예약화면 
+				System.out.println("성공하냐?");
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();
