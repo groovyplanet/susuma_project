@@ -97,7 +97,7 @@ public class RequestServiceImpl implements RequestService {
 		ReviewMapper reviewMapper = sql.getMapper(ReviewMapper.class);
 		ReviewDTO reviewDTO = reviewMapper.selectReview(params);
 		sql.close();
-
+		
 		/* [3] 요청에 데이터 설정 */
 		request.setAttribute("requestDTO", requestDTO);
 		request.setAttribute("reviewDTO", reviewDTO);

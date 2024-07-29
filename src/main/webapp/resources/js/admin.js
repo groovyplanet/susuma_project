@@ -55,7 +55,8 @@ list.request
 var request_list = document.getElementById('request_list');
 if (request_list) {
 	request_list.onclick = function(e) {
+		console.log(e.target.tagName);
 		if (e.target.tagName != "TD") return;
-		//location.href = "view.request?reqNo=" + e.target.closest("tr").dataset.reqno;
+		location.href = "view.request?reqNo=" + e.target.closest("tr").dataset.reqno;
 	}
 }
