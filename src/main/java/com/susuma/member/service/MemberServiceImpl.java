@@ -272,33 +272,6 @@ public class MemberServiceImpl implements MemberService {
 	        params.put("maxDistance", maxDistance);
 	    }
 
-
-		SqlSession sql2 = sqlSessionFactory.openSession();
-		MemberMapper Member2 = sql2.getMapper(MemberMapper.class);
-		MemberDTO user = Member2.selectLaLo(meNo);
-		sql2.close();
-		double userLatitude = user.getLatitude();
-		double userLongitude = user.getLongitude();
-
-		Map<String, Object> params = new HashMap<>();
-		params.put("type", "master");
-		params.put("joinApproval", "Y");
-		params.put("sortField", "insert_time");
-		params.put("sortOrder", "DESC");
-		params.put("rootNo", rootNo);
-		params.put("caNo", caNo);
-		params.put("startRow", 1); // rownum 시작값
-		params.put("endRow", 999); // rownum 끝값
-		params.put("latitude", userLatitude);
-		params.put("longitude", userLongitude);
-
-		if (subCate != null && !subCate.isEmpty()) {
-			params.put("subCate", subCate);
-		}
-		if (maxDistance != null && !maxDistance.isEmpty()) {
-			params.put("maxDistance", maxDistance);
-		}
-
 		/* [2] Mapper */
 		SqlSession sql = sqlSessionFactory.openSession();
 		MemberMapper Member = sql.getMapper(MemberMapper.class);
