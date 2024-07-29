@@ -11,25 +11,59 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/master/messages") // 'Susuma/' 삭제
+@WebServlet("*.message")
 public class MessageController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	private MessageService messageService = new MessageServiceImpl();
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int userNo = Integer.parseInt(request.getParameter("userNo"));
-//        int getMeNo = Integer.parseInt(request.getParameter("getMeNo"));
-//        List<MessageDTO> messages = messageDAO.getMessages(userNo, getMeNo);
-		List<MessageDTO> messages = messageService.getMessages(request, response);
-		String json = new Gson().toJson(messages);
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().print(json);
+	public MessageController() {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		messageService.sendMessage(request, response);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doAction(req, resp);
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doAction(req, resp);
+	}
+
+	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("utf-8");
+
+		String uri = request.getRequestURI(); // uri : '/Susuma/member/join.member'
+		String path = request.getContextPath(); // path : '/Susuma'
+		String command = uri.substring(path.length()); // command : '/member/join.member'
+		System.out.println("command : " + command);
+
+		MessageService messageService = new MessageServiceImpl();
+
+		switch (command) {
+
+		case "/member/list.message":
+			//messageService.sendMessage(request, response);
+			request.getRequestDispatcher("message_list.jsp").forward(request, response);
+			break;
+			
+		case "/master/get.messages":
+			// service.adminList(request, response); // 관리자 - 회원 목록
+			List<MessageDTO> messages = messageService.getMessages(request, response);
+			String json = new Gson().toJson(messages);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(json);
+			break;
+
+		case "/master/set.messages":
+			messageService.sendMessage(request, response);
+			break;
+
+		default:
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			break;
+		}
+	}
+
 }
