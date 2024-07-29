@@ -283,17 +283,14 @@ public class RequestServiceImpl implements RequestService {
 //	}
 
 	public void updateStatusAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// RequestDTO 생성
-		RequestDTO requestDTO = createRequestDTO(request, response);
-		boolean isUpdate = true;
-		int result = requestUpsert(requestDTO, isUpdate);
+
 		String resultMessage = "Success";
 
 		// 결제할 경우 [1]의뢰인 point 차감, [2]수리기사 point 적립, [3]수리기사 point_history
-		if (requestDTO.getStatus().equals("paid")) {
+		String status = request.getParameter("status");
+		if (status.equals("paid")) {
 
 			int payAmount = request.getParameter("payAmount") == null ? 0 : Integer.parseInt(request.getParameter("payAmount"));
-
 			SqlSession sql = sqlSessionFactory.openSession(true);
 			PointMapper pointMapper = sql.getMapper(PointMapper.class);
 			MemberMapper memberMapper = sql.getMapper(MemberMapper.class);
@@ -311,13 +308,18 @@ public class RequestServiceImpl implements RequestService {
 				resultMessage = "잔액이 부족합니다.";
 			} else {
 
-				// [1]의뢰인 point 차감
+				// [1] request 업데이트
+				RequestDTO requestDTO = createRequestDTO(request, response);
+				boolean isUpdate = true;
+				int result = requestUpsert(requestDTO, isUpdate);
+
+				// [2] 의뢰인 point 차감
 				Map<String, Object> params2 = new HashMap<>();
 				params2.put("meNo", meNo);
 				params2.put("point", currentPoints - payAmount);
 				memberMapper.updateMemberPoints(params2);
 
-				// [2]수리기사 point 적립
+				// [3] 수리기사 point 적립
 				String masterNo = requestDTO2.getMasterNo();
 				int currentMasterPoints = pointMapper.MemberPoints(masterNo);
 				Map<String, Object> params3 = new HashMap<>();
@@ -326,15 +328,14 @@ public class RequestServiceImpl implements RequestService {
 				memberMapper.updateMemberPoints(params3);
 			}
 
-			// [3]의뢰인 point_history
-			//PointDTO pointDTO = new PointDTO();
-			//pointDTO.setMeNo(meNo);
-			//pointDTO.setPoint(-payAmount); // 출금이므로 음수로 설정
-			//pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
-			//pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
-
 			sql.close();
 
+		} else {
+
+			// [1] request 업데이트
+			RequestDTO requestDTO = createRequestDTO(request, response);
+			boolean isUpdate = true;
+			int result = requestUpsert(requestDTO, isUpdate);
 		}
 
 		response.setContentType("text/plain");

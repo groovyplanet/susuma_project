@@ -99,7 +99,7 @@
 									<span class="amount">
 										<fmt:formatNumber value="${plus.point<0 ? -1 * plus.point : plus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
 										P
-										<span class="spstatus">${plus.point<0 ? '정산 완료' : '충전 완료' }</span>
+										<span class="status">${plus.point<0 ? '정산 완료' : '충전 완료' }</span>
 									</span>
 
 								</div>
