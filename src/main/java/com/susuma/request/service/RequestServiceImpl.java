@@ -325,11 +325,11 @@ public class RequestServiceImpl implements RequestService {
 			}
 
 			// [3]의뢰인 point_history
-			PointDTO pointDTO = new PointDTO();
-			pointDTO.setMeNo(meNo);
-			pointDTO.setPoint(-payAmount); // 출금이므로 음수로 설정
-			pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
-			pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
+			//PointDTO pointDTO = new PointDTO();
+			//pointDTO.setMeNo(meNo);
+			//pointDTO.setPoint(-payAmount); // 출금이므로 음수로 설정
+			//pointDTO.setInsertTime(new Timestamp(System.currentTimeMillis())); // 현재 시간
+			//pointMapper.addSpendingHistory(pointDTO); // POINT_HISTORY 테이블에 내역 추가
 
 			sql.close();
 
