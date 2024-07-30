@@ -43,21 +43,19 @@ public class MessageController extends HttpServlet {
 		switch (command) {
 
 		case "/member/list.message":
-			//messageService.sendMessage(request, response);
-			request.getRequestDispatcher("message_list.jsp").forward(request, response);
+			messageService.getChatRooms(request, response);
 			break;
 			
-		case "/master/get.messages":
-			// service.adminList(request, response); // 관리자 - 회원 목록
-			List<MessageDTO> messages = messageService.getMessages(request, response);
-			String json = new Gson().toJson(messages);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().print(json);
+		case "/member/form.message":
+			messageService.getMessages(request, response);
 			break;
 
-		case "/master/set.messages":
+		case "/member/sendAjax.message":
 			messageService.sendMessage(request, response);
+			break;
+			
+		case "/member/getAjax.message":
+			messageService.getMessagesAjax(request, response);
 			break;
 
 		default:

@@ -95,8 +95,7 @@
 		</div>
 	</div>
 	<script>
-	
-	/* 메시지 보내기(div 추가, db에 저장) */
+	/* div 추가, db에 저장 */
 	function sendMessage() {
 		
 		// 입력 필드와 채팅 박스 가져오기
@@ -129,8 +128,14 @@
         // 채팅 박스에 메시지 추가
         chatBox.innerHTML += messageHTML;
 
+        // 스크롤을 최하단으로 이동
+	    prepareScroll();
+
+        // 입력 필드 비우기
+        inputField.value = '';
+        
         // ajax로 db에 저장
-	    fetch('sendAjax.message', {
+	    fetch('send.message', {
 	        method: 'POST',
 	        headers: {
 	            'Content-Type': 'application/json'
@@ -141,22 +146,27 @@
 	        })
 	    }).then(response => {
 	        if (response.ok) {
-	            getMessages(); // ajax로 가져오기
-	            inputField.value = '';
+	        	console.log("send 성공");
+	            //chatInput.value = '';
+	            //getMessages();
 	        }
 	    });
 	}
 	
-	/* 메시지 가져오기(내가 읽지 않은 메시지) */
+	/* 안 본 메시지 가져오기 */
 	function getMessages() {
-        fetch('getAjax.message?user='+document.querySelector('input[name="getMeNo"]').value)
-	    .then(response => response.text())
-        .then(html => {
-        	const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML += html;
-            prepareScroll();
-        })
-        .catch(error => console.error('Error fetching requests:', error));
+	    fetch('../master/messages')
+	        .then(response => response.json())
+	        .then(data => {
+	            const chatBox = document.getElementById('chat-box');
+	            data.forEach(dto => {
+	                console.log(dto);
+	                const messageDiv = document.createElement('div');
+	                messageDiv.classList.add('message');
+	                messageDiv.textContent = dto.message;
+	                chatBox.appendChild(messageDiv);
+	            });
+	        });
 	}
 
 	// 준비 함수, 약간의 시간을 두어 scroll 함수를 호출하기
@@ -169,13 +179,12 @@
 	    let chatUl = document.querySelector('.chat-box');
 	    chatUl.scrollTop = chatUl.scrollHeight;
 	}
-	
 	document.addEventListener("DOMContentLoaded", function () {
 
-        prepareScroll();
-        
-	    // 폴링
-	    setInterval(getMessages, 1000);
+	    prepareScroll();
+	    
+	    // 3초마다 폴링
+	    //setInterval(getMessages, 3000);
 
 	    $('#chat-input').keypress(function (e) {
 	        if (e.which === 13) { // Enter key

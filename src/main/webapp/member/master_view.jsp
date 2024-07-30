@@ -50,7 +50,10 @@
 						</div>
 						<div class="reserve-button-block">
 							<a href="${pageContext.request.contextPath }/member/request.member?meNo=${dto.meNo}" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
-							<a class="new-btn new-reserve-contact" id="reserve-contact" onclick="window.open(this.href='message.jsp', '_blank', 'width=440, height=550'); return false;">문의 신청</a>
+							<a class="new-btn new-reserve-contact" onclick="openMessage(${dto.meNo}); return false;">
+								<i class="bi bi-chat-dots" style="font-size: 15px;"></i>
+								채팅
+							</a>
 						</div>
 					</div>
 				</div>
@@ -130,6 +133,21 @@
 	</section>
 
 	<%@ include file="../include/footer.jsp"%>
+	<script>
+		function openMessage(meNo) {
+			if('${meNo}' == '') {
+				alert('로그인이 필요한 서비스 입니다.');
+				return false;
+			}
+			var url = 'form.message?user='+meNo;
+			var name = '_blank';
+			var width = 440;
+			var height = 550;
+			var left = (window.screen.width - width) / 2;
+			var top = (window.screen.height - height - 200) / 2;
+			window.open(url, name, "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
+		}
+	</script>
 </body>
 
 </html>
