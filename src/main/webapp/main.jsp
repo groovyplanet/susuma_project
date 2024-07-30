@@ -25,24 +25,24 @@
 					<div class="main-imgbox-kim">
 						<div class="main-img-kim">
 
-							<a href="${pageContext.request.contextPath }/member/masterList.member">
-								<img src="${pageContext.request.contextPath }/resources/img/repair.png" alt="가전제품">
+							<a href="${pageContext.request.contextPath }/member/masterList.member?rootNo=1">
+								<img src="${pageContext.request.contextPath }/resources/img/gajeon.jpg" alt="가전제품">
 								가전제품
 							</a>
-							<a href="${pageContext.request.contextPath }/member/masterList.member">
+							<a href="${pageContext.request.contextPath }/member/masterList.member?rootNo=2">
 								<img src="${pageContext.request.contextPath }/resources/img/door.png" alt="문">
 								문/창문
 							</a>
-							<a href="${pageContext.request.contextPath }/member/masterList.member">
-								<img src="${pageContext.request.contextPath }/resources/img/electric.png" alt="수도">
+							<a href="${pageContext.request.contextPath }/member/masterList.member?rootNo=3">
+								<img src="${pageContext.request.contextPath }/resources/img/sudo.png" alt="수도">
 								수도/보일러/전기
 							</a>
-							<a href="${pageContext.request.contextPath }/member/masterList.member">
-								<img src="${pageContext.request.contextPath }/resources/img/fusu.png" alt="가구">
+							<a href="${pageContext.request.contextPath }/member/masterList.member?rootNo=4">
+								<img src="${pageContext.request.contextPath }/resources/img/gagu.png" alt="가구">
 								가구
 							</a>
-							<a href="${pageContext.request.contextPath }/member/masterList.member">
-								<img src="${pageContext.request.contextPath }/resources/img/etcrepair.png" alt="수리">
+							<a href="${pageContext.request.contextPath }/member/masterList.member?rootNo=5">
+								<img src="${pageContext.request.contextPath }/resources/img/etc.png" alt="수리">
 								기타 설치/수리
 							</a>
 						</div>

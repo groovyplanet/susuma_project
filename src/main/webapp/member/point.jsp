@@ -348,6 +348,7 @@
                    success: function(data) {
                        console.log(data);
                        alert(data.message); // 서버로부터 받은 메시지 표시
+                       location.reload();
                    },
                    error: function(xhr, status, error) {
                        console.error('서버 오류: ' + xhr.status);
