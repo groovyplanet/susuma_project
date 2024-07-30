@@ -54,6 +54,7 @@ public class AuthenticationFilter implements Filter {
 			case "/member/reviewForm.member": // 예약내역 리뷰 작성
 			case "/member/request.member": // 수리 예약
 			case "/member/point.member": // 포인트
+			case "/member/list.message": // 포인트
 			case "/board/askWrite.board": // 1:1 문의 작성
 			case "/board/askView.board": // 1:1 문의 상세
 			case "/board/askModify.board": // 1:1 문의 수정
@@ -61,6 +62,7 @@ public class AuthenticationFilter implements Filter {
 			case "/member/list.request": // 예약 내역
 			case "/member/view.request": // 예약 상세
 			case "/member/masterList.member":// 수리예약화면 
+			case "/member/form.message":// 채팅창 
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();

@@ -11,7 +11,13 @@ import com.susuma.member.model.MemberDTO;
 import com.susuma.message.model.MessageDTO;
 
 public interface MessageService {
-	List<MessageDTO> getMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	void sendMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
+	void getChatRooms(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	void getMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	void getMessagesAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	void sendMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
 }

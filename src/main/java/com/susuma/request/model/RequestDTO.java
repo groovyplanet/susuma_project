@@ -346,7 +346,7 @@ public class RequestDTO {
 	}
 
 	public String getClientProfilePhotoImg() {
-		if (masterProfilePhoto == null || masterProfilePhoto.equals("")) {
+		if (clientProfilePhoto == null || clientProfilePhoto.equals("")) {
 			return "";
 		}
 		return Base64.getEncoder().encodeToString(clientProfilePhoto);

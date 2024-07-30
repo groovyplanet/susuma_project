@@ -320,35 +320,17 @@
 .main-section .container.filter .distance-radio-area input[type="radio"]:checked+label { background-color: #F49D00; color: white; border-color: #F49D00; } 
 .main-section .container.filter .distance-radio-area label:hover { background-color: #e9ecef; } 
 /**/
-body.message { font-family: Arial, sans-serif; background-color: #f0f0f0; width: 420px; height: 450px; overflow: hidden; } 
-body.message .chat-container { width: 400px; max-width: 600px; margin: 0 auto; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; background-color: #fff; } 
-body.message .chat-box { height: 400px; overflow-y: auto; padding: 10px; border-bottom: 1px solid #ccc; padding-top: 0px; } 
-body.message .chat-box .right { display: flex; justify-content: flex-end; } 
-body.message .chat-box .left { display: flex; justify-content: flex-start; align-items: center; } 
-body.message .input-group { display: flex; padding: 10px; } 
-body.message #chat-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; } 
-body.message button { padding: 10px 20px; border: none; border-radius: 5px; background-color: #F49D00; color: #fff; cursor: pointer; } 
-body.message button:hover { background-color: #d68b00; } 
-body.message .message { margin: 10px 0; padding: 10px; border-radius: 5px; } 
-body.message .message.member { background-color: #dcf8c6; align-self: flex-end; max-width: calc(100% - 115px); } 
-body.message .message.memberlf { background-color: #F49D00; color: white; max-width: calc(100% - 115px); margin-left: 10px; } 
-body.message .message.counselor { background-color: #fff; border: 1px solid #ccc; align-self: flex-start; } 
-body.message .message.timestamp { font-size: 0.5em; color: #666; position: relative; display: block; } 
-body.message .message.timestamplf { font-size: 0.5em; color: #666; position: relative; display: block; } 
-body.message .calender { text-align: center; font-size: 12px; color: #666; border-radius: 5px; background-color: #eee; } 
-body.message .master-name { font-size: 14px; width: 400px; color: white; } 
-/**/
 .main-section .container.message-list .content { padding: 30px 50px; } 
 .main-section .container.message-list .chatlist-container { max-width: 300px; margin: 20px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); } 
 .main-section .container.message-list .chatlist { overflow-y: auto; max-height: 400px; } 
-.main-section .container.message-list .chatroom { display: flex; padding: 15px; border-bottom: 1px solid #ccc; cursor: pointer; transition: background-color 0.3s; } 
+.main-section .container.message-list .chatroom { display: flex; padding: 15px; border-bottom: 1px solid #ccc; cursor: pointer; transition: background-color 0.3s; align-items: center; } 
 .main-section .container.message-list .chatroom:hover { background-color: #f2f2f2; } 
-.main-section .container.message-list .new-mark.active { position: absolute; width: 14px; height: 14px; background: #ff5b16; border-radius: 100%; font-size: 10px; color: white; text-align: center; font-weight: 100; line-height: 14px; } 
+.main-section .container.message-list .new-mark.active { position: absolute; width: 14px; height: 14px; background: #ff5b16; border-radius: 100%; font-size: 10px; color: white; text-align: center; font-weight: 100; line-height: 14px; margin-left: 1px; } 
 .main-section .container.message-list .chatroom-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; } 
 .main-section .container.message-list .chatroom-info { flex: 1; margin-left: 10px; } 
 .main-section .container.message-list .chatroom-name { font-weight: bold; } 
 .main-section .container.message-list .last-message { color: #666; } 
-.main-section .container.message-list .chatroom-time { font-size: 12px; color: #999; } 
+.main-section .container.message-list .chatroom-time { font-size: 12px; color: #999; height: 37px; } 
 /**/
 /* 버튼 스타일 */
 .request .btn { background-color: white; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; cursor: default; } 

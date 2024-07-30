@@ -36,7 +36,7 @@
 					<a href="${pageContext.request.contextPath }/member/list.message" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">채팅 목록</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/board/list.board?type=myask" class="${type=='myask'?'active':'' }">나의 1:1 문의 내역</a>
+					<a href="${pageContext.request.contextPath }/board/list.board?type=myask" class="${type=='myask'?'active':'' }">나의 1:1 문의</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/member/point.member" class="${pageContext.request.servletPath == '/member/point.jsp' ? 'active' : ''}">포인트</a>

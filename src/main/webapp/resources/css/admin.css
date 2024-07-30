@@ -49,11 +49,11 @@ header .btn_wrap li a { display: inline-flex; align-items: center; gap: 2px; hei
 header .btn_wrap li a:hover { background-color: #ddd; } 
 /* container */
 .container { display: flex; padding: 0 40px 20px; gap: 20px; min-height: calc(100% - 80px); } 
-.container .snb { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px 15px; width: 170px; flex-shrink: 0; gap: 13px; } 
+.container .snb { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px 15px; width: 170px; flex-shrink: 0; gap: 11px; } 
 .container .snb li { text-align: center; font-size: 14px; color: #777; font-weight: 500; } 
-.container .snb li a { display: block; font-size: 15px; font-weight: 500; padding: 9px 0; border-radius: 7px; transition: 0.2s; background-color: #f6f6f6; color: #666; } 
-.container .snb li a.active { background-color: #ff6b6b; color: white; font-weight: 500; } 
-.container .snb li a:not(.active):hover { background-color: #ff6b6b1c; color: #ff6b6b; font-weight: 500; } 
+.container .snb li a { display: block; font-size: 15px; font-weight: 500; padding: 11px 0; border-radius: 7px; transition: 0.2s; color: #777; background-color: #fafafa; } 
+.container .snb li a.active { background-color: #ff6b6b26; color: #ff4c4c; font-weight: 500; } 
+.container .snb li a:not(.active):hover { background-color: #f1f1f1; color: #333; } 
 /* content_wrap */
 .container .content_wrap { display: flex; flex-direction: column; background-color: #fff; border-radius: 10px; padding: 22px; width: 100%; } 
 /* title_wrap */
