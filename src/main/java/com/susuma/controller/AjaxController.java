@@ -2,7 +2,6 @@ package com.susuma.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.google.gson.Gson;
-import com.susuma.board.model.BoardDTO;
-import com.susuma.board.model.BoardMapper;
+import com.susuma.alert.model.AlertDTO;
+import com.susuma.alert.model.AlertMapper;
 import com.susuma.category.model.CategoryDTO;
 import com.susuma.category.model.CategoryMapper;
 import com.susuma.member.model.MemberDTO;
@@ -89,30 +88,35 @@ public class AjaxController extends HttpServlet {
 			out.flush();
 
 		} else if (command.equals("/member/insertRequest.ajax")) { // 수리 예약
-			
+
 			int reqNo = request.getParameter("reqNo") == null ? 0 : Integer.parseInt(request.getParameter("reqNo"));
 			String masterNo = request.getParameter("masterNo");
 			HttpSession session = request.getSession();
 			String clientNo = (String) session.getAttribute("meNo");
+			String clientName = (String) session.getAttribute("name");
 			String content = request.getParameter("content");
 			String requestDate = request.getParameter("requestDate");
 			String requestTime = request.getParameter("requestTime");
 			String address = request.getParameter("address");
 			String addressDetail = request.getParameter("address_detail");
-			Double latitude = (request.getParameter("latitude"))==null ? 0.0: Double.parseDouble(request.getParameter("latitude")) ;
-			Double longitude = (request.getParameter("longitude"))==null ? 0.0: Double.parseDouble(request.getParameter("longitude")) ;
+			Double latitude = (request.getParameter("latitude")) == null ? 0.0 : Double.parseDouble(request.getParameter("latitude"));
+			Double longitude = (request.getParameter("longitude")) == null ? 0.0 : Double.parseDouble(request.getParameter("longitude"));
 			String phoneNum = request.getParameter("phoneNum");
-			
-			RequestDTO dto = new RequestDTO(reqNo, masterNo, clientNo, content, requestDate, requestTime, address, addressDetail, latitude, longitude, phoneNum , null , null);
+
+			RequestDTO requestDTO = new RequestDTO(reqNo, masterNo, clientNo, content, requestDate, requestTime, address, addressDetail, latitude, longitude, phoneNum, null, null);
 
 			SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 			SqlSession sql = sqlSessionFactory.openSession(true);
 			RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
 			// INSERT REQUEST
-			int result = requestMapper.insertRequest(dto);
-			System.out.println("dto.getReqNo() : "+dto.getReqNo());
-			
+			int result = requestMapper.insertRequest(requestDTO);
+			System.out.println("dto.getReqNo() : " + requestDTO.getReqNo());
+			System.out.println("masterNo : " + masterNo);
+
 			// INSERT ALERT
+			AlertMapper alertMapper = sql.getMapper(AlertMapper.class);
+			AlertDTO alertDTO = new AlertDTO(null, masterNo, (requestDTO.getReqNo() + ""), clientName + "님이 수리 예약을 신청했습니다.", null);
+			int result2 = alertMapper.insertAlert(alertDTO);
 			sql.close();
 
 			boolean isAvailable = result == 1; // 이메일이 일치하는 회원정보가 없으면 회원가입 가능(true)
@@ -120,6 +124,19 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print("{\"available\":" + isAvailable + "}"); // JSON 형태로 응답
 			out.flush();
+
+		} else if (command.endsWith("deleteAlert.ajax")) {
+			//HttpSession session = request.getSession();
+			//String meNo = (String) session.getAttribute("meNo");
+			//System.out.println(meNo);
+			String alNo = request.getParameter("alNo");
+			SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
+			SqlSession sql = sqlSessionFactory.openSession(true);
+			// DELETE ALERT
+			AlertMapper alertMapper = sql.getMapper(AlertMapper.class);
+			int result = alertMapper.deleteAlert(alNo);
+			System.out.println(result);
+			sql.close();
 
 		}
 

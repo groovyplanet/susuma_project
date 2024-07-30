@@ -203,14 +203,14 @@
 	</update>
 
 	<!-- [4-2] 회원 수정(수리기사 승인) -->
-	<delete id="updateMemberApprove" parameterType="string">
+	<update id="updateMemberApprove" parameterType="string">
 		UPDATE MEMBER
 		SET
 		JOIN_APPROVAL = 'Y',
 		JOIN_APPROVAL_TIME = SYSDATE
 		WHERE
 		ME_NO = #{meNo}
-	</delete>
+	</update>
 
 	<!-- [5] 회원 삭제 -->
 	<delete id="deleteMember" parameterType="string">

@@ -54,38 +54,28 @@ if (arr != null) {
 					<!-- 로그인 상태 -->
 
 					<c:if test="${sessionScope.type ne 'admin' }">
-						<li class="li-icon alarm">
-							<!-- 알림 아이콘 -->
-							<div class="icon-area">
-								<button id="btn-alarm-list">
-									<img src="${pageContext.request.contextPath }/resources/img/alarm.png" alt="알림">
-									<span class="new-mark">1</span>
-								</button>
-							</div>
-							<div id="alram-list" class="alram-list">
+						<c:if test="${newAlertCount>0 }">
+							<li class="li-icon alarm">
+								<!-- 알림 아이콘 -->
+								<div class="icon-area">
+									<button id="btn-alarm-list">
+										<img src="${pageContext.request.contextPath }/resources/img/alarm.png" alt="알림">
+										<span class="new-mark">${newAlertCount }</span>
+									</button>
+								</div>
 								<!-- 알림 목록 -->
-								<a href="${pageContext.request.contextPath }/user/reserve_view.jsp" class="alram-item">
-									<div class="datetime">2024.07.12 10:41</div>
-									<div class="message">홍길동 기사님이 수리 예약을 확정했어요.</div>
-									<!-- (의뢰인)수리 예약 승인 -->
-								</a>
-								<a href="${pageContext.request.contextPath }/master/reserve_manage_view.jsp" class="alram-item">
-									<div class="datetime">2024.07.12 10:41</div>
-									<div class="message">홍길동님이 수리 예약을 신청했어요.</div>
-									<!-- (수리기사)수리 예약 접수 -->
-								</a>
-								<a href="${pageContext.request.contextPath }/master/review_view.jsp" class="alram-item">
-									<div class="datetime">2024.07.12 10:41</div>
-									<div class="message">홍길동님이 후기를 작성했어요.</div>
-									<!-- (수리기사)후기 등록 -->
-								</a>
-								<a href="${pageContext.request.contextPath }/board/ask_view.jsp" class="alram-item">
-									<div class="datetime">2024.07.12 10:41</div>
-									<div class="message">'예약 신청 어떻게 하나요?'에 답변이 등록됐어요.</div>
-									<!-- 1:1 문의 -->
-								</a>
-							</div>
-						</li>
+								<div id="alram-list" class="alram-list">
+									<c:forEach var="alertDTO" items="${alertList }">
+										<a href="${pageContext.request.contextPath }/member/view.request?reqNo=${alertDTO.reqNo }" onclick="deleteAndGoAlert(this, '${alertDTO.alNo }')" class="alram-item">
+											<div class="datetime">
+												<fmt:formatDate value="${alertDTO.sendTime}" pattern="yy.MM.dd. a h:mm" />
+											</div>
+											<div class="message">${alertDTO.message}</div>
+										</a>
+									</c:forEach>
+								</div>
+							</li>
+						</c:if>
 						<li class="li-icon chat">
 							<!-- 채팅 아이콘 -->
 							<div class="icon-area">

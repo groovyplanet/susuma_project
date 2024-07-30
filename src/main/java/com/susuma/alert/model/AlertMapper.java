@@ -1,7 +1,6 @@
 package com.susuma.alert.model;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public interface AlertMapper {
 
@@ -11,6 +10,6 @@ public interface AlertMapper {
 
 	public int insertAlert(AlertDTO dto);
 
-	public int deleteAlert(String meNo);
+	public int deleteAlert(String alNo);
 
 }

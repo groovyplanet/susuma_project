@@ -5,13 +5,19 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.susuma.alert.model.AlertDTO;
+import com.susuma.alert.model.AlertMapper;
+import com.susuma.member.model.MemberDTO;
+import com.susuma.member.model.MemberMapper;
 import com.susuma.message.service.MessageService;
 import com.susuma.message.service.MessageServiceImpl;
 import com.susuma.request.model.RequestDTO;
 import com.susuma.request.model.RequestMapper;
 import com.susuma.request.service.RequestService;
 import com.susuma.request.service.RequestServiceImpl;
+import com.susuma.util.mybatis.MybatisUtil;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -48,10 +54,23 @@ public class AuthenticationFilter implements Filter {
             request.setAttribute("unreadMsgCount", unreadMsgCount);
             
             if(type.equals("master")) {
-                // 수리기사인 경우 새로운 예약 신청 개수
+                // 수리기사인 경우 
+            	
+            	//새로운 예약 신청 개수
         		RequestService requestService = new RequestServiceImpl();
                 int newRequestCount = requestService.getNewRequestCount(meNo);
                 request.setAttribute("newRequestCount", newRequestCount);
+                
+                //알림
+            	SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
+        		SqlSession sql = sqlSessionFactory.openSession();
+    			AlertMapper alertMapper = sql.getMapper(AlertMapper.class);
+    			int newAlertCount = alertMapper.getNewAlertCount(meNo);
+                request.setAttribute("newAlertCount", newAlertCount);
+                ArrayList<AlertDTO> alertList = alertMapper.selectAlerts(meNo);
+                request.setAttribute("alertList", alertList);
+                sql.close();
+                
             }
             
 		}
