@@ -9,10 +9,10 @@
 					<a href="${pageContext.request.contextPath }/member/introduce.jsp">수수마 소개</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/user/master_list.jsp">수리 예약</a>
+					<a href="${pageContext.request.contextPath }/member/masterList.member">수리 예약</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/board/notice_list.jsp">고객센터</a>
+					<a href="${pageContext.request.contextPath }/board/list.board">고객센터</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/member/terms.jsp">이용약관</a>
