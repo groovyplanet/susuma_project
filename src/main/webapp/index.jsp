@@ -3,4 +3,5 @@
 <%
     String redirectURL = request.getContextPath() + "/main.member";
     response.sendRedirect(redirectURL);
+    
 %>
