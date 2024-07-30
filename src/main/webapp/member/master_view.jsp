@@ -71,7 +71,7 @@
 					<div class="review">
 						<div class="tab-review">
 							<button id="tab-pic-list" class="tab active">후기</button>
-							<button id="tab-review-list" class="tab"></button>
+
 						</div>
 						<div class="review-list">
 							<div class="pic-review-view item">
@@ -84,10 +84,8 @@
 									<span class="sizetype-view-wrap">
 										<span class="sizetype-view">
 
-											<span class="date">
 
-												<fmt:formatDate value="${dto.insertTime}" pattern="yy년 MM월 dd일" />
-											</span>
+
 											<div class="main-review-score">
 												<ul>
 													<li>
@@ -97,10 +95,10 @@
 															<c:forEach var="i" begin="1" end="5">
 																<c:choose>
 																	<c:when test="${i <= dto.starScore}">
-	                										★
+	                										<i class="bi bi-star-fill"></i>
 	            										</c:when>
 																	<c:otherwise>
-											                ☆
+											               <i class="bi bi-star"></i>
 											            </c:otherwise>
 																</c:choose>
 															</c:forEach>
@@ -113,7 +111,13 @@
 											</div>
 											<span class="review-oneline">${dto.content }</span>
 										</span>
-										<span class="nickname">${maskedName }고객님의 후기</span>
+										<div class="right-content">
+
+											<span class="nickname">${maskedName }고객님의 후기</span>
+											<span class="date">
+												<fmt:formatDate value="${dto.insertTime}" pattern="yy년 MM월 dd일" />
+											</span>
+										</div>
 									</span>
 
 								</c:forEach>

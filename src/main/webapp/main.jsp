@@ -34,7 +34,7 @@
 								문/창문
 							</a>
 							<a href="${pageContext.request.contextPath }/member/masterList.member">
-								<img src="${pageContext.request.contextPath }/resources/img/susudo.png" alt="수도">
+								<img src="${pageContext.request.contextPath }/resources/img/electric.png" alt="수도">
 								수도/보일러/전기
 							</a>
 							<a href="${pageContext.request.contextPath }/member/masterList.member">
@@ -128,10 +128,10 @@
 												<c:forEach var="i" begin="1" end="5">
 													<c:choose>
 														<c:when test="${i <= dto.starScore}">
-	                										★
+	                										<i class="bi bi-star-fill"></i>
 	            										</c:when>
 														<c:otherwise>
-											                ☆
+											                <i class="bi bi-star"></i>
 											            </c:otherwise>
 													</c:choose>
 												</c:forEach>

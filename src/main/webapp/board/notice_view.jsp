@@ -40,6 +40,7 @@
 								<a href="${pageContext.request.contextPath }/board/noticeView.board?boNo=${sidedto.last}">${sidedto.lastTitle }</a>
 							</div>
 						</div>
+						<c:if test="${sidedto.next != 9999 }">
 						<div class="content-next">
 							<div class="figure">
 								<i class="bi bi-chevron-down"></i>
@@ -49,6 +50,7 @@
 								<a href="${pageContext.request.contextPath }/board/noticeView.board?boNo=${sidedto.next}">${sidedto.nextTitle}</a>
 							</div>
 						</div>
+						</c:if>
 					</div>
 					<div class="content-move-list">
 
