@@ -10,28 +10,32 @@
 	<div class="chat-container">
 		<input type="hidden" name="getMeNo" value="${getMeNo }">
 		<div class="user-info">
-			<a href="/Susuma/member/view.request?reqNo=80" class="info" target="_blank">
-				<div class="name">
-					${userDTO.name} ${userDTO.type=='master' ? '수리기사님' : '의뢰인' }
-					<c:set var="addressParts" value="${fn:split(userDTO.address, ' ')}" />
-					<span class="address">
-						<i class="bi bi-geo-alt"></i>
-						<span>${addressParts[0]}</span>
-						<span>${addressParts[1]}</span>
-					</span>
+			<c:if test="${userDTO.type=='master'}">
+				<a href="masterView.member?meNo=${userDTO.meNo}" class="info" target="_blank">
+			</c:if>
+			<div class="name">
+				${userDTO.name} ${userDTO.type=='master' ? '수리기사님' : '의뢰인' }
+				<c:set var="addressParts" value="${fn:split(userDTO.address, ' ')}" />
+				<span class="address">
+					<i class="bi bi-geo-alt"></i>
+					<span>${addressParts[0]}</span>
+					<span>${addressParts[1]}</span>
+				</span>
+			</div>
+			<c:if test="${userDTO.type=='master'}">
+				<div class="repair_type">
+					<p class="master-category">
+						<span>
+							${userDTO.caRootName }
+							<i class="bi bi-chevron-right"></i>
+							${userDTO.caName }
+						</span>
+					</p>
 				</div>
-				<c:if test="${userDTO.type=='master'}">
-					<div class="repair_type">
-						<p class="master-category">
-							<span>
-								${userDTO.caRootName }
-								<i class="bi bi-chevron-right"></i>
-								${userDTO.caName }
-							</span>
-						</p>
-					</div>
-				</c:if>
-			</a>
+			</c:if>
+			<c:if test="${userDTO.type=='master'}">
+				</a>
+			</c:if>
 		</div>
 		<div class="chat-inner">
 			<div class="chat-box" id="chat-box">
@@ -129,6 +133,9 @@
         // 채팅 박스에 메시지 추가
         chatBox.innerHTML += messageHTML;
 
+        inputField.value = '';
+        console.log(1);
+        
         // ajax로 db에 저장
 	    fetch('sendAjax.message', {
 	        method: 'POST',
@@ -141,20 +148,24 @@
 	        })
 	    }).then(response => {
 	        if (response.ok) {
+	        	console.log(2);
+	            prepareScroll();
 	            getMessages(); // ajax로 가져오기
-	            inputField.value = '';
+	            console.log(3);
 	        }
 	    });
 	}
 	
-	/* 메시지 가져오기(내가 읽지 않은 메시지) */
+	/* 메시지 가져오기(내가 읽지 않은 상대방 메시지) */
 	function getMessages() {
+		console.log(4);
         fetch('getAjax.message?user='+document.querySelector('input[name="getMeNo"]').value)
 	    .then(response => response.text())
         .then(html => {
+        	console.log(5);
         	const chatBox = document.getElementById('chat-box');
             chatBox.innerHTML += html;
-            prepareScroll();
+            console.log(6);
         })
         .catch(error => console.error('Error fetching requests:', error));
 	}
@@ -168,14 +179,16 @@
 	function scrollUl() {
 	    let chatUl = document.querySelector('.chat-box');
 	    chatUl.scrollTop = chatUl.scrollHeight;
+	    console.log("chatUl.scrollTop : " + chatUl.scrollTop)
+	    console.log("chatUl.scrollHeight : " + chatUl.scrollHeight)
 	}
 	
 	document.addEventListener("DOMContentLoaded", function () {
 
         prepareScroll();
         
-	    // 폴링
-	    setInterval(getMessages, 1000);
+	    // 2초마다 폴링
+	    setInterval(getMessages, 2000);
 
 	    $('#chat-input').keypress(function (e) {
 	        if (e.which === 13) { // Enter key

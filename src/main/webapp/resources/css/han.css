@@ -4,7 +4,11 @@
 .main-section .container .sidebar ul { list-style-type: none; padding: 0; margin: 0; width: 80%; font-size: 17px; font-weight: 500; text-align: center; margin-top: 20px; } 
 .main-section .container .sidebar ul li { margin: 10px 0; position: relative; } 
 .main-section .container .sidebar ul li a { text-decoration: none; color: #ababab; display: block; padding: 10px; width: 100%; border-radius: 5px; } 
-.main-section .container .sidebar ul li a:hover, .main-section .container .sidebar ul li a.active { background-color: #f8f8f8; color: #555; font-weight: 600; } 
+.main-section .container .sidebar ul li a:hover, 
+.main-section .container .sidebar ul li a.active { background-color: #f8f8f8; color: #555; font-weight: 600; } 
+.main-section .container .sidebar ul li a span.new-mark { font-size: 12px; border-radius: 5px; display: inline-flex; color: #ff7373; font-weight: 500; } 
+.main-section .container .sidebar ul li a:hover span.new-mark, 
+.main-section .container .sidebar ul li a.active span.new-mark { color: #ff2626; font-weight: 600; } 
 .main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; padding: 30px 0; } 
 .main-section .container .content.status { display: flex; } 
 .main-section .container .content .status-body { text-align: center; } 
@@ -239,7 +243,7 @@
 .main-section .container .content .new-edit-form .new-profile-img { height: 80px; border-radius: 50%; background-size: cover; display: flex; justify-content: center; } 
 .main-section .container .content .new-edit-form .new-profile-img img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; text-align: center; margin-top: 30px; } 
-.main-section .container .content .new-edit-form .new-master-section div { padding: 2px; } 
+.main-section .container .content .new-edit-form .new-master-section div { padding: 2px; margin-bottom: 5px; } 
 .main-section .container .content .new-edit-form .new-master-section .master-info .master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
 .main-section .container .content .new-edit-form .new-master-section .master-info .master-stars i { color: #f96209; } 
 .main-section .container .content .new-career_infoarea,
@@ -276,14 +280,14 @@
 .main-section .container .review-list-master .review-list { display: flex; flex-direction: column; } 
 .main-section .container .review-list-master .pic-list-view { display: flex; padding: 10px; border-bottom: 1px solid #f0f0f0; } 
 .main-section .container .review-list-master .pic-list-view li { margin-right: 20px; } 
-.main-section .container .review-list-master .pic-review-view { padding: 10px 0; display: flex;border-bottom:1px solid #f0f0f0; } 
-.main-section .container .review-list-master .pic-review-view .sizetype-view { display: flex; flex-direction: row; padding: 10px 0; margin-right: 20px;  } 
-.main-section .container .review-list-master .pic-review-view .sizetype-view .review-oneline{width:620px;word-wrap:break-word;word-break:break-all;white-space:normal;}
-.main-section .container .review-list-master .pic-review-view .sizetype-view .main-review-score{width:150px;}
+.main-section .container .review-list-master .pic-review-view { padding: 10px 0; display: flex; border-bottom:1px solid #f0f0f0; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view { display: flex; flex-direction: row; padding: 10px 0; margin-right: 20px; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view .review-oneline { width:620px; word-wrap:break-word; word-break:break-all; white-space:normal; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view .main-review-score { width:150px; } 
 .main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .nickname { padding:10px 0; margin-right:20px; } 
-.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .date { padding:10px 0;  } 
-.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .right-content{display:flex;}
-.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap { display: flex;  flex-direction:row;width:1050px;justify-content:space-between; padding-left:5px;} 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .date { padding:10px 0; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .right-content { display:flex; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap { display: flex; flex-direction:row; width:1050px; justify-content:space-between; padding-left:5px; } 
 .main-section .container .content.master-view { padding: 0 50px; } 
 .main-section .container .review-list-master .review-list .pic-review-view .member-review-pic img { width: 110px; height: 110px; border-radius: 15px; } 
 .main-section .container .review-list-master .review-list .pic-review-view .starreview { color: gold; } 
@@ -353,7 +357,7 @@
 .request .profile-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
 .request .info { text-align: left; flex-grow: 1; width: 50%; padding: 10px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 7px; } 
 .request .repair_date, .master_name, .repair_type, .explain { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #333; } 
-.request .repair_date .days-diff { font-size: 12px; padding: 0px 7px 1px; border-radius: 5px; display: inline-flex; color: #ff2626; background-color: #f7566117; font-weight: 600; } 
+.request .repair_date .days-diff { font-size: 12px; padding: 0px 7px 1px; border-radius: 5px; display: inline-flex; color: #ff2626; background-color: #f7566117; font-weight: 500; } 
 .request .explain span { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
 .request .explain { font-size: 13px; } 
 .request .master_name { font-weight: 600; } 

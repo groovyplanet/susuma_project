@@ -88,8 +88,9 @@ public class AjaxController extends HttpServlet {
 			out.print("{\"available\":" + isAvailable + "}"); // JSON 형태로 응답
 			out.flush();
 
-		} else if (command.equals("/member/insertRequest.ajax")) {
-			String reqNo = request.getParameter("reqNo");
+		} else if (command.equals("/member/insertRequest.ajax")) { // 수리 예약
+			
+			int reqNo = request.getParameter("reqNo") == null ? 0 : Integer.parseInt(request.getParameter("reqNo"));
 			String masterNo = request.getParameter("masterNo");
 			HttpSession session = request.getSession();
 			String clientNo = (String) session.getAttribute("meNo");
@@ -107,7 +108,11 @@ public class AjaxController extends HttpServlet {
 			SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 			SqlSession sql = sqlSessionFactory.openSession(true);
 			RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
+			// INSERT REQUEST
 			int result = requestMapper.insertRequest(dto);
+			System.out.println("dto.getReqNo() : "+dto.getReqNo());
+			
+			// INSERT ALERT
 			sql.close();
 
 			boolean isAvailable = result == 1; // 이메일이 일치하는 회원정보가 없으면 회원가입 가능(true)

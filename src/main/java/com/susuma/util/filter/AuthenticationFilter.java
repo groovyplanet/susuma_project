@@ -2,6 +2,16 @@ package com.susuma.util.filter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.susuma.message.service.MessageService;
+import com.susuma.message.service.MessageServiceImpl;
+import com.susuma.request.model.RequestDTO;
+import com.susuma.request.model.RequestMapper;
+import com.susuma.request.service.RequestService;
+import com.susuma.request.service.RequestServiceImpl;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -29,6 +39,22 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = request.getSession();
 		String meNo = (String) session.getAttribute("meNo");
 		String type = (String) session.getAttribute("type");
+
+		// 로그인 상태 확인
+		if (meNo != null) {
+			// 읽지 않은 메시지 개수
+			MessageService messageService = new MessageServiceImpl();
+            int unreadMsgCount = messageService.getUnreadMessageCount(meNo);
+            request.setAttribute("unreadMsgCount", unreadMsgCount);
+            
+            if(type.equals("master")) {
+                // 수리기사인 경우 새로운 예약 신청 개수
+        		RequestService requestService = new RequestServiceImpl();
+                int newRequestCount = requestService.getNewRequestCount(meNo);
+                request.setAttribute("newRequestCount", newRequestCount);
+            }
+            
+		}
 
 		// 관리자 페이지 접근 제어
 		if (command.startsWith("/admin")) {
@@ -61,8 +87,8 @@ public class AuthenticationFilter implements Filter {
 			case "/member/list.review": // 리뷰 리스트 페이지
 			case "/member/list.request": // 예약 내역
 			case "/member/view.request": // 예약 상세
-			case "/member/masterList.member":// 수리예약화면 
-			case "/member/form.message":// 채팅창 
+			case "/member/masterList.member":// 수리예약화면
+			case "/member/form.message":// 채팅창
 				if (meNo == null) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();
@@ -78,7 +104,7 @@ public class AuthenticationFilter implements Filter {
 			// 의뢰인만 접근 가능
 			switch (command) {
 			case "/member/request.member": // 수리 예약
-			case "/member/masterList.member":// 수리예약화면 
+			case "/member/masterList.member":// 수리예약화면
 				if (!type.equals("user")) {
 					response.setContentType("text/html; charset=UTF-8;");
 					PrintWriter out = response.getWriter();

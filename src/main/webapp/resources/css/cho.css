@@ -229,7 +229,7 @@
 .master-category { color: #2257df; background-color: #eff4ff; font-size: 12px; padding: 0px 8px; border-radius: 5px; display: inline-flex; line-height: 25px; font-weight: 400; } 
 
 /* 채팅창 */
-body.message .chat-container { display: flex; flex-direction: column; position: fixed; top: 0; right: 0; left: 0; bottom: 0; overflow-y: hidden; overflow-x: auto; } 
+body.message .chat-container { display: flex; flex-direction: column; position: fixed; top: 0; right: 0; left: 0; bottom: 0; overflow-y: hidden; overflow-x: auto; letter-spacing: -.5px; } 
 body.message .chat-container .user-info { font-size: 14px; padding: 11px; border-bottom: 1px solid #ddd; } 
 body.message .chat-container .user-info a { display: flex; flex-direction: column; gap: 4px; } 
 body.message .chat-container .user-info .name { font-weight: 500; padding: 0 1px; } 
