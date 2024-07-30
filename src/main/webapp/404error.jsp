@@ -28,7 +28,7 @@ body, html {
 
 .go-home-button {
     position: absolute;
-    top: 85%;
+    top: 75%;
     left: 51%;
     transform: translate(-50%, -50%);
     padding: 10px 20px;
@@ -38,10 +38,11 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight : 300;
 }
 
 .go-home-button:hover {
-    background-color: #0056b3;
+    background-color: #F5AF26;
 }
 
 
@@ -55,7 +56,7 @@ body, html {
 <body>
     <div class="container">
         <img src="resources/img/404.jpg" alt="404 이미지" class="background-image">
-        <button type="button" class="go-home-button" onclick="location.href='main.member'">Go Home</button>
+        <button type="button" class="go-home-button" onclick="location.href='main.member'">홈으로</button>
     </div>
 </body>
 </html>
