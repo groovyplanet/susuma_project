@@ -76,7 +76,17 @@
 			ORDER BY ${sortField} ${sortOrder} NULLS LAST
 		</if>
 	</select>
-
+	
+	<select id="getNewRequestCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		WHERE 1 = 1
+		AND MM.ME_NO = #{meNo}
+		AND R.STATUS = 'requested'
+	</select>
+	
 	<!-- [1-3] 수리 상태별 개수 -->
 	<select id="selectRequestCnts" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
 		SELECT
@@ -126,6 +136,9 @@
 		VALUES (REQUEST_SEQ.NEXTVAL, #{masterNo}, #{clientNo}, #{content},
 		#{requestDate}, #{requestTime}, #{address}, #{addressDetail},
 		#{latitude}, #{longitude}, #{phoneNum})
+		<selectKey keyProperty="reqNo" resultType="int" order="AFTER">
+			SELECT REQUEST_SEQ.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
 
 	<!-- [4] 수리 요청 수정(예약승인, 결제요청, 결제완료, 취소) -->

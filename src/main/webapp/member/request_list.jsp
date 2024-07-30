@@ -132,6 +132,14 @@
 										<span>
 											<i class="bi bi-calendar-check" style="margin-right: 4px;"></i>${dto.requestDate }</span>
 										<span>${dto.requestTime }</span>
+										<c:choose>
+											<c:when test="${dto.daysDiff < 0}">
+												<span class="days-diff">D${dto.daysDiff}</span>
+											</c:when>
+											<c:when test="${dto.daysDiff == 0}">
+												<span class="days-diff">D-Day</span>
+											</c:when>
+										</c:choose>
 									</div>
 									<div class="master_name">
 										${dto.clientName } 의뢰인

@@ -28,6 +28,18 @@ public class MessageServiceImpl implements MessageService {
 
 	private SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactory();
 
+	// 읽지 않은 메시지 개수
+	@Override
+	public int getUnreadMessageCount(String meNo) throws ServletException, IOException {
+
+		SqlSession sql = sqlSessionFactory.openSession();
+		MessageMapper messageMapper = sql.getMapper(MessageMapper.class);
+		int cnt = messageMapper.getNotReadMessageCnt(meNo);
+		sql.close();
+		
+		return cnt;
+	}
+
 	// 채팅 목록
 	@Override
 	public void getChatRooms(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,17 +110,13 @@ public class MessageServiceImpl implements MessageService {
 		// 상대방 정보 가져오기
 		Map<String, Object> params2 = new HashMap<>();
 		params2.put("meNo", user);
-		MemberMapper Member = sql.getMapper(MemberMapper.class);
-		MemberDTO userDTO = Member.selectMember(params2);
 		
 		// 상대방과 내가 주고받은 모든 메세지 가져오기
 		ArrayList<MessageDTO> list = messageMapper.getMessages(params);
-
-		// 상대방과 내가 주고받은 메세지 중 내가 받은 메세지 모두 읽음 처리
+		// 모두 읽음 처리
 		int result = messageMapper.updateMessages(params);
 		sql.close();
 
-		request.setAttribute("userDTO", userDTO);
 		request.setAttribute("list", list);
 		request.setAttribute("getMeNo", user); // 메시지 전송할 때 상대방 번호
 

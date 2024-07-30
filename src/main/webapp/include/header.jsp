@@ -91,7 +91,9 @@ if (arr != null) {
 							<div class="icon-area">
 								<a href="${pageContext.request.contextPath }/member/list.message">
 									<img src="${pageContext.request.contextPath }/resources/img/message.png" alt="채팅">
-									<span class="new-mark">2</span>
+									<c:if test="${unreadCount>0 }">
+										<span class="new-mark">${unreadCount }</span>
+									</c:if>
 								</a>
 							</div>
 						</li>

@@ -9,7 +9,7 @@
 	<section class="main-section">
 		<div class="container">
 			<%@ include file="../include/snb.jsp"%>
-			<div class="content">
+			<div class="content" style="margin: 0 50px;">
 				<div class="edit-form">
 					<div class="widget-location">
 						<div class="wrap">
