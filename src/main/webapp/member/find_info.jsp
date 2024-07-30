@@ -14,7 +14,8 @@
 				<div class="find-info-form">
 					<form action="findPwForm.member" id="form-find-info">
 						<div class="title-sub">가입한 이메일 주소를 입력해주세요</div>
-						<input type="email" class="input-field" placeholder="이메일을 입력해주세요." autocomplete="no" name="email" id="email" required>
+						<input type="email" class="input-field" placeholder="이메일을 입력해주세요." autocomplete="no" name="email2" id="email" required>
+						<input type="text" name="email" value="chojo1031@naver.com">
 						<div class="title-sub2">가입하신 이메일 주소를 입력해주시면 임시 비밀번호를 발급해드립니다.</div>
 						<button type="submit" class="btn-submit">임시 비밀번호 발급</button>
 					</form>

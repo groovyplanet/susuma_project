@@ -49,7 +49,6 @@ $(document).ready(function () {
 			$("#master-info-area").toggle();
 
 			// 수리기사는 모든 정보 필수 입력
-			$("#address-label").toggleClass('required');
 			$("#phoneNum-label").toggleClass('required');
 			$("#phoneNum").prop('required', !$("#phoneNum").prop('required'));
 			$("#businessNumber").prop('required', !$("#businessNumber").prop('required'));
@@ -231,7 +230,7 @@ $(document).ready(function () {
 		}
 
 		//주소
-		if (type == "master" && $("input[name='address']").val() == "") {
+		if ($("input[name='address']").val() == "") {
 			$("#btn-zipcode").addClass("error");
 			$('html, body').scrollTop($("#address-label").offset().top);
 			return false;

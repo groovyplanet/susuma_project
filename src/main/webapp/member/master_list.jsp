@@ -111,7 +111,7 @@
 								<p class="master-stars">
 									<i class="bi bi-star-fill gold"></i>
 									<strong>${dto.averageScore }</strong>
-									<span class="review-count">(${dto.reviewCount })</span>
+									<span class="review-count">(후기${dto.reviewCount })</span>
 								</p>
 							</c:if>
 							<p>

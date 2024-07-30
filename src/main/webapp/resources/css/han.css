@@ -240,6 +240,8 @@
 .main-section .container .content .new-edit-form .new-profile-img img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; text-align: center; margin-top: 30px; } 
 .main-section .container .content .new-edit-form .new-master-section div { padding: 2px; } 
+.main-section .container .content .new-edit-form .new-master-section .master-info .master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
+.main-section .container .content .new-edit-form .new-master-section .master-info .master-stars i { color: #f96209; } 
 .main-section .container .content .new-career_infoarea,
 .main-section .container .content .new-location_management,
 .main-section .container .content .new-detailed_description,
@@ -298,6 +300,8 @@
 .main-section .technician:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
 .main-section .technician img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
 .main-section .technician .master-info { display: flex; flex-direction: column; gap: 5px; } 
+.main-section .technician .master-info .master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
+.main-section .technician .master-info .master-stars i { color: #f96209; } 
 .main-section .container.filter .search-filters { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
 .main-section .container.filter .search-filter { margin: 0 10px; } 
 .main-section .container.filter .search-filter label { font-weight: bold; color: #333; } 
@@ -363,6 +367,7 @@ body.message .master-name { font-size: 14px; width: 400px; color: white; }
 .request .profile-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
 .request .info { text-align: left; flex-grow: 1; width: 50%; padding: 10px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 7px; } 
 .request .repair_date, .master_name, .repair_type, .explain { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #333; } 
+.request .repair_date .days-diff { font-size: 12px; padding: 0px 7px 1px; border-radius: 5px; display: inline-flex; color: #ff2626; background-color: #f7566117; font-weight: 600; } 
 .request .explain span { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
 .request .explain { font-size: 13px; } 
 .request .master_name { font-weight: 600; } 

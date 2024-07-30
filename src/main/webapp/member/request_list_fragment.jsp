@@ -29,6 +29,14 @@
 										<span>
 											<i class="bi bi-calendar-check" style="margin-right: 4px;"></i>${dto.requestDate }</span>
 										<span>${dto.requestTime }</span>
+										<c:choose>
+											<c:when test="${dto.daysDiff < 0}">
+												<span class="days-diff">D${dto.daysDiff}</span>
+											</c:when>
+											<c:when test="${dto.daysDiff == 0}">
+												<span class="days-diff">D-Day</span>
+											</c:when>
+										</c:choose>
 									</div>
 									<div class="master_name">
 										${dto.masterName } 수리기사님
@@ -71,7 +79,7 @@
 									<c:when test="${dto.status eq 'paid'}">
 										<c:choose>
 											<c:when test="${dto.reviewCnt == 0}">
-												<a href="view.request?reqNo=${dto.reqNo }" class="btn link">후기 작성</a>
+												<a href="view.request?reqNo=${dto.reqNo }" class="btn submit">후기 작성</a>
 											</c:when>
 											<c:otherwise>
 												<button type="button" class="btn complete">결제 완료</button>

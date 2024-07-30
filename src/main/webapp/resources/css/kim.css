@@ -20,6 +20,7 @@ img { max-width: 100%; height: auto; }
 /* ====================================================board-notice_list */
 .main-section { /* border: 1px solid #777; */ } 
 .main-section .container .content-list { width: 1000px; margin-top: 30px; } 
+.main-section .container .content-none-wrap { display: flex; width: 100%; padding: 220px 0; font-size: 17px; color: #888; justify-content: center; gap: 4px; } 
 .main-section .content-box { display: flex; flex-direction: column; margin: 0 20px; border-bottom: 1px solid #ddd; } 
 .main-section .content-box:hover { background-color: #fafafa; } 
 .main-section .content-box .content-mix { display: flex; align-items: center; cursor: pointer; gap: 10px; padding: 13px 10px; } 
@@ -35,7 +36,8 @@ img { max-width: 100%; height: auto; }
 .content-list .content-p-box .content-page { display: inline-block; width: 30px; height: 30px; text-align: center; margin: 0 auto; /* border: 1px solid #777; */
  line-height: 30px; } 
 .content-list .content-p-box .content-page a { text-decoration: none; } 
-.content-list .content-p-box .content-ask { display: inline-block; float: right; margin-right: 20px; } 
+.content-list .content-p-box .content-ask { display: inline-block; float: right; margin-right: 20px; width: 74px; height: 32px; font-size: 13px; line-height: 32px; text-align: center; border-radius: 5px; user-select: none; background-color: #ff6b6b; } 
+.content-list .content-p-box .content-ask a { color: white; } 
 .main-section .content-box .content-mix .content-delete { width: 10%; text-align: center; line-height: 55px; } 
 .main-section .content-box .content-mix .content-delete a { color: red; font-weight: 600; } 
 /* =========================================================board-notice_view */

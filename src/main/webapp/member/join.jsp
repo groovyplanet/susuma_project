@@ -50,7 +50,7 @@
 							<p class="caption-error">올바른 형식이 아닙니다.</p>
 						</div>
 						<div class="input-area">
-							<label for="address" id="address-label" class="">주소</label>
+							<label for="address" id="address-label" class="required">주소</label>
 							<input type="hidden" name="address">
 							<input type="hidden" name="latitude" value="0.0">
 							<!-- 위도 -->

@@ -1,6 +1,6 @@
 .underline { text-decoration: underline; } 
 .red { color:#dd0000; } 
-.gold { color:gold !important; } 
+.gold { color:gold; } 
 .inline { display: inline; } 
 .mt15 { margin-top: 15px; } 
 .mt20 { margin-top: 20px; } 
@@ -154,7 +154,8 @@
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p { margin-top: 2px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p+ p { margin-top: 4px; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name { font-size: 17px; font-weight: 500; } 
-.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 400; line-height: 22px; } /* 별점 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars i { color: #f96209; } 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars .review-count { font-size: 12px; } /* 후기 개수 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 12px; } /* 위치 */ 
 .main-section .container.main-only .main-area.request .request-form .master-info-area .text-area i { font-size: 12px; } /* 별점/위치 아이콘 */ 

@@ -68,8 +68,7 @@ public class MemberServiceImpl implements MemberService {
 		});
 
 		/* 메일 발송 */
-		String recieveMail = "chojo1031@naver.com"; // 받는 사람(임시)
-		// String recieveMail = email; // 임시 주석
+		String recieveMail = email; // 임시 주석
 
 		try {
 			Message message = new MimeMessage(session);
