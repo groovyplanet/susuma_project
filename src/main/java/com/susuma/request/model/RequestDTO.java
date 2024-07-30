@@ -59,6 +59,10 @@ public class RequestDTO {
 
 	// 페이징
 	private String rn;
+	
+	// 남은 날짜
+	private String daysDiff;
+	
 
 	public RequestDTO() {
 
@@ -482,6 +486,14 @@ public class RequestDTO {
 
 	public void setRn(String rn) {
 		this.rn = rn;
+	}
+
+	public String getDaysDiff() {
+		return daysDiff;
+	}
+
+	public void setDaysDiff(String daysDiff) {
+		this.daysDiff = daysDiff;
 	}
 
 }

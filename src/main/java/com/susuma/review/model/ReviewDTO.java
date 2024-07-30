@@ -1,6 +1,6 @@
 package com.susuma.review.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Base64;
 
 public class ReviewDTO {
@@ -23,7 +23,7 @@ public class ReviewDTO {
 	private String clientAddressDetail;
 	private byte[] masterProfilePhoto;
 	private byte[] clientProfilePhoto;
-
+	
 	// REQUEST
 	private String requestDate;
 	private String requestTime;

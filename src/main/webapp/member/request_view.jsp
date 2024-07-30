@@ -17,9 +17,9 @@
 				<jsp:useBean id="now" class="java.util.Date" />
 				<fmt:formatDate value="${now}" pattern="yyyy. M. d" var="nowDate" />
 				<fmt:formatDate value="${now}" pattern="HH:00" var="nowTime" />
-				<fmt:parseDate value="${fn:substringBefore(dto.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
+				<fmt:parseDate value="${fn:substringBefore(requestDTO.requestDate, '(') }" pattern="yyyy. M. d" var="requestDateParse" />
 				<fmt:formatDate value="${requestDateParse}" pattern="yyyy. M. d" var="requestDateFmt" />
-				<fmt:parseDate value="${dto.requestTime }" pattern="HH:00" var="requestTimeParse" />
+				<fmt:parseDate value="${requestDTO.requestTime }" pattern="HH:00" var="requestTimeParse" />
 				<fmt:formatDate value="${requestTimeParse}" pattern="HH:00" var="requestTimeFmt" />
 				<div class="info-reserve">
 					<c:choose>

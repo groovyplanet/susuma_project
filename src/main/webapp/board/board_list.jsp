@@ -116,6 +116,12 @@ document.addEventListener("DOMContentLoaded", function () {
 						</div>
 					</c:forEach>
 					<c:if test="${type eq 'ask' or type eq 'myask'}">
+						<c:if test="${empty list}">
+							<div class="content-none-wrap">
+								<i class="bi bi-info-circle"></i>
+								등록된 문의 내역이 없습니다.
+							</div>
+						</c:if>
 						<div class="content-p-box" style="margin-bottom: 0">
 							<div class="content-ask">
 								<a href="${pageContext.request.contextPath }/board/askWrite.board">문의하기</a>
