@@ -53,14 +53,30 @@
 	opacity: 0.5; /* 비활성화된 버튼 스타일 */
 }
 
-.modal-buttons img {
-    width: 45%; /* 너비를 부모 요소의 45%로 설정하여 2개가 한 줄에 배치되도록 함 */
-    height: auto; /* 높이는 자동 조정 */
-    cursor: pointer; /* 클릭 가능하도록 커서 설정 */
-    box-sizing: border-box; /* 패딩과 테두리를 포함하여 너비와 높이를 설정 */
-    margin-bottom : 20px;
+.paysize {
+	width: 48%;
+	height: 70px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border: 1px solid #a1a1a1;
+	justify-content: center;
+	gap: 11px;
+	margin: 5px 0;
+	border-radius: 10px;
 }
 
+#chargeModal .modal-buttons {
+	margin: 20px 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.paysize img {
+	max-width: 99%;
+	height: 80%;
+}
 </style>
 
 
@@ -82,19 +98,26 @@
 		<div id="chargeModal" class="modal">
 			<div class="modal-content">
 				<p>충전할 금액을 입력하세요</p>
-				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요">
-				<input type="hidden" id="chargeAmountInput" value="<%= request.getAttribute("chargeAmountInput") %>">
+				<input type="text" id="chargeAmount" min="0" placeholder="숫자만 입력하세요"> <input type="hidden" id="chargeAmountInput" value="<%=request.getAttribute("chargeAmountInput")%>">
 				<div class="modal-buttons">
-					<img src="../resources/img/kakaopay.jpg" style="width: 150px; height: 70px; cursor: pointer;" id="kakaoPay">
-					<img src="../resources/img/Toss_Logo_Primary.png" style="width: 150px; height: 75px; cursor: pointer;" id="tossPay">
-					<img src="../resources/img/naver.png" style="width: 100px; height: 30px; cursor: pointer;" id="naver">
-					<img src="../resources/img/danal.png" style="width: 150px; height: 70px; cursor: pointer; margin-left: 50px;" id="danal"><br>
-					<button class="btn-confirm" id="confirmCharge">카드결제</button>
-					<button class="btn-cancel" id="cancelCharge">취소</button>
+					<div class="paysize">
+						<img src="../resources/img/kakaopay.jpg" id="kakaoPay">
+					</div>
+					<div class="paysize">
+						<img src="../resources/img/Toss_Logo_Primary.png" id="tossPay">
+					</div>
+					<div class="paysize">
+						<img src="../resources/img/naver.png" style="height: 45%; width: 52%;" id="naver">
+					</div>
+					<div class="paysize">
+						<img src="../resources/img/danal.png" id="danal">
+					</div>
 				</div>
+				<button class="btn-confirm" id="confirmCharge">카드결제</button>
+				<button class="btn-cancel" id="cancelCharge">취소</button>
 			</div>
 		</div>
-		
+
 
 		<div class="container">
 			<%@ include file="../include/snb.jsp"%>
@@ -120,27 +143,16 @@
 						<div class="transaction-list">
 							<c:forEach var="plus" items="${plus}">
 								<div class="transaction-item item">
-									<span class="date">
-										<fmt:formatDate value="${plus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
-									</span>
-									<span class="amount">
-										<fmt:formatNumber value="${plus.point<0 ? -1 * plus.point : plus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
-										P
-										<span class="status">${plus.point<0 ? '정산 완료' : '충전 완료' }</span>
+									<span class="date"> <fmt:formatDate value="${plus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+									</span> <span class="amount"> <fmt:formatNumber value="${plus.point<0 ? -1 * plus.point : plus.point}" type="number" groupingUsed="true" maxFractionDigits="0" /> P <span class="status">${plus.point<0 ? '정산 완료' : '충전 완료' }</span>
 									</span>
 
 								</div>
 							</c:forEach>
 							<c:forEach var="minus" items="${minus}">
 								<div class="transaction-pop item" style="display: none;">
-									<span class="date">
-										<fmt:formatDate value="${minus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
-									</span>
-									<span class="spamount">
-										${minus.point<0 ? '' : '-' }
-										<fmt:formatNumber value="${minus.point}" type="number" groupingUsed="true" maxFractionDigits="0" />
-										P
-										<span class="spstatus">${minus.point<0 ? '출금 완료' : '결제 완료' }</span>
+									<span class="date"> <fmt:formatDate value="${minus.insertTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+									</span> <span class="spamount"> ${minus.point<0 ? '' : '-' } <fmt:formatNumber value="${minus.point}" type="number" groupingUsed="true" maxFractionDigits="0" /> P <span class="spstatus">${minus.point<0 ? '출금 완료' : '결제 완료' }</span>
 									</span>
 								</div>
 							</c:forEach>
