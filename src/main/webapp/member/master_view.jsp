@@ -77,8 +77,8 @@
 
 						</div>
 						<div class="review-list">
-							<div class="pic-review-view item">
 								<c:forEach var="dto" items="${list2}">
+							<div class="pic-review-view item">
 									<c:set var="firstChar" value="${fn:substring(dto.clientName, 0, 1)}" />
 									<c:set var="maskedName" value="${firstChar}" />
 									<c:forEach var="i" begin="1" end="${fn:length(dto.clientName) - 1}">
@@ -123,8 +123,8 @@
 										</div>
 									</span>
 
-								</c:forEach>
 							</div>
+								</c:forEach>
 						</div>
 					</div>
 				</div>
