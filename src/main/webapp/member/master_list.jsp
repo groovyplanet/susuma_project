@@ -129,7 +129,10 @@
 						</div>
 					</a>
 				</c:forEach>
-				<button id="btn-more" class="btn-request-summary-more" style="${totalRecords > recordsPerPage ? '' : 'display:none'}">더보기</button>
+				<button id="btn-more" class="btn-request-summary-more" style="${totalRecords > recordsPerPage ? '' : 'display:none'}">
+					더보기
+					<i class="bi bi-chevron-down"></i>
+				</button>
 
 			</div>
 		</div>
