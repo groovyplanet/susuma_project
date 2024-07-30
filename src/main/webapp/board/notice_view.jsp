@@ -31,6 +31,7 @@
 
 					</div>
 					<div class="content-move-box">
+					<c:if test="${sidedto.last != 9999 }">
 						<div class="content-back">
 							<div class="figure">
 								<i class="bi bi-chevron-up"></i>
@@ -40,6 +41,7 @@
 								<a href="${pageContext.request.contextPath }/board/noticeView.board?boNo=${sidedto.last}">${sidedto.lastTitle }</a>
 							</div>
 						</div>
+						</c:if>
 						<c:if test="${sidedto.next != 9999 }">
 						<div class="content-next">
 							<div class="figure">
