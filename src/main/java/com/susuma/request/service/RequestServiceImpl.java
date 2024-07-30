@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.susuma.member.model.MemberMapper;
-
+import com.susuma.message.model.MessageMapper;
 import com.susuma.point.model.PointDTO;
 
 import com.susuma.point.model.PointMapper;
@@ -52,7 +52,7 @@ public class RequestServiceImpl implements RequestService {
 	 */
 	private RequestDTO createRequestDTO(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		String reqNo = request.getParameter("reqNo");
+		int reqNo = request.getParameter("reqNo") == null ? 0 : Integer.parseInt(request.getParameter("reqNo"));
 		String masterNo = request.getParameter("masterNo");
 		String clientNo = request.getParameter("clientNo");
 		String content = request.getParameter("content");
@@ -355,5 +355,16 @@ public class RequestServiceImpl implements RequestService {
 		// 이 HTML 내용이 AJAX 요청의 응답으로 사용됩니다.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("request_list_fragment.jsp");
 		dispatcher.forward(request, response);
+	}
+
+	@Override
+	public int getNewRequestCount(String meNo) throws ServletException, IOException {
+
+		SqlSession sql = sqlSessionFactory.openSession();
+		RequestMapper requestMapper = sql.getMapper(RequestMapper.class);
+		int cnt = requestMapper.getNewRequestCount(meNo);
+		sql.close();
+		
+		return cnt;
 	}
 }

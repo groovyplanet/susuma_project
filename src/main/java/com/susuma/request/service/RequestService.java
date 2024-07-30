@@ -20,6 +20,8 @@ public interface RequestService {
 	void adminDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	/* 사용자 */
+	int getNewRequestCount(String meNo) throws ServletException, IOException;
+	
 	void getRequestList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 	void getRequestListAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;

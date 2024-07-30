@@ -5,7 +5,7 @@ import java.util.Base64;
 
 public class RequestDTO {
 
-	private String reqNo;
+	private int reqNo;
 	private String masterNo;
 	private String clientNo;
 	private String content;
@@ -69,7 +69,7 @@ public class RequestDTO {
 	}
 
 	// upsert 시 사용
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String payAmount, String cancelReason) {
+	public RequestDTO(int reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String payAmount, String cancelReason) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -82,7 +82,7 @@ public class RequestDTO {
 		this.cancelReason = cancelReason;
 	}
 
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName) {
+	public RequestDTO(int reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName) {
 		super();
 		this.reqNo = reqNo;
 		this.masterNo = masterNo;
@@ -99,7 +99,7 @@ public class RequestDTO {
 		this.clientName = clientName;
 	}
 
-	public RequestDTO(String reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName, String masterAddress, String clientAddress,
+	public RequestDTO(int reqNo, String masterNo, String clientNo, String content, String requestDate, String requestTime, String status, String cancelReason, Timestamp insertTime, Timestamp approvalTime, Timestamp cancelTime, String payAmount, String payStatus, Timestamp payRequestTime, Timestamp paidTime, String address, String addressDetail, Double latitude, Double longitude, String phoneNum, String masterName, String clientName, String masterAddress, String clientAddress,
 			byte[] masterProfilePhoto, byte[] clientProfilePhoto) {
 		super();
 		this.reqNo = reqNo;
@@ -130,11 +130,11 @@ public class RequestDTO {
 		this.clientProfilePhoto = clientProfilePhoto;
 	}
 
-	public String getReqNo() {
+	public int getReqNo() {
 		return reqNo;
 	}
 
-	public void setReqNo(String reqNo) {
+	public void setReqNo(int reqNo) {
 		this.reqNo = reqNo;
 	}
 

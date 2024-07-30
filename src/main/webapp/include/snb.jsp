@@ -27,13 +27,23 @@
 					<a href="${pageContext.request.contextPath }/member/edit.member" class="${pageContext.request.servletPath == '/member/profile_edit.jsp' ? 'active' : ''}">회원정보 수정</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/member/list.request" class="${pageContext.request.servletPath == '/member/request_list.jsp' or pageContext.request.servletPath == '/member/request_view.jsp' ? 'active' : ''}">예약 내역</a>
+					<a href="${pageContext.request.contextPath }/member/list.request" class="${pageContext.request.servletPath == '/member/request_list.jsp' or pageContext.request.servletPath == '/member/request_view.jsp' ? 'active' : ''}">
+						예약 내역
+						<c:if test="${newRequestCount>0 }">
+							<span class="new-mark">New</span>
+						</c:if>
+					</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/member/list.review" class="${pageContext.request.servletPath == '/member/review_list.jsp' ? 'active' : ''}">후기 내역</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath }/member/list.message" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">채팅 목록</a>
+					<a href="${pageContext.request.contextPath }/member/list.message" class="${pageContext.request.servletPath == '/member/message_list.jsp' ? 'active' : ''}">
+						채팅 목록
+						<c:if test="${unreadMsgCount>0 }">
+							<span class="new-mark">New</span>
+						</c:if>
+					</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath }/board/list.board?type=myask" class="${type=='myask'?'active':'' }">나의 1:1 문의</a>
