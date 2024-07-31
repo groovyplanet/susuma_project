@@ -75,7 +75,7 @@
 									<i class="bi bi-caret-${sortField != 'MC.NAME' ? 'up' : (sortOrder=='DESC'? 'down-fill' : 'up-fill')}"></i>
 								</button>
 							</th>
-							<th class="wp15">수리 분야</th>
+							<th class="wp17">수리 분야</th>
 							<th class="wp11">
 								<button class="btn_sort" onclick="sort('R.REQUEST_DATE', '${sortField != 'R.REQUEST_DATE' ? 'ASC' : (sortOrder=='DESC'? 'ASC' : 'DESC')}')">
 									예약일시

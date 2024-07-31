@@ -240,9 +240,9 @@ body.message .chat-container .chat-inner .chat-box { height: 400px; overflow-y: 
 body.message .chat-container .chat-inner .chat-box::-webkit-scrollbar { width: 6px; } 
 body.message .chat-container .chat-inner .chat-box::-webkit-scrollbar-thumb { background-color: #999; border-radius:2px; } 
 body.message .chat-container .chat-inner .chat-box::-webkit-scrollbar-button { display: none; } 
-body.message .chat-container .chat-inner .chat-box .right { display: flex; justify-content: flex-end; } 
-body.message .chat-container .chat-inner .chat-box .left { display: flex; justify-content: flex-start; align-items: center; gap: 5px; padding: 0 2px; } 
-body.message .chat-container .chat-inner .chat-box .left img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid #ddd; } 
+body.message .chat-container .chat-inner .chat-box .right { display: flex; justify-content: flex-end; align-items: flex-end; } 
+body.message .chat-container .chat-inner .chat-box .left { display: flex; justify-content: flex-start; align-items: flex-start; gap: 5px; padding: 0 2px; } 
+body.message .chat-container .chat-inner .chat-box .left img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid #ddd; margin: 10px 0; } 
 body.message .chat-container .chat-inner .calender { text-align: center; font-size: 12px; color: #666; border-radius: 5px; background-color: #eee; padding: 2px 0; } 
 
 body.message .chat-container .chat-inner .input-group { display: flex; padding: 10px; } 
@@ -253,4 +253,4 @@ body.message .chat-container .chat-inner .message { margin: 10px 0; padding: 10p
 body.message .chat-container .chat-inner .message.member { background-color: #dcf8c6; align-self: flex-end; max-width: calc(100% - 115px); } 
 body.message .chat-container .chat-inner .message.memberlf { background-color: #F49D00; color: white; max-width: calc(100% - 115px); } 
 body.message .chat-container .chat-inner .message.counselor { background-color: #fff; border: 1px solid #ccc; align-self: flex-start; } 
-body.message .chat-container .chat-inner .message.timestamp { font-size: 11px; color: #888; position: relative; display: block; padding: 0 5px; margin-top: 10px; padding-top: 21px; } 
+body.message .chat-container .chat-inner .message.timestamp { font-size: 11px; color: #888; position: relative; display: block; padding: 0 5px; margin-top: 32px; } 

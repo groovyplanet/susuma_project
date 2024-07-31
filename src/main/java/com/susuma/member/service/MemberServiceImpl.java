@@ -580,7 +580,7 @@ public class MemberServiceImpl implements MemberService {
 				out.println("location.href = '" + request.getContextPath() + "/admin';");
 				out.println("</script>");
 			} else {
-				// out.println("alert('정상적으로 로그인되었습니다.');"); // 임시 주석
+				out.println("alert('정상적으로 로그인되었습니다.');"); // 임시 주석
 				out.println("var url = new URL(document.referrer);");
 				out.println("url.searchParams.delete('loginModal');"); // 'loginModal' 파라미터 제거
 				out.println("location.href = url.toString();"); // 이전 페이지 보여주기
@@ -918,13 +918,13 @@ public class MemberServiceImpl implements MemberService {
 
 		SqlSession sql = sqlSessionFactory.openSession(true);
 		MemberMapper member = sql.getMapper(MemberMapper.class);
-		int result = 1; // member.updatePw(dto); // 임시 주석
+		int result = member.updatePw(dto); // 임시 주석
 		sql.close();
 
 		if (result == 1) {
 
 			/* [3] 메일 발송(비동기) */
-			new Thread(() -> sendMail(email, tmpPassword)).start();
+			new Thread(() -> sendMail("chojo1031@naver.com", tmpPassword)).start(); // 임시
 
 			response.setContentType("text/html; charset=UTF-8;");
 			PrintWriter out = response.getWriter();

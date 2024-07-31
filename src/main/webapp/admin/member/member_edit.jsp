@@ -100,10 +100,12 @@ function handleCategoryChange() {
 							<td class="wp37">
 								<input type="text" name="email" value="${dto.email}" required placeholder="aaa@aaa.aaa">
 							</td>
-							<th class="wp13">비밀번호</th>
+							<td></td>
+							<td></td>
+							<!-- <th class="wp13">비밀번호</th>
 							<td>
 								<input type="text" name="pw" value="${dto.pw}" required>
-							</td>
+							</td> -->
 						</tr>
 						<tr>
 							<th>이름</th>
