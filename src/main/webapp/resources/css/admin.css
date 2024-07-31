@@ -114,7 +114,7 @@ header .btn_wrap li a:hover { background-color: #ddd; }
 .container .content_wrap .table_wrap table.view.write .radio_wrap input[type="radio"] + label { margin-right: 15px; cursor: pointer; } 
 .container .content_wrap .table_wrap table.view.write .select_wrap { display: flex; gap: 5px; padding-left: 2px; } 
 .container .content_wrap .table_wrap table.view.write .select_wrap select { border: 1px solid #ccc; padding: 6px 8px; border-radius: 5px; cursor: pointer; } 
-.container .content_wrap .table_wrap table.view.request tr td { display: flex; } 
+.container .content_wrap .table_wrap table.view.request tr td { /*display: flex;*/ width: 600px;} 
 /* pagination */
 .container .content_wrap .pagination { display: flex; justify-content: center; padding: 40px 0; } 
 .container .content_wrap .pagination a { display: inline-flex; width: 26px; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; border-radius: 50%; line-height: 26px; transition: 0.2s; } 

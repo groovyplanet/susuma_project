@@ -134,7 +134,7 @@
         chatBox.innerHTML += messageHTML;
 
         inputField.value = '';
-        console.log(1);
+        //console.log(1);
         
         // ajax로 db에 저장
 	    fetch('sendAjax.message', {
@@ -148,24 +148,24 @@
 	        })
 	    }).then(response => {
 	        if (response.ok) {
-	        	console.log(2);
+	        	//console.log(2);
 	            prepareScroll();
 	            getMessages(); // ajax로 가져오기
-	            console.log(3);
+	            //console.log(3);
 	        }
 	    });
 	}
 	
 	/* 메시지 가져오기(내가 읽지 않은 상대방 메시지) */
 	function getMessages() {
-		console.log(4);
+		//console.log(4);
         fetch('getAjax.message?user='+document.querySelector('input[name="getMeNo"]').value)
 	    .then(response => response.text())
         .then(html => {
-        	console.log(5);
+        	//console.log(5);
         	const chatBox = document.getElementById('chat-box');
             chatBox.innerHTML += html;
-            console.log(6);
+            //console.log(6);
         })
         .catch(error => console.error('Error fetching requests:', error));
 	}

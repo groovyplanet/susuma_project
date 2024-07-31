@@ -48,8 +48,9 @@
 					<tr>
 						<th class="wp13">이메일</th>
 						<td class="wp37">${dto.email}</td>
-						<th class="wp13">비밀번호</th>
-						<td>${dto.pw}</td>
+						<td></td>
+						<!-- <th class="wp13">비밀번호</th> -->
+						<!-- <td>${dto.pw}</td> -->
 					</tr>
 					<tr>
 						<th>이름</th>
