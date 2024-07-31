@@ -55,7 +55,7 @@ body, html {
 </head>
 <body>
     <div class="container">
-        <img src="resources/img/404.jpg" alt="404 이미지" class="background-image">
+        <img src="${pageContext.request.contextPath }/resources/img/404.jpg" alt="404 이미지" class="background-image">
         <button type="button" class="go-home-button" onclick="location.href='main.member'">홈으로</button>
     </div>
 </body>
