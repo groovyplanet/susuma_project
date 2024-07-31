@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUSUMA</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- jQuery -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../resources/js/bootstrap.min.js"></script>
+
+    <!-- CSS -->
+    <link href="../resources/css/common.css" rel="stylesheet">
+    <link href="../resources/css/cho.css" rel="stylesheet">
+    <link href="../resources/css/han.css" rel="stylesheet">
+    <link href="../resources/css/kim.css" rel="stylesheet">
+    <link href="../resources/css/park.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="../resources/js/common.js"></script>
+    <script src="../resources/js/cho.js"></script>
+    <script src="../resources/js/han.js"></script>
+    <script src="../resources/js/kim.js"></script>
+    <script src="../resources/js/park.js"></script>
+    <script src="https://kit.fontawesome.com/7e30020131.js" crossorigin="anonymous"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,.400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="gnb">
+            <div class="logo-area"><!-- 로고 -->
+                <a href="../index.html"><img src="../resources/img/logo.png" alt="로고"></a>
+            </div>
+            <ul class="menu-area"><!-- 메뉴 -->
+                <li><a href="../member/introduce.html">수수마 소개</a></li>
+                <li><a href="../user/master_list.html">수리 예약</a></li>
+                <li><a href="../board/notice_list.html">고객센터</a></li>
+            </ul>
+            <ul class="login-area">
+                <li class="li-icon alarm"><!-- 알림 아이콘 -->
+                    <div class="icon-area">
+                        <button id="btn-alarm-list"><img src="../resources/img/alarm.png" alt="알림"></button>
+                        <span class="new-mark">1</span>
+                    </div>
+                    <div id="alram-list" class="alram-list"><!-- 알림 목록 -->
+                        <a href="../user/reserve_view.html" class="alram-item">
+                            <div class="datetime">2024.07.12 10:41</div>
+                            <div class="message">홍길동 기사님이 수리 예약을 확정했어요.</div> <!-- (의뢰인)수리 예약 승인 -->
+                        </a>
+                        <a href="../master/reserve_manage_view.html" class="alram-item">
+                            <div class="datetime">2024.07.12 10:41</div>
+                            <div class="message">홍길동님이 수리 예약을 신청했어요.</div> <!-- (수리기사)수리 예약 접수 -->
+                        </a>
+                        <a href="../master/review_view.html" class="alram-item">
+                            <div class="datetime">2024.07.12 10:41</div>
+                            <div class="message">홍길동님이 후기를 작성했어요.</div> <!-- (수리기사)후기 등록 -->
+                        </a>
+                        <a href="../board/ask_view.html" class="alram-item">
+                            <div class="datetime">2024.07.12 10:41</div>
+                            <div class="message">'예약 신청 어떻게 하나요?'에 답변이 등록됐어요.</div> <!-- 1:1 문의 -->
+                        </a>
+                    </div>
+                </li>
+                <li class="li-icon chat"><!-- 채팅 아이콘 -->
+                    <div class="icon-area">
+                        <a href="../user/message_list.html"><img src="../resources/img/message.png" alt="채팅"></a>
+                        <span class="new-mark">2</span>
+                    </div>
+                </li>
+                <li><a href="#" class="btn">로그아웃</a></li>
+                <li><a href="../user/mypage.html" class="btn btn-join">마이페이지<i class="bi bi-chevron-right"></i></a>
+                </li>
+                <li><button id="btn-login-modal" class="btn btn-login">로그인</button></li>
+                <li><a href="../member/join.html" class="btn btn-join">회원가입<i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- modal -->
+        <div id="login-modal" class="modal">
+            <div class="container">
+                <div class="logo-area"><img src="../resources/img/logo.png" alt="로고"></div>
+                <div class="login-form"><!-- 로그인 폼 -->
+                    <form>
+                        <div class="input-area">
+                            <input type="text" class="input-field" placeholder="이메일을 입력해 주세요." autocomplete="no" name="email" value="">
+                        </div>
+                        <div class="input-area">
+                            <input type="text" class="input-field" placeholder="비밀번호를 입력해 주세요." autocomplete="no" name="pw" value="">
+                        </div>
+                        <div class="sub-area">
+                            <div class="save-area">
+                                <input type="checkbox" id="save-email-check">
+                                <label for="save-email-check" class="save-email-label">이메일 저장</label>
+                            </div>
+                            <a href="../member/find_info.html">비밀번호 찾기</a>
+                        </div>
+                        <button class="btn btn-login-submit" type="submit">로그인</button>
+                    </form>
+                    <a href="../member/join.html" class="btn btn-join">회원가입</a>
+                </div>
+                <button class="btn-close-modal"><img src="../resources/img/iconClose.png" alt="닫기 버튼"></button>
+            </div>
+        </div>
+
+        <!-- //modal -->
+    </header>
+    <!-- //header -->
+
+    <section class="main-section">
+        <div class="container">
+            <nav class="sidebar">
+                <div class="title">마이페이지</div>
+                <ul>
+                    <li><a href="profile_edit.html" class="active">회원정보 수정</a></li>
+                    <li><a href="reserve_list.html">예약 내역</a></li>
+                    <li><a href="review_list.html">후기 내역</a></li>
+                    <li><a href="message_list.html">문의 내역</a></li>
+                </ul>
+            </nav>
+            <div class="content exit">
+                <div class="join-form exit-form">
+                    <div class="title">회원탈퇴</div>
+                    <form action="ExitForm.member" method="post" id="form-exit">
+                        <div class="desc-area">
+                            <p>고객님께서 회원 탈퇴를 원하신다니 저희의 서비스가 많이 부족하고 미흡했나 봅니다. </p>
+                            <p>불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록 노력하겠습니다.</p>
+                            <p>　</p>
+                            <p>아울러 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다.</p>
+                            <p>　</p>
+                            <p>1. 회원 탈퇴 시 고객님의 정보는 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 고객정보 보호정책에 따라 관리 됩니다.</p>
+                            <p>2. 탈퇴 시 고객님께서 보유하셨던 적립금은 모두 삭제 됩니다.</p>
+                            <p>3. 회원 탈퇴 후 3개월간 재가입이 불가능합니다. 회원 탈퇴 시 이용 중이던 서비스 제공 및 이용료 결제가 중단됩니다.</p>
+                            <p>　</p>
+                            <p>현재 비밀번호를 입력해주세요</p>
+                        </div>
+                        <div class="input-area">
+                            <input type="password" class="input-field" placeholder="비밀번호를 입력해주세요." autocomplete="no" name="pw" id="pw" required>
+                            <p class="caption-error">비밀번호가 일치하지 않습니다.</p> <!-- 비밀번호가 일치하지 않을 경우 input-area에 class error 추가 -->
+                        </div>
+                        <div class="btn-area">
+                            <input type="submit" class="btn-submit" value="회원탈퇴">
+                            <a href="../" class="btn-submit cancel">취소</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="info-area">
+                <ul>
+                    <li><a href="../member/introduce.html">수수마 소개</a></li>
+                    <li><a href="../user/master_list.html">수리 예약</a></li>
+                    <li><a href="../board/notice_list.html">고객센터</a></li>
+                    <li><a href="../member/terms.html">이용약관</a></li>
+                    <li><a href="../member/privacy.html">개인정보처리방침</a></li>
+                </ul>
+            </div>
+            <div class="copyright-area">
+                <p>(주) 수수마 | 대표: 차은우 | 서울특별시 강남구 반포동 112-119 | 대표전화: 02-1234-5678</p>
+                <p>사업자등록번호: 123-45-67890 | 통신판매업신고번호: 제1234-5678호 | 개인정보보호책임자: 수수마</p>
+            </div>
+            <span>Copyright 2024 SUSUMA© All rights reserved.</span>
+        </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+</body>
+
+</html>

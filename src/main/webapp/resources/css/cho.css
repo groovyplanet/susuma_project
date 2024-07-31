@@ -1,31 +1,256 @@
-header { border-bottom: 1px solid #EAEAEC; background-color: #FCFCFE; } 
+.underline { text-decoration: underline; } 
+.red { color:#dd0000; } 
+.gold { color:gold; } 
+.inline { display: inline; } 
+.mt15 { margin-top: 15px; } 
+.mt20 { margin-top: 20px; } 
+.mt25 { margin-top: 25px; } 
+.mt30 { margin-top: 30px; } 
+.preserve-line-breaks { white-space: pre-wrap; /* 줄바꿈 및 공백 문자 유지 */
+ word-wrap: break-word; /* 단어가 길 때 줄 바꿈 처리 */ } 
 
-header .gnb { width: 1200px; margin: 0 auto; display: flex; align-items: center; height: 60px; } 
+/* snb 메뉴 없는 경우 */
+.main-section .container.main-only { justify-content: center; } 
+.main-section .container.main-only .main-area .title { font-size: 28px; font-weight: 700; text-align: center; } 
 
-header .gnb .logo-area { float: left; width: 110px; } 
-header .gnb .logo-area img { height: 100%; } 
+/* 회원가입 */
+.main-section .container.main-only .main-area.join { width: 500px; margin:40px 0; } 
+/* 탭 메뉴 */
+.main-section .container.main-only .main-area.join .menu-tab { display: flex; justify-content: space-between; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn { width: 50%; margin-top: 30px; height: 48px; font-size: 16px; font-weight: 500; background-color: #fff; border: 1px solid #DDD; border-bottom: 1px solid #F49D00; color: #ccc; line-height: 45px; cursor: pointer; text-align: center; border-left: none; border-right: none; border-radius: 13px 13px 0 0; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn ~ .tab-btn.active { border-left: 1px solid #F49D00; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn i { margin-left: 2px; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(1) { border-left: 1px solid #DDD; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:nth-child(2) { border-right: 1px solid #DDD; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn.active { color: #F49D00; border-color: #F49D00; border-right: 1px solid #F49D00; border-bottom: none; cursor: default; font-weight: 700; } 
+.main-section .container.main-only .main-area.join .menu-tab label.tab-btn:not(.active):hover { color: #F49D00; } 
+/* form */
+.main-section .container .input-field { width: 100%; padding: 12px 12px; border: 1px solid #ccc; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; } 
+.main-section .container textarea.input-field { min-height: 140px; max-height: 300px; resize: none; resize: vertical; } /* 회원정보수정-수리 상세내용, 수리예약-수리요청 상세내용*/
+.main-section .container .join-form { width: 100%; margin-top: 20px; } 
+.main-section .container .join-form .input-area { margin-top: 14px; } 
+.main-section .container .join-form .input-area .input-field::placeholder { color: #ccc; } 
+.main-section .container .join-form .input-area label { display: block; font-size: 14px; font-weight: 500; color: #555; text-align: left; } 
+.main-section .container .join-form .input-area label.required::after { content: "*"; color: rgb(255, 114, 98); } 
+.main-section .container .join-form .input-area p.caption-error,
+.main-section .container .join-form .input-area p.caption-error-re { display: none; font-size: 12px; font-weight: 400; color: #fa5963; margin-left: 2px; text-align: left; } 
+.main-section .container .join-form .input-area.error p.caption-error,
+.main-section .container .join-form .input-area.error-re p.caption-error-re { display: block; } 
+.main-section .container .join-form .input-area p.caption-duplicate-check { display: none; font-size: 12px; font-weight: 400; margin-left: 2px; } 
+.main-section .container .join-form .input-area p.caption-duplicate-check.yes { color: #00b700; } 
+.main-section .container .join-form .input-area p.caption-duplicate-check.no { color: #fa5963; } 
+.main-section .container .join-form .input-area.duplicate-yes p.caption-duplicate-check.yes { display: block; } 
+.main-section .container .join-form .input-area.duplicate-no p.caption-duplicate-check.no { display: block; } 
+.main-section .container .join-form .input-area.duplicate-no .input-field,
+.main-section .container .join-form .input-area.error .input-field,
+.main-section .container .join-form .input-area.error-re .input-field { border-color: #fa5963; } 
+.main-section .container .join-form .input-area button.btn-form { width: 100%; padding: 12px 12px; border: 1px solid #ccc; border-radius: 8px; color: #333; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; margin-top: 5px; background-color: #eee; } 
+.main-section .container .join-form .input-area button.btn-form.error, 
+.main-section .container .join-form .input-area button.btn-form.error:hover { color: #ff1d2b; border-color: #ff8189; background-color: #fa596329; transition: all 0.5s; } 
+.main-section .container .join-form .input-area button.btn-form:hover { background-color: #eaeaea; color: #444; border-color: #aaa; } 
+.main-section .container .join-form .input-area .distance-radio-area { display: flex; justify-content: center; margin-top: 5px; } 
+.main-section .container .join-form .input-area .distance-radio-area input[type='radio'] { display: none; } 
+.main-section .container .join-form .input-area .distance-radio-area label.distance-radio { height: 36px; padding: 0 10px; border-radius: 6px; font-size: 13px; font-weight: 400; background-color: #fff; border: 1px solid #DDD; color: #bbb; line-height: 36px; cursor: pointer; text-align: center; margin: 5px 5px 0; } 
+.main-section .container .join-form .input-area .distance-radio-area label.distance-radio:hover { background-color: #eee; color: #444; border-color: #aaa; } 
+.main-section .container .join-form .input-area .distance-radio-area label.distance-radio.active { background-color: #eee; color: #333; border-color: #ccc; } 
+.main-section .container .join-form .input-area .distance-radio-area label.distance-radio.active { cursor: default; } 
+.main-section .container .join-form .input-area .category-add-area { display: flex; justify-content: space-between; } 
+.main-section .container .join-form .input-area .category-add-area span { color: #777; font-size: 13px; cursor: pointer; margin-top: 1px; } 
+.main-section .container .join-form .input-area .category-add-area span:hover { color: #444; text-decoration: underline; } 
+.main-section .container .join-form .input-area .category-select-area { display: flex; justify-content: space-between; margin-top: 5px; position: relative; } 
+.main-section .container .join-form .input-area .category-select-area .select-category { width: calc(50% - 3px); padding: 12px 0; border-radius: 6px; font-size: 14px; font-weight: 400; border: 1px solid #ccc; color: #333; cursor: pointer; text-align: center; background-color: #eee; appearance: none; background-image: url(../img/chevron-down.svg); background-repeat: no-repeat; background-position: calc(100% - 15px) center; } 
+.main-section .container .join-form .input-area .category-select-area .select-category:hover { background-color: #eaeaea; color: #444; border-color: #aaa; } 
+.main-section .container .join-form .input-area .category-select-area .select-category option { background-color: #fff; font-size: 14px; } 
+.main-section .container .join-form .input-area .category-select-area .del-category-btn { position: absolute; right: -20px; top: 12px; cursor: pointer; } 
+.main-section .container .join-form .input-area .work-hours-list { border: 1px solid #ccc; padding: 10px 14px; border-radius: 8px; margin-top: 5px; line-height: 23px; } 
+/* 이메일 수신 동의, 약관 동의 */
+.main-section .container .join-form .input-area .checkbox-area { margin-top: 15px; display: flex; } 
+.main-section .container .join-form .input-area .checkbox-area.all-check { border-bottom: 1px solid #ddd; padding-bottom: 10px; } 
+.main-section .container .join-form .input-area .checkbox-area input[type='checkbox'].checkbox-agree { width: 2.0rem; height: 2.0rem; margin: 1px 8px 0 2px; accent-color: #888; } 
+.main-section .container .join-form .input-area .checkbox-area label,
+.main-section .container .join-form .input-area .checkbox-area span { font-size: 14px; color:#666; cursor: pointer; font-weight: 400; } 
+.main-section .container .join-form .input-area .checkbox-area span { margin-right: 3px; text-decoration: underline; color: #888; } 
+.main-section .container .join-form .input-area .checkbox-area label:hover { font-weight: 500; } 
+.main-section .container .join-form .input-area .checkbox-area span:hover { color: #222; } 
 
-header .gnb ul.menu-area { margin-left: 35px; display: flex; } 
-header .gnb ul.menu-area li { display: inline; margin-right: 10px; padding: 0 20px; cursor: pointer; } 
-header .gnb ul.menu-area li:hover { border-bottom: 1px solid #F49D00; } 
-header .gnb ul.menu-area li a { display: inline-block; font-size: 15px; padding: 20px 0; color:#444; font-weight: 500; text-decoration: none; } 
-header .gnb ul.menu-area li:hover a { color:#111; } 
+/* 회원가입 버튼 */
+.main-section .container .btn-submit { margin-top: 20px; width: 100%; height: 48px; padding: 0 20px; border-radius: 10px; font-size: 16px; font-weight: 500; letter-spacing: -0.5px; background-color: #F49D00; border: 1px solid #F49D00; color: white; line-height: 45px; display: block; text-align: center; } 
+.main-section .container .btn-submit:hover { background-color: #F5AF26; border: 1px solid #F5AF26; transition: all 0.5s; } 
+/* 근무 가능 요일 및 시간 모달 */
+#work-hours-modal .container { display: block; width: auto; height: auto; } 
+#work-hours-modal .container .modal-title { font-size:20px; font-weight: 600; text-align: center; } 
+#work-hours-modal .container .work-hours-form { font-size: 16px; margin-top: 18px; } 
+#work-hours-modal .container .work-hours-form .week-area { display: flex; align-items: center; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area { display: flex; align-items: center; margin-right: 20px; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area input[type='checkbox'] { width: 1.7rem; height: 1.7rem; margin: 2px 2px 0; accent-color: #ffffff; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area label { margin-left: 3px; cursor: pointer; color: #555; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area label:hover { color: #111; font-weight: 600; } 
+#work-hours-modal .container .work-hours-form .week-area .check-area input[type="checkbox"]:checked + label { font-weight: 600; } 
+#work-hours-modal .container .work-hours-form .week-area + .week-area { margin-top: 10px; } 
+#work-hours-modal .container .work-hours-form .time-area { width: 250px; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area { font-size: 22px; display: flex; justify-content: space-between; align-items: center; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area select { padding: 5px 10px; border-radius: 6px; font-size: 15px; font-weight: 400; border: 1px solid #666; color: #333; line-height: 38px; cursor: pointer; text-align: center; letter-spacing: 5px; font-weight: 500; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area select:disabled { opacity: 0.5; cursor: default; font-weight: 400; border-color: #ccc; } 
+#work-hours-modal .container .work-hours-form .time-area .time-select-area option { background-color: #fff; font-size: 14px; letter-spacing: 5px; } 
+.modal .container .btn-enter { display: inline-flex; width: 100%; align-items: center; justify-content: center; border-radius: 6px; font-size: 16px; font-weight: 500; padding: 10px; background-color: #F49D00; border: 1px solid #F49D00; color: white; margin-top: 18px; text-decoration: none; } 
+.modal .container .btn-enter:hover { background-color: #F5AF26; border: 1px solid #F5AF26; transition: all 0.5s; } 
+/* 이용약관, 개인정보처리방침 모달 */
+.modal.terms .container { display: block; width: auto; height: auto; } 
+.modal.terms .container .modal-title { font-size:20px; font-weight: 600; text-align: center; } 
+.modal.terms .container .terms-content { font-size: 16px; margin-top: 18px; font-size: 13px; width: 600px; height: 500px; overflow-y: auto; text-align: left; } 
 
-header .gnb ul.login-area { margin-left: auto; } 
-header .gnb ul.login-area li { display: inline; margin-left: 5px; cursor: pointer; } 
-header .gnb ul.login-area li button { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; } 
-header .gnb ul.login-area li button:hover { background-color: #f3f3f3; transition: all 0.5s; } 
-header .gnb ul.login-area li button.join-btn { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 0 15px; padding-right: 10px; } 
-header .gnb ul.login-area li button.join-btn:hover { background-color: #e99700; border: 1px solid #e99700; } 
-header .gnb ul.login-area li button.join-btn i { margin-left: 2px; } 
+/* 비밀번호 찾기 */
+.main-section .container.main-only .main-area.find-info { width: 500px; margin: 160px 0; } 
+.main-section .container.main-only .main-area.find-info .find-info-form { width: 500px; margin:40px 0; } 
+.main-section .container.main-only .main-area.find-info .find-info-form .title-sub { font-size: 16px; font-weight: 500; margin-left: 2px; margin-bottom: 5px; } 
+.main-section .container.main-only .main-area.find-info .find-info-form .title-sub2 { font-size: 14px; color: #777; margin-top: 5px; margin-left: 2px; } 
 
-section.main-section .container { width: 1000px; margin: 0 auto; padding: 380px 0; } 
-section.main-section .container .full-content-area { } 
+/* 임시비밀번호 발급 완료 */
+.modal.find-info .container { display: block; width: auto; height: auto; } 
+.modal.find-info .container .modal-title { font-size:20px; font-weight: 600; text-align: center; } 
+.modal.find-info .container .find-info-content { margin-top: 18px; font-size: 13px; width: 350px; } 
+.modal.find-info .container .find-info-content p { font-size: 15px; margin-top: 5px; } 
 
-footer { background-color: #EEE; } 
-footer .container { width: 1200px; margin: 0 auto; padding: 40px 0; } 
-footer .container .info-area { font-weight: 600; } 
-footer .container .info-area ul li { display: inline; margin-right: 20px; } 
-footer .container .info-area ul li a { display: inline-block; font-size: 13px; padding: 15px 0; color:#5b5b5b; text-decoration: none; cursor: pointer; } 
-footer .container .info-area ul li a:hover { color:#444; text-decoration: underline; } 
-footer .container .copyright-area { font-size: 11px; } 
+/* 회원정보 수정 */
+.main-section .container .content.profile-edit { display: flex; background-color: white; } 
+.main-section .container .profile-edit-form { width: 600px; } 
+.main-section .container .profile-edit-form .img-profile-area { text-align: center; } 
+.main-section .container .profile-edit-form .img-profile-area .label-profile_photo { position: relative; } 
+.main-section .container .profile-edit-form .img-profile-area .img-profile { width: 90px; height: 90px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container .profile-edit-form .img-profile-area .label-profile_photo .img-profile-overlay { display: none; } 
+.main-section .container .profile-edit-form .img-profile-area .label-profile_photo img.icon { background-color: #000; padding: 2px 2px 4px 4px; border-radius: 100%; color: white; position: absolute; bottom: 3px; right: 0; cursor: pointer; width: 25px; outline: 1px solid white; } 
+.main-section .container .profile-edit-form .img-profile-area .label-profile_photo:hover .img-profile-overlay { position: absolute; top: 0; left: 0; display: inline-flex; align-items: center; justify-content: center; width: 90px; height: 90px; border-radius: 100%; cursor: pointer; object-fit: contain; border: 1px solid #ccc; background-color: #313131b0; color: white; font-size: 12px; font-weight: 400; } 
+.main-section .container .profile-edit-form .exit-area { text-align: right; margin-top: 10px; } 
+.main-section .container .profile-edit-form .exit-area a { color: #666; } 
+
+/* 비밀번호 변경 모달 */
+#pw-change-modal .container { display: block; width: auto; height: auto; } 
+#pw-change-modal .container .modal-title { font-size:20px; font-weight: 600; text-align: center; } 
+#pw-change-modal .container .work-hours-form { font-size: 16px; margin-top: 18px; } 
+
+/* 회원 탈퇴 */
+.main-section .container .content.exit { background-color: white; display: flex; } 
+.main-section .container .content.exit .exit-form { width: 600px; } 
+.main-section .container .content.exit .exit-form .title { font-size: 28px; font-weight: 700; text-align: center; margin-top: 30px; } 
+.main-section .container .content.exit .exit-form .desc-area { margin-top: 15px; font-size: 15px; } 
+.main-section .container .content.exit .exit-form .desc-area p { line-height: 23px; } 
+.main-section .container .content.exit .exit-form .input-area { margin-top: 0; } 
+.main-section .container .content.exit .exit-form .btn-submit.cancel { background-color: #eee; color: #444; border-color: #eee; text-decoration: none; margin-top: 8px; } 
+.main-section .container .content.exit .exit-form .btn-submit.cancel:hover { background-color: #e1e1e1; border: 1px solid #ccc; transition: all 0.5s; } 
+
+/* 예약 신청 */
+.main-section .container.main-only .main-area.request { width: 600px; margin:40px 0; } 
+.main-section .container.main-only .main-area.request .request-form { width: 600px; margin:40px 0; } 
+.main-section .container.main-only .main-area.request .request-form .info-area + .info-area { margin-top: 30px; } 
+.main-section .container.main-only .main-area.request .request-form .input-area { margin: 20px 35px; } 
+.main-section .container.main-only .main-area.request .request-form .title-main { font-size: 18px; font-weight: 600; margin-left: 2px; margin-bottom: 5px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub { font-size: 16px; font-weight: 500; margin-left: 2px; margin-bottom: 5px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub2 { font-size: 12px; color: #aaa; margin-top: 1px; margin-left: 5px; } 
+.main-section .container.main-only .main-area.request .request-form .title-sub2 i { margin-right: 3px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area { display: flex; align-items: center; margin: 15px 35px; padding: 20px 25px; border: 1px solid #ddd; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area { width: 130px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .img-profile-area img { width: 80px; height: 80px; border-radius: 100%; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area { font-size: 15px; width: 100%; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p { margin-top: 2px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p + p+ p { margin-top: 4px; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name { font-size: 17px; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars i { color: #f96209; } 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-name span.master-stars .review-count { font-size: 12px; } /* 후기 개수 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-location { font-size: 12px; } /* 위치 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area i { font-size: 12px; } /* 별점/위치 아이콘 */ 
+.main-section .container.main-only .main-area.request .request-form .master-info-area .text-area p.master-desc { width: 390px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
+
+/* 캘린더(날짜 선택) */
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap { margin: 15px 35px; padding: 15px 20px; text-align: center; font-weight: 400; border: 1px solid #ddd; cursor: default; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap.error { border-color: #ff8189; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap.time-list-wrap { display: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap.time-list-wrap.show { display:block; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list { display: flex; flex-wrap: wrap; gap: 12px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time { height: 36px; padding: 0 13px; border-radius: 6px; font-size: 13px; letter-spacing: 2px; font-weight: 400; background-color: #fff; border: 1px solid #ccc; color: #777; line-height: 36px; cursor: pointer; text-align: center; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time:hover { background-color: #eee; color: #444; border-color: #aaa; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time.selected { background-color: #f49d00; color: white; border-color: #F49D00; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap ul.time-list li button.btn-select-time.disabled { cursor: default; border-color: #ddd; color: #999; background-color: #eee; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap label { display: block; font-size: 14px; font-weight: 500; color: #555; text-align: left; margin: 3px 0 7px; line-height: 13px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap label i { margin-right: 3px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap p { display: block; font-size: 14px; font-weight: 400; color: #555; text-align: left; margin-bottom:3px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box { width: 350px; margin: 0 auto; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box { padding: 0 16px; margin-bottom: 15px; font-size: 20px; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box .btn-cal { position: relative; float: left; width: 25px; height: 25px; margin-top: 2px; font-size: 16px; cursor: pointer; border: none; background: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box .btn-cal.next { float: right; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .ctr-box .btn-cal:hover { background-color: #f1f1f1; border-radius: 9px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table { width: 100%; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table th { width: 14.2857%; padding-bottom: 10px; font-size: 16px; font-weight: 400; text-align: center; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td { padding: 3px 0; height: 50px; font-size: 15px; vertical-align: top; font-weight: 500; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day { position: relative; cursor: pointer; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td span { border-radius: 6px; display: inline-block; width: 95%; height: 98%; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.today span { background: #ff6b6b; border-radius: 6px; color: #fff; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.today span:after { content: '오늘'; display: block; font-size: 11px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.disabled { cursor: default; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.disabled span { color: #ccc; font-weight: 400; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day-active span { background: #F49D00; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.day-active span:after { content: '선택'; display: block; font-size: 11px; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td:not(.disabled):hover span { background: #F49D00; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+.main-section .container.main-only .main-area.request .request-form .info-area .calendar-wrap .calendar-box .cal-table td.has-event:after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #FFC107; } 
+.main-section .container.main-only .main-area.request .request-form .btn-submit { margin: 30px auto 0; width: 530px; } 
+
+/* 예약 신청 완료 */
+.modal.request .container { display: block; width: auto; height: auto; } 
+.modal.request .container .modal-title { font-size: 20px; font-weight: 600; text-align: center; } 
+.modal.request .container .request-content { margin: 30px 0 15px; font-size: 13px; width: 380px; text-align: left; } 
+.modal.request .container .request-content p { font-size: 14px; margin-top: 5px; } 
+.modal.request .container .request-content .request-info-area { background-color: #eee; padding: 15px 20px; border-radius: 5px; } 
+.modal.request .container .request-content .request-info-area p { margin-top: 5px; } 
+.modal.request .container .request-content .request-info-area p + .info-title { margin-top: 15px; } 
+.modal.request .container .request-content .request-info-area p.info-title { font-size: 16px; font-weight: 500; } 
+.modal.request .container .request-content .request-desc-area { margin-top: 10px; } 
+
+/* 예약 내역 */
+.request-list .container .search-wrap { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
+.request-list .container .search-wrap input[type="radio"] { display: none; } 
+.request-list .container .search-wrap label { background-color: #f8f9fa; border: 1px solid #ced4da; border-radius: 5px; padding: 10px 15px; margin: 0 5px; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; } 
+.request-list .container .search-wrap input[type="radio"]:checked+label { background-color: #F49D00; color: white; border-color: #F49D00; } 
+.request-list .container .search-wrap label:hover { background-color: #e9ecef; } 
+.modal.request .container { display: block; width: auto; height: auto; } 
+.modal.request .container .modal-title { font-size: 20px; font-weight: 600; text-align: center; } 
+.modal.request .container .pay-content { margin: 30px 0 15px; font-size: 13px; width: 380px; text-align: left; } 
+.modal.request .container .pay-content p { font-size: 15px; margin-top: 7px; } 
+.modal.request .container .pay-content .input-money { width: 100%; border: 1px solid #bbb; padding: 8px 8px; border-radius: 4px; margin-top: 11px; color: #666; font-weight: 500; font-size: 15px; } 
+
+/* pagination */
+.main-section .pagination { display: flex; justify-content: center; padding: 40px 0; } 
+.main-section .pagination a { display: inline-flex; width: 26px; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; border-radius: 50%; line-height: 26px; transition: 0.2s; text-decoration: none; } 
+.main-section .pagination a:hover, .main-section .pagination a.active { background-color: #e6e6e6; font-weight: 600; color:#111; } 
+.main-section .pagination a:not(.active):hover { background-color: #f7f7f7; color:#111; } 
+.main-section .pagination a i { font-size: 13px; } 
+.main-section .pagination ul { display: flex; gap: 3px; } 
+
+/* 기타 공통 */
+.master-category { color: #2257df; background-color: #eff4ff; font-size: 12px; padding: 0px 8px; border-radius: 5px; display: inline-flex; line-height: 25px; font-weight: 400; } 
+
+/* 채팅창 */
+body.message .chat-container { display: flex; flex-direction: column; position: fixed; top: 0; right: 0; left: 0; bottom: 0; overflow-y: hidden; overflow-x: auto; letter-spacing: -.5px; } 
+body.message .chat-container .user-info { font-size: 14px; padding: 11px; border-bottom: 1px solid #ddd; } 
+body.message .chat-container .user-info a { display: flex; flex-direction: column; gap: 4px; } 
+body.message .chat-container .user-info .name { font-weight: 500; padding: 0 1px; } 
+body.message .chat-container .user-info .address { margin-left: 5px; color: #666; font-weight: 400; font-size: 13px; } 
+
+body.message .chat-container .chat-inner { display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; } 
+body.message .chat-container .chat-inner .chat-box { height: 400px; overflow-y: auto; padding: 0 10px; margin-right: 2px; margin-top: 10px; flex: 1; scroll-behavior: smooth; } 
+body.message .chat-container .chat-inner .chat-box::-webkit-scrollbar { width: 6px; } 
+body.message .chat-container .chat-inner .chat-box::-webkit-scrollbar-thumb { background-color: #999; border-radius:2px; } 
+body.message .chat-container .chat-inner .chat-box::-webkit-scrollbar-button { display: none; } 
+body.message .chat-container .chat-inner .chat-box .right { display: flex; justify-content: flex-end; align-items: flex-end; } 
+body.message .chat-container .chat-inner .chat-box .left { display: flex; justify-content: flex-start; align-items: flex-start; gap: 5px; padding: 0 2px; } 
+body.message .chat-container .chat-inner .chat-box .left img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid #ddd; margin: 10px 0; } 
+body.message .chat-container .chat-inner .calender { text-align: center; font-size: 12px; color: #666; border-radius: 5px; background-color: #eee; padding: 2px 0; } 
+
+body.message .chat-container .chat-inner .input-group { display: flex; padding: 10px; } 
+body.message .chat-container .chat-inner #chat-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; outline: none; } 
+body.message .chat-container .chat-inner button { padding: 10px 20px; border: none; border-radius: 5px; background-color: #F49D00; color: #fff; cursor: pointer; } 
+body.message .chat-container .chat-inner button:hover { background-color: #d68b00; } 
+body.message .chat-container .chat-inner .message { margin: 10px 0; padding: 10px; border-radius: 5px; font-size: 13px; } 
+body.message .chat-container .chat-inner .message.member { background-color: #dcf8c6; align-self: flex-end; max-width: calc(100% - 115px); } 
+body.message .chat-container .chat-inner .message.memberlf { background-color: #F49D00; color: white; max-width: calc(100% - 115px); } 
+body.message .chat-container .chat-inner .message.counselor { background-color: #fff; border: 1px solid #ccc; align-self: flex-start; } 
+body.message .chat-container .chat-inner .message.timestamp { font-size: 11px; color: #888; position: relative; display: block; padding: 0 5px; margin-top: 32px; } 

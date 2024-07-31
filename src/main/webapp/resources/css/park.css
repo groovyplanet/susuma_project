@@ -1,0 +1,80 @@
+* { padding: 0; margin: 0; box-sizing: border-box; }
+ul,
+li,
+ol,
+dl,
+dd { list-style: none; } 
+/*user.html*/
+.admin-user-box {
+ margin: 0 auto; margin-top: 100px; width: 80%; } 
+.admin-user-box .search { overflow: hidden; width: 100%; /* border: 5px solid #777; */}
+.admin-user-box .search ul {display: flex; justify-content: center;}
+.admin-user-box .search .search-member-box { /*float: left; */text-align: center; margin-left: 200px; margin-right: 130px; background-color: #F49D00; width: 200px; height: 50px; text-align: center; border-radius: 15px;}
+.admin-user-box .search .search-member-box .search-member { margin:0 auto; text-align: center; font-size: large; height: 50px; line-height: 50px; }
+.admin-user-box .search .master-member-box { /*float: right; */margin-right: 200px; background-color: #F49D00; width: 200px; height: 50px; text-align: center; border-radius: 15px; text-align: center; } 
+.admin-user-box .search .master-member-box .master-member { margin:0 auto; text-align: center; font-size: large; height: 50px; line-height: 50px; }
+.admin-user-box .search { overflow: hidden; width: 100%; /* border: 5px solid #777; */}
+.admin-user-box .search .search-member-box { /*float: left; */margin-left: 200px; background-color: #F49D00; width: 200px; height: 50px; text-align: center; border-radius: 15px; } 
+.admin-user-box .search .search-member-box .search-member { margin: 0 auto; text-align: center; font-size: large; height: 50px; line-height: 50px; } 
+.admin-user-box .search .master-member-box { /*float: right; */margin-right: 200px; background-color: #F49D00; width: 200px; height: 50px; text-align: center; border-radius: 15px; text-align: center; } 
+.admin-user-box .search .master-member-box .master-member { margin: 0 auto; text-align: center; font-size: large; height: 50px; line-height: 50px; } 
+
+.content-member, .content-master {
+    display: none;
+}
+.admin-user-box .content-member {
+    margin-top: 20px;
+    /* border-top: 1px solid #777; */
+    padding-top: 10px;
+}
+.admin-user-box .content-member .memberTable{
+    width: 90%;
+    text-align: center;
+
+}
+
+.admin-user-box .content-member .memberTable th {
+    
+    text-align: center;
+    font-size: large;
+}
+
+.admin-user-box .content-member .memberTable td {
+    padding: 5px;
+    border: 1px solid #777;
+}
+
+.admin-user-box .content-master {
+    margin-top: 20px;
+    /* border-top: 1px solid #777; */
+    padding-top: 10px;
+}
+
+.admin-user-box .content-master .masterTable{
+    width: 90%;
+    text-align: center;
+
+}
+
+.admin-user-box .content-master .masterTable th {
+    
+    text-align: center;
+    font-size: large;
+}
+
+.admin-user-box .content-master .masterTable td {
+    padding: 5px;
+    border: 1px solid #777;
+}
+
+
+.main-section .content-p-box { text-align: center; padding-left: 210px; margin-top: 40px; margin-bottom: 30px; } 
+.main-section .content-p-box .content-page {display: inline-block; width: 30px; height: 30px; text-align: center; margin: 0 auto; line-height: 30px; } 
+.main-section .content-p-box .content-page a { text-decoration: none; } 
+
+/*user_detail.html*/
+.admin-user-detail-table { width: 30%; border-collapse: collapse; margin: 0 auto; margin-top: 70px; } 
+.admin-user-detail-table th { border: 1px solid #ddd; padding: 8px; text-align: center; } 
+.admin-user-detail-table td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+.admin-user-detail-table th { background-color: #f2f2f2; font-weight: bold; } 
+.profile-pic { width: 100px; height: auto; } 

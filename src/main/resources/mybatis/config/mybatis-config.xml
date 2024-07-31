@@ -4,34 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	
-	<!-- 
-		카멜 표기법 자동 변환: 설정을 통해 언더스코어 표기법의 컬럼명을 카멜 표기법의 속성명으로 자동 변환.
-		기본 필드명 매핑: 컬럼명과 VO 속성명이 동일하거나 변환 규칙에 맞으면 자동 매핑.
-		
-		이 설정은 FIRST_NAME컬럼을 자바의 firstName변수명으로 자동 변경하여 맵핑시킵니다. 
-	-->
+
 	<settings>
-	  <setting name="mapUnderscoreToCamelCase" value="true"/> 
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+        <setting name="jdbcTypeForNull" value="VARCHAR" />
 	</settings>
 
-	  <environments default="development">
-	    <environment id="development">
-	      <transactionManager type="JDBC"/>
-	      <dataSource type="POOLED">
-	        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-	        <property name="url" value="jdbc:oracle:thin:@172.30.1.23:1521:xe"/>
-	        <property name="username" value="SSM"/>
-	        <property name="password" value="SSM"/>
-	      </dataSource>
-	    </environment>
-	  </environments>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@172.30.1.23:1521:xe" />
+				<property name="username" value="SSM" />
+				<property name="password" value="SSM" />
+			</dataSource>
+		</environment>
+	</environments>
 
-	  <!-- 매퍼는 mybatis/mapper폴더 아래에 모으고, 매퍼의 위치를 지정한다. -->
-	  <mappers>
-	    <mapper resource="mybatis/mapper/BoardMapper.xml"/>
-		
-	  </mappers>
+	<mappers>
+		<mapper resource="mybatis/mapper/BoardMapper.xml" />
+		<mapper resource="mybatis/mapper/MemberMapper.xml" />
+		<mapper resource="mybatis/mapper/MessageMapper.xml" />
+		<mapper resource="mybatis/mapper/RequestMapper.xml" />
+		<mapper resource="mybatis/mapper/CategoryMapper.xml" />
+		<mapper resource="mybatis/mapper/ReviewMapper.xml" />
+		<mapper resource="mybatis/mapper/PointMapper.xml" />
+		<mapper resource="mybatis/mapper/AlertMapper.xml" />
+
+	</mappers>
 
 
 </configuration>

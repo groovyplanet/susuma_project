@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.susuma.message.model.MessageMapper">
+	
+	<select id="getNotReadMessageCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM MESSAGE WHERE READ = 'N' AND GET_ME_NO = #{meNo}
+	</select>
+	
+	<select id="getChatRooms" parameterType="String" resultType="com.susuma.message.model.MessageDTO">
+		SELECT *
+		FROM (
+		    SELECT M.MSG_NO,
+		           M.SEND_ME_NO,
+		           M.GET_ME_NO,
+		           M.MESSAGE,
+		           M.READ,
+		           M.SEND_TIME,
+		           M.READ_TIME,
+		           ROW_NUMBER() OVER (
+		               PARTITION BY LEAST(M.SEND_ME_NO, M.GET_ME_NO), GREATEST(M.SEND_ME_NO, M.GET_ME_NO)
+		               ORDER BY M.SEND_TIME DESC
+		           ) AS rn,
+		           MM_SEND.TYPE AS SEND_TYPE, MM_SEND.NAME AS SEND_NAME, MM_SEND.PROFILE_PHOTO AS SEND_PROFILE_PHOTO,
+		           MM_GET.TYPE AS GET_TYPE, MM_GET.NAME AS GET_NAME, MM_GET.PROFILE_PHOTO AS GET_PROFILE_PHOTO,
+		           (SELECT COUNT(*) FROM MESSAGE WHERE READ = 'N' AND GET_ME_NO = #{meNo} AND SEND_ME_NO = M.SEND_ME_NO) NOT_READ_CNT
+		    FROM MESSAGE M
+		    JOIN MEMBER MM_SEND ON MM_SEND.ME_NO = M.SEND_ME_NO 
+		    JOIN MEMBER MM_GET ON MM_GET.ME_NO = M.GET_ME_NO
+		    WHERE M.SEND_ME_NO = #{meNo}
+		       OR M.GET_ME_NO = #{meNo}
+		)
+		WHERE rn = 1
+		ORDER BY SEND_TIME DESC
+	</select>
+
+	<select id="getMessages" resultType="com.susuma.message.model.MessageDTO">
+		SELECT M.MSG_NO
+			, M.SEND_ME_NO
+			, M.GET_ME_NO
+			, M.MESSAGE
+			, M.READ
+			, M.SEND_TIME
+			, M.READ_TIME
+			, MM.PROFILE_PHOTO AS SEND_PROFILE_PHOTO
+		FROM MESSAGE M 
+	    JOIN MEMBER MM ON MM.ME_NO = M.SEND_ME_NO 
+		WHERE 1 = 1
+            <if test="read == NULL">
+	        AND ((M.SEND_ME_NO = #{sendMeNo} AND M.GET_ME_NO = #{getMeNo})
+	        OR (M.SEND_ME_NO = #{getMeNo} AND M.GET_ME_NO = #{sendMeNo}))
+            </if>
+            <if test="read != NULL">
+                AND M.READ = #{read}
+                AND M.SEND_ME_NO = #{sendMeNo} AND M.GET_ME_NO = #{getMeNo}
+            </if>
+		ORDER BY SEND_TIME ASC
+	</select>
+	 
+	<insert id="sendMessage" parameterType="com.susuma.message.model.MessageDTO">
+		INSERT INTO MESSAGE( msg_no, send_me_no, get_me_no, message )
+		VALUES( MESSAGE_SEQ.NEXTVAL, #{sendMeNo}, #{getMeNo}, #{message} )
+	</insert>
+	
+	<update id="updateMessages">
+		UPDATE MESSAGE
+		SET
+			READ = 'Y',
+			READ_TIME = SYSDATE
+		WHERE 1 = 1
+        	AND SEND_ME_NO = #{sendMeNo}
+        	AND GET_ME_NO = #{getMeNo}
+	</update>
+	
+</mapper>

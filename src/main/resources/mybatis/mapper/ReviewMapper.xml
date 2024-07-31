@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.susuma.review.model.ReviewMapper">
+
+	<!-- [1] 리뷰 목록 -->
+	<select id="selectReviews" parameterType="map" resultType="com.susuma.review.model.ReviewDTO">
+		SELECT *
+		FROM (
+		SELECT A.*, ROWNUM AS RN
+		FROM (
+		SELECT RE.*, MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO AS MASTER_PROFILE_PHOTO, MM.ADDRESS AS MASTER_ADDRESS,
+		CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO AS CLIENT_PROFILE_PHOTO, REQ.ADDRESS AS CLIENT_ADDRESS, REQ.ADDRESS_DETAIL AS CLIENT_ADDRESS_DETAIL
+		, REQ.REQUEST_DATE, REQ.REQUEST_TIME
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		FROM REVIEW RE
+		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
+		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
+		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = MM.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND MC.ME_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MM.ME_NO = #{masterNo}
+		</if>
+		ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		) A
+		)
+		WHERE RN BETWEEN
+		#{startRow} and #{endRow}
+	</select>
+
+	<!-- [1-2] 리뷰 목록 수(페이징 처리) -->
+	<select id="countReviews" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW RE
+		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
+		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
+		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND MC.ME_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MM.ME_NO = #{masterNo}
+		</if>
+	</select>
+
+	<!-- [2] 리뷰 1건 -->
+	<select id="selectReview" parameterType="map" resultType="com.susuma.review.model.ReviewDTO">
+		SELECT RE.RE_NO
+		,RE.REQ_NO
+		,RE.CONTENT
+		,RE.STAR_SCORE
+		,RE.INSERT_TIME AS INSERT_TIME
+		,RE.UPDATE_TIME AS UPDATE_TIME,
+		MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO AS MASTER_PROFILE_PHOTO, MM.ADDRESS AS MASTER_ADDRESS,
+		CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO AS CLIENT_PROFILE_PHOTO, REQ.ADDRESS AS CLIENT_ADDRESS
+		FROM REVIEW RE
+		JOIN REQUEST REQ ON RE.REQ_NO = REQ.REQ_NO
+		JOIN MEMBER MM ON MM.ME_NO = REQ.MASTER_NO
+		JOIN MEMBER MC ON MC.ME_NO = REQ.CLIENT_NO
+		WHERE 1 = 1
+		<if test="reqNo != null">
+			AND RE.REQ_NO = #{reqNo}
+		</if>
+	</select>
+
+	<!-- [3] 리뷰 등록 -->
+	<insert id="insertReview" parameterType="com.susuma.review.model.ReviewDTO">
+		INSERT INTO REVIEW (RE_NO, REQ_NO, CONTENT, STAR_SCORE)
+		VALUES (review_seq.NEXTVAL, #{reqNo}, #{content}, #{starScore})
+	</insert>
+
+	<!-- [4] 리뷰 수정 -->
+	<update id="updateReview" parameterType="com.susuma.review.model.ReviewDTO">
+		UPDATE REVIEW
+		SET
+		CONTENT = #{content},
+		STAR_SCORE = #{starScore},
+		UPDATE_TIME = SYSDATE
+		WHERE
+		RE_NO = #{ReNo}
+	</update>
+
+	<!-- [5] 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="string">
+		DELETE FROM REVIEW
+		WHERE
+		RE_NO = #{ReNo}
+	</delete>
+
+</mapper>

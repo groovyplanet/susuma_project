@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.susuma.point.model.PointMapper">
+
+	<!-- 회원의 포인트 잔액을 조회 -->
+	<select id="MemberPoints" parameterType="String" resultType="Integer">
+		SELECT point FROM MEMBER WHERE ME_NO = #{meNo}
+	</select>
+
+	<!-- 포인트 적립 내역 조회 -->
+	<select id="getPointEarnings" parameterType="String" resultType="com.susuma.point.model.PointDTO">
+		SELECT pc_no, me_no, point, pc_time AS insertTime
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point > 0
+		ORDER BY pc_time DESC
+	</select>
+
+	<!-- 포인트 사용 내역 조회 -->
+	<select id="getPointSpendings" parameterType="String" resultType="com.susuma.point.model.PointDTO">
+		SELECT pc_no, me_no, point, pc_time AS insertTime
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point &lt; 0
+		ORDER BY pc_time DESC
+	</select>
+
+	<select id="getWithdrawalHistory" parameterType="String" resultType="com.susuma.point.model.PointDTO">
+		SELECT pc_no, me_no, point, pc_time AS insertTime
+		FROM POINT_HISTORY
+		WHERE me_no = #{meNo} AND point &lt; 0
+		ORDER BY pc_time DESC
+	</select>
+
+	<!-- 회원 포인트 업데이트 -->
+	<update id="updateMemberPoints">
+		UPDATE MEMBER SET point = #{point} WHERE me_no = #{meNo}
+	</update>
+
+	<!-- 포인트 사용 내역 추가 -->
+	<insert id="addSpendingHistory">
+		INSERT INTO POINT_HISTORY (pc_no, me_no, point, pc_time)
+		VALUES (point_history_seq.NEXTVAL, #{meNo}, #{point}, SYSDATE)
+	</insert>
+
+	<insert id="addEarningHistory">
+		INSERT INTO POINT_HISTORY (pc_no, me_no, point, pc_time)
+		VALUES (point_history_seq.NEXTVAL, #{meNo}, #{point}, SYSDATE)
+	</insert>
+	
+	
+
+
+</mapper>

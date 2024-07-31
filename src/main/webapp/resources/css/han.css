@@ -1,0 +1,421 @@
+.main-section .container { display: flex; height: calc(100% - 50px); width: 1200px; margin: 0 auto; background-color: white; max-width: 1900px; box-sizing: border-box; } 
+.main-section .container .sidebar { flex-basis: 200px; min-width: 200px; background-color: white; border-left: 1px solid #e7e8ea; border-right: 1px solid #e7e8ea; display: flex; flex-direction: column; align-items: center; padding: 60px 0; box-sizing: border-box; } 
+.main-section .container .sidebar .title { font-size: 20px; font-weight: 600; line-height: 26px; } 
+.main-section .container .sidebar ul { list-style-type: none; padding: 0; margin: 0; width: 80%; font-size: 17px; font-weight: 500; text-align: center; margin-top: 20px; } 
+.main-section .container .sidebar ul li { margin: 10px 0; position: relative; } 
+.main-section .container .sidebar ul li a { text-decoration: none; color: #ababab; display: block; padding: 10px; width: 100%; border-radius: 5px; } 
+.main-section .container .sidebar ul li a:hover, 
+.main-section .container .sidebar ul li a.active { background-color: #f8f8f8; color: #555; font-weight: 600; } 
+.main-section .container .sidebar ul li a span.new-mark { font-size: 12px; border-radius: 5px; display: inline-flex; color: #ff7373; font-weight: 500; } 
+.main-section .container .sidebar ul li a:hover span.new-mark, 
+.main-section .container .sidebar ul li a.active span.new-mark { color: #ff2626; font-weight: 600; } 
+.main-section .container .content { flex: 1; justify-content: center; align-items: center; box-sizing: border-box; padding: 30px 0; } 
+.main-section .container .content.status { display: flex; } 
+.main-section .container .content .status-body { text-align: center; } 
+.main-section .container .content .status-section { display: inline-block; margin: 10px; text-align: center; } 
+.main-section .container .content .status-section button { background-color: #f49d00; color: white; padding: 10px 20px; border: none; border-radius: 5px; width: 150px; font-size: 15px; cursor: pointer; margin-bottom: 10px; } 
+.main-section .container .content .content.status-section button:hover { background-color: #f8b94d; } 
+.main-section .container .content .status-section .content-text { border: 1px solid gray; padding: 10px; border-radius: 5px; width: 150px; height: auto; box-sizing: border-box; } 
+.main-section .container .content .status-section .content-text p { margin: 10px 0; } 
+.main-section .container .content .progress-text { margin-top: 20px; border: 1px solid gray; padding: 10px; border-radius: 5px; width: 300px; display: inline-block; text-align: center; } 
+/* ===========profile_edit css start======== */
+.main-section .container .content .edit-form.profile { margin-top: 30px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 14px; width: 90%; justify-content: center; flex-direction: row; } 
+.main-section .container .content .edit-form .profile-img { position: relative; flex: none; width: 100px; height: 80px; margin-left: 40px; border-radius: 50%; background-size: cover; } 
+.main-section .container .content .edit-form .master-section { font-size: 14px; font-weight: 600; margin-left: 20px; text-align: center; margin-top: 30px; } 
+.main-section .container .content .edit-form .profile-img .profile-pic-upload { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #44474b; } 
+.main-section .container .content .edit-form .profile-img .profile-pic-upload:hover { cursor: pointer; } 
+.main-section .container .content .career_infoarea,
+.main-section .container .content .location_management,
+.main-section .container .content .detailed_description,
+.main-section .container .content .service_scheduling { margin-top: 30px; margin-left: 30px; padding-left: 10px; padding-top : 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; width: 90%; } 
+.main-section .container .content .career_sectiontitle,
+.main-section .container .content .location_managementtitle,
+.main-section .container .content .detailed_descriptiontitle,
+.main-section .container .content .service_schedulingtitle { margin-left: 30px; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; } 
+.main-section .container .content .career_details ul { margin-left: 40px; list-style: none; padding: 0; } 
+.main-section .container .content .location_details , .description_details, .schedule_details { margin-left: 40px; } 
+.main-section .container .content .career_details ul li,
+.main-section .container .content .schedule_details ul li { margin-bottom: 0.5rem; } 
+/* == profile edit html 모달 페이지 수정중== */
+.profile-img { margin: 25px 30px; width: 100px; height: 100px; object-fit: cover; } 
+.modal-content { background-color: #fefefe; margin: 10% auto; /* 화면 중앙 정렬 */
+ padding: 20px; border: 1px solid #888; width: 80%; max-width: 600px; position: relative; border-radius: 20px; } 
+/* 닫기 버튼 스타일 */
+#btn-edit-modal { background-color: #f49d00; color: #fff; border: none; padding: 5px 5px; border-radius: 5px; cursor: pointer; font-size: 14px; margin-left: 5px; margin-top: 5px; } 
+.form-edit-box-submit { background-color: #f49d00; color: #fff; border: none; padding: 10px 10px; border-radius: 5px; cursor: pointer; font-size: 13px; margin-left: 80px; margin-top: 10px; margin-bottom: 15px; } 
+.profile-pic-upload svg { width: 20px; height: 20px; fill: #fff; } 
+#profile-edit-modal .profile-img { margin: 25px 30px; width: 100px; height: 100px; object-fit: cover; } 
+#profile-edit-modal .modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 600px; position: relative; border-radius: 20px; } 
+#profile-edit-modal .close { position: absolute; right: 10px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer; } 
+#profile-edit-modal .edit-form { display: flex; } 
+#profile-edit-modal .form-group { margin: 30px 50px; display: flex; font-size: 14px; } 
+#profile-edit-modal #btn-edit-modal { background-color: #f49d00; color: #fff; border: none; padding: 5px 5px; border-radius: 5px; cursor: pointer; font-size: 14px; margin-left: 5px; margin-top: 5px; } 
+#profile-edit-modal .preview-profile-pic { border-radius: 50%; } 
+#profile-edit-modal .profile-pic-upload svg { width: 20px; height: 20px; fill: #fff; } 
+#profile-edit-modal .input-file[type="file"] { display: none; } 
+#preview-profile-pic { border-radius: 100%; } 
+.profile-pic-upload { margin-left: 90px; border-radius: 100%; background-color: #fff; } 
+.password-error { color: red; font-size: 12px; margin-top: 5px; display: none; /* 초기에는 숨김 */ } 
+/* ===========profile_edit css end======== */
+/* ===reserve manage list page css start === */
+.main-section .container .reservation-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 30px 50px; } 
+.main-section .container .reservation-setting .reserve-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+/*.main-section .container .reservation-setting .reserve-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } */
+.main-section .container .reservation-setting .reserve-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .reservation-setting .reserve-schecdule .approve,
+.main-section .container .reservation-setting .reserve-schecdule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .reservation-setting .reserve-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .reservation-setting .reserve-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .reservation-setting .reserve-schecdule .profile-logo-sm { position: relative; flex: none; width: 50px; height: 50px; margin-left: 20px; border-radius: 50%; background-size: cover; margin-top: 0; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container .reservation-setting .reserve-list-title { border-bottom: 1px solid black; padding: 5px; } 
+/* == reserve manage list 예약관리 승인 모달 == */
+#reserve-approve-btn { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 1000; } 
+#reserve-approve-btn.show { display: flex !important; } 
+.reserve-approve-btn .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+#reserve-approve-btn .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+#reserve-approve-btn .modal-buttons { margin-top: 20px; } 
+#reserve-approve-btn .approve-confirm, 
+#reserve-approve-btn .approve-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+#reserve-approve-btn .approve-cancel { background-color: #999; } 
+#reserve-approve-btn .approve-confirm:hover, 
+#reserve-approve-btn .approve-cancel:hover { opacity: 0.8; } 
+/* ===reserve manage list page css end === */
+/* ==========reserve_manage_view start============== */
+.main-section .container .reservation-detail .profile-logo-sm { margin-top:5px; width: 50px; margin-right:20px; height: 50px; margin-left: 50px; border-radius: 50%; background-size: cover; } 
+.main-section .container .reservation-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
+.main-section .container .reservation-detail .member-section { font-size: 15px; text-align: left; margin-top:10px; margin-left: 20px; display: flex; } 
+.main-section .container .reservation-detail .reserve-status .btn { background-color: #ff6b6b; color: white; margin-left: 20px; margin-top: 10px; } 
+.main-section .container .reservation-detail .reserve-status { margin-left: auto; margin-right: 50px; } 
+.main-section .container .reservation-detail .detail-content { margin-right: 10px; text-align: center; height: 40%; margin-top: 30px; border-top:3px solid white; padding: 30px; width: 100%; } 
+/* ==========reserve_manage_view end============== */
+/* ===repair manage list page css start === */
+.main-section .container .repair-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 30px 50px; } 
+.main-section .container .repair-setting .repair-schecdule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+.main-section .container .repair-setting .repair-schecdule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+.main-section .container .repair-setting .repair-schecdule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .repair-setting .repair-schecdule .approve,
+.main-section .container .repair-setting .repair-schecdule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .repair-setting .repair-schecdule .complete { background-color: white; border: 0.5px solid #999; pointer-events : none; } 
+.main-section .container .repair-setting .repair-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .repair-setting .repair-schecdule .profile-logo-sm { position: relative; flex: none; width: 60px; height: 60px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+.main-section .container .repair-setting .repair-set-title { border-bottom: 1px solid black; padding: 5px; } 
+/* ===reserve manage list page css end === */
+/* ========repair view page css start ===== */
+.main-section .container .repair-detail { margin: 30px 30px 20px; padding-top: 30px; padding-bottom: 40px; background-color: #f8f8f8; border-radius: 18px; width: 80%; } 
+.main-section .container .repair-detail .info-reserve .member-section { font-size: 15px; display: flex; align-items: center; padding: 10px 70px; gap: 15px; } 
+.main-section .container .repair-detail .info-reserve .member-section .infodetail { display: flex; flex-direction: column; gap: 5px; } 
+.main-section .container .repair-detail .info-reserve .member-section .repair-status,
+.main-section .container .repair-detail .detail-content { margin-left: auto; } 
+.main-section .container .repair-detail .repair-more-content .detail-content .edit { background-color: white; border: 0.5px solid #999; margin-right: 20px; } 
+.main-section .container .repair-detail .repair-more-content .detail-content .save,
+.main-section .container .repair-detail .repair-more-content .detail-content .cancel { background-color: white; border: 0.5px solid #999; margin-right: 10px; } 
+.main-section .container .repair-detail .repair-more-content .detail-content,
+.main-section .container .repair-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top: 3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; align-items: center; } 
+#edit-form { display: none; width: 90%; } 
+#edit-form .btn { width: 50px; height: 40px; text-align: center; } 
+#repair-details-input { width: 90%; margin-right: 20px; height: 100px; padding: 10px; box-sizing: border-box; margin-left: 10px; } 
+.main-section .container .repair-detail .review-box-content .review-input { display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f0f0f0; border-radius: 10px; margin: 20px; } 
+#payButton { background-color: #ff6b6b; color: white; border: none; cursor: pointer; } 
+#payButton:hover { cursor: pointer; } 
+/* ========repair view page css end ===== */
+/* ====point page css start ==== */
+.main-section .container .content .account-info .account-info { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .account-header { display: flex; align-items: center; margin-bottom: 20px; } 
+.main-section .container .content .account-info .bank-icon { width: 50px; height: 50px; margin-right: 15px; } 
+.main-section .container .content .account-info .account-details { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .bank-info { display: flex; align-items: center; margin-bottom: 5px; } 
+.main-section .container .content .account-info .btn-edit { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; } 
+.main-section .container .content .account-info .account-number { font-size: 16px; color: #555; } 
+.main-section .container .content .account-info .points-section { margin: 30px 50px 10px; } 
+.main-section .container .content .account-info .points-header { display: flex; align-items: center; } 
+.main-section .container .content .account-info .points-label { font-size: 18px; font-weight: bold; } 
+.main-section .container .content .account-info .btn-withdraw,
+.main-section .container .content .account-info .btn-charge,
+.main-section .container .content .account-info .btn-attendance { background-color: #F49D00; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 10px; } 
+
+#participateButton { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; margin-top: 10px; } 
+.main-section .container .content .account-info .points-value { font-size: 24px; font-weight: bold; color: #333; } 
+.main-section .container .content .account-info .transaction-history { margin: 20px 20px; } 
+.main-section .container .content .account-info .tab-menu { display: flex; margin-bottom: 10px; } 
+.main-section .container .content .account-info .tab { flex: 1; padding: 10px; border-bottom: 2px solid #ddd; text-align: center; cursor: pointer; font-size: 17px; } 
+.main-section .container .content .account-info .tab.active { font-weight: bold; border-bottom: 2px solid #F49D00; } 
+.main-section .container .content .account-info .transaction-list { display: flex; flex-direction: column; } 
+.main-section .container .content .account-info .transaction-item,
+.main-section .container .content .account-info .transaction-pop { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; } 
+.main-section .container .content .account-info .date { color: #999; } 
+.main-section .container .content .account-info .description { flex: 1; text-align: center; } 
+.main-section .container .content .account-info .amount { color: #4cc764; font-weight: bold; text-align: center; } 
+.main-section .container .content .account-info .amount .status { color: #4cc764; text-align: center; margin-left : 10px; background-color: #E7F8F1; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+
+
+.main-section .container .content .account-info .wdamount { color: #ff6b6b; font-weight: bold; text-align: center; } 
+.main-section .container .content .account-info .wdamount .wdstatus { color: #ff6b6b; text-align: center; margin-left : 10px; background-color: #FFEAE8; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+.main-section .container .content .account-info .spamount { color: #ff6b6b; font-weight: bold; text-align: center; } 
+.main-section .container .content .account-info .spamount .spstatus { color: #ff6b6b; text-align: center; margin-left : 10px; background-color: #FFEAE8; border-radius: 10px; padding: 4px; font-weight: lighter; } 
+
+
+/* point.html modal css */
+#withdrawModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; } 
+#withdrawModal.show { display: flex !important; } 
+#withdrawModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+#withdrawModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+#withdrawModal .modal-buttons { margin-top: 20px; } 
+#withdrawModal .btn-confirm, 
+#withdrawModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+#withdrawModal .btn-cancel { background-color: #999; } 
+#withdrawModal .btn-confirm:hover, 
+#withdrawModal .btn-cancel:hover { opacity: 0.8; } 
+/* 포인트 출금 모달 끝 */
+/*포인트 충전 모달 */
+#chargeModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; } 
+#chargeModal.show { display: flex !important; } 
+#chargeModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+#chargeModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+#chargeModal .modal-buttons { margin-top: 20px; } 
+#chargeModal .btn-confirm, 
+#chargeModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+#chargeModal .btn-cancel { background-color: #999; } 
+#chargeModal .btn-confirm:hover, 
+#chargeModal .btn-cancel:hover { opacity: 0.8; } 
+#chargeAmount { width: 100%; border: 1px solid #bbb; padding: 8px 8px; border-radius: 4px; margin-top: 11px; color: #666; font-weight: 500; font-size: 15px; } 
+#Ppointalpha { font-weight: 500; font-size: 15px; color:#f49d00; } 
+/* 포인트 충전모달 끝 */
+
+/* ====point page css end ==== */
+/*master-review_list css start */
+.main-section .container .review-setting { display: flex; flex-direction: column; align-items: center; width: 1000px; padding: 60px 0; } 
+.main-section .container .review-setting .review-schedule { display: flex; align-items: center; margin-bottom: 20px; width: 80%; } 
+.main-section .container .review-setting .review-schedule .info { flex-grow: 1; margin-left: 20px; background-color: #e0e0e0; padding: 20px; border-radius: 10px; width: 50%; } 
+.main-section .container .review-setting .review-schedule .btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; } 
+.main-section .container .review-setting .review-schedule .approve,
+.main-section .container .review-setting .review-schedule .pending { background-color: #ff6b6b; color: white; } 
+.main-section .container .review-setting .review-schedule .complete { background-color: white; border: 0.5px solid #999; pointer-events: none; } 
+.main-section .container .review-setting .review-more { margin-top: 10px; width: 50px; height: 30px; margin-left: 50px; border-radius: 5px; border: 0.5px solid #999 } 
+.main-section .container .review-setting .review-schedule .profile-logo-sm { position: relative; flex: none; width: 60px; height: 60px; margin-left: 10px; border-radius: 50%; background-size: cover; } 
+.main-section .container .review-setting .review-set-title { border-bottom: 1px solid black; padding: 5px; } 
+/*master-review_list css end */
+/* == review_view master ver start == */
+.main-section .container .review-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
+.main-section .container .review-detail .info-review .member-section { font-size: 15px; text-align: left; margin-top: 10px; margin-left: 20px; display: flex; } 
+.main-section .container .review-detail .info-review .member-section .info-review { height: 100%; } 
+.main-section .container .review-detail .info-review .member-section .review-status .btn { background-color: white; border: 0.5px solid #999; pointer-events: none; } 
+.main-section .container .review-detail .info-review .member-section .review-status,
+.main-section .container .review-detail .detail-content { margin-left: auto; margin-right: 50px; } 
+.main-section .container .review-detail .review-more-content .btn { background-color: white; border: 0.5px solid #999; margin-right: 20px; } 
+.main-section .container .review-detail .review-more-content .detail-content,
+.main-section .container .review-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top: 3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; } 
+.main-section .container .review-detail .review-box-content .review-input { display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f0f0f0; border-radius: 10px; margin: 20px; } 
+/* == review_view master ver end == */
+/* == review_view user ver start == */
+.main-section .container .profile-logo-sm { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container .user-review-detail { margin-top: 30px; margin-bottom: 20px; margin-left: 30px; padding-top: 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 18px; width: 80%; min-height: 700px; } 
+.main-section .container .user-review-detail .info-review .member-section { font-size: 15px; text-align: left; margin-top: 10px; margin-left: 20px; display: flex; } 
+.main-section .container .user-review-detail .info-review .member-section .info-review { height: 100%; } 
+.main-section .container .user-review-detail .info-review .member-section .review-status .btn { background-color: white; border: 0.5px solid #999; pointer-events: none; } 
+.main-section .container .user-review-detail .info-review .member-section .review-status,
+.main-section .container .user-review-detail .detail-content { margin-left: auto; margin-right: 50px; } 
+.main-section .container .user-review-detail .review-more-content .btn { background-color: white; border: 0.5px solid #999; margin-right: 20px; } 
+.main-section .container .user-review-detail .review-more-content .detail-content,
+.main-section .container .user-review-detail .review-box-content .detail-content { margin-right: 50px; text-align: center; height: 40%; margin-top: 30px; border-top: 3px solid white; padding: 30px; width: 100%; display: flex; justify-content: space-between; } 
+.main-section .container .user-review-detail .review-box-content .review-input { display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f0f0f0; border-radius: 10px; margin: 20px; } 
+/* == review_view user ver end== */
+/* ask */
+.main-section .container .content .edit-form { padding: 20px; padding-top: 30px; padding-bottom: 24px; display: flex; background-color: #f8f8f8; border-radius: 14px; flex-direction: column; } 
+.main-section .container .content .edit-form .widget-location h3 { font-size: 24px; font-weight: bold; margin-bottom: 20px; } 
+.main-section .container .content .edit-form .form-group { margin-bottom: 15px; } 
+.main-section .container .content .edit-form .form-group label { font-size: 16px; margin-bottom: 5px; } 
+.main-section .container .content .edit-form .form-group input[type="text"],
+.main-section .container .content .edit-form .form-group textarea { width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; } 
+.main-section .container .content .edit-form .form-group .btn { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; background-color: #F49D00; color: #fff; cursor: pointer; text-decoration: none; } 
+.main-section .container .content .edit-form .form-group .btn:hover { background-color: #F49D00; } 
+.main-section .container .content .edit-form .panel { border: 1px solid #ddd; border-radius: 4px; background-color: #fff; margin-bottom: 20px; } 
+.main-section .container .content .edit-form .panel-heading { background-color: #f7f7f7; padding: 10px 15px; border-bottom: 1px solid #ddd; border-top-left-radius: 4px; border-top-right-radius: 4px; } 
+.main-section .container .content .edit-form .panel-body { padding: 15px; } 
+.main-section .container .content .edit-form .text-center { text-align: center; } 
+.main-section .container .content .edit-form .text-center .btn { margin: 0 10px; } 
+.event-common-click-back,
+.event-click-add-file,
+.event-click-select { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; background-color: #F49D00; color: #fff; cursor: pointer; text-decoration: none; } 
+.event-common-click-submit { display: inline-block; padding: 8px 12px; font-size: 14px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; border: 1px solid #ddd; background-color: #fff; color: #555; } 
+.ask-write-title { text-align: center; } 
+/* ==============master_view================== */
+.main-section .container .content .new-edit-form { margin-top: 30px; padding-top : 30px; padding-bottom: 24px; background-color: #f8f8f8; border-radius: 14px; justify-content: center; } 
+.main-section .container .content .new-edit-form .new-profile-img { height: 80px; border-radius: 50%; background-size: cover; display: flex; justify-content: center; } 
+.main-section .container .content .new-edit-form .new-profile-img img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .container .content .new-edit-form .new-master-section { font-size: 14px; font-weight: 600; text-align: center; margin-top: 30px; } 
+.main-section .container .content .new-edit-form .new-master-section div { padding: 2px; margin-bottom: 5px; } 
+.main-section .container .content .new-edit-form .new-master-section .master-info .master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
+.main-section .container .content .new-edit-form .new-master-section .master-info .master-stars i { color: #f96209; } 
+.main-section .container .content .new-career_infoarea,
+.main-section .container .content .new-location_management,
+.main-section .container .content .new-detailed_description,
+.main-section .container .content .new-service_scheduling { margin-bottom: 15px; } 
+.main-section .container .content .new-career_sectiontitle,
+.main-section .container .content .new-location_managementtitle,
+.main-section .container .content .new-detailed_descriptiontitle,
+.main-section .container .content .new-service_schedulingtitle { margin-left: 10px; font-size: 1.25rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 5px; margin-top: 20px; } 
+.main-section .container .content .new-career_details ul { margin-left: 40px; list-style: none; padding: 0; display: flex; } 
+.main-section .container .content .new-location_details,
+.new-description_details,
+.new-schedule_details { margin-left: 40px; } 
+.main-section .container .content .new-career_details ul li,
+.main-section .container .content .new-schedule_details ul li { margin-bottom: 0.5rem; margin-right: 10px; } 
+.main-section .container .content .new-edit-form .new-master-section .new-btn { padding: 3px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; background-color: #F49D00; color: white; justify-content: center; } 
+#reserve-button-btn { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 1000; } 
+#reserve-button-btn.show { display: flex !important; } 
+.reserve-button-btn .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+#reserve-button-btn .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+#reserve-button-btn .modal-buttons { margin-top: 20px; } 
+#reserve-button-btn .reserve-confirm, 
+#reserve-button-btn .reserve-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+ .main-section .container .content .new-edit-form .new-master-section .reserve-button-block { display: block; } 
+ .main-section .container .content .new-edit-form .new-master-section .one-line-pr { margin-bottom: 10px; } 
+ .main-section .container .content .new-edit-form .new-master-section .new-review-star { color: gold; } 
+ .impossible-change { color: red; } 
+ .main-section .container .content .new-edit-form .new-master-section .new-review-star span { color:black; } 
+ .main-section .container .review-list-master .review { margin: 20px 20px; } 
+.main-section .container .review-list-master .tab-review { display: flex; margin-bottom: 10px; } 
+.main-section .container .review-list-master .tab { flex: 1; padding: 10px; border-bottom: 2px solid #ddd; text-align: center; cursor: pointer; font-size: 17px; } 
+.main-section .container .review-list-master .tab.active { font-weight: bold; border-bottom: 2px solid #F49D00; } 
+.main-section .container .review-list-master .review-list { display: flex; flex-direction: column; } 
+.main-section .container .review-list-master .pic-list-view { display: flex; padding: 10px; border-bottom: 1px solid #f0f0f0; } 
+.main-section .container .review-list-master .pic-list-view li { margin-right: 20px; } 
+.main-section .container .review-list-master .pic-review-view { padding: 10px 0; display: flex; border-bottom:1px solid #f0f0f0; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view { display: flex; flex-direction: row; padding: 10px 0; margin-right: 20px; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view .review-oneline { width:620px; word-wrap:break-word; word-break:break-all; white-space:normal; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view .main-review-score { width:150px; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .nickname { padding:10px 0; margin-right:20px; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .date { padding:10px 0; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap .right-content { display:flex; } 
+.main-section .container .review-list-master .pic-review-view .sizetype-view-wrap { display: flex; flex-direction:row; width:1050px; justify-content:space-between; padding-left:5px; } 
+.main-section .container .content.master-view { padding: 0 50px; } 
+.main-section .container .review-list-master .review-list .pic-review-view .member-review-pic img { width: 110px; height: 110px; border-radius: 15px; } 
+.main-section .container .review-list-master .review-list .pic-review-view .starreview { color: gold; } 
+/* =========master_view end======= */
+#mArticle { overflow: hidden; position: relative; max-width: 1160px; margin: 0 auto; padding-bottom: 180px; } 
+/* ==========master list =====*/
+.main-section .container.filter { justify-content: center; margin-top: 20px; margin-bottom: 20px; } 
+.main-section .container.filter .filters, .search-filters { display: flex; justify-content: center; margin: 20px 0; } 
+.main-section .container.filter .filter, .search-filter { margin: 0 10px; } 
+.main-section .container.filter .filters { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; } 
+.main-section .container.filter .filter { margin: 10px; } 
+.main-section .container.filter .filter label { margin-right: 10px; font-weight: bold; color: #333; } 
+.main-section .container.filter .filter select, .search-filter input, .search-filter select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ddd; transition: border-color 0.3s ease; cursor: pointer; } 
+.main-section .container.filter .filter select:focus, .search-filter input:focus, .search-filter select:focus { border: 1px solid #F49D00; } 
+.main-section .container.filter .search-filters button { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 10px 10px; border-radius: 15px; cursor: pointer; transition: background-color 0.3s ease; } 
+.main-section .container.filter .search-filters button:hover { background-color: #D98C00; } 
+.main-section .technician { border: 1px solid #ddd; margin: 10px; padding: 20px; width: 300px; text-align: center; transition: transform 0.3s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; background-color: #fff; } 
+.main-section .technician:hover { transform: translateY(-5px); box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); } 
+.main-section .technician img { width: 100px; height: 100px; border-radius: 100%; cursor: pointer; object-fit: cover; border: 1px solid #ccc; } 
+.main-section .technician .master-info { display: flex; flex-direction: column; gap: 5px; } 
+.main-section .technician .master-info .master-stars { font-size: 13px; font-weight: 500; line-height: 16px; letter-spacing: -0.3px; color: #f96209; } 
+.main-section .technician .master-info .master-stars i { color: #f96209; } 
+.main-section .container.filter .search-filters { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
+.main-section .container.filter .search-filter { margin: 0 10px; } 
+.main-section .container.filter .search-filter label { font-weight: bold; color: #333; } 
+.main-section .container.filter .search-filters button { background-color: white; border: 1px solid #F49D00; color: #F49D00; border-radius: 5px; padding: 10px 15px; margin-left: 10px; cursor: pointer; font-weight: 600; transition: background-color 0.3s ease; } 
+.main-section .container.filter .search-filters button:hover { background-color: #f49d001c; } 
+/* CSS 추가 */
+.main-section .container.filter #sub-category-filter { margin-top: 10px; /* 하위 카테고리 필터의 상단 여백 설정 */ } 
+.main-section .container.filter .main-area { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; } 
+.main-section .container.filter .filter, .search-filters { display: flex; flex-direction: column; margin-right: 10px; } 
+.main-section .container.filter .search-filters { flex-direction: row; align-items: center; margin: 0px; } 
+.main-section .container.filter .search-filter { margin-right: 10px; } 
+.main-section .container.filter .distance-radio-area { display: flex; justify-content: center; align-items: center; margin: 20px 0; } 
+.main-section .container.filter .distance-radio-area input[type="radio"] { display: none; } 
+.main-section .container.filter .main-area { margin-top: 10px; } 
+.main-section .container.filter .distance-radio-area label { background-color: #f8f9fa; border: 1px solid #ced4da; border-radius: 5px; padding: 10px 15px; margin: 0 5px; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; } 
+.main-section .container.filter .distance-radio-area input[type="radio"]:checked+label { background-color: #F49D00; color: white; border-color: #F49D00; } 
+.main-section .container.filter .distance-radio-area label:hover { background-color: #e9ecef; } 
+/**/
+.main-section .container.message-list .content { padding: 30px 50px; } 
+.main-section .container.message-list .chatlist-container { max-width: 300px; margin: 20px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); } 
+.main-section .container.message-list .chatlist { overflow-y: auto; max-height: 400px; } 
+.main-section .container.message-list .chatroom { display: flex; padding: 15px; border-bottom: 1px solid #ccc; cursor: pointer; transition: background-color 0.3s; align-items: center; } 
+.main-section .container.message-list .chatroom:hover { background-color: #f2f2f2; } 
+.main-section .container.message-list .new-mark.active { position: absolute; width: 14px; height: 14px; background: #ff5b16; border-radius: 100%; font-size: 10px; color: white; text-align: center; font-weight: 100; line-height: 14px; margin-left: 1px; } 
+.main-section .container.message-list .chatroom-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; } 
+.main-section .container.message-list .chatroom-info { flex: 1; margin-left: 10px; } 
+.main-section .container.message-list .chatroom-name { font-weight: bold; } 
+.main-section .container.message-list .last-message { color: #666; } 
+.main-section .container.message-list .chatroom-time { font-size: 12px; color: #999; height: 37px; } 
+/**/
+/* 버튼 스타일 */
+.request .btn { background-color: white; color: #ff6b6b; padding: 4px 12px; border: 1px solid #ff6b6b5e; border-radius: 5px; cursor: pointer; transition: 0.2s; cursor: default; } 
+.request .btn.submit { background-color: #ff6b6b; color: white; cursor: pointer; } 
+.request .btn.complete { border: 1px solid #DDD; background-color: #fff; color: #555; } 
+.request .btn.link { cursor: pointer } 
+/* 프로필 이미지 스타일 */
+.request-list .profile-logo-sm { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; } 
+/* 예약 스케줄 스타일 */
+.request-list .request-summary { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px 30px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); width: 80%; margin-top: 10px; gap: 15px; transition: transform 0.3s ease-in-out; } 
+.request-list .request-summary:hover { transform: translateY(-2px); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); } 
+.request-list .btn-request-summary-more { background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 10px; width: 80%; margin-top: 15px; transition: transform 0.3s ease-in-out; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); } 
+.request-list .btn-request-summary-more:hover { transform: translateY(-2px); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); } 
+
+/* 예약 스케줄 정보 스타일 */
+.request .profile-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; } 
+.request .info { text-align: left; flex-grow: 1; width: 50%; padding: 10px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 7px; } 
+.request .repair_date, .master_name, .repair_type, .explain { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #333; } 
+.request .repair_date .days-diff { font-size: 12px; padding: 0px 7px 1px; border-radius: 5px; display: inline-flex; color: #ff2626; background-color: #f7566117; font-weight: 500; } 
+.request .explain span { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; } 
+.request .explain { font-size: 13px; } 
+.request .master_name { font-weight: 600; } 
+.request .address { margin-left: 5px; color: #666; font-weight: 400; font-size: 13px; } 
+.request-list #payModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; align-items: center; justify-content: center; } 
+.request-list #payModal.show { display: flex !important; } 
+.request-list #payModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+.request-list #payModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+.request-list #payModal .modal-buttons { margin-top: 20px; } 
+.request-list #payModal .btn-confirm, .request-list #payModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+.request-list #payModal .btn-cancel { background-color: #999; } 
+.request-list #payModal .btn-confirm:hover, #payModal .btn-cancel:hover { opacity: 0.8; } 
+/**/
+.request-view #payModal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; align-items: center; justify-content: center; } 
+.request-view #payModal.show { display: flex !important; } 
+.request-view #payModal .modal-content { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; text-align: center; } 
+.request-view #payModal .modal-content p { font-size: 16px; color: #333; margin-bottom: 20px; } 
+.request-view #payModal .modal-buttons { margin-top: 20px; } 
+.request-view #payModal .btn-confirm, .request-view #payModal .btn-cancel { background-color: #f49d00; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 5px; } 
+.request-view #payModal .btn-cancel { background-color: #999; } 
+.request-view #payModal .btn-confirm:hover, #payModal .btn-cancel:hover { opacity: 0.8; } 
+.request-view input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
+ {
+ -webkit-appearance: none; margin: 0; } 
+ 
+
+/* 예약 상세 */
+.request-view .stars { display: flex; cursor: pointer; gap: 7px; } 
+.request-view .star { font-size: 3.5rem; color: lightgray; } 
+.request-view .star.checked { color: gold; } 
+.request-view .hidden-input { display: none; } 
+.request-view .star-score { padding: 0 70px; color: gold; margin-bottom: 5px; } 
+.request-view .content-wrap .title { text-align: left; margin-top: 35px; border-top: 3px solid white; padding: 35px 70px 10px; font-size: 17px; font-weight: 600; } 
+.request-view .content-wrap .content { white-space: pre-wrap; word-wrap: break-word; padding: 0 70px; } 
+.request-view .content-wrap .content-pay { padding: 0 70px; } 
+.request-view .review-input { padding: 30px 70px 10px; } 
+.request-view .review-input .review-rating,
+.request-view .review-input .review-title,
+.request-view .review-input .review-content,
+.request-view .review-input .file-attachment,
+.request-view .review-input .action-buttons { margin: 10px 0; width: 100%; display: flex; flex-direction: column; align-items: center; } 
+.request-view .review-input .action-buttons { margin-top: 20px; } 
+.request-view .review-input .stars { font-size: 24px; color: gold; } 
+.request-view .review-input textarea { width: 100%; height: 200px; padding: 20px; resize: vertical; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; } 
+.request-view .review-input .file-attachment .btn { margin: 10px 0; } 
+.request-view .review-input .file-attachment .file-list { width: 80%; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 50px; } 
+.request-view .review-input .file-attachment .file-item { background-color: #ddd; padding: 5px 10px; border-radius: 5px; } 
+.request-view .review-input .action-buttons .btn { padding: 5px 20px; cursor: pointer; font-size: 15px; } 
+.request-view .review-input .action-buttons .btn:hover { background-color: #ff6b6b1c; font-weight: 600; } 
+
+/* 후기 내역 */
+.review-list .main-section .container .content { display: flex; flex-direction: column; align-items: center; width: 1500px; padding: 30px 50px; margin-top: 40px; } 
+.review-list .member-section { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px 30px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); width: 80%; margin-top: 10px; gap: 10px; } 
+.review-list .member-section .star-score { color: gold; margin-right: 4px; } 
+.review-list .profile-logoimg { flex-shrink: 0; margin-right: 20px; } 
+.review-list .profile-logo-sm { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ddd; } 
+.review-list .infodetail { flex-grow: 1; } 
+.review-list .infodetail strong { display: inline-block; width: 120px; font-weight: 600; color: #333; } 
+.review-list .infodetail span { font-size: 16px; color: #555; } 
+.review-list .review-status { margin-left: 20px; } 
+.review-list .btn.request { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; line-height: 32px; } 

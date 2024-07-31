@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.susuma.category.model.CategoryMapper">
+
+	<select id="selectCategorys" parameterType="String" resultType="com.susuma.category.model.CategoryDTO">
+		SELECT C.CA_NO, C.ROOT_NO, C.CA_NAME, C.INSERT_TIME, C.UPDATE_TIME
+		FROM CATEGORY C
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE 1 =1 
+		<if test="rootNo == null">
+			AND C.ROOT_NO IS NULL
+		</if>
+		<if test="rootNo != null">
+			AND C.ROOT_NO = #{rootNo}
+		</if>
+		ORDER BY C.CA_NO ASC
+	</select>
+
+</mapper>

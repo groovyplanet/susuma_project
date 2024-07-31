@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap'); body, html { font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-style: normal; } 
+
+* { margin : 0; padding : 0; box-sizing: border-box; } 
+a { text-decoration : none; color : black; } 
+ul, li, ol, dl, dd { list-style: none; margin: 0; } 
+img { max-width: 100%; height: auto; border: 0; } 
+table { border-collapse: collapse; border-spacing: 0; } 
+td, th { padding: 0; } 
+
+input[type="checkbox"] { cursor: pointer; } 
+button { appearance: none; border: 0; background: transparent; font: inherit; outline: none; cursor: pointer; } 
+button:disabled { cursor: default; } 
+label { margin: 0; font-weight: normal; } 
+p { margin: 0; } 
+.container { padding: 0; } 
+.input-field { transition: all 0.3s ease; } 
+.btn:focus,.btn:active:focus,.btn.active:focus,.btn.focus,.btn:active.focus,.btn.active.focus { outline: none; } 
+
+/* header */
+header { border-bottom: 1px solid #EAEAEC; background-color: #FCFCFE; min-width: 1200px; } 
+header .gnb { width: 1200px; margin: 0 auto; display: flex; align-items: center; height: 60px; } 
+header .gnb .logo-area { float: left; width: 110px; } 
+header .gnb .logo-area img { height: 100%; } 
+header .gnb ul.menu-area { margin-left: 35px; display: flex; } 
+header .gnb ul.menu-area li { display: inline; margin-right: 10px; padding: 0 20px; cursor: pointer; } 
+header .gnb ul.menu-area li.active,
+header .gnb ul.menu-area li:hover { border-bottom: 1px solid #F49D00; } 
+header .gnb ul.menu-area li a { display: inline-block; font-size: 15px; padding: 20px 0; color:#444; font-weight: 500; text-decoration: none; } 
+header .gnb ul.menu-area li.active a,
+header .gnb ul.menu-area li:hover a { color:#F49D00; } 
+header .gnb ul.login-area { margin-left: auto; display: flex; align-items: center; } 
+header .gnb ul.login-area li { display: inline; margin-left: 5px; cursor: pointer; } 
+header .gnb ul.login-area li .btn { display: inline-block; height: 34px; padding: 0 20px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; color: #555; font-size: 12px; font-weight: 500; letter-spacing: -0.5px; line-height: 32px; } 
+header .gnb ul.login-area li .btn:hover { background-color: #f3f3f3; transition: all 0.5s; } 
+header .gnb ul.login-area li .btn.btn-join { background-color: #F49D00; border: 1px solid #F49D00; color: white; padding: 0 15px; padding-right: 10px; line-height: 32px; } 
+header .gnb ul.login-area li .btn.btn-join:hover { background-color: #F5AF26; border: 1px solid #F5AF26; } 
+header .gnb ul.login-area li .btn.btn-join i { margin-left: 2px; } 
+header .gnb ul.login-area li .btn.btn-temp { background-color: #36454F; color: white; border: 1px solid #36454F; } 
+header .gnb ul.login-area li .btn.btn-temp:hover { background-color: #37555F; border: 1px solid #37555F; } 
+header .gnb ul.login-area li.li-icon { cursor: default; } 
+header .gnb ul.login-area li.li-icon .icon-area { position: relative; padding: 6px; border-radius: 50%; margin-right: 3px; cursor: pointer; } 
+header .gnb ul.login-area li.li-icon .icon-area:hover { background-color: #eee; transition: all 0.5s; } 
+header .gnb ul.login-area li.li-icon .icon-area span.new-mark { position: absolute; width: 14px; height: 14px; background: #ff5b16; border-radius: 100%; top: 2px; right: 3px; font-size: 10px; color: white; text-align: center; font-weight: 100; line-height: 14px; } 
+header .gnb ul.login-area li.li-icon.chat .icon-area { padding-top: 5px; margin-right: 8px; } 
+header .gnb ul.login-area li.li-icon.chat .icon-area img { width: 20px; } 
+header .gnb ul.login-area li.li-icon.chat .icon-area span.new-mark { right: 0px; } 
+header .gnb ul.login-area li.li-icon.alarm { position: relative; } 
+header .gnb ul.login-area li.li-icon.alarm .icon-area img { width: 22px; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list { display: none; position: absolute; top: 48px; right: -130px; padding: 20px; width: 300px; border: 1px solid #DDD; border-radius: 13px; background-color: #fff; z-index: 100; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list :before { content: ''; position: absolute; border-style: solid; border-width: 0 7px 10px 7px; border-color: #DDD transparent; display: block; width: 0; z-index: 0; top: -11px; left: calc(50% - 8px); } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list :after { content: ''; position: absolute; border-style: solid; border-width: 0 7px 10px 7px; border-color: #FFFFFF transparent; display: block; width: 0; z-index: 1; top: -9px; left: calc(50% - 8px); } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item { text-decoration: none; display: block; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item:hover .message { text-decoration: underline; text-decoration-color: #aaa } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item + a.alram-item { margin-top: 14px; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .datetime { font-size: 12px; color: #777; } 
+header .gnb ul.login-area li.li-icon.alarm .alram-list a.alram-item .message { font-size: 14px; color: #333; margin-top: 1px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-break: break-all; } 
+
+/* modal */
+.modal { display: none; background-color: rgba(0, 0, 0, .6); position: fixed; top: 0; right: 0; bottom: 0; left: 0; align-items: center; justify-content: center; z-index: 100; opacity: 0; transform: translateY(-20px); transition: opacity 0.3s ease, transform 0.3s ease; } 
+.modal.show { display: flex !important; z-index: 100; opacity: 1; transform: translateY(0); } 
+.modal .container { width: 416px; padding: 48px 48px 40px; border-radius: 16px; background-color: #fff; box-shadow: 0 16px 25px rgba(0, 0, 0, .1), 0 8px 10px rgba(0, 0, 0, .04); position: relative; } 
+.modal .container .logo-area { text-align: center; } 
+.modal .container .logo-area img { width: 110px; } 
+.modal .container .login-form { width: 100%; margin-top: 20px; } 
+.modal .container .login-form .input-area + .input-area { margin-top: 12px; } 
+.modal .container .login-form .input-area .input-field { width: 100%; padding: 12px 12px; background-color: #F4F4F5; border: 1px solid #F4F4F5; border-radius: 4px; color: #33312f; font-size: 14px; line-height: 20px; letter-spacing: -0.42px; } 
+.modal .container .login-form .sub-area { display: flex; justify-content: space-between; margin-top: 7px; } 
+.modal .container .login-form .sub-area .save-area { cursor: pointer; } 
+.modal .container .login-form .sub-area .save-area label { cursor: pointer; } 
+.modal .container .login-form .sub-area .save-area label:hover { font-weight: 500; } 
+.modal .container .login-form .btn { display: inline-flex; width: 100%; align-items: center; justify-content: center; border-radius: 6px; font-size: 16px; font-weight: 500; background-color: #ffffff; border: 1px solid #333; color: #333; padding: 10px; margin-top: 10px; } 
+.modal .container .login-form .btn:hover { background-color: #f3f3f3; transition: all 0.5s; } 
+.modal .container .login-form .btn.btn-login-submit { background-color: #F49D00; border: 1px solid #F49D00; color: white; margin-top: 18px; } 
+.modal .container .login-form .btn.btn-login-submit:hover { background-color: #F5AF26; border: 1px solid #F5AF26; } 
+.modal .container .btn-close-modal { position: absolute; top: 24px; right: 24px; padding: 2px; } 
+.modal .container .btn-close-modal:hover { background-color: #e7e7e7; border-radius: 7px; } 
+.modal .container .btn-close-modal img { width: 24px; } 
+
+/* main-section */
+.main-section { min-width: 1200px; min-height: 706px; } 
+
+/* footer */
+footer { background-color: #EEE; min-width: 1200px; } 
+footer .container { width: 1200px; margin: 0 auto; padding: 40px 0; } 
+footer .container .info-area { font-weight: 600; } 
+footer .container .info-area ul li { display: inline; margin-right: 20px; } 
+footer .container .info-area ul li a { display: inline-block; font-size: 13px; padding: 15px 0; color:#5b5b5b; text-decoration: none; cursor: pointer; } 
+footer .container .info-area ul li a:hover { color:#444; text-decoration: underline; } 
+footer .container .copyright-area { font-size: 11px; } 
+footer .container span { font-size: 10px; margin-top: 10px; display: block; } 

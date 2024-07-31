@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.susuma.request.model.RequestMapper">
+
+	<!-- [1] 수리 요청 목록 -->
+	<select id="selectRequests" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
+		SELECT *
+		FROM (
+		SELECT A.*, ROWNUM AS RN
+		FROM (
+		SELECT R.REQ_NO, R.REQUEST_DATE, R.REQUEST_TIME, R.STATUS, R.PAY_STATUS, R.PAY_AMOUNT, R.CONTENT, R.INSERT_TIME,
+		R.MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO AS MASTER_PROFILE_PHOTO, MM.ADDRESS AS MASTER_ADDRESS,
+		R.CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO AS CLIENT_PROFILE_PHOTO, R.ADDRESS AS CLIENT_ADDRESS, R.ADDRESS_DETAIL AS CLIENT_ADDRESS_DETAIL
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		, (SELECT COUNT(*) FROM REVIEW WHERE REQ_NO = R.REQ_NO) reviewCnt 
+		, RE.CONTENT AS REVIEW_CONTENT
+		, RE.STAR_SCORE
+		, TRUNC(SYSDATE) - TO_DATE(SUBSTR(R.REQUEST_DATE, 1, LENGTH(R.REQUEST_DATE) - 3), 'YYYY. MM. DD') AS DAYSDIFF
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = MM.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		LEFT JOIN REVIEW RE
+		ON RE.REQ_NO = R.REQ_NO
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND MC.ME_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MM.ME_NO = #{masterNo}
+		</if>
+		<if test="status != null and status != 'all'">
+			AND R.STATUS = #{status}
+		</if>
+		<if test="sortField == 'R.REQUEST_DATE'">
+			ORDER BY R.REQUEST_DATE ${sortOrder}, R.REQUEST_TIME ${sortOrder} NULLS LAST
+		</if>
+		<if test="sortField != 'R.REQUEST_DATE'">
+			ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		</if>
+		) A
+		)
+		WHERE RN BETWEEN
+		#{startRow} and #{endRow}
+	</select>
+
+	<!-- [1-2] 수리 요청 목록 수(페이징 처리) -->
+	<select id="countRequests" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND MC.ME_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MM.ME_NO = #{masterNo}
+		</if>
+		<if test="status != null and status != 'all'">
+			AND R.STATUS = #{status}
+		</if>
+		<if test="sortField == 'R.REQUEST_DATE'">
+			ORDER BY R.REQUEST_DATE ${sortOrder}, R.REQUEST_TIME ${sortOrder} NULLS LAST
+		</if>
+		<if test="sortField != 'R.REQUEST_DATE'">
+			ORDER BY ${sortField} ${sortOrder} NULLS LAST
+		</if>
+	</select>
+	
+	<select id="getNewRequestCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		WHERE 1 = 1
+		AND MM.ME_NO = #{meNo}
+		AND R.STATUS = 'requested'
+	</select>
+	
+	<!-- [1-3] 수리 상태별 개수 -->
+	<select id="selectRequestCnts" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
+		SELECT
+		COUNT(*) AS allCnt,
+		COUNT(CASE WHEN R.STATUS = 'requested' THEN 1 END) AS requestedCnt,
+		COUNT(CASE WHEN R.STATUS = 'approved' THEN 1 END) AS approvedCnt,
+		COUNT(CASE WHEN R.STATUS = 'paywait' THEN 1 END) AS paywaitCnt,
+		COUNT(CASE WHEN R.STATUS = 'paid' THEN 1 END) AS paidCnt,
+		COUNT(CASE WHEN R.STATUS = 'cancel' THEN 1 END) AS cancelCnt
+		FROM REQUEST R
+		WHERE 1 = 1
+		<if test="clientNo != null">
+			AND CLIENT_NO = #{clientNo}
+		</if>
+		<if test="masterNo != null">
+			AND MASTER_NO = #{masterNo}
+		</if>
+	</select>
+
+	<!-- [2] 수리 요청 1건 -->
+	<select id="selectRequest" parameterType="map" resultType="com.susuma.request.model.RequestDTO">
+		SELECT R.REQ_NO, R.REQUEST_DATE, R.REQUEST_TIME, R.STATUS, R.PAY_STATUS, R.PAY_AMOUNT, R.CONTENT, R.INSERT_TIME, R.PAID_TIME,
+		R.LATITUDE, R.LONGITUDE,
+		R.MASTER_NO, MM.NAME AS MASTER_NAME, MM.PROFILE_PHOTO AS MASTER_PROFILE_PHOTO, MM.ADDRESS AS MASTER_ADDRESS, MM.PHONE_NUM AS MASTER_PHONE_NUM,
+		R.CLIENT_NO, MC.NAME AS CLIENT_NAME, MC.PROFILE_PHOTO AS CLIENT_PROFILE_PHOTO, R.ADDRESS AS CLIENT_ADDRESS, R.ADDRESS_DETAIL AS CLIENT_ADDRESS_DETAIL, R.PHONE_NUM AS CLIENT_PHONE_NUM
+		, C.CA_NO
+		, C.CA_NAME
+		, CR.CA_NO AS CA_ROOT_NO
+		, CR.CA_NAME AS CA_ROOT_NAME
+		FROM REQUEST R
+		JOIN MEMBER MC ON R.CLIENT_NO = MC.ME_NO
+		JOIN MEMBER MM ON R.MASTER_NO = MM.ME_NO
+		LEFT JOIN CATEGORY C
+		ON C.CA_NO = MM.CA_NO
+		LEFT JOIN CATEGORY CR
+		ON CR.CA_NO = C.ROOT_NO
+		WHERE 1 = 1
+		<if test="reqNo != null">
+			AND R.REQ_NO = #{reqNo}
+		</if>
+	</select>
+
+	<!-- [3] 수리 요청 등록 -->
+	<insert id="insertRequest" parameterType="com.susuma.request.model.RequestDTO">
+		INSERT INTO REQUEST (REQ_NO, MASTER_NO, CLIENT_NO, CONTENT, REQUEST_DATE,
+		REQUEST_TIME, ADDRESS, ADDRESS_DETAIL, LATITUDE, LONGITUDE, PHONE_NUM)
+		VALUES (REQUEST_SEQ.NEXTVAL, #{masterNo}, #{clientNo}, #{content},
+		#{requestDate}, #{requestTime}, #{address}, #{addressDetail},
+		#{latitude}, #{longitude}, #{phoneNum})
+		<selectKey keyProperty="reqNo" resultType="int" order="AFTER">
+			SELECT REQUEST_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- [4] 수리 요청 수정(예약승인, 결제요청, 결제완료, 취소) -->
+	<update id="updateRequest" parameterType="com.susuma.request.model.RequestDTO">
+		UPDATE REQUEST
+		SET
+		<if test="status != null">
+			STATUS = #{status},
+			<if test="status eq 'approved'">
+				APPROVAL_TIME = SYSDATE
+			</if>
+			<if test="status eq 'paywait'">
+				PAY_AMOUNT = #{payAmount},
+				PAY_REQUEST_TIME = SYSDATE
+			</if>
+			<if test="status eq 'paid'">
+				PAY_STATUS = 'Y',
+				PAID_TIME = SYSDATE
+			</if>
+			<if test="status eq 'cancel'">
+				CANCEL_TIME = SYSDATE
+			</if>
+		</if>
+		WHERE
+		REQ_NO = #{reqNo}
+	</update>
+
+	<!-- 포인트 차감 쿼리 -->
+	<update id="updateMemberPoints" parameterType="com.susuma.request.model.RequestDTO">
+		UPDATE MEMBER
+		SET POINT = POINT - #{payAmount}
+		WHERE ME_NO = #{meNo}
+	</update>
+
+
+	<!-- [5] 수리 요청 삭제 -->
+	<delete id="deleteRequest" parameterType="string">
+		DELETE FROM REQUEST
+		WHERE
+		REQ_NO = #{reqNo}
+	</delete>
+
+</mapper>

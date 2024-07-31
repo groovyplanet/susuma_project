@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counselor Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    width: 420px;
+    height: 550px;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-group {
+    display: flex;
+    padding: 10px;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F49D00;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d68b00;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+.message.member {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    width: 100px;
+}
+
+.message.counselor {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+}
+
+</style>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-group">
+            <input type="text" id="chat-input" placeholder="메시지를 입력하세요">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+    <script src="counselor.js"></script>
+</body>
+<script>
+const chatBox = document.getElementById('chat-box');
+const chatInput = document.getElementById('chat-input');
+
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message) {
+        addMessage('counselor', message);
+        chatInput.value = '';
+        simulateMemberResponse(message);
+    }
+}
+
+function addMessage(sender, message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    messageDiv.textContent = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function simulateMemberResponse(message) {
+    // 이 함수는 단순히 멤버의 응답을 시뮬레이션합니다.
+    setTimeout(() => {
+        const memberResponse = `멤버 응답: ${message}`;
+        addMessage('member', memberResponse);
+    }, 1000);
+}
+
+    
+</script>
+
+</html>
