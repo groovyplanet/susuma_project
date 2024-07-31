@@ -28,6 +28,7 @@
 					<div class="new-master-section">
 						<div class="new-master-name">
 							<c:out value="${dto.name}" />
+							수리기사
 						</div>
 						<div class="master-info">
 							<c:if test="${dto.reviewCount > 0}">
@@ -37,7 +38,7 @@
 									<span class="review-count">(후기${dto.reviewCount })</span>
 								</p>
 							</c:if>
-							<p>
+							<p style="margin: 3px 0;">
 								<c:set var="addressParts" value="${fn:split(dto.address, ' ')}" />
 								<i class="bi bi-geo-alt"></i>${addressParts[0]}
 								${addressParts[1]} (${dto.maxDistance}km 이내 가능)
@@ -46,7 +47,7 @@
 								<span>${dto.caRootName }
 									<i class="bi bi-chevron-right"></i>${dto.caName }</span>
 							</p>
-							<p>${dto.shortDescription }</p>
+							<p style="margin: 3px 0 0;">${dto.shortDescription }</p>
 						</div>
 						<div class="reserve-button-block">
 							<a href="${pageContext.request.contextPath }/member/request.member?meNo=${dto.meNo}" class="new-btn new-reserve" id="reserve-button">예약 신청</a>
@@ -59,12 +60,12 @@
 				</div>
 
 				<div class="new-detailed_description">
-					<div class="new-detailed_descriptiontitle">서비스 상세 설명</div>
-					<div class="new-description_details preserve-line-breaks">${dto.description}</div>
+					<div class="new-detailed_descriptiontitle" style="font-size: 19px; margin-left:20px">서비스 상세 설명</div>
+					<div class="new-description_details preserve-line-breaks" style="margin: 0 0 0 20px;">${dto.description}</div>
 				</div>
 				<div class="new-service_scheduling">
-					<div class="new-service_schedulingtitle">서비스 일정 관리</div>
-					<div class="new-schedule_details">
+					<div class="new-service_schedulingtitle" style="font-size: 19px; margin-left:20px">근무요일 및 시간</div>
+					<div class="new-schedule_details" style="margin: 0 0 0 21px;">
 						<div class="preserve-line-breaks">${dto.workHours}</div>
 					</div>
 
@@ -77,8 +78,8 @@
 
 						</div>
 						<div class="review-list">
-								<c:forEach var="dto" items="${list2}">
-							<div class="pic-review-view item">
+							<c:forEach var="dto" items="${list2}">
+								<div class="pic-review-view item">
 									<c:set var="firstChar" value="${fn:substring(dto.clientName, 0, 1)}" />
 									<c:set var="maskedName" value="${firstChar}" />
 									<c:forEach var="i" begin="1" end="${fn:length(dto.clientName) - 1}">
@@ -98,11 +99,11 @@
 															<c:forEach var="i" begin="1" end="5">
 																<c:choose>
 																	<c:when test="${i <= dto.starScore}">
-	                										<i class="bi bi-star-fill"></i>
-	            										</c:when>
+																		<i class="bi bi-star-fill"></i>
+																	</c:when>
 																	<c:otherwise>
-											               <i class="bi bi-star"></i>
-											            </c:otherwise>
+																		<i class="bi bi-star"></i>
+																	</c:otherwise>
 																</c:choose>
 															</c:forEach>
 
@@ -123,8 +124,8 @@
 										</div>
 									</span>
 
-							</div>
-								</c:forEach>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
