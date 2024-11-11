@@ -14,7 +14,7 @@
 
 ## 🪅 팀원
 
-| **👑김현용** | **박서희** | **조예원** | **한정우** |
+| **김현용** | **박서희** | **조예원** | **한정우** |
 | :------: |  :------: | :------: | :------: |
 | [<img src="https://avatars.githubusercontent.com/gusdydgud" height=90> <br/> @gusdydgud](https://github.com/gusdydgud) | [<img src="https://avatars.githubusercontent.com/FORrri" height=90> <br/> @FORrri](https://github.com/FORrri) | [<img src="https://avatars.githubusercontent.com/yewon31" height=90> <br/> @yewon31](https://github.com/yewon31) |[<img src="https://avatars.githubusercontent.com/groovyplanet" height=90> <br/> @groovyplanet](https://github.com/groovyplanet) |
 
